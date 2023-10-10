@@ -1,0 +1,144 @@
+# Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
+site_name: Andrey Shtrauss
+site_url: https://github.com/gmihaila/shtrausslearning.github.io
+repo_name: 'Machine Learning Things'
+repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
+edit_uri: tree/master/docs/src/markdown
+site_description: A Collection of Useful Snippets on Machine Learning related topics
+copyright: |
+  Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+docs_dir: markdown
+
+nav:
+    - About: index.md
+
+    - Collections: 
+
+        - Data Science: ds-portfolio.md
+
+    - MLDSAI Posts:
+
+        - (2023-09-25) Comparing Datasets: mldsai-info/2023-09-25-compare_dataset.md
+        - (2023-09-21) NER with HuggingFace: mldsai-info/2023-09-21-huggingface_NER2.md
+        - (2023-08-22) Pipeline Tuning with PySpark: mldsai-info/2023-08-22-spark-pipeline-tune.md
+        - (2023-08-21) Creating Models with PySpark: mldsai-info/2023-08-21-spark-modeling.md
+        - (2023-08-20) Preprocessing with PySpark: mldsai-info/2023-08-20-spark-preprocess.md
+        - (2023-08-17) Taxi EDA with PySpark: mldsai-info/2023-08-17-spark-cabeda.md
+        - (2023-08-11) Sentence Splitting with NER: mldsai-info/2023-08-11-sentence_splitting.md
+        - (2023-08-10) NER with Torch/HuggingFace: mldsai-info/2023-08-10-huggingface_NER.md
+
+    - mllibs:
+
+        - introduction: mllibs-home.md
+
+markdown_extensions:
+    - markdown.extensions.toc:
+        slugify: !!python/name:pymdownx.slugs.uslugify
+        permalink: ""
+    - markdown.extensions.admonition:
+    - markdown.extensions.smarty:
+        smart_quotes: false
+    - pymdownx.betterem:
+    - markdown.extensions.attr_list:
+    - markdown.extensions.def_list:
+    - markdown.extensions.tables:
+    - markdown.extensions.abbr:
+    - markdown.extensions.footnotes:
+    - markdown.extensions.md_in_html:
+    - pymdownx.superfences:
+        preserve_tabs: true
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+          - name: math
+            class: arithmatex
+            format: !!python/name:pymdownx.arithmatex.fence_mathjax_format
+    - pymdownx.highlight:
+        extend_pygments_lang:
+          - name: php-inline
+            lang: php
+            options:
+              startinline: true
+          - name: pycon3
+            lang: pycon
+            options:
+              python3: true
+        linenums_style: pymdownx-inline
+    - pymdownx.inlinehilite:
+        custom_inline:
+          - name: math
+            class: arithmatex
+            format: !!python/name:pymdownx.arithmatex.inline_mathjax_format
+    - pymdownx.magiclink:
+        repo_url_shortener: true
+        repo_url_shorthand: true
+        social_url_shorthand: true
+        social_url_shortener: true
+        user: facelessuser
+        repo: pymdown-extensions
+    - pymdownx.tilde:
+    - pymdownx.caret:
+    - pymdownx.smartsymbols:
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.escapeall:
+        hardbreak: True
+        nbsp: True
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.progressbar:
+    - pymdownx.arithmatex:
+    - pymdownx.mark:
+    - pymdownx.striphtml:
+    - pymdownx.snippets:
+        base_path: markdown/_snippets
+    - pymdownx.keys:
+        separator: "\uff0b"
+    - pymdownx.details:
+    - pymdownx.tabbed:
+
+
+theme:
+    name: material
+    icon:
+        logo: fontawesome/solid/cubes 
+        repo: fontawesome/brands/github
+    language: en
+    features:
+        - instant
+        - header.autohide
+        - search.highlight
+        - search.share
+        - search.suggest
+        - navigation.top
+        - content.tabs.link
+#        - navigation.sections
+        - navigation.expand
+#        - navigation.tabs
+#        - toc.integrate # table of contents is rendered as part of the navigation
+    palette:
+        scheme: slate
+        primary: orange
+        accent: amber
+    font:
+        text: Roboto
+        code: Roboto Mono
+
+extra:
+    manifest: manifest.webmanifest
+    social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/shtrausslearning
+      name: shtrausslearning
+    - icon: fontawesome/brands/kaggle
+      link: https://www.kaggle/shtraussleaning
+      name: shtrausslearning
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/mldsai_info
+      name: mldsai-info
+
+plugins:
+    - search

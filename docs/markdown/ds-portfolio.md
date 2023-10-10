@@ -47,7 +47,7 @@ In this study, we aim to create an **automated ticket classification model** for
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/heart-disease-gaussian-process-models)
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/Heart%20Disease%20Classification)
 
-> In this study, we explore different feature engineering approaches for classifying patients with heart disease and conduct grid searches for the two hyperparemeters in order to find the best hyperparameter configuration. We utilise an sklearn based custom Regressor model **([model found here](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/Heart%20Disease%20Classification/ml-models/src/mlmodels/gpr_bclassifier.py))**, which we turned in a classifier by simply setting the threshold to 0.5. We also utilised an ensemble of different model in order to improve the model accuracy 
+In this study, we explore different feature engineering approaches for classifying patients with heart disease and conduct grid searches for the two hyperparemeters in order to find the best hyperparameter configuration. We utilise an sklearn based custom Regressor model **([model found here](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/Heart%20Disease%20Classification/ml-models/src/mlmodels/gpr_bclassifier.py))**, which we turned in a classifier by simply setting the threshold to 0.5. We also utilised an ensemble of different model in order to improve the model accuracy
 
 <center>
 ![](images/pairplot2.png)

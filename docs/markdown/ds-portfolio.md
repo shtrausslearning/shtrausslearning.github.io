@@ -50,7 +50,7 @@ In this study, we aim to create an **automated ticket classification model** for
 > In this study, we explore different feature engineering approaches for classifying patients with heart disease and conduct grid searches for the two hyperparemeters in order to find the best hyperparameter configuration. We utilise an sklearn based custom Regressor model **([model found here](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/Heart%20Disease%20Classification/ml-models/src/mlmodels/gpr_bclassifier.py))**, which we turned in a classifier by simply setting the threshold to 0.5. We also utilised an ensemble of different model in order to improve the model accuracy 
 
 <center>
-![](https://i.imgur.com/lxVvOpO.png)
+![](images/pairplot2.png)
 </center>
 
 ### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Ovarian Phase Classification in Felids</b>

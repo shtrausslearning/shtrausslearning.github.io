@@ -26,6 +26,10 @@ servedocs: ## Rebuild docs automatically and push to github.
 	mkdocs build --config-file docs/mkdocs.yml
 	cp -rf docs/site/* .
 	rm -rf docs/site
+	git add --all
+	git commit -m "Updates to Website"
+	git push origin master
+	@echo "Website updated! Check it out: https://shtrausslearning.github.io "
 
 .PHONY: setup_marp
 setup_marp: ## Download Marp locally and setup.

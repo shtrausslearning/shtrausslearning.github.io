@@ -30,8 +30,8 @@ nav:
 
     - mllibs:
 
-        - introduction: /mllibs/home.md
-        - meetups: /mllibs/meetups.md
+        - introduction: mllibs/home.md
+        - meetups: mllibs/meetups.md
 
 markdown_extensions:
     - markdown.extensions.toc:

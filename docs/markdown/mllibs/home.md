@@ -1,6 +1,6 @@
 
 <center>
-![mllibs](images/bnb.png#only-light){ width="450" }
+![mllibs](images/fcnb.png#only-light){ width="450" }
 ![mllibs](images/wnb.png#only-dark){ width="450" }
 </center>
 

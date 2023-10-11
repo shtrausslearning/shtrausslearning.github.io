@@ -119,7 +119,7 @@ theme:
 #        - navigation.sections
         - navigation.expand
 #        - navigation.tabs
-#        - toc.integrate # table of contents is rendered as part of the navigation
+        - toc.integrate # table of contents is rendered as part of the navigation
     palette:
         - scheme: default
           primary: indigo

@@ -128,7 +128,7 @@ theme:
             icon: material/brightness-7
             name: Switch to dark mode
         - scheme: slate
-          primary: black
+          primary: indigo
           accent: indigo
           toggle:
             icon: material/brightness-4

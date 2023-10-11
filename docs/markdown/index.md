@@ -1,6 +1,6 @@
 ![header](images/header.png)
 
-![](https://img.shields.io/badge/Kaggle-Grandmaster-FAE01C) <a href='https://www.kaggle.com/shtrausslearning/'> ![](https://img.shields.io/github/followers/shtrausslearning?style=social) <a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=3776AB&logo=Telegram&logoColor=FFFFFF&label=" /></a> <a href="https://komarev.com/ghpvc/?username=shtrausslearning"><img src="https://komarev.com/ghpvc/?username=shtrausslearning&label=Visitors&color=0e75b6&style=flat" alt="Profile visitor" /></a>
+![](https://img.shields.io/badge/Kaggle-Grandmaster-FAE01C) <a href='https://www.kaggle.com/shtrausslearning/'> ![](https://img.shields.io/github/followers/shtrausslearning?style=social) <a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=3776AB&logo=Telegram&logoColor=FFFFFF&label=" /></a>
 
 ## **About Me!**
 

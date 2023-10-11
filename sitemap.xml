@@ -11,11 +11,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/mllibs-home/</loc>
-         <lastmod>2023-10-11</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://github.com/gmihaila/shtrausslearning.github.io/mldsai-info/2023-08-10-huggingface_NER/</loc>
          <lastmod>2023-10-11</lastmod>
          <changefreq>daily</changefreq>
@@ -57,6 +52,16 @@
     </url>
     <url>
          <loc>https://github.com/gmihaila/shtrausslearning.github.io/mldsai-info/2023-09-25-compare_dataset/</loc>
+         <lastmod>2023-10-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/mllibs/home/</loc>
+         <lastmod>2023-10-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/mllibs/meetups/</loc>
          <lastmod>2023-10-11</lastmod>
          <changefreq>daily</changefreq>
     </url>

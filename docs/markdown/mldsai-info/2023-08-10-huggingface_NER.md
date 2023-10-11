@@ -13,13 +13,13 @@ In this notebook, we'll take a look at how we can utilise huggingface transforme
 
 ## <b>Background</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>What is NER?</b> 
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>What is NER?</b> 
 
 - NER is a natural language processing technique which identifies and extracts named entities from unstructured text
 - Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be
 - NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Applications</b> 
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Applications</b> 
 
 Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. 
 
@@ -45,7 +45,7 @@ Simplifying Customer Support: <br>
 
 To realise `NER` with Hugginface, we'll be utilising a muli-language dataset `massive`
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Massive 1.1</b> 
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Massive 1.1</b> 
 
 Let's load our dataset **MASSIVE**; the dataset can be found on **[huggingface](https://huggingface.co/datasets/AmazonScience/massive)**
 
@@ -64,7 +64,7 @@ train_dataset = load_dataset('AmazonScience/massive', "ru-RU",split="train[:100]
 test_dataset = load_dataset('AmazonScience/massive', "ru-RU",split="test[:100]")
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Relevant Columns</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Relevant Columns</b>
 ​
 Some samples from our **documents**, located in column `utt` and NER **Annotations** are located in `annot_utt`, which is in the format `[tag : tokens]`
 
@@ -105,7 +105,7 @@ train_dataset['annot_utt'][:10]
 
 ## <b>Text Preprocessing</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Define Tokeniser & Model</b> 
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Define Tokeniser & Model</b> 
 
 For preprocessing we'll need a tokeniser, so let's define the tokeniser & the base model
 
@@ -120,7 +120,7 @@ MODEL = AutoModel.from_pretrained("ai-forever/ruBert-base")
 # model = AutoModel.from_pretrained("bert-base-uncased")                       # en only
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>NER format</b> 
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>NER format</b> 
 
 **NER** tagging formats can vary quite a bit, let's utilise class `Parser` to preprocess the NER format in our dataset
 
@@ -330,7 +330,7 @@ test = NERDataset(test_dataset, tokenizer)
 
 We will use a rather custom approach to `NER`, we have loaded our `encoder` model, so we'll need to create a tail end for it, so we can use it for `NER` multiclass classification
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Model Architecture</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Architecture</b>
 
 Let's create a custom training & evaluation loop for our **NER multiclass classification** problem
 
@@ -409,7 +409,7 @@ class NERClassifier(PreTrainedModel):
 ```
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Model Additions</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Additions</b>
 
 Aside from defining the classification model architecture for our base model BERT
 - We need to create **dataloaders**, **instantiate** our model (ie tail weights need to be initialised)
@@ -437,7 +437,7 @@ In total, we have created 63 tags in `word_to_tag`
 63 labels
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train Model</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Train Model</b>
 
 - Let's train our model for 20 epochs on `train_loader` & validate the model using `test_loader` 
 - To check how well the model is performing during training, we will use the `accuracy` metric
@@ -648,7 +648,7 @@ Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395
 Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss: 1.0284815851225262, val_acc: 0.8245512449334106
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Save Model</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Save Model</b>
 
 We can save the model for future use
 
@@ -669,7 +669,7 @@ tokenizer.save_pretrained('./my_model_dir')
 
 We can use our `NER` tagger by loading a stack of documents and creating a `dataset`, as we did for the `train` & `test` subsets or we can use it for a single sentence, I'll be using a simple inference function.
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Loading Model</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Loading Model</b>
 
 If we want to load the fine-tuned `model`, we can use `.from_pretrained` and specify the folder where ther model is located, 
 the `tokenizer` can be loaded in a similar way
@@ -730,7 +730,7 @@ NERClassifier(
 )
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Finding NER tags in a document</b>
+### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Finding NER tags in a document</b>
 
 We can use our model using something similar to the code below & utilise the same `tokenizer`, the `parser` & saved `model`
 

@@ -1047,13 +1047,13 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <p>In this notebook, we'll take a look at how we can utilise huggingface transformer models and a custom PyTorch training loop, in order to classify different words in a document. We'll be utilising <strong>Massive</strong> dataset and fine-tuning and encoder <code>BERT</code>, with a custom tail model that can be used for multiclass classification</p>
 <p><a href="https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
 <h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
-<h3 id="-what-is-ner"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h3>
+<h3 id="-what-is-ner"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h3>
 <ul>
 <li>NER is a natural language processing technique which identifies and extracts named entities from unstructured text</li>
 <li>Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be</li>
 <li>NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity</li>
 </ul>
-<h3 id="-applications"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Applications</b><a class="headerlink" href="#-applications" title="Permanent link"></a></h3>
+<h3 id="-applications"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Applications</b><a class="headerlink" href="#-applications" title="Permanent link"></a></h3>
 <p>Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. </p>
 <p>Few such examples have been listed below[^footnote]:</p>
 <p>Classifying content for news providers: <br></p>
@@ -1078,7 +1078,7 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 </blockquote>
 <h2 id="the-ner-dataset"><b>The NER Dataset</b><a class="headerlink" href="#the-ner-dataset" title="Permanent link"></a></h2>
 <p>To realise <code>NER</code> with Hugginface, we'll be utilising a muli-language dataset <code>massive</code></p>
-<h3 id="-massive-11"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Massive 1.1</b><a class="headerlink" href="#-massive-11" title="Permanent link"></a></h3>
+<h3 id="-massive-11"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Massive 1.1</b><a class="headerlink" href="#-massive-11" title="Permanent link"></a></h3>
 <p>Let's load our dataset <strong>MASSIVE</strong>; the dataset can be found on <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">huggingface</a></strong></p>
 <blockquote>
 <p>MASSIVE 1.1 is a parallel dataset of &gt; 1M utterances across <strong>52 languages</strong> with annotations for the Natural Language Understanding tasks of intent prediction and slot annotation. Utterances span 60 intents and include 55 slot types. MASSIVE was created by localizing the SLURP dataset, composed of general Intelligent Voice Assistant single-shot interactions.</p>
@@ -1092,7 +1092,7 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:100]&quot;</span><span class="p">)</span>
 <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;test[:100]&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="-relevant-columns"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Relevant Columns</b><a class="headerlink" href="#-relevant-columns" title="Permanent link"></a></h3>
+<h3 id="-relevant-columns"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Relevant Columns</b><a class="headerlink" href="#-relevant-columns" title="Permanent link"></a></h3>
 <p>​
 Some samples from our <strong>documents</strong>, located in column <code>utt</code> and NER <strong>Annotations</strong> are located in <code>annot_utt</code>, which is in the format <code>[tag : tokens]</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span> 
@@ -1122,7 +1122,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 &#39;олли время спать&#39;]
 </code></pre></div>
 <h2 id="text-preprocessing"><b>Text Preprocessing</b><a class="headerlink" href="#text-preprocessing" title="Permanent link"></a></h2>
-<h3 id="-define-tokeniser--model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Define Tokeniser &amp; Model</b><a class="headerlink" href="#-define-tokeniser--model" title="Permanent link"></a></h3>
+<h3 id="-define-tokeniser--model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Define Tokeniser &amp; Model</b><a class="headerlink" href="#-define-tokeniser--model" title="Permanent link"></a></h3>
 <p>For preprocessing we'll need a tokeniser, so let's define the tokeniser &amp; the base model</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 
@@ -1133,7 +1133,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 <span class="c1"># tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-uncased&quot;)               # en only</span>
 <span class="c1"># model = AutoModel.from_pretrained(&quot;bert-base-uncased&quot;)                       # en only</span>
 </code></pre></div>
-<h3 id="-ner-format"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>NER format</b><a class="headerlink" href="#-ner-format" title="Permanent link"></a></h3>
+<h3 id="-ner-format"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>NER format</b><a class="headerlink" href="#-ner-format" title="Permanent link"></a></h3>
 <p><strong>NER</strong> tagging formats can vary quite a bit, let's utilise class <code>Parser</code> to preprocess the NER format in our dataset</p>
 <p>Class <code>Parser</code> contains the relevant preprocessing steps we will take:
 - The class will be called when creating our <code>Dataset</code>, creating <strong>NER tags</strong> for each document
@@ -1317,7 +1317,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 </code></pre></div>
 <h2 id="bert-multiclass-classifier"><b>BERT Multiclass Classifier</b><a class="headerlink" href="#bert-multiclass-classifier" title="Permanent link"></a></h2>
 <p>We will use a rather custom approach to <code>NER</code>, we have loaded our <code>encoder</code> model, so we'll need to create a tail end for it, so we can use it for <code>NER</code> multiclass classification</p>
-<h3 id="-model-architecture"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Model Architecture</b><a class="headerlink" href="#-model-architecture" title="Permanent link"></a></h3>
+<h3 id="-model-architecture"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Architecture</b><a class="headerlink" href="#-model-architecture" title="Permanent link"></a></h3>
 <p>Let's create a custom training &amp; evaluation loop for our <strong>NER multiclass classification</strong> problem</p>
 <ul>
 <li>In total we have 34 classification tags (including O), so we can define the tail output dimension</li>
@@ -1387,7 +1387,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
         <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">logits</span>
 </code></pre></div>
-<h3 id="-model-additions"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Model Additions</b><a class="headerlink" href="#-model-additions" title="Permanent link"></a></h3>
+<h3 id="-model-additions"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Additions</b><a class="headerlink" href="#-model-additions" title="Permanent link"></a></h3>
 <p>Aside from defining the classification model architecture for our base model BERT
 - We need to create <strong>dataloaders</strong>, <strong>instantiate</strong> our model (ie tail weights need to be initialised)
 - Define the model evaluation criterion (loss function) 
@@ -1408,7 +1408,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 <p>In total, we have created 63 tags in <code>word_to_tag</code> </p>
 <div class="highlight"><pre><span></span><code>63 labels
 </code></pre></div>
-<h3 id="-train-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train Model</b><a class="headerlink" href="#-train-model" title="Permanent link"></a></h3>
+<h3 id="-train-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Train Model</b><a class="headerlink" href="#-train-model" title="Permanent link"></a></h3>
 <ul>
 <li>Let's train our model for 20 epochs on <code>train_loader</code> &amp; validate the model using <code>test_loader</code> </li>
 <li>To check how well the model is performing during training, we will use the <code>accuracy</code> metric</li>
@@ -1614,7 +1614,7 @@ Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395
 100%|██████████| 1000/1000 [00:11&lt;00:00, 88.16it/s]
 Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss: 1.0284815851225262, val_acc: 0.8245512449334106
 </code></pre></div>
-<h3 id="-save-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Save Model</b><a class="headerlink" href="#-save-model" title="Permanent link"></a></h3>
+<h3 id="-save-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Save Model</b><a class="headerlink" href="#-save-model" title="Permanent link"></a></h3>
 <p>We can save the model for future use</p>
 <div class="highlight"><pre><span></span><code><span class="n">clf</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
@@ -1627,7 +1627,7 @@ Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss
 </code></pre></div>
 <h2 id="using-our-ner-tagger"><b>Using our NER tagger</b><a class="headerlink" href="#using-our-ner-tagger" title="Permanent link"></a></h2>
 <p>We can use our <code>NER</code> tagger by loading a stack of documents and creating a <code>dataset</code>, as we did for the <code>train</code> &amp; <code>test</code> subsets or we can use it for a single sentence, I'll be using a simple inference function.</p>
-<h3 id="-loading-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Loading Model</b><a class="headerlink" href="#-loading-model" title="Permanent link"></a></h3>
+<h3 id="-loading-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Loading Model</b><a class="headerlink" href="#-loading-model" title="Permanent link"></a></h3>
 <p>If we want to load the fine-tuned <code>model</code>, we can use <code>.from_pretrained</code> and specify the folder where ther model is located, 
 the <code>tokenizer</code> can be loaded in a similar way</p>
 <div class="highlight"><pre><span></span><code><span class="n">new_model</span> <span class="o">=</span> <span class="n">NERClassifier</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
@@ -1682,7 +1682,7 @@ the <code>tokenizer</code> can be loaded in a similar way</p>
   )
 )
 </code></pre></div>
-<h3 id="-finding-ner-tags-in-a-document"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Finding NER tags in a document</b><a class="headerlink" href="#-finding-ner-tags-in-a-document" title="Permanent link"></a></h3>
+<h3 id="-finding-ner-tags-in-a-document"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Finding NER tags in a document</b><a class="headerlink" href="#-finding-ner-tags-in-a-document" title="Permanent link"></a></h3>
 <p>We can use our model using something similar to the code below &amp; utilise the same <code>tokenizer</code>, the <code>parser</code> &amp; saved <code>model</code></p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ner_inference</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
 

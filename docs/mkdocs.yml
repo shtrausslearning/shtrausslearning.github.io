@@ -1,7 +1,7 @@
 # Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
 site_name: Andrey Shtrauss
 site_url: https://github.com/gmihaila/shtrausslearning.github.io
-repo_name: 'Machine Learning Things'
+repo_name: 'shtrausslearning.github.io'
 repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
 edit_uri: tree/master/docs/src/markdown
 site_description: A Collection of Useful Snippets on Machine Learning related topics
@@ -105,7 +105,7 @@ markdown_extensions:
 theme:
     name: material
     icon:
-        logo: fontawesome/solid/cubes 
+        logo: fontawesome/solid/code 
         repo: fontawesome/brands/github
     language: en
     features:
@@ -123,7 +123,7 @@ theme:
     palette:
         scheme: slate
         primary: orange
-        accent: amber
+        accent: black
     font:
         text: Roboto
         code: Roboto Mono

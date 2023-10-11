@@ -1,2 +1,1 @@
-# shtrausslearning.github.io
- Homepage
+![](https://i.imgur.com/tTskO1Q.png)

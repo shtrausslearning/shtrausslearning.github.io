@@ -28,7 +28,6 @@ servedocs: ## Rebuild docs automatically and push to github.
 	rm -rf docs/site
 	git add --all
 	git commit -m "Updates to Website"
-	git push origin master
 
 .PHONY: setup_marp
 setup_marp: ## Download Marp locally and setup.

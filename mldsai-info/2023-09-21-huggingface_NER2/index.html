@@ -230,9 +230,7 @@
 
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
@@ -835,6 +833,189 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#named-entity-recognition" class="md-nav__link">
+    Named Entity Recognition
+  </a>
+  
+    <nav class="md-nav" aria-label="Named Entity Recognition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-in-this-post" class="md-nav__link">
+    ❯❯ In this post
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-huggingface-trainer" class="md-nav__link">
+    ❯❯ Huggingface Trainer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-why-do-we-need-ner-in-nlp" class="md-nav__link">
+    ❯❯ Why do we need NER in NLP?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-our-ner-application" class="md-nav__link">
+    ❯❯ Our NER application
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dataset" class="md-nav__link">
+    The Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="The Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-annotation-parser" class="md-nav__link">
+    ❯❯ Annotation Parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-parse-dataset" class="md-nav__link">
+    ❯❯ Parse Dataset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transformer-tokeniser" class="md-nav__link">
+    Transformer Tokeniser
+  </a>
+  
+    <nav class="md-nav" aria-label="Transformer Tokeniser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-tokeniser-sample" class="md-nav__link">
+    ❯❯ Tokeniser Sample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-subtoken-ner-tag-adjustment" class="md-nav__link">
+    ❯❯ Subtoken NER tag adjustment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-data-collator-adjustment" class="md-nav__link">
+    ❯❯ Data Collator Adjustment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-for-training" class="md-nav__link">
+    Prepare for Training
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare for Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-evaluation-metrics" class="md-nav__link">
+    ❯❯ Evaluation Metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-define-model" class="md-nav__link">
+    ❯❯ Define Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-train-model" class="md-nav__link">
+    ❯❯ Train Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-save-huggingface-trainer" class="md-nav__link">
+    ❯❯ Save Huggingface Trainer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-load-a-huggingface-pipeline" class="md-nav__link">
+    ❯❯ Load a Huggingface Pipeline
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -1329,7 +1510,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "header.autohide", "search.highlight", "search.share", "search.suggest", "navigation.top", "content.tabs.link", "navigation.expand", "toc.integrate"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["instant", "header.autohide", "search.highlight", "search.share", "search.suggest", "navigation.top", "content.tabs.link", "navigation.expand"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.94c44541.min.js"></script>

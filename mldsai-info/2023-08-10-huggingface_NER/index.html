@@ -1047,13 +1047,13 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <p>In this notebook, we'll take a look at how we can utilise huggingface transformer models and a custom PyTorch training loop, in order to classify different words in a document. We'll be utilising <strong>Massive</strong> dataset and fine-tuning and encoder <code>BERT</code>, with a custom tail model that can be used for multiclass classification</p>
 <p><a href="https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
 <h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
-<h3 id="-what-is-ner"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h3>
+<h3 id="-what-is-ner"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h3>
 <ul>
 <li>NER is a natural language processing technique which identifies and extracts named entities from unstructured text</li>
 <li>Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be</li>
 <li>NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity</li>
 </ul>
-<h3 id="-applications"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Applications</b><a class="headerlink" href="#-applications" title="Permanent link"></a></h3>
+<h3 id="-applications"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Applications</b><a class="headerlink" href="#-applications" title="Permanent link"></a></h3>
 <p>Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. </p>
 <p>Few such examples have been listed below[^footnote]:</p>
 <p>Classifying content for news providers: <br></p>
@@ -1092,7 +1092,7 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:100]&quot;</span><span class="p">)</span>
 <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;test[:100]&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="-relevant-columns"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Relevant Columns</b><a class="headerlink" href="#-relevant-columns" title="Permanent link"></a></h3>
+<h3 id="-relevant-columns"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Relevant Columns</b><a class="headerlink" href="#-relevant-columns" title="Permanent link"></a></h3>
 <p>​
 Some samples from our <strong>documents</strong>, located in column <code>utt</code> and NER <strong>Annotations</strong> are located in <code>annot_utt</code>, which is in the format <code>[tag : tokens]</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span> 

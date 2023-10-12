@@ -10,7 +10,7 @@ tags: [sklearn, NER, CountVectorizer, sentence splitting]
 
 > In the last post, we talked about how to use **NER** for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding & ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for **NER** tagging, which I've implemented in my project **[mllibs](https://github.com/shtrausslearning/mllibs)**
 
-## <b>Background</b>
+## :fontawesome-solid-book: <b>Background</b>
 
 ### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>What is NER?</b> 
 
@@ -123,7 +123,7 @@ So we can see that the closer the content of the user request is to one of the t
 We could use `regex` in an attempt to **find split locations**, and then **cut the document** at `regex` matched pattern locations, however if we go down the **NER** route, we actually can tag words in the sentence however we want, which is very convenient. Aside from sentence splitting tags such as `and then`, we would also identify words which don't add value and tag them as well (eg. `first of all`).
 
 
-## <b>The Dataset</b>
+## :material-database-check: <b>The Dataset</b>
 
 ### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tagging split tag words</b> 
 
@@ -355,7 +355,7 @@ temp = ner_annotator(df_annot)  # instantiate annotation class
 temp.ner_annotate()             # start annotating
 ```
 
-## <b>Parsing annotations</b>
+## :material-package-variant-closed-check: <b>Parsing annotations</b>
 
 Now that we have an annotated dataset, we will need a parser which interprets the resulting annotations, and creates tags for words in a document. `Parser` will be called using the special class `__call__`, when we will iterate over our documents. 
 
@@ -446,7 +446,7 @@ class Parser:
         return self.get_tag_label(id_)
 ```
 
-## <b>NER Models</b>
+## :material-code-block-tags: <b>NER Models</b>
 
 ### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Training NER Model</b> 
 
@@ -593,7 +593,7 @@ print(pred_tags)
 
 We can see that **model complexity** indeed does play a role, as the linear model `LogisticRegression` wasn't able to identify the the second splitting tokens `once` `done`. `RandomForest` works better as a sentence splitting `ner` tagging model. Having identified the indicies of `ner` tags, it is quite straightforward to split the document into `word` & divide it based on the model prediction tag condition 
 
-## <b>Conclusion</b>
+## :fontawesome-solid-person-walking-dashed-line-arrow-right: <b>Conclusion</b>
 
 In this post we created a `NER` tagger, which identifies key words that we defined as **sentence splitting words**. Identificaiton of such words allows us to split a long paragraph into parts & analyse or conduct further downstream tasks upon performing splits. We showed that **sentence splitting** can be defined as more than just splitting by punctuation like `.`, and since people often connect sentences using **transitional adverbs** and alike, `NER` tagging comes in handy to identify such "weaker" sentence splitters.
 

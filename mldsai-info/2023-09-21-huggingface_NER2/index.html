@@ -1036,16 +1036,16 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 <hr />
 <p><a href="https://colab.research.google.com/drive/19dwCH-iTdnYgUJM2AVdTsvBirEMJLjXA?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
 <h2 id="named-entity-recognition"><b>Named Entity Recognition</b><a class="headerlink" href="#named-entity-recognition" title="Permanent link"></a></h2>
-<h3 id="-in-this-post"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>In this post</b><a class="headerlink" href="#-in-this-post" title="Permanent link"></a></h3>
+<h3 id="-in-this-post"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>In this post</b><a class="headerlink" href="#-in-this-post" title="Permanent link"></a></h3>
 <p>In a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong> we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model &amp; defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the <strong>training</strong> &amp; <strong>inference</strong> steps quite a lot. We'll be using the <strong>trainer</strong> &amp; <strong>pipeline</strong> methods of the Huggingface library and will use a dataset used in <strong><a href="https://pypi.org/project/mllibs/">mllibs</a></strong>, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.</p>
-<h3 id="-huggingface-trainer"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Huggingface Trainer</b><a class="headerlink" href="#-huggingface-trainer" title="Permanent link"></a></h3>
+<h3 id="-huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Huggingface Trainer</b><a class="headerlink" href="#-huggingface-trainer" title="Permanent link"></a></h3>
 <p>A Huggingface <code>Trainer</code> is a <strong>high-level API</strong> provided by the Huggingface Transformers library that makes it easier to train, fine-tune, and evaluate various Natural Language Processing (NLP) models. It provides a simple and consistent interface for training and evaluating models using various techniques such as text classification, named entity recognition, question answering, and more. The Trainer API abstracts away many of the low-level details of model training and evaluation, like we did in the <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong>, allowing users to focus on their specific NLP tasks.</p>
-<h3 id="-why-do-we-need-ner-in-nlp"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b><a class="headerlink" href="#-why-do-we-need-ner-in-nlp" title="Permanent link"></a></h3>
+<h3 id="-why-do-we-need-ner-in-nlp"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b><a class="headerlink" href="#-why-do-we-need-ner-in-nlp" title="Permanent link"></a></h3>
 <blockquote>
 <p>Named entity recognition (NER) is important because it helps to identify and extract important information from unstructured text data. This can be useful in a variety of applications such as information retrieval, sentiment analysis, and text summarization. NER can also help to improve the accuracy of machine learning models by providing additional features for classification tasks. Additionally, NER is important for natural language processing <code>NLP</code> tasks such as machine translation, speech recognition, and question answering systems.</p>
 </blockquote>
 <p><strong>NER</strong> can be quite a helpful tool in a variety of <strong>NLP</strong> applications. </p>
-<h3 id="-our-ner-application"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Our NER application</b><a class="headerlink" href="#-our-ner-application" title="Permanent link"></a></h3>
+<h3 id="-our-ner-application"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Our NER application</b><a class="headerlink" href="#-our-ner-application" title="Permanent link"></a></h3>
 <p>Our <strong>NER</strong> application in this example:</p>
 <p>We'll be using <strong>token classification</strong> in order to identify tokens that can be identified as function <code>input parameters</code>, <code>data sources</code> and <code>plot parameters</code>. Identifying them helps us extract information from input text and allow us to store &amp; use relevant data that is defined in a <code>string</code></p>
 <p>Let's look at an example:</p>
@@ -1078,7 +1078,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 <span class="c1"># &#39;create relplot using hf [param : x] pressure [param : y] mass_flux [param : col] geometry [param : hue] author&#39;,</span>
 <span class="c1"># &#39;pca dimensionality reduction [source : using data] mpg [source : subset] numerical columns only&#39;]</span>
 </code></pre></div>
-<h3 id="-annotation-parser"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Annotation Parser</b><a class="headerlink" href="#-annotation-parser" title="Permanent link"></a></h3>
+<h3 id="-annotation-parser"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Annotation Parser</b><a class="headerlink" href="#-annotation-parser" title="Permanent link"></a></h3>
 <p>The above format can be parsed using <code>Parser</code>, we first need to initialise it</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
@@ -1148,7 +1148,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 <span class="c1"># initialise parser</span>
 <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
 </code></pre></div>
-<h3 id="-parse-dataset"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Parse Dataset</b><a class="headerlink" href="#-parse-dataset" title="Permanent link"></a></h3>
+<h3 id="-parse-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Parse Dataset</b><a class="headerlink" href="#-parse-dataset" title="Permanent link"></a></h3>
 <p>To use the parser on a dataset, we loop through all our rows, calling the parser, which fills out <code>tag_to_id</code>, <code>id_to_tag</code> and returns the tokenised <code>tags</code> when it is called</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># loop through dataset</span>
 <span class="n">lst_tokens</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">lst_annot</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1239,7 +1239,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 
     <span class="k">return</span> <span class="n">new_labels</span>
 </code></pre></div>
-<h3 id="-tokeniser-sample"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Tokeniser Sample</b><a class="headerlink" href="#-tokeniser-sample" title="Permanent link"></a></h3>
+<h3 id="-tokeniser-sample"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tokeniser Sample</b><a class="headerlink" href="#-tokeniser-sample" title="Permanent link"></a></h3>
 <p>And let's look at an example of how the <code>tokeniser</code> actually splits the input text data, as well as the <strong>token-word</strong> association list; this information allows us to define subtoken tags based on their word tag from <code>word_ids</code> data</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># the model tokeniser format</span>
 <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">raw_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">10</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">],</span> <span class="n">is_split_into_words</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1257,7 +1257,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 <span class="c1"># bert word_id</span>
 <span class="c1"># [None, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 8, 8, 8, None]</span>
 </code></pre></div>
-<h3 id="-subtoken-ner-tag-adjustment"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b><a class="headerlink" href="#-subtoken-ner-tag-adjustment" title="Permanent link"></a></h3>
+<h3 id="-subtoken-ner-tag-adjustment"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b><a class="headerlink" href="#-subtoken-ner-tag-adjustment" title="Permanent link"></a></h3>
 <p>Having all relevant pieces, let's return to our original dataset <code>raw_datasets</code> which we created in <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset">parse dataset</a></strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Tokenise input text</span>
 <span class="k">def</span> <span class="nf">tokenize_and_align_labels</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
@@ -1285,7 +1285,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 <span class="c1">#    num_rows: 51</span>
 <span class="c1"># })</span>
 </code></pre></div>
-<h3 id="-data-collator-adjustment"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Data Collator Adjustment</b><a class="headerlink" href="#-data-collator-adjustment" title="Permanent link"></a></h3>
+<h3 id="-data-collator-adjustment"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Collator Adjustment</b><a class="headerlink" href="#-data-collator-adjustment" title="Permanent link"></a></h3>
 <p>The final preprocessing step is the <code>data_collator</code></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">DataCollatorForTokenClassification</span>
 <span class="n">data_collator</span> <span class="o">=</span> <span class="n">DataCollatorForTokenClassification</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
@@ -1303,7 +1303,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 <span class="c1">#           0, -100]])</span>
 </code></pre></div>
 <h2 id="prepare-for-training"><b>Prepare for Training</b><a class="headerlink" href="#prepare-for-training" title="Permanent link"></a></h2>
-<h3 id="-evaluation-metrics"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Evaluation Metrics</b><a class="headerlink" href="#-evaluation-metrics" title="Permanent link"></a></h3>
+<h3 id="-evaluation-metrics"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Evaluation Metrics</b><a class="headerlink" href="#-evaluation-metrics" title="Permanent link"></a></h3>
 <p>The trainer allows us to add an evaluation function which when added to <code>compute_metrics</code> in the trainer return the model prediction, which are the <code>logits</code> and <code>labels</code>. Using this data we can then write an <strong>evaluation metric function</strong> which returns a dictionary of metric and its value pairs</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -1327,7 +1327,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
         <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">all_metrics</span><span class="p">[</span><span class="s2">&quot;overall_accuracy&quot;</span><span class="p">],</span>
     <span class="p">}</span>
 </code></pre></div>
-<h3 id="-define-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Define Model</b><a class="headerlink" href="#-define-model" title="Permanent link"></a></h3>
+<h3 id="-define-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Define Model</b><a class="headerlink" href="#-define-model" title="Permanent link"></a></h3>
 <p>Huggingface allows us to easily adjust the <strong>base model</strong> (<code>bert-base-cased</code>) for different tasks by loading the task type from the main library. For NER, we need to load <code>AutoModelForTokenClassification</code>, for which we then need to define two mapping dictionaries <code>id2label</code> &amp; <code>label2id</code></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># define subtoken-tag mapping dictionary</span>
 <span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">label</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">label_names</span><span class="p">)}</span>
@@ -1339,7 +1339,7 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
                                                         <span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span>
                                                         <span class="n">label2id</span><span class="o">=</span><span class="n">label2id</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="-train-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train Model</b><a class="headerlink" href="#-train-model" title="Permanent link"></a></h3>
+<h3 id="-train-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Train Model</b><a class="headerlink" href="#-train-model" title="Permanent link"></a></h3>
 <p>Time to train our model, we'll train the model for 40 epochs, without an evaluation strategy (validation dataset), using a learning rate in our optimiser is set to 2e-5, which by default is the AdamW optimiser.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span>
 
@@ -1373,11 +1373,11 @@ tags: <code>huggingface</code> <code>ner</code> <code>pytorch</code> <code>trans
 200 	No log 	0.007903 	0.994949 	0.989950 	0.992443 	0.995763
 250 	No log 	0.006493 	0.990000 	0.994975 	0.992481 	0.995763
 </code></pre></div>
-<h3 id="-save-huggingface-trainer"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Save Huggingface Trainer</b><a class="headerlink" href="#-save-huggingface-trainer" title="Permanent link"></a></h3>
+<h3 id="-save-huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Save Huggingface Trainer</b><a class="headerlink" href="#-save-huggingface-trainer" title="Permanent link"></a></h3>
 <p>We can save our <code>trainer</code> using <code>.save_model</code> method, which saves all relevant needed to utilise the <code>pipeline</code> method.</p>
 <div class="highlight"><pre><span></span><code><span class="n">trainer</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s2">&quot;bert-finetuned-ner2&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="-load-a-huggingface-pipeline"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b><a class="headerlink" href="#-load-a-huggingface-pipeline" title="Permanent link"></a></h3>
+<h3 id="-load-a-huggingface-pipeline"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b><a class="headerlink" href="#-load-a-huggingface-pipeline" title="Permanent link"></a></h3>
 <p>Having saved our <code>trainer</code>, we simply call the relevant model checkpoint which we used in <code>.save_model</code> and set the <code>task</code> argument, which for our <strong>NER</strong> problem is <code>token-classification</code>, we also need to set an <strong>aggregation_strategy</strong>:</p>
 <p>The <code>aggregation_strategy</code> is a parameter in the Hugging Face Trainer API that specifies how to aggregate the predictions of multiple batches during evaluation. This is particularly useful when evaluating large datasets that cannot fit into memory all at once. The aggregation_strategy parameter can be set to one of several options, including "mean", "max", "min", and "median", which determine how the predictions should be combined. </p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>

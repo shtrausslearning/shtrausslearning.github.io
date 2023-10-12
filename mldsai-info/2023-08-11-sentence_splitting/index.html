@@ -982,7 +982,7 @@ tags: [sklearn, NER, CountVectorizer, sentence splitting]</p>
 <p>In the last post, we talked about how to use <strong>NER</strong> for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding &amp; ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for <strong>NER</strong> tagging, which I've implemented in my project <strong><a href="https://github.com/shtrausslearning/mllibs">mllibs</a></strong></p>
 </blockquote>
 <h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
-<h3 id="-what-is-ner"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h3>
+<h3 id="-what-is-ner"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h3>
 <p>So what exactly is <code>NER</code>?</p>
 <ul>
 <li><code>NER</code> is a natural language processing technique which identifies and extracts <strong>named entities</strong> from unstructured text</li>
@@ -992,7 +992,7 @@ tags: [sklearn, NER, CountVectorizer, sentence splitting]</p>
 <blockquote>
 <p class="prompt-info">In this notebook, we define <strong>named entities</strong> to be word(s) that can be defined <strong>as sentence splitters</strong>, which differs from how <code>NER</code> tends to be used for extraction of place names and so on</p>
 </blockquote>
-<h3 id="-sentence-splitting"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Sentence splitting</b><a class="headerlink" href="#-sentence-splitting" title="Permanent link"></a></h3>
+<h3 id="-sentence-splitting"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Sentence splitting</b><a class="headerlink" href="#-sentence-splitting" title="Permanent link"></a></h3>
 <p>What can be thought to be quite straightforward and non trivial isn't quite so. <strong>Sentence splitting</strong> or sentence simplification is the task of taking a sentence that is usually too long and breaking it up into two or more simpler sentences. In the next section, we'll mention one example, where it can be useful. </p>
 <p>Consider an example:</p>
 <blockquote>
@@ -1005,7 +1005,7 @@ tags: [sklearn, NER, CountVectorizer, sentence splitting]</p>
 <kbd>The quick red fox jumped over the lazy brown dog</kbd> <code>and</code> <code>then</code> <kbd>ran away</kbd></p>
 </blockquote>
 <p>We can split the sentence based on two occuring events, which is separated by the words <strong>and then</strong>. By splitting the sentence into two parts we understand that there are two actions that are associated with the object <code>fox</code>. Simple tokenisers such as <strong><a href="https://www.nltk.org/api/nltk.tokenize.sent_tokenize.html">sent_tokenize</a></strong> from <code>NLTK</code> or any other sentence tokeniser are not suited for tokenising the second example, which is where <strong>NER</strong> comes in.</p>
-<h3 id="-motivation"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Motivation</b><a class="headerlink" href="#-motivation" title="Permanent link"></a></h3>
+<h3 id="-motivation"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Motivation</b><a class="headerlink" href="#-motivation" title="Permanent link"></a></h3>
 <h4 id="classifying-user-requests">Classifying user requests<a class="headerlink" href="#classifying-user-requests" title="Permanent link"></a></h4>
 <p>Let's say we have a problem in which we need to <strong>classify a user request</strong> into two groups; <kbd>class 0</kbd> (impute data) &amp; <kbd>class 1</kbd> (standardise columns) using text input data, a <strong>binary classification problem</strong>. The classification model will activate specific activation functions, so incorrectly classified models will activate the wrong function! </p>
 <p>Hopefully you are familiar with text preprocessing &amp; training using sklearn, because that's what we'll be using in this post. We train a <code>LogisticRegression</code> binary classification model and the model itself is complex enough to get a perfect score on the dataset it was trained on. </p>
@@ -1066,7 +1066,7 @@ text_b [[0.68768998 0.31231002]]
 <h4 id="using-ner-to-identify-sentence-split-locations">Using NER to identify sentence split locations<a class="headerlink" href="#using-ner-to-identify-sentence-split-locations" title="Permanent link"></a></h4>
 <p>We could use <code>regex</code> in an attempt to <strong>find split locations</strong>, and then <strong>cut the document</strong> at <code>regex</code> matched pattern locations, however if we go down the <strong>NER</strong> route, we actually can tag words in the sentence however we want, which is very convenient. Aside from sentence splitting tags such as <code>and then</code>, we would also identify words which don't add value and tag them as well (eg. <code>first of all</code>).</p>
 <h2 id="the-dataset"><b>The Dataset</b><a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
-<h3 id="-tagging-split-tag-words"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Tagging split tag words</b><a class="headerlink" href="#-tagging-split-tag-words" title="Permanent link"></a></h3>
+<h3 id="-tagging-split-tag-words"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tagging split tag words</b><a class="headerlink" href="#-tagging-split-tag-words" title="Permanent link"></a></h3>
 <p>The dataset will be created by us, and is by not means perfect. I used this <strong><a href="https://www.miamioh.edu/hcwe/handouts/sentence-combination/index.html#:~:text=You%20have%20four%20options%20for,moreover%2C%22%20or%20%22thus%22">useful reference</a></strong> in order to try and add various writing variations. As opposed to the <strong>grouped document token</strong> approach I did in <strong><a href="https://www.kaggle.com/code/shtrausslearning/mllibs-ner-based-classification-sentence-split">this notebook</a></strong>, I won't be adding other OOV words to <strong>class (0)</strong>.</p>
 <p>I've created about 20 general sentences and annotated word/token locations at which I would like to identify a <strong>splitting token</strong>. We'll be using the standard <code>BIO</code> tagging system, so we can tag segments of tokens, identifying <strong>beginning &amp; inner tags</strong>. </p>
 <p>Our dataset contains two columns <code>text</code> &amp; its annotation <code>annotated</code> variant.</p>
@@ -1168,7 +1168,7 @@ text_b [[0.68768998 0.31231002]]
 </tr>
 </tbody>
 </table>
-<h3 id="-ner-tagging"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>NER Tagging</b><a class="headerlink" href="#-ner-tagging" title="Permanent link"></a></h3>
+<h3 id="-ner-tagging"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>NER Tagging</b><a class="headerlink" href="#-ner-tagging" title="Permanent link"></a></h3>
 <p>I've created a simple <strong>NER</strong> tagging class <code>ner_annotator</code> which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (<code>active_df</code>) and tagging parts of the sentence using the format <kbd>words</kbd><code>-</code><kbd>tag</kbd>, which is used in the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive 1.1</a></strong> dataset on huggingface</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#from IPython.display import clear_output in jupyter</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1444,7 +1444,7 @@ text_b [[0.68768998 0.31231002]]
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="ner-models"><b>NER Models</b><a class="headerlink" href="#ner-models" title="Permanent link"></a></h2>
-<h3 id="-training-ner-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Training NER Model</b><a class="headerlink" href="#-training-ner-model" title="Permanent link"></a></h3>
+<h3 id="-training-ner-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Training NER Model</b><a class="headerlink" href="#-training-ner-model" title="Permanent link"></a></h3>
 <p>We have an annotation parser <code>Parser</code>, now let's prepare the training loop. We read our dataset <code>df</code> and iterate over all rows in the dataset, tokenising the document &amp; storing it in <code>lst_data</code> and parse the annotated <code>annotated</code> column, creating <code>BIO</code> tags for words in the document <code>text</code>, which is stored in <code>lst_tags</code></p>
 <p>The output of preprocessed data <code>lst_data</code> will be a list of tokens in the whole corpus, and <code>lst_tags</code> will be its corresponding <code>BIO</code> tag.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># import relevant libraries</span>
@@ -1506,7 +1506,7 @@ weighted avg       0.81      0.81      0.78       161
  [  1   0 105]] # class O
 </code></pre></div>
 <p>Looks like we have a large ammount of misspredictions for tag <code>B-SPLIT</code>, with the recall being quite low (ie quite a few <code>B-SPLIT</code> are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for <strong>transitional adverbs</strong>, so its quite nice that the model can identify such splitting locations quite well.</p>
-<h3 id="-testing-ner-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Testing NER model</b><a class="headerlink" href="#-testing-ner-model" title="Permanent link"></a></h3>
+<h3 id="-testing-ner-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Testing NER model</b><a class="headerlink" href="#-testing-ner-model" title="Permanent link"></a></h3>
 <p>Different models can show different performance upon actual usage, so let's compare how both of them perform</p>
 <p>Our test example:</p>
 <blockquote>

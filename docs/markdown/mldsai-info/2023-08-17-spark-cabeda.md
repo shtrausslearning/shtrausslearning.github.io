@@ -15,7 +15,7 @@ tags: [pyspark,EDA]
 
 ## <b>Введение</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Spark over Pandas</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Spark over Pandas</b>
 
 `pyspark` может быть быстрее `pandas` благодаря использованию распределенных вычислений и оптимизации выполнения запросов. В отличие от `pandas`, который работает на одной машине и обрабатывает данные в памяти, `spark` может распределять задачи на кластере из сотен или тысяч узлов, что позволяет обрабатывать большие объемы данных и ускорять выполнение запросов. Кроме того, `pyspark` использует оптимизацию выполнения запросов, которая позволяет минимизировать время выполнения запросов и ускорять обработку данных.
 
@@ -28,7 +28,7 @@ tags: [pyspark,EDA]
 Будем использовать `python`, в этой среде можно установть `spark` с помощью `pip install pyspark`
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Цель задачи</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Цель задачи</b>
 
 В этом посте мы проведем разведовательный анализ данных; зададим себе ряд вопросов на которые мы найдем ответ в наших данных 
 
@@ -113,7 +113,7 @@ taxi.repartition(16).write.parquet('data_source')
 
 Все готово, давайте теперь будем задавать себе вопросы которые нас интересуют!  
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Посчитайте количество загруженных строк</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Посчитайте количество загруженных строк</b>
 
 ```python
 taxi.count()
@@ -139,7 +139,7 @@ root
  # |-- payment_type: string (nullable = true)
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Чему равна корреляция и ковариация между длиной маршрута и ценой за поездку?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Чему равна корреляция и ковариация между длиной маршрута и ценой за поездку?</b>
 
 У `dataframe` есть методы `cov` и `corr`, подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.corr.html?highlight=corr#pyspark-sql-dataframe-corr">corr</a> & <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.cov.html?highlight=cov#pyspark-sql-dataframe-cov">cov</a>
 
@@ -153,7 +153,7 @@ print(f"covariance: {round(taxi.cov('trip_miles','trip_total'),5)}")
 # covariance: 71.96914
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку?</b>
 
 №3 Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку? Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.describe.html?highlight=describe#pyspark-sql-dataframe-describe">describe</a>
 
@@ -172,7 +172,7 @@ taxi.describe().show()
 
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Найдите самый непопулярный вид оплаты</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите самый непопулярный вид оплаты</b>
 
 <br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html?highlight=groupby#pyspark-sql-dataframe-groupby">groupBy</a> <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.orderBy.html?highlight=orderby#pyspark-sql-dataframe-orderby">orderBy</a>
 
@@ -195,7 +195,7 @@ taxi.groupBy('payment_type').count().orderBy('count', ascending=True).show()
 
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Найдите идентификатор `taxi_id` таксиста выполнившего наибольшее число заказов</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите идентификатор `taxi_id` таксиста выполнившего наибольшее число заказов</b>
 
 
 ```python
@@ -213,7 +213,7 @@ taxi.groupby('taxi_id').count().orderBy('count',ascending=False).show(5)
 ```
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Чему равна средняя цена среди поездок, оплаченных наличными? </b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Чему равна средняя цена среди поездок, оплаченных наличными? </b>
 
 <br> Подробней <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.where.html?highlight=where#pyspark-sql-dataframe-where">where</a>
 
@@ -251,7 +251,7 @@ taxi.groupBy(['payment_type']).agg(f.mean('trip_total')).show()
 ```
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Сколько таксистов проехало больше 1000 миль за все время выполнения заказов?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько таксистов проехало больше 1000 миль за все время выполнения заказов?</b>
 
 ```python
 driver_distances = taxi.groupby(['taxi_id']).agg(f.sum('trip_miles').alias('distance')).orderBy('distance',ascending=False)
@@ -259,7 +259,7 @@ driver_distances.filter(f.col('distance') > 1000).count()
 # 2860
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Сколько миль проехал пассажир в самой долгой поездке?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько миль проехал пассажир в самой долгой поездке?</b>
 
 ```python
 taxi2 = taxi.dropna()
@@ -277,7 +277,7 @@ taxi2.orderBy(['trip_seconds'],ascending=False).show(5)
 ```
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Каков средний заработок всех таксистов?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Каков средний заработок всех таксистов?</b>
 
 <br>Отсеките неизвестные машины (не определенный taxi_id).
 
@@ -342,7 +342,7 @@ driver_total.show()
 ```
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Сколько поездок начиналось в самый загруженный час?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько поездок начиналось в самый загруженный час?</b>
 
 <br>Используйте функцию <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.hour.html?highlight=hour#pyspark-sql-functions-hour">hour</a>
 
@@ -379,7 +379,7 @@ col_hour.groupby('hour').count().orderBy('count',ascending=False).show(5)
 # +----+------+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Сколько поездок началось во второй четверти суток?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько поездок началось во второй четверти суток?</b>
 
 ```python
 taxi_add = taxi.withColumn('start_hour',f.hour('trip_start_timestamp'))
@@ -406,7 +406,7 @@ after_six.count()
 # 538737
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Найдите топ три даты, в которые было суммарно больше всего чаевых?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите топ три даты, в которые было суммарно больше всего чаевых?</b>
 
 <br>Вам может понадобится конвертация типов <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.Column.cast.html?highlight=cast#pyspark-sql-column-cast">cast</a>
 
@@ -461,7 +461,7 @@ taxi_add.groupby(['date_str']).agg(f.sum('tips').alias('total')).orderBy('total'
 # +----------+------------------+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Сколько было заказов в дату с наибольшим спросом?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько было заказов в дату с наибольшим спросом?</b>
 
 ```python
 # we need to use starting time
@@ -500,7 +500,7 @@ df_car.show(5)
 # +-------+-------------------+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Какая марка машины самая распрастранненая среди таксистов?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Какая марка машины самая распрастранненая среди таксистов?</b>
 
 <br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.split.html?highlight=split#pyspark-sql-functions-split">split</a>
 
@@ -555,7 +555,7 @@ df_car_add.groupby('maker').agg(f.count('maker').alias('total')).orderBy('total'
 # +---------+-----+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Сколько раз и какая модель машин чаще всего встречается в поездках?</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько раз и какая модель машин чаще всего встречается в поездках?</b>
 
 <br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.split.html?highlight=split#pyspark-sql-functions-split">join</a>
 

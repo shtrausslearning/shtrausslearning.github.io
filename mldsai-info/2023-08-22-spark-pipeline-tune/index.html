@@ -869,7 +869,7 @@ our pipeline on the <code>training</code> data and then use the same pipeline on
 <div class="highlight"><pre><span></span><code><span class="n">train</span><span class="p">,</span><span class="n">test</span> <span class="o">=</span> <span class="n">ldf</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="mi">42</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="machine-learning-pipeline"><b>Machine Learning Pipeline</b><a class="headerlink" href="#machine-learning-pipeline" title="Permanent link"></a></h2>
-<h3 id="-creating-a-pipeline"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Creating a Pipeline</b><a class="headerlink" href="#-creating-a-pipeline" title="Permanent link"></a></h3>
+<h3 id="-creating-a-pipeline"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Creating a Pipeline</b><a class="headerlink" href="#-creating-a-pipeline" title="Permanent link"></a></h3>
 <p>To build a <code>pipeline</code>, we define the steps that make it up in a list <code>stages</code>, our pipeline consists of four steps:
 - <code>indexer_sex</code> (<code>StringIndexer</code>)
 - <code>indexer_embarked</code> (<code>StringIndexer</code>)
@@ -942,7 +942,7 @@ our pipeline on the <code>training</code> data and then use the same pipeline on
 <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">yv_pred</span><span class="p">)</span>
 <span class="c1"># 0.8275862068965517</span>
 </code></pre></div>
-<h3 id="-hyperparameter-tuning"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Hyperparameter Tuning</b><a class="headerlink" href="#-hyperparameter-tuning" title="Permanent link"></a></h3>
+<h3 id="-hyperparameter-tuning"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Hyperparameter Tuning</b><a class="headerlink" href="#-hyperparameter-tuning" title="Permanent link"></a></h3>
 <p>Our pipeline contains a model <code>RandomForestClassifier</code> with default hyperparameters. 
 We can can find a better combination of hyperparameters which will give a better model utilising <code>TrainValidationSplit</code>, which is a lightweight generalisation evaluator in comparison to <code>CrossValidator</code></p>
 <p>First thigs first, we need to create a parametric grid, which will store all the hyperaparameter combinations we will test.</p>

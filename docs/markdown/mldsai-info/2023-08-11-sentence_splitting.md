@@ -12,7 +12,7 @@ tags: [sklearn, NER, CountVectorizer, sentence splitting]
 
 ## <b>Background</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>What is NER?</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>What is NER?</b> 
 
 So what exactly is `NER`?
 
@@ -24,7 +24,7 @@ So what exactly is `NER`?
 > In this notebook, we define **named entities** to be word(s) that can be defined **as sentence splitters**, which differs from how `NER` tends to be used for extraction of place names and so on
 > {: .prompt-info }
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Sentence splitting</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Sentence splitting</b> 
 
 What can be thought to be quite straightforward and non trivial isn't quite so. **Sentence splitting** or sentence simplification is the task of taking a sentence that is usually too long and breaking it up into two or more simpler sentences. In the next section, we'll mention one example, where it can be useful. 
 
@@ -40,7 +40,7 @@ Something more difficult now:
 
 We can split the sentence based on two occuring events, which is separated by the words **and then**. By splitting the sentence into two parts we understand that there are two actions that are associated with the object `fox`. Simple tokenisers such as **[sent_tokenize](https://www.nltk.org/api/nltk.tokenize.sent_tokenize.html)** from `NLTK` or any other sentence tokeniser are not suited for tokenising the second example, which is where **NER** comes in.
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Motivation</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Motivation</b> 
 
 #### Classifying user requests
 
@@ -125,7 +125,7 @@ We could use `regex` in an attempt to **find split locations**, and then **cut t
 
 ## <b>The Dataset</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Tagging split tag words</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tagging split tag words</b> 
 
 The dataset will be created by us, and is by not means perfect. I used this **[useful reference](https://www.miamioh.edu/hcwe/handouts/sentence-combination/index.html#:~:text=You%20have%20four%20options%20for,moreover%2C%22%20or%20%22thus%22)** in order to try and add various writing variations. As opposed to the **grouped document token** approach I did in **[this notebook](https://www.kaggle.com/code/shtrausslearning/mllibs-ner-based-classification-sentence-split)**, I won't be adding other OOV words to **class (0)**.
 
@@ -158,7 +158,7 @@ Our dataset contains two columns `text` & its annotation `annotated` variant.
 |please do A, next do B|please do A[split : , next] do B|
 |please do A next do B|please do A [split : next] do B|
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>NER Tagging</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>NER Tagging</b> 
 
 I've created a simple **NER** tagging class `ner_annotator` which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (`active_df`) and tagging parts of the sentence using the format <kbd>words</kbd>`-`<kbd>tag</kbd>, which is used in the **[massive 1.1](https://huggingface.co/datasets/AmazonScience/massive)** dataset on huggingface
 
@@ -448,7 +448,7 @@ class Parser:
 
 ## <b>NER Models</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Training NER Model</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Training NER Model</b> 
 
 We have an annotation parser `Parser`, now let's prepare the training loop. We read our dataset `df` and iterate over all rows in the dataset, tokenising the document & storing it in `lst_data` and parse the annotated `annotated` column, creating `BIO` tags for words in the document `text`, which is stored in `lst_tags`
 
@@ -529,7 +529,7 @@ and **confusion matrix**
 Looks like we have a large ammount of misspredictions for tag `B-SPLIT`, with the recall being quite low (ie quite a few `B-SPLIT` are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for **transitional adverbs**, so its quite nice that the model can identify such splitting locations quite well.
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Testing NER model</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Testing NER model</b> 
 
 Different models can show different performance upon actual usage, so let's compare how both of them perform
 

@@ -13,20 +13,20 @@ tags: `huggingface` `ner` `pytorch` `transformers`
 
 ## <b>Named Entity Recognition</b> 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>In this post</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>In this post</b> 
 In a **[previous post](https://shtrausslearning.github.io/posts/huggingface_NER/)** we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model & defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the **training** & **inference** steps quite a lot. We'll be using the **trainer** & **pipeline** methods of the Huggingface library and will use a dataset used in **[mllibs](https://pypi.org/project/mllibs/)**, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Huggingface Trainer</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Huggingface Trainer</b> 
 
 A Huggingface `Trainer` is a **high-level API** provided by the Huggingface Transformers library that makes it easier to train, fine-tune, and evaluate various Natural Language Processing (NLP) models. It provides a simple and consistent interface for training and evaluating models using various techniques such as text classification, named entity recognition, question answering, and more. The Trainer API abstracts away many of the low-level details of model training and evaluation, like we did in the **[previous post](https://shtrausslearning.github.io/posts/huggingface_NER/)**, allowing users to focus on their specific NLP tasks.
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b> 
 
 > Named entity recognition (NER) is important because it helps to identify and extract important information from unstructured text data. This can be useful in a variety of applications such as information retrieval, sentiment analysis, and text summarization. NER can also help to improve the accuracy of machine learning models by providing additional features for classification tasks. Additionally, NER is important for natural language processing `NLP` tasks such as machine translation, speech recognition, and question answering systems.
 
 **NER** can be quite a helpful tool in a variety of **NLP** applications. 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Our NER application</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Our NER application</b> 
 
 Our **NER** application in this example:
 
@@ -66,7 +66,7 @@ annot[:4]
 # 'pca dimensionality reduction [source : using data] mpg [source : subset] numerical columns only']
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Annotation Parser</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Annotation Parser</b> 
 
 The above format can be parsed using `Parser`, we first need to initialise it
 
@@ -140,7 +140,7 @@ class Parser:
 parser = Parser()
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Parse Dataset</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Parse Dataset</b> 
 
 To use the parser on a dataset, we loop through all our rows, calling the parser, which fills out `tag_to_id`, `id_to_tag` and returns the tokenised `tags` when it is called
 
@@ -252,7 +252,7 @@ def align_labels_with_tokens(labels, word_ids):
     return new_labels
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Tokeniser Sample</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tokeniser Sample</b> 
 
 And let's look at an example of how the `tokeniser` actually splits the input text data, as well as the **token-word** association list; this information allows us to define subtoken tags based on their word tag from `word_ids` data
 
@@ -274,7 +274,7 @@ print(inputs.word_ids())
 # [None, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 8, 8, 8, None]
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b> 
 
 Having all relevant pieces, let's return to our original dataset `raw_datasets` which we created in **[parse dataset](https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset)**
 
@@ -307,7 +307,7 @@ tokenized_datasets['train']
 # })
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Data Collator Adjustment</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Collator Adjustment</b> 
 
 The final preprocessing step is the `data_collator`
 
@@ -330,7 +330,7 @@ batch["labels"]
 
 ## <b>Prepare for Training</b> 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Evaluation Metrics</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Evaluation Metrics</b> 
 
 The trainer allows us to add an evaluation function which when added to `compute_metrics` in the trainer return the model prediction, which are the `logits` and `labels`. Using this data we can then write an **evaluation metric function** which returns a dictionary of metric and its value pairs
 
@@ -358,7 +358,7 @@ def compute_metrics(eval_preds):
     }
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Define Model</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Define Model</b> 
 
 Huggingface allows us to easily adjust the **base model** (`bert-base-cased`) for different tasks by loading the task type from the main library. For NER, we need to load `AutoModelForTokenClassification`, for which we then need to define two mapping dictionaries `id2label` & `label2id`
 
@@ -374,7 +374,7 @@ model = AutoModelForTokenClassification.from_pretrained(model_checkpoint,
                                                         label2id=label2id)
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train Model</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Train Model</b> 
 
 Time to train our model, we'll train the model for 40 epochs, without an evaluation strategy (validation dataset), using a learning rate in our optimiser is set to 2e-5, which by default is the AdamW optimiser.
 
@@ -417,7 +417,7 @@ Step 	Training Loss 	Validation Loss 	Precision 	Recall 	F1 	Accuracy
 250 	No log 	0.006493 	0.990000 	0.994975 	0.992481 	0.995763
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Save Huggingface Trainer</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Save Huggingface Trainer</b> 
 
 We can save our `trainer` using `.save_model` method, which saves all relevant needed to utilise the `pipeline` method.
 
@@ -425,7 +425,7 @@ We can save our `trainer` using `.save_model` method, which saves all relevant n
 trainer.save_model("bert-finetuned-ner2")
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b> 
 
 Having saved our `trainer`, we simply call the relevant model checkpoint which we used in `.save_model` and set the `task` argument, which for our **NER** problem is `token-classification`, we also need to set an **aggregation_strategy**:
 

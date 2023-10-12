@@ -985,7 +985,7 @@ tags: [pyspark,binary classification,beginner]</p>
 <span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
 </code></pre></div>
 <h2 id="preparing-data-for-modeling"><b>Preparing Data for Modeling</b><a class="headerlink" href="#preparing-data-for-modeling" title="Permanent link"></a></h2>
-<h3 id="-string-indexing"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>String Indexing</b><a class="headerlink" href="#-string-indexing" title="Permanent link"></a></h3>
+<h3 id="-string-indexing"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>String Indexing</b><a class="headerlink" href="#-string-indexing" title="Permanent link"></a></h3>
 <p>We have left two columns which contain <strong>categorical (string)</strong> data, with which we want to work with in our modeling process; <code>Sex</code>,<code>Embarked</code>. As we saw in an exploratory data analysis from <strong><a href="https://shtrausslearning.github.io/posts/first-ml-project/">a previous post</a></strong>, these two features do contain data distributions, which allow us to distinguish between whether a passenger survived or not, which means it probably would help a model improve its accuracy. However these features will need to be modified in order for us to use them in our model.</p>
 <p>In <code>sklearn</code> there is a method called <strong><a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html">LabelEncoder</a></strong>. In pyspark, there is a method called <strong>StringIndexer</strong>, which work in a similar way.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
@@ -1009,7 +1009,7 @@ tags: [pyspark,binary classification,beginner]</p>
 <span class="c1"># +--------+------+----+-----+-----+-------+-----------+-----+---------+--------------+</span>
 </code></pre></div>
 <p>Once we are done indexing string columns, we need to remove them!</p>
-<h3 id="-combine-features"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Combine Features</b><a class="headerlink" href="#-combine-features" title="Permanent link"></a></h3>
+<h3 id="-combine-features"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Combine Features</b><a class="headerlink" href="#-combine-features" title="Permanent link"></a></h3>
 <p>Once we are happy with all the features that we want to utilise in our model, we need to assemble them into a single column. 
 To do so we need to utilise method <code>VectorAssembler</code>. We need to write the names of the input feature columns we want to use <code>inputCols</code>
 and define the output feature name <code>outputCol</code>, the resulting feature will be placed in the input dataframe.</p>
@@ -1030,13 +1030,13 @@ and define the output feature name <code>outputCol</code>, the resulting feature
 <span class="c1"># |       0|     3|35.0|    0|    0|   8.05|          0|    1|      0.0|           0.0|(9,[0,1,4,6],[3.0...|</span>
 <span class="c1"># +--------+------+----+-----+-----+-------+-----------+-----+---------+--------------+--------------------+</span>
 </code></pre></div>
-<h3 id="-train-test-splitting"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train-Test Splitting</b><a class="headerlink" href="#-train-test-splitting" title="Permanent link"></a></h3>
+<h3 id="-train-test-splitting"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Train-Test Splitting</b><a class="headerlink" href="#-train-test-splitting" title="Permanent link"></a></h3>
 <p>Once our data is ready, we should think of a strategy to confirm the accuracy of our model. Train-Test Splitting is a common strategy to verify how well a model generalises on data it wasn't trained on. In <code>spark</code>, we can reference to the dataframe itself to split it using <code>df.randomSplit</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span> <span class="o">=</span> <span class="n">feature_vector</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="mi">42</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="training--evaluation"><b>Training &amp; Evaluation</b><a class="headerlink" href="#training--evaluation" title="Permanent link"></a></h2>
 <p>Training &amp; evaluation of different models follow the same template of actions, the only thing that changes is we load different models from <code>spark.ml.classification</code></p>
-<h3 id="-logisticregression"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>LogisticRegression</b><a class="headerlink" href="#-logisticregression" title="Permanent link"></a></h3>
+<h3 id="-logisticregression"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>LogisticRegression</b><a class="headerlink" href="#-logisticregression" title="Permanent link"></a></h3>
 <p>The first step is to load the relevant model from <code>.ml.classification</code>, in this case we start with a simplistic LogisticRegression model, which is named the same as in <strong>sklearn</strong>. Inputs into the model instance require us to specify the vectorised feature columns <code>featuresCol</code> and the target variable column, <code>labelCol</code></p>
 <p>The model should be <code>fit</code> on training data and saved into varaible <code>lrModel</code>, which is a little different to how you would do it in <code>sklearn</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -1076,7 +1076,7 @@ The reasoning can be explained by <strong><a href="https://stackoverflow.com/que
 <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">lr_prediction</span><span class="p">)</span>
 <span class="c1"># 0.7586206896551724</span>
 </code></pre></div>
-<h3 id="-decisiontree"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>DecisionTree</b><a class="headerlink" href="#-decisiontree" title="Permanent link"></a></h3>
+<h3 id="-decisiontree"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DecisionTree</b><a class="headerlink" href="#-decisiontree" title="Permanent link"></a></h3>
 <p>A powerful binary tree based algorith, which is used by both gradient boosting and random forest:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 
@@ -1094,7 +1094,7 @@ The reasoning can be explained by <strong><a href="https://stackoverflow.com/que
 <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">dt_prediction</span><span class="p">)</span>
 <span class="c1"># 0.7448275862068966</span>
 </code></pre></div>
-<h3 id="-randomforest"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>RandomForest</b><a class="headerlink" href="#-randomforest" title="Permanent link"></a></h3>
+<h3 id="-randomforest"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>RandomForest</b><a class="headerlink" href="#-randomforest" title="Permanent link"></a></h3>
 <p>One ensemble approach based on randomised generation of <code>DecisionTrees</code> we can try is <code>RandomForest</code>, which even is named the same as in <code>sklearn</code></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 
@@ -1113,7 +1113,7 @@ The reasoning can be explained by <strong><a href="https://stackoverflow.com/que
 <span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">rf_prediction</span><span class="p">)</span>
 <span class="c1"># 0.7586206896551724</span>
 </code></pre></div>
-<h3 id="-gradientboosting"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>GradientBoosting</b><a class="headerlink" href="#-gradientboosting" title="Permanent link"></a></h3>
+<h3 id="-gradientboosting"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>GradientBoosting</b><a class="headerlink" href="#-gradientboosting" title="Permanent link"></a></h3>
 <p>Another enseble method which uses <code>DecisionTrees</code> is Gradient Boosting, its name varies from that of <code>sklearn</code></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">GBTClassifier</span>
 
@@ -1132,7 +1132,7 @@ The reasoning can be explained by <strong><a href="https://stackoverflow.com/que
 <span class="c1"># 0.7517241379310344</span>
 </code></pre></div>
 <h2 id="post-training"><b>Post Training</b><a class="headerlink" href="#post-training" title="Permanent link"></a></h2>
-<h3 id="-saving--loading-model"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Saving &amp; Loading Model</b><a class="headerlink" href="#-saving--loading-model" title="Permanent link"></a></h3>
+<h3 id="-saving--loading-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Saving &amp; Loading Model</b><a class="headerlink" href="#-saving--loading-model" title="Permanent link"></a></h3>
 <p>We have tested different models and found the one which gives us the best metric, which in our case is <code>accuracy</code>. To save a model we need to save <code>model.fit</code>. The best performing model in our case was <strong>RandomForest</strong>, so let's save <code>rfModel</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">rfModel</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;rf_model&#39;</span><span class="p">)</span>
 </code></pre></div>

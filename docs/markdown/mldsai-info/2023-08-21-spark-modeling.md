@@ -49,7 +49,7 @@ df.show()
 
 ## <b>Preparing Data for Modeling</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>String Indexing</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>String Indexing</b>
 
 We have left two columns which contain **categorical (string)** data, with which we want to work with in our modeling process; `Sex`,`Embarked`. As we saw in an exploratory data analysis from **[a previous post](https://shtrausslearning.github.io/posts/first-ml-project/)**, these two features do contain data distributions, which allow us to distinguish between whether a passenger survived or not, which means it probably would help a model improve its accuracy. However these features will need to be modified in order for us to use them in our model.
 
@@ -79,7 +79,7 @@ df.show()
 
 Once we are done indexing string columns, we need to remove them!
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Combine Features</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Combine Features</b>
 
 Once we are happy with all the features that we want to utilise in our model, we need to assemble them into a single column. 
 To do so we need to utilise method `VectorAssembler`. We need to write the names of the input feature columns we want to use `inputCols`
@@ -104,7 +104,7 @@ feature_vector.show()
 # +--------+------+----+-----+-----+-------+-----------+-----+---------+--------------+--------------------+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train-Test Splitting</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Train-Test Splitting</b>
 
 Once our data is ready, we should think of a strategy to confirm the accuracy of our model. Train-Test Splitting is a common strategy to verify how well a model generalises on data it wasn't trained on. In `spark`, we can reference to the dataframe itself to split it using `df.randomSplit`
 
@@ -116,7 +116,7 @@ Once our data is ready, we should think of a strategy to confirm the accuracy of
 
 Training & evaluation of different models follow the same template of actions, the only thing that changes is we load different models from `spark.ml.classification`
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>LogisticRegression</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>LogisticRegression</b>
 
 The first step is to load the relevant model from `.ml.classification`, in this case we start with a simplistic LogisticRegression model, which is named the same as in **sklearn**. Inputs into the model instance require us to specify the vectorised feature columns `featuresCol` and the target variable column, `labelCol`
 
@@ -168,7 +168,7 @@ evaluator.evaluate(lr_prediction)
 # 0.7586206896551724
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>DecisionTree</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DecisionTree</b>
 
 A powerful binary tree based algorith, which is used by both gradient boosting and random forest:
 
@@ -190,7 +190,7 @@ evaluator.evaluate(dt_prediction)
 # 0.7448275862068966
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>RandomForest</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>RandomForest</b>
 
 One ensemble approach based on randomised generation of `DecisionTrees` we can try is `RandomForest`, which even is named the same as in `sklearn`
 
@@ -213,7 +213,7 @@ evaluator.evaluate(rf_prediction)
 # 0.7586206896551724
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>GradientBoosting</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>GradientBoosting</b>
 
 Another enseble method which uses `DecisionTrees` is Gradient Boosting, its name varies from that of `sklearn`
 
@@ -237,7 +237,7 @@ evaluator.evaluate(gb_prediction)
 
 ## <b>Post Training</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Saving & Loading Model</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Saving & Loading Model</b>
 
 We have tested different models and found the one which gives us the best metric, which in our case is `accuracy`. To save a model we need to save `model.fit`. The best performing model in our case was **RandomForest**, so let's save `rfModel`
 

@@ -229,7 +229,7 @@ parser(train_dataset["utt"][0], train_dataset["annot_utt"][0])
 ['O', 'O', 'O', 'B-TIME', 'I-TIME', 'O', 'B-DATE']
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Create Dataset</b> 
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Create Dataset</b> 
 
 The functions `NERDataset` is our Dataset class, it requires the `Parser` class instance 
 

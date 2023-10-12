@@ -16,7 +16,7 @@ In this post, we will introduce ourselves to `pyspark`, a framework that allows 
 In this post, we'll introduce ourselves to `pyspark`, working on a commonly used classification problem; the titanic. Our focus will be to learn the basics of how to work with `pyspark` when we work on machine learning projects. We'll split this little project into two parts; <kdb>part I</kdb> part will include **data loading**, **data preprocessing** (**feature engineering** and **data cleaning**). Second part, <kdb>part II</kdb> will include data preparation for **machine learning** and subsequent **model training** and **evaluation**
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Spark over Pandas</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Spark over Pandas</b>
 
 In the **[previous post](https://shtrausslearning.github.io/posts/first-ml-project/)**, we used `pandas` for working with **tabular data**. `pandas` is indeed quite convenient to use as it has a very rich functionality to work with tabular data, `pyspark` in comparison is much simplier, however it offers the user to work with `big data`, which `pandas` tends to strugle with.
 
@@ -85,7 +85,7 @@ df.show(1,vertical=True)
 
 ## <b>Data Preprocessing</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>DataFrame Column Types</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DataFrame Column Types</b>
 
 Like in `pandas`, we can call the method `.dtypes`, to show the column types. Default column type interpretations aren't always ideal, so its useful to load your own `schema`
 
@@ -106,7 +106,7 @@ df.dtypes
 #  ('Embarked', 'string')]
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>DataFrame Statistics</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DataFrame Statistics</b>
 
 Like in `pandas`, we can utilise method `describe`, in order to show column statistics. 
 
@@ -124,7 +124,7 @@ df.describe(['Sex','Age']).show()
 # +-------+------+------------------+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Show Missing Data</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Show Missing Data</b>
 
 If we want to count the missing data in all our columns we can do the following:
 
@@ -156,7 +156,7 @@ age_miss.show(5)
 ```
 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Dropping Irrelovant Columns</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Dropping Irrelovant Columns</b>
 
 We can decide to remove columns that we won't be needing in our project by calling `.drop`, which is the same in `pandas`
 
@@ -175,7 +175,7 @@ df.show(5)
 # +-----------+--------+------+------+---+-----+-----+--------+
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Adding Columns to DataFrame</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Adding Columns to DataFrame</b>
 
 Column additions do however work a little differently, to add a column we add `.withColumn`
 
@@ -202,7 +202,7 @@ ndf = ndf.withColumn('F',f.col('Sex') == 'female')
 ndf = ndf.drop('sex')
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Data Imputation</b>
+### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Imputation</b>
 
 Data imputation can be done via `fillna`, we pass a dictionary containing key,value pair for column name and value respectively 
 

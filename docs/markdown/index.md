@@ -6,12 +6,7 @@
 
 My name is Andrey! 
 
-I'm Aerodynamicist & Data Analyst. I also have an interest in Machine Learning & Deep Learning.
-
-    
-<b>My Interests</b>: <br>
-
-**<code>Data Science</code>**, **<code>Bioinformatics</code>**, **<code>Machine Learning</code>**
+I'm Aerodynamicist & Data Analyst. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution. I'm also quite fond of bioinformatics & biomimicry related subjects.
 
 ## **Background**
 

@@ -13,13 +13,13 @@ In this notebook, we'll take a look at how we can utilise huggingface transforme
 
 ## <b>Background</b>
 
-### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>What is NER?</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>What is NER?</b> 
 
 - NER is a natural language processing technique which identifies and extracts named entities from unstructured text
 - Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be
 - NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity
 
-### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Applications</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Applications</b> 
 
 Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. 
 
@@ -64,7 +64,7 @@ train_dataset = load_dataset('AmazonScience/massive', "ru-RU",split="train[:100]
 test_dataset = load_dataset('AmazonScience/massive', "ru-RU",split="test[:100]")
 ```
 
-### <b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Relevant Columns</b>
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Relevant Columns</b>
 ​
 Some samples from our **documents**, located in column `utt` and NER **Annotations** are located in `annot_utt`, which is in the format `[tag : tokens]`
 

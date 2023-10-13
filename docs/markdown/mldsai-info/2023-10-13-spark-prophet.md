@@ -17,6 +17,9 @@ In this notebook, we look at how to use a popular machine learning library `prop
 
 `Prophet` is a time series forecasting model. It is based on an additive regression model that takes into account trends, seasonality, and holidays. `Prophet` also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. 
 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
+
+Pandas `UDFs` (User-Defined Functions) allow you to apply a Python function that operates on pandas data frames to Spark data frames. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions, and you can take advantage of the rich functionality of pandas to perform advanced data processing tasks.
 
 ## <b>Contact Me!</b>
 

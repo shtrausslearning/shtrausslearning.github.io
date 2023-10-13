@@ -5,7 +5,7 @@
 
 :material-timetable: 2023-08-10 00:00:00 <br>
 :material-group: `pyspark` <br>
-:fontawesome-solid-tags:   
+:fontawesome-solid-tags: `pyspark`,`regression`
 
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 

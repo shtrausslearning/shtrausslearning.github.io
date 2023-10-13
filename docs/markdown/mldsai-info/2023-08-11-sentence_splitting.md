@@ -446,7 +446,7 @@ class Parser:
         return self.get_tag_label(id_)
 ```
 
-## :material-code-block-tags: <b>NER Models</b>
+## :octicons-file-code-16: <b>NER Models</b>
 
 ### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Training NER Model</b> 
 

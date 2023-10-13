@@ -19,14 +19,15 @@ nav:
 
     - MLDSAI Posts:
 
-        - (2023-09-25) Comparing Datasets: mldsai-info/2023-09-25-compare_dataset.md
-        - (2023-09-21) NER with HuggingFace: mldsai-info/2023-09-21-huggingface_NER2.md
-        - (2023-08-22) Pipeline Tuning with PySpark: mldsai-info/2023-08-22-spark-pipeline-tune.md
-        - (2023-08-21) Creating Models with PySpark: mldsai-info/2023-08-21-spark-modeling.md
-        - (2023-08-20) Preprocessing with PySpark: mldsai-info/2023-08-20-spark-preprocess.md
-        - (2023-08-17) Taxi EDA with PySpark: mldsai-info/2023-08-17-spark-cabeda.md
-        - (2023-08-11) Sentence Splitting with NER: mldsai-info/2023-08-11-sentence_splitting.md
-        - (2023-08-10) NER with Torch/HuggingFace: mldsai-info/2023-08-10-huggingface_NER.md
+        - (231013) Prophet with PySpark: 2023-10-13-spark-prophet.md
+        - (230925) Comparing Datasets: mldsai-info/2023-09-25-compare_dataset.md
+        - (230921) NER with HuggingFace: mldsai-info/2023-09-21-huggingface_NER2.md
+        - (230822) Pipeline Tuning with PySpark: mldsai-info/2023-08-22-spark-pipeline-tune.md
+        - (230821) Creating Models with PySpark: mldsai-info/2023-08-21-spark-modeling.md
+        - (230820) Preprocessing with PySpark: mldsai-info/2023-08-20-spark-preprocess.md
+        - (230817) Taxi EDA with PySpark: mldsai-info/2023-08-17-spark-cabeda.md
+        - (230811) Sentence Splitting with NER: mldsai-info/2023-08-11-sentence_splitting.md
+        - (230810) NER with Torch/HuggingFace: mldsai-info/2023-08-10-huggingface_NER.md
 
     - mllibs:
 

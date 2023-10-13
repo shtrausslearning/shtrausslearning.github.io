@@ -25,7 +25,13 @@ Pandas `UDFs` (User-Defined Functions) allow you to apply a Python function that
 
 Avocado price prediction is the process of using machine learning algorithms to forecast the future prices of avocados based on historical data and other relevant factors such as weather patterns, consumer demand, and supply chain disruptions. This can help stakeholders in the avocado industry make informed decisions about when and where to sell their avocados, as well as how much to charge for them. Avocado price prediction can also provide insights into the factors that affect avocado sales and help optimize the industry's efficiency and profitability.
 
-## <b>Contact Me!</b>
+## <b>The Dataset</b>
+
+It is a well known fact that Millenials LOVE Avocado Toast. It's also a well known fact that all Millenials live in their parents basements.Clearly, they aren't buying home because they are buying too much Avocado Toast! But maybe there's hope… if a Millenial could find a city with cheap avocados, they could live out the Millenial American Dream.
+
+The dataset can be found on **[Kaggle](https://www.kaggle.com/datasets/neuromusic/avocado-prices)** & its original source found **[here](https://hassavocadoboard.com/)**
+
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Data</b> 
 
 **Thank you for reading!**
 

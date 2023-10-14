@@ -100,6 +100,31 @@ sales.select('Date','type','Total Volume','region')\
 +----------+------------+------------+----------------+
 ```
 
+The `Date` unique values can be called and checked, we have weekly data for different regions.
+
+```python
+sales.select(col('Date')).distinct().orderBy('Date').show(5)
+```
+
+```
++----------+
+|      Date|
++----------+
+|2015-01-04|
+|2015-01-11|
+|2015-01-18|
+|2015-01-25|
+|2015-02-01|
++----------+
+only showing top 5 rows
+```
+
+We will be using `Total Volume` as our target variable we'll be predicting. We can note that we have data for different regions as well as of different `type`
+
+## <b>Exploring Data</b>
+
+Let's do some data exploration
+
 **Thank you for reading!**
 
 Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } **[mldsai-info channel](https://t.me/mldsai_info)** or to me directly :fontawesome-brands-telegram:{ .telegram } **[shtrauss2](https://t.me/shtrauss2)**, on :fontawesome-brands-github:{ .github } **[shtrausslearning](https://github.com/shtrausslearning)** or :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**

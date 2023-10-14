@@ -53,7 +53,7 @@ spark = SparkSession.builder\
                     .getOrCreate()
 ```
 
-To read the data, we'll use the `session.read.csv`, together with `inferSchema` method and look at the table schematics using `printSchema()` method
+To read the data, we'll use the `session.read.csv`, together with `inferSchema` method and look at the table schematics using `printSchema()` method to automatically assign types to table columns
 
 ```python
 # read csv
@@ -63,26 +63,30 @@ sales.printSchema()
 
 ```
 root
- |-- _c0: string (nullable = true)
- |-- Date: string (nullable = true)
- |-- AveragePrice: string (nullable = true)
- |-- Total Volume: string (nullable = true)
- |-- 4046: string (nullable = true)
- |-- 4225: string (nullable = true)
- |-- 4770: string (nullable = true)
- |-- Total Bags: string (nullable = true)
- |-- Small Bags: string (nullable = true)
- |-- Large Bags: string (nullable = true)
- |-- XLarge Bags: string (nullable = true)
+ |-- _c0: integer (nullable = true)
+ |-- Date: date (nullable = true)
+ |-- AveragePrice: double (nullable = true)
+ |-- Total Volume: double (nullable = true)
+ |-- 4046: double (nullable = true)
+ |-- 4225: double (nullable = true)
+ |-- 4770: double (nullable = true)
+ |-- Total Bags: double (nullable = true)
+ |-- Small Bags: double (nullable = true)
+ |-- Large Bags: double (nullable = true)
+ |-- XLarge Bags: double (nullable = true)
  |-- type: string (nullable = true)
- |-- year: string (nullable = true)
+ |-- year: integer (nullable = true)
  |-- region: string (nullable = true)
+
+
 ```
 
-Let's take a peek at our dataset
+Let's take a peek at our dataset, we'll use `select`,`orderBy` & `show` methods
 
 ```python
-sales.select('Date','type','Total Volume','region').orderBy('Date').show(5)
+sales.select('Date','type','Total Volume','region')\
+     .orderBy('Date')\
+     .show(5)
 ```
 ```
 +----------+------------+------------+----------------+

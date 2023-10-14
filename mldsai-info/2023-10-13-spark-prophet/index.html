@@ -888,29 +888,31 @@
                     <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;prophet&quot;</span><span class="p">)</span>\
                     <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 </code></pre></div>
-<p>To read the data, we'll use the <code>session.read.csv</code>, together with <code>inferSchema</code> method and look at the table schematics using <code>printSchema()</code> method</p>
+<p>To read the data, we'll use the <code>session.read.csv</code>, together with <code>inferSchema</code> method and look at the table schematics using <code>printSchema()</code> method to automatically assign types to table columns</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># read csv</span>
 <span class="n">sales</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/avocado-prices/avocado.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">sales</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>root
- |-- _c0: string (nullable = true)
- |-- Date: string (nullable = true)
- |-- AveragePrice: string (nullable = true)
- |-- Total Volume: string (nullable = true)
- |-- 4046: string (nullable = true)
- |-- 4225: string (nullable = true)
- |-- 4770: string (nullable = true)
- |-- Total Bags: string (nullable = true)
- |-- Small Bags: string (nullable = true)
- |-- Large Bags: string (nullable = true)
- |-- XLarge Bags: string (nullable = true)
+ |-- _c0: integer (nullable = true)
+ |-- Date: date (nullable = true)
+ |-- AveragePrice: double (nullable = true)
+ |-- Total Volume: double (nullable = true)
+ |-- 4046: double (nullable = true)
+ |-- 4225: double (nullable = true)
+ |-- 4770: double (nullable = true)
+ |-- Total Bags: double (nullable = true)
+ |-- Small Bags: double (nullable = true)
+ |-- Large Bags: double (nullable = true)
+ |-- XLarge Bags: double (nullable = true)
  |-- type: string (nullable = true)
- |-- year: string (nullable = true)
+ |-- year: integer (nullable = true)
  |-- region: string (nullable = true)
 </code></pre></div>
-<p>Let's take a peek at our dataset</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">,</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<p>Let's take a peek at our dataset, we'll use <code>select</code>,<code>orderBy</code> &amp; <code>show</code> methods</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">,</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>\
+     <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>\
+     <span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>+----------+------------+------------+----------------+
 |      Date|        type|Total Volume|          region|

@@ -4,8 +4,6 @@ authors: [andrey]
 description: >
   2021 was a fantastic year for this project as we shipped many new awesome
   features and made this project sustainable
-categories:
-  - General
 ---
 
 # The past, present and future

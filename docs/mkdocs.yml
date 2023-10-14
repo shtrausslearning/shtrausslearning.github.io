@@ -88,6 +88,7 @@ theme:
         - navigation.instant
         - navigation.instant.progress
         - navigation.sections
+        - navigation.expand
         - navigation.tracking
         - navigation.tabs
         - navigation.tabs.sticky 

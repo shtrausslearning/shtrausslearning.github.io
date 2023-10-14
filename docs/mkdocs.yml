@@ -131,9 +131,7 @@ plugins:
         post_excerpt: required
         post_excerpt_separator: <!-- more -->
         archive_name: Archive
-        post_slugify: !!python/object/apply:pymdownx.slugs.slugify
-            kwds:
-                case: lower
+        post_excerpt_max_authors: 1
     - search
 
 extra_javascript:

@@ -129,8 +129,6 @@ extra:
 plugins:
     - blog:
         post_excerpt: required
-        post_excerpt_separator: <!-- more -->
-        archive_name: Archive
 post_excerpt_max_authors: 2
     - search
 

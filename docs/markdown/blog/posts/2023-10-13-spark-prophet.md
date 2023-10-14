@@ -6,6 +6,7 @@ categories:
      - pyspark
      - prophet
      - regression
+cover_image: images/booktable.png
 ---
 
 # New 

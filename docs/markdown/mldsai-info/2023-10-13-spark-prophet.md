@@ -378,9 +378,7 @@ sales.groupBy('region').count().orderBy('count', ascending=True).show()
 only showing top 20 rows
 ```
 
-Looks like we mostly have 338 historical data points for each region, except for `WestTexNewMexico`
-
-Let's check how the `Houston` region has been performing
+Looks like we mostly have 338 historical data points for each region, except for `WestTexNewMexico`. Let's check how the `Houston` region has been performing.
 
 ```python
 # select only a subset of data
@@ -464,7 +462,7 @@ only showing top 4 rows
 
 ### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b> 
 
-Let's prepare the scheme for the outputs of our UDF
+Let's prepare the scheme for the outputs of our `UDF`
 
 ```python
 import pyspark.sql.types  as ty

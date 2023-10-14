@@ -1247,8 +1247,7 @@ only showing top 5 rows
 +------------------+-----+
 only showing top 20 rows
 </code></pre></div>
-<p>Looks like we mostly have 338 historical data points for each region, except for <code>WestTexNewMexico</code></p>
-<p>Let's check how the <code>Houston</code> region has been performing</p>
+<p>Looks like we mostly have 338 historical data points for each region, except for <code>WestTexNewMexico</code>. Let's check how the <code>Houston</code> region has been performing.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># select only a subset of data</span>
 <span class="n">sales</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Houston&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
@@ -1314,7 +1313,7 @@ houston_df_final.show(4)
 only showing top 4 rows
 </code></pre></div></p>
 <h3 id="-defining-scheme"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b><a class="headerlink" href="#-defining-scheme" title="Permanent link"></a></h3>
-<p>Let's prepare the scheme for the outputs of our UDF</p>
+<p>Let's prepare the scheme for the outputs of our <code>UDF</code></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyspark.sql.types</span>  <span class="k">as</span> <span class="nn">ty</span>
 
 <span class="n">schema</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">StructType</span><span class="p">([</span>

@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/personal/</loc>
+         <lastmod>2023-10-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>

@@ -109,17 +109,32 @@ theme:
         repo: fontawesome/brands/github
     language: en
     features:
-        - instant
-        - header.autohide
+        - announce.dismiss
+        - content.action.edit
+        - content.action.view
+        - content.code.annotate
+        - content.code.copy
+        # - content.code.select
+        # - content.tabs.link
+        - content.tooltips
+        # - header.autohide
+        # - navigation.expand
+        - navigation.footer
+        - navigation.indexes
+        # - navigation.instant
+        # - navigation.instant.prefetch
+        # - navigation.instant.progress
+        # - navigation.prune
+        - navigation.sections
+        - navigation.tabs
+        # - navigation.tabs.sticky
+        - navigation.top
+        - navigation.tracking
         - search.highlight
         - search.share
         - search.suggest
-        - navigation.top
-        - content.tabs.link
-        - navigation.sections 
-        # - navigation.expand
-        - navigation.tabs 
-#        - toc.integrate # table of contents is rendered as part of the navigation
+        - toc.follow
+        # - toc.integrate
     palette:
         - scheme: default
           primary: indigo
@@ -153,6 +168,6 @@ extra:
 plugins:
     - search
     - tags
-    
+
 copyright: |
   Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>

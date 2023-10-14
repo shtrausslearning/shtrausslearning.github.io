@@ -86,6 +86,8 @@ theme:
     features:
         # Navigation settings
         - navigation.instant
+        - navigation.instant.progress
+        - navigation.sections
         - navigation.tracking
         - navigation.tabs
         - navigation.tabs.sticky 

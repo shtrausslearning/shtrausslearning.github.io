@@ -1,12 +1,16 @@
+---
+date: 2023-08-21
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+    - pyspark
+---
+
 # PySpark Creating Models
 
 ![](https://i.imgur.com/TlrdxNa.jpg)
-
----
-date: 2023-08-21 00:00:00 +0800 <br>
-categories: [pyspark] <br>
-tags: [pyspark,binary classification,beginner]
----
 
 In this post, we will introduce ourselves to `pyspark`, a framework that allows us to work with big data. Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post. We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the modeling stage of the mini project
 

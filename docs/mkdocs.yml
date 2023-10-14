@@ -19,17 +19,6 @@ nav:
         - introduction: mllibs/home.md
         - meetups: mllibs/meetups.md
 
-    - mldsai:
-        - Prophet with PySpark: mldsai/2023-10-13-spark-prophet.md
-        - Comparing Datasets: mldsai/2023-09-25-compare_dataset.md
-        - NER with HuggingFace: mldsai/2023-09-21-huggingface_NER2.md
-        - Pipeline Tuning with PySpark: mldsai/2023-08-22-spark-pipeline-tune.md
-        - Creating Models with PySpark: mldsai/2023-08-21-spark-modeling.md
-        - Preprocessing with PySpark: mldsai/2023-08-20-spark-preprocess.md
-        - Taxi EDA with PySpark: mldsai/2023-08-17-spark-cabeda.md
-        - Sentence Splitting with NER: mldsai/2023-08-11-sentence_splitting.md
-        - NER with Torch/HuggingFace: mldsai/2023-08-10-huggingface_NER.md
-
     - blog:
         - blog/index.md
 

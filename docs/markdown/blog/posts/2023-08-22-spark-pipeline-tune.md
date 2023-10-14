@@ -1,12 +1,16 @@
+---
+date: 2023-08-22
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+    - pyspark
+---
+
 # Hyperparameter Tuning with Pipelines
 
 ![](https://i.imgur.com/TlrdxNa.jpg)
-
----
-date: 2023-08-22 00:00:00 +0800 <br>
-categories: `pyspark` <br>
-tags: `pyspark`,`binary classification`,`pipeline`,`beginner`
----
 
 This post is the last of the three posts on the titanic classification problem in `pyspark`. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising `StringIndexer` & `VectorAssembler`, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single `pipline`. `pyspark` like `sklearn` has such pipeline classes that help us keep things organised
 

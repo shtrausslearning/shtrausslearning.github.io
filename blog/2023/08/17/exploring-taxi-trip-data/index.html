@@ -1,0 +1,1864 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hatch v1.6.0 brings improvements to build environments, better handling of dynamic metadata, and support for tools like Visual Studio Code.">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/17/exploring-taxi-trip-data/">
+      
+      
+        <link rel="prev" href="../../11/named-entity-recognition-for-sentence-splitting/">
+      
+      
+        <link rel="next" href="../../20/pyspark-preprocessing/">
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+    
+    
+      
+        <title>Exploring Taxi Trip Data - Andrey Shtrauss</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.bd3936ea.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exploring-taxi-trip-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Andrey Shtrauss
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Exploring Taxi Trip Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/shtrausslearning/shtrausslearning.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shtrausslearning.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../ds-portfolio/" class="md-tabs__link">
+          
+  
+    
+  
+  collections
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../mllibs/home/" class="md-tabs__link">
+          
+  
+    
+  
+  mllibs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+    
+  
+  blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+
+    </a>
+    Andrey Shtrauss
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/shtrausslearning/shtrausslearning.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shtrausslearning.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    collections
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            collections
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../ds-portfolio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Science
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    mllibs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            mllibs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../mllibs/home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../mllibs/meetups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    meetups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    blog
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/pyspark/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pyspark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/prophet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prophet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/regression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    regression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/eda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/huggingface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Huggingface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/ner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NER
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/pytorch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PyTorch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/nlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#введение" class="md-nav__link">
+    Введение
+  </a>
+  
+    <nav class="md-nav" aria-label="Введение">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-spark-over-pandas" class="md-nav__link">
+    ❯❯ Spark over Pandas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-цель-задачи" class="md-nav__link">
+    ❯❯ Цель задачи
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#данные" class="md-nav__link">
+    Данные
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sparksession" class="md-nav__link">
+    SparkSession
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#количество-партиции" class="md-nav__link">
+    Количество Партиции
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#разведовательный-анализ" class="md-nav__link">
+    Разведовательный Анализ
+  </a>
+  
+    <nav class="md-nav" aria-label="Разведовательный Анализ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-посчитайте-количество-загруженных-строк" class="md-nav__link">
+    ❯❯ Посчитайте количество загруженных строк
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-чему-равна-корреляция-и-ковариация-между-длиной-маршрута-и-ценой-за-поездку" class="md-nav__link">
+    ❯❯ Чему равна корреляция и ковариация между длиной маршрута и ценой за поездку?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-найдите-количество-среднее-cреднеквадратическое-отклонение-минимум-и-максимум-для-длины-маршрута-и-цены-за-поездку" class="md-nav__link">
+    ❯❯ Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-найдите-самый-непопулярный-вид-оплаты" class="md-nav__link">
+    ❯❯ Найдите самый непопулярный вид оплаты
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-найдите-идентификатор-taxi_id-таксиста-выполнившего-наибольшее-число-заказов" class="md-nav__link">
+    ❯❯ Найдите идентификатор taxi_id таксиста выполнившего наибольшее число заказов
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-чему-равна-средняя-цена-среди-поездок-оплаченных-наличными" class="md-nav__link">
+    ❯❯ Чему равна средняя цена среди поездок, оплаченных наличными? 
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-сколько-таксистов-проехало-больше-1000-миль-за-все-время-выполнения-заказов" class="md-nav__link">
+    ❯❯ Сколько таксистов проехало больше 1000 миль за все время выполнения заказов?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-сколько-миль-проехал-пассажир-в-самой-долгой-поездке" class="md-nav__link">
+    ❯❯ Сколько миль проехал пассажир в самой долгой поездке?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-каков-средний-заработок-всех-таксистов" class="md-nav__link">
+    ❯❯ Каков средний заработок всех таксистов?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-сколько-поездок-начиналось-в-самый-загруженный-час" class="md-nav__link">
+    ❯❯ Сколько поездок начиналось в самый загруженный час?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-сколько-поездок-началось-во-второй-четверти-суток" class="md-nav__link">
+    ❯❯ Сколько поездок началось во второй четверти суток?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-найдите-топ-три-даты-в-которые-было-суммарно-больше-всего-чаевых" class="md-nav__link">
+    ❯❯ Найдите топ три даты, в которые было суммарно больше всего чаевых?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-сколько-было-заказов-в-дату-с-наибольшим-спросом" class="md-nav__link">
+    ❯❯ Сколько было заказов в дату с наибольшим спросом?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-какая-марка-машины-самая-распрастранненая-среди-таксистов" class="md-nav__link">
+    ❯❯ Какая марка машины самая распрастранненая среди таксистов?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-сколько-раз-и-какая-модель-машин-чаще-всего-встречается-в-поездках" class="md-nav__link">
+    ❯❯ Сколько раз и какая модель машин чаще всего встречается в поездках?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#выводы" class="md-nav__link">
+    Выводы
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Andrey Shtrauss</strong><br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-08-17 00:00:00" class="md-ellipsis">August 17, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/pyspark/">pyspark</a>, 
+                              <a href="../../../../category/eda/">EDA</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              12 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+    <a href="https://github.com/shtrausslearning/shtrausslearning.github.io/tree/master/docs/src/markdown/blog/posts/2023-08-17-spark-cabeda.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/shtrausslearning/shtrausslearning.github.io/tree/master/docs/src/markdown/blog/posts/2023-08-17-spark-cabeda.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="exploring-taxi-trip-data">Exploring Taxi Trip Data<a class="headerlink" href="#exploring-taxi-trip-data" title="Permanent link"></a></h1>
+<p><img alt="" src="../../../../images/cabs.jpg" /></p>
+<hr />
+<p>date: 2023-08-17 00:00:00 +0800 <br>
+categories: [spark] <br>
+tags: [pyspark,EDA]</p>
+<hr />
+<p>В этом посте мы будем использовать <code>spark</code> для раздедовательного анализа поездак такси для данных их города Чикаго. Когда данных становится слишком много, <code>pandas</code> работает медленее чем <code>spark</code>, поэтому будем использовать этот инструмент для разведовательного анализа.</p>
+<p><a href="https://colab.research.google.com/drive/1l77AlQZtF0CiVS6g_WsSonlQ2Dj2SlPF?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
+<h2 id="введение"><b>Введение</b><a class="headerlink" href="#введение" title="Permanent link"></a></h2>
+<h3 id="-spark-over-pandas"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Spark over Pandas</b><a class="headerlink" href="#-spark-over-pandas" title="Permanent link"></a></h3>
+<p><code>pyspark</code> может быть быстрее <code>pandas</code> благодаря использованию распределенных вычислений и оптимизации выполнения запросов. В отличие от <code>pandas</code>, который работает на одной машине и обрабатывает данные в памяти, <code>spark</code> может распределять задачи на кластере из сотен или тысяч узлов, что позволяет обрабатывать большие объемы данных и ускорять выполнение запросов. Кроме того, <code>pyspark</code> использует оптимизацию выполнения запросов, которая позволяет минимизировать время выполнения запросов и ускорять обработку данных.</p>
+<p><code>spark</code> имеет несколько преимуществ перед <code>pandas</code>:</p>
+<blockquote>
+<ol>
+<li>Масштабируемость: Spark может обрабатывать данные в масштабах, которые Pandas не может обработать. Spark может работать с данными, которые не помещаются в память одной машины, используя распределенные вычисления. <br></li>
+<li>Распределенные вычисления: Spark может работать на кластерах из сотен или тысяч узлов, что позволяет распределять задачи и ускорять обработку данных. <br></li>
+<li>Быстродействие: Spark может обрабатывать данные быстрее, чем Pandas, благодаря оптимизации выполнения запросов и использованию распределенных вычислений.</li>
+</ol>
+</blockquote>
+<p>Будем использовать <code>python</code>, в этой среде можно установть <code>spark</code> с помощью <code>pip install pyspark</code></p>
+<h3 id="-цель-задачи"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Цель задачи</b><a class="headerlink" href="#-цель-задачи" title="Permanent link"></a></h3>
+<p>В этом посте мы проведем разведовательный анализ данных; зададим себе ряд вопросов на которые мы найдем ответ в наших данных </p>
+<h2 id="данные"><b>Данные</b><a class="headerlink" href="#данные" title="Permanent link"></a></h2>
+<p>В компании есть ряд таксистов которые регистриуют поедки, и если в ней работают много таксистов, то данные о поездках очень стремительно набираются. Соответсвенно для разведовательного анализа больших данных будем использовать <code>spark</code>.</p>
+<p>Данные поездок можно найти <a href="https://github.com/AlexKbit/stepik-ds-course/blob/master/Week3/spark-tasks/taxi_data.parquet">по ссылке</a>, они в формате <code>parquet</code> (бинарный формат), нам так же понадобится еще одна таблица из базы данных, ее можно <a href="https://github.com/AlexKbit/stepik-ds-course/raw/master/Week3/spark-tasks/taxi_cars_data.parquet">найти сдесь</a></p>
+<p>Этот датасет собранный на основе данных <a href="https://www.kaggle.com/chicago/chicago-taxi-rides-2016">Chicago Taxi Rides 2016</a></p>
+<p><br>Схема данны:
+<br>|&ndash; <hlt>taxi_id</hlt> = идентификатор таксиста
+<br>|&ndash; trip_start_timestamp = время начала поездки
+<br>|&ndash; trip_end_timestamp = время окончания поездки
+<br>|&ndash; trip_seconds = время длительности поездки в секундах
+<br>|&ndash; trip_miles = мили проиденные во время поездки
+<br>|&ndash; fare = транспортные расходы
+<br>|&ndash; tips = назначенные чаевые
+<br>|&ndash; trip_total = общая стоимость поездки (Итоговая с учетом чаевых и расходов)
+<br>|&ndash; payment_type = тип оплаты</p>
+<h2 id="sparksession"><b>SparkSession</b><a class="headerlink" href="#sparksession" title="Permanent link"></a></h2>
+<p>Начинаем <code>spark</code> сессию на локальном компе:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span> 
+
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;Task&#39;</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.sql.session.timeZone&quot;</span><span class="p">,</span> <span class="s2">&quot;GMT+3&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Подгружаем данные c помощью <code>read.parquet</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;taxi_data.parquet&#39;</span><span class="p">)</span>
+<span class="n">taxi</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
+</code></pre></div>
+<h2 id="количество-партиции"><b>Количество Партиции</b><a class="headerlink" href="#количество-партиции" title="Permanent link"></a></h2>
+<p>В <code>spark</code> мы можем распараллеливать нашу коллекцию и паралельно выполнять задачи, и выполнять задачи на мощьных кластерах</p>
+<p>Мы загрузили данные которые находяться в одном <code>parquet</code>, но мы так же можем работать и с папками в которых хранятся в отдельных файлах (частями)</p>
+<p>Чтобы показать количество действующих партиции; сдесь 2 партиции</p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">getNumPartitions</span><span class="p">()</span>
+<span class="c1"># 2</span>
+</code></pre></div>
+<p>Мы можем перераспределить количество партиции для нашей задачи</p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">repartition</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;data_source&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Если мы сейчас сохраним <code>parquet</code>, то наш файл сохранился бы в папке частями. Воспользуемся <code>repartition</code> для увеличения количество партиции, а <code>coalesce</code> для уменьшения</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># df.repartition(16) -&gt; increase split</span>
+<span class="c1"># df.rdd.getNumPartitions() = 2</span>
+<span class="c1"># df.coalesce(1) -&gt; decrease split (eg. assemble into one)</span>
+</code></pre></div>
+<h2 id="разведовательный-анализ"><b>Разведовательный Анализ</b><a class="headerlink" href="#разведовательный-анализ" title="Permanent link"></a></h2>
+<p>Все готово, давайте теперь будем задавать себе вопросы которые нас интересуют!  </p>
+<h3 id="-посчитайте-количество-загруженных-строк"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Посчитайте количество загруженных строк</b><a class="headerlink" href="#-посчитайте-количество-загруженных-строк" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="c1"># 2540712</span>
+
+<span class="c1"># len(taxi.columns) # для получения количество столбцов</span>
+</code></pre></div>
+<p>Мы загрузили данные без схемы типов, посмотрим все ли нас устраивает, если нет то мы можем добавить <code>schema</code> при чтении данных</p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+
+<span class="n">root</span>
+ <span class="c1"># |-- taxi_id: integer (nullable = true)</span>
+ <span class="c1"># |-- trip_start_timestamp: timestamp (nullable = true)</span>
+ <span class="c1"># |-- trip_end_timestamp: timestamp (nullable = true)</span>
+ <span class="c1"># |-- trip_seconds: integer (nullable = true)</span>
+ <span class="c1"># |-- trip_miles: double (nullable = true)</span>
+ <span class="c1"># |-- fare: double (nullable = true)</span>
+ <span class="c1"># |-- tips: double (nullable = true)</span>
+ <span class="c1"># |-- trip_total: double (nullable = true)</span>
+ <span class="c1"># |-- payment_type: string (nullable = true)</span>
+</code></pre></div>
+<h3 id="-чему-равна-корреляция-и-ковариация-между-длиной-маршрута-и-ценой-за-поездку"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Чему равна корреляция и ковариация между длиной маршрута и ценой за поездку?</b><a class="headerlink" href="#-чему-равна-корреляция-и-ковариация-между-длиной-маршрута-и-ценой-за-поездку" title="Permanent link"></a></h3>
+<p>У <code>dataframe</code> есть методы <code>cov</code> и <code>corr</code>, подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.corr.html?highlight=corr#pyspark-sql-dataframe-corr">corr</a> &amp; <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.cov.html?highlight=cov#pyspark-sql-dataframe-cov">cov</a></p>
+<ul>
+<li>Длина маршрута <code>trip_miles</code>, цена поездки <code>trip_total</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;correlation: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">taxi</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="s1">&#39;trip_miles&#39;</span><span class="p">,</span><span class="s1">&#39;trip_total&#39;</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;covariance: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">taxi</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="s1">&#39;trip_miles&#39;</span><span class="p">,</span><span class="s1">&#39;trip_total&#39;</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># correlation: 0.44816</span>
+<span class="c1"># covariance: 71.96914</span>
+</code></pre></div>
+<h3 id="-найдите-количество-среднее-cреднеквадратическое-отклонение-минимум-и-максимум-для-длины-маршрута-и-цены-за-поездку"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку?</b><a class="headerlink" href="#-найдите-количество-среднее-cреднеквадратическое-отклонение-минимум-и-максимум-для-длины-маршрута-и-цены-за-поездку" title="Permanent link"></a></h3>
+<p>№3 Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку? Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.describe.html?highlight=describe#pyspark-sql-dataframe-describe">describe</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+</span>
+<span class="c1">#|summary|          taxi_id|      trip_seconds|        trip_miles|              fare|              tips|        trip_total|payment_type|</span>
+<span class="c1">#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+</span>
+<span class="c1">#|  count|          2539547|           2540178|           2540677|           2540672|           2540672|           2540672|     2540712|</span>
+<span class="c1">#|   mean|4370.670382946249|  801.015424509621|3.0005873828090266|13.248720862039738|1.5209281087837443|15.913560215564042|        null|</span>
+<span class="c1">#| stddev|2513.977996552665|1199.4924572375417|  5.25716922943536|22.579448541941893|2.7990862329785924|30.546699217618237|        null|</span>
+<span class="c1">#|    min|                0|                 0|               0.0|               0.0|               0.0|               0.0|        Cash|</span>
+<span class="c1">#|    max|             8760|             86399|             900.0|           9276.62|             422.0|           9276.69|    Way2ride|</span>
+<span class="c1">#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+</span>
+</code></pre></div>
+<h3 id="-найдите-самый-непопулярный-вид-оплаты"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите самый непопулярный вид оплаты</b><a class="headerlink" href="#-найдите-самый-непопулярный-вид-оплаты" title="Permanent link"></a></h3>
+<p><br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html?highlight=groupby#pyspark-sql-dataframe-groupby">groupBy</a> <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.orderBy.html?highlight=orderby#pyspark-sql-dataframe-orderby">orderBy</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># +------------+-------+</span>
+<span class="c1"># |payment_type|  count|</span>
+<span class="c1"># +------------+-------+</span>
+<span class="c1"># |    Way2ride|      3|</span>
+<span class="c1"># |       Pcard|    878|</span>
+<span class="c1"># |      Prcard|    968|</span>
+<span class="c1"># |     Dispute|   1842|</span>
+<span class="c1"># |     Unknown|   5180|</span>
+<span class="c1"># |   No Charge|  12843|</span>
+<span class="c1"># | Credit Card|1108843|</span>
+<span class="c1"># |        Cash|1410155|</span>
+<span class="c1"># +------------+-------+</span>
+</code></pre></div>
+<h3 id="-найдите-идентификатор-taxi_id-таксиста-выполнившего-наибольшее-число-заказов"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите идентификатор <code>taxi_id</code> таксиста выполнившего наибольшее число заказов</b><a class="headerlink" href="#-найдите-идентификатор-taxi_id-таксиста-выполнившего-наибольшее-число-заказов" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+-----+</span>
+<span class="c1"># |taxi_id|count|</span>
+<span class="c1"># +-------+-----+</span>
+<span class="c1"># |    316| 2225|</span>
+<span class="c1"># |   6591| 2083|</span>
+<span class="c1"># |   5071| 2080|</span>
+<span class="c1"># |   8740| 2067|</span>
+<span class="c1"># |   6008| 2033|</span>
+<span class="c1"># +-------+-----+</span>
+</code></pre></div>
+<h3 id="-чему-равна-средняя-цена-среди-поездок-оплаченных-наличными"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Чему равна средняя цена среди поездок, оплаченных наличными? </b><a class="headerlink" href="#-чему-равна-средняя-цена-среди-поездок-оплаченных-наличными" title="Permanent link"></a></h3>
+<p><br> Подробней <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.where.html?highlight=where#pyspark-sql-dataframe-where">where</a></p>
+<ul>
+<li>Наличные (<code>Cash</code>)</li>
+<li><code>filter</code> or <code>where</code> для выбора подвыборки </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">cash</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Cash&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles|fare|tips|trip_total|payment_type|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7|31.0| 0.0|      31.0|        Cash|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">cash</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Cash&#39;</span><span class="p">)</span>
+<span class="n">taxi</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s1">&#39;payment_type&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;trip_total&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># cash.groupBy([&#39;payment_type&#39;]).agg(f.mean(&#39;trip_total&#39;)).show()</span>
+
+<span class="c1"># +------------+------------------+</span>
+<span class="c1"># |payment_type|   avg(trip_total)|</span>
+<span class="c1"># +------------+------------------+</span>
+<span class="c1"># | Credit Card| 20.88679166806002|</span>
+<span class="c1"># |   No Charge| 14.35603753017208|</span>
+<span class="c1"># |     Unknown|13.079387794515267|</span>
+<span class="c1"># |      Prcard|11.893749999999997|</span>
+<span class="c1"># |        Cash|12.035261470840307|</span>
+<span class="c1"># |     Dispute|14.686368078175896|</span>
+<span class="c1"># |    Way2ride| 4.793333333333333|</span>
+<span class="c1"># |       Pcard|10.450512528473803|</span>
+<span class="c1"># +------------+------------------+</span>
+</code></pre></div>
+<h3 id="-сколько-таксистов-проехало-больше-1000-миль-за-все-время-выполнения-заказов"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько таксистов проехало больше 1000 миль за все время выполнения заказов?</b><a class="headerlink" href="#-сколько-таксистов-проехало-больше-1000-миль-за-все-время-выполнения-заказов" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">driver_distances</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;trip_miles&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">driver_distances</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="c1"># 2860</span>
+</code></pre></div>
+<h3 id="-сколько-миль-проехал-пассажир-в-самой-долгой-поездке"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько миль проехал пассажир в самой долгой поездке?</b><a class="headerlink" href="#-сколько-миль-проехал-пассажир-в-самой-долгой-поездке" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">taxi2</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">taxi2</span><span class="o">.</span><span class="n">orderBy</span><span class="p">([</span><span class="s1">&#39;trip_seconds&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles|fare|tips|trip_total|payment_type|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
+<span class="c1"># |   4161| 2016-11-14 16:00:00|2016-11-15 16:00:00|       86399|       0.0|3.25| 0.0|      3.25|        Cash|</span>
+<span class="c1"># |   5667| 2016-11-04 21:30:00|2016-11-05 21:30:00|       86399|       0.0|3.25| 0.0|      4.75|        Cash|</span>
+<span class="c1"># |   1954| 2016-11-03 00:15:00|2016-11-04 00:15:00|       86399|       0.0|3.25| 0.0|      3.25|        Cash|</span>
+<span class="c1"># |   4219| 2016-11-08 16:00:00|2016-11-09 16:00:00|       86392|       0.0|3.25| 0.0|      3.25|        Cash|</span>
+<span class="c1"># |   4551| 2016-11-03 16:15:00|2016-11-04 16:15:00|       86389|       0.0|3.25| 0.0|      3.25|        Cash|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
+</code></pre></div>
+<h3 id="-каков-средний-заработок-всех-таксистов"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Каков средний заработок всех таксистов?</b><a class="headerlink" href="#-каков-средний-заработок-всех-таксистов" title="Permanent link"></a></h3>
+<p><br>Отсеките неизвестные машины (не определенный taxi_id).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># we have null taxi_id</span>
+<span class="n">taxi</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># +-------+</span>
+<span class="c1"># |taxi_id|</span>
+<span class="c1"># +-------+</span>
+<span class="c1"># |   null|</span>
+<span class="c1"># |      0|</span>
+<span class="c1"># |      3|</span>
+<span class="c1"># |      5|</span>
+<span class="c1"># +-------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># drop rows in taxi_id that are null</span>
+<span class="n">taxi_cleaned</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">))</span>
+<span class="n">taxi_cleaned</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
+</code></pre></div>
+<p>Удаляем все строки в <code>taxi_id</code> в которых у нас есть пробелы</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># mean total income of all drivers</span>
+<span class="n">driver_total</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;total_driver&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;total_driver&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># +-----------------+</span>
+<span class="c1"># |avg(total_driver)|</span>
+<span class="c1"># +-----------------+</span>
+<span class="c1"># |8218.856265256327|</span>
+<span class="c1"># +-----------------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># driver total for each taxi_id</span>
+<span class="n">driver_total</span> <span class="o">=</span> <span class="n">taxi_cleaned</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;trip_total&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;total_driver&#39;</span><span class="p">))</span>
+<span class="n">driver_total</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># +-------+------------------+</span>
+<span class="c1"># |taxi_id|      total_driver|</span>
+<span class="c1"># +-------+------------------+</span>
+<span class="c1"># |   3997|10372.800000000003|</span>
+<span class="c1"># |   6620|13823.139999999994|</span>
+<span class="c1"># |   4900| 9867.160000000002|</span>
+<span class="c1"># |   7833| 8439.289999999999|</span>
+<span class="c1"># |   1829| 9979.389999999998|</span>
+<span class="c1"># +-------+------------------+</span>
+</code></pre></div>
+<h3 id="-сколько-поездок-начиналось-в-самый-загруженный-час"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько поездок начиналось в самый загруженный час?</b><a class="headerlink" href="#-сколько-поездок-начиналось-в-самый-загруженный-час" title="Permanent link"></a></h3>
+<p><br>Используйте функцию <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.hour.html?highlight=hour#pyspark-sql-functions-hour">hour</a></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># extact hour from date, like datetime in pandas</span>
+<span class="c1"># dont&#39; use select and then join; use withColumn(&#39;name&#39;,operation)</span>
+
+<span class="n">col_hour</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="s1">&#39;trip_start_timestamp&#39;</span><span class="p">))</span>
+<span class="n">col_hour</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|hour|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|  23|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|   7|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|  16|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|   8|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|  18|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">col_hour</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +----+------+</span>
+<span class="c1"># |hour| count|</span>
+<span class="c1"># +----+------+</span>
+<span class="c1"># |  18|181127|</span>
+<span class="c1"># |  19|173779|</span>
+<span class="c1"># |  17|169886|</span>
+<span class="c1"># |  16|156519|</span>
+<span class="c1"># |  20|146602|</span>
+<span class="c1"># +----+------+</span>
+</code></pre></div>
+<h3 id="-сколько-поездок-началось-во-второй-четверти-суток"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько поездок началось во второй четверти суток?</b><a class="headerlink" href="#-сколько-поездок-началось-во-второй-четверти-суток" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;start_hour&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="s1">&#39;trip_start_timestamp&#39;</span><span class="p">))</span>
+<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|start_hour|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|        23|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|         7|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|        16|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|         8|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|        18|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">after_six</span> <span class="o">=</span> <span class="n">taxi_add</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;start_hour&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;start_hour&#39;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">after_six</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c1"># df.groupBy((hour(&#39;trip_start_timestamp&#39;)).alias(&#39;day&#39;)).count()</span>
+<span class="c1"># .where(col(&#39;day&#39;).between(6,11)).groupBy().sum().show()</span>
+
+<span class="c1"># 538737</span>
+</code></pre></div>
+<h3 id="-найдите-топ-три-даты-в-которые-было-суммарно-больше-всего-чаевых"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите топ три даты, в которые было суммарно больше всего чаевых?</b><a class="headerlink" href="#-найдите-топ-три-даты-в-которые-было-суммарно-больше-всего-чаевых" title="Permanent link"></a></h3>
+<p><br>Вам может понадобится конвертация типов <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.Column.cast.html?highlight=cast#pyspark-sql-column-cast">cast</a></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">DateType</span>
+
+<span class="c1"># extract date only from type [timestamp] -&gt; [date]</span>
+<span class="c1"># we use f.to_date ( f.col(&#39;column), &#39;order&#39; )</span>
+
+<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;trip_end_timestamp&quot;</span><span class="p">),</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">))</span>
+<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|      date|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|2016-12-16|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|2016-12-12|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|2016-12-16|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|2016-12-16|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|2016-12-03|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># convert/case data type date to string</span>
+
+<span class="c1"># taxi_add.select(taxi_add.date.cast(&quot;string&quot;).alias(&#39;date_str&#39;)).show() # don&#39;t do this</span>
+<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi_add</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;date_str&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">))</span>
+<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|      date|  date_str|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|2016-12-16|2016-12-16|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|2016-12-12|2016-12-12|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|2016-12-16|2016-12-16|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|2016-12-16|2016-12-16|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|2016-12-03|2016-12-03|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># now use groupby date (which is a string) &amp; find aggregate sum of all trips</span>
+<span class="n">taxi_add</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># +----------+------------------+</span>
+<span class="c1"># |  date_str|             total|</span>
+<span class="c1"># +----------+------------------+</span>
+<span class="c1"># |2016-11-03|110102.37000000013|</span>
+<span class="c1"># |2016-11-09|106187.87999999986|</span>
+<span class="c1"># |2016-11-16| 99993.77000000038|</span>
+<span class="c1"># +----------+------------------+</span>
+</code></pre></div>
+<h3 id="-сколько-было-заказов-в-дату-с-наибольшим-спросом"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько было заказов в дату с наибольшим спросом?</b><a class="headerlink" href="#-сколько-было-заказов-в-дату-с-наибольшим-спросом" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># we need to use starting time</span>
+
+<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;trip_start_timestamp&quot;</span><span class="p">),</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">))</span>
+<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi_add</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;date_str&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">))</span>
+<span class="n">taxi_add</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +----------+-----+</span>
+<span class="c1"># |  date_str|count|</span>
+<span class="c1"># +----------+-----+</span>
+<span class="c1"># |2016-11-03|61259|</span>
+<span class="c1"># |2016-12-16|59137|</span>
+<span class="c1"># |2016-12-09|58583|</span>
+<span class="c1"># |2016-12-15|57084|</span>
+<span class="c1"># |2016-11-04|56800|</span>
+<span class="c1"># +----------+-----+</span>
+</code></pre></div>
+<p>Подгрузите данные о марках машин из датасета <a href="https://github.com/AlexKbit/stepik-ds-course/raw/master/Week3/spark-tasks/taxi_cars_data.parquet">taxi_cars_data.parquet</a></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># load taxi_id car_modl type</span>
+<span class="n">df_car</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;taxi_cars_data.parquet&#39;</span><span class="p">)</span>
+<span class="n">df_car</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+-------------------+</span>
+<span class="c1"># |taxi_id|          car_model|</span>
+<span class="c1"># +-------+-------------------+</span>
+<span class="c1"># |   1159|       Toyota Prius|</span>
+<span class="c1"># |   7273|Ford Crown Victoria|</span>
+<span class="c1"># |   2904|        Honda Civic|</span>
+<span class="c1"># |   3210|        Ford Fusion|</span>
+<span class="c1"># |   2088|       Toyota Camry|</span>
+<span class="c1"># +-------+-------------------+</span>
+</code></pre></div>
+<h3 id="-какая-марка-машины-самая-распрастранненая-среди-таксистов"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Какая марка машины самая распрастранненая среди таксистов?</b><a class="headerlink" href="#-какая-марка-машины-самая-распрастранненая-среди-таксистов" title="Permanent link"></a></h3>
+<p><br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.split.html?highlight=split#pyspark-sql-functions-split">split</a></p>
+<p>Мы можем разделить колонку по некому критерии (delimiter), добавим данные в новою колонку <code>newest</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># we are given the name and model; we need to extract the maker</span>
+<span class="c1"># like in pandas (.str.split())</span>
+
+<span class="n">df_car</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;newest&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">),</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
+<span class="n">df_car</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+-------------------+--------------------+</span>
+<span class="c1"># |taxi_id|          car_model|              newest|</span>
+<span class="c1"># +-------+-------------------+--------------------+</span>
+<span class="c1"># |   1159|       Toyota Prius|     [Toyota, Prius]|</span>
+<span class="c1"># |   7273|Ford Crown Victoria|[Ford, Crown, Vic...|</span>
+<span class="c1"># |   2904|        Honda Civic|      [Honda, Civic]|</span>
+<span class="c1"># |   3210|        Ford Fusion|      [Ford, Fusion]|</span>
+<span class="c1"># |   2088|       Toyota Camry|     [Toyota, Camry]|</span>
+<span class="c1"># +-------+-------------------+--------------------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># add columns with each split</span>
+<span class="n">df_car_add</span> <span class="o">=</span> <span class="n">df_car</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;maker&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">),</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> \
+                   <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">),</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">df_car_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+-------------------+------+------+</span>
+<span class="c1"># |taxi_id|          car_model| maker| model|</span>
+<span class="c1"># +-------+-------------------+------+------+</span>
+<span class="c1"># |   1159|       Toyota Prius|Toyota| Prius|</span>
+<span class="c1"># |   7273|Ford Crown Victoria|  Ford| Crown|</span>
+<span class="c1"># |   2904|        Honda Civic| Honda| Civic|</span>
+<span class="c1"># |   3210|        Ford Fusion|  Ford|Fusion|</span>
+<span class="c1"># |   2088|       Toyota Camry|Toyota| Camry|</span>
+<span class="c1"># +-------+-------------------+------+------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df_car_add</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;maker&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;maker&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +---------+-----+</span>
+<span class="c1"># |    maker|total|</span>
+<span class="c1"># +---------+-----+</span>
+<span class="c1"># |     Ford| 1484|</span>
+<span class="c1"># |  Hyundai|  792|</span>
+<span class="c1"># |   Toyota|  691|</span>
+<span class="c1"># |Chevrolet|  473|</span>
+<span class="c1"># |      Kia|  265|</span>
+<span class="c1"># +---------+-----+</span>
+</code></pre></div>
+<h3 id="-сколько-раз-и-какая-модель-машин-чаще-всего-встречается-в-поездках"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько раз и какая модель машин чаще всего встречается в поездках?</b><a class="headerlink" href="#-сколько-раз-и-какая-модель-машин-чаще-всего-встречается-в-поездках" title="Permanent link"></a></h3>
+<p><br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.split.html?highlight=split#pyspark-sql-functions-split">join</a></p>
+<div class="highlight"><pre><span></span><code><span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_car_add</span><span class="p">,</span><span class="n">taxi</span><span class="o">.</span><span class="n">taxi_id</span> <span class="o">==</span> <span class="n">df_car_add</span><span class="o">.</span><span class="n">taxi_id</span><span class="p">)</span>
+<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+</span>
+<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|taxi_id|          car_model|  maker|  model|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+</span>
+<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|   5240|     Toyota Corolla| Toyota|Corolla|</span>
+<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|   1215|Ford Crown Victoria|   Ford|  Crown|</span>
+<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|   3673|        Ford Taurus|   Ford| Taurus|</span>
+<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|   5400|     Toyota Corolla| Toyota|Corolla|</span>
+<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|   1257|    Hyundai Elantra|Hyundai|Elantra|</span>
+<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">taxi_add</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;orders&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;orders&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +-------------------+------+</span>
+<span class="c1"># |          car_model|orders|</span>
+<span class="c1"># +-------------------+------+</span>
+<span class="c1"># |Ford Crown Victoria|388682|</span>
+<span class="c1"># |     Hyundai Accent|150764|</span>
+<span class="c1"># |           Kia Ceed|143649|</span>
+<span class="c1"># |     Hyundai Sonata|141570|</span>
+<span class="c1"># |        Ford Mondeo|135466|</span>
+<span class="c1"># +-------------------+------+</span>
+</code></pre></div>
+<h2 id="выводы"><b>Выводы</b><a class="headerlink" href="#выводы" title="Permanent link"></a></h2>
+<p>Кратко о том что мы использовали для разведовательного анализа</p>
+<ul>
+<li>Сорреляция и ковариация <code>.corr('column A','column B')</code></li>
+<li>Как и в pandas есть метод <code>.descibe()</code> </li>
+<li>Группировать данные можно с <code>.groupBy</code> и сортировать <code>.orderBy</code></li>
+<li>taxi<strong>.groupBy</strong>('payment_type').count()<strong>.orderBy</strong>('count', ascending=True).show()</li>
+<li>Фильтрация данных (подвыборка) с <code>.filter</code> или <code>.where</code> (как в SQL)</li>
+<li>cash = taxi<strong>.filter</strong>(f.col('payment_type') == 'Cash').show(1)</li>
+<li>Так же можно отметить выбор колонок с <code>f.col('column')</code></li>
+<li>functions так же имеет функции для агрегации (eg. f.mean, f.max, f.min, f.sum)</li>
+<li>taxi.groupBy(['payment_type']).agg(<strong>f.mean</strong>('trip_total')).show()</li>
+<li>добавляем alias для новой колонке <code>.agg(f.sum('trip_miles').alias('name'))</code></li>
+<li>Есть taxi.dropna() как и в pandas</li>
+<li>taxi_cleaned = taxi<strong>.dropna</strong>(<strong>how='all'</strong>,<strong>subset=('taxi_id')</strong>)</li>
+<li>Добавляем колонку в действующий dataframe</li>
+<li>taxi<strong>.withColumn</strong>('hour',f.hour('trip_start_timestamp'))</li>
+<li><strong>f.hour</strong> из datetime выводит отдельно количество частов</li>
+<li><strong>f.to_date</strong> из datetime выводит отдельно дату f<strong>.to_date</strong>(f.col("trip_end_timestamp"),<strong>"yyyy-MM-dd"</strong>)</li>
+<li>Меняем тип данных в колонке с <code>f.cast</code></li>
+<li>taxi_add.withColumn('date_str',f.col('date')<strong>.cast("string")</strong>)</li>
+<li>Разбиваем string с <code>f.split</code></li>
+<li>df_car.withColumn('newest',<strong>f.split</strong>(f.col('car_model'),<strong>" "</strong>)).show(5)</li>
+<li><code>join</code> для таблиц</li>
+<li>df1<strong>.join</strong>(df2,df1.taxi_id == df2.taxi_id)</li>
+</ul>
+<hr />
+<p><strong>Thank you for reading!</strong></p>
+<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../11/named-entity-recognition-for-sentence-splitting/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Named Entity Recognition for Sentence Splitting">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Named Entity Recognition for Sentence Splitting
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../20/pyspark-preprocessing/" class="md-footer__link md-footer__link--next" aria-label="Next: PySpark Preprocessing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                PySpark Preprocessing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/shtrausslearning" target="_blank" rel="noopener" title="shtrausslearning" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.kaggle/shtraussleaning" target="_blank" rel="noopener" title="shtrausslearning" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://t.me/mldsai_info" target="_blank" rel="noopener" title="mldsai-info" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.94c44541.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,13 +1,18 @@
+---
+date: 2023-08-21
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+    - Huggingface
+    - NER
+    - PyTorch
+---
 
 # Named Entity Recognition with Huggingface Trainer
 
 ![](https://i.imgur.com/kcuAYbI.jpg)
-
----
-date: 2023-09-21 00:00:00 +0800
-categories: `NLP`
-tags: `huggingface` `ner` `pytorch` `transformers`
----
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/19dwCH-iTdnYgUJM2AVdTsvBirEMJLjXA?usp=sharing)
 

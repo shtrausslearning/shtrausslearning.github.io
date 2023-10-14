@@ -1,12 +1,16 @@
+---
+date: 2023-09-25
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+    - EDA
+---
+
 # Comparing Subsets
 
 ![](https://i.imgur.com/4mKNGHY.jpg)
-
----
-date: 2023-09-25 00:00:00 +0800 <br>
-categories: `EDA` <br>
-tags: `visualisation` `statistics` `binary classification`
----
 
 ## <b>Comparing Subsets</span></b>
 

@@ -1,3 +1,14 @@
+---
+date: 2023-08-11
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+  - NER
+  - NLP
+---
+
 # Named Entity Recognition for Sentence Splitting
 
 ![](images/booktable.jpg)

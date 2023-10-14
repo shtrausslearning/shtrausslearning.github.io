@@ -1,6 +1,16 @@
-# **Prophet with PySpark**
+---
+date: 2023-10-13
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+     - pyspark
+     - prophet
+     - regression
+---
 
-hello
+# **Prophet with PySpark**
 
 ![](https://i.imgur.com/b6BBtXv.jpg)
 

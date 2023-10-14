@@ -1,12 +1,16 @@
+---
+date: 2023-08-20
+authors: [andrey]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+    - pyspark
+---
+
 # PySpark Preprocessing
 
 ![](https://i.imgur.com/TlrdxNa.jpg)
-
----
-date: 2023-08-20 00:00:00 +0800 <br>
-categories: [pyspark] <br>
-tags: [pyspark,EDA,beginner]
----
 
 In this post, we will introduce ourselves to `pyspark`, a framework that allows us to work with big data. Similar to how we did in [my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/) post
 

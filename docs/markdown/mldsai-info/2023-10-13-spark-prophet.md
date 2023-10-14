@@ -200,9 +200,9 @@ only showing top 20 rows
 only showing top 20 rows
 ```
 
-We can note that we have data for not only the different `regions`, but also for the entire country `TotalUS`. Also interesting to note is that the difference in max and min values is quite high.
+We can note that we have data for not only the different `regions`, but also for the entire country `TotalUS`. Also interesting to note is that the difference in `max` and `min` values is quite high.
 
-Let's find the locations ('region') with the highest total volumes, 
+Let's find the locations (`region`) with the highest `total volumes` 
 
 ```
 from pyspark.sql.functions import desc,col
@@ -225,6 +225,46 @@ by_volume.show(5)
 only showing top 5 rows
 ```
 
+We can note that `California` & `West` regions have had the highest values for `Total Volume` on 2017-02-05
+
+Its also interest to note the difference in `Total Volume` for both types of avocado, so lets check that, lets just check the difference in `max` values
+
+```
+by_volume.groupby('type').agg(f.max('Total Volume')).show()
+```
+
+```
++------------+-----------------+
+|        type|max(Total Volume)|
++------------+-----------------+
+|     organic|        793464.77|
+|conventional|    1.127474911E7|
++------------+-----------------+
+```
+
+So we can note that tehre is a significant diffence in `Total Volume`, let's also check when this actually occured:
+
+```
+by_volume.filter(f.col('Total Volume') == 1.127474911E7).show()
+by_volume.filter(f.col('Total Volume') == 793464.77).show()
+
+```
+
+```
++---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+|_c0|      Date|AveragePrice| Total Volume|      4046|      4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year|region|
++---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+| 47|2017-02-05|        0.66|1.127474911E7|4377537.67|2558039.85|193764.89| 4145406.7|2508731.79|1627453.06|    9221.85|conventional|2017|  West|
++---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+```
+
+```
++---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+|_c0|      Date|AveragePrice|Total Volume|    4046|     4225| 4770|Total Bags|Small Bags|Large Bags|XLarge Bags|   type|year|   region|
++---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+|  5|2018-02-18|        1.39|   793464.77|150620.0|425616.86|874.9| 216353.01| 197949.51|   18403.5|        0.0|organic|2018|Northeast|
++---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+```
 
 
 **Thank you for reading!**

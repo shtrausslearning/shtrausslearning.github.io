@@ -116,7 +116,7 @@ theme:
         # - navigation.prune
         - navigation.sections
         - navigation.tabs
-        # - navigation.tabs.sticky
+        - navigation.tabs.sticky
         - navigation.top
         - navigation.tracking
         - search.highlight
@@ -124,6 +124,8 @@ theme:
         - search.suggest
         - toc.follow
         # - toc.integrate
+        
+    custom_dir: material/overrides
     palette:
         - scheme: default
           primary: indigo
@@ -159,6 +161,9 @@ plugins:
         categories_toc: true
     - search:
         separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+
+extra_css:
+  - stylesheets/custom.css
 
 copyright: |
   Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>

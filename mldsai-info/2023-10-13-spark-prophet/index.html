@@ -938,7 +938,7 @@
 |2015-01-04|conventional|   166006.29|       Charlotte|
 +----------+------------+------------+----------------+
 </code></pre></div></p>
-<p>The <code>Date</code> unique values can be called and checked, we have weekly data for different regions.</p>
+<p>The <code>Date</code> unique values can be called and checked, we have weekly data for different regions</p>
 <div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>+----------+
@@ -952,7 +952,74 @@
 +----------+
 only showing top 5 rows
 </code></pre></div>
-<p>We will be using <code>Total Volume</code> as our target variable we'll be predicting. We can note that we have data for different regions as well as of different <code>type</code></p>
+<p>We will be using <code>Total Volume</code> as our target variable we'll be predicting. We also can note that we have different types <code>type</code> of avocados (organic and conventional)</p>
+<div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+------------+
+|        type|
++------------+
+|     organic|
+|conventional|
++------------+
+</code></pre></div>
+<p>So what we'll be doing is creating a model to predict the sales for both of these types, which is something we'll need to incorporate into our <code>UDF</code></p>
+<p>We can also check the <code>region</code> limits for <code>Total Volume</code>, we can do this by using <code>agg</code> method with the <code>groupby</code> dataframe type (<code>pyspark.sql.group.GroupedData</code>):</p>
+<div class="highlight"><pre><span></span><code># min and maximum of sale volume
+sales.groupby(&#39;region&#39;).agg(f.max(&#39;Total Volume&#39;)).show()  # get max of column
+sales.groupby(&#39;region&#39;).agg(f.min(&#39;Total Volume&#39;)).show()  # get min of column
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>+------------------+-----------------+
+|            region|max(Total Volume)|
++------------------+-----------------+
+|     PhoenixTucson|       2200550.27|
+|       GrandRapids|        408921.57|
+|     SouthCarolina|        706098.15|
+|           TotalUS|    6.250564652E7|
+|  WestTexNewMexico|       1637554.42|
+|        Louisville|        169828.77|
+|      Philadelphia|         819224.3|
+|        Sacramento|         862337.1|
+|     DallasFtWorth|       1885401.44|
+|      Indianapolis|        335442.41|
+|          LasVegas|        680234.93|
+|         Nashville|        391780.25|
+|        GreatLakes|       7094764.73|
+|           Detroit|        880540.45|
+|            Albany|        216738.47|
+|          Portland|       1189151.17|
+|  CincinnatiDayton|        538518.77|
+|          SanDiego|        917660.79|
+|             Boise|        136377.55|
+|HarrisburgScranton|        395673.05|
++------------------+-----------------+
+only showing top 20 rows
+
++------------------+-----------------+
+|            region|min(Total Volume)|
++------------------+-----------------+
+|     PhoenixTucson|          4881.79|
+|       GrandRapids|           683.76|
+|     SouthCarolina|           2304.3|
+|           TotalUS|        501814.87|
+|  WestTexNewMexico|          4582.72|
+|        Louisville|           862.59|
+|      Philadelphia|           1699.0|
+|        Sacramento|          3562.52|
+|     DallasFtWorth|          6568.67|
+|      Indianapolis|           964.25|
+|          LasVegas|           2988.4|
+|         Nashville|          2892.29|
+|        GreatLakes|         56569.37|
+|           Detroit|          4973.92|
+|            Albany|            774.2|
+|          Portland|          7136.88|
+|  CincinnatiDayton|          6349.77|
+|          SanDiego|          5564.87|
+|             Boise|           562.64|
+|HarrisburgScranton|           971.81|
++------------------+-----------------+
+only showing top 20 rows
+</code></pre></div>
 <h2 id="exploring-data"><b>Exploring Data</b><a class="headerlink" href="#exploring-data" title="Permanent link"></a></h2>
 <p>Let's do some data exploration</p>
 <p><strong>Thank you for reading!</strong></p>

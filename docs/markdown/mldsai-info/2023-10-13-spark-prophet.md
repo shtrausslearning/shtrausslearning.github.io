@@ -100,7 +100,7 @@ sales.select('Date','type','Total Volume','region')\
 +----------+------------+------------+----------------+
 ```
 
-The `Date` unique values can be called and checked, we have weekly data for different regions.
+The `Date` unique values can be called and checked, we have weekly data for different regions
 
 ```python
 sales.select(col('Date')).distinct().orderBy('Date').show(5)
@@ -119,7 +119,86 @@ sales.select(col('Date')).distinct().orderBy('Date').show(5)
 only showing top 5 rows
 ```
 
-We will be using `Total Volume` as our target variable we'll be predicting. We can note that we have data for different regions as well as of different `type`
+We will be using `Total Volume` as our target variable we'll be predicting. We also can note that we have different types `type` of avocados (organic and conventional)
+
+```python
+sales.select(col('type')).distinct().show()
+```
+
+```
++------------+
+|        type|
++------------+
+|     organic|
+|conventional|
++------------+
+```
+
+So what we'll be doing is creating a model to predict the sales for both of these types, which is something we'll need to incorporate into our `UDF`
+
+We can also check the `region` limits for `Total Volume`, we can do this by using `agg` method with the `groupby` dataframe type (`pyspark.sql.group.GroupedData`):
+
+```
+# min and maximum of sale volume
+sales.groupby('region').agg(f.max('Total Volume')).show()  # get max of column
+sales.groupby('region').agg(f.min('Total Volume')).show()  # get min of column
+```
+
+```
++------------------+-----------------+
+|            region|max(Total Volume)|
++------------------+-----------------+
+|     PhoenixTucson|       2200550.27|
+|       GrandRapids|        408921.57|
+|     SouthCarolina|        706098.15|
+|           TotalUS|    6.250564652E7|
+|  WestTexNewMexico|       1637554.42|
+|        Louisville|        169828.77|
+|      Philadelphia|         819224.3|
+|        Sacramento|         862337.1|
+|     DallasFtWorth|       1885401.44|
+|      Indianapolis|        335442.41|
+|          LasVegas|        680234.93|
+|         Nashville|        391780.25|
+|        GreatLakes|       7094764.73|
+|           Detroit|        880540.45|
+|            Albany|        216738.47|
+|          Portland|       1189151.17|
+|  CincinnatiDayton|        538518.77|
+|          SanDiego|        917660.79|
+|             Boise|        136377.55|
+|HarrisburgScranton|        395673.05|
++------------------+-----------------+
+only showing top 20 rows
+
++------------------+-----------------+
+|            region|min(Total Volume)|
++------------------+-----------------+
+|     PhoenixTucson|          4881.79|
+|       GrandRapids|           683.76|
+|     SouthCarolina|           2304.3|
+|           TotalUS|        501814.87|
+|  WestTexNewMexico|          4582.72|
+|        Louisville|           862.59|
+|      Philadelphia|           1699.0|
+|        Sacramento|          3562.52|
+|     DallasFtWorth|          6568.67|
+|      Indianapolis|           964.25|
+|          LasVegas|           2988.4|
+|         Nashville|          2892.29|
+|        GreatLakes|         56569.37|
+|           Detroit|          4973.92|
+|            Albany|            774.2|
+|          Portland|          7136.88|
+|  CincinnatiDayton|          6349.77|
+|          SanDiego|          5564.87|
+|             Boise|           562.64|
+|HarrisburgScranton|           971.81|
++------------------+-----------------+
+only showing top 20 rows
+```
+
+
 
 ## <b>Exploring Data</b>
 

@@ -125,7 +125,9 @@ violin_plots(data)
 
 It is given by formula:
 
-$$T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) + ...$$
+$$
+T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) + ...
+$$
 
 ```python
 from pandas.plotting import andrews_curves

@@ -61,7 +61,7 @@ markdown_extensions:
     - pymdownx.arithmatex:
         generic: true
     - pymdownx.mark:
-    - pymdownx.striphtml:
+    # - pymdownx.striphtml:
     - pymdownx.snippets:
         base_path: markdown/_snippets
     - pymdownx.keys:
@@ -128,7 +128,7 @@ extra:
 
 plugins:
     - blog:
-        post_excerpt: required
+        post_excerpt: optional
         post_excerpt_separator: <!-- more -->
         archive_name: Archive
         post_slugify: !!python/object/apply:pymdownx.slugs.slugify

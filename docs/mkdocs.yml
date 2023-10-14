@@ -30,6 +30,10 @@ nav:
         - Sentence Splitting with NER: mldsai/2023-08-11-sentence_splitting.md
         - NER with Torch/HuggingFace: mldsai/2023-08-10-huggingface_NER.md
 
+    - blog:
+        - blog/index.md
+
+
 
 
 

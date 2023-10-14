@@ -128,6 +128,7 @@ extra:
 
 plugins:
     - blog:
+        post_excerpt: optional
     - search
 
 extra_javascript:

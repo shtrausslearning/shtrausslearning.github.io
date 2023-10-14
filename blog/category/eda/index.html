@@ -899,7 +899,7 @@
   <div class="md-content" data-md-component="content">
     <div class="md-content__inner">
       <header class="md-typeset">
-        <h1 id="eda">EDA<a class="headerlink" href="#eda" title="Permanent link"></a></h1>
+        <h1 id="eda">EDA</h1>
       </header>
       
         <article class="md-post md-post--excerpt">
@@ -952,239 +952,236 @@
 </ul>
 <h3 id="the-dataset"><a class="toclink" href="../../2023/09/25/comparing-subsets/#the-dataset"><b>The Dataset</b></a></h3>
 <p>We'll use a favourite dataset of mine, which we can load very easily load via <code>seaborn</code>, it contains three categorical variables, so we'll use <code>LabelEncoder</code> to encode them. Then we'll create two subsets from this dataset</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">seaborn</span> <span class="kn">import</span> <span class="n">load_dataset</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from seaborn import load_dataset
+from sklearn.preprocessing import LabelEncoder
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;island&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;island&#39;</span><span class="p">])</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">])</span>
-<span class="n">data</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">])</span>
-</code></pre></div>
+data = load_dataset('penguins')
+data = data.dropna()
+data['island'] = LabelEncoder().fit_transform(data['island'])
+data['species'] = LabelEncoder().fit_transform(data['species'])
+data['sex'] = LabelEncoder().fit_transform(data['sex'])
+</code></pre>
 <p>Then we create two subsets from the same dataset, creating <code>X_train</code> and <code>X_test</code>, we'll use these subsets as well as the main <code>data</code>, having created a new column <code>dataset</code> that indicates which subset the data belongs to</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># function </span>
-<span class="k">def</span> <span class="nf">PrepareData</span><span class="p">():</span>
+<pre><code class="language-python"># function 
+def PrepareData():
 
-    <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span><span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">,</span><span class="s1">&#39;flipper_length_mm&#39;</span><span class="p">,</span><span class="s1">&#39;body_mass_g&#39;</span><span class="p">,</span><span class="s1">&#39;island&#39;</span><span class="p">,</span><span class="s1">&#39;species&#39;</span><span class="p">,</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]</span>
-    
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
-                                                        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> 
-                                                        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    features = ['bill_length_mm','bill_depth_mm','flipper_length_mm','body_mass_g','island','species','sex']
+    X = data[features].copy()
+    y = data['sex']
 
-    <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span>
+    X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                        test_size=0.20, 
+                                                        random_state=42)
 
-<span class="c1"># prepare data</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">PrepareData</span><span class="p">()</span>
-<span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span><span class="p">;</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</code></pre></div>
+    return X_train, X_test, y_train, y_test
+
+# prepare data
+X_train, X_test, y_train, y_test = PrepareData()
+X_train['dataset'] = 'train'; X_test['dataset'] = 'test'
+data = X_train.append(X_test)
+</code></pre>
 <h3 id="visualisation-approaches"><a class="toclink" href="../../2023/09/25/comparing-subsets/#visualisation-approaches"><b>Visualisation Approaches</b></a></h3>
 <h4 id="violin-plot"><a class="toclink" href="../../2023/09/25/comparing-subsets/#violin-plot"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Violin Plot</b></a></h4>
 <p>A <strong>violin plot</strong> is a type of data visualization that combines the features of a boxplot and a kernel density plot. It is used to display the distribution of a dataset and shows the <code>median</code>, <code>quartiles</code>, and <code>interquartile range</code> (IQR) like a boxplot, but also displays the shape of the distribution through a density curve. The width of the violin at any point represents the density or frequency of data at that point. Violin plots are useful for comparing the distributions of multiple datasets and identifying any differences or similarities between them</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">violin_plots</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<pre><code class="language-python">def violin_plots(data):
 
-    <span class="c1"># create subplots</span>
-    <span class="n">f</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
-    <span class="n">ax0</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    # create subplots
+    f, axes = plt.subplots(1,5,figsize = (10,3))
+    ax0 = axes.ravel()[0]
 
-    <span class="c1"># set ticks to non</span>
-    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">():</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    # set ticks to non
+    for ax in axes.ravel():
+        ax.set_xticks([])
+        ax.set_yticks([])
 
-    <span class="n">features</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    features = data.drop('sex', axis=1).columns[:-2]
 
-    <span class="c1"># iterate over all variables and generate violin plot</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">features</span><span class="p">):</span>
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span>
-                           <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> 
-                           <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> 
-                           <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-                           <span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#d0ec37&#39;</span><span class="p">,</span> <span class="s1">&#39;#2c3e50&#39;</span><span class="p">])</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span> 
-        <span class="n">ax</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    # iterate over all variables and generate violin plot
+    for i, col in enumerate(features):
+        ax = axes.ravel()[i]
+        g = sns.violinplot(x='sex', y=col, hue='dataset',
+                           ax=ax, 
+                           data=data, 
+                           split=True, 
+                           palette = ['#d0ec37', '#2c3e50'])
+        ax.set_title(col, fontsize=14, color='#0a3d62', fontfamily='monospace')
+        ax.set_ylabel('')
+        ax.set_xticks([])
+        ax.set_xlabel(''); 
+        ax.get_legend().remove()
+        sns.despine(top=True, right=True, left=True, bottom=True)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;UNIVARIATE DISTRIBUTIONS FOR BOTH SUBSETS&#39;</span><span class="p">,</span> 
-                 <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> 
-                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> 
-                 <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> 
-                 <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
+    plt.suptitle('UNIVARIATE DISTRIBUTIONS FOR BOTH SUBSETS', 
+                 fontsize=16, 
+                 color='#0a3d62', 
+                 fontweight='bold', 
+                 fontfamily='monospace')
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;violin3.png&#39;</span><span class="p">)</span>
-    
-<span class="n">violin_plots</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div>
+    plt.tight_layout()
+    plt.savefig('violin3.png')
+
+violin_plots(data)
+</code></pre>
 <p><img alt="" src="../../images/violin.jpg" /></p>
 <h4 id="andrew-curves"><a class="toclink" href="../../2023/09/25/comparing-subsets/#andrew-curves"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Andrew Curves</b></a></h4>
 <p><strong>Andrews curves</strong> are a type of data visualization that represent each observation in a dataset as a curve. The curve is generated by mapping the values of each feature in the dataset to a sine function, which is then plotted on a two-dimensional plane. Each curve represents one observation in the dataset, and the shape of the curve reflects the values of the features for that observation. It preserves means, distance, and variances. They curves are useful for visualizing the overall structure of a dataset and identifying any patterns or trends that may exist. They can also be used to compare the shapes of curves between different datasets to identify any differences or similarities</p>
 <p>It is given by formula:</p>
-<div class="arithmatex">
-<div class="MathJax_Preview">T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) + ...</div>
-<script type="math/tex; mode=display">T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) + ...</script>
-</div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">andrews_curves</span>
+<p>$$T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) + ...$$</p>
+<pre><code class="language-python">from pandas.plotting import andrews_curves
 
-<span class="n">data2</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;TRAIN&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s1">&#39;TEST&#39;</span><span class="p">})</span>
-<span class="n">data3</span> <span class="o">=</span> <span class="n">data2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+data2['dataset'] = data2.dataset.replace({1:'TRAIN',2:'TEST'})
+data3 = data2.drop('y', axis=1)
 
-<span class="k">def</span> <span class="nf">plot_andrews</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+def plot_andrews(df):
 
-    <span class="n">f</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-    <span class="n">andrews_curves</span><span class="p">(</span><span class="n">data3</span><span class="p">,</span> <span class="s2">&quot;dataset&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2c3e50&#39;</span><span class="p">,</span><span class="s1">&#39;#d0ec37&#39;</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="s1">&#39;left&#39;</span><span class="p">]:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+    f,ax = plt.subplots(1,1, figsize=(15,5))
+    andrews_curves(data3, &quot;dataset&quot;, ax=ax, color = ['#2c3e50','#d0ec37'])
+    for s in ['top','right','bottom','left']:
+        ax.spines[s].set_visible(False)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ANDREWS CURVES BY DATASET&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
-    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;andrews.png&#39;</span><span class="p">)</span>
-    
-<span class="n">plot_andrews</span><span class="p">(</span><span class="n">data3</span><span class="p">)</span>
-</code></pre></div>
+    plt.title('ANDREWS CURVES BY DATASET', fontsize=16, color='#0a3d62', fontfamily='monospace', fontweight='bold')
+    sns.despine(top=True, right=True, left=True, bottom=True)
+    plt.savefig('andrews.png')
+
+plot_andrews(data3)
+</code></pre>
 <p><img alt="" src="../../images/andrews.jpg" /></p>
 <h3 id="statistical-approaches"><a class="toclink" href="../../2023/09/25/comparing-subsets/#statistical-approaches"><b>Statistical Approaches</b></a></h3>
 <h4 id="anova-test"><a class="toclink" href="../../2023/09/25/comparing-subsets/#anova-test"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>ANOVA Test</b></a></h4>
 <p><strong>ANOVA</strong> (Analysis of Variance) is a statistical test used to determine whether there are significant differences between the means of two or more groups. It <strong>compares the variance</strong> within each group to the variance between the groups to determine if the differences in means are statistically significant. To use this approach, we'll use the <code>statsmodel</code> library, specifically the <code>ols</code> and <code>anova_lm</code> methods. The <strong>null hypothesis</strong> is that there is no significant difference between the groups being compared. More at <strong><a href="https://www.statsmodels.org/dev/generated/statsmodels.stats.anova.anova_lm.html">statsmodels</a></strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
-<span class="kn">from</span> <span class="nn">statsmodels.stats.multicomp</span> <span class="kn">import</span> <span class="n">pairwise_tukeyhsd</span>
-<span class="kn">from</span> <span class="nn">statsmodels.stats.multicomp</span> <span class="kn">import</span> <span class="n">MultiComparison</span>
+<pre><code class="language-python">import statsmodels.api as sm
+from statsmodels.formula.api import ols
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from statsmodels.stats.multicomp import MultiComparison
 
-<span class="k">def</span> <span class="nf">anova_test</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+def anova_test(data):
 
-    <span class="c1"># anova test</span>
-    <span class="n">df_res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> ~ dataset&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">anova_lm</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">typ</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">df_res</span><span class="p">[</span><span class="s1">&#39;var&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span>
-        <span class="n">df_res</span> <span class="o">=</span> <span class="n">anova_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    # anova test
+    df_res = pd.DataFrame()
+    for col in data.columns[:-1]:
+        model = ols(f'{col} ~ dataset', data = data).fit()
+        res = sm.stats.anova_lm(model, typ=2)
+        df_res['var'] = col
+        df_res = anova_results.append(res)
 
-    <span class="c1"># plot result for PR(&gt;F)</span>
-        
-    <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-    <span class="n">anova_results</span><span class="p">[[</span><span class="s1">&#39;var&#39;</span><span class="p">,</span><span class="s1">&#39;PR(&gt;F)&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;var&#39;</span><span class="p">)[</span><span class="s1">&#39;PR(&gt;F)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#2c3e50&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2471a3&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+    # plot result for PR(&gt;F)
 
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="s1">&#39;left&#39;</span><span class="p">]:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#d0ec37&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    f, ax = plt.subplots(1,1,figsize=(12,4))
+    anova_results[['var','PR(&gt;F)']].dropna().set_index('var')['PR(&gt;F)'].plot(kind='bar', ax=ax, color = '#2c3e50', width=0.6)
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=0, color='#2471a3', fontfamily='monospace', fontsize=12)
+    ax.set_xlabel('')
+    ax.set_yticks([])
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.35</span><span class="p">,</span><span class="s1">&#39;P VALUES FOR EACH VARIABLE&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="s1">&#39;P &lt; 0.05 : Variable is significantly different between two subsets&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
+    for s in ['top','right','bottom','left']:
+        ax.spines[s].set_visible(False)
+    plt.axhline(y = 0.05, color = '#d0ec37', linestyle = '--', lw=3)
 
-    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-            <span class="nb">format</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">(),</span> <span class="s1">&#39;.2f&#39;</span><span class="p">),</span> 
-            <span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()),</span> 
-            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
-            <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span>
-            <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span>
-        <span class="p">)</span>
+    ax.text(-0.5,1.35,'P VALUES FOR EACH VARIABLE', fontsize=20, fontweight='bold', color='#0a3d62', fontfamily='monospace')
+    ax.text(-0.5,1.2,'P &lt; 0.05 : Variable is significantly different between two subsets', fontsize=15, color='#0a3d62', fontfamily='monospace')
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;anova.png&#39;</span><span class="p">)</span>
+    for bar in ax.patches:
+        ax.annotate(
+            format(bar.get_height(), '.2f'), 
+            (bar.get_x() + bar.get_width() / 2, bar.get_height()), 
+            ha='center', va='bottom',
+            size=14, xytext=(0, 8), color = '#0a3d62',
+            textcoords='offset points'
+        )
 
-<span class="n">anova_test</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
-</code></pre></div>
+    plt.tight_layout()
+    plt.savefig('anova.png')
+
+anova_test(data2)
+</code></pre>
 <p><img alt="" src="../../images/anova.jpg" /></p>
 <p>The <strong>anova</strong> results show that for all features p&gt;0.05, thus the <strong>null hypothesis</strong> is accepted; there is no significant difference between the groups being compared</p>
 <h4 id="kolmogorov-smirnov-test"><a class="toclink" href="../../2023/09/25/comparing-subsets/#kolmogorov-smirnov-test"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Kolmogorov-Smirnov Test</b></a></h4>
 <p>The <strong>Kolmogorov-Smirnov</strong> test is a statistical test used to determine whether a sample distribution differs significantly from a known or expected distribution. It compares the empirical <strong>cumulative distribution function</strong> (CDF) of the sample to the theoretical CDF of the expected distribution and calculates a test statistic that measures the maximum distance between the two functions. We'll be using the <code>scipy.stats.ks_2samp</code> module, which gives us the option to use three types of <strong>null</strong> &amp; <strong>alternative</strong> hypotheses, by default the <code>two-sided</code> option is used, so that will be our pair, so that's what we'll use. The null hypothesis is that the <strong>two distributions are identical</strong>, F(x)=G(x) for all x; the alternative is that they are not identical.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ks_2samp</span>
+<pre><code class="language-python">from scipy.stats import ks_2samp
 
-<span class="k">def</span> <span class="nf">ks_test</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">):</span>
+def ks_test(X_train,X_test):
 
-    <span class="n">ksdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.05</span>
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]:</span>
-        <span class="n">s</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">ks_2samp</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">X_test</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
-        <span class="n">ksdf</span> <span class="o">=</span> <span class="n">ksdf</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-            <span class="s1">&#39;kstat&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="n">s</span><span class="p">],</span>
-            <span class="s1">&#39;pval&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="p">],</span>
-            <span class="s1">&#39;variable&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">col</span><span class="p">],</span>
-            <span class="s1">&#39;reject_null_hypo&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">p</span><span class="o">&lt;</span><span class="n">alpha</span><span class="p">]</span>
-        <span class="p">}),</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    ksdf = pd.DataFrame()
+    alpha = 0.05
+    for col in X_train.columns[:-2]:
+        s, p = ks_2samp(X_train[col], X_test[col])
+        ksdf = ksdf.append(pd.DataFrame({
+            'kstat' : [s],
+            'pval': [p],
+            'variable': [col],
+            'reject_null_hypo': [p&lt;alpha]
+        }), ignore_index=True)
 
-    <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+    f, ax = plt.subplots(1,1,figsize=(15,3))
 
-    <span class="n">ksdf</span><span class="p">[[</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span><span class="s1">&#39;pval&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;variable&#39;</span><span class="p">)[</span><span class="s1">&#39;pval&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#2c3e50&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
-    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span><span class="s1">&#39;left&#39;</span><span class="p">]:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#d0ec37&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    ksdf[['variable','pval']].set_index('variable')['pval'].plot(kind='bar', ax=ax, color = '#2c3e50', width=0.6)
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=0, color='#0a3d62', fontfamily='monospace', fontsize=12)
+    ax.set_xlabel('')
+    ax.set_yticks([])
+    for s in ['top','right','bottom','left']:
+        ax.spines[s].set_visible(False)
+    plt.axhline(y = alpha, color = '#d0ec37', linestyle = '--', lw=3)
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.35</span><span class="p">,</span><span class="s1">&#39;P VALUE FOR EACH VARIABLE&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;P &gt; </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1"> : None of variables are significantly different between train and test&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span> <span class="n">fontfamily</span><span class="o">=</span><span class="s1">&#39;monospace&#39;</span><span class="p">)</span>
+    ax.text(-0.5,1.35,'P VALUE FOR EACH VARIABLE', fontsize=20, fontweight='bold', color='#0a3d62', fontfamily='monospace')
+    ax.text(-0.5,1.2,f'P &gt; {alpha} : None of variables are significantly different between train and test', fontsize=15, color='#0a3d62', fontfamily='monospace')
 
-    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-            <span class="nb">format</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">(),</span> <span class="s1">&#39;.2f&#39;</span><span class="p">),</span> 
-            <span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()),</span> 
-            <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
-            <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;#0a3d62&#39;</span><span class="p">,</span>
-            <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;ks_stat.png&#39;</span><span class="p">)</span>
+    for bar in ax.patches:
+        ax.annotate(
+            format(bar.get_height(), '.2f'), 
+            (bar.get_x() + bar.get_width() / 2, bar.get_height()), 
+            ha='center', va='bottom',
+            size=15, xytext=(0, 8), color = '#0a3d62',
+            textcoords='offset points')
+    plt.savefig('ks_stat.png')
 
-<span class="n">ks_test</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">)</span>
-</code></pre></div>
+ks_test(X_train,X_test)
+</code></pre>
 <p><img alt="" src="../../images/ks_stat.jpg" /></p>
 <p>The <strong>Kolmogorov-Smirnov</strong> test results show that for all the features in the data p&gt;0.05, so the null hypothesis is accepted; for all the features the two subsets the <strong>two distributions are identical</strong></p>
 <h3 id="machine-learning-approach"><a class="toclink" href="../../2023/09/25/comparing-subsets/#machine-learning-approach"><b>Machine Learning Approach</b></a></h3>
 <p>As we mentioned <a href="https://shtrausslearning.github.io/posts/compare_dataset/#comparing-subsets">in the beginning</a> we can utilise machine learning to compare different subsets, in fact this probably is the most common approach as it is a necessity everytime you train a new model, you need to validate your model. As a result, comparing metrics on different subsets of data is quite standard. However, what we will do here a little different. We will set our taget variable as <code>dataset</code> &amp; treat the problem as a <strong>binary classification problem</strong>, we'll use the <code>CatBoostClassifier</code> as our model with preset optimised hyperparameters</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">catboost</span> <span class="kn">import</span> <span class="n">CatBoostClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+from catboost import CatBoostClassifier
+from sklearn.metrics import roc_auc_score
 
-<span class="k">def</span> <span class="nf">model_approach</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">):</span>
+def model_approach(X_train,X_test):
 
-    <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-    
-    <span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">label</span>
+    X_train['label'] = 0
+    X_test['label'] = 1
+    data = X_train.append(X_test)
 
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> 
-                                                        <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">,</span> 
-                                                        <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    X = data.drop('label',axis=1)
+    y = data.label
 
-    <span class="c1"># train &amp; predict on subsets</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">CatBoostClassifier</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-    <span class="n">ym_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
-    <span class="n">ym_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    X_train, X_test, y_train, y_test = train_test_split(X,y, 
+                                                        test_size=0.20, 
+                                                        random_state=42)
 
-    <span class="c1"># get AUC metric results</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TRAIN AUC :&#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">train_preds</span><span class="p">),</span><span class="mi">4</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;TEST AUC:&#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">test_preds</span><span class="p">),</span><span class="mi">4</span><span class="p">))</span>
+    # train &amp; predict on subsets
+    model = CatBoostClassifier(verbose=False)
+    model.fit(X_train,y_train.values)
+    ym_train = model.predict(X_train)
+    ym_test = model.predict(X_test)
 
-<span class="n">model_approach</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">X_test</span><span class="p">)</span>
-<span class="c1"># TRAIN AUC : 0.50</span>
-<span class="c1"># TEST AUC: 0.50</span>
-</code></pre></div>
-We aren’t too concerned about the metric value because the features aren’t not optimised for this problem, we’re interested in the <strong>difference between the two models</strong>. The model performs the same on both subsets, which is a good indicator to assume both subsets have a very simular data structure, thus are more or less similar.</p>
+    # get AUC metric results
+    print('TRAIN AUC :',round(roc_auc_score(y_train.values, train_preds),4))
+    print('TEST AUC:',round(roc_auc_score(y_test.values, test_preds),4))
+
+model_approach(X_train,X_test)
+# TRAIN AUC : 0.50
+# TEST AUC: 0.50
+</code></pre>
+<p>We aren’t too concerned about the metric value because the features aren’t not optimised for this problem, we’re interested in the <strong>difference between the two models</strong>. The model performs the same on both subsets, which is a good indicator to assume both subsets have a very simular data structure, thus are more or less similar.</p>
 <h3 id="conclusion"><a class="toclink" href="../../2023/09/25/comparing-subsets/#conclusion"><b>Conclusion</b></a></h3>
 <p>In this post, we tried different approaches to compare datasets. We can do this in a number of ways, using <a href="https://shtrausslearning.github.io/posts/compare_dataset/#visualisation-approaches">visualisations</a>, <a href="https://shtrausslearning.github.io/posts/compare_dataset/#statistical-approaches">statistics</a> &amp; <a href="https://shtrausslearning.github.io/posts/compare_dataset/#machine-learning-approach">machine learning approach</a>. In our problem, we could conclude that the two subsets that we created at the <a href="https://shtrausslearning.github.io/posts/compare_dataset/#the-dataset">start of the post</a> There doesn't seem to be an ideal method which fits the problem at hand, so its good practice to do a number of checks when comparing datasets datasets</p>
 <hr />
 <p><strong>Thank you for reading!</strong></p>
-<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+<p>Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on :fontawesome-brands-github:{ .github } <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or :fontawesome-brands-kaggle:{ .kaggle} <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
     <nav class="md-post__action">
       <a href="../../2023/09/25/comparing-subsets/">
         Continue reading
@@ -1256,437 +1253,439 @@ tags: [pyspark,EDA]</p>
 <p>Данные поездок можно найти <a href="https://github.com/AlexKbit/stepik-ds-course/blob/master/Week3/spark-tasks/taxi_data.parquet">по ссылке</a>, они в формате <code>parquet</code> (бинарный формат), нам так же понадобится еще одна таблица из базы данных, ее можно <a href="https://github.com/AlexKbit/stepik-ds-course/raw/master/Week3/spark-tasks/taxi_cars_data.parquet">найти сдесь</a></p>
 <p>Этот датасет собранный на основе данных <a href="https://www.kaggle.com/chicago/chicago-taxi-rides-2016">Chicago Taxi Rides 2016</a></p>
 <p><br>Схема данны:
-<br>|&ndash; <hlt>taxi_id</hlt> = идентификатор таксиста
-<br>|&ndash; trip_start_timestamp = время начала поездки
-<br>|&ndash; trip_end_timestamp = время окончания поездки
-<br>|&ndash; trip_seconds = время длительности поездки в секундах
-<br>|&ndash; trip_miles = мили проиденные во время поездки
-<br>|&ndash; fare = транспортные расходы
-<br>|&ndash; tips = назначенные чаевые
-<br>|&ndash; trip_total = общая стоимость поездки (Итоговая с учетом чаевых и расходов)
-<br>|&ndash; payment_type = тип оплаты</p>
+<br>|-- <hlt>taxi_id</hlt> = идентификатор таксиста
+<br>|-- trip_start_timestamp = время начала поездки
+<br>|-- trip_end_timestamp = время окончания поездки
+<br>|-- trip_seconds = время длительности поездки в секундах
+<br>|-- trip_miles = мили проиденные во время поездки
+<br>|-- fare = транспортные расходы
+<br>|-- tips = назначенные чаевые
+<br>|-- trip_total = общая стоимость поездки (Итоговая с учетом чаевых и расходов)
+<br>|-- payment_type = тип оплаты</p>
 <h3 id="sparksession"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#sparksession"><b>SparkSession</b></a></h3>
 <p>Начинаем <code>spark</code> сессию на локальном компе:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span> 
+<pre><code class="language-python">from pyspark.sql import SparkSession
+from pyspark.sql import functions as f 
 
-<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
-                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;Task&#39;</span><span class="p">)</span> \
-                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-<span class="n">spark</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.sql.session.timeZone&quot;</span><span class="p">,</span> <span class="s2">&quot;GMT+3&quot;</span><span class="p">)</span>
-</code></pre></div>
+spark = SparkSession.builder \
+                    .appName('Task') \
+                    .getOrCreate()
+spark.conf.set(&quot;spark.sql.session.timeZone&quot;, &quot;GMT+3&quot;)
+</code></pre>
 <p>Подгружаем данные c помощью <code>read.parquet</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;taxi_data.parquet&#39;</span><span class="p">)</span>
-<span class="n">taxi</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">taxi = spark.read.parquet('taxi_data.parquet')
+taxi.show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
-</code></pre></div>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+
+</code></pre>
 <h3 id="_4"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_4"><b>Количество Партиции</b></a></h3>
 <p>В <code>spark</code> мы можем распараллеливать нашу коллекцию и паралельно выполнять задачи, и выполнять задачи на мощьных кластерах</p>
 <p>Мы загрузили данные которые находяться в одном <code>parquet</code>, но мы так же можем работать и с папками в которых хранятся в отдельных файлах (частями)</p>
 <p>Чтобы показать количество действующих партиции; сдесь 2 партиции</p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">rdd</span><span class="o">.</span><span class="n">getNumPartitions</span><span class="p">()</span>
-<span class="c1"># 2</span>
-</code></pre></div>
+<pre><code class="language-python">taxi.rdd.getNumPartitions()
+# 2
+</code></pre>
 <p>Мы можем перераспределить количество партиции для нашей задачи</p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">repartition</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;data_source&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python">taxi.repartition(16).write.parquet('data_source')
+</code></pre>
 <p>Если мы сейчас сохраним <code>parquet</code>, то наш файл сохранился бы в папке частями. Воспользуемся <code>repartition</code> для увеличения количество партиции, а <code>coalesce</code> для уменьшения</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># df.repartition(16) -&gt; increase split</span>
-<span class="c1"># df.rdd.getNumPartitions() = 2</span>
-<span class="c1"># df.coalesce(1) -&gt; decrease split (eg. assemble into one)</span>
-</code></pre></div>
+<pre><code class="language-python"># df.repartition(16) -&gt; increase split
+# df.rdd.getNumPartitions() = 2
+# df.coalesce(1) -&gt; decrease split (eg. assemble into one)
+</code></pre>
 <h3 id="_5"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_5"><b>Разведовательный Анализ</b></a></h3>
 <p>Все готово, давайте теперь будем задавать себе вопросы которые нас интересуют!  </p>
 <h4 id="_6"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_6"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Посчитайте количество загруженных строк</b></a></h4>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="c1"># 2540712</span>
+<pre><code class="language-python">taxi.count()
+# 2540712
 
-<span class="c1"># len(taxi.columns) # для получения количество столбцов</span>
-</code></pre></div>
+# len(taxi.columns) # для получения количество столбцов
+</code></pre>
 <p>Мы загрузили данные без схемы типов, посмотрим все ли нас устраивает, если нет то мы можем добавить <code>schema</code> при чтении данных</p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+<pre><code class="language-python">taxi.printSchema()
 
-<span class="n">root</span>
- <span class="c1"># |-- taxi_id: integer (nullable = true)</span>
- <span class="c1"># |-- trip_start_timestamp: timestamp (nullable = true)</span>
- <span class="c1"># |-- trip_end_timestamp: timestamp (nullable = true)</span>
- <span class="c1"># |-- trip_seconds: integer (nullable = true)</span>
- <span class="c1"># |-- trip_miles: double (nullable = true)</span>
- <span class="c1"># |-- fare: double (nullable = true)</span>
- <span class="c1"># |-- tips: double (nullable = true)</span>
- <span class="c1"># |-- trip_total: double (nullable = true)</span>
- <span class="c1"># |-- payment_type: string (nullable = true)</span>
-</code></pre></div>
+root
+ # |-- taxi_id: integer (nullable = true)
+ # |-- trip_start_timestamp: timestamp (nullable = true)
+ # |-- trip_end_timestamp: timestamp (nullable = true)
+ # |-- trip_seconds: integer (nullable = true)
+ # |-- trip_miles: double (nullable = true)
+ # |-- fare: double (nullable = true)
+ # |-- tips: double (nullable = true)
+ # |-- trip_total: double (nullable = true)
+ # |-- payment_type: string (nullable = true)
+</code></pre>
 <h4 id="_7"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_7"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Чему равна корреляция и ковариация между длиной маршрута и ценой за поездку?</b></a></h4>
 <p>У <code>dataframe</code> есть методы <code>cov</code> и <code>corr</code>, подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.corr.html?highlight=corr#pyspark-sql-dataframe-corr">corr</a> &amp; <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.cov.html?highlight=cov#pyspark-sql-dataframe-cov">cov</a></p>
 <ul>
 <li>Длина маршрута <code>trip_miles</code>, цена поездки <code>trip_total</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;correlation: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">taxi</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="s1">&#39;trip_miles&#39;</span><span class="p">,</span><span class="s1">&#39;trip_total&#39;</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;covariance: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">taxi</span><span class="o">.</span><span class="n">cov</span><span class="p">(</span><span class="s1">&#39;trip_miles&#39;</span><span class="p">,</span><span class="s1">&#39;trip_total&#39;</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<pre><code class="language-python">print(f&quot;correlation: {round(taxi.corr('trip_miles','trip_total'),5)}&quot;)
+print(f&quot;covariance: {round(taxi.cov('trip_miles','trip_total'),5)}&quot;)
 
-<span class="c1"># correlation: 0.44816</span>
-<span class="c1"># covariance: 71.96914</span>
-</code></pre></div>
+# correlation: 0.44816
+# covariance: 71.96914
+</code></pre>
 <h4 id="c"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#c"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку?</b></a></h4>
 <p>№3 Найдите количество, среднее, cреднеквадратическое отклонение, минимум и максимум для длины маршрута и цены за поездку? Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.describe.html?highlight=describe#pyspark-sql-dataframe-describe">describe</a></p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python">taxi.describe().show()
 
-<span class="c1">#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+</span>
-<span class="c1">#|summary|          taxi_id|      trip_seconds|        trip_miles|              fare|              tips|        trip_total|payment_type|</span>
-<span class="c1">#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+</span>
-<span class="c1">#|  count|          2539547|           2540178|           2540677|           2540672|           2540672|           2540672|     2540712|</span>
-<span class="c1">#|   mean|4370.670382946249|  801.015424509621|3.0005873828090266|13.248720862039738|1.5209281087837443|15.913560215564042|        null|</span>
-<span class="c1">#| stddev|2513.977996552665|1199.4924572375417|  5.25716922943536|22.579448541941893|2.7990862329785924|30.546699217618237|        null|</span>
-<span class="c1">#|    min|                0|                 0|               0.0|               0.0|               0.0|               0.0|        Cash|</span>
-<span class="c1">#|    max|             8760|             86399|             900.0|           9276.62|             422.0|           9276.69|    Way2ride|</span>
-<span class="c1">#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+</span>
-</code></pre></div>
+#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+
+#|summary|          taxi_id|      trip_seconds|        trip_miles|              fare|              tips|        trip_total|payment_type|
+#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+
+#|  count|          2539547|           2540178|           2540677|           2540672|           2540672|           2540672|     2540712|
+#|   mean|4370.670382946249|  801.015424509621|3.0005873828090266|13.248720862039738|1.5209281087837443|15.913560215564042|        null|
+#| stddev|2513.977996552665|1199.4924572375417|  5.25716922943536|22.579448541941893|2.7990862329785924|30.546699217618237|        null|
+#|    min|                0|                 0|               0.0|               0.0|               0.0|               0.0|        Cash|
+#|    max|             8760|             86399|             900.0|           9276.62|             422.0|           9276.69|    Way2ride|
+#+-------+-----------------+------------------+------------------+------------------+------------------+------------------+------------+
+
+</code></pre>
 <h4 id="_8"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_8"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите самый непопулярный вид оплаты</b></a></h4>
 <p><br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.groupBy.html?highlight=groupby#pyspark-sql-dataframe-groupby">groupBy</a> <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.orderBy.html?highlight=orderby#pyspark-sql-dataframe-orderby">orderBy</a></p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python">taxi.groupBy('payment_type').count().orderBy('count', ascending=True).show()
 
-<span class="c1"># +------------+-------+</span>
-<span class="c1"># |payment_type|  count|</span>
-<span class="c1"># +------------+-------+</span>
-<span class="c1"># |    Way2ride|      3|</span>
-<span class="c1"># |       Pcard|    878|</span>
-<span class="c1"># |      Prcard|    968|</span>
-<span class="c1"># |     Dispute|   1842|</span>
-<span class="c1"># |     Unknown|   5180|</span>
-<span class="c1"># |   No Charge|  12843|</span>
-<span class="c1"># | Credit Card|1108843|</span>
-<span class="c1"># |        Cash|1410155|</span>
-<span class="c1"># +------------+-------+</span>
-</code></pre></div>
+# +------------+-------+
+# |payment_type|  count|
+# +------------+-------+
+# |    Way2ride|      3|
+# |       Pcard|    878|
+# |      Prcard|    968|
+# |     Dispute|   1842|
+# |     Unknown|   5180|
+# |   No Charge|  12843|
+# | Credit Card|1108843|
+# |        Cash|1410155|
+# +------------+-------+
+</code></pre>
 <h4 id="taxi_id"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#taxi_id"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите идентификатор <code>taxi_id</code> таксиста выполнившего наибольшее число заказов</b></a></h4>
-<div class="highlight"><pre><span></span><code><span class="n">taxi</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">taxi.groupby('taxi_id').count().orderBy('count',ascending=False).show(5)
 
-<span class="c1"># +-------+-----+</span>
-<span class="c1"># |taxi_id|count|</span>
-<span class="c1"># +-------+-----+</span>
-<span class="c1"># |    316| 2225|</span>
-<span class="c1"># |   6591| 2083|</span>
-<span class="c1"># |   5071| 2080|</span>
-<span class="c1"># |   8740| 2067|</span>
-<span class="c1"># |   6008| 2033|</span>
-<span class="c1"># +-------+-----+</span>
-</code></pre></div>
+# +-------+-----+
+# |taxi_id|count|
+# +-------+-----+
+# |    316| 2225|
+# |   6591| 2083|
+# |   5071| 2080|
+# |   8740| 2067|
+# |   6008| 2033|
+# +-------+-----+
+</code></pre>
 <h4 id="_9"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_9"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Чему равна средняя цена среди поездок, оплаченных наличными? </b></a></h4>
 <p><br> Подробней <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.DataFrame.where.html?highlight=where#pyspark-sql-dataframe-where">where</a></p>
 <ul>
 <li>Наличные (<code>Cash</code>)</li>
 <li><code>filter</code> or <code>where</code> для выбора подвыборки </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">cash</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Cash&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<pre><code class="language-python">cash = taxi.filter(f.col('payment_type') == 'Cash').show(1)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles|fare|tips|trip_total|payment_type|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7|31.0| 0.0|      31.0|        Cash|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">cash</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Cash&#39;</span><span class="p">)</span>
-<span class="n">taxi</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s1">&#39;payment_type&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;trip_total&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="c1"># cash.groupBy([&#39;payment_type&#39;]).agg(f.mean(&#39;trip_total&#39;)).show()</span>
+# +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles|fare|tips|trip_total|payment_type|
+# +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7|31.0| 0.0|      31.0|        Cash|
+# +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+
+</code></pre>
+<pre><code class="language-python">cash = taxi.filter(f.col('payment_type') == 'Cash')
+taxi.groupBy(['payment_type']).agg(f.mean('trip_total')).show()
+# cash.groupBy(['payment_type']).agg(f.mean('trip_total')).show()
 
-<span class="c1"># +------------+------------------+</span>
-<span class="c1"># |payment_type|   avg(trip_total)|</span>
-<span class="c1"># +------------+------------------+</span>
-<span class="c1"># | Credit Card| 20.88679166806002|</span>
-<span class="c1"># |   No Charge| 14.35603753017208|</span>
-<span class="c1"># |     Unknown|13.079387794515267|</span>
-<span class="c1"># |      Prcard|11.893749999999997|</span>
-<span class="c1"># |        Cash|12.035261470840307|</span>
-<span class="c1"># |     Dispute|14.686368078175896|</span>
-<span class="c1"># |    Way2ride| 4.793333333333333|</span>
-<span class="c1"># |       Pcard|10.450512528473803|</span>
-<span class="c1"># +------------+------------------+</span>
-</code></pre></div>
+# +------------+------------------+
+# |payment_type|   avg(trip_total)|
+# +------------+------------------+
+# | Credit Card| 20.88679166806002|
+# |   No Charge| 14.35603753017208|
+# |     Unknown|13.079387794515267|
+# |      Prcard|11.893749999999997|
+# |        Cash|12.035261470840307|
+# |     Dispute|14.686368078175896|
+# |    Way2ride| 4.793333333333333|
+# |       Pcard|10.450512528473803|
+# +------------+------------------+
+</code></pre>
 <h4 id="1000"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#1000"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько таксистов проехало больше 1000 миль за все время выполнения заказов?</b></a></h4>
-<div class="highlight"><pre><span></span><code><span class="n">driver_distances</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;trip_miles&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">driver_distances</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-<span class="c1"># 2860</span>
-</code></pre></div>
+<pre><code class="language-python">driver_distances = taxi.groupby(['taxi_id']).agg(f.sum('trip_miles').alias('distance')).orderBy('distance',ascending=False)
+driver_distances.filter(f.col('distance') &gt; 1000).count()
+# 2860
+</code></pre>
 <h4 id="_10"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_10"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько миль проехал пассажир в самой долгой поездке?</b></a></h4>
-<div class="highlight"><pre><span></span><code><span class="n">taxi2</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-<span class="n">taxi2</span><span class="o">.</span><span class="n">orderBy</span><span class="p">([</span><span class="s1">&#39;trip_seconds&#39;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">taxi2 = taxi.dropna()
+taxi2.orderBy(['trip_seconds'],ascending=False).show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles|fare|tips|trip_total|payment_type|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
-<span class="c1"># |   4161| 2016-11-14 16:00:00|2016-11-15 16:00:00|       86399|       0.0|3.25| 0.0|      3.25|        Cash|</span>
-<span class="c1"># |   5667| 2016-11-04 21:30:00|2016-11-05 21:30:00|       86399|       0.0|3.25| 0.0|      4.75|        Cash|</span>
-<span class="c1"># |   1954| 2016-11-03 00:15:00|2016-11-04 00:15:00|       86399|       0.0|3.25| 0.0|      3.25|        Cash|</span>
-<span class="c1"># |   4219| 2016-11-08 16:00:00|2016-11-09 16:00:00|       86392|       0.0|3.25| 0.0|      3.25|        Cash|</span>
-<span class="c1"># |   4551| 2016-11-03 16:15:00|2016-11-04 16:15:00|       86389|       0.0|3.25| 0.0|      3.25|        Cash|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+</span>
-</code></pre></div>
+# +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles|fare|tips|trip_total|payment_type|
+# +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+
+# |   4161| 2016-11-14 16:00:00|2016-11-15 16:00:00|       86399|       0.0|3.25| 0.0|      3.25|        Cash|
+# |   5667| 2016-11-04 21:30:00|2016-11-05 21:30:00|       86399|       0.0|3.25| 0.0|      4.75|        Cash|
+# |   1954| 2016-11-03 00:15:00|2016-11-04 00:15:00|       86399|       0.0|3.25| 0.0|      3.25|        Cash|
+# |   4219| 2016-11-08 16:00:00|2016-11-09 16:00:00|       86392|       0.0|3.25| 0.0|      3.25|        Cash|
+# |   4551| 2016-11-03 16:15:00|2016-11-04 16:15:00|       86389|       0.0|3.25| 0.0|      3.25|        Cash|
+# +-------+--------------------+-------------------+------------+----------+----+----+----------+------------+
+</code></pre>
 <h4 id="_11"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_11"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Каков средний заработок всех таксистов?</b></a></h4>
 <p><br>Отсеките неизвестные машины (не определенный taxi_id).</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># we have null taxi_id</span>
-<span class="n">taxi</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<pre><code class="language-python"># we have null taxi_id
+taxi.select('taxi_id').distinct().orderBy('taxi_id').show(4)
 
-<span class="c1"># +-------+</span>
-<span class="c1"># |taxi_id|</span>
-<span class="c1"># +-------+</span>
-<span class="c1"># |   null|</span>
-<span class="c1"># |      0|</span>
-<span class="c1"># |      3|</span>
-<span class="c1"># |      5|</span>
-<span class="c1"># +-------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># drop rows in taxi_id that are null</span>
-<span class="n">taxi_cleaned</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="n">subset</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">))</span>
-<span class="n">taxi_cleaned</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# +-------+
+# |taxi_id|
+# +-------+
+# |   null|
+# |      0|
+# |      3|
+# |      5|
+# +-------+
+</code></pre>
+<pre><code class="language-python"># drop rows in taxi_id that are null
+taxi_cleaned = taxi.dropna(how='all',subset=('taxi_id'))
+taxi_cleaned.show()
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+</span>
-</code></pre></div>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+
+</code></pre>
 <p>Удаляем все строки в <code>taxi_id</code> в которых у нас есть пробелы</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># mean total income of all drivers</span>
-<span class="n">driver_total</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;total_driver&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;total_driver&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python"># mean total income of all drivers
+driver_total.select('total_driver').agg(f.mean('total_driver')).show()
 
-<span class="c1"># +-----------------+</span>
-<span class="c1"># |avg(total_driver)|</span>
-<span class="c1"># +-----------------+</span>
-<span class="c1"># |8218.856265256327|</span>
-<span class="c1"># +-----------------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># driver total for each taxi_id</span>
-<span class="n">driver_total</span> <span class="o">=</span> <span class="n">taxi_cleaned</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;taxi_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;trip_total&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;total_driver&#39;</span><span class="p">))</span>
-<span class="n">driver_total</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+# +-----------------+
+# |avg(total_driver)|
+# +-----------------+
+# |8218.856265256327|
+# +-----------------+
+</code></pre>
+<pre><code class="language-python"># driver total for each taxi_id
+driver_total = taxi_cleaned.groupby('taxi_id').agg(f.sum('trip_total').alias('total_driver'))
+driver_total.show()
 
-<span class="c1"># +-------+------------------+</span>
-<span class="c1"># |taxi_id|      total_driver|</span>
-<span class="c1"># +-------+------------------+</span>
-<span class="c1"># |   3997|10372.800000000003|</span>
-<span class="c1"># |   6620|13823.139999999994|</span>
-<span class="c1"># |   4900| 9867.160000000002|</span>
-<span class="c1"># |   7833| 8439.289999999999|</span>
-<span class="c1"># |   1829| 9979.389999999998|</span>
-<span class="c1"># +-------+------------------+</span>
-</code></pre></div>
+# +-------+------------------+
+# |taxi_id|      total_driver|
+# +-------+------------------+
+# |   3997|10372.800000000003|
+# |   6620|13823.139999999994|
+# |   4900| 9867.160000000002|
+# |   7833| 8439.289999999999|
+# |   1829| 9979.389999999998|
+# +-------+------------------+
+</code></pre>
 <h4 id="_12"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_12"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько поездок начиналось в самый загруженный час?</b></a></h4>
 <p><br>Используйте функцию <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.hour.html?highlight=hour#pyspark-sql-functions-hour">hour</a></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># extact hour from date, like datetime in pandas</span>
-<span class="c1"># dont&#39; use select and then join; use withColumn(&#39;name&#39;,operation)</span>
+<pre><code class="language-python"># extact hour from date, like datetime in pandas
+# dont' use select and then join; use withColumn('name',operation)
 
-<span class="n">col_hour</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="s1">&#39;trip_start_timestamp&#39;</span><span class="p">))</span>
-<span class="n">col_hour</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+col_hour = taxi.withColumn('hour',f.hour('trip_start_timestamp'))
+col_hour.show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|hour|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|  23|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|   7|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|  16|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|   8|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|  18|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">col_hour</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;hour&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|hour|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|  23|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|   7|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|  16|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|   8|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|  18|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----+
+</code></pre>
+<pre><code class="language-python">col_hour.groupby('hour').count().orderBy('count',ascending=False).show(5)
 
-<span class="c1"># +----+------+</span>
-<span class="c1"># |hour| count|</span>
-<span class="c1"># +----+------+</span>
-<span class="c1"># |  18|181127|</span>
-<span class="c1"># |  19|173779|</span>
-<span class="c1"># |  17|169886|</span>
-<span class="c1"># |  16|156519|</span>
-<span class="c1"># |  20|146602|</span>
-<span class="c1"># +----+------+</span>
-</code></pre></div>
+# +----+------+
+# |hour| count|
+# +----+------+
+# |  18|181127|
+# |  19|173779|
+# |  17|169886|
+# |  16|156519|
+# |  20|146602|
+# +----+------+
+</code></pre>
 <h4 id="_13"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_13"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько поездок началось во второй четверти суток?</b></a></h4>
-<div class="highlight"><pre><span></span><code><span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;start_hour&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">hour</span><span class="p">(</span><span class="s1">&#39;trip_start_timestamp&#39;</span><span class="p">))</span>
-<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">taxi_add = taxi.withColumn('start_hour',f.hour('trip_start_timestamp'))
+taxi_add.show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|start_hour|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|        23|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|         7|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|        16|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|         8|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|        18|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">after_six</span> <span class="o">=</span> <span class="n">taxi_add</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;start_hour&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;start_hour&#39;</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">11</span><span class="p">))</span>
-<span class="n">after_six</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|start_hour|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|        23|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|         7|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|        16|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|         8|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|        18|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+
+</code></pre>
+<pre><code class="language-python">after_six = taxi_add.filter((f.col('start_hour') &gt;= 6) &amp; (f.col('start_hour') &lt;= 11))
+after_six.count()
 
-<span class="c1"># df.groupBy((hour(&#39;trip_start_timestamp&#39;)).alias(&#39;day&#39;)).count()</span>
-<span class="c1"># .where(col(&#39;day&#39;).between(6,11)).groupBy().sum().show()</span>
+# df.groupBy((hour('trip_start_timestamp')).alias('day')).count()
+# .where(col('day').between(6,11)).groupBy().sum().show()
 
-<span class="c1"># 538737</span>
-</code></pre></div>
+# 538737
+</code></pre>
 <h4 id="_14"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_14"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Найдите топ три даты, в которые было суммарно больше всего чаевых?</b></a></h4>
 <p><br>Вам может понадобится конвертация типов <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.Column.cast.html?highlight=cast#pyspark-sql-column-cast">cast</a></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">DateType</span>
+<pre><code class="language-python">from pyspark.sql.types import DateType
 
-<span class="c1"># extract date only from type [timestamp] -&gt; [date]</span>
-<span class="c1"># we use f.to_date ( f.col(&#39;column), &#39;order&#39; )</span>
+# extract date only from type [timestamp] -&gt; [date]
+# we use f.to_date ( f.col('column), 'order' )
 
-<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;trip_end_timestamp&quot;</span><span class="p">),</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">))</span>
-<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+taxi_add = taxi.withColumn(&quot;date&quot;,f.to_date(f.col(&quot;trip_end_timestamp&quot;),&quot;yyyy-MM-dd&quot;))
+taxi_add.show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|      date|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|2016-12-16|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|2016-12-12|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|2016-12-16|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|2016-12-16|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|2016-12-03|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># convert/case data type date to string</span>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|      date|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|2016-12-16|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|2016-12-12|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|2016-12-16|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|2016-12-16|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|2016-12-03|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+
+</code></pre>
+<pre><code class="language-python"># convert/case data type date to string
 
-<span class="c1"># taxi_add.select(taxi_add.date.cast(&quot;string&quot;).alias(&#39;date_str&#39;)).show() # don&#39;t do this</span>
-<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi_add</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;date_str&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">))</span>
-<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# taxi_add.select(taxi_add.date.cast(&quot;string&quot;).alias('date_str')).show() # don't do this
+taxi_add = taxi_add.withColumn('date_str',f.col('date').cast(&quot;string&quot;))
+taxi_add.show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|      date|  date_str|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|2016-12-16|2016-12-16|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|2016-12-12|2016-12-12|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|2016-12-16|2016-12-16|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|2016-12-16|2016-12-16|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|2016-12-03|2016-12-03|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># now use groupby date (which is a string) &amp; find aggregate sum of all trips</span>
-<span class="n">taxi_add</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|      date|  date_str|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|2016-12-16|2016-12-16|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|2016-12-12|2016-12-12|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|2016-12-16|2016-12-16|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|2016-12-16|2016-12-16|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|2016-12-03|2016-12-03|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+----------+----------+
+</code></pre>
+<pre><code class="language-python"># now use groupby date (which is a string) &amp; find aggregate sum of all trips
+taxi_add.groupby(['date_str']).agg(f.sum('tips').alias('total')).orderBy('total',ascending=False).show(3)
 
-<span class="c1"># +----------+------------------+</span>
-<span class="c1"># |  date_str|             total|</span>
-<span class="c1"># +----------+------------------+</span>
-<span class="c1"># |2016-11-03|110102.37000000013|</span>
-<span class="c1"># |2016-11-09|106187.87999999986|</span>
-<span class="c1"># |2016-11-16| 99993.77000000038|</span>
-<span class="c1"># +----------+------------------+</span>
-</code></pre></div>
+# +----------+------------------+
+# |  date_str|             total|
+# +----------+------------------+
+# |2016-11-03|110102.37000000013|
+# |2016-11-09|106187.87999999986|
+# |2016-11-16| 99993.77000000038|
+# +----------+------------------+
+</code></pre>
 <h4 id="_15"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_15"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько было заказов в дату с наибольшим спросом?</b></a></h4>
-<div class="highlight"><pre><span></span><code><span class="c1"># we need to use starting time</span>
+<pre><code class="language-python"># we need to use starting time
 
-<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;trip_start_timestamp&quot;</span><span class="p">),</span><span class="s2">&quot;yyyy-MM-dd&quot;</span><span class="p">))</span>
-<span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi_add</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;date_str&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">))</span>
-<span class="n">taxi_add</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;date_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+taxi_add = taxi.withColumn(&quot;date&quot;,f.to_date(f.col(&quot;trip_start_timestamp&quot;),&quot;yyyy-MM-dd&quot;))
+taxi_add = taxi_add.withColumn('date_str',f.col('date').cast(&quot;string&quot;))
+taxi_add.groupby(['date_str']).count().orderBy('count',ascending=False).show(5)
 
-<span class="c1"># +----------+-----+</span>
-<span class="c1"># |  date_str|count|</span>
-<span class="c1"># +----------+-----+</span>
-<span class="c1"># |2016-11-03|61259|</span>
-<span class="c1"># |2016-12-16|59137|</span>
-<span class="c1"># |2016-12-09|58583|</span>
-<span class="c1"># |2016-12-15|57084|</span>
-<span class="c1"># |2016-11-04|56800|</span>
-<span class="c1"># +----------+-----+</span>
-</code></pre></div>
+# +----------+-----+
+# |  date_str|count|
+# +----------+-----+
+# |2016-11-03|61259|
+# |2016-12-16|59137|
+# |2016-12-09|58583|
+# |2016-12-15|57084|
+# |2016-11-04|56800|
+# +----------+-----+
+
+</code></pre>
 <p>Подгрузите данные о марках машин из датасета <a href="https://github.com/AlexKbit/stepik-ds-course/raw/master/Week3/spark-tasks/taxi_cars_data.parquet">taxi_cars_data.parquet</a></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># load taxi_id car_modl type</span>
-<span class="n">df_car</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s1">&#39;taxi_cars_data.parquet&#39;</span><span class="p">)</span>
-<span class="n">df_car</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python"># load taxi_id car_modl type
+df_car = spark.read.parquet('taxi_cars_data.parquet')
+df_car.show(5)
 
-<span class="c1"># +-------+-------------------+</span>
-<span class="c1"># |taxi_id|          car_model|</span>
-<span class="c1"># +-------+-------------------+</span>
-<span class="c1"># |   1159|       Toyota Prius|</span>
-<span class="c1"># |   7273|Ford Crown Victoria|</span>
-<span class="c1"># |   2904|        Honda Civic|</span>
-<span class="c1"># |   3210|        Ford Fusion|</span>
-<span class="c1"># |   2088|       Toyota Camry|</span>
-<span class="c1"># +-------+-------------------+</span>
-</code></pre></div>
+# +-------+-------------------+
+# |taxi_id|          car_model|
+# +-------+-------------------+
+# |   1159|       Toyota Prius|
+# |   7273|Ford Crown Victoria|
+# |   2904|        Honda Civic|
+# |   3210|        Ford Fusion|
+# |   2088|       Toyota Camry|
+# +-------+-------------------+
+</code></pre>
 <h4 id="_16"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_16"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Какая марка машины самая распрастранненая среди таксистов?</b></a></h4>
 <p><br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.split.html?highlight=split#pyspark-sql-functions-split">split</a></p>
 <p>Мы можем разделить колонку по некому критерии (delimiter), добавим данные в новою колонку <code>newest</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># we are given the name and model; we need to extract the maker</span>
-<span class="c1"># like in pandas (.str.split())</span>
+<pre><code class="language-python"># we are given the name and model; we need to extract the maker
+# like in pandas (.str.split())
 
-<span class="n">df_car</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;newest&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">),</span><span class="s2">&quot; &quot;</span><span class="p">))</span>
-<span class="n">df_car</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+df_car.withColumn('newest',f.split(f.col('car_model'),&quot; &quot;))
+df_car.show(5)
 
-<span class="c1"># +-------+-------------------+--------------------+</span>
-<span class="c1"># |taxi_id|          car_model|              newest|</span>
-<span class="c1"># +-------+-------------------+--------------------+</span>
-<span class="c1"># |   1159|       Toyota Prius|     [Toyota, Prius]|</span>
-<span class="c1"># |   7273|Ford Crown Victoria|[Ford, Crown, Vic...|</span>
-<span class="c1"># |   2904|        Honda Civic|      [Honda, Civic]|</span>
-<span class="c1"># |   3210|        Ford Fusion|      [Ford, Fusion]|</span>
-<span class="c1"># |   2088|       Toyota Camry|     [Toyota, Camry]|</span>
-<span class="c1"># +-------+-------------------+--------------------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># add columns with each split</span>
-<span class="n">df_car_add</span> <span class="o">=</span> <span class="n">df_car</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;maker&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">),</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> \
-                   <span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">),</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getItem</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<span class="n">df_car_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# +-------+-------------------+--------------------+
+# |taxi_id|          car_model|              newest|
+# +-------+-------------------+--------------------+
+# |   1159|       Toyota Prius|     [Toyota, Prius]|
+# |   7273|Ford Crown Victoria|[Ford, Crown, Vic...|
+# |   2904|        Honda Civic|      [Honda, Civic]|
+# |   3210|        Ford Fusion|      [Ford, Fusion]|
+# |   2088|       Toyota Camry|     [Toyota, Camry]|
+# +-------+-------------------+--------------------+
+</code></pre>
+<pre><code class="language-python"># add columns with each split
+df_car_add = df_car.withColumn('maker', f.split(f.col('car_model'), ' ').getItem(0)) \
+                   .withColumn('model', f.split(f.col('car_model'), ' ').getItem(1))
+df_car_add.show(5)
 
-<span class="c1"># +-------+-------------------+------+------+</span>
-<span class="c1"># |taxi_id|          car_model| maker| model|</span>
-<span class="c1"># +-------+-------------------+------+------+</span>
-<span class="c1"># |   1159|       Toyota Prius|Toyota| Prius|</span>
-<span class="c1"># |   7273|Ford Crown Victoria|  Ford| Crown|</span>
-<span class="c1"># |   2904|        Honda Civic| Honda| Civic|</span>
-<span class="c1"># |   3210|        Ford Fusion|  Ford|Fusion|</span>
-<span class="c1"># |   2088|       Toyota Camry|Toyota| Camry|</span>
-<span class="c1"># +-------+-------------------+------+------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">df_car_add</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;maker&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;maker&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# +-------+-------------------+------+------+
+# |taxi_id|          car_model| maker| model|
+# +-------+-------------------+------+------+
+# |   1159|       Toyota Prius|Toyota| Prius|
+# |   7273|Ford Crown Victoria|  Ford| Crown|
+# |   2904|        Honda Civic| Honda| Civic|
+# |   3210|        Ford Fusion|  Ford|Fusion|
+# |   2088|       Toyota Camry|Toyota| Camry|
+# +-------+-------------------+------+------+
+</code></pre>
+<pre><code class="language-python">df_car_add.groupby('maker').agg(f.count('maker').alias('total')).orderBy('total',ascending=False).show(5)
 
-<span class="c1"># +---------+-----+</span>
-<span class="c1"># |    maker|total|</span>
-<span class="c1"># +---------+-----+</span>
-<span class="c1"># |     Ford| 1484|</span>
-<span class="c1"># |  Hyundai|  792|</span>
-<span class="c1"># |   Toyota|  691|</span>
-<span class="c1"># |Chevrolet|  473|</span>
-<span class="c1"># |      Kia|  265|</span>
-<span class="c1"># +---------+-----+</span>
-</code></pre></div>
+# +---------+-----+
+# |    maker|total|
+# +---------+-----+
+# |     Ford| 1484|
+# |  Hyundai|  792|
+# |   Toyota|  691|
+# |Chevrolet|  473|
+# |      Kia|  265|
+# +---------+-----+
+</code></pre>
 <h4 id="_17"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_17"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Сколько раз и какая модель машин чаще всего встречается в поездках?</b></a></h4>
 <p><br>Подробнее <a href="https://spark.apache.org/docs/3.1.1/api/python/reference/api/pyspark.sql.functions.split.html?highlight=split#pyspark-sql-functions-split">join</a></p>
-<div class="highlight"><pre><span></span><code><span class="n">taxi_add</span> <span class="o">=</span> <span class="n">taxi</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_car_add</span><span class="p">,</span><span class="n">taxi</span><span class="o">.</span><span class="n">taxi_id</span> <span class="o">==</span> <span class="n">df_car_add</span><span class="o">.</span><span class="n">taxi_id</span><span class="p">)</span>
-<span class="n">taxi_add</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">taxi_add = taxi.join(df_car_add,taxi.taxi_id == df_car_add.taxi_id)
+taxi_add.show(5)
 
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+</span>
-<span class="c1"># |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|taxi_id|          car_model|  maker|  model|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+</span>
-<span class="c1"># |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|   5240|     Toyota Corolla| Toyota|Corolla|</span>
-<span class="c1"># |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|   1215|Ford Crown Victoria|   Ford|  Crown|</span>
-<span class="c1"># |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|   3673|        Ford Taurus|   Ford| Taurus|</span>
-<span class="c1"># |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|   5400|     Toyota Corolla| Toyota|Corolla|</span>
-<span class="c1"># |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|   1257|    Hyundai Elantra|Hyundai|Elantra|</span>
-<span class="c1"># +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">taxi_add</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;car_model&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;orders&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;orders&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+
+# |taxi_id|trip_start_timestamp| trip_end_timestamp|trip_seconds|trip_miles| fare|tips|trip_total|payment_type|taxi_id|          car_model|  maker|  model|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+
+# |   5240| 2016-12-15 23:45:00|2016-12-16 00:00:00|         900|       2.5|10.75|2.45|      14.7| Credit Card|   5240|     Toyota Corolla| Toyota|Corolla|
+# |   1215| 2016-12-12 07:15:00|2016-12-12 07:15:00|         240|       0.4|  5.0| 3.0|       9.5| Credit Card|   1215|Ford Crown Victoria|   Ford|  Crown|
+# |   3673| 2016-12-16 16:30:00|2016-12-16 17:00:00|        2400|      10.7| 31.0| 0.0|      31.0|        Cash|   3673|        Ford Taurus|   Ford| Taurus|
+# |   5400| 2016-12-16 08:45:00|2016-12-16 09:00:00|         300|       0.0| 5.25| 2.0|      7.25| Credit Card|   5400|     Toyota Corolla| Toyota|Corolla|
+# |   1257| 2016-12-03 18:45:00|2016-12-03 18:45:00|         360|       0.3|  5.0| 0.0|       5.0|        Cash|   1257|    Hyundai Elantra|Hyundai|Elantra|
+# +-------+--------------------+-------------------+------------+----------+-----+----+----------+------------+-------+-------------------+-------+-------+
+</code></pre>
+<pre><code class="language-python">taxi_add.groupBy('car_model').agg(f.count('car_model').alias('orders')).orderBy('orders',ascending=False).show(5)
 
-<span class="c1"># +-------------------+------+</span>
-<span class="c1"># |          car_model|orders|</span>
-<span class="c1"># +-------------------+------+</span>
-<span class="c1"># |Ford Crown Victoria|388682|</span>
-<span class="c1"># |     Hyundai Accent|150764|</span>
-<span class="c1"># |           Kia Ceed|143649|</span>
-<span class="c1"># |     Hyundai Sonata|141570|</span>
-<span class="c1"># |        Ford Mondeo|135466|</span>
-<span class="c1"># +-------------------+------+</span>
-</code></pre></div>
+# +-------------------+------+
+# |          car_model|orders|
+# +-------------------+------+
+# |Ford Crown Victoria|388682|
+# |     Hyundai Accent|150764|
+# |           Kia Ceed|143649|
+# |     Hyundai Sonata|141570|
+# |        Ford Mondeo|135466|
+# +-------------------+------+
+</code></pre>
 <h3 id="_18"><a class="toclink" href="../../2023/08/17/exploring-taxi-trip-data/#_18"><b>Выводы</b></a></h3>
 <p>Кратко о том что мы использовали для разведовательного анализа</p>
 <ul>
@@ -1715,7 +1714,7 @@ tags: [pyspark,EDA]</p>
 </ul>
 <hr />
 <p><strong>Thank you for reading!</strong></p>
-<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+<p>Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on :fontawesome-brands-github:{ .github } <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or :fontawesome-brands-kaggle:{ .kaggle} <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
     <nav class="md-post__action">
       <a href="../../2023/08/17/exploring-taxi-trip-data/">
         Continue reading
@@ -1754,11 +1753,6 @@ tags: [pyspark,EDA]</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
-
-    </div>
   
   
     Made with

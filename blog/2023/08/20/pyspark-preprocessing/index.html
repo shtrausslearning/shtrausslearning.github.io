@@ -898,7 +898,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-spark-over-pandas" class="md-nav__link">
+  <a href="#spark-over-pandas" class="md-nav__link">
     ❯❯ Spark over Pandas
   </a>
   
@@ -932,42 +932,42 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-dataframe-column-types" class="md-nav__link">
+  <a href="#dataframe-column-types" class="md-nav__link">
     ❯❯ DataFrame Column Types
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dataframe-statistics" class="md-nav__link">
+  <a href="#dataframe-statistics" class="md-nav__link">
     ❯❯ DataFrame Statistics
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-show-missing-data" class="md-nav__link">
+  <a href="#show-missing-data" class="md-nav__link">
     ❯❯ Show Missing Data
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-dropping-irrelovant-columns" class="md-nav__link">
+  <a href="#dropping-irrelovant-columns" class="md-nav__link">
     ❯❯ Dropping Irrelovant Columns
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-adding-columns-to-dataframe" class="md-nav__link">
+  <a href="#adding-columns-to-dataframe" class="md-nav__link">
     ❯❯ Adding Columns to DataFrame
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-data-imputation" class="md-nav__link">
+  <a href="#data-imputation" class="md-nav__link">
     ❯❯ Data Imputation
   </a>
   
@@ -1081,12 +1081,12 @@
   
 
 
-<h1 id="pyspark-preprocessing">PySpark Preprocessing<a class="headerlink" href="#pyspark-preprocessing" title="Permanent link"></a></h1>
+<h1 id="pyspark-preprocessing">PySpark Preprocessing</h1>
 <p><img alt="" src="https://i.imgur.com/TlrdxNa.jpg" /></p>
 <p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a> post</p>
-<h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<h2 id="background"><b>Background</b></h2>
 <p>In this post, we'll introduce ourselves to <code>pyspark</code>, working on a commonly used classification problem; the titanic. Our focus will be to learn the basics of how to work with <code>pyspark</code> when we work on machine learning projects. We'll split this little project into two parts; <kdb>part I</kdb> part will include <strong>data loading</strong>, <strong>data preprocessing</strong> (<strong>feature engineering</strong> and <strong>data cleaning</strong>). Second part, <kdb>part II</kdb> will include data preparation for <strong>machine learning</strong> and subsequent <strong>model training</strong> and <strong>evaluation</strong></p>
-<h3 id="-spark-over-pandas"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Spark over Pandas</b><a class="headerlink" href="#-spark-over-pandas" title="Permanent link"></a></h3>
+<h3 id="spark-over-pandas"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Spark over Pandas</b></h3>
 <p>In the <strong><a href="https://shtrausslearning.github.io/posts/first-ml-project/">previous post</a></strong>, we used <code>pandas</code> for working with <strong>tabular data</strong>. <code>pandas</code> is indeed quite convenient to use as it has a very rich functionality to work with tabular data, <code>pyspark</code> in comparison is much simplier, however it offers the user to work with <code>big data</code>, which <code>pandas</code> tends to strugle with.</p>
 <p>Some advantages of <code>pyspark</code> over <code>pandas</code>:</p>
 <blockquote>
@@ -1097,167 +1097,167 @@
 </ol>
 </blockquote>
 <p>Overall, <code>pyspark</code> is a better choice for <strong>big data</strong> applications that require <strong>distributed computing</strong> and machine learning capabilities. Pandas is suitable for smaller datasets that can be processed on a single machine.</p>
-<h2 id="start-spark-session"><b>Start Spark Session</b><a class="headerlink" href="#start-spark-session" title="Permanent link"></a></h2>
+<h2 id="start-spark-session"><b>Start Spark Session</b></h2>
 <p>First of all, we create a <code>spark</code> session, importing <code>SparkSession</code> from <code>pyspark.sql</code> and creating an instance, to which we will refence to when reading our data</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
+<pre><code class="language-python">from pyspark.sql import SparkSession
+from pyspark.sql import functions as f
 
-<span class="c1"># create spark session</span>
-<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span>\
-                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>\
-                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-</code></pre></div>
-<h2 id="loading-data"><b>Loading Data</b><a class="headerlink" href="#loading-data" title="Permanent link"></a></h2>
+# create spark session
+spark = SparkSession.builder\
+                    .appName('titanic')\
+                    .getOrCreate()
+</code></pre>
+<h2 id="loading-data"><b>Loading Data</b></h2>
 <p>The dataset can be found from <strong><a href="https://raw.githubusercontent.com/AlexKbit/stepik-ds-course/master/Week3/spark-practice/train.csv">this source</a></strong>, which we can simply download using <code>wget</code> in Jupyter</p>
 <p><code>pyspark</code> supports a variety of input formats, to load a <code>csv</code> file, we can call <code>spark.read</code>. When reading our table, we should ideally specify the data types. We'll see below, which types are loaded when we don't specify them. 
 - Another alternative is to <strong>automaticaly detect</strong> suitable types for each column, we can do this by writing <code>inferSchema=True</code> in either <code>.csv</code> or <code>.options</code>
 - Or we can specify our own <strong>schema</strong> using <code>.schema(schema)</code>, like something shown below:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructTypes</span>
+<pre><code class="language-python">from pyspark.sql.types import StructTypes
 
-<span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">()</span> \
-      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;PassengerId&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span> \
-      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span> \
-      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span><span class="n">DoubleType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span> \
-      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Decommisioned&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+schema = StructType() \
+      .add(&quot;PassengerId&quot;,IntegerType(),True) \
+      .add(&quot;Name&quot;,StringType(),True) \
+      .add(&quot;Fare&quot;,DoubleType(),True) \
+      .add(&quot;Decommisioned&quot;,BooleanType(),True)
+</code></pre>
 <p>Let's read our dataset, that contains a header, which requires <code>header=True</code>, like in <code>pandas</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<pre><code class="language-python">df = spark.read.csv('train.csv',header=True)
+df.show(1,vertical=True)
 
-<span class="c1"># -RECORD 0---------------------------</span>
-<span class="c1">#  PassengerId | 1                    </span>
-<span class="c1">#  Survived    | 0                    </span>
-<span class="c1">#  Pclass      | 3                    </span>
-<span class="c1">#  Name        | Braund, Mr. Owen ... </span>
-<span class="c1">#  Sex         | male                 </span>
-<span class="c1">#  Age         | 22.0                 </span>
-<span class="c1">#  SibSp       | 1                    </span>
-<span class="c1">#  Parch       | 0                    </span>
-<span class="c1">#  Ticket      | A/5 21171            </span>
-<span class="c1">#  Fare        | 7.25                 </span>
-<span class="c1">#  Cabin       | null                 </span>
-<span class="c1">#  Embarked    | S                    </span>
-<span class="c1"># only showing top 1 row</span>
-</code></pre></div>
-<h2 id="data-preprocessing"><b>Data Preprocessing</b><a class="headerlink" href="#data-preprocessing" title="Permanent link"></a></h2>
-<h3 id="-dataframe-column-types"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DataFrame Column Types</b><a class="headerlink" href="#-dataframe-column-types" title="Permanent link"></a></h3>
+# -RECORD 0---------------------------
+#  PassengerId | 1                    
+#  Survived    | 0                    
+#  Pclass      | 3                    
+#  Name        | Braund, Mr. Owen ... 
+#  Sex         | male                 
+#  Age         | 22.0                 
+#  SibSp       | 1                    
+#  Parch       | 0                    
+#  Ticket      | A/5 21171            
+#  Fare        | 7.25                 
+#  Cabin       | null                 
+#  Embarked    | S                    
+# only showing top 1 row
+</code></pre>
+<h2 id="data-preprocessing"><b>Data Preprocessing</b></h2>
+<h3 id="dataframe-column-types"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DataFrame Column Types</b></h3>
 <p>Like in <code>pandas</code>, we can call the method <code>.dtypes</code>, to show the column types. Default column type interpretations aren't always ideal, so its useful to load your own <code>schema</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<pre><code class="language-python">df.dtypes
 
-<span class="c1"># [(&#39;PassengerId&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Survived&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Pclass&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Name&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Sex&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Age&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;SibSp&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Parch&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Ticket&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Fare&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Cabin&#39;, &#39;string&#39;),</span>
-<span class="c1">#  (&#39;Embarked&#39;, &#39;string&#39;)]</span>
-</code></pre></div>
-<h3 id="-dataframe-statistics"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DataFrame Statistics</b><a class="headerlink" href="#-dataframe-statistics" title="Permanent link"></a></h3>
+# [('PassengerId', 'string'),
+#  ('Survived', 'string'),
+#  ('Pclass', 'string'),
+#  ('Name', 'string'),
+#  ('Sex', 'string'),
+#  ('Age', 'string'),
+#  ('SibSp', 'string'),
+#  ('Parch', 'string'),
+#  ('Ticket', 'string'),
+#  ('Fare', 'string'),
+#  ('Cabin', 'string'),
+#  ('Embarked', 'string')]
+</code></pre>
+<h3 id="dataframe-statistics"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>DataFrame Statistics</b></h3>
 <p>Like in <code>pandas</code>, we can utilise method <code>describe</code>, in order to show column statistics. </p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">([</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python">df.describe(['Sex','Age']).show()
 
-<span class="c1"># +-------+------+------------------+</span>
-<span class="c1"># |summary|   Sex|               Age|</span>
-<span class="c1"># +-------+------+------------------+</span>
-<span class="c1"># |  count|   891|               714|</span>
-<span class="c1"># |   mean|  null| 29.69911764705882|</span>
-<span class="c1"># | stddev|  null|14.526497332334035|</span>
-<span class="c1"># |    min|female|              0.42|</span>
-<span class="c1"># |    max|  male|                 9|</span>
-<span class="c1"># +-------+------+------------------+</span>
-</code></pre></div>
-<h3 id="-show-missing-data"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Show Missing Data</b><a class="headerlink" href="#-show-missing-data" title="Permanent link"></a></h3>
+# +-------+------+------------------+
+# |summary|   Sex|               Age|
+# +-------+------+------------------+
+# |  count|   891|               714|
+# |   mean|  null| 29.69911764705882|
+# | stddev|  null|14.526497332334035|
+# |    min|female|              0.42|
+# |    max|  male|                 9|
+# +-------+------+------------------+
+</code></pre>
+<h3 id="show-missing-data"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Show Missing Data</b></h3>
 <p>If we want to count the missing data in all our columns we can do the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">(),</span> <span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python">df.select([f.count(f.when(f.isnan(c) | f.col(c).isNull(), c)).alias(c) for c in df.columns]).show()
 
-<span class="c1"># +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+</span>
-<span class="c1"># |PassengerId|Survived|Pclass|Sex|Age|SibSp|Parch|Fare|Embarked|Family_Size|Alone|</span>
-<span class="c1"># +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+</span>
-<span class="c1"># |          0|       0|     0|  0|  0|    0|    0|   0|       2|          0|    0|</span>
-<span class="c1"># +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+</span>
-</code></pre></div>
+# +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+
+# |PassengerId|Survived|Pclass|Sex|Age|SibSp|Parch|Fare|Embarked|Family_Size|Alone|
+# +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+
+# |          0|       0|     0|  0|  0|    0|    0|   0|       2|          0|    0|
+# +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+
+</code></pre>
 <p>We can show rows with missing data using <code>.where</code> and <code>.f.col('column').isNull()</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">age_miss</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">())</span>
-<span class="n">age_miss</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">age_miss = df.where(f.col('Age').isNull())
+age_miss.show(5)
 
-<span class="c1"># +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+</span>
-<span class="c1"># |PassengerId|Survived|Pclass|                Name|   Sex| Age|SibSp|Parch|Ticket|  Fare|Cabin|Embarked|</span>
-<span class="c1"># +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+</span>
-<span class="c1"># |          6|       0|     3|    Moran, Mr. James|  male|null|    0|    0|330877|8.4583| null|       Q|</span>
-<span class="c1"># |         18|       1|     2|Williams, Mr. Cha...|  male|null|    0|    0|244373|  13.0| null|       S|</span>
-<span class="c1"># |         20|       1|     3|Masselmani, Mrs. ...|female|null|    0|    0|  2649| 7.225| null|       C|</span>
-<span class="c1"># |         27|       0|     3|Emir, Mr. Farred ...|  male|null|    0|    0|  2631| 7.225| null|       C|</span>
-<span class="c1"># |         29|       1|     3|&quot;O&#39;Dwyer, Miss. E...|female|null|    0|    0|330959|7.8792| null|       Q|</span>
-<span class="c1"># +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+</span>
-</code></pre></div>
-<h3 id="-dropping-irrelovant-columns"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Dropping Irrelovant Columns</b><a class="headerlink" href="#-dropping-irrelovant-columns" title="Permanent link"></a></h3>
+# +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+
+# |PassengerId|Survived|Pclass|                Name|   Sex| Age|SibSp|Parch|Ticket|  Fare|Cabin|Embarked|
+# +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+
+# |          6|       0|     3|    Moran, Mr. James|  male|null|    0|    0|330877|8.4583| null|       Q|
+# |         18|       1|     2|Williams, Mr. Cha...|  male|null|    0|    0|244373|  13.0| null|       S|
+# |         20|       1|     3|Masselmani, Mrs. ...|female|null|    0|    0|  2649| 7.225| null|       C|
+# |         27|       0|     3|Emir, Mr. Farred ...|  male|null|    0|    0|  2631| 7.225| null|       C|
+# |         29|       1|     3|&quot;O'Dwyer, Miss. E...|female|null|    0|    0|330959|7.8792| null|       Q|
+# +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+
+</code></pre>
+<h3 id="dropping-irrelovant-columns"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Dropping Irrelovant Columns</b></h3>
 <p>We can decide to remove columns that we won't be needing in our project by calling <code>.drop</code>, which is the same in <code>pandas</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Ticket&#39;</span><span class="p">,</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span><span class="s1">&#39;Cabin&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">df = df.drop('Ticket','Name','Fare','Cabin')
+df.show(5)
 
-<span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+</span>
-<span class="c1"># |PassengerId|Survived|Pclass|   Sex|Age|SibSp|Parch|Embarked|</span>
-<span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+</span>
-<span class="c1"># |          1|       0|     3|  male| 22|    1|    0|       S|</span>
-<span class="c1"># |          2|       1|     1|female| 38|    1|    0|       C|</span>
-<span class="c1"># |          3|       1|     3|female| 26|    0|    0|       S|</span>
-<span class="c1"># |          4|       1|     1|female| 35|    1|    0|       S|</span>
-<span class="c1"># |          5|       0|     3|  male| 35|    0|    0|       S|</span>
-<span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+</span>
-</code></pre></div>
-<h3 id="-adding-columns-to-dataframe"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Adding Columns to DataFrame</b><a class="headerlink" href="#-adding-columns-to-dataframe" title="Permanent link"></a></h3>
+# +-----------+--------+------+------+---+-----+-----+--------+
+# |PassengerId|Survived|Pclass|   Sex|Age|SibSp|Parch|Embarked|
+# +-----------+--------+------+------+---+-----+-----+--------+
+# |          1|       0|     3|  male| 22|    1|    0|       S|
+# |          2|       1|     1|female| 38|    1|    0|       C|
+# |          3|       1|     3|female| 26|    0|    0|       S|
+# |          4|       1|     1|female| 35|    1|    0|       S|
+# |          5|       0|     3|  male| 35|    0|    0|       S|
+# +-----------+--------+------+------+---+-----+-----+--------+
+</code></pre>
+<h3 id="adding-columns-to-dataframe"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Adding Columns to DataFrame</b></h3>
 <p>Column additions do however work a little differently, to add a column we add <code>.withColumn</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;FamilySize&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;SibSp&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Parch&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre><code class="language-python">df = df.withColumn('FamilySize',f.col('SibSp') + f.col('Parch') + 1)
+df.show(5)
 
-<span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+----------+</span>
-<span class="c1"># |PassengerId|Survived|Pclass|   Sex|Age|SibSp|Parch|Embarked|FamilySize|</span>
-<span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+----------+</span>
-<span class="c1"># |          1|       0|     3|  male| 22|    1|    0|       S|       2.0|</span>
-<span class="c1"># |          2|       1|     1|female| 38|    1|    0|       C|       2.0|</span>
-<span class="c1"># |          3|       1|     3|female| 26|    0|    0|       S|       1.0|</span>
-<span class="c1"># |          4|       1|     1|female| 35|    1|    0|       S|       2.0|</span>
-<span class="c1"># |          5|       0|     3|  male| 35|    0|    0|       S|       1.0|</span>
-<span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+----------+</span>
-</code></pre></div>
+# +-----------+--------+------+------+---+-----+-----+--------+----------+
+# |PassengerId|Survived|Pclass|   Sex|Age|SibSp|Parch|Embarked|FamilySize|
+# +-----------+--------+------+------+---+-----+-----+--------+----------+
+# |          1|       0|     3|  male| 22|    1|    0|       S|       2.0|
+# |          2|       1|     1|female| 38|    1|    0|       C|       2.0|
+# |          3|       1|     3|female| 26|    0|    0|       S|       1.0|
+# |          4|       1|     1|female| 35|    1|    0|       S|       2.0|
+# |          5|       0|     3|  male| 35|    0|    0|       S|       1.0|
+# +-----------+--------+------+------+---+-----+-----+--------+----------+
+</code></pre>
 <p>We can also define a condition, based on which we'll create a unique feature</p>
-<div class="highlight"><pre><span></span><code><span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span><span class="p">)</span>
-<span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span><span class="p">)</span>
-<span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="-data-imputation"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Imputation</b><a class="headerlink" href="#-data-imputation" title="Permanent link"></a></h3>
+<pre><code class="language-python">ndf = ndf.withColumn('M',f.col('Sex') == 'male')
+ndf = ndf.withColumn('F',f.col('Sex') == 'female')
+ndf = ndf.drop('sex')
+</code></pre>
+<h3 id="data-imputation"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Imputation</b></h3>
 <p>Data imputation can be done via <code>fillna</code>, we pass a dictionary containing key,value pair for column name and value respectively </p>
-<div class="highlight"><pre><span></span><code><span class="n">av_age</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)))</span>
-<span class="n">av_age</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python">av_age = df.select(f.avg(f.col('age')))
+av_age.show()
 
-<span class="c1"># +-----------------+</span>
-<span class="c1"># |         avg(age)|</span>
-<span class="c1"># +-----------------+</span>
-<span class="c1"># |29.69911764705882|</span>
-<span class="c1"># +-----------------+</span>
+# +-----------------+
+# |         avg(age)|
+# +-----------------+
+# |29.69911764705882|
+# +-----------------+
 
-<span class="c1"># To convert to python types, we can write:</span>
-<span class="n">av_age</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 29.69911764705882</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">ndf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="n">av_age</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]})</span>
-<span class="n">ndf</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# To convert to python types, we can write:
+av_age.collect()[0][0]  # 29.69911764705882
+</code></pre>
+<pre><code class="language-python">ndf = df.fillna({'age':av_age.collect()[0][0]})
+ndf.show(5)
 
-<span class="c1"># +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+</span>
-<span class="c1"># |PassengerId|Survived|Pclass|                Name|   Sex|              Age|SibSp|Parch|          Ticket|   Fare|Cabin|Embarked|</span>
-<span class="c1"># +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+</span>
-<span class="c1"># |          1|       0|     3|Braund, Mr. Owen ...|  male|             22.0|    1|    0|       A/5 21171|   7.25| null|       S|</span>
-<span class="c1"># |          2|       1|     1|Cumings, Mrs. Joh...|female|             38.0|    1|    0|        PC 17599|71.2833|  C85|       C|</span>
-<span class="c1"># |          3|       1|     3|Heikkinen, Miss. ...|female|             26.0|    0|    0|STON/O2. 3101282|  7.925| null|       S|</span>
-<span class="c1"># |          4|       1|     1|Futrelle, Mrs. Ja...|female|             35.0|    1|    0|          113803|   53.1| C123|       S|</span>
-<span class="c1"># |          5|       0|     3|Allen, Mr. Willia...|  male|             35.0|    0|    0|          373450|   8.05| null|       S|</span>
-<span class="c1"># +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+</span>
-</code></pre></div>
-<h2 id="5-conclusion"><b><span style='color:#FF5733;text-align:center'>5❯ </span>Conclusion</b><a class="headerlink" href="#5-conclusion" title="Permanent link"></a></h2>
+# +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+
+# |PassengerId|Survived|Pclass|                Name|   Sex|              Age|SibSp|Parch|          Ticket|   Fare|Cabin|Embarked|
+# +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+
+# |          1|       0|     3|Braund, Mr. Owen ...|  male|             22.0|    1|    0|       A/5 21171|   7.25| null|       S|
+# |          2|       1|     1|Cumings, Mrs. Joh...|female|             38.0|    1|    0|        PC 17599|71.2833|  C85|       C|
+# |          3|       1|     3|Heikkinen, Miss. ...|female|             26.0|    0|    0|STON/O2. 3101282|  7.925| null|       S|
+# |          4|       1|     1|Futrelle, Mrs. Ja...|female|             35.0|    1|    0|          113803|   53.1| C123|       S|
+# |          5|       0|     3|Allen, Mr. Willia...|  male|             35.0|    0|    0|          373450|   8.05| null|       S|
+# +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+
+</code></pre>
+<h2 id="5-conclusion"><b><span style='color:#FF5733;text-align:center'>5❯ </span>Conclusion</b></h2>
 <p>Let's review what we have covered in this post:
 - We learned how to drop columns, using <code>.drop</code>
 - We learned how to extract statistical data from our dataframe, using <code>.select</code> and functions <code>f.avg('column')</code>
@@ -1267,7 +1267,7 @@
 - Once we are done with our feature matrix, we can convert all the relevant features into a single feature that will be used as input into the model using <code>VectorAssembler(inputCols,outputCol).transform(data)</code></p>
 <hr />
 <p><strong>Thank you for reading!</strong></p>
-<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+<p>Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on :fontawesome-brands-github:{ .github } <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or :fontawesome-brands-kaggle:{ .kaggle} <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
 
 
 
@@ -1295,11 +1295,6 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
-
-    </div>
   
   
     Made with

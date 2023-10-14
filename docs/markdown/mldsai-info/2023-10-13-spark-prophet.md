@@ -423,6 +423,171 @@ Since we don't have any missing data points for this region, let's use it for ou
 houston_df = sales.filter(f.col('region')=='Houston')
 ```
 
+Let's select only the relevant features
+
+```python
+houston_df = houston_df.groupBy(['Region','type','Date']).agg(f.sum('Total Volume').alias('y'))
+houston_df.show(5)
+```
+
+```
++-------+------------+----------+----------+
+| Region|        type|      Date|         y|
++-------+------------+----------+----------+
+|Houston|conventional|2016-03-06|1091432.18|
+|Houston|conventional|2017-02-05|1977923.65|
+|Houston|conventional|2018-02-04|2381742.59|
+|Houston|     organic|2015-05-24|  12358.51|
+|Houston|     organic|2017-07-23|  40100.89|
++-------+------------+----------+----------+
+only showing top 5 rows
+```
+
+```
+# change column datatype
+houston_df = houston_df.withColumn('y',f.round('y',2))
+houston_df = houston_df.withColumn('ds',f.to_date('Date'))
+houston_df_final = houston_df.select(['Region','type','ds','y'])
+houston_df_final.show(4)
+```
+```
++-------+------------+----------+----------+
+| Region|        type|        ds|         y|
++-------+------------+----------+----------+
+|Houston|conventional|2016-03-06|1091432.18|
+|Houston|conventional|2017-02-05|1977923.65|
+|Houston|conventional|2018-02-04|2381742.59|
+|Houston|     organic|2015-05-24|  12358.51|
++-------+------------+----------+----------+
+only showing top 4 rows
+```
+
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b> 
+
+Let's prepare the scheme for the outputs of our UDF
+
+```python
+import pyspark.sql.types  as ty
+
+schema = ty.StructType([
+                     ty.StructField('Region', ty.StringType()),     # our main features
+                     ty.StructField('type', ty. StringType()),      # 
+                     ty.StructField('ds', ty.TimestampType()),      # 
+                     ty.StructField('y', ty.FloatType()),           #
+                     ty.StructField('yhat', ty.DoubleType()),
+                     ty.StructField('yhat_upper', ty.DoubleType()),
+                     ty.StructField('yhat_lower', ty.DoubleType()),
+                     ]) 
+```
+
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
+
+```python
+from prophet import Prophet
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+@pandas_udf(schema, PandasUDFType.GROUPED_MAP)
+def apply_model(store_pd):
+    
+    store_pd.show()
+    
+  # instantiate the model and set parameters
+    model = Prophet(
+      interval_width=0.1,
+      growth='linear',
+      daily_seasonality=False,
+      weekly_seasonality=True,
+      yearly_seasonality=True,
+      seasonality_mode='multiplicative'
+    )
+
+    # fit the model to historical data
+    model.fit(store_pd)
+
+    # Create a data frame that lists 90 dates starting from Jan 1 2018
+    future = model.make_future_dataframe(
+      periods=6,
+      freq='w',
+      include_history=True)
+
+    # Out of sample prediction
+    future = model.predict(future)
+
+    # Create a data frame that contains store, item, y, and yhat
+    f_pd = future[['ds', 'yhat', 'yhat_upper', 'yhat_lower']].copy()
+    st_pd = store_pd[['ds', 'Region','y']].copy()
+    f_pd.loc[:,'ds'] = pd.to_datetime(f_pd['ds'])
+    st_pd.loc[:,'ds'] = pd.to_datetime(st_pd['ds'])
+    result_pd = f_pd.join(st_pd.set_index('ds'), on='ds', how='left')
+
+    result_pd.loc[:,'Region'] = store_pd['Region'].iloc[0]
+    result_pd.loc[:,'type'] = store_pd['type'].iloc[0]
+
+    return result_pd[['Region','type', 'ds', 'y', 'yhat',
+                    'yhat_upper', 'yhat_lower']]
+```
+
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Modeling</b> 
+
+```python
+results = houston_df_final.groupby(['Region','type']).apply(apply_model)
+results.show()
+```
+
+```
++-------+------------+-------------------+----------+------------------+------------------+------------------+
+| Region|        type|                 ds|         y|              yhat|        yhat_upper|        yhat_lower|
++-------+------------+-------------------+----------+------------------+------------------+------------------+
+|Houston|conventional|2015-01-04 00:00:00| 1062990.6| 967605.2625150415| 987966.9732773455| 952305.7433327858|
+|Houston|conventional|2015-01-11 00:00:00| 1062071.6| 993363.6182296885| 995012.7884165086| 964197.9475039787|
+|Houston|conventional|2015-01-18 00:00:00| 1017854.2| 1015966.900950469|1025256.0703683371| 986191.4013155274|
+|Houston|conventional|2015-01-25 00:00:00| 983910.94| 1074995.886186154|1101222.7673731335| 1062121.771442082|
+|Houston|conventional|2015-02-01 00:00:00| 1280364.0|1167900.5325763628| 1188681.132535528|  1145180.90581613|
+|Houston|conventional|2015-02-08 00:00:00| 1180723.0|1232065.4408061658|1239550.0307806057|1198043.2132719166|
+|Houston|conventional|2015-02-15 00:00:00| 1062387.8|1199450.2180199602|1223060.5212891083|1176312.1838248386|
+|Houston|conventional|2015-02-22 00:00:00| 978807.75|1073369.2242733259|1080957.9300315154|1040938.8331911729|
+|Houston|conventional|2015-03-01 00:00:00| 991328.44| 941094.8884144317| 959840.4691880762| 919962.6290055071|
+|Houston|conventional|2015-03-08 00:00:00| 1166055.9| 898815.9800298921| 918134.9334112646| 880629.0129257607|
+|Houston|conventional|2015-03-15 00:00:00|1043172.75| 962628.9504384592| 984672.2940272797|  941114.615399528|
+|Houston|conventional|2015-03-22 00:00:00|1036663.75|1059573.4445409325|1079371.1160897035|1042058.3879815078|
+|Houston|conventional|2015-03-29 00:00:00| 1116225.2|1108114.6730682629| 1128250.035336084| 1084141.715137374|
+|Houston|conventional|2015-04-05 00:00:00| 1249645.2|1100408.8290516583| 1116313.220982885| 1080221.717887945|
+|Houston|conventional|2015-04-12 00:00:00| 1096075.0|1098549.7905255936|1117497.0118921385|1076220.1122365214|
+|Houston|conventional|2015-04-19 00:00:00|  933033.2| 1153840.801604051|1185673.7940084708|1142908.6811052496|
+|Houston|conventional|2015-04-26 00:00:00| 1082231.9|1242221.1196405245| 1269836.200588267|1229695.3593816601|
+|Houston|conventional|2015-05-03 00:00:00| 1296308.0|1287101.4463574803|1309988.6590584682| 1264268.574431952|
+|Houston|conventional|2015-05-10 00:00:00| 1201673.1|1241601.8571321142|1263813.3510391738|1222570.1340492044|
+|Houston|conventional|2015-05-17 00:00:00|1025659.56| 1139019.362908239|1164737.2354728119|1124616.7852877746|
++-------+------------+-------------------+----------+------------------+------------------+------------------+
+only showing top 20 rows
+```
+
+```python
+import pyspark.pandas as ps
+organic_data = results.filter(f.col('type')=='organic').pandas_api()
+organic_data = organic_data.set_index(['ds'])
+Conventional_data = results.filter(f.col('type')=='conventional').pandas_api()
+Conventional_data = Conventional_data.set_index(['ds'])
+```
+
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Visualisation</b> 
+
+Let's visualise the `organic` subset model
+
+```python
+organic_data[['y','yhat']].plot.line(backend='matplotlib',figsize=(14,5))
+```
+
+![](/images/organic.png)
+
+And now the `convensional` subset model
+
+```python
+Conventional_data[['y','yhat']].plot.line(backend='matplotlib',figsize=(14,5))
+```
+
+![](/images/conventional.png)
+
 
 **Thank you for reading!**
 

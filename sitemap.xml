@@ -26,11 +26,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2021/09/13/search-better-faster-smaller/</loc>
-         <lastmod>2023-10-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/mllibs/home/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
@@ -46,11 +41,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/archive/2021/</loc>
-         <lastmod>2023-10-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/pyspark/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
@@ -62,16 +52,6 @@
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/regression/</loc>
-         <lastmod>2023-10-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/search/</loc>
-         <lastmod>2023-10-14</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/performance/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>

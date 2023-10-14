@@ -153,3 +153,4 @@ extra:
 
 plugins:
     - search
+    - blog

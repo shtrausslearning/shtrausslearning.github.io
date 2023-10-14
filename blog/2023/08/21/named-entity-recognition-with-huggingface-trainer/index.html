@@ -898,28 +898,28 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#in-this-post" class="md-nav__link">
+  <a href="#-in-this-post" class="md-nav__link">
     ❯❯ In this post
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#huggingface-trainer" class="md-nav__link">
+  <a href="#-huggingface-trainer" class="md-nav__link">
     ❯❯ Huggingface Trainer
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-do-we-need-ner-in-nlp" class="md-nav__link">
+  <a href="#-why-do-we-need-ner-in-nlp" class="md-nav__link">
     ❯❯ Why do we need NER in NLP?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#our-ner-application" class="md-nav__link">
+  <a href="#-our-ner-application" class="md-nav__link">
     ❯❯ Our NER application
   </a>
   
@@ -939,14 +939,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#annotation-parser" class="md-nav__link">
+  <a href="#-annotation-parser" class="md-nav__link">
     ❯❯ Annotation Parser
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#parse-dataset" class="md-nav__link">
+  <a href="#-parse-dataset" class="md-nav__link">
     ❯❯ Parse Dataset
   </a>
   
@@ -966,21 +966,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tokeniser-sample" class="md-nav__link">
+  <a href="#-tokeniser-sample" class="md-nav__link">
     ❯❯ Tokeniser Sample
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#subtoken-ner-tag-adjustment" class="md-nav__link">
+  <a href="#-subtoken-ner-tag-adjustment" class="md-nav__link">
     ❯❯ Subtoken NER tag adjustment
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#data-collator-adjustment" class="md-nav__link">
+  <a href="#-data-collator-adjustment" class="md-nav__link">
     ❯❯ Data Collator Adjustment
   </a>
   
@@ -1000,35 +1000,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#evaluation-metrics" class="md-nav__link">
+  <a href="#-evaluation-metrics" class="md-nav__link">
     ❯❯ Evaluation Metrics
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#define-model" class="md-nav__link">
+  <a href="#-define-model" class="md-nav__link">
     ❯❯ Define Model
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#train-model" class="md-nav__link">
+  <a href="#-train-model" class="md-nav__link">
     ❯❯ Train Model
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#save-huggingface-trainer" class="md-nav__link">
+  <a href="#-save-huggingface-trainer" class="md-nav__link">
     ❯❯ Save Huggingface Trainer
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#load-a-huggingface-pipeline" class="md-nav__link">
+  <a href="#-load-a-huggingface-pipeline" class="md-nav__link">
     ❯❯ Load a Huggingface Pipeline
   </a>
   
@@ -1144,401 +1144,405 @@
   
 
 
-<h1 id="named-entity-recognition-with-huggingface-trainer">Named Entity Recognition with Huggingface Trainer</h1>
+<h1 id="named-entity-recognition-with-huggingface-trainer">Named Entity Recognition with Huggingface Trainer<a class="headerlink" href="#named-entity-recognition-with-huggingface-trainer" title="Permanent link"></a></h1>
 <p><img alt="" src="https://i.imgur.com/kcuAYbI.jpg" /></p>
 <p><a href="https://colab.research.google.com/drive/19dwCH-iTdnYgUJM2AVdTsvBirEMJLjXA?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
-<h2 id="named-entity-recognition"><b>Named Entity Recognition</b></h2>
-<h3 id="in-this-post"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>In this post</b></h3>
+<h2 id="named-entity-recognition"><b>Named Entity Recognition</b><a class="headerlink" href="#named-entity-recognition" title="Permanent link"></a></h2>
+<h3 id="-in-this-post"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>In this post</b><a class="headerlink" href="#-in-this-post" title="Permanent link"></a></h3>
 <p>In a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong> we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model &amp; defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the <strong>training</strong> &amp; <strong>inference</strong> steps quite a lot. We'll be using the <strong>trainer</strong> &amp; <strong>pipeline</strong> methods of the Huggingface library and will use a dataset used in <strong><a href="https://pypi.org/project/mllibs/">mllibs</a></strong>, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.</p>
-<h3 id="huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Huggingface Trainer</b></h3>
+<h3 id="-huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Huggingface Trainer</b><a class="headerlink" href="#-huggingface-trainer" title="Permanent link"></a></h3>
 <p>A Huggingface <code>Trainer</code> is a <strong>high-level API</strong> provided by the Huggingface Transformers library that makes it easier to train, fine-tune, and evaluate various Natural Language Processing (NLP) models. It provides a simple and consistent interface for training and evaluating models using various techniques such as text classification, named entity recognition, question answering, and more. The Trainer API abstracts away many of the low-level details of model training and evaluation, like we did in the <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong>, allowing users to focus on their specific NLP tasks.</p>
-<h3 id="why-do-we-need-ner-in-nlp"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b></h3>
+<h3 id="-why-do-we-need-ner-in-nlp"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b><a class="headerlink" href="#-why-do-we-need-ner-in-nlp" title="Permanent link"></a></h3>
 <blockquote>
 <p>Named entity recognition (NER) is important because it helps to identify and extract important information from unstructured text data. This can be useful in a variety of applications such as information retrieval, sentiment analysis, and text summarization. NER can also help to improve the accuracy of machine learning models by providing additional features for classification tasks. Additionally, NER is important for natural language processing <code>NLP</code> tasks such as machine translation, speech recognition, and question answering systems.</p>
 </blockquote>
 <p><strong>NER</strong> can be quite a helpful tool in a variety of <strong>NLP</strong> applications. </p>
-<h3 id="our-ner-application"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Our NER application</b></h3>
+<h3 id="-our-ner-application"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Our NER application</b><a class="headerlink" href="#-our-ner-application" title="Permanent link"></a></h3>
 <p>Our <strong>NER</strong> application in this example:</p>
 <p>We'll be using <strong>token classification</strong> in order to identify tokens that can be identified as function <code>input parameters</code>, <code>data sources</code> and <code>plot parameters</code>. Identifying them helps us extract information from input text and allow us to store &amp; use relevant data that is defined in a <code>string</code></p>
 <p>Let's look at an example:</p>
-<p><strong>Input Text:</strong></p>
-<p>: visualise column kdeplot for hf hue author fill True alpha 0.1 mew 1 mec 1 s 10 stheme viridis bw 10</p>
-<p><strong>NER Tagged:</strong></p>
-<p>: visualise column kdeplot <code>[source : for]</code> hf <code>[param : hue]</code> author <code>[pp : fill]</code> True <code>[pp : alpha]</code> 0.1 <code>[pp : mew]</code> 1 <code>[pp : mec]</code> 1 <code>[pp : s]</code> 10 <code>[pp : stheme]</code> viridis <code>[pp : bw]</code> 10</p>
-<h2 id="the-dataset"><b>The Dataset</b></h2>
+<dl>
+<dt><strong>Input Text:</strong></dt>
+<dd>
+<p>visualise column kdeplot for hf hue author fill True alpha 0.1 mew 1 mec 1 s 10 stheme viridis bw 10</p>
+</dd>
+<dt><strong>NER Tagged:</strong></dt>
+<dd>
+<p>visualise column kdeplot <code>[source : for]</code> hf <code>[param : hue]</code> author <code>[pp : fill]</code> True <code>[pp : alpha]</code> 0.1 <code>[pp : mew]</code> 1 <code>[pp : mec]</code> 1 <code>[pp : s]</code> 10 <code>[pp : stheme]</code> viridis <code>[pp : bw]</code> 10</p>
+</dd>
+</dl>
+<h2 id="the-dataset"><b>The Dataset</b><a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
 <p>We can define a tag parser that supports an input format: <code>[tag : name]</code> (the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive dataset</a> format)</strong>. First, lets initialise the parser; <code>parser</code>, which reads the above format every time it is called. To parse all data in our dataset, we loop through all data and store relevant mapping dictionaries, returning the <strong>tokenised text</strong> &amp; <strong>tokenised tags</strong>. </p>
 <p>Let's look at the input data format:</p>
-<pre><code class="language-python"># for demonstration only
-ldf = pd.read_csv('ner_mp.csv')
-text,annot = list(ldf['text'].values),list(ldf['annot'].values)
+<div class="highlight"><pre><span></span><code><span class="c1"># for demonstration only</span>
+<span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ner_mp.csv&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">,</span><span class="n">annot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ldf</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">),</span><span class="nb">list</span><span class="p">(</span><span class="n">ldf</span><span class="p">[</span><span class="s1">&#39;annot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 
-text[:4]
-# ['visualise column kdeplot for dbscan_labels hue outlier_dbscan',
-# 'visualise column kdeplot for hf hue author fill True alpha 0.1 mew 1 mec 1 s 10 stheme viridis bw 10',
-# 'create relplot using hf x pressure y mass_flux col geometry hue author',
-# 'pca dimensionality reduction using data mpg subset numerical columns only']
+<span class="n">text</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="c1"># [&#39;visualise column kdeplot for dbscan_labels hue outlier_dbscan&#39;,</span>
+<span class="c1"># &#39;visualise column kdeplot for hf hue author fill True alpha 0.1 mew 1 mec 1 s 10 stheme viridis bw 10&#39;,</span>
+<span class="c1"># &#39;create relplot using hf x pressure y mass_flux col geometry hue author&#39;,</span>
+<span class="c1"># &#39;pca dimensionality reduction using data mpg subset numerical columns only&#39;]</span>
 
-annot[:4]
-# ['visualise column kdeplot [source : for] dbscan_labels [param : hue] outlier_dbscan',
-# 'visualise column kdeplot [source : for] hf [param : hue] author [pp : fill] True [pp : alpha] 0.1 [pp : mew] 1 [pp : mec] 1 [pp : s] 10 [pp : stheme] viridis [pp : bw] 10',
-# 'create relplot using hf [param : x] pressure [param : y] mass_flux [param : col] geometry [param : hue] author',
-# 'pca dimensionality reduction [source : using data] mpg [source : subset] numerical columns only']
-</code></pre>
-<h3 id="annotation-parser"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Annotation Parser</b></h3>
+<span class="n">annot</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="c1"># [&#39;visualise column kdeplot [source : for] dbscan_labels [param : hue] outlier_dbscan&#39;,</span>
+<span class="c1"># &#39;visualise column kdeplot [source : for] hf [param : hue] author [pp : fill] True [pp : alpha] 0.1 [pp : mew] 1 [pp : mec] 1 [pp : s] 10 [pp : stheme] viridis [pp : bw] 10&#39;,</span>
+<span class="c1"># &#39;create relplot using hf [param : x] pressure [param : y] mass_flux [param : col] geometry [param : hue] author&#39;,</span>
+<span class="c1"># &#39;pca dimensionality reduction [source : using data] mpg [source : subset] numerical columns only&#39;]</span>
+</code></pre></div>
+<h3 id="-annotation-parser"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Annotation Parser</b><a class="headerlink" href="#-annotation-parser" title="Permanent link"></a></h3>
 <p>The above format can be parsed using <code>Parser</code>, we first need to initialise it</p>
-<pre><code class="language-python">from typing import List
-import regex as re
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
 
-# ner tag parser
-class Parser:
+<span class="c1"># ner tag parser</span>
+<span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
 
-    LABEL_PATTERN = r&quot;\[(.*?)\]&quot;
-    PUNCTUATION_PATTERN = r&quot;([,\/#!$%\^&amp;\*;:{}=\-`~()'\&quot;’¿])&quot;
+    <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
+    <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
 
-    def tokenise(self,text:str):
-        sentence = re.sub(self.PUNCTUATION_PATTERN, r&quot; \1 &quot;, text)
-        tokens = []
-        for w in sentence.split():
-            tokens.append(w)
+    <span class="k">def</span> <span class="nf">tokenise</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION_PATTERN</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot; \1 &quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">tokens</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
+        <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> 
+            <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
 
-        return tokens
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">txt</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION_PATTERN</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot; \1 &quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
 
-    def __init__(self):
-        self.tag_to_id = {
-            &quot;O&quot;: 0
-        }
-        self.id_to_tag = {
-            0: &quot;O&quot;
-        }
+            <span class="n">txt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_tag</span><span class="p">:</span>
+                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>   <span class="c1"># return tag for current [text,annot]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span> <span class="c1"># add [tag] to tag_to_id/id_to_tag</span>
+    
+        <span class="c1"># convert tags to numeric representation (if needed)</span>
 
-    def __call__(self, sentence: str, annotated: str) -&gt; List[str]:
-        matches = re.findall(self.LABEL_PATTERN, annotated)
-        word_to_tag = {}
-        for match in matches:
-            tag, phrase = match.split(&quot; : &quot;)
-            words = phrase.split(&quot; &quot;) 
-            word_to_tag[words[0]] = f&quot;B-{tag.upper()}&quot;
-            for w in words[1:]:
-                word_to_tag[w] = f&quot;I-{tag.upper()}&quot;
+        <span class="n">ttags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+            <span class="n">ttags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">])</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="n">ttags</span>
+            
+        <span class="k">return</span> <span class="n">tags</span>
 
-        tags = []; txt = []
-        sentence = re.sub(self.PUNCTUATION_PATTERN, r&quot; \1 &quot;, sentence)
-        for w in sentence.split():
-
-            txt.append(w)
-            if w not in word_to_tag:
-                tags.append(&quot;O&quot;)
-            else:
-                tags.append(word_to_tag[w])   # return tag for current [text,annot]
-                self.__add_tag(word_to_tag[w]) # add [tag] to tag_to_id/id_to_tag
-
-        # convert tags to numeric representation (if needed)
-
-        ttags = []
-        for tag in tags:
-            ttags.append(self.tag_to_id[tag])
-        tags = ttags
-
-        return tags
-
-    def __add_tag(self, tag: str):
-        if tag in self.tag_to_id:
-            return
-        id_ = len(self.tag_to_id)
-        self.tag_to_id[tag] = id_
-        self.id_to_tag[id_] = tag
-
-    def get_id(self, tag: str):
-        return self.tag_to_id[tag]
-
-# initialise parser
-parser = Parser()
-</code></pre>
-<h3 id="parse-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Parse Dataset</b></h3>
+    <span class="k">def</span> <span class="nf">__add_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+        
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
+    
+<span class="c1"># initialise parser</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="-parse-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Parse Dataset</b><a class="headerlink" href="#-parse-dataset" title="Permanent link"></a></h3>
 <p>To use the parser on a dataset, we loop through all our rows, calling the parser, which fills out <code>tag_to_id</code>, <code>id_to_tag</code> and returns the tokenised <code>tags</code> when it is called</p>
-<pre><code class="language-python">
-# loop through dataset
-lst_tokens = []; lst_annot = []
-for i,j in zip(text,annot):
-    tags = parser(i,j)                      # parse input ner format 
-    lst_tokens.append(parser.tokenise(i))   # tokenise the input text
-    lst_annot.append(tags)             
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># loop through dataset</span>
+<span class="n">lst_tokens</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">lst_annot</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">annot</span><span class="p">):</span>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>                      <span class="c1"># parse input ner format </span>
+    <span class="n">lst_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">tokenise</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>   <span class="c1"># tokenise the input text</span>
+    <span class="n">lst_annot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>             
+</code></pre></div>
 <p>We'll be using <strong>Huggingface</strong> to train our model, so we need our two lists <code>lst_tokens</code>,<code>lst_annot</code> to be converted into a huggingface <code>dataset</code>. To do this we create a <code>dataframe</code> and then use <code>from_pandas</code> method to convert the <code>dataframe</code> to a <code>dataset</code>. Each row in the <code>dataset</code> contains a list, which by default will not be registered correctly as the default datatype, so we need to define feature types (<code>features</code> argument) when calling <code>from_pandas</code>. A list is equivalent to a <code>Sequence</code>, whilst <code>ner_tags</code> are our labels, for which we need to define <code>ClassLabel</code>.</p>
-<pre><code class="language-python">from datasets import Dataset,DatasetDict,Features,Value,ClassLabel,Sequence
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span><span class="n">DatasetDict</span><span class="p">,</span><span class="n">Features</span><span class="p">,</span><span class="n">Value</span><span class="p">,</span><span class="n">ClassLabel</span><span class="p">,</span><span class="n">Sequence</span>
 
-# create dataframe from token/tag pairs
-df_raw_dataset = pd.DataFrame({'tokens':lst_tokens,
-                               'ner_tags':lst_annot})
+<span class="c1"># create dataframe from token/tag pairs</span>
+<span class="n">df_raw_dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;tokens&#39;</span><span class="p">:</span><span class="n">lst_tokens</span><span class="p">,</span>
+                               <span class="s1">&#39;ner_tags&#39;</span><span class="p">:</span><span class="n">lst_annot</span><span class="p">})</span>
 
-# custom data type
-class_names = list(parser.tag_to_id.keys())
-ft = Features({'tokens': Sequence(Value(&quot;string&quot;)),
-               'ner_tags':Sequence(ClassLabel(names=class_names))})
+<span class="c1"># custom data type</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">tag_to_id</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ft</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s1">&#39;tokens&#39;</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">Value</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">)),</span>
+               <span class="s1">&#39;ner_tags&#39;</span><span class="p">:</span><span class="n">Sequence</span><span class="p">(</span><span class="n">ClassLabel</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="n">class_names</span><span class="p">))})</span>
 
 
-# dataset = Dataset.from_pandas(df_raw_dataset,features=ft) # convert dataframe to dataset
-dataset = Dataset.from_pandas(df_raw_dataset,
-                              features=ft) # convert dataframe to dataset
+<span class="c1"># dataset = Dataset.from_pandas(df_raw_dataset,features=ft) # convert dataframe to dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df_raw_dataset</span><span class="p">,</span>
+                              <span class="n">features</span><span class="o">=</span><span class="n">ft</span><span class="p">)</span> <span class="c1"># convert dataframe to dataset</span>
 
-# visualise a sample from the dataset
-raw_datasets = DatasetDict() # create dataset diction
-raw_datasets['train'] = dataset # register dataset training data
-raw_datasets['train'][0]
-</code></pre>
-<pre><code>{'tokens': ['visualise',
-  'column',
-  'kdeplot',
-  'for',
-  'dbscan_labels',
-  'hue',
-  'outlier_dbscan'],
- 'ner_tags': [0, 0, 0, 1, 0, 2, 0]}
-</code></pre>
+<span class="c1"># visualise a sample from the dataset</span>
+<span class="n">raw_datasets</span> <span class="o">=</span> <span class="n">DatasetDict</span><span class="p">()</span> <span class="c1"># create dataset diction</span>
+<span class="n">raw_datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataset</span> <span class="c1"># register dataset training data</span>
+<span class="n">raw_datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>{&#39;tokens&#39;: [&#39;visualise&#39;,
+  &#39;column&#39;,
+  &#39;kdeplot&#39;,
+  &#39;for&#39;,
+  &#39;dbscan_labels&#39;,
+  &#39;hue&#39;,
+  &#39;outlier_dbscan&#39;],
+ &#39;ner_tags&#39;: [0, 0, 0, 1, 0, 2, 0]}
+</code></pre></div>
 <p>Let's look at what data we have as a result of parsing input data <code>ldf</code> with <code>parser</code> </p>
-<pre><code class="language-python"># visualise tags
-words = raw_datasets[&quot;train&quot;][0][&quot;tokens&quot;]
-labels = raw_datasets[&quot;train&quot;][0][&quot;ner_tags&quot;]
-line1 = &quot;&quot;
-line2 = &quot;&quot;
-for word, label in zip(words, labels):
-    full_label = label_names[label]
-    max_length = max(len(word), len(full_label))
-    line1 += word + &quot; &quot; * (max_length - len(word) + 1)
-    line2 += full_label + &quot; &quot; * (max_length - len(full_label) + 1)
+<div class="highlight"><pre><span></span><code><span class="c1"># visualise tags</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">raw_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">raw_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;ner_tags&quot;</span><span class="p">]</span>
+<span class="n">line1</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">line2</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="n">full_label</span> <span class="o">=</span> <span class="n">label_names</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+    <span class="n">max_length</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_label</span><span class="p">))</span>
+    <span class="n">line1</span> <span class="o">+=</span> <span class="n">word</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_length</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">line2</span> <span class="o">+=</span> <span class="n">full_label</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_length</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_label</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-print(line1)
-print(line2)
-# visualise column kdeplot for      dbscan_labels hue     outlier_dbscan 
-# O         O      O       B-SOURCE O             B-PARAM O              
-</code></pre>
-<h2 id="transformer-tokeniser"><b>Transformer Tokeniser</b></h2>
+<span class="nb">print</span><span class="p">(</span><span class="n">line1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">line2</span><span class="p">)</span>
+<span class="c1"># visualise column kdeplot for      dbscan_labels hue     outlier_dbscan </span>
+<span class="c1"># O         O      O       B-SOURCE O             B-PARAM O              </span>
+</code></pre></div>
+<h2 id="transformer-tokeniser"><b>Transformer Tokeniser</b><a class="headerlink" href="#transformer-tokeniser" title="Permanent link"></a></h2>
 <p>The above format of <strong>word/tag</strong> pair works fine if we use the pair for classification as it is. Our approach involves using a <strong>transformer encoder</strong> model (<code>bert-base-cased</code>), which has it own tokenisation approach, which means we need to create token tags for each <strong>subtoken</strong> that the tokeniser creates, this means we need to make a little adjustment to our input data</p>
 <p>First let's load our tokeniser using <code>form_pretrained</code></p>
-<pre><code class="language-python">from transformers import AutoTokenizer
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
 
-model_checkpoint = &quot;bert-base-cased&quot;
-tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
-</code></pre>
+<span class="n">model_checkpoint</span> <span class="o">=</span> <span class="s2">&quot;bert-base-cased&quot;</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_checkpoint</span><span class="p">)</span>
+</code></pre></div>
 <p>To align the tags to correpond to <strong>subword tokens</strong> we can use a helper function <code>align_labels_with_tokens</code>; the function inputs the <strong>original labels</strong> (those with tags for words) and <strong>word_ids</strong>, which the <code>tokeniser</code> outputs representing the <strong>token-word</strong> association. As the tokeniser can split a word into parts, we can use this information to define the <strong>subtoken</strong> tags</p>
-<pre><code class="language-python"># helper function; convert word token labels to subword token labels
-# which will be fed into the model w/ input_ids
+<div class="highlight"><pre><span></span><code><span class="c1"># helper function; convert word token labels to subword token labels</span>
+<span class="c1"># which will be fed into the model w/ input_ids</span>
 
-def align_labels_with_tokens(labels, word_ids):
-    new_labels = []
-    current_word = None
-    for word_id in word_ids:
-        if word_id != current_word:
-            # Start of a new word!
-            current_word = word_id
-            label = -100 if word_id is None else labels[word_id]
-            new_labels.append(label)
-        elif word_id is None:
-            # Special token
-            new_labels.append(-100)
-        else:
-            # Same word as previous token
-            label = labels[word_id]
-            # If the label is B-XXX we change it to I-XXX
-            if label % 2 == 1:
-                label += 1
-            new_labels.append(label)
+<span class="k">def</span> <span class="nf">align_labels_with_tokens</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">word_ids</span><span class="p">):</span>
+    <span class="n">new_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_word</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">word_id</span> <span class="ow">in</span> <span class="n">word_ids</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word_id</span> <span class="o">!=</span> <span class="n">current_word</span><span class="p">:</span>
+            <span class="c1"># Start of a new word!</span>
+            <span class="n">current_word</span> <span class="o">=</span> <span class="n">word_id</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span> <span class="k">if</span> <span class="n">word_id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">labels</span><span class="p">[</span><span class="n">word_id</span><span class="p">]</span>
+            <span class="n">new_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">word_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Special token</span>
+            <span class="n">new_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Same word as previous token</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">word_id</span><span class="p">]</span>
+            <span class="c1"># If the label is B-XXX we change it to I-XXX</span>
+            <span class="k">if</span> <span class="n">label</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">label</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">new_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
 
-    return new_labels
-</code></pre>
-<h3 id="tokeniser-sample"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tokeniser Sample</b></h3>
+    <span class="k">return</span> <span class="n">new_labels</span>
+</code></pre></div>
+<h3 id="-tokeniser-sample"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Tokeniser Sample</b><a class="headerlink" href="#-tokeniser-sample" title="Permanent link"></a></h3>
 <p>And let's look at an example of how the <code>tokeniser</code> actually splits the input text data, as well as the <strong>token-word</strong> association list; this information allows us to define subtoken tags based on their word tag from <code>word_ids</code> data</p>
-<pre><code class="language-python"># the model tokeniser format
-inputs = tokenizer(raw_datasets[&quot;train&quot;][10][&quot;tokens&quot;], is_split_into_words=True)
+<div class="highlight"><pre><span></span><code><span class="c1"># the model tokeniser format</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">raw_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">10</span><span class="p">][</span><span class="s2">&quot;tokens&quot;</span><span class="p">],</span> <span class="n">is_split_into_words</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-print('bert tokens')
-print(inputs.tokens())
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;bert tokens&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">tokens</span><span class="p">())</span>
 
-# the tokeniser also keeps track of which tokens belong to which word
-print('\nbert word_ids')
-print(inputs.word_ids())
+<span class="c1"># the tokeniser also keeps track of which tokens belong to which word</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">bert word_ids&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">word_ids</span><span class="p">())</span>
 
-# bert tokens
-# ['[CLS]', 'create', 'sea', '##born', 'kernel', 'density', 'plot', 'using', 'h', '##f', 'x', 'x', '_', 'e', '_', 'out', '[SEP]']
+<span class="c1"># bert tokens</span>
+<span class="c1"># [&#39;[CLS]&#39;, &#39;create&#39;, &#39;sea&#39;, &#39;##born&#39;, &#39;kernel&#39;, &#39;density&#39;, &#39;plot&#39;, &#39;using&#39;, &#39;h&#39;, &#39;##f&#39;, &#39;x&#39;, &#39;x&#39;, &#39;_&#39;, &#39;e&#39;, &#39;_&#39;, &#39;out&#39;, &#39;[SEP]&#39;]</span>
 
-# bert word_id
-# [None, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 8, 8, 8, None]
-</code></pre>
-<h3 id="subtoken-ner-tag-adjustment"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b></h3>
+<span class="c1"># bert word_id</span>
+<span class="c1"># [None, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 8, 8, 8, None]</span>
+</code></pre></div>
+<h3 id="-subtoken-ner-tag-adjustment"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b><a class="headerlink" href="#-subtoken-ner-tag-adjustment" title="Permanent link"></a></h3>
 <p>Having all relevant pieces, let's return to our original dataset <code>raw_datasets</code> which we created in <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset">parse dataset</a></strong></p>
-<pre><code class="language-python">
-# Tokenise input text
-def tokenize_and_align_labels(examples):
+<div class="highlight"><pre><span></span><code><span class="c1"># Tokenise input text</span>
+<span class="k">def</span> <span class="nf">tokenize_and_align_labels</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
 
-    # tokenise 
-    tokenized_inputs = tokenizer(
-        examples[&quot;tokens&quot;], truncation=True, is_split_into_words=True
-    )
-    all_labels = examples[&quot;ner_tags&quot;]
-    new_labels = []
-    for i, labels in enumerate(all_labels):
-        word_ids = tokenized_inputs.word_ids(i)                        # subtoken word identifier
-        new_labels.append(align_labels_with_tokens(labels, word_ids))  # new ner labels for subtokens
+    <span class="c1"># tokenise </span>
+    <span class="n">tokenized_inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
+        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;tokens&quot;</span><span class="p">],</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">is_split_into_words</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">all_labels</span> <span class="o">=</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;ner_tags&quot;</span><span class="p">]</span>
+    <span class="n">new_labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_labels</span><span class="p">):</span>
+        <span class="n">word_ids</span> <span class="o">=</span> <span class="n">tokenized_inputs</span><span class="o">.</span><span class="n">word_ids</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>                        <span class="c1"># subtoken word identifier</span>
+        <span class="n">new_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">align_labels_with_tokens</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">word_ids</span><span class="p">))</span>  <span class="c1"># new ner labels for subtokens</span>
 
-    tokenized_inputs[&quot;labels&quot;] = new_labels
-    return tokenized_inputs
+    <span class="n">tokenized_inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_labels</span>
+    <span class="k">return</span> <span class="n">tokenized_inputs</span>
 
-tokenized_datasets = raw_datasets.map(tokenize_and_align_labels,
-                                      batched=True,
-                                      remove_columns=raw_datasets[&quot;train&quot;].column_names)
+<span class="n">tokenized_datasets</span> <span class="o">=</span> <span class="n">raw_datasets</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize_and_align_labels</span><span class="p">,</span>
+                                      <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                      <span class="n">remove_columns</span><span class="o">=</span><span class="n">raw_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
 
-tokenized_datasets['train']
-# Dataset({
-#    features: ['input_ids', 'token_type_ids', 'attention_mask', 'labels'],
-#    num_rows: 51
-# })
-</code></pre>
-<h3 id="data-collator-adjustment"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Collator Adjustment</b></h3>
+<span class="n">tokenized_datasets</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span>
+<span class="c1"># Dataset({</span>
+<span class="c1">#    features: [&#39;input_ids&#39;, &#39;token_type_ids&#39;, &#39;attention_mask&#39;, &#39;labels&#39;],</span>
+<span class="c1">#    num_rows: 51</span>
+<span class="c1"># })</span>
+</code></pre></div>
+<h3 id="-data-collator-adjustment"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Data Collator Adjustment</b><a class="headerlink" href="#-data-collator-adjustment" title="Permanent link"></a></h3>
 <p>The final preprocessing step is the <code>data_collator</code></p>
-<pre><code class="language-python">from transformers import DataCollatorForTokenClassification
-data_collator = DataCollatorForTokenClassification(tokenizer=tokenizer)
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">DataCollatorForTokenClassification</span>
+<span class="n">data_collator</span> <span class="o">=</span> <span class="n">DataCollatorForTokenClassification</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
 
-# let's check what it does
-batch = data_collator([tokenized_datasets[&quot;train&quot;][i] for i in range(2)])
-batch[&quot;labels&quot;]
-#tensor([[-100,    0,    0,    0,    0,    0,    0,    0,    1,    0,    0,    0,
-#           0,    0,    2,    2,    0,    0,    0,    0,    0,    0, -100, -100,
-#        -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100,
-#        -100, -100],
-#       [-100,    0,    0,    0,    0,    0,    0,    0,    1,    0,    0,    2,
-#           2,    0,    3,    0,    3,    0,    0,    0,    3,    4,    0,    3,
-#           4,    0,    3,    0,    3,    4,    4,    0,    0,    0,    3,    4,
-#           0, -100]])
-</code></pre>
-<h2 id="prepare-for-training"><b>Prepare for Training</b></h2>
-<h3 id="evaluation-metrics"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Evaluation Metrics</b></h3>
+<span class="c1"># let&#39;s check what it does</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="n">data_collator</span><span class="p">([</span><span class="n">tokenized_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+<span class="n">batch</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span>
+<span class="c1">#tensor([[-100,    0,    0,    0,    0,    0,    0,    0,    1,    0,    0,    0,</span>
+<span class="c1">#           0,    0,    2,    2,    0,    0,    0,    0,    0,    0, -100, -100,</span>
+<span class="c1">#        -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100,</span>
+<span class="c1">#        -100, -100],</span>
+<span class="c1">#       [-100,    0,    0,    0,    0,    0,    0,    0,    1,    0,    0,    2,</span>
+<span class="c1">#           2,    0,    3,    0,    3,    0,    0,    0,    3,    4,    0,    3,</span>
+<span class="c1">#           4,    0,    3,    0,    3,    4,    4,    0,    0,    0,    3,    4,</span>
+<span class="c1">#           0, -100]])</span>
+</code></pre></div>
+<h2 id="prepare-for-training"><b>Prepare for Training</b><a class="headerlink" href="#prepare-for-training" title="Permanent link"></a></h2>
+<h3 id="-evaluation-metrics"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Evaluation Metrics</b><a class="headerlink" href="#-evaluation-metrics" title="Permanent link"></a></h3>
 <p>The trainer allows us to add an evaluation function which when added to <code>compute_metrics</code> in the trainer return the model prediction, which are the <code>logits</code> and <code>labels</code>. Using this data we can then write an <strong>evaluation metric function</strong> which returns a dictionary of metric and its value pairs</p>
-<pre><code class="language-python">import numpy as np
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-def compute_metrics(eval_preds):
+<span class="k">def</span> <span class="nf">compute_metrics</span><span class="p">(</span><span class="n">eval_preds</span><span class="p">):</span>
 
-    model prediction
-    logits, labels = eval_preds
-    predictions = np.argmax(logits, axis=-1)
+    <span class="n">model</span> <span class="n">prediction</span>
+    <span class="n">logits</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">eval_preds</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-    # Remove ignored index (special tokens) and convert to labels
-    true_labels = [[label_names[l] for l in label if l != -100] for label in labels]
-    true_predictions = [
-        [label_names[p] for (p, l) in zip(prediction, label) if l != -100]
-        for prediction, label in zip(predictions, labels)
-    ]
-    all_metrics = metric.compute(predictions=true_predictions, references=true_labels)
-    return {
-        &quot;precision&quot;: all_metrics[&quot;overall_precision&quot;],
-        &quot;recall&quot;: all_metrics[&quot;overall_recall&quot;],
-        &quot;f1&quot;: all_metrics[&quot;overall_f1&quot;],
-        &quot;accuracy&quot;: all_metrics[&quot;overall_accuracy&quot;],
-    }
-</code></pre>
-<h3 id="define-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Define Model</b></h3>
+    <span class="c1"># Remove ignored index (special tokens) and convert to labels</span>
+    <span class="n">true_labels</span> <span class="o">=</span> <span class="p">[[</span><span class="n">label_names</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">label</span> <span class="k">if</span> <span class="n">l</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">100</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">]</span>
+    <span class="n">true_predictions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">label_names</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span> <span class="k">if</span> <span class="n">l</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">100</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">prediction</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">all_metrics</span> <span class="o">=</span> <span class="n">metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">true_predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">true_labels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="n">all_metrics</span><span class="p">[</span><span class="s2">&quot;overall_precision&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">all_metrics</span><span class="p">[</span><span class="s2">&quot;overall_recall&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">all_metrics</span><span class="p">[</span><span class="s2">&quot;overall_f1&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">all_metrics</span><span class="p">[</span><span class="s2">&quot;overall_accuracy&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h3 id="-define-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Define Model</b><a class="headerlink" href="#-define-model" title="Permanent link"></a></h3>
 <p>Huggingface allows us to easily adjust the <strong>base model</strong> (<code>bert-base-cased</code>) for different tasks by loading the task type from the main library. For NER, we need to load <code>AutoModelForTokenClassification</code>, for which we then need to define two mapping dictionaries <code>id2label</code> &amp; <code>label2id</code></p>
-<pre><code class="language-python"># define subtoken-tag mapping dictionary
-id2label = {i: label for i, label in enumerate(label_names)}
-label2id = {v: k for k, v in id2label.items()}
+<div class="highlight"><pre><span></span><code><span class="c1"># define subtoken-tag mapping dictionary</span>
+<span class="n">id2label</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">label</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">label_names</span><span class="p">)}</span>
+<span class="n">label2id</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">id2label</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
 
-from transformers import AutoModelForTokenClassification
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForTokenClassification</span>
 
-model = AutoModelForTokenClassification.from_pretrained(model_checkpoint,
-                                                        id2label=id2label,
-                                                        label2id=label2id)
-</code></pre>
-<h3 id="train-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Train Model</b></h3>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForTokenClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_checkpoint</span><span class="p">,</span>
+                                                        <span class="n">id2label</span><span class="o">=</span><span class="n">id2label</span><span class="p">,</span>
+                                                        <span class="n">label2id</span><span class="o">=</span><span class="n">label2id</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="-train-model"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Train Model</b><a class="headerlink" href="#-train-model" title="Permanent link"></a></h3>
 <p>Time to train our model, we'll train the model for 40 epochs, without an evaluation strategy (validation dataset), using a learning rate in our optimiser is set to 2e-5, which by default is the AdamW optimiser.</p>
-<pre><code class="language-python">from transformers import TrainingArguments
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">TrainingArguments</span>
 
-args = TrainingArguments(
-    &quot;bert-finetuned-ner2&quot;,
-    evaluation_strategy=&quot;no&quot;,
-    save_strategy=&quot;epoch&quot;,
-    learning_rate=2e-5,
-    num_train_epochs=40,
-    weight_decay=0.01)
-</code></pre>
-<pre><code class="language-python">from transformers import Trainer
+<span class="n">args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="s2">&quot;bert-finetuned-ner2&quot;</span><span class="p">,</span>
+    <span class="n">evaluation_strategy</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">,</span>
+    <span class="n">save_strategy</span><span class="o">=</span><span class="s2">&quot;epoch&quot;</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-5</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+    <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">Trainer</span>
 
-trainer = Trainer(
-    model=model,                       # define the model
-    args=args,                         # define the trainer parameters
-    train_dataset=tokenized_datasets[&quot;train&quot;],  # define the adjusted ner tag dataset
-    data_collator=data_collator,      # define the data collator
-    compute_metrics=compute_metrics,  # define the evaluation metrics function
-    tokenizer=tokenizer,              # define the tokeniser
-)
-trainer.train()
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>                       <span class="c1"># define the model</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>                         <span class="c1"># define the trainer parameters</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">tokenized_datasets</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span>  <span class="c1"># define the adjusted ner tag dataset</span>
+    <span class="n">data_collator</span><span class="o">=</span><span class="n">data_collator</span><span class="p">,</span>      <span class="c1"># define the data collator</span>
+    <span class="n">compute_metrics</span><span class="o">=</span><span class="n">compute_metrics</span><span class="p">,</span>  <span class="c1"># define the evaluation metrics function</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>              <span class="c1"># define the tokeniser</span>
+<span class="p">)</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 
-# TrainOutput(global_step=280, training_loss=0.009931504726409912, metrics={'train_runtime': 24.8186, 'train_samples_per_second': 82.197, 'train_steps_per_second': 11.282, 'total_flos': 27046414867968.0, 'train_loss': 0.009931504726409912, 'epoch': 40.0})
-</code></pre>
+<span class="c1"># TrainOutput(global_step=280, training_loss=0.009931504726409912, metrics={&#39;train_runtime&#39;: 24.8186, &#39;train_samples_per_second&#39;: 82.197, &#39;train_steps_per_second&#39;: 11.282, &#39;total_flos&#39;: 27046414867968.0, &#39;train_loss&#39;: 0.009931504726409912, &#39;epoch&#39;: 40.0})</span>
+</code></pre></div>
 <p>If we use <code>evaluation_strategy="steps"</code>, <code>eval_steps=50</code> &amp; <code>eval_dataset</code> (just setting to train data) we get the following <strong>metrics</strong> so the model has memorised the inputs in our training set </p>
-<pre><code>Step    Training Loss   Validation Loss     Precision   Recall  F1  Accuracy
-50  No log  0.030486    0.994949    0.989950    0.992443    0.995763
-100     No log  0.006724    0.990000    0.994975    0.992481    0.995763
-150     No log  0.007272    0.994949    0.989950    0.992443    0.995763
-200     No log  0.007903    0.994949    0.989950    0.992443    0.995763
-250     No log  0.006493    0.990000    0.994975    0.992481    0.995763
-</code></pre>
-<h3 id="save-huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Save Huggingface Trainer</b></h3>
+<div class="highlight"><pre><span></span><code>Step 	Training Loss 	Validation Loss 	Precision 	Recall 	F1 	Accuracy
+50 	No log 	0.030486 	0.994949 	0.989950 	0.992443 	0.995763
+100 	No log 	0.006724 	0.990000 	0.994975 	0.992481 	0.995763
+150 	No log 	0.007272 	0.994949 	0.989950 	0.992443 	0.995763
+200 	No log 	0.007903 	0.994949 	0.989950 	0.992443 	0.995763
+250 	No log 	0.006493 	0.990000 	0.994975 	0.992481 	0.995763
+</code></pre></div>
+<h3 id="-save-huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Save Huggingface Trainer</b><a class="headerlink" href="#-save-huggingface-trainer" title="Permanent link"></a></h3>
 <p>We can save our <code>trainer</code> using <code>.save_model</code> method, which saves all relevant needed to utilise the <code>pipeline</code> method.</p>
-<pre><code class="language-python">trainer.save_model(&quot;bert-finetuned-ner2&quot;)
-</code></pre>
-<h3 id="load-a-huggingface-pipeline"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b></h3>
+<div class="highlight"><pre><span></span><code><span class="n">trainer</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s2">&quot;bert-finetuned-ner2&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="-load-a-huggingface-pipeline"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b><a class="headerlink" href="#-load-a-huggingface-pipeline" title="Permanent link"></a></h3>
 <p>Having saved our <code>trainer</code>, we simply call the relevant model checkpoint which we used in <code>.save_model</code> and set the <code>task</code> argument, which for our <strong>NER</strong> problem is <code>token-classification</code>, we also need to set an <strong>aggregation_strategy</strong>:</p>
 <p>The <code>aggregation_strategy</code> is a parameter in the Hugging Face Trainer API that specifies how to aggregate the predictions of multiple batches during evaluation. This is particularly useful when evaluating large datasets that cannot fit into memory all at once. The aggregation_strategy parameter can be set to one of several options, including "mean", "max", "min", and "median", which determine how the predictions should be combined. </p>
-<pre><code class="language-python">from transformers import pipeline
-# Replace this with your own checkpoint
-model_checkpoint = &quot;bert-finetuned-ner2&quot;
-token_classifier = pipeline(&quot;token-classification&quot;,
-                            model=model_checkpoint)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+<span class="c1"># Replace this with your own checkpoint</span>
+<span class="n">model_checkpoint</span> <span class="o">=</span> <span class="s2">&quot;bert-finetuned-ner2&quot;</span>
+<span class="n">token_classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;token-classification&quot;</span><span class="p">,</span>
+                            <span class="n">model</span><span class="o">=</span><span class="n">model_checkpoint</span><span class="p">)</span>
+</code></pre></div>
 <p>Let's try finding the relevant tokens in the following request</p>
-<pre><code class="language-python">token_classifier(&quot;create a seaborn scatterplot using A, set x=B y: C (mew: 10, mec:20)&quot;)
-</code></pre>
-<pre><code>[{'entity_group': 'SOURCE',
-  'score': 0.9986413,
-  'word': 'using',
-  'start': 29,
-  'end': 34},
- {'entity_group': 'PARAM',
-  'score': 0.9031896,
-  'word': 'x',
-  'start': 42,
-  'end': 43},
- {'entity_group': 'PARAM',
-  'score': 0.99833447,
-  'word': 'y',
-  'start': 46,
-  'end': 47},
- {'entity_group': 'PP',
-  'score': 0.74444526,
-  'word': 'mew',
-  'start': 52,
-  'end': 55},
- {'entity_group': 'SOURCE',
-  'score': 0.4806772,
-  'word': ',',
-  'start': 59,
-  'end': 60}]
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><span class="n">token_classifier</span><span class="p">(</span><span class="s2">&quot;create a seaborn scatterplot using A, set x=B y: C (mew: 10, mec:20)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[{&#39;entity_group&#39;: &#39;SOURCE&#39;,
+  &#39;score&#39;: 0.9986413,
+  &#39;word&#39;: &#39;using&#39;,
+  &#39;start&#39;: 29,
+  &#39;end&#39;: 34},
+ {&#39;entity_group&#39;: &#39;PARAM&#39;,
+  &#39;score&#39;: 0.9031896,
+  &#39;word&#39;: &#39;x&#39;,
+  &#39;start&#39;: 42,
+  &#39;end&#39;: 43},
+ {&#39;entity_group&#39;: &#39;PARAM&#39;,
+  &#39;score&#39;: 0.99833447,
+  &#39;word&#39;: &#39;y&#39;,
+  &#39;start&#39;: 46,
+  &#39;end&#39;: 47},
+ {&#39;entity_group&#39;: &#39;PP&#39;,
+  &#39;score&#39;: 0.74444526,
+  &#39;word&#39;: &#39;mew&#39;,
+  &#39;start&#39;: 52,
+  &#39;end&#39;: 55},
+ {&#39;entity_group&#39;: &#39;SOURCE&#39;,
+  &#39;score&#39;: 0.4806772,
+  &#39;word&#39;: &#39;,&#39;,
+  &#39;start&#39;: 59,
+  &#39;end&#39;: 60}]
+</code></pre></div></p>
 <p>All in all, we can see that the model predicts the relevant tags quite well, there are some issues with <code>mew</code> and <code>mec</code> tags probably because of the aggregation strategy doesn't work well with the subword tokens that the tokeniser creates for such a short word as it is likely present in other parts but has a different subword token tags, a problem for another day</p>
-<h2 id="summary"><b>Summary</b></h2>
+<h2 id="summary"><b>Summary</b><a class="headerlink" href="#summary" title="Permanent link"></a></h2>
 <p>In this post we looked at how we can use huggingface to do <strong>named entity recognition</strong>. Let's look at the step that we took:</p>
-<ul>
-<li>[x] NER Task</li>
-<li>[x] load <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#the-dataset">massive format ner annotations</a></strong></li>
-<li>[x] parse the annotations &amp; create word/tag pairs <code>ldf</code> <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset">parse dataset</a></strong></li>
-<li>[x] convert parsed dataset to <code>dataframe</code> then <code>dataset</code> format <code>raw_dataset</code> <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset">parse dataset</a></strong></li>
-<li>[x] tokenise the input <code>text</code> from input dataset &amp; correct <code>raw_dataset</code> ner tags to coincide with subtokens <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-subtoken-ner-tag-adjustment">subtoken ner tag adjustment</a></strong></li>
-<li>[x] defined a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-define-model">model</a></strong> &amp; data collator for <strong>token classification</strong></li>
-<li>[x] trained our token classifier which achieved an <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-train-model">accuracy of 0.99+</a></strong> on the training dataset</li>
-<li>[x] defined a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-load-a-huggingface-pipeline">pipeline</a></strong> and tested our model on some input data, the pipeline returns <code>entity_group</code> &amp; relevant <code>score</code> for each tag it has identified</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> NER Task</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> load <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#the-dataset">massive format ner annotations</a></strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> parse the annotations &amp; create word/tag pairs <code>ldf</code> <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset">parse dataset</a></strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> convert parsed dataset to <code>dataframe</code> then <code>dataset</code> format <code>raw_dataset</code> <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset">parse dataset</a></strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> tokenise the input <code>text</code> from input dataset &amp; correct <code>raw_dataset</code> ner tags to coincide with subtokens <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-subtoken-ner-tag-adjustment">subtoken ner tag adjustment</a></strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> defined a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-define-model">model</a></strong> &amp; data collator for <strong>token classification</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> trained our token classifier which achieved an <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-train-model">accuracy of 0.99+</a></strong> on the training dataset</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> defined a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER2/#-load-a-huggingface-pipeline">pipeline</a></strong> and tested our model on some input data, the pipeline returns <code>entity_group</code> &amp; relevant <code>score</code> for each tag it has identified</li>
 </ul>
 <p>So this wraps up our post. Such an approach definitely helps simplify things, a custom training loop like in a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong> is not needed because of the <code>trainer</code>, which is very convenient because we can save the trainer upon fine tuning &amp; easily do inference on new data using the <strong>pipeline</strong> method. Having used the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive dataset</a> format)</strong> &amp; storing it in a <code>csv</code>, created some additional preprocessing steps, in addition to the adjustments we needed to make to each word token, so we would have data for <strong>subword tokens</strong> added some complexity. We also didn't experiment with the <code>aggregation_strategy</code> in <strong>pipeline</strong> since our results were more or less good, however its also something to consider when creating a <strong>NER</strong> tagger, you can find the different approaches <strong><a href="https://huggingface.co/transformers/v4.7.0/_modules/transformers/pipelines/token_classification.html">here</a></strong></p>
 <hr />
-<p>Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on :fontawesome-brands-github:{ .github } <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or :fontawesome-brands-kaggle:{ .kaggle} <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
 
 
 
@@ -1566,6 +1570,11 @@ token_classifier = pipeline(&quot;token-classification&quot;,
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+    </div>
   
   
     Made with

@@ -888,14 +888,14 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-ner" class="md-nav__link">
+  <a href="#-what-is-ner" class="md-nav__link">
     ❯❯ What is NER?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#applications" class="md-nav__link">
+  <a href="#-applications" class="md-nav__link">
     ❯❯ Applications
   </a>
   
@@ -1002,14 +1002,14 @@
 <p><img alt="" src="https://i.imgur.com/YB7sv87.jpg" /></p>
 <p>In this notebook, we'll take a look at how we can utilise huggingface transformer models and a custom PyTorch training loop, in order to classify different words in a document. We'll be utilising <strong>Massive</strong> dataset and fine-tuning and encoder <code>BERT</code>, with a custom tail model that can be used for multiclass classification</p>
 <p><a href="https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
-<h1 id="background"><b>Background</b></h1>
-<h2 id="what-is-ner"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>What is NER?</b></h2>
+<h1 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h1>
+<h2 id="-what-is-ner"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>What is NER?</b><a class="headerlink" href="#-what-is-ner" title="Permanent link"></a></h2>
 <ul>
 <li>NER is a natural language processing technique which identifies and extracts named entities from unstructured text</li>
 <li>Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be</li>
 <li>NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity</li>
 </ul>
-<h2 id="applications"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Applications</b></h2>
+<h2 id="-applications"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Applications</b><a class="headerlink" href="#-applications" title="Permanent link"></a></h2>
 <p>Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. </p>
 <p>Few such examples have been listed below[^footnote]:</p>
 <p>Classifying content for news providers: <br></p>
@@ -1032,9 +1032,9 @@
 <blockquote>
 <p>Usually, a company gets tons of customer complaints and feedback on a daily basis, and going through each one of them and recognizing the concerned parties is not an easy task. Using NER we can recognize relevant entities in customer complaints and feedback such as Product specifications, department, or company branch location so that the feedback is classified accordingly and forwarded to the appropriate department responsible for the identified product.</p>
 </blockquote>
-<h1 id="the-ner-dataset"><b>The NER Dataset</b></h1>
+<h1 id="the-ner-dataset"><b>The NER Dataset</b><a class="headerlink" href="#the-ner-dataset" title="Permanent link"></a></h1>
 <p>To realise <code>NER</code> with Hugginface, we'll be utilising a muli-language dataset <code>massive</code></p>
-<h2 id="massive-11"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Massive 1.1</b></h2>
+<h2 id="-massive-11"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Massive 1.1</b><a class="headerlink" href="#-massive-11" title="Permanent link"></a></h2>
 <p>Let's load our dataset <strong>MASSIVE</strong>; the dataset can be found on <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">huggingface</a></strong></p>
 <blockquote>
 <p>MASSIVE 1.1 is a parallel dataset of &gt; 1M utterances across <strong>52 languages</strong> with annotations for the Natural Language Understanding tasks of intent prediction and slot annotation. Utterances span 60 intents and include 55 slot types. MASSIVE was created by localizing the SLURP dataset, composed of general Intelligent Voice Assistant single-shot interactions.</p>
@@ -1043,52 +1043,52 @@
 <p>There are quite a number of ways we can extract data from this dataset, let's use the fastest way:
 - By specifying which <code>locale</code> group we want to load (so we don't load everything)
 - Define the subset of rows we want to use by using <code>split</code> (eg. train[10:100])</p>
-<pre><code class="language-python">from datasets import load_dataset, Dataset
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Dataset</span>
 
-train_dataset = load_dataset('AmazonScience/massive', &quot;ru-RU&quot;,split=&quot;train[:100]&quot;)
-test_dataset = load_dataset('AmazonScience/massive', &quot;ru-RU&quot;,split=&quot;test[:100]&quot;)
-</code></pre>
-<h2 id="relevant-columns"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Relevant Columns</b></h2>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:100]&quot;</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;test[:100]&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="-relevant-columns"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Relevant Columns</b><a class="headerlink" href="#-relevant-columns" title="Permanent link"></a></h2>
 <p>Some samples from our <strong>documents</strong>, located in column <code>utt</code> and NER <strong>Annotations</strong> are located in <code>annot_utt</code>, which is in the format <code>[tag : tokens]</code></p>
-<pre><code class="language-python">train_dataset['utt'][:10] 
-</code></pre>
-<pre><code>['разбуди меня в девять утра в пятницу',
-'поставь будильник на два часа вперед',
-'олли тихо',
-'отстановись',
-'олли остановись на десять секунд',
-'остановись на десять секунд',
-'сделай освещение здесь чуть более тёплым',
-'пожалуйста сделай свет подходящий для чтения',
-'время идти спать',
-'олли время спать']
-</code></pre>
-<pre><code class="language-python">train_dataset['annot_utt'][:10]
-</code></pre>
-<pre><code>['разбуди меня в [time : девять утра] в [date : пятницу]',
-'поставь будильник [time : на два часа вперед]',
-'олли тихо',
-'отстановись',
-'олли остановись на [time : десять секунд]',
-'остановись на [time : десять секунд]',
-'сделай освещение здесь чуть более [color_type : тёплым]',
-'пожалуйста сделай свет [color_type : подходящий для чтения]',
-'время идти спать',
-'олли время спать']
-</code></pre>
-<h1 id="text-preprocessing"><b>Text Preprocessing</b></h1>
-<h2 id="define-tokeniser-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Define Tokeniser &amp; Model</b></h2>
+<div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span> 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;разбуди меня в девять утра в пятницу&#39;,
+&#39;поставь будильник на два часа вперед&#39;,
+&#39;олли тихо&#39;,
+&#39;отстановись&#39;,
+&#39;олли остановись на десять секунд&#39;,
+&#39;остановись на десять секунд&#39;,
+&#39;сделай освещение здесь чуть более тёплым&#39;,
+&#39;пожалуйста сделай свет подходящий для чтения&#39;,
+&#39;время идти спать&#39;,
+&#39;олли время спать&#39;]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;annot_utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;разбуди меня в [time : девять утра] в [date : пятницу]&#39;,
+&#39;поставь будильник [time : на два часа вперед]&#39;,
+&#39;олли тихо&#39;,
+&#39;отстановись&#39;,
+&#39;олли остановись на [time : десять секунд]&#39;,
+&#39;остановись на [time : десять секунд]&#39;,
+&#39;сделай освещение здесь чуть более [color_type : тёплым]&#39;,
+&#39;пожалуйста сделай свет [color_type : подходящий для чтения]&#39;,
+&#39;время идти спать&#39;,
+&#39;олли время спать&#39;]
+</code></pre></div>
+<h1 id="text-preprocessing"><b>Text Preprocessing</b><a class="headerlink" href="#text-preprocessing" title="Permanent link"></a></h1>
+<h2 id="-define-tokeniser--model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Define Tokeniser &amp; Model</b><a class="headerlink" href="#-define-tokeniser--model" title="Permanent link"></a></h2>
 <p>For preprocessing we'll need a tokeniser, so let's define the tokeniser &amp; the base model</p>
-<pre><code class="language-python">from transformers import AutoTokenizer, AutoModel
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 
-tokenizer = AutoTokenizer.from_pretrained(&quot;ai-forever/ruBert-base&quot;)
-MODEL = AutoModel.from_pretrained(&quot;ai-forever/ruBert-base&quot;)
-# tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-multilingual-cased&quot;)    # multilingual                      
-# model = AutoModel.from_pretrained(&quot;bert-base-multilingual-cased&quot;)            # multilingual
-# tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-uncased&quot;)               # en only
-# model = AutoModel.from_pretrained(&quot;bert-base-uncased&quot;)                       # en only
-</code></pre>
-<h2 id="ner-format"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>NER format</b></h2>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;ai-forever/ruBert-base&quot;</span><span class="p">)</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;ai-forever/ruBert-base&quot;</span><span class="p">)</span>
+<span class="c1"># tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-multilingual-cased&quot;)    # multilingual                      </span>
+<span class="c1"># model = AutoModel.from_pretrained(&quot;bert-base-multilingual-cased&quot;)            # multilingual</span>
+<span class="c1"># tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-uncased&quot;)               # en only</span>
+<span class="c1"># model = AutoModel.from_pretrained(&quot;bert-base-uncased&quot;)                       # en only</span>
+</code></pre></div>
+<h2 id="-ner-format"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>NER format</b><a class="headerlink" href="#-ner-format" title="Permanent link"></a></h2>
 <p><strong>NER</strong> tagging formats can vary quite a bit, let's utilise class <code>Parser</code> to preprocess the NER format in our dataset</p>
 <p>Class <code>Parser</code> contains the relevant preprocessing steps we will take:
 - The class will be called when creating our <code>Dataset</code>, creating <strong>NER tags</strong> for each document
@@ -1096,186 +1096,183 @@ MODEL = AutoModel.from_pretrained(&quot;ai-forever/ruBert-base&quot;)
     - The document itself is imported in order to create <strong>O tags</strong>
     - Whilst the <strong>annotated document</strong> is used to extract the <strong>annotated tags</strong>
     - Tag dictionaries are created <code>tag_to_id</code>, <code>id_to_tag</code></p>
-<pre><code class="language-python">
-from typing import List
-import regex as re
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
 
-'''
+<span class="sd">&#39;&#39;&#39;</span>
 
-PARSER FOR THE DATASET NER TAG FORMAT
+<span class="sd">PARSER FOR THE DATASET NER TAG FORMAT</span>
 
-'''
+<span class="sd">&#39;&#39;&#39;</span>
 
-class Parser:
+<span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
+    
+    <span class="c1"># RE patterns for tag extraction</span>
+    <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
+    <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([.,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-_`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
+    
+    <span class="c1"># initialise, first word/id tag is O (outside)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
+        <span class="p">}</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    CREATE TAGS</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># input : sentence, tagged sentence</span>
+    
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Create Dictionary of Identified Tags&#39;&#39;&#39;</span>
+    
+        <span class="c1"># 1. set label B or I    </span>
+        
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
+        <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> 
+            <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">                </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Tokenise Sentence &amp; add tags to not tagged words (O)&#39;&#39;&#39;</span>
+        
+        <span class="c1"># 2. add token tag to main tag dictionary</span>
 
-    # RE patterns for tag extraction
-    LABEL_PATTERN = r&quot;\[(.*?)\]&quot;
-    PUNCTUATION_PATTERN = r&quot;([.,\/#!$%\^&amp;\*;:{}=\-_`~()'\&quot;’¿])&quot;
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION_PATTERN</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot; \1 &quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_tag</span><span class="p">:</span>
+                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">tags</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    TAG CONVERSION</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># to word2id (tag_to_id)</span>
+    <span class="c1"># to id2word (id_to_tag)</span>
 
-    # initialise, first word/id tag is O (outside)
-    def __init__(self):
-        self.tag_to_id = {
-            &quot;O&quot;: 0
-        }
-        self.id_to_tag = {
-            0: &quot;O&quot;
-        }
-
-    '''
-
-    CREATE TAGS
-
-    '''
-    # input : sentence, tagged sentence
-
-    def __call__(self, sentence: str, annotated: str) -&gt; List[str]:
-
-        ''' Create Dictionary of Identified Tags'''
-
-        # 1. set label B or I    
-
-        matches = re.findall(self.LABEL_PATTERN, annotated)
-        word_to_tag = {}
-        for match in matches:
-            tag, phrase = match.split(&quot; : &quot;)
-            words = phrase.split(&quot; &quot;) 
-            word_to_tag[words[0]] = f&quot;B-{tag.upper()}&quot;
-            for w in words[1:]:
-                word_to_tag[w] = f&quot;I-{tag.upper()}&quot;
-
-        ''' Tokenise Sentence &amp; add tags to not tagged words (O)'''
-
-        # 2. add token tag to main tag dictionary
-
-        tags = []
-        sentence = re.sub(self.PUNCTUATION_PATTERN, r&quot; \1 &quot;, sentence)
-        for w in sentence.split():
-            if w not in word_to_tag:
-                tags.append(&quot;O&quot;)
-            else:
-                tags.append(word_to_tag[w])
-                self.__add_tag(word_to_tag[w])
-
-        return tags
-
-    '''
-
-    TAG CONVERSION
-
-    '''
-    # to word2id (tag_to_id)
-    # to id2word (id_to_tag)
-
-    def __add_tag(self, tag: str):
-        if tag in self.tag_to_id:
-            return
-        id_ = len(self.tag_to_id)
-        self.tag_to_id[tag] = id_
-        self.id_to_tag[id_] = tag
-
-    ''' Get Tag Number ID '''
-    # or just number id for token
-
-    def get_id(self, tag: str):
-        return self.tag_to_id[tag]
-
-    ''' Get Tag Token from Number ID'''
-    # given id get its token
-
-    def get_label(self, id_: int):
-        return self.get_tag_label(id_)
-
-parser = Parser()
-parser(train_dataset[&quot;utt&quot;][0], train_dataset[&quot;annot_utt&quot;][0])
-</code></pre>
-<pre><code>['O', 'O', 'O', 'B-TIME', 'I-TIME', 'O', 'B-DATE']
-</code></pre>
-<h2 id="create-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Create Dataset</b></h2>
+    <span class="k">def</span> <span class="nf">__add_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Number ID &#39;&#39;&#39;</span>
+    <span class="c1"># or just number id for token</span>
+        
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Token from Number ID&#39;&#39;&#39;</span>
+    <span class="c1"># given id get its token</span>
+    
+    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
+    
+<span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
+<span class="n">parser</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;O&#39;, &#39;B-DATE&#39;]
+</code></pre></div>
+<h2 id="-create-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Create Dataset</b><a class="headerlink" href="#-create-dataset" title="Permanent link"></a></h2>
 <p>The functions <code>NERDataset</code> is our Dataset class, it requires the <code>Parser</code> class instance </p>
 <p>Input into the <code>parser</code> orbjects are <code>utt</code> &amp; its annotated version <code>annot_utt</code></p>
 <p>The output from <code>parser</code> will be a list of target variable tags <code>BIO</code> tags</p>
-<pre><code>['O', 'O', 'O', 'B-TIME', 'I-TIME', 'O', 'B-DATE']
-['O', 'O', 'B-TIME', 'I-TIME', 'I-TIME', 'I-TIME']
-['O', 'O']
-['O']
-['O', 'O', 'O', 'B-TIME', 'I-TIME']
-['O', 'O', 'B-TIME', 'I-TIME']
-['O', 'O', 'O', 'O', 'O', 'B-COLOR_TYPE']
-['O', 'O', 'O', 'B-COLOR_TYPE', 'I-COLOR_TYPE', 'I-COLOR_TYPE']
-['O', 'O', 'O']
-</code></pre>
+<div class="highlight"><pre><span></span><code>[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;O&#39;, &#39;B-DATE&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;I-TIME&#39;, &#39;I-TIME&#39;]
+[&#39;O&#39;, &#39;O&#39;]
+[&#39;O&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-COLOR_TYPE&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-COLOR_TYPE&#39;, &#39;I-COLOR_TYPE&#39;, &#39;I-COLOR_TYPE&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;]
+</code></pre></div>
 <p>The <code>NERDataset</code> output each item (document) looks like the following:</p>
-<pre><code class="language-python">
-tmp[idx] = {
-    **tokenizer_output,                             # BERT related token inputs
-    &quot;subword_group&quot;: torch.tensor(subword_group),   # token/word association (start,number of tokens in word)
-    &quot;target&quot;: torch.tensor(target)                  # word NER tag
-}
-
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">tmp</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>                             <span class="c1"># BERT related token inputs</span>
+    <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>   <span class="c1"># token/word association (start,number of tokens in word)</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>                  <span class="c1"># word NER tag</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Now the class itself:</p>
-<pre><code class="language-python">from torch.utils.data import Dataset, DataLoader
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
 
-class NERDataset(Dataset):
-    def __init__(self, dataset, tokenizer):
-        self.tokenizer = tokenizer
-        self.processed_data = self.__preprocess(dataset)
+<span class="k">class</span> <span class="nc">NERDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__preprocess</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">__preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))):</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">tags</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">])</span>     <span class="c1"># get list of tags</span>
+            <span class="n">tokenizer_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">],</span>    <span class="c1"># tokenise document (incl. &lt;bos&gt;,&lt;eos&gt;)</span>
+                                              <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                              <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                              <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+            
+            <span class="c1"># token word identifier (each word can have multiple tokens)</span>
+            <span class="n">word_ids</span> <span class="o">=</span> <span class="n">tokenizer_output</span><span class="o">.</span><span class="n">word_ids</span><span class="p">()</span> 
+            
+            <span class="c1"># for each word, how many subtokens are there (starts with 1 - first word)</span>
+            <span class="n">subword_group</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span> 
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">word_ids</span><span class="p">)</span> 
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">]</span> <span class="c1"># index to aggregate tokens</span>
 
-    def __len__(self):
-        return len(self.processed_data)
+            <span class="c1"># define bio tags for each word in numerical format using parser</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">parser</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">]</span> 
+            
+            <span class="c1"># group all relevant data that will be used in forward pass</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>
+                <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+            <span class="p">}</span>
+            
+            <span class="c1"># check consistency</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">subword_group</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">],</span> <span class="n">subword_group</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+                
+        <span class="k">return</span> <span class="n">tmp</span>
 
-    def __getitem__(self, idx):
-        return self.processed_data[idx]
-
-    def __preprocess(self, dataset):
-
-        tmp = {}
-        for idx in tqdm(range(len(dataset))):
-            item = dataset[idx]
-            tags = parser(item[&quot;utt&quot;], item[&quot;annot_utt&quot;])     # get list of tags
-            tokenizer_output = self.tokenizer(item[&quot;utt&quot;],    # tokenise document (incl. &lt;bos&gt;,&lt;eos&gt;)
-                                              padding=True, 
-                                              truncation=True, 
-                                              return_tensors='pt')
-
-            # token word identifier (each word can have multiple tokens)
-            word_ids = tokenizer_output.word_ids() 
-
-            # for each word, how many subtokens are there (starts with 1 - first word)
-            subword_group = [
-                (key + 1, len(list(group))) 
-                for key, group in itertools.groupby(word_ids) 
-                    if key is not None
-            ] # index to aggregate tokens
-
-            # define bio tags for each word in numerical format using parser
-            target = [parser.get_id(t) for t in tags] 
-
-            # group all relevant data that will be used in forward pass
-            tmp[idx] = {
-                **tokenizer_output,
-                &quot;subword_group&quot;: torch.tensor(subword_group),
-                &quot;target&quot;: torch.tensor(target)
-            }
-
-            # check consistency
-            try:
-                assert (len(subword_group) == len(target))
-            except:
-                print(item[&quot;annot_utt&quot;], subword_group, target)
-
-        return tmp
-
-train = NERDataset(train_dataset, tokenizer)
-test = NERDataset(test_dataset, tokenizer)
-</code></pre>
-<pre><code>  0%|          | 0/1000 [00:00&lt;?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+<span class="n">train</span> <span class="o">=</span> <span class="n">NERDataset</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">NERDataset</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>  0%|          | 0/1000 [00:00&lt;?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
 100%|██████████| 1000/1000 [00:00&lt;00:00, 1690.12it/s]
 100%|██████████| 1000/1000 [00:00&lt;00:00, 1598.76it/s]
-</code></pre>
-<h1 id="bert-multiclass-classifier"><b>BERT Multiclass Classifier</b></h1>
+</code></pre></div>
+<h1 id="bert-multiclass-classifier"><b>BERT Multiclass Classifier</b><a class="headerlink" href="#bert-multiclass-classifier" title="Permanent link"></a></h1>
 <p>We will use a rather custom approach to <code>NER</code>, we have loaded our <code>encoder</code> model, so we'll need to create a tail end for it, so we can use it for <code>NER</code> multiclass classification</p>
-<h2 id="model-architecture"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Architecture</b></h2>
+<h2 id="-model-architecture"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Architecture</b><a class="headerlink" href="#-model-architecture" title="Permanent link"></a></h2>
 <p>Let's create a custom training &amp; evaluation loop for our <strong>NER multiclass classification</strong> problem</p>
 <ul>
 <li>In total we have 34 classification tags (including O), so we can define the tail output dimension</li>
@@ -1286,175 +1283,172 @@ test = NERDataset(test_dataset, tokenizer)
 <li>To get the most probable <strong>tag for each word</strong> in the document, we use <code>torch.argmax</code></li>
 </ul>
 <p>To utilise our custom model with methods such as <code>.from_pretrained</code>, let's add <code>PreTrainedModel</code>, which contains <code>nn.Module</code></p>
-<pre><code class="language-python">
-import torch.nn as nn
-from transformers import PreTrainedModel
-from transformers import PretrainedConfig
-from transformers import AutoModel, AutoConfig
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">PreTrainedModel</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">PretrainedConfig</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">AutoConfig</span>
 
-class MyConfig(PretrainedConfig):
-    model_type = 'mymodel'
-    def __init__(self, important_param=42, **kwargs):
-        super().__init__(**kwargs)
-        self.important_param = important_param
+<span class="k">class</span> <span class="nc">MyConfig</span><span class="p">(</span><span class="n">PretrainedConfig</span><span class="p">):</span>
+    <span class="n">model_type</span> <span class="o">=</span> <span class="s1">&#39;mymodel&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">important_param</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">important_param</span> <span class="o">=</span> <span class="n">important_param</span>
 
-# PreTrainedModel has nn.Module
+<span class="c1"># PreTrainedModel has nn.Module</span>
 
-class NERClassifier(PreTrainedModel):
-
-    config_class = MyConfig
-    def __init__(self,config):
-        super().__init__(config)
-        self.bert = MODEL
-        self.seq = nn.Sequential(
-            nn.Linear(768, 256), 
-            nn.ReLU(),
-            nn.Linear(256, CLASSES),
-        )
-
-    def forward(self, inputs): # returns list of targets
-
-        # standard inputs for BERT
-        bert_output = self.bert(
-            inputs[&quot;input_ids&quot;],
-            inputs[&quot;attention_mask&quot;]
-        )
-
-        # output of transformer encoder will be our hidden state for 
-        # each input_ids 
-        last_hidden_state = bert_output[&quot;last_hidden_state&quot;]
-
-        # tokens correspond tokenizer divisions 
-        # each word can be split into multiple tokens
-        # ie. get the mean word embedding 
-
-        target = []
-        for group in inputs[&quot;subword_group&quot;]:
-            b, e = group
-            word_embedding = last_hidden_state[:, b:b+e]       # get the token embeddings
-            agg_embedding = torch.mean(word_embedding, dim=1)  # mean word embeddings for tokens
-
-            # input mean word embedding (1,768) pass into nn.Sequential linear tail end
-            proba = self.__forward_one(agg_embedding)    # logits data 
-            target.append(proba)
-
-        word_logits = torch.stack(target).squeeze(1)
-
-        return word_logits
-
-    def __forward_one(self, x):
-        logits = self.seq(x)
-        return logits
-
-</code></pre>
-<h2 id="model-additions"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Additions</b></h2>
+<span class="k">class</span> <span class="nc">NERClassifier</span><span class="p">(</span><span class="n">PreTrainedModel</span><span class="p">):</span>
+    
+    <span class="n">config_class</span> <span class="o">=</span> <span class="n">MyConfig</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="n">MODEL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">768</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> 
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">CLASSES</span><span class="p">),</span>
+        <span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span> <span class="c1"># returns list of targets</span>
+        
+        <span class="c1"># standard inputs for BERT</span>
+        <span class="n">bert_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># output of transformer encoder will be our hidden state for </span>
+        <span class="c1"># each input_ids </span>
+        <span class="n">last_hidden_state</span> <span class="o">=</span> <span class="n">bert_output</span><span class="p">[</span><span class="s2">&quot;last_hidden_state&quot;</span><span class="p">]</span>
+        
+        <span class="c1"># tokens correspond tokenizer divisions </span>
+        <span class="c1"># each word can be split into multiple tokens</span>
+        <span class="c1"># ie. get the mean word embedding </span>
+        
+        <span class="n">target</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;subword_group&quot;</span><span class="p">]:</span>
+            <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">group</span>
+            <span class="n">word_embedding</span> <span class="o">=</span> <span class="n">last_hidden_state</span><span class="p">[:,</span> <span class="n">b</span><span class="p">:</span><span class="n">b</span><span class="o">+</span><span class="n">e</span><span class="p">]</span>       <span class="c1"># get the token embeddings</span>
+            <span class="n">agg_embedding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">word_embedding</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># mean word embeddings for tokens</span>
+            
+            <span class="c1"># input mean word embedding (1,768) pass into nn.Sequential linear tail end</span>
+            <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__forward_one</span><span class="p">(</span><span class="n">agg_embedding</span><span class="p">)</span>    <span class="c1"># logits data </span>
+            <span class="n">target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proba</span><span class="p">)</span>
+        
+        <span class="n">word_logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">word_logits</span>
+        
+    <span class="k">def</span> <span class="nf">__forward_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span>
+</code></pre></div>
+<h2 id="-model-additions"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Additions</b><a class="headerlink" href="#-model-additions" title="Permanent link"></a></h2>
 <p>Aside from defining the classification model architecture for our base model BERT
 - We need to create <strong>dataloaders</strong>, <strong>instantiate</strong> our model (ie tail weights need to be initialised)
 - Define the model evaluation criterion (loss function) 
 - Define the relevant optimiser to update weights</p>
-<pre><code class="language-python">import torch.optim as optim
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 
-# define data loaders
-train_loader = DataLoader(train)
-test_loader = DataLoader(test)
-CLASSES = len(parser.tag_to_id); print(f'{CLASSES} labels')
-config = MyConfig(4)
+<span class="c1"># define data loaders</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="n">CLASSES</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">CLASSES</span><span class="si">}</span><span class="s1"> labels&#39;</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">MyConfig</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 
-# define classifier model, loss fucntion &amp; optimiser
-clf = NERClassifier(config).to(device)
-criterion = nn.CrossEntropyLoss()  # for multiclass classification 
-optimizer = optim.Adam(clf.parameters(), lr=1e-5)
-</code></pre>
+<span class="c1"># define classifier model, loss fucntion &amp; optimiser</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">NERClassifier</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>  <span class="c1"># for multiclass classification </span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+</code></pre></div>
 <p>In total, we have created 63 tags in <code>word_to_tag</code> </p>
-<pre><code>63 labels
-</code></pre>
-<h2 id="train-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Train Model</b></h2>
+<div class="highlight"><pre><span></span><code>63 labels
+</code></pre></div>
+<h2 id="-train-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Train Model</b><a class="headerlink" href="#-train-model" title="Permanent link"></a></h2>
 <ul>
 <li>Let's train our model for 20 epochs on <code>train_loader</code> &amp; validate the model using <code>test_loader</code> </li>
 <li>To check how well the model is performing during training, we will use the <code>accuracy</code> metric</li>
 </ul>
-<pre><code class="language-python">from sklearn.metrics import accuracy_score
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
-for epoch in range(20):
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    (1) TRAINING LOOP</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="n">loss_count</span><span class="p">,</span> <span class="n">loss_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    
+    <span class="c1"># switch to training mode, ie backpropagation on</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+        
+        <span class="c1"># move data to device</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">val</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        
+        <span class="c1"># logits of belonging to each of the tag class </span>
+        <span class="c1"># for all words in document</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">clf</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        
+        <span class="c1"># predicted word tag </span>
+        <span class="n">word_tag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
+        
+        <span class="n">y_true</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="n">y_pred</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">word_tag</span><span class="p">)</span>        
+        
+        <span class="c1"># calcualate loss</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+        <span class="n">loss_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+<span class="c1">#         nn.utils.clip_grad_norm_(</span>
+<span class="c1">#             parameters=clf.parameters(), max_norm=20</span>
+<span class="c1">#         )</span>
+        
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss: </span><span class="si">{</span><span class="n">loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">loss_count</span><span class="si">}</span><span class="s2">; acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    (2) VALIDATION LOOP</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+        
+    <span class="n">test_loss_sum</span><span class="p">,</span> <span class="n">test_loss_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">test_true</span><span class="p">,</span> <span class="n">test_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    
+    <span class="c1"># switch to inference mode</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">test_rows</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_loader</span><span class="p">):</span>
+            
+            <span class="c1"># move data to device</span>
+            <span class="n">test_inputs</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">key</span><span class="p">:</span> <span class="n">val</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">test_rows</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">test_outputs</span> <span class="o">=</span> <span class="n">clf</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">)</span>
 
-    '''
+            <span class="c1"># add metric data</span>
+            <span class="n">test_true</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="n">test_pred</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
 
-    (1) TRAINING LOOP
-
-    '''
-
-    loss_count, loss_sum = 0, 0
-    y_true, y_pred = [], []
-
-    # switch to training mode, ie backpropagation on
-    clf.train()
-    for data in tqdm(train_loader):
-
-        # move data to device
-        inputs = {
-            key: val.squeeze(0).to(device)
-            for key, val in data.items()
-        }
-
-        # logits of belonging to each of the tag class 
-        # for all words in document
-        outputs = clf(inputs)
-
-        # predicted word tag 
-        word_tag = torch.argmax(outputs, dim=1).tolist() 
-
-        y_true.extend(inputs[&quot;target&quot;].tolist())
-        y_pred.extend(word_tag)        
-
-        # calcualate loss
-        loss = criterion(outputs, inputs[&quot;target&quot;])
-        loss_count += 1
-        loss_sum += loss.item()
-
-#         nn.utils.clip_grad_norm_(
-#             parameters=clf.parameters(), max_norm=20
-#         )
-
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-
-    print(f&quot;Epoch-{epoch + 1}: loss: {loss_sum / loss_count}; acc: {accuracy_score(y_true, y_pred)}&quot;)
-
-    '''
-
-    (2) VALIDATION LOOP
-
-    '''
-
-    test_loss_sum, test_loss_count = 0, 0
-    test_true, test_pred = [], []
-
-    # switch to inference mode
-    with torch.no_grad():
-        for test_rows in tqdm(test_loader):
-
-            # move data to device
-            test_inputs = {
-                key: val.squeeze(0).to(device)
-                for key, val in test_rows.items()
-            }
-            test_outputs = clf(test_inputs)
-
-            # add metric data
-            test_true.extend(test_inputs[&quot;target&quot;].tolist())
-            test_pred.extend(torch.argmax(test_outputs, dim=1).tolist())
-
-            test_loss = criterion(test_outputs, test_inputs[&quot;target&quot;])
-            test_loss_count += 1
-            test_loss_sum += test_loss.item()
-
-
-    print(f&quot;Epoch-{epoch + 1}: loss: {loss_sum / loss_count}; acc: {accuracy_score(y_true, y_pred)},\
-          val_loss: {test_loss_sum / test_loss_count}, val_acc: {accuracy_score(test_true, test_pred)}&quot;)
-
-</code></pre>
-<pre><code>100%|██████████| 1000/1000 [01:02&lt;00:00, 16.09it/s]
+            <span class="n">test_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">test_outputs</span><span class="p">,</span> <span class="n">test_inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+            <span class="n">test_loss_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">test_loss_sum</span> <span class="o">+=</span> <span class="n">test_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss: </span><span class="si">{</span><span class="n">loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">loss_count</span><span class="si">}</span><span class="s2">; acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="se">\</span>
+<span class="s2">          val_loss: </span><span class="si">{</span><span class="n">test_loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">test_loss_count</span><span class="si">}</span><span class="s2">, val_acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_true</span><span class="p">,</span><span class="w"> </span><span class="n">test_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>100%|██████████| 1000/1000 [01:02&lt;00:00, 16.09it/s]
 Epoch-1: loss: 1.6441781679093839; acc: 0.7374777271827361
 100%|██████████| 1000/1000 [00:11&lt;00:00, 88.19it/s]
 Epoch-1: loss: 1.6441781679093839; acc: 0.7374777271827361,          val_loss: 1.2796487891450525, val_acc: 0.7421347230264428
@@ -1574,27 +1568,27 @@ Epoch-29: loss: 0.023646224649064154; acc: 0.9932686596713522,          val_loss
 Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395
 100%|██████████| 1000/1000 [00:11&lt;00:00, 88.16it/s]
 Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss: 1.0284815851225262, val_acc: 0.8245512449334106
-</code></pre>
-<h2 id="save-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Save Model</b></h2>
+</code></pre></div>
+<h2 id="-save-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Save Model</b><a class="headerlink" href="#-save-model" title="Permanent link"></a></h2>
 <p>We can save the model for future use</p>
-<pre><code class="language-python">clf.save_pretrained('./my_model_dir')
-tokenizer.save_pretrained('./my_model_dir')
-</code></pre>
-<pre><code>('./my_model_dir/tokenizer_config.json',
- './my_model_dir/special_tokens_map.json',
- './my_model_dir/vocab.txt',
- './my_model_dir/added_tokens.json',
- './my_model_dir/tokenizer.json')
-</code></pre>
-<h1 id="using-our-ner-tagger"><b>Using our NER tagger</b></h1>
+<div class="highlight"><pre><span></span><code><span class="n">clf</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(&#39;./my_model_dir/tokenizer_config.json&#39;,
+ &#39;./my_model_dir/special_tokens_map.json&#39;,
+ &#39;./my_model_dir/vocab.txt&#39;,
+ &#39;./my_model_dir/added_tokens.json&#39;,
+ &#39;./my_model_dir/tokenizer.json&#39;)
+</code></pre></div>
+<h1 id="using-our-ner-tagger"><b>Using our NER tagger</b><a class="headerlink" href="#using-our-ner-tagger" title="Permanent link"></a></h1>
 <p>We can use our <code>NER</code> tagger by loading a stack of documents and creating a <code>dataset</code>, as we did for the <code>train</code> &amp; <code>test</code> subsets or we can use it for a single sentence, I'll be using a simple inference function.</p>
-<h2 id="loading-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Loading Model</b></h2>
+<h2 id="-loading-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Loading Model</b><a class="headerlink" href="#-loading-model" title="Permanent link"></a></h2>
 <p>If we want to load the fine-tuned <code>model</code>, we can use <code>.from_pretrained</code> and specify the folder where ther model is located, 
 the <code>tokenizer</code> can be loaded in a similar way</p>
-<pre><code class="language-python">new_model = NERClassifier.from_pretrained('./my_model_dir')
-new_model
-</code></pre>
-<pre><code>NERClassifier(
+<div class="highlight"><pre><span></span><code><span class="n">new_model</span> <span class="o">=</span> <span class="n">NERClassifier</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
+<span class="n">new_model</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NERClassifier(
   (bert): BertModel(
     (embeddings): BertEmbeddings(
       (word_embeddings): Embedding(120138, 768, padding_idx=0)
@@ -1642,48 +1636,48 @@ new_model
     (2): Linear(in_features=256, out_features=63, bias=True)
   )
 )
-</code></pre>
-<h2 id="finding-ner-tags-in-a-document"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Finding NER tags in a document</b></h2>
+</code></pre></div>
+<h2 id="-finding-ner-tags-in-a-document"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Finding NER tags in a document</b><a class="headerlink" href="#-finding-ner-tags-in-a-document" title="Permanent link"></a></h2>
 <p>We can use our model using something similar to the code below &amp; utilise the same <code>tokenizer</code>, the <code>parser</code> &amp; saved <code>model</code></p>
-<pre><code class="language-python">def ner_inference(text,model):
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ner_inference</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
 
-    # Tokenise input
-    tokenizer_output = tokenizer(text,    
-                                 padding=True, 
-                                 truncation=True, 
-                                 return_tensors='pt')
+    <span class="c1"># Tokenise input</span>
+    <span class="n">tokenizer_output</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span>    
+                                 <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                 <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                 <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
 
-    # token word identifier (each word can have multiple tokens)
-    word_ids = tokenizer_output.word_ids() 
+    <span class="c1"># token word identifier (each word can have multiple tokens)</span>
+    <span class="n">word_ids</span> <span class="o">=</span> <span class="n">tokenizer_output</span><span class="o">.</span><span class="n">word_ids</span><span class="p">()</span> 
 
-    # for each word, how many subtokens are there (starts with 1 - first word)
-    subword_group = [
-        (key + 1, len(list(group))) 
-        for key, group in itertools.groupby(word_ids) 
-            if key is not None
-    ] # index to aggregate tokens
+    <span class="c1"># for each word, how many subtokens are there (starts with 1 - first word)</span>
+    <span class="n">subword_group</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span> 
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">word_ids</span><span class="p">)</span> 
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">]</span> <span class="c1"># index to aggregate tokens</span>
 
-    # group all relevant data that will be used in forward pass 
-    output = {
-        **tokenizer_output,
-        &quot;subword_group&quot;: torch.tensor(subword_group),
-    }
+    <span class="c1"># group all relevant data that will be used in forward pass </span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>
+        <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># get the highest logits value</span>
+    <span class="n">tag_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">output</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">tag_pred</span> 
+    
+    <span class="k">return</span> <span class="n">tag_pred</span>
 
-    # get the highest logits value
-    tag_pred = torch.argmax(model(output),axis=1).tolist()
-    tag_pred 
-
-    return tag_pred
-
-ner_inference('В девять утра я улетаю в Зимбабве',new_model)
-</code></pre>
+<span class="n">ner_inference</span><span class="p">(</span><span class="s1">&#39;В девять утра я улетаю в Зимбабве&#39;</span><span class="p">,</span><span class="n">new_model</span><span class="p">)</span>
+</code></pre></div>
 <p>The model predicts the following tags, which we can <strong>map</strong> using <code>parser.id_to_tag</code></p>
-<pre><code>[0, 2, 0, 0, 0, 0, 0]
-</code></pre>
+<div class="highlight"><pre><span></span><code>[0, 2, 0, 0, 0, 0, 0]
+</code></pre></div>
 <hr />
-<h1 id="contact-me"><b>Contact Me!</b></h1>
+<h1 id="contact-me"><b>Contact Me!</b><a class="headerlink" href="#contact-me" title="Permanent link"></a></h1>
 <p><strong>Thank you for reading!</strong></p>
-<p>Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly :fontawesome-brands-telegram:{ .telegram } <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on :fontawesome-brands-github:{ .github } <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or :fontawesome-brands-kaggle:{ .kaggle} <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
 
 
 
@@ -1711,6 +1705,11 @@ ner_inference('В девять утра я улетаю в Зимбабве',new
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+    </div>
   
   
     Made with

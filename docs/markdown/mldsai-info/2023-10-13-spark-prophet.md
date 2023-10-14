@@ -81,7 +81,9 @@ root
 
 ```
 
-Let's take a peek at our dataset, we'll use `select`,`orderBy` & `show` methods
+## <b>Exploring Data</b>
+
+Having loaded our data, we sure can do some data exploration, first lets take a peek at our dataset, we'll use `select`,`orderBy` & `show` methods
 
 ```python
 sales.select('Date','type','Total Volume','region')\
@@ -200,10 +202,6 @@ only showing top 20 rows
 
 We can note that we have data for not only the different `regions`, but also for the entire country `TotalUS`. Also interesting to note is that the difference in max and min values is quite high.
 
-
-## <b>Exploring Data</b>
-
-Let's do some data exploration
 
 **Thank you for reading!**
 

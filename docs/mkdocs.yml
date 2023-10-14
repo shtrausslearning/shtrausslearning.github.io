@@ -11,7 +11,7 @@ copyright: |
 docs_dir: markdown
 
 nav:
-    - About: index.md
+    - Home: index.md
 
     - Collections: 
 
@@ -21,6 +21,20 @@ nav:
 
         - introduction: mllibs/home.md
         - meetups: mllibs/meetups.md
+
+    - Blog:
+        - Prophet with PySpark: blog/2023-10-13-spark-prophet.md
+        - Comparing Datasets: blog/2023-09-25-compare_dataset.md
+        - NER with HuggingFace: blog/2023-09-21-huggingface_NER2.md
+        - Pipeline Tuning with PySpark: blog/2023-08-22-spark-pipeline-tune.md
+        - Creating Models with PySpark: blog/2023-08-21-spark-modeling.md
+        - Preprocessing with PySpark: blog/2023-08-20-spark-preprocess.md
+        - Taxi EDA with PySpark: blog/2023-08-17-spark-cabeda.md
+        - Sentence Splitting with NER: blog/2023-08-11-sentence_splitting.md
+        - NER with Torch/HuggingFace: blog/2023-08-10-huggingface_NER.md
+
+
+
 
 markdown_extensions:
     - markdown.extensions.toc:
@@ -128,6 +142,13 @@ theme:
 
 extra:
     manifest: manifest.webmanifest
+    blog:
+        dir: blog
+        author: Andrey Shtrauss
+        author_image: https://avatars.githubusercontent.com/u/93479011
+        words_read_per_minute: 300
+        list_length: 25
+        extended_preview: true
     social:
     - icon: fontawesome/brands/github
       link: https://github.com/shtrausslearning

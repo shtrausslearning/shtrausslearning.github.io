@@ -127,8 +127,7 @@ extra:
       name: mldsai-info
 
 plugins:
-    - blog:
-        post_excerpt: required
+    - search
 
 extra_javascript:
   - javascripts/mathjax.js

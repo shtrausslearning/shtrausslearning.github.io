@@ -117,8 +117,8 @@ theme:
         - navigation.top
         - content.tabs.link
         - navigation.sections 
-        - navigation.expand
-#        - navigation.tabs
+        # - navigation.expand
+        - navigation.tabs 
 #        - toc.integrate # table of contents is rendered as part of the navigation
     palette:
         - scheme: default

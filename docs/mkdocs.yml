@@ -141,4 +141,4 @@ extra:
 
 plugins:
     - search
-    - blog
+    - tags

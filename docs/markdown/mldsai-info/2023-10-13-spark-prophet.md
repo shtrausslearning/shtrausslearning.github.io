@@ -77,8 +77,6 @@ root
  |-- type: string (nullable = true)
  |-- year: integer (nullable = true)
  |-- region: string (nullable = true)
-
-
 ```
 
 ## <b>Exploring Data</b>
@@ -140,7 +138,7 @@ So what we'll be doing is creating a model to predict the sales for both of thes
 
 We can also check the `region` limits for `Total Volume`, we can do this by using `agg` method with the `groupby` dataframe type (`pyspark.sql.group.GroupedData`):
 
-```
+```python
 # min and maximum of sale volume
 sales.groupby('region').agg(f.max('Total Volume')).show()  # get max of column
 sales.groupby('region').agg(f.min('Total Volume')).show()  # get min of column
@@ -204,7 +202,7 @@ We can note that we have data for not only the different `regions`, but also for
 
 Let's find the locations (`region`) with the highest `total volumes` 
 
-```
+```python
 from pyspark.sql.functions import desc,col
 
 by_volume = sales.orderBy(desc("Total Volume"))\
@@ -229,7 +227,7 @@ We can note that `California` & `West` regions have had the highest values for `
 
 Its also interest to note the difference in `Total Volume` for both types of avocado, so lets check that, lets just check the difference in `max` values
 
-```
+```python
 by_volume.groupby('type').agg(f.max('Total Volume')).show()
 ```
 
@@ -244,7 +242,7 @@ by_volume.groupby('type').agg(f.max('Total Volume')).show()
 
 So we can note that tehre is a significant diffence in `Total Volume`, let's also check when this actually occured:
 
-```
+```python
 by_volume.filter(f.col('Total Volume') == 1.127474911E7).show()
 by_volume.filter(f.col('Total Volume') == 793464.77).show()
 
@@ -268,7 +266,7 @@ by_volume.filter(f.col('Total Volume') == 793464.77).show()
 
 Let's also check how many regions there actually are:
 
-```
+```python
 sales.select('region').distinct().count()
 ```
 
@@ -420,7 +418,7 @@ sales.filter(f.col('region') == 'Houston').show()
 
 Since we don't have any missing data points for this region, let's use it for our model example, let's define a subset `houston_df`
 
-```
+```python
 # select houson 
 houston_df = sales.filter(f.col('region')=='Houston')
 ```

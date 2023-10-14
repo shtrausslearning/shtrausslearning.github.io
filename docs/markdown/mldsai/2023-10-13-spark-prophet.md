@@ -1,16 +1,15 @@
 ---
-title: Prophet with PySpark
-description: Informative description
-date: 1984-01-01
+draft: true 
+
+date: 2022-01-31
+categories:
+  - Hello
+  - World
 ---
 
 # **Prophet with PySpark**
 
 ![](https://i.imgur.com/b6BBtXv.jpg)
-
-:material-timetable: 2023-08-10 00:00:00 <br>
-:material-group: `pyspark` <br>
-:fontawesome-solid-tags: `pyspark`,`regression`
 
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 

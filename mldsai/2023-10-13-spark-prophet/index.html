@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Informative description">
+        <meta name="description" content="A Collection of Useful Snippets on Machine Learning related topics">
       
       
       
@@ -972,9 +972,6 @@
 
 <h1 id="prophet-with-pyspark"><strong>Prophet with PySpark</strong><a class="headerlink" href="#prophet-with-pyspark" title="Permanent link"></a></h1>
 <p><img alt="" src="https://i.imgur.com/b6BBtXv.jpg" /></p>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 12h1.5v2.82l2.44 1.41-.75 1.3L14 15.69V12M4 2h14a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m0 13v3h4.67c-.43-.91-.67-1.93-.67-3H4m0-7h6V5H4v3m14 0V5h-6v3h6M4 13h4.29c.34-1.15.97-2.18 1.81-3H4v3m11-2.85A4.85 4.85 0 0 0 10.15 15c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 19.85 15c0-2.68-2.17-4.85-4.85-4.85Z"/></svg></span> 2023-08-10 00:00:00 <br>
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 1v4h1v14H1v4h4v-1h14v1h4v-4h-1V5h1V1h-4v1H5V1m0 3h14v1h1v14h-1v1H5v-1H4V5h1m1 1v8h3v4h9V9h-4V6M8 8h4v4H8m6-1h2v5h-5v-2h3"/></svg></span> <code>pyspark</code> <br>
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m345 39.1 127.8 129.3c52.4 53 52.4 138.2 0 191.2l-112 113.3c-9.3 9.4-24.5 9.5-33.9.2s-9.5-24.5-.2-33.9l111.9-113.3c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6.2-33.9s24.6-9.2 33.9.2zM0 229.5V80c0-26.5 21.5-48 48-48h149.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0-64 0 32 32 0 1 0 64 0z"/></svg></span> <code>pyspark</code>,<code>regression</code></p>
 <p><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></p>
 <p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions (<code>UDF</code>), which allows us to use different functionality that is not available in <code>pyspark</code>.</p>
 <h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>

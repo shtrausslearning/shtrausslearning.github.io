@@ -17,31 +17,31 @@ In this notebook, we look at how to use a popular machine learning library `prop
 
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 
-# <b>Background</b>
+## <b>Background</b>
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Prophet</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Prophet</b> 
 
 `Prophet` is a time series forecasting model. It is based on an additive regression model that takes into account trends, seasonality, and holidays. `Prophet` also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. 
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
 
 Pandas `UDFs` (User-Defined Functions) allow you to apply a Python function that operates on pandas data frames to Spark data frames. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions.
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Avocado Price Prediction</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Avocado Price Prediction</b> 
 
 Avocado price prediction is the process of using machine learning algorithms to forecast the future prices of avocados based on historical data and other relevant factors such as weather patterns, consumer demand, and supply chain disruptions. This can help stakeholders in the avocado industry make informed decisions about when and where to sell their avocados, as well as how much to charge for them. Avocado price prediction can also provide insights into the factors that affect avocado sales and help optimize the industry's efficiency and profitability.
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Objective</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Objective</b> 
 
 Having done some posts on `pyspark`, it seems like a very intuitive library to use
 
-# <b>The Dataset</b>
+## <b>The Dataset</b>
 
 It is a well known fact that Millenials LOVE Avocado Toast. It's also a well known fact that all Millenials live in their parents basements.Clearly, they aren't buying home because they are buying too much Avocado Toast! But maybe there's hope… if a Millenial could find a city with cheap avocados, they could live out the Millenial American Dream.
 
 The dataset can be found on **[Kaggle](https://www.kaggle.com/datasets/neuromusic/avocado-prices)** & its original source found **[here](https://hassavocadoboard.com/)**
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Loading data</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Loading data</b> 
 
 To load the data, we start a spark session on local
 
@@ -85,7 +85,7 @@ root
  |-- region: string (nullable = true)
 ```
 
-# <b>Exploring Data</b>
+## <b>Exploring Data</b>
 
 Having loaded our data, we sure can do some data exploration, first lets take a peek at our dataset, we'll use `select`,`orderBy` & `show` methods
 
@@ -418,7 +418,7 @@ sales.filter(f.col('region') == 'Houston').show()
 +---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
 ```
 
-# <b>Preparing data for modeling</b>
+## <b>Preparing data for modeling</b>
 
 Since we don't have any missing data points for this region, let's use it for our model example, let's define a subset `houston_df`
 
@@ -466,7 +466,7 @@ houston_df_final.show(4)
 only showing top 4 rows
 ```
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b> 
 
 Let's prepare the scheme for the outputs of our `UDF`
 
@@ -484,7 +484,7 @@ schema = ty.StructType([
                      ]) 
 ```
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
 
 ```python
 from prophet import Prophet
@@ -531,7 +531,7 @@ def apply_model(store_pd):
                     'yhat_upper', 'yhat_lower']]
 ```
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Modeling</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Modeling</b> 
 
 ```python
 results = houston_df_final.groupby(['Region','type']).apply(apply_model)
@@ -574,7 +574,7 @@ Conventional_data = results.filter(f.col('type')=='conventional').pandas_api()
 Conventional_data = Conventional_data.set_index(['ds'])
 ```
 
-## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Visualisation</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Visualisation</b> 
 
 Let's visualise the `organic` subset model
 

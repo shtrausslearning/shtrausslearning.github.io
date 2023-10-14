@@ -4,7 +4,7 @@
 ![img](images/ds_wnb.png#only-dark){ width="450" }
 </center>
 
-  [personal]: personal.md
+  [mllibs]: mllibs/home.md
 
 
 Here you will find a collection of some of the data science projects I've worked on (mostly Kaggle), if you have any questions, contact me  <sub><a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=283747&logo=Telegram&logoColor=FFFFFF&label=" /></a></sub> 

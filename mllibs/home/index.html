@@ -1180,7 +1180,7 @@
 <h4 id="2-class">(2) Class<a class="headerlink" href="#2-class" title="Permanent link"></a></h4>
 <p>Another common approach to automate code is using a class based approach. Utilising <code>OOP</code> concepts we can initialise &amp; then call class <code>methods</code> in order to automate code:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">fib_list</span><span class="p">:</span>
-    
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
 
@@ -1222,30 +1222,30 @@
 <code>configure_sample</code></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># sample module class structure</span>
 <span class="k">class</span> <span class="nc">sample</span><span class="p">(</span><span class="n">nlpi</span><span class="p">):</span>
-    
+
     <span class="c1"># called in nlpm</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nlp_config</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span>             <span class="c1"># unique module name identifier (used in nlpm/nlpi)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nlp_config</span> <span class="o">=</span> <span class="n">nlp_config</span>  <span class="c1"># text based info related to module (used in nlpm/nlpi)</span>
-        
+
     <span class="c1"># called in nlpi</span>
     <span class="k">def</span> <span class="nf">sel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;pred_task&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
-        
+
         <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
-        
+
     <span class="c1"># use standard or static methods</span>
-        
+
     <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
         <span class="k">pass</span>
-        
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
         <span class="k">pass</span>
-    
+
 
 <span class="n">corpus_sample</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="s2">&quot;function&quot;</span><span class="p">:[</span><span class="s1">&#39;task&#39;</span><span class="p">]}</span>
 <span class="n">info_sample</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;module&#39;</span><span class="p">:</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span>
@@ -1255,7 +1255,7 @@
                             <span class="s1">&#39;input_format&#39;</span><span class="p">:</span><span class="s1">&#39;input format for data&#39;</span><span class="p">,</span>
                             <span class="s1">&#39;output_format&#39;</span><span class="p">:</span><span class="s1">&#39;output format for data&#39;</span><span class="p">,</span>
                             <span class="s1">&#39;description&#39;</span><span class="p">:</span><span class="s1">&#39;write description&#39;</span><span class="p">}}</span>
-                         
+
 <span class="c1"># configuration dictionary (passed in nlpm)</span>
 <span class="n">configure_sample</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;corpus&#39;</span><span class="p">:</span><span class="n">corpus_sample</span><span class="p">,</span><span class="s1">&#39;info&#39;</span><span class="p">:</span><span class="n">info_sample</span><span class="p">}</span>
 </code></pre></div>

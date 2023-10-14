@@ -1208,9 +1208,9 @@
         <span class="n">tokens</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
             <span class="n">tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-            
+
         <span class="k">return</span> <span class="n">tokens</span>
-    
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mi">0</span>
@@ -1218,7 +1218,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
             <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
         <span class="p">}</span>
-    
+
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
         <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1239,14 +1239,14 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>   <span class="c1"># return tag for current [text,annot]</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span> <span class="c1"># add [tag] to tag_to_id/id_to_tag</span>
-    
+
         <span class="c1"># convert tags to numeric representation (if needed)</span>
 
         <span class="n">ttags</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
             <span class="n">ttags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">])</span>
         <span class="n">tags</span> <span class="o">=</span> <span class="n">ttags</span>
-            
+
         <span class="k">return</span> <span class="n">tags</span>
 
     <span class="k">def</span> <span class="nf">__add_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -1255,10 +1255,10 @@
         <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-        
+
     <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
-    
+
 <span class="c1"># initialise parser</span>
 <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
 </code></pre></div>
@@ -1480,12 +1480,12 @@
 <span class="c1"># TrainOutput(global_step=280, training_loss=0.009931504726409912, metrics={&#39;train_runtime&#39;: 24.8186, &#39;train_samples_per_second&#39;: 82.197, &#39;train_steps_per_second&#39;: 11.282, &#39;total_flos&#39;: 27046414867968.0, &#39;train_loss&#39;: 0.009931504726409912, &#39;epoch&#39;: 40.0})</span>
 </code></pre></div>
 <p>If we use <code>evaluation_strategy="steps"</code>, <code>eval_steps=50</code> &amp; <code>eval_dataset</code> (just setting to train data) we get the following <strong>metrics</strong> so the model has memorised the inputs in our training set </p>
-<div class="highlight"><pre><span></span><code>Step 	Training Loss 	Validation Loss 	Precision 	Recall 	F1 	Accuracy
-50 	No log 	0.030486 	0.994949 	0.989950 	0.992443 	0.995763
-100 	No log 	0.006724 	0.990000 	0.994975 	0.992481 	0.995763
-150 	No log 	0.007272 	0.994949 	0.989950 	0.992443 	0.995763
-200 	No log 	0.007903 	0.994949 	0.989950 	0.992443 	0.995763
-250 	No log 	0.006493 	0.990000 	0.994975 	0.992481 	0.995763
+<div class="highlight"><pre><span></span><code>Step    Training Loss   Validation Loss     Precision   Recall  F1  Accuracy
+50  No log  0.030486    0.994949    0.989950    0.992443    0.995763
+100     No log  0.006724    0.990000    0.994975    0.992481    0.995763
+150     No log  0.007272    0.994949    0.989950    0.992443    0.995763
+200     No log  0.007903    0.994949    0.989950    0.992443    0.995763
+250     No log  0.006493    0.990000    0.994975    0.992481    0.995763
 </code></pre></div>
 <h3 id="-save-huggingface-trainer"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Save Huggingface Trainer</b><a class="headerlink" href="#-save-huggingface-trainer" title="Permanent link"></a></h3>
 <p>We can save our <code>trainer</code> using <code>.save_model</code> method, which saves all relevant needed to utilise the <code>pipeline</code> method.</p>

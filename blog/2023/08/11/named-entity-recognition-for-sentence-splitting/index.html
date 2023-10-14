@@ -1325,35 +1325,35 @@ text_b [[0.68768998 0.31231002]]
 <span class="c1"># NER Annotation Class</span>
 
 <span class="k">class</span> <span class="nc">ner_annotator</span><span class="p">:</span>
-    
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="kc">None</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">__initialise</span><span class="p">()</span>
-        
+
     <span class="k">def</span> <span class="nf">__initialise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        </span>
+
 <span class="sd">        [1] ANNOTATION COLUMN RELATED OPERATIONS</span>
-<span class="sd">        </span>
+
 <span class="sd">        &#39;&#39;&#39;</span>
-        
+
         <span class="c1"># if annotaion column is all empty</span>
-        
+
         <span class="k">if</span><span class="p">(</span><span class="s1">&#39;annotated&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
-            
+
             <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-                
+
             <span class="c1"># if annotation column is not empty</span>
-                
+
             <span class="k">elif</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-                
+
                 <span class="c1"># Store Tags</span>
                 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
                     <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span><span class="p">):</span>
@@ -1361,35 +1361,35 @@ text_b [[0.68768998 0.31231002]]
                         <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
                             <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">[</span><span class="n">phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-                            
+
         <span class="c1"># if annotation column is not present</span>
-                            
+
         <span class="k">else</span><span class="p">:</span>
             <span class="n">word2tag</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>    
-            
+
         <span class="c1"># active_df -&gt; NaN are present</span>
         <span class="c1"># deactive_df -&gt; already has annotations</span>
-            
+
         <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    REVIEW ANNOTATIONS</span>
-<span class="sd">    </span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># nullify rows which are not NaN, but don&#39;t have </span>
-        
+
     <span class="k">def</span> <span class="nf">review_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">)][</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
         <span class="n">annot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">)][</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-        
+
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">annot</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
-            
+
     <span class="c1"># drop annotations (from deactive_df)</span>
-            
+
     <span class="k">def</span> <span class="nf">drop_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">idx</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
         <span class="n">remove_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
         <span class="n">remove_df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1398,100 +1398,100 @@ text_b [[0.68768998 0.31231002]]
         <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dopped annotations saving &gt;&gt; annot.csv&#39;</span><span class="p">)</span>
         <span class="n">pd</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">]))</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    ANNOTATE ON ACTIVE ONLY</span>
-<span class="sd">    </span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
-        
+
     <span class="k">def</span> <span class="nf">ner_annotate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        
+
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-            
+
             <span class="n">q</span> <span class="o">=</span> <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span> <span class="c1"># question</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">q</span>                    <span class="c1"># annotated question holder</span>
-            
+
             <span class="n">annotate_row</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">while</span> <span class="n">annotate_row</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-                
+
                 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current Annotations:&#39;</span><span class="p">)</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                
+
                 <span class="c1"># user input</span>
                 <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;tag (word-tag) format &gt;&gt; &#39;</span><span class="p">)</span>
-                
+
                 <span class="c1"># [1] end of annotation (go to next row)</span>
-                
+
                 <span class="k">if</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;quit&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]):</span>
-                    
+
                     <span class="n">annotate_row</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
-                    
+
                     <span class="c1"># Store Tags</span>
                     <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
                         <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">[</span><span class="n">phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-                        
+
                         <span class="c1"># clean up output</span>
                         <span class="c1">#               clear_output(wait=True)</span>
-                        
+
                         <span class="c1"># [2] stop annotation loop</span>
-                        
+
                 <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="s1">&#39;stop&#39;</span><span class="p">):</span>
-                    
+
                     <span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
                     <span class="n">ldf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                     <span class="k">return</span> 
-                
+
                 <span class="c1"># [3] Reset current Row Tags</span>
-                
+
                 <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">]):</span>
-                    
+
                     <span class="n">t</span><span class="o">=</span><span class="n">q</span> 
                     <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
                     <span class="c1">#           clear_output(wait=True)</span>
                     <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;tag (word-tag) format &gt;&gt; &#39;</span><span class="p">)</span>
-                    
+
                 <span class="c1"># [4] Show current word2tag mapping dictionary</span>
-                    
+
                 <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;show&#39;</span><span class="p">):</span>
                     <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">)</span>
 
                 <span class="c1"># [5] Automatically set tags from existing tags in word2tag </span>
-                    
+
                 <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;dict&#39;</span><span class="p">):</span>
-                    
+
                     <span class="c1"># use dictionary to automatically set tags</span>
                     <span class="k">for</span> <span class="n">word</span><span class="p">,</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                         <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">t</span><span class="p">):</span>
                             <span class="n">express</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">]&#39;</span> 
                             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">express</span><span class="p">)</span>            
-                            
+
                             <span class="c1"># Tags Specified</span>
 
                 <span class="c1"># [6] We are actually annotating document</span>
-                            
+
                 <span class="k">elif</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">user</span><span class="p">):</span>
-                    
+
                     <span class="c1"># parse input</span>
                     <span class="n">word</span><span class="p">,</span><span class="n">tag</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
-                    
+
                     <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
                         <span class="n">word</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;please add word &gt;&gt; &#39;</span><span class="p">)</span>
                     <span class="k">if</span><span class="p">(</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
                         <span class="n">tag</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;please add tag &gt;&gt; &#39;</span><span class="p">)</span>
-                        
+
                     <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">t</span><span class="p">):</span>
                         <span class="n">express</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">]&#39;</span> 
                         <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">express</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not found in sentence&#39;</span><span class="p">)</span>
-                        
+
                 <span class="k">else</span><span class="p">:</span>
                     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;please use (word-tag format)&#39;</span><span class="p">)</span>
-                    
+
         <span class="c1"># finished annotation</span>
         <span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">ldf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1517,11 +1517,11 @@ text_b [[0.68768998 0.31231002]]
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
-    
+
     <span class="c1"># RE patterns for tag extraction</span>
     <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
     <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([.,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-_`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
-    
+
     <span class="c1"># initialise, first word/id tag is O (outside)</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
@@ -1530,17 +1530,17 @@ text_b [[0.68768998 0.31231002]]
         <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
             <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
         <span class="p">}</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; CREATE TAGS &#39;&#39;&#39;</span>
-        
+
     <span class="c1"># input : sentence, tagged sentence</span>
-        
+
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Create Dictionary of Identified Tags&#39;&#39;&#39;</span>
-        
+
         <span class="c1"># 1. set label B or I    </span>
-        
+
         <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
         <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
@@ -1549,9 +1549,9 @@ text_b [[0.68768998 0.31231002]]
             <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                 <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">                </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Tokenise Sentence &amp; add tags to not tagged words (O)&#39;&#39;&#39;</span>
-                
+
         <span class="c1"># 2. add token tag to main tag dictionary</span>
 
         <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1562,11 +1562,11 @@ text_b [[0.68768998 0.31231002]]
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
-                
+
         <span class="k">return</span> <span class="n">tags</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; TAG CONVERSION &#39;&#39;&#39;</span>
-    
+
     <span class="c1"># to word2id (tag_to_id)</span>
     <span class="c1"># to id2word (id_to_tag)</span>
 
@@ -1576,16 +1576,16 @@ text_b [[0.68768998 0.31231002]]
         <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-<span class="w">        </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Get Tag Number ID &#39;&#39;&#39;</span>
         <span class="c1"># or just number id for token</span>
-        
+
     <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Token from Number ID&#39;&#39;&#39;</span>
     <span class="c1"># given id get its token</span>
-    
+
     <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
 </code></pre></div>

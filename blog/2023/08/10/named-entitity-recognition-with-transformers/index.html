@@ -1108,11 +1108,11 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
-    
+
     <span class="c1"># RE patterns for tag extraction</span>
     <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
     <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([.,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-_`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
-    
+
     <span class="c1"># initialise, first word/id tag is O (outside)</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
@@ -1121,20 +1121,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
             <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
         <span class="p">}</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    CREATE TAGS</span>
-<span class="sd">    </span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># input : sentence, tagged sentence</span>
-    
+
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-<span class="w">    </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Create Dictionary of Identified Tags&#39;&#39;&#39;</span>
-    
+
         <span class="c1"># 1. set label B or I    </span>
-        
+
         <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
         <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
@@ -1143,9 +1143,9 @@
             <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                 <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="w">                </span>
+
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Tokenise Sentence &amp; add tags to not tagged words (O)&#39;&#39;&#39;</span>
-        
+
         <span class="c1"># 2. add token tag to main tag dictionary</span>
 
         <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1156,13 +1156,13 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
-        
+
         <span class="k">return</span> <span class="n">tags</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    TAG CONVERSION</span>
-<span class="sd">    </span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># to word2id (tag_to_id)</span>
     <span class="c1"># to id2word (id_to_tag)</span>
@@ -1173,19 +1173,19 @@
         <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Number ID &#39;&#39;&#39;</span>
     <span class="c1"># or just number id for token</span>
-        
+
     <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Token from Number ID&#39;&#39;&#39;</span>
     <span class="c1"># given id get its token</span>
-    
+
     <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
-    
+
 <span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
 <span class="n">parser</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </code></pre></div>
@@ -1219,15 +1219,15 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__preprocess</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-    
+
     <span class="k">def</span> <span class="nf">__preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
-        
+
         <span class="n">tmp</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))):</span>
             <span class="n">item</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
@@ -1236,10 +1236,10 @@
                                               <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                                               <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                                               <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
-            
+
             <span class="c1"># token word identifier (each word can have multiple tokens)</span>
             <span class="n">word_ids</span> <span class="o">=</span> <span class="n">tokenizer_output</span><span class="o">.</span><span class="n">word_ids</span><span class="p">()</span> 
-            
+
             <span class="c1"># for each word, how many subtokens are there (starts with 1 - first word)</span>
             <span class="n">subword_group</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span> 
@@ -1249,20 +1249,20 @@
 
             <span class="c1"># define bio tags for each word in numerical format using parser</span>
             <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">parser</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">]</span> 
-            
+
             <span class="c1"># group all relevant data that will be used in forward pass</span>
             <span class="n">tmp</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>
                 <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>
                 <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
             <span class="p">}</span>
-            
+
             <span class="c1"># check consistency</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">subword_group</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">],</span> <span class="n">subword_group</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-                
+
         <span class="k">return</span> <span class="n">tmp</span>
 
 <span class="n">train</span> <span class="o">=</span> <span class="n">NERDataset</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
@@ -1299,7 +1299,7 @@
 <span class="c1"># PreTrainedModel has nn.Module</span>
 
 <span class="k">class</span> <span class="nc">NERClassifier</span><span class="p">(</span><span class="n">PreTrainedModel</span><span class="p">):</span>
-    
+
     <span class="n">config_class</span> <span class="o">=</span> <span class="n">MyConfig</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">config</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
@@ -1309,37 +1309,37 @@
             <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
             <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">CLASSES</span><span class="p">),</span>
         <span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span> <span class="c1"># returns list of targets</span>
-        
+
         <span class="c1"># standard inputs for BERT</span>
         <span class="n">bert_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="p">(</span>
             <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span>
             <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># output of transformer encoder will be our hidden state for </span>
         <span class="c1"># each input_ids </span>
         <span class="n">last_hidden_state</span> <span class="o">=</span> <span class="n">bert_output</span><span class="p">[</span><span class="s2">&quot;last_hidden_state&quot;</span><span class="p">]</span>
-        
+
         <span class="c1"># tokens correspond tokenizer divisions </span>
         <span class="c1"># each word can be split into multiple tokens</span>
         <span class="c1"># ie. get the mean word embedding </span>
-        
+
         <span class="n">target</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;subword_group&quot;</span><span class="p">]:</span>
             <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">group</span>
             <span class="n">word_embedding</span> <span class="o">=</span> <span class="n">last_hidden_state</span><span class="p">[:,</span> <span class="n">b</span><span class="p">:</span><span class="n">b</span><span class="o">+</span><span class="n">e</span><span class="p">]</span>       <span class="c1"># get the token embeddings</span>
             <span class="n">agg_embedding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">word_embedding</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># mean word embeddings for tokens</span>
-            
+
             <span class="c1"># input mean word embedding (1,768) pass into nn.Sequential linear tail end</span>
             <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__forward_one</span><span class="p">(</span><span class="n">agg_embedding</span><span class="p">)</span>    <span class="c1"># logits data </span>
             <span class="n">target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proba</span><span class="p">)</span>
-        
+
         <span class="n">word_logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">word_logits</span>
-        
+
     <span class="k">def</span> <span class="nf">__forward_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">logits</span>
@@ -1373,64 +1373,64 @@
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    (1) TRAINING LOOP</span>
-<span class="sd">    </span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
-    
+
     <span class="n">loss_count</span><span class="p">,</span> <span class="n">loss_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
     <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    
+
     <span class="c1"># switch to training mode, ie backpropagation on</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
-        
+
         <span class="c1"># move data to device</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">key</span><span class="p">:</span> <span class="n">val</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="p">}</span>
-        
+
         <span class="c1"># logits of belonging to each of the tag class </span>
         <span class="c1"># for all words in document</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">clf</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        
+
         <span class="c1"># predicted word tag </span>
         <span class="n">word_tag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
-        
+
         <span class="n">y_true</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
         <span class="n">y_pred</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">word_tag</span><span class="p">)</span>        
-        
+
         <span class="c1"># calcualate loss</span>
         <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
         <span class="n">loss_count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-        
+
 <span class="c1">#         nn.utils.clip_grad_norm_(</span>
 <span class="c1">#             parameters=clf.parameters(), max_norm=20</span>
 <span class="c1">#         )</span>
-        
+
         <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-        
+
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss: </span><span class="si">{</span><span class="n">loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">loss_count</span><span class="si">}</span><span class="s2">; acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="w">        </span>
+
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    (2) VALIDATION LOOP</span>
-<span class="sd">    </span>
+
 <span class="sd">    &#39;&#39;&#39;</span>
-        
+
     <span class="n">test_loss_sum</span><span class="p">,</span> <span class="n">test_loss_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
     <span class="n">test_true</span><span class="p">,</span> <span class="n">test_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    
+
     <span class="c1"># switch to inference mode</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
         <span class="k">for</span> <span class="n">test_rows</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_loader</span><span class="p">):</span>
-            
+
             <span class="c1"># move data to device</span>
             <span class="n">test_inputs</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="n">key</span><span class="p">:</span> <span class="n">val</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
@@ -1445,8 +1445,8 @@
             <span class="n">test_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">test_outputs</span><span class="p">,</span> <span class="n">test_inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
             <span class="n">test_loss_count</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">test_loss_sum</span> <span class="o">+=</span> <span class="n">test_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-        
-        
+
+
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss: </span><span class="si">{</span><span class="n">loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">loss_count</span><span class="si">}</span><span class="s2">; acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="se">\</span>
 <span class="s2">          val_loss: </span><span class="si">{</span><span class="n">test_loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">test_loss_count</span><span class="si">}</span><span class="s2">, val_acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_true</span><span class="p">,</span><span class="w"> </span><span class="n">test_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1664,11 +1664,11 @@ the <code>tokenizer</code> can be loaded in a similar way</p>
         <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>
         <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>
     <span class="p">}</span>
-    
+
     <span class="c1"># get the highest logits value</span>
     <span class="n">tag_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">output</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">tag_pred</span> 
-    
+
     <span class="k">return</span> <span class="n">tag_pred</span>
 
 <span class="n">ner_inference</span><span class="p">(</span><span class="s1">&#39;В девять утра я улетаю в Зимбабве&#39;</span><span class="p">,</span><span class="n">new_model</span><span class="p">)</span>

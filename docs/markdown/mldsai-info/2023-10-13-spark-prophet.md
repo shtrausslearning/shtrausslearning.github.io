@@ -79,9 +79,12 @@ root
  |-- region: string (nullable = true)
 ```
 
+Let's take a peek at our dataset
+
 ```python
 sales.select('Date','type','Total Volume','region').orderBy('Date').show(5)
-
+```
+```
 +----------+------------+------------+----------------+
 |      Date|        type|Total Volume|          region|
 +----------+------------+------------+----------------+
@@ -92,9 +95,6 @@ sales.select('Date','type','Total Volume','region').orderBy('Date').show(5)
 |2015-01-04|conventional|   166006.29|       Charlotte|
 +----------+------------+------------+----------------+
 ```
-
-
-
 
 **Thank you for reading!**
 

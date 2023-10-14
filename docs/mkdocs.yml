@@ -5,15 +5,12 @@ repo_name: 'shtrausslearning.github.io'
 repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
 edit_uri: tree/master/docs/src/markdown
 site_description: A Collection of Useful Snippets on Machine Learning related topics
-copyright: |
-  Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
-
 docs_dir: markdown
 
 nav:
-    - Home: index.md
+    - home: index.md
 
-    - Collections: 
+    - collections: 
 
         - Data Science: ds-portfolio.md
 
@@ -22,7 +19,7 @@ nav:
         - introduction: mllibs/home.md
         - meetups: mllibs/meetups.md
 
-    - Blog:
+    - mldsai:
         - Prophet with PySpark: mldsai/2023-10-13-spark-prophet.md
         - Comparing Datasets: mldsai/2023-09-25-compare_dataset.md
         - NER with HuggingFace: mldsai/2023-09-21-huggingface_NER2.md
@@ -142,13 +139,6 @@ theme:
 
 extra:
     manifest: manifest.webmanifest
-    blog:
-        dir: mldsai
-        author: Andrey Shtrauss
-        author_image: https://avatars.githubusercontent.com/u/93479011
-        words_read_per_minute: 300
-        list_length: 25
-        extended_preview: true
     social:
     - icon: fontawesome/brands/github
       link: https://github.com/shtrausslearning
@@ -165,3 +155,5 @@ plugins:
     - tags
     - blog
 
+copyright: |
+  Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>

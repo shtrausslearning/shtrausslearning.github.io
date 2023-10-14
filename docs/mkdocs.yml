@@ -141,8 +141,4 @@ extra:
 
 plugins:
     - search
-    - tags:
-        tags_allowed:
-            - HTML5
-            - JavaScript
-            - CSS
+    - tags

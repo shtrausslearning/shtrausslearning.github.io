@@ -266,6 +266,165 @@ by_volume.filter(f.col('Total Volume') == 793464.77).show()
 +---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
 ```
 
+Let's also check how many regions there actually are:
+
+```
+sales.select('region').distinct().count()
+```
+
+```
+54
+```
+
+Which is interesting as there are only 50 states in the US, so perhaps `west` is a summation for all states on the west coast, lets check if there is also an east coast
+
+```python
+sales.groupBy('region').count().show(100)
+```
+
+```
++-------------------+-----+
+|             region|count|
++-------------------+-----+
+|      PhoenixTucson|  338|
+|        GrandRapids|  338|
+|      SouthCarolina|  338|
+|            TotalUS|  338|
+|   WestTexNewMexico|  335|
+|         Louisville|  338|
+|       Philadelphia|  338|
+|         Sacramento|  338|
+|      DallasFtWorth|  338|
+|       Indianapolis|  338|
+|           LasVegas|  338|
+|          Nashville|  338|
+|         GreatLakes|  338|
+|            Detroit|  338|
+|             Albany|  338|
+|           Portland|  338|
+|   CincinnatiDayton|  338|
+|           SanDiego|  338|
+|              Boise|  338|
+| HarrisburgScranton|  338|
+|            StLouis|  338|
+|   NewOrleansMobile|  338|
+|           Columbus|  338|
+|         Pittsburgh|  338|
+|  MiamiFtLauderdale|  338|
+|       SouthCentral|  338|
+|            Chicago|  338|
+|   BuffaloRochester|  338|
+|              Tampa|  338|
+|          Southeast|  338|
+|             Plains|  338|
+|            Atlanta|  338|
+|BaltimoreWashington|  338|
+|            Seattle|  338|
+|       SanFrancisco|  338|
+|HartfordSpringfield|  338|
+|            Spokane|  338|
+| NorthernNewEngland|  338|
+|            Roanoke|  338|
+|         LosAngeles|  338|
+|            Houston|  338|
+|       Jacksonville|  338|
+|  RaleighGreensboro|  338|
+|               West|  338|
+|            NewYork|  338|
+|           Syracuse|  338|
+|         California|  338|
+|            Orlando|  338|
+|          Charlotte|  338|
+|           Midsouth|  338|
+|             Denver|  338|
+|             Boston|  338|
+|          Northeast|  338|
+|    RichmondNorfolk|  338|
++-------------------+-----+
+```
+
+So as the name suggests, its a grouping that doesn't actually correspond to states, but rather are some general zones, mostly city specific regions, however we also have `Northeast`, `West`,`Midsouth` & `SouthCentral` regions.
+
+Let's check how many values we have for each `region`
+
+```python
+# value counts
+sales.groupBy('region').count().orderBy('count', ascending=True).show()
+```
+
+```
++------------------+-----+
+|            region|count|
++------------------+-----+
+|  WestTexNewMexico|  335|
+|     PhoenixTucson|  338|
+|       GrandRapids|  338|
+|     SouthCarolina|  338|
+|           TotalUS|  338|
+|        Louisville|  338|
+|      Philadelphia|  338|
+|        Sacramento|  338|
+|     DallasFtWorth|  338|
+|      Indianapolis|  338|
+|          LasVegas|  338|
+|         Nashville|  338|
+|        GreatLakes|  338|
+|           Detroit|  338|
+|            Albany|  338|
+|          Portland|  338|
+|  CincinnatiDayton|  338|
+|          SanDiego|  338|
+|             Boise|  338|
+|HarrisburgScranton|  338|
++------------------+-----+
+only showing top 20 rows
+```
+
+Looks like we mostly have 338 historical data points for each region, except for `WestTexNewMexico`
+
+Let's check how the `Houston` region has been performing
+
+```python
+# select only a subset of data
+sales.filter(f.col('region') == 'Houston').show()
+``` 
+
+```
++---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+|_c0|      Date|AveragePrice|Total Volume|     4046|     4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year| region|
++---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+|  0|2015-12-27|        0.78|   944506.54|389773.22|288003.62|126150.81| 140578.89|  73711.94|  36493.62|   30373.33|conventional|2015|Houston|
+|  1|2015-12-20|        0.75|   922355.67|382444.22|278067.11|127372.19| 134472.15|  72198.16|  31520.66|   30753.33|conventional|2015|Houston|
+|  2|2015-12-13|        0.73|   998752.95| 412187.8|386865.21| 81450.04|  118249.9|  69011.01|  48622.22|     616.67|conventional|2015|Houston|
+|  3|2015-12-06|        0.74|   989676.85|368528.91| 490805.0|  7041.19| 123301.75|  61020.31|  62281.44|        0.0|conventional|2015|Houston|
+|  4|2015-11-29|        0.79|   783225.98|391616.95|289533.68|  4334.89|  97740.46|  67880.28|  29860.18|        0.0|conventional|2015|Houston|
+|  5|2015-11-22|        0.73|   913002.96|402191.51|391110.76|  6924.43| 112776.26|  70785.25|  41991.01|        0.0|conventional|2015|Houston|
+|  6|2015-11-15|        0.72|   998801.78|530464.33|332541.11|   4611.0| 131185.34|  62414.66|  68770.68|        0.0|conventional|2015|Houston|
+|  7|2015-11-08|        0.75|   983909.85|427828.16|411365.91| 20404.29| 124311.49|  56573.89|   67737.6|        0.0|conventional|2015|Houston|
+|  8|2015-11-01|        0.77|  1007805.74| 395945.0|365506.02|111263.81| 135090.91|  56198.27|  78892.64|        0.0|conventional|2015|Houston|
+|  9|2015-10-25|        0.88|   933623.58|437329.85|313129.29| 81274.85| 101889.59|  57577.21|   44260.6|      51.78|conventional|2015|Houston|
+| 10|2015-10-18|         0.9|   847813.12| 436132.2|242842.91| 80895.03|  87942.98|  59835.83|  28107.15|        0.0|conventional|2015|Houston|
+| 11|2015-10-11|        0.79|  1036269.51|410949.18|385629.69|126765.96| 112924.68|  62638.13|  50286.55|        0.0|conventional|2015|Houston|
+| 12|2015-10-04|        0.82|  1019283.99|411727.49|435388.05| 43558.15|  128610.3|   59751.0|   68859.3|        0.0|conventional|2015|Houston|
+| 13|2015-09-27|        0.86|   968988.09|383218.43| 458982.9|  16780.9| 110005.86|  61098.51|  48907.35|        0.0|conventional|2015|Houston|
+| 14|2015-09-20|        0.83|   967228.05|417701.88|445473.03|   6959.5|  97093.64|  55198.32|  41895.32|        0.0|conventional|2015|Houston|
+| 15|2015-09-13|        0.89|  1095790.27|421533.83|540499.39|  5559.36| 128197.69|  55636.91|  72560.78|        0.0|conventional|2015|Houston|
+| 16|2015-09-06|        0.89|  1090493.39|460377.08|495487.54|   6230.7| 128398.07|  63724.96|  64673.11|        0.0|conventional|2015|Houston|
+| 17|2015-08-30|        0.88|   926124.93| 559048.7|260761.33|  4514.17| 101800.73|   72264.6|  29536.13|        0.0|conventional|2015|Houston|
+| 18|2015-08-23|        0.89|   933166.17|509472.17| 321616.5|  4323.68|  97753.82|  62733.47|  35020.35|        0.0|conventional|2015|Houston|
+| 19|2015-08-16|        0.92|   968899.09|565965.79|297434.65|  3479.25|  102019.4|  65764.02|  36255.38|        0.0|conventional|2015|Houston|
++---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+```
+
+## <b>Preparing data for modeling</b>
+
+Since we don't have any missing data points for this region, let's use it for our model example, let's define a subset `houston_df`
+
+```
+# select houson 
+houston_df = sales.filter(f.col('region')=='Houston')
+```
+
 
 **Thank you for reading!**
 

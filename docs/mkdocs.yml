@@ -112,8 +112,8 @@ theme:
         - navigation.indexes
         # - navigation.instant
         # - navigation.instant.prefetch
-        # - navigation.instant.progress
-        # - navigation.prune
+        - navigation.instant.progress
+        - navigation.prune
         - navigation.sections
         - navigation.tabs
         - navigation.tabs.sticky
@@ -124,7 +124,7 @@ theme:
         - search.suggest
         - toc.follow
         # - toc.integrate
-        
+
     custom_dir: material/overrides
     palette:
         - scheme: default
@@ -158,7 +158,6 @@ extra:
 
 plugins:
     - blog:
-        categories_toc: true
     - search:
         separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
 

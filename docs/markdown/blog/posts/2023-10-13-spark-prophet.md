@@ -6,11 +6,6 @@ categories:
      - pyspark
      - prophet
      - regression
-tags:
-  - pyspark
-  - prophet
-  - regression
-comments: true
 ---
 
 ![](https://i.imgur.com/b6BBtXv.jpg)

@@ -8,15 +8,15 @@ categories:
     - EDA
 ---
 
-# Comparing Subsets
+An important concept in machine learning is **model generalisation** & **performance deterioration**. When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. However, what if we receive some new data (for example after some time), which is also **a subset** of the entire dataset but it contains a slightly different data relation structure, our models may not perform as well as they did on the data it was trained on, by comparing the metrics of both dataset, we can get an idea of how similar our datasets are.
+
+The above approach to comparing the two datasets isn't the most ideal, but it should raise a question; are there any other approaches that we can use to compare different subsets of data? This is what we'll look at in this post!
+
+<!-- more -->
 
 ![](https://i.imgur.com/4mKNGHY.jpg)
 
 ## <b>Comparing Subsets</span></b>
-
-An important concept in machine learning is **model generalisation** & **performance deterioration**. When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. However, what if we receive some new data (for example after some time), which is also **a subset** of the entire dataset but it contains a slightly different data relation structure, our models may not perform as well as they did on the data it was trained on, by comparing the metrics of both dataset, we can get an idea of how similar our datasets are.
-
-The above approach to comparing the two datasets isn't the most ideal, but it should raise a question; are there any other approaches that we can use to compare different subsets of data? This is what we'll look at in this post!
 
 ### <b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Subset Comparison Approaches</b> 
 

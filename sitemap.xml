@@ -56,7 +56,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/10/13/2023-10-13-spark-prophet/</loc>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>

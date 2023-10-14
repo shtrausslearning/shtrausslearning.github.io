@@ -1,5 +1,6 @@
 ---
 date: 2023-10-13
+title: Using Prophet with PySpark
 authors: [andrey]
 description: >-
   Hatch v1.6.0 brings improvements to build environments, better handling

@@ -852,10 +852,11 @@
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="new-post"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/">New post</a></h2>
+    <h2 id="using-prophet-with-pyspark"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/">Using Prophet with PySpark</a></h2>
+<p><img alt="K" src="https://placekitten.com/g/1440/900" /></p>
+<h2 id="background"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/#background">Background</a></h2>
 <p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions (<code>UDF</code>), which allows us to use different functionality that is not available in <code>pyspark</code>.</p>
 <p><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></p>
-<h2 id="background"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/#background"><b>Background</b></a></h2>
 <h3 id="prophet"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/#prophet"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Prophet</b></a></h3>
 <p><code>Prophet</code> is a time series forecasting model. It is based on an additive regression model that takes into account trends, seasonality, and holidays. <code>Prophet</code> also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. </p>
 <h3 id="udf"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/#udf"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b></a></h3>

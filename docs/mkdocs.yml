@@ -98,32 +98,12 @@ theme:
         repo: fontawesome/brands/github
     language: en
     features:
-        - announce.dismiss
-        - content.action.edit
-        - content.action.view
-        - content.code.annotate
-        - content.code.copy
-        # - content.code.select
-        # - content.tabs.link
-        - content.tooltips
-        # - header.autohide
-        # - navigation.expand
-        - navigation.footer
-        - navigation.indexes
-        # - navigation.instant
-        # - navigation.instant.prefetch
-        - navigation.instant.progress
-        - navigation.prune
-        - navigation.sections
-        - navigation.tabs
-        - navigation.tabs.sticky
-        - navigation.top
+        # Navigation settings
+        - navigation.instant
         - navigation.tracking
-        - search.highlight
-        - search.share
-        - search.suggest
-        - toc.follow
-        # - toc.integrate
+        - navigation.tabs
+        # - navigation.tabs.sticky kikapcsolva, így kisebb a fejléc.
+        - navigation.top
 
     custom_dir: material/overrides
     palette:

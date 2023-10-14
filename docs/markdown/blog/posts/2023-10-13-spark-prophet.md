@@ -6,6 +6,10 @@ categories:
      - pyspark
      - prophet
      - regression
+tags:
+  - pyspark
+  - prophet
+  - regression
 comments: true
 ---
 

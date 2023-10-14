@@ -13,10 +13,6 @@
         <link rel="canonical" href="https://github.com/gmihaila/shtrausslearning.github.io/mldsai-info/2023-08-10-huggingface_NER/">
       
       
-        <link rel="prev" href="../2023-08-11-sentence_splitting/">
-      
-      
-        <link rel="next" href="../../mllibs/home/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>NER with Torch/HuggingFace - Andrey Shtrauss</title>
+        <title>Named Entitity Recognition with Transformers - Andrey Shtrauss</title>
       
     
     
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NER with Torch/HuggingFace
+              Named Entitity Recognition with Transformers
             
           </span>
         </div>
@@ -343,434 +339,6 @@
       
   
   
-    
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    MLDSAI Posts
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            MLDSAI Posts
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-10-13-spark-prophet/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Prophet with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-09-25-compare_dataset/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Comparing Datasets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-09-21-huggingface_NER2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    NER with HuggingFace
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-22-spark-pipeline-tune/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Pipeline Tuning with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-21-spark-modeling/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Creating Models with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-20-spark-preprocess/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Preprocessing with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-17-spark-cabeda/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Taxi EDA with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-11-sentence_splitting/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Sentence Splitting with NER
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    NER with Torch/HuggingFace
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    NER with Torch/HuggingFace
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
-  </a>
-  
-    <nav class="md-nav" aria-label="Background">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-what-is-ner" class="md-nav__link">
-    ❯❯ What is NER?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-applications" class="md-nav__link">
-    ❯❯ Applications
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-ner-dataset" class="md-nav__link">
-    The NER Dataset
-  </a>
-  
-    <nav class="md-nav" aria-label="The NER Dataset">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-massive-11" class="md-nav__link">
-    ❯❯ Massive 1.1
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-relevant-columns" class="md-nav__link">
-    ❯❯ Relevant Columns
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#text-preprocessing" class="md-nav__link">
-    Text Preprocessing
-  </a>
-  
-    <nav class="md-nav" aria-label="Text Preprocessing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-define-tokeniser--model" class="md-nav__link">
-    ❯❯ Define Tokeniser &amp; Model
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-ner-format" class="md-nav__link">
-    ❯❯ NER format
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-create-dataset" class="md-nav__link">
-    ❯❯ Create Dataset
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bert-multiclass-classifier" class="md-nav__link">
-    BERT Multiclass Classifier
-  </a>
-  
-    <nav class="md-nav" aria-label="BERT Multiclass Classifier">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-model-architecture" class="md-nav__link">
-    ❯❯ Model Architecture
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-model-additions" class="md-nav__link">
-    ❯❯ Model Additions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-train-model" class="md-nav__link">
-    ❯❯ Train Model
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-save-model" class="md-nav__link">
-    ❯❯ Save Model
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-our-ner-tagger" class="md-nav__link">
-    Using our NER tagger
-  </a>
-  
-    <nav class="md-nav" aria-label="Using our NER tagger">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-loading-model" class="md-nav__link">
-    ❯❯ Loading Model
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-finding-ner-tags-in-a-document" class="md-nav__link">
-    ❯❯ Finding NER tags in a document
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contact-me" class="md-nav__link">
-    Contact Me!
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
   
     
     
@@ -784,10 +352,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -798,8 +366,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             mllibs
           </label>

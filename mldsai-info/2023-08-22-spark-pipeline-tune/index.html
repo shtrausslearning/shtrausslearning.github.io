@@ -13,10 +13,6 @@
         <link rel="canonical" href="https://github.com/gmihaila/shtrausslearning.github.io/mldsai-info/2023-08-22-spark-pipeline-tune/">
       
       
-        <link rel="prev" href="../2023-09-21-huggingface_NER2/">
-      
-      
-        <link rel="next" href="../2023-08-21-spark-modeling/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +20,7 @@
     
     
       
-        <title>Pipeline Tuning with PySpark - Andrey Shtrauss</title>
+        <title>Hyperparameter Tuning with Pipelines - Andrey Shtrauss</title>
       
     
     
@@ -115,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Pipeline Tuning with PySpark
+              Hyperparameter Tuning with Pipelines
             
           </span>
         </div>
@@ -343,326 +339,6 @@
       
   
   
-    
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    MLDSAI Posts
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            MLDSAI Posts
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-10-13-spark-prophet/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Prophet with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-09-25-compare_dataset/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Comparing Datasets
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-09-21-huggingface_NER2/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    NER with HuggingFace
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Pipeline Tuning with PySpark
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Pipeline Tuning with PySpark
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
-    Background
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#preprocessing-recap" class="md-nav__link">
-    Preprocessing Recap
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-subsets" class="md-nav__link">
-    Creating Subsets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#machine-learning-pipeline" class="md-nav__link">
-    Machine Learning Pipeline
-  </a>
-  
-    <nav class="md-nav" aria-label="Machine Learning Pipeline">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-creating-a-pipeline" class="md-nav__link">
-    ❯❯ Creating a Pipeline
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-hyperparameter-tuning" class="md-nav__link">
-    ❯❯ Hyperparameter Tuning
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    Conclusion
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-21-spark-modeling/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Creating Models with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-20-spark-preprocess/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Preprocessing with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-17-spark-cabeda/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Taxi EDA with PySpark
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-11-sentence_splitting/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Sentence Splitting with NER
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../2023-08-10-huggingface_NER/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    NER with Torch/HuggingFace
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
   
     
     
@@ -676,10 +352,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -690,8 +366,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             mllibs
           </label>

@@ -23,15 +23,15 @@ nav:
         - meetups: mllibs/meetups.md
 
     - Blog:
-        - Prophet with PySpark: blog/2023-10-13-spark-prophet.md
-        - Comparing Datasets: blog/2023-09-25-compare_dataset.md
-        - NER with HuggingFace: blog/2023-09-21-huggingface_NER2.md
-        - Pipeline Tuning with PySpark: blog/2023-08-22-spark-pipeline-tune.md
-        - Creating Models with PySpark: blog/2023-08-21-spark-modeling.md
-        - Preprocessing with PySpark: blog/2023-08-20-spark-preprocess.md
-        - Taxi EDA with PySpark: blog/2023-08-17-spark-cabeda.md
-        - Sentence Splitting with NER: blog/2023-08-11-sentence_splitting.md
-        - NER with Torch/HuggingFace: blog/2023-08-10-huggingface_NER.md
+        - Prophet with PySpark: mldsai/2023-10-13-spark-prophet.md
+        - Comparing Datasets: mldsai/2023-09-25-compare_dataset.md
+        - NER with HuggingFace: mldsai/2023-09-21-huggingface_NER2.md
+        - Pipeline Tuning with PySpark: mldsai/2023-08-22-spark-pipeline-tune.md
+        - Creating Models with PySpark: mldsai/2023-08-21-spark-modeling.md
+        - Preprocessing with PySpark: mldsai/2023-08-20-spark-preprocess.md
+        - Taxi EDA with PySpark: mldsai/2023-08-17-spark-cabeda.md
+        - Sentence Splitting with NER: mldsai/2023-08-11-sentence_splitting.md
+        - NER with Torch/HuggingFace: mldsai/2023-08-10-huggingface_NER.md
 
 
 
@@ -143,7 +143,7 @@ theme:
 extra:
     manifest: manifest.webmanifest
     blog:
-        dir: blog
+        dir: mldsai
         author: Andrey Shtrauss
         author_image: https://avatars.githubusercontent.com/u/93479011
         words_read_per_minute: 300

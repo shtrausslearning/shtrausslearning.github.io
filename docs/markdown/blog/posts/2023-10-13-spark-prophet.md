@@ -17,6 +17,8 @@ In this notebook, we look at how to use a popular machine learning library `prop
 
 <!-- more -->
 
+
+
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 
 ## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Prophet</b> 

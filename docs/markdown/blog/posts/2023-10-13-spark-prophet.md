@@ -38,7 +38,7 @@ It is a well known fact that Millenials LOVE Avocado Toast. It's also a well kno
 
 The dataset can be found on **[Kaggle](https://www.kaggle.com/datasets/neuromusic/avocado-prices)** & its original source found **[here](https://hassavocadoboard.com/)**
 
-### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Loading data</b> 
+## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Loading data</b> 
 
 To load the data, we start a spark session on local
 
@@ -82,7 +82,7 @@ root
  |-- region: string (nullable = true)
 ```
 
-## <b>Exploring Data</b>
+# <b>Exploring Data</b>
 
 Having loaded our data, we sure can do some data exploration, first lets take a peek at our dataset, we'll use `select`,`orderBy` & `show` methods
 
@@ -415,7 +415,7 @@ sales.filter(f.col('region') == 'Houston').show()
 +---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
 ```
 
-## <b>Preparing data for modeling</b>
+# <b>Preparing data for modeling</b>
 
 Since we don't have any missing data points for this region, let's use it for our model example, let's define a subset `houston_df`
 
@@ -463,7 +463,7 @@ houston_df_final.show(4)
 only showing top 4 rows
 ```
 
-### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b> 
+## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Defining Scheme</b> 
 
 Let's prepare the scheme for the outputs of our `UDF`
 
@@ -481,7 +481,7 @@ schema = ty.StructType([
                      ]) 
 ```
 
-### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
+## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b> 
 
 ```python
 from prophet import Prophet
@@ -528,7 +528,7 @@ def apply_model(store_pd):
                     'yhat_upper', 'yhat_lower']]
 ```
 
-### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Modeling</b> 
+## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Modeling</b> 
 
 ```python
 results = houston_df_final.groupby(['Region','type']).apply(apply_model)
@@ -571,7 +571,7 @@ Conventional_data = results.filter(f.col('type')=='conventional').pandas_api()
 Conventional_data = Conventional_data.set_index(['ds'])
 ```
 
-### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Visualisation</b> 
+## <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Visualisation</b> 
 
 Let's visualise the `organic` subset model
 

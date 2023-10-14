@@ -2173,21 +2173,18 @@ weighted avg       0.81      0.81      0.78       161
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="named-entitity-recognition-with-transformers"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/"><strong>Named Entitity Recognition with Transformers</strong></a></h2>
+    <h2 id="named-entitity-recognition-with-transformers"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/">Named Entitity Recognition with Transformers</a></h2>
 <p><img alt="" src="https://i.imgur.com/YB7sv87.jpg" /></p>
-<p>date: 2023-08-10 00:00:00 <br>
-categories: [NLP] <br>
-tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <p>In this notebook, we'll take a look at how we can utilise huggingface transformer models and a custom PyTorch training loop, in order to classify different words in a document. We'll be utilising <strong>Massive</strong> dataset and fine-tuning and encoder <code>BERT</code>, with a custom tail model that can be used for multiclass classification</p>
 <p><a href="https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
-<h3 id="background"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#background"><b>Background</b></a></h3>
-<h4 id="what-is-ner"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#what-is-ner"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>What is NER?</b></a></h4>
+<h2 id="background"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#background"><b>Background</b></a></h2>
+<h3 id="what-is-ner"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#what-is-ner"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>What is NER?</b></a></h3>
 <ul>
 <li>NER is a natural language processing technique which identifies and extracts named entities from unstructured text</li>
 <li>Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be</li>
 <li>NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity</li>
 </ul>
-<h4 id="applications"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#applications"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Applications</b></a></h4>
+<h3 id="applications"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#applications"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Applications</b></a></h3>
 <p>Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. </p>
 <p>Few such examples have been listed below[^footnote]:</p>
 <p>Classifying content for news providers: <br></p>
@@ -2210,9 +2207,9 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <blockquote>
 <p>Usually, a company gets tons of customer complaints and feedback on a daily basis, and going through each one of them and recognizing the concerned parties is not an easy task. Using NER we can recognize relevant entities in customer complaints and feedback such as Product specifications, department, or company branch location so that the feedback is classified accordingly and forwarded to the appropriate department responsible for the identified product.</p>
 </blockquote>
-<h3 id="the-ner-dataset"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#the-ner-dataset"><b>The NER Dataset</b></a></h3>
+<h2 id="the-ner-dataset"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#the-ner-dataset"><b>The NER Dataset</b></a></h2>
 <p>To realise <code>NER</code> with Hugginface, we'll be utilising a muli-language dataset <code>massive</code></p>
-<h4 id="massive-11"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#massive-11"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Massive 1.1</b></a></h4>
+<h3 id="massive-11"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#massive-11"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Massive 1.1</b></a></h3>
 <p>Let's load our dataset <strong>MASSIVE</strong>; the dataset can be found on <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">huggingface</a></strong></p>
 <blockquote>
 <p>MASSIVE 1.1 is a parallel dataset of &gt; 1M utterances across <strong>52 languages</strong> with annotations for the Natural Language Understanding tasks of intent prediction and slot annotation. Utterances span 60 intents and include 55 slot types. MASSIVE was created by localizing the SLURP dataset, composed of general Intelligent Voice Assistant single-shot interactions.</p>
@@ -2226,9 +2223,8 @@ tags: [Huggingface, NER, PyTorch, Transformers] <br></p>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:100]&quot;</span><span class="p">)</span>
 <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;test[:100]&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h4 id="relevant-columns"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#relevant-columns"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Relevant Columns</b></a></h4>
-<p>​
-Some samples from our <strong>documents</strong>, located in column <code>utt</code> and NER <strong>Annotations</strong> are located in <code>annot_utt</code>, which is in the format <code>[tag : tokens]</code></p>
+<h3 id="relevant-columns"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#relevant-columns"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Relevant Columns</b></a></h3>
+<p>Some samples from our <strong>documents</strong>, located in column <code>utt</code> and NER <strong>Annotations</strong> are located in <code>annot_utt</code>, which is in the format <code>[tag : tokens]</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span> 
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>[&#39;разбуди меня в девять утра в пятницу&#39;,
@@ -2255,8 +2251,8 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 &#39;время идти спать&#39;,
 &#39;олли время спать&#39;]
 </code></pre></div>
-<h3 id="text-preprocessing"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#text-preprocessing"><b>Text Preprocessing</b></a></h3>
-<h4 id="define-tokeniser-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#define-tokeniser-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Define Tokeniser &amp; Model</b></a></h4>
+<h2 id="text-preprocessing"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#text-preprocessing"><b>Text Preprocessing</b></a></h2>
+<h3 id="define-tokeniser-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#define-tokeniser-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Define Tokeniser &amp; Model</b></a></h3>
 <p>For preprocessing we'll need a tokeniser, so let's define the tokeniser &amp; the base model</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
 
@@ -2267,7 +2263,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 <span class="c1"># tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-uncased&quot;)               # en only</span>
 <span class="c1"># model = AutoModel.from_pretrained(&quot;bert-base-uncased&quot;)                       # en only</span>
 </code></pre></div>
-<h4 id="ner-format"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#ner-format"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>NER format</b></a></h4>
+<h3 id="ner-format"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#ner-format"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>NER format</b></a></h3>
 <p><strong>NER</strong> tagging formats can vary quite a bit, let's utilise class <code>Parser</code> to preprocess the NER format in our dataset</p>
 <p>Class <code>Parser</code> contains the relevant preprocessing steps we will take:
 - The class will be called when creating our <code>Dataset</code>, creating <strong>NER tags</strong> for each document
@@ -2368,7 +2364,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;O&#39;, &#39;B-DATE&#39;]
 </code></pre></div>
-<h4 id="create-dataset"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#create-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Create Dataset</b></a></h4>
+<h3 id="create-dataset"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#create-dataset"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Create Dataset</b></a></h3>
 <p>The functions <code>NERDataset</code> is our Dataset class, it requires the <code>Parser</code> class instance </p>
 <p>Input into the <code>parser</code> orbjects are <code>utt</code> &amp; its annotated version <code>annot_utt</code></p>
 <p>The output from <code>parser</code> will be a list of target variable tags <code>BIO</code> tags</p>
@@ -2449,9 +2445,9 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 100%|██████████| 1000/1000 [00:00&lt;00:00, 1690.12it/s]
 100%|██████████| 1000/1000 [00:00&lt;00:00, 1598.76it/s]
 </code></pre></div>
-<h3 id="bert-multiclass-classifier"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#bert-multiclass-classifier"><b>BERT Multiclass Classifier</b></a></h3>
+<h2 id="bert-multiclass-classifier"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#bert-multiclass-classifier"><b>BERT Multiclass Classifier</b></a></h2>
 <p>We will use a rather custom approach to <code>NER</code>, we have loaded our <code>encoder</code> model, so we'll need to create a tail end for it, so we can use it for <code>NER</code> multiclass classification</p>
-<h4 id="model-architecture"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#model-architecture"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Architecture</b></a></h4>
+<h3 id="model-architecture"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#model-architecture"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Architecture</b></a></h3>
 <p>Let's create a custom training &amp; evaluation loop for our <strong>NER multiclass classification</strong> problem</p>
 <ul>
 <li>In total we have 34 classification tags (including O), so we can define the tail output dimension</li>
@@ -2521,7 +2517,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
         <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">logits</span>
 </code></pre></div>
-<h4 id="model-additions"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#model-additions"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Additions</b></a></h4>
+<h3 id="model-additions"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#model-additions"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Model Additions</b></a></h3>
 <p>Aside from defining the classification model architecture for our base model BERT
 - We need to create <strong>dataloaders</strong>, <strong>instantiate</strong> our model (ie tail weights need to be initialised)
 - Define the model evaluation criterion (loss function) 
@@ -2542,7 +2538,7 @@ Some samples from our <strong>documents</strong>, located in column <code>utt</c
 <p>In total, we have created 63 tags in <code>word_to_tag</code> </p>
 <div class="highlight"><pre><span></span><code>63 labels
 </code></pre></div>
-<h4 id="train-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#train-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Train Model</b></a></h4>
+<h3 id="train-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#train-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Train Model</b></a></h3>
 <ul>
 <li>Let's train our model for 20 epochs on <code>train_loader</code> &amp; validate the model using <code>test_loader</code> </li>
 <li>To check how well the model is performing during training, we will use the <code>accuracy</code> metric</li>
@@ -2748,7 +2744,7 @@ Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395
 100%|██████████| 1000/1000 [00:11&lt;00:00, 88.16it/s]
 Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss: 1.0284815851225262, val_acc: 0.8245512449334106
 </code></pre></div>
-<h4 id="save-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#save-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Save Model</b></a></h4>
+<h3 id="save-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#save-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Save Model</b></a></h3>
 <p>We can save the model for future use</p>
 <div class="highlight"><pre><span></span><code><span class="n">clf</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
 <span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
@@ -2759,9 +2755,9 @@ Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss
  &#39;./my_model_dir/added_tokens.json&#39;,
  &#39;./my_model_dir/tokenizer.json&#39;)
 </code></pre></div>
-<h3 id="using-our-ner-tagger"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#using-our-ner-tagger"><b>Using our NER tagger</b></a></h3>
+<h2 id="using-our-ner-tagger"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#using-our-ner-tagger"><b>Using our NER tagger</b></a></h2>
 <p>We can use our <code>NER</code> tagger by loading a stack of documents and creating a <code>dataset</code>, as we did for the <code>train</code> &amp; <code>test</code> subsets or we can use it for a single sentence, I'll be using a simple inference function.</p>
-<h4 id="loading-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#loading-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Loading Model</b></a></h4>
+<h3 id="loading-model"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#loading-model"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Loading Model</b></a></h3>
 <p>If we want to load the fine-tuned <code>model</code>, we can use <code>.from_pretrained</code> and specify the folder where ther model is located, 
 the <code>tokenizer</code> can be loaded in a similar way</p>
 <div class="highlight"><pre><span></span><code><span class="n">new_model</span> <span class="o">=</span> <span class="n">NERClassifier</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
@@ -2816,7 +2812,7 @@ the <code>tokenizer</code> can be loaded in a similar way</p>
   )
 )
 </code></pre></div>
-<h4 id="finding-ner-tags-in-a-document"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#finding-ner-tags-in-a-document"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Finding NER tags in a document</b></a></h4>
+<h3 id="finding-ner-tags-in-a-document"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#finding-ner-tags-in-a-document"><b><span style='color:#5d6d7e;text-align:center'>❯❯ </span>Finding NER tags in a document</b></a></h3>
 <p>We can use our model using something similar to the code below &amp; utilise the same <code>tokenizer</code>, the <code>parser</code> &amp; saved <code>model</code></p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ner_inference</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
 
@@ -2854,7 +2850,7 @@ the <code>tokenizer</code> can be loaded in a similar way</p>
 <div class="highlight"><pre><span></span><code>[0, 2, 0, 0, 0, 0, 0]
 </code></pre></div>
 <hr />
-<h3 id="contact-me"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#contact-me"><b>Contact Me!</b></a></h3>
+<h2 id="contact-me"><a class="toclink" href="../../2023/08/10/named-entitity-recognition-with-transformers/#contact-me"><b>Contact Me!</b></a></h2>
 <p><strong>Thank you for reading!</strong></p>
 <p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
     <nav class="md-post__action">

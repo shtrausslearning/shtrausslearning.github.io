@@ -6,6 +6,19 @@
 
 [Subscribe to our newsletter](#){ .md-button }
 
+
+??? info "Use cases for the projects plugin"
+
+    Ideal use cases for the projects plugin are:
+
+    - Building a multi-language site
+    - Building a blog alongside your documentation
+    - Splitting large code bases for better performance
+
+    Note that the plugin is currently experimental. We're releasing it early,
+    so that we can improve it together with our users and make it even more
+    powerful as we discover new use cases.
+
 Here you will find a collection of some of the data science projects I've worked on (mostly Kaggle), if you have any questions, contact me  <sub><a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=283747&logo=Telegram&logoColor=FFFFFF&label=" /></a></sub> 
 
 ## :fontawesome-solid-language:{ .language } <b>Natural Language Processing</b> 

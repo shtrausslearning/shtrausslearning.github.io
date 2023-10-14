@@ -25,13 +25,76 @@ Pandas `UDFs` (User-Defined Functions) allow you to apply a Python function that
 
 Avocado price prediction is the process of using machine learning algorithms to forecast the future prices of avocados based on historical data and other relevant factors such as weather patterns, consumer demand, and supply chain disruptions. This can help stakeholders in the avocado industry make informed decisions about when and where to sell their avocados, as well as how much to charge for them. Avocado price prediction can also provide insights into the factors that affect avocado sales and help optimize the industry's efficiency and profitability.
 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Objective</b> 
+
+Having done some posts on `pyspark`, it seems like a very intuitive library to use
+
 ## <b>The Dataset</b>
 
 It is a well known fact that Millenials LOVE Avocado Toast. It's also a well known fact that all Millenials live in their parents basements.Clearly, they aren't buying home because they are buying too much Avocado Toast! But maybe there's hope… if a Millenial could find a city with cheap avocados, they could live out the Millenial American Dream.
 
 The dataset can be found on **[Kaggle](https://www.kaggle.com/datasets/neuromusic/avocado-prices)** & its original source found **[here](https://hassavocadoboard.com/)**
 
-### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Data</b> 
+### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Loading data</b> 
+
+To load the data, we start a spark session on local
+
+```python
+! pip install pyspark
+
+from pyspark.sql import SparkSession
+import pyspark.sql.functions as f
+import pandas as pd
+
+# Start spark session
+spark = SparkSession.builder\
+                    .master("local")\
+                    .appName("prophet")\
+                    .getOrCreate()
+```
+
+To read the data, we'll use the `session.read.csv`, together with `inferSchema` method and look at the table schematics using `printSchema()` method
+
+```python
+# read csv
+sales = spark.read.csv('/kaggle/input/avocado-prices/avocado.csv',header=True,inferSchema=True)
+sales.printSchema()
+```
+
+```
+root
+ |-- _c0: string (nullable = true)
+ |-- Date: string (nullable = true)
+ |-- AveragePrice: string (nullable = true)
+ |-- Total Volume: string (nullable = true)
+ |-- 4046: string (nullable = true)
+ |-- 4225: string (nullable = true)
+ |-- 4770: string (nullable = true)
+ |-- Total Bags: string (nullable = true)
+ |-- Small Bags: string (nullable = true)
+ |-- Large Bags: string (nullable = true)
+ |-- XLarge Bags: string (nullable = true)
+ |-- type: string (nullable = true)
+ |-- year: string (nullable = true)
+ |-- region: string (nullable = true)
+```
+
+```python
+sales.select('Date','type','Total Volume','region').orderBy('Date').show(5)
+
++----------+------------+------------+----------------+
+|      Date|        type|Total Volume|          region|
++----------+------------+------------+----------------+
+|2015-01-04|conventional|   116253.44|BuffaloRochester|
+|2015-01-04|conventional|   158638.04|        Columbus|
+|2015-01-04|conventional|   5777334.9|      California|
+|2015-01-04|conventional|   435021.49|         Atlanta|
+|2015-01-04|conventional|   166006.29|       Charlotte|
++----------+------------+------------+----------------+
+```
+
+
+
 
 **Thank you for reading!**
 

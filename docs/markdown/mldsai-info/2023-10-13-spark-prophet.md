@@ -202,6 +202,30 @@ only showing top 20 rows
 
 We can note that we have data for not only the different `regions`, but also for the entire country `TotalUS`. Also interesting to note is that the difference in max and min values is quite high.
 
+Let's find the locations ('region') with the highest total volumes, 
+
+```
+from pyspark.sql.functions import desc,col
+
+by_volume = sales.orderBy(desc("Total Volume"))\
+                 .where(col('region') != 'TotalUS')
+by_volume.show(5)
+```
+
+```
++---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+|_c0|      Date|AveragePrice| Total Volume|      4046|      4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year|    region|
++---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+| 47|2017-02-05|        0.66|1.127474911E7|4377537.67|2558039.85|193764.89| 4145406.7|2508731.79|1627453.06|    9221.85|conventional|2017|      West|
+| 47|2017-02-05|        0.67|1.121359629E7|3986429.59|3550403.07|214137.93| 3462625.7|3403581.49|   7838.83|   51205.38|conventional|2017|California|
+|  7|2018-02-04|         0.8|1.089467777E7|4473811.63|4097591.67|146357.78|2176916.69|2072477.62|  34196.27|    70242.8|conventional|2018|California|
+|  7|2018-02-04|        0.83|1.056505641E7|3121272.58|3294335.87|142553.21|4006894.75|1151399.33|2838239.39|   17256.03|conventional|2018|      West|
+| 46|2016-02-07|         0.7|1.036169817E7|2930343.28|3950852.38| 424389.6|3056112.91|2693843.02| 344774.59|    17495.3|conventional|2016|California|
++---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+only showing top 5 rows
+```
+
+
 
 **Thank you for reading!**
 

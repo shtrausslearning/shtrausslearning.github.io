@@ -128,7 +128,7 @@ extra:
 
 plugins:
     - search
-    - blog
+    - blog:
 
 extra_javascript:
   - javascripts/mathjax.js

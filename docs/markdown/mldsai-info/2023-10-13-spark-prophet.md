@@ -576,7 +576,7 @@ Let's visualise the `organic` subset model
 organic_data[['y','yhat']].plot.line(backend='matplotlib',figsize=(14,5))
 ```
 
-![](/images/organic.png)
+![](images/organic.png)
 
 And now the `convensional` subset model
 
@@ -584,7 +584,7 @@ And now the `convensional` subset model
 Conventional_data[['y','yhat']].plot.line(backend='matplotlib',figsize=(14,5))
 ```
 
-![](/images/conventional.png)
+![](images/conventional.png)
 
 
 **Thank you for reading!**

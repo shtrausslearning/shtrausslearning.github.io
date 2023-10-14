@@ -1,6 +1,7 @@
 ---
 date: 2023-10-13
 title: Using Prophet with PySpark
+subtitle: Utilising Pandas UDF
 authors: [andrey]
 categories:
      - pyspark
@@ -8,11 +9,13 @@ categories:
      - regression
 ---
 
+In this notebook, we look at how to use a popular machine learning library `prophet` with `pyspark`. `pyspark` itself does not contain such an additive regression model, however we can utilise user defined functions (`UDF`), which allows us to use different functionality that is not available in `pyspark`.
+
+<!-- more -->
+
 ![](https://i.imgur.com/b6BBtXv.jpg)
 
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
-
-In this notebook, we look at how to use a popular machine learning library `prophet` with `pyspark`. `pyspark` itself does not contain such an additive regression model, however we can utilise user defined functions (`UDF`), which allows us to use different functionality that is not available in `pyspark`.
 
 # <b>Background</b>
 

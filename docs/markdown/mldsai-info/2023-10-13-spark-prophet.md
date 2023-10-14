@@ -198,6 +198,7 @@ only showing top 20 rows
 only showing top 20 rows
 ```
 
+We can note that we have data for not only the different `regions`, but also for the entire country `TotalUS`. Also interesting to note is that the difference in max and min values is quite high.
 
 
 ## <b>Exploring Data</b>

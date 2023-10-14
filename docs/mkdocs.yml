@@ -33,10 +33,6 @@ nav:
     - blog:
         - blog/index.md
 
-
-
-
-
 markdown_extensions:
     - markdown.extensions.toc:
         slugify: !!python/name:pymdownx.slugs.uslugify
@@ -157,8 +153,6 @@ extra:
 plugins:
     - search
     - tags
-    - blog:
-        blog_toc: true
-
+    
 copyright: |
   Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>

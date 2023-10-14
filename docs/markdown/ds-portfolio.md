@@ -4,62 +4,23 @@
 ![img](images/ds_wnb.png#only-dark){ width="450" }
 </center>
 
-<div class="grid cards" markdown>
+!!! example
 
--   :material-file-tree: &nbsp; __[Built-in meta plugin][meta]__
+    === "Unordered List"
 
-    ---
+        ``` markdown
+        * Sed sagittis eleifend rutrum
+        * Donec vitae suscipit est
+        * Nulla tempor lobortis orci
+        ```
 
-    The meta plugin makes it easy to apply [metadata] to a subset of posts,
-    including authors, tags, categories, draft status, as well as social card
-    layouts.
+    === "Ordered List"
 
-    ---
-
-    __Simpler organization, categorization and management of post metadata__
-
--   :material-share-circle: &nbsp; __[Built-in social plugin][social]__
-
-    ---
-
-    The social plugin automatically generates beautiful and customizable
-    social cards for each post and page, showing as previews on social media.
-
-    ---
-
-    __Links to your blog render beautiful social cards when shared on social
-    media__
-
--   :material-rabbit: &nbsp; __[Built-in optimize plugin][optimize]__
-
-    ---
-
-    The optimize plugin automatically identifies and optimizes all media files
-    that you reference in your project by using compression and conversion
-    techniques.
-
-    ---
-
-    __Your blog loads faster as smaller images are served to your users__
-
--   :material-tag-text: &nbsp; __[Built-in tags plugin][tags]__
-
-    ---
-
-    The tags plugin allows to categorize posts alongside with pages in your
-    project, to improve their discoverability and connect posts to your
-    documentation.
-
-    ---
-
-    __Your documentation's tag system integrates with your blog__
-
-</div>
-
-  [meta]: meta.md
-  [social]: social.md
-  [optimize]: optimize.md
-  [tags]: tags.md
+        ``` markdown
+        1. Sed sagittis eleifend rutrum
+        2. Donec vitae suscipit est
+        3. Nulla tempor lobortis orci
+        ```
 
 Here you will find a collection of some of the data science projects I've worked on (mostly Kaggle), if you have any questions, contact me  <sub><a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=283747&logo=Telegram&logoColor=FFFFFF&label=" /></a></sub> 
 

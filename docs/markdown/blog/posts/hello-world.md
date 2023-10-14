@@ -1,9 +1,11 @@
 ---
-date: 2021-12-27
-authors: []
-description: >
-  2021 was a fantastic year for this project as we shipped many new awesome
-  features and made this project sustainable
+date: 2022-10-08
+authors: [andr]
+description: >-
+  Hatch v1.6.0 brings improvements to build environments, better handling
+  of dynamic metadata, and support for tools like Visual Studio Code.
+categories:
+  - Release
 ---
 
 # The past, present and future

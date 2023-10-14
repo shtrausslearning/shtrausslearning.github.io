@@ -1,4 +1,5 @@
-andrey:
-  name: Andrey Shtrauss
-  description: Creator
-  avatar: https://avatars.githubusercontent.com/u/79809117?v=4
+authors:
+  andr:
+    name: Andrey Shtrauss
+    description: Creator
+    avatar: https://avatars.githubusercontent.com/u/79809117?v=4

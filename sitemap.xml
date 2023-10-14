@@ -16,7 +16,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2021/12/27/the-past-present-and-future/</loc>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2022/10/08/the-past-present-and-future/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -81,7 +81,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/archive/2021/</loc>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/archive/2022/</loc>
+         <lastmod>2023-10-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/release/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>

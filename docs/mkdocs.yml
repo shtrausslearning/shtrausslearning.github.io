@@ -116,7 +116,7 @@ theme:
         - search.suggest
         - navigation.top
         - content.tabs.link
-#        - navigation.sections
+        - navigation.sections 
         - navigation.expand
 #        - navigation.tabs
 #        - toc.integrate # table of contents is rendered as part of the navigation

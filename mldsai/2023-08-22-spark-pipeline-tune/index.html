@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://github.com/gmihaila/shtrausslearning.github.io/mllibs/home/">
+        <link rel="canonical" href="https://github.com/gmihaila/shtrausslearning.github.io/mldsai/2023-08-22-spark-pipeline-tune/">
       
       
-        <link rel="prev" href="../../ds-portfolio/">
+        <link rel="prev" href="../2023-09-21-huggingface_NER2/">
       
       
-        <link rel="next" href="../meetups/">
+        <link rel="next" href="../2023-08-21-spark-modeling/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>introduction - Andrey Shtrauss</title>
+        <title>Pipeline Tuning with PySpark - Andrey Shtrauss</title>
       
     
     
@@ -79,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#about-mllibs" class="md-skip">
+        <a href="#hyperparameter-tuning-with-pipelines" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              introduction
+              Pipeline Tuning with PySpark
             
           </span>
         </div>
@@ -343,20 +343,20 @@
       
   
   
-    
-  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -370,7 +370,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             mllibs
@@ -381,27 +381,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    introduction
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../mllibs/home/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -410,127 +392,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#about-mllibs" class="md-nav__link">
-    About mllibs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-automation" class="md-nav__link">
-    Code Automation
-  </a>
-  
-    <nav class="md-nav" aria-label="Code Automation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#types-of-approaches" class="md-nav__link">
-    Types of Approaches
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1-function" class="md-nav__link">
-    (1) Function
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-class" class="md-nav__link">
-    (2) Class
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-natural-language" class="md-nav__link">
-    (3) Natural Language
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#library-components" class="md-nav__link">
-    Library Components
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-component-structure" class="md-nav__link">
-    Module Component Structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-collection" class="md-nav__link">
-    Creating a Collection
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating a Collection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manually-importing-modules" class="md-nav__link">
-    Manually Importing Modules
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#import-default-libraries" class="md-nav__link">
-    Import Default Libraries
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contibute" class="md-nav__link">
-    How to Contibute
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contact" class="md-nav__link">
-    Contact
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -542,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../meetups/" class="md-nav__link">
+      <a href="../../mllibs/meetups/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,20 +428,20 @@
       
   
   
+    
+  
   
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -594,7 +455,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Blog
@@ -607,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-10-13-spark-prophet/" class="md-nav__link">
+      <a href="../2023-10-13-spark-prophet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -627,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-09-25-compare_dataset/" class="md-nav__link">
+      <a href="../2023-09-25-compare_dataset/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -647,7 +508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-09-21-huggingface_NER2/" class="md-nav__link">
+      <a href="../2023-09-21-huggingface_NER2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -665,9 +526,29 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../mldsai/2023-08-22-spark-pipeline-tune/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pipeline Tuning with PySpark
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -676,6 +557,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preprocessing-recap" class="md-nav__link">
+    Preprocessing Recap
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-subsets" class="md-nav__link">
+    Creating Subsets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning-pipeline" class="md-nav__link">
+    Machine Learning Pipeline
+  </a>
+  
+    <nav class="md-nav" aria-label="Machine Learning Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-creating-a-pipeline" class="md-nav__link">
+    ❯❯ Creating a Pipeline
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-hyperparameter-tuning" class="md-nav__link">
+    ❯❯ Hyperparameter Tuning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -687,7 +643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-08-21-spark-modeling/" class="md-nav__link">
+      <a href="../2023-08-21-spark-modeling/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -707,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-08-20-spark-preprocess/" class="md-nav__link">
+      <a href="../2023-08-20-spark-preprocess/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -727,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-08-17-spark-cabeda/" class="md-nav__link">
+      <a href="../2023-08-17-spark-cabeda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -747,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-08-11-sentence_splitting/" class="md-nav__link">
+      <a href="../2023-08-11-sentence_splitting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -767,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mldsai/2023-08-10-huggingface_NER/" class="md-nav__link">
+      <a href="../2023-08-10-huggingface_NER/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -805,6 +761,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -813,44 +771,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#about-mllibs" class="md-nav__link">
-    About mllibs
+  <a href="#background" class="md-nav__link">
+    Background
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-automation" class="md-nav__link">
-    Code Automation
+  <a href="#preprocessing-recap" class="md-nav__link">
+    Preprocessing Recap
   </a>
   
-    <nav class="md-nav" aria-label="Code Automation">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-subsets" class="md-nav__link">
+    Creating Subsets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machine-learning-pipeline" class="md-nav__link">
+    Machine Learning Pipeline
+  </a>
+  
+    <nav class="md-nav" aria-label="Machine Learning Pipeline">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#types-of-approaches" class="md-nav__link">
-    Types of Approaches
+  <a href="#-creating-a-pipeline" class="md-nav__link">
+    ❯❯ Creating a Pipeline
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#1-function" class="md-nav__link">
-    (1) Function
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-class" class="md-nav__link">
-    (2) Class
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-natural-language" class="md-nav__link">
-    (3) Natural Language
+  <a href="#-hyperparameter-tuning" class="md-nav__link">
+    ❯❯ Hyperparameter Tuning
   </a>
   
 </li>
@@ -861,56 +819,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#library-components" class="md-nav__link">
-    Library Components
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#module-component-structure" class="md-nav__link">
-    Module Component Structure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-a-collection" class="md-nav__link">
-    Creating a Collection
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating a Collection">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manually-importing-modules" class="md-nav__link">
-    Manually Importing Modules
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#import-default-libraries" class="md-nav__link">
-    Import Default Libraries
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-contibute" class="md-nav__link">
-    How to Contibute
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#contact" class="md-nav__link">
-    Contact
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
   </a>
   
 </li>
@@ -928,187 +838,215 @@
               <article class="md-content__inner md-typeset">
                 
                   
-  
-<nav class="md-tags" >
-  
-    
-    
-    
-      <span class="md-tag">HTML5</span>
-    
-  
-    
-    
-    
-      <span class="md-tag">JavaScript</span>
-    
-  
-    
-    
-    
-      <span class="md-tag">CSS</span>
-    
-  
-</nav>
-
 
   
   
 
 
-  <h1>introduction</h1>
-
-<p><center>
-<img alt="mllibs" src="../images/fcnb.png#only-light" width="450" />
-<img alt="mllibs" src="../images/wnb.png#only-dark" width="450" />
-</center></p>
-<p><center><img alt="" src="https://camo.githubusercontent.com/d38e6cc39779250a2835bf8ed3a72d10dbe3b05fa6527baa3f6f1e8e8bd056bf/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436f64652d507974686f6e2d696e666f726d6174696f6e616c3f7374796c653d666c6174266c6f676f3d707974686f6e266c6f676f436f6c6f723d776869746526636f6c6f723d326262633861" /> <img alt="" src="https://img.shields.io/badge/pypi-v0.1.6-fc4c69" /> <img alt="" src="https://img.shields.io/badge/License-MIT-blue" /> <img alt="" src="https://static.pepy.tech/badge/mllibs" /></center></p>
-<h3 id="about-mllibs">About mllibs<a class="headerlink" href="#about-mllibs" title="Permanent link"></a></h3>
-<p>Some key points about the library:</p>
+<h1 id="hyperparameter-tuning-with-pipelines">Hyperparameter Tuning with Pipelines<a class="headerlink" href="#hyperparameter-tuning-with-pipelines" title="Permanent link"></a></h1>
+<p><img alt="" src="https://i.imgur.com/TlrdxNa.jpg" /></p>
+<hr />
+<p>date: 2023-08-22 00:00:00 +0800 <br>
+categories: <code>pyspark</code> <br>
+tags: <code>pyspark</code>,<code>binary classification</code>,<code>pipeline</code>,<code>beginner</code></p>
+<hr />
+<p>This post is the last of the three posts on the titanic classification problem in <code>pyspark</code>. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising <code>StringIndexer</code> &amp; <code>VectorAssembler</code>, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single <code>pipline</code>. <code>pyspark</code> like <code>sklearn</code> has such pipeline classes that help us keep things organised</p>
+<p><a href="https://colab.research.google.com/drive/12w6EXoyRByFT6q2cmprac1msn7h4aC3o?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
+<h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<p><code>pyspark</code> pipeline is a tool for <strong>building and executing data processing workflows</strong>. It allows users to chain together multiple data processing tasks into a single workflow, making it easier to organize and manage complex data processing tasks. The pipeline provides a high-level API for building and executing these workflows, which makes it easier for users to quickly prototype and test new data processing pipelines.</p>
+<p>Having created a pipeline, we now need to tune the parameters and find the most optimal <code>hyperparameter</code> combination. This is necessary because the default hyperparameter seldom is most optimal, so we can test different combinations, and store a model, which for example shows the best generalisation performance.</p>
+<h2 id="preprocessing-recap"><b>Preprocessing Recap</b><a class="headerlink" href="#preprocessing-recap" title="Permanent link"></a></h2>
 <ul>
-<li><code>mllibs</code> is a Machine Learning (ML) library which utilises natural language processing (NLP)</li>
-<li>Development of such helper modules are motivated by the fact that everyones understanding of coding &amp; subject matter (ML in this case) may be different </li>
-<li>Often we see people create <code>functions</code> and <code>classes</code> to simplify the process of code automation (which is good practice)</li>
-<li>Likewise, NLP based interpreters follow this trend as well, except, in this case our only inputs for activating certain code is <code>natural language</code></li>
-<li>Using python, we can interpret <code>natural language</code> in the form of <code>string</code> type data, using <code>natural langauge interpreters</code></li>
-<li><code>mllibs</code> aims to provide an automated way to do machine learning using natural language</li>
+<li>We learned how to drop columns that we won't be needing at all in our preprocessing using <code>.drop</code></li>
+<li>We learned how to extract statistical data from our dataframe, using <code>.select</code> and functions <code>f.avg('column')</code></li>
+<li>We known how to fill missing data in different columns using a single value with a dictionary; <code>f.fillna({'column':'value'})</code></li>
+<li>We know how to add or replace a column, using <code>f.withColumn</code></li>
 </ul>
-<h3 id="code-automation">Code Automation<a class="headerlink" href="#code-automation" title="Permanent link"></a></h3>
-<h4 id="types-of-approaches">Types of Approaches<a class="headerlink" href="#types-of-approaches" title="Permanent link"></a></h4>
-<p>There are different ways we can automate code execution:
-- The first two (<code>function</code>,<code>class</code>) should be familiar, such approaches presume we have coding knowledge.
-- Another approach is to utilise <code>natural language</code> to automate code automation, this method doesn't require any coding knowledge. </p>
-<h4 id="1-function">(1) Function<a class="headerlink" href="#1-function" title="Permanent link"></a></h4>
-<p>Function based code automation should be very familiar to people who code, we define a function &amp; then simply call the function, entering any relevant input arguments which it requires, in this case <code>n</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fib_list</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
-    <span class="k">while</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">n</span><span class="p">:</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">return</span> <span class="n">result</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Ticket&#39;</span><span class="p">,</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Cabin&#39;</span><span class="p">)</span>
+<span class="n">av_age</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="nb">round</span><span class="p">(</span><span class="n">av_age</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Family_Size&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;SibSp&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Parch&#39;</span><span class="p">))</span>  <span class="c1"># add values from two columns</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Alone&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># fill all with 0</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Alone&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Family_size&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Alone&#39;</span><span class="p">]))</span> <span class="c1"># conditional filling</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">fib_list</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
+<span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
+<span class="c1"># |PassengerId|Survived|Pclass|   Sex| Age|SibSp|Parch|   Fare|Embarked|Family_Size|Alone|</span>
+<span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
+<span class="c1"># |          1|       0|     3|  male|22.0|    1|    0|   7.25|       S|          1|    0|</span>
+<span class="c1"># |          2|       1|     1|female|38.0|    1|    0|71.2833|       C|          1|    0|</span>
+<span class="c1"># |          3|       1|     3|female|26.0|    0|    0|  7.925|       S|          0|    1|</span>
+<span class="c1"># |          4|       1|     1|female|35.0|    1|    0|   53.1|       S|          1|    0|</span>
+<span class="c1"># |          5|       0|     3|  male|35.0|    0|    0|   8.05|       S|          0|    1|</span>
+<span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
 </code></pre></div>
-<h4 id="2-class">(2) Class<a class="headerlink" href="#2-class" title="Permanent link"></a></h4>
-<p>Another common approach to automate code is using a class based approach. Utilising <code>OOP</code> concepts we can initialise &amp; then call class <code>methods</code> in order to automate code:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">fib_list</span><span class="p">:</span>
-    
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
+<h2 id="creating-subsets"><b>Creating Subsets</b><a class="headerlink" href="#creating-subsets" title="Permanent link"></a></h2>
+<p>The idea of utilising a <code>pipeline</code> is to process a given set of data using the same preprocessing steps as all input data on which we apply the pipeline on. 
+For our problem, our input data will look like the table above, lets first split the available data into two datasets; <code>train</code> &amp; <code>test</code>. We will construct
+our pipeline on the <code>training</code> data and then use the same pipeline on the <code>test</code> dataset.</p>
+<div class="highlight"><pre><span></span><code><span class="n">train</span><span class="p">,</span><span class="n">test</span> <span class="o">=</span> <span class="n">ldf</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="machine-learning-pipeline"><b>Machine Learning Pipeline</b><a class="headerlink" href="#machine-learning-pipeline" title="Permanent link"></a></h2>
+<h3 id="-creating-a-pipeline"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Creating a Pipeline</b><a class="headerlink" href="#-creating-a-pipeline" title="Permanent link"></a></h3>
+<p>To build a <code>pipeline</code>, we define the steps that make it up in a list <code>stages</code>, our pipeline consists of four steps:
+- <code>indexer_sex</code> (<code>StringIndexer</code>)
+- <code>indexer_embarked</code> (<code>StringIndexer</code>)
+- <code>feature</code> transformation (<code>VectorAssembler</code>)
+- <code>rf_classifier</code> model (model which inputs the final result of all transformations above)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
 
-    <span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
-        <span class="k">while</span> <span class="n">a</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-            <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-        <span class="k">return</span> <span class="n">result</span>
 
-<span class="n">fib</span> <span class="o">=</span> <span class="n">fib_list</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">fib</span><span class="o">.</span><span class="n">get_list</span><span class="p">()</span>
-</code></pre></div>
-<h4 id="3-natural-language">(3) Natural Language<a class="headerlink" href="#3-natural-language" title="Permanent link"></a></h4>
-<p>Another approach, which <code>mllibs</code> uses in natural language based code automation:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">input</span> <span class="o">=</span> <span class="s1">&#39;calculate the fibonacci&#39;</span>
-         <span class="n">sequence</span> <span class="k">for</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="mi">5</span><span class="s1">&#39;</span>
+<span class="c1"># Create indexer columns (step 1 &amp; step 2)</span>
+<span class="n">indexer_sex</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span>
+                            <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;Sex_index&#39;</span><span class="p">)</span>
+<span class="n">indexer_embarked</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span>
+                                 <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;Embarked_index&#39;</span><span class="p">)</span>
 
-<span class="n">nlp_interpreter</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> 
+<span class="n">train_sex</span> <span class="o">=</span> <span class="n">indexer_sex</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">train_embarked</span> <span class="o">=</span> <span class="n">indexer_embarked</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_sex</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_sex</span><span class="p">)</span>
+
+<span class="c1"># Assemble all features into a single column using VectorAssembler (step 3)</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span><span class="s1">&#39;SibSp&#39;</span><span class="p">,</span><span class="s1">&#39;Parch&#39;</span><span class="p">,</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;Family_Size&#39;</span><span class="p">,</span><span class="s1">&#39;Embarked_index&#39;</span><span class="p">,</span><span class="s1">&#39;Sex_index&#39;</span><span class="p">],</span>
+                          <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;features&#39;</span><span class="p">)</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_embarked</span><span class="p">)</span>
+
+<span class="c1"># Define model (step 4)</span>
+<span class="n">rf_classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span>
+                                       <span class="n">featuresCol</span><span class="o">=</span><span class="s1">&#39;features&#39;</span><span class="p">)</span>
+
+<span class="c1"># merge all pipeline components</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer_sex</span><span class="p">,</span>
+                            <span class="n">indexer_embarked</span><span class="p">,</span>
+                            <span class="n">feature</span><span class="p">,</span>
+                            <span class="n">rf_classifier</span><span class="p">])</span>
+<span class="c1"># Pipeline_67a25ab8838b</span>
 </code></pre></div>
-<p>All these methods will give the following result:</p>
-<div class="highlight"><pre><span></span><code>[0, 1, 1, 2, 3]
+<p>Let's use the <code>pipeline</code> model on the training data &amp; save it so we can use it on new data. Our pipeline model <code>pipeline</code> stores in itself information about what transformations we need to apply to any incoming data, so we won't need to call <code>pipeline</code> components (eg. <code>indexer_embarked</code>) if we want to use the model later.</p>
+<div class="highlight"><pre><span></span><code><span class="n">p_model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">p_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;p_model&#39;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="library-components">Library Components<a class="headerlink" href="#library-components" title="Permanent link"></a></h3>
-<p><code>mllibs</code> consists of two parts:</p>
-<p>(1) modules associated with the <strong>interpreter</strong></p>
+<p>Now let's load and use the model on new data (the <code>test</code> data, which we haven't touched yet). The <code>pipline</code> model can be loaded in the same way we load standard model, which had the ability to <code>.load</code>; <code>PipelineModel</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.pipeline</span> <span class="kn">import</span> <span class="n">PipelineModel</span>
+
+<span class="c1"># load pipeline model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">PipelineModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;p_model&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># transform model on new data</span>
+<span class="n">yv_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="n">yv_pred</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">&#39;features&#39;</span><span class="p">,</span><span class="s1">&#39;rawPrediction&#39;</span><span class="p">,</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span><span class="s1">&#39;prediction&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># +--------------------+--------------------+--------------------+----------+</span>
+<span class="c1"># |            features|       rawPrediction|         probability|prediction|</span>
+<span class="c1"># +--------------------+--------------------+--------------------+----------+</span>
+<span class="c1"># |(8,[0,1,4,7],[3.0...|[8.61510797966188...|[0.43075539898309...|       1.0|</span>
+<span class="c1"># |(8,[0,1,4],[1.0,5...|[15.1208402070771...|[0.75604201035385...|       0.0|</span>
+<span class="c1"># |[3.0,27.0,0.0,2.0...|[7.50139928738481...|[0.37506996436924...|       1.0|</span>
+<span class="c1"># |[3.0,39.0,1.0,5.0...|[16.7158036061856...|[0.83579018030928...|       0.0|</span>
+<span class="c1"># |[3.0,29.7,0.0,0.0...|[5.75011597218139...|[0.28750579860906...|       1.0|</span>
+<span class="c1"># +--------------------+--------------------+--------------------+----------+</span>
+</code></pre></div>
+<p>Now let's evaluate the model prediction using <code>MulticlassClassificationEvaluator</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
+
+<span class="c1"># evaluator</span>
+<span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span>
+                                              <span class="n">predictionCol</span><span class="o">=</span><span class="s1">&#39;prediction&#39;</span><span class="p">,</span>
+                                              <span class="n">metricName</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">yv_pred</span><span class="p">)</span>
+<span class="c1"># 0.8275862068965517</span>
+</code></pre></div>
+<h3 id="-hyperparameter-tuning"><b><span style='color:#6A5ACD;text-align:center'>❯❯ </span>Hyperparameter Tuning</b><a class="headerlink" href="#-hyperparameter-tuning" title="Permanent link"></a></h3>
+<p>Our pipeline contains a model <code>RandomForestClassifier</code> with default hyperparameters. 
+We can can find a better combination of hyperparameters which will give a better model utilising <code>TrainValidationSplit</code>, which is a lightweight generalisation evaluator in comparison to <code>CrossValidator</code></p>
+<p>First thigs first, we need to create a parametric grid, which will store all the hyperaparameter combinations we will test.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">ParamGridBuilder</span><span class="p">,</span> <span class="n">TrainValidationSplit</span>
+
+<span class="c1"># create a parameter grid</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf_classifier</span><span class="o">.</span><span class="n">maxDepth</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>\
+                         <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf_classifier</span><span class="o">.</span><span class="n">maxBins</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>\
+                         <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf_classifier</span><span class="o">.</span><span class="n">minInfoGain</span><span class="p">,[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.15</span><span class="p">])</span><span class="o">.</span><span class="n">build</span><span class="p">()</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="s1">&#39;combinations&#39;</span><span class="p">)</span>
+<span class="c1"># 27 combinations</span>
+</code></pre></div>
+<p><code>TrainValidationSplit</code> requires an estimator; which is our <code>pipeline</code> model, the defined grid, evaluator and train-test split ratio</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Similar to CrossValidator, but more lightweight</span>
+<span class="n">gs</span> <span class="o">=</span> <span class="n">TrainValidationSplit</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span>
+                          <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+                          <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+                          <span class="n">trainRatio</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</code></pre></div>
+<p>To get the best model, we simply write model.bestModel, which has hyperparameters, which can be extracted as per below:</p>
+<div class="highlight"><pre><span></span><code><span class="n">javobj</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_java_obj</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxdepth&#39;</span><span class="p">,</span><span class="n">javobj</span><span class="o">.</span><span class="n">getMaxDepth</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxdepth&#39;</span><span class="p">,</span><span class="n">javobj</span><span class="o">.</span><span class="n">getMaxBins</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;min_IG&#39;</span><span class="p">,</span><span class="n">javobj</span><span class="o">.</span><span class="n">getMinInfoGain</span><span class="p">())</span>
+
+<span class="c1"># maxdepth 5</span>
+<span class="c1"># maxdepth 5</span>
+<span class="c1"># min_IG 0.05</span>
+</code></pre></div>
+<h2 id="conclusion"><b>Conclusion</b><a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<p>Important imports for <code>pipeline</code>
+- <code>pyspark.ml import Pipeline</code> (create model)
+- <code>pyspark.ml.pipeline import PipelineModel</code> (load model)</p>
+<p>Important imports for finetuning
+- <code>pyspark.ml.tuning import ParamGridBuilder</code> (Create a parameter grid)
+- <code>pyspark.ml.tuning import TrainValidationSplit</code> (create an evaluator)</p>
+<hr />
+<p>❯❯ <code>pipeline</code> allows us to group together preprocessing steps in one model</p>
 <ul>
-<li><code>nlpm</code> - groups together everything required for the interpreter module <code>nlpi</code></li>
-<li><code>nlpi</code> - main interpreter component module (requires <code>nlpm</code> instance)</li>
-<li><code>snlpi</code> - single request interpreter module (uses <code>nlpi</code>)</li>
-<li><code>mnlpi</code> - multiple request interpreter module (uses <code>nlpi</code>)</li>
-<li><code>interface</code> - interactive module (chat type)</li>
+<li>Merge all <code>pipeline</code> components together</li>
+<li>
+<p>❯ <code>Pipeline(stages=[steps1,steps2])</code></p>
+</li>
+<li>
+<p><code>Pipeline</code> then needs to be fit on training data</p>
+</li>
+<li>
+<p>❯ <code>pipeline.fit(train)</code> and saved via <code>pipeline.save('path')</code></p>
+</li>
+<li>
+<p>To <strong>load the model</strong>;</p>
+</li>
+<li>
+<p>Load a <code>pipeline</code> model; from <code>PipelineModel</code>, which has the method <code>load(path)</code></p>
+</li>
+<li>
+<p>To utilise the <code>pipeline</code> model on new data;</p>
+</li>
+<li><code>pipeline.transform(test)</code> <br></li>
 </ul>
-<p>(2) custom added modules, for mllibs these library are associated with <strong>machine learning</strong> topics</p>
-<p>You can check all the activations functions using <code>session.fl()</code> as shown in the sample notebooks in folder <code>examples</code></p>
-<h3 id="module-component-structure">Module Component Structure<a class="headerlink" href="#module-component-structure" title="Permanent link"></a></h3>
-<p>Currently new modules can be added using a custom class <code>sample</code> and a configuration dictionary 
-<code>configure_sample</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sample module class structure</span>
-<span class="k">class</span> <span class="nc">sample</span><span class="p">(</span><span class="n">nlpi</span><span class="p">):</span>
-    
-    <span class="c1"># called in nlpm</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nlp_config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span>             <span class="c1"># unique module name identifier (used in nlpm/nlpi)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nlp_config</span> <span class="o">=</span> <span class="n">nlp_config</span>  <span class="c1"># text based info related to module (used in nlpm/nlpi)</span>
-        
-    <span class="c1"># called in nlpi</span>
-    <span class="k">def</span> <span class="nf">sel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        
-        <span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;pred_task&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
-        
-        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
-        
-    <span class="c1"># use standard or static methods</span>
-        
-    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="k">pass</span>
-        
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="k">pass</span>
-    
-
-<span class="n">corpus_sample</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="s2">&quot;function&quot;</span><span class="p">:[</span><span class="s1">&#39;task&#39;</span><span class="p">]}</span>
-<span class="n">info_sample</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;module&#39;</span><span class="p">:</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;action&#39;</span><span class="p">:</span><span class="s1">&#39;action&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;topic&#39;</span><span class="p">:</span><span class="s1">&#39;topic&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;subtopic&#39;</span><span class="p">:</span><span class="s1">&#39;sub topic&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;input_format&#39;</span><span class="p">:</span><span class="s1">&#39;input format for data&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;output_format&#39;</span><span class="p">:</span><span class="s1">&#39;output format for data&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;description&#39;</span><span class="p">:</span><span class="s1">&#39;write description&#39;</span><span class="p">}}</span>
-                         
-<span class="c1"># configuration dictionary (passed in nlpm)</span>
-<span class="n">configure_sample</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;corpus&#39;</span><span class="p">:</span><span class="n">corpus_sample</span><span class="p">,</span><span class="s1">&#39;info&#39;</span><span class="p">:</span><span class="n">info_sample</span><span class="p">}</span>
-</code></pre></div>
-<h3 id="creating-a-collection">Creating a <strong><code>Collection</code></strong><a class="headerlink" href="#creating-a-collection" title="Permanent link"></a></h3>
-<p><code>Modules</code> which we create need to be assembled together into a <code>collection</code>, there are two ways to do this: manually importing and grouping modules or using  <code>interface</code> class</p>
-<h4 id="manually-importing-modules"><strong>Manually Importing Modules</strong><a class="headerlink" href="#manually-importing-modules" title="Permanent link"></a></h4>
-<p>First we need to combine all our module components together, this will link all passed modules together</p>
-<div class="highlight"><pre><span></span><code><span class="n">collection</span> <span class="o">=</span> <span class="n">nlpm</span><span class="p">()</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="n">loader</span><span class="p">(</span><span class="n">configure_loader</span><span class="p">),</span>
-                 <span class="n">simple_eda</span><span class="p">(</span><span class="n">configure_eda</span><span class="p">),</span>
-                 <span class="n">encoder</span><span class="p">(</span><span class="n">configure_nlpencoder</span><span class="p">),</span>
-                 <span class="n">embedding</span><span class="p">(</span><span class="n">configure_nlpembed</span><span class="p">),</span>
-                 <span class="n">cleantext</span><span class="p">(</span><span class="n">configure_nlptxtclean</span><span class="p">),</span>
-                 <span class="n">sklinear</span><span class="p">(</span><span class="n">configure_sklinear</span><span class="p">),</span>
-                 <span class="n">hf_pipeline</span><span class="p">(</span><span class="n">configure_hfpipe</span><span class="p">),</span>
-                 <span class="n">eda_plot</span><span class="p">(</span><span class="n">configure_edaplt</span><span class="p">)])</span>  
-</code></pre></div>
-<p>Then we need to train <code>interpreter</code> models</p>
-<div class="highlight"><pre><span></span><code><span class="n">collection</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-</code></pre></div>
-<p>Lastly, pass the collection of modules (<code>nlpm</code> instance) to the interpreter <code>nlpi</code> </p>
-<div class="highlight"><pre><span></span><code><span class="n">session</span> <span class="o">=</span> <span class="n">nlpi</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
-</code></pre></div>
-<p>class <code>nlpi</code> can be used with method <code>exec</code> for user input interpretation</p>
-<div class="highlight"><pre><span></span><code><span class="n">session</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s1">&#39;create a scatterplot using data with x dimension1 y dimension2&#39;</span><span class="p">)</span>
-</code></pre></div>
-<h4 id="import-default-libraries"><strong>Import Default Libraries</strong><a class="headerlink" href="#import-default-libraries" title="Permanent link"></a></h4>
-<p>The faster way, includes all loaded modules and groups them together for us:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mllibs.interface</span> <span class="kn">import</span> <span class="n">interface</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">interface</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="how-to-contibute"><strong>How to Contibute</strong><a class="headerlink" href="#how-to-contibute" title="Permanent link"></a></h3>
-<p>Want to add your own project to our collection? We welcome all contributions, big or small. Here's how you can get started:</p>
-<ol>
-<li>Fork the repository</li>
-<li>Create a new branch for your changes</li>
-<li>Make your changes and commit them</li>
-<li>Submit a pull request</li>
-</ol>
-<h3 id="contact"><strong>Contact</strong><a class="headerlink" href="#contact" title="Permanent link"></a></h3>
+<hr />
+<p>❯❯ When we want to <code>finetune</code> our machine learning model, which is part of a <code>pipeline</code>:</p>
+<ul>
+<li>Create a parameter grid using <code>pyspark.ml.tuning</code> <strong>ParamGridBuilder</strong></li>
+<li>
+<p><code>ParamGridBuilder().addGrid(model.maxDepth,params)</code> <br></p>
+</li>
+<li>
+<p>From <code>pyspark.ml.tuning</code> import <code>TrainValidationSplit</code> evaluator</p>
+</li>
+<li><code>TrainValidationSplit(estimator,estimatorParamMaps,evaluator,trainRatio)</code></li>
+<li>
+<p>Which the requires a fit <code>evaluator.fit(data)</code> <br></p>
+</li>
+<li>
+<p>Having fitted the evaluator:</p>
+</li>
+<li>The best model can be obtained from <code>model.bestModel</code></li>
+<li>Its parameters <code>model.bestModel.stages[-1]._java_obj</code> <br></li>
+</ul>
+<hr />
 <p><strong>Thank you for reading!</strong></p>
 <p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
 

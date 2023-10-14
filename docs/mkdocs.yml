@@ -163,6 +163,5 @@ extra:
 plugins:
     - search
     - tags
-    - blog:
-        blog_dir: . 
+    - blog
 

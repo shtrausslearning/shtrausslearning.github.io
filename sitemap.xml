@@ -1,122 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/ds-portfolio/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/ds-portfolio/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/personal/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/personal/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/10/named-entitity-recognition-with-transformers/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/10/named-entitity-recognition-with-transformers/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/11/named-entity-recognition-for-sentence-splitting/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/11/named-entity-recognition-for-sentence-splitting/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/17/exploring-taxi-trip-data/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/17/exploring-taxi-trip-data/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/20/pyspark-preprocessing/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/20/pyspark-preprocessing/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/21/pyspark-creating-models/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/21/pyspark-creating-models/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/22/hyperparameter-tuning-with-pipelines/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/22/hyperparameter-tuning-with-pipelines/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/08/21/named-entity-recognition-with-huggingface-trainer/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/21/named-entity-recognition-with-huggingface-trainer/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/09/25/comparing-subsets/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/09/25/comparing-subsets/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/mllibs/home/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/mllibs/home/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/mllibs/meetups/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/mllibs/meetups/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/archive/2023/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/archive/2023/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/pyspark/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/pyspark/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/prophet/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/prophet/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/regression/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/regression/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/eda/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/eda/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/huggingface/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/huggingface/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/ner/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/ner/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/pytorch/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/pytorch/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/gmihaila/shtrausslearning.github.io/blog/category/nlp/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/nlp/</loc>
          <lastmod>2023-10-14</lastmod>
          <changefreq>daily</changefreq>
     </url>

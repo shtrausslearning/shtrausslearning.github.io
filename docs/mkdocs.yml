@@ -1,6 +1,6 @@
 # Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
 site_name: Andrey Shtrauss
-site_url: https://github.com/gmihaila/shtrausslearning.github.io
+site_url: https://github.com/shtrausslearning/shtrausslearning.github.io
 repo_name: 'shtrausslearning.github.io'
 repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
 edit_uri: tree/master/docs/src/markdown

@@ -4,7 +4,10 @@ title: Comparison of Subsets
 authors: [andrey]
 categories:
     - EDA
+tags:
+    - EDA
     - machine learning
+    - classification
 ---
 
 # Comparison of Subsets

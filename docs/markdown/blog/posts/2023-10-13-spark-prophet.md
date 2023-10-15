@@ -4,6 +4,8 @@ title: Using Prophet with PySpark
 subtitle: Utilising Pandas UDF
 authors: [andrey]
 categories:
+     - PySpark
+tags:
      - pyspark
      - prophet
      - regression

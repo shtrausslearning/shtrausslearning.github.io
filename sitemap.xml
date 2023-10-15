@@ -51,22 +51,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/prophet/</loc>
-         <lastmod>2023-10-15</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/regression/</loc>
-         <lastmod>2023-10-15</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/eda/</loc>
-         <lastmod>2023-10-15</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/machine-learning/</loc>
          <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>

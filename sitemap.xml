@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/21/named-entity-recognition-with-huggingface-trainer/</loc>
+         <lastmod>2023-10-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/09/25/comparison-of-subsets/</loc>
          <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
@@ -52,6 +57,21 @@
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/eda/</loc>
+         <lastmod>2023-10-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/huggingface/</loc>
+         <lastmod>2023-10-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/ner/</loc>
+         <lastmod>2023-10-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/pytorch/</loc>
          <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>

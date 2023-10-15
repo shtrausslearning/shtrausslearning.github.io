@@ -13,6 +13,8 @@
         <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/09/25/comparison-of-subsets/">
       
       
+        <link rel="prev" href="../../../08/21/named-entity-recognition-with-huggingface-trainer/">
+      
       
         <link rel="next" href="../../../10/13/using-prophet-with-pyspark/">
       
@@ -740,6 +742,66 @@
 
               
             
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/huggingface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Huggingface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/ner/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NER
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/pytorch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PyTorch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -951,7 +1013,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              8 min read
+                              9 min read
                             
                           </span>
                         </div>
@@ -969,6 +1031,31 @@
     <article class="md-content__inner md-typeset">
       
         
+  
+  
+
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">EDA</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">machine learning</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">classification</span>
+    
+  
+</nav>
+
 
   
   
@@ -978,6 +1065,7 @@
 <p>An important concept in machine learning is <strong>model generalisation</strong> &amp; <strong>performance deterioration</strong>. When we train a model, we perform an <strong>optimisation step</strong>, using <strong>metrics</strong> and/or <strong>loss</strong> values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. However, what if we receive some new data (for example after some time), which is also <strong>a subset</strong> of the entire dataset but it contains a slightly different data relation structure, our models may not perform as well as they did on the data it was trained on, by comparing the metrics of both dataset, we can get an idea of how similar our datasets are.</p>
 <!-- more -->
 
+<p><img alt="" src="https://i.imgur.com/4mKNGHY.jpg" /></p>
 <p>The above approach to comparing the two datasets isn't the most ideal, but it should raise a question; are there any other approaches that we can use to compare different subsets of data? This is what we'll look at in this post!</p>
 <h2 id="comparing-subsets"><b>Comparing Subsets</span></b><a class="headerlink" href="#comparing-subsets" title="Permanent link"></a></h2>
 <h3 id="-subset-comparison-approaches"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Subset Comparison Approaches</b><a class="headerlink" href="#-subset-comparison-approaches" title="Permanent link"></a></h3>

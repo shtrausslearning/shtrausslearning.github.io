@@ -136,6 +136,7 @@ plugins:
             kwds:
                 case: lower
     - search
+    - tags
 
 extra_javascript:
   - javascripts/mathjax.js

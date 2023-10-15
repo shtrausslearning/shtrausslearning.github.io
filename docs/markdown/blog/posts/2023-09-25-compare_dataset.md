@@ -16,6 +16,8 @@ An important concept in machine learning is **model generalisation** & **perform
 
 <!-- more -->
 
+![](https://i.imgur.com/4mKNGHY.jpg)
+
 The above approach to comparing the two datasets isn't the most ideal, but it should raise a question; are there any other approaches that we can use to compare different subsets of data? This is what we'll look at in this post!
 
 ## <b>Comparing Subsets</span></b>

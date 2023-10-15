@@ -1,9 +1,7 @@
 
-# **Activities**
+## **Group Meetings**
 
-## :fontawesome-solid-handshake-simple:{ .handshake-simple } Meetups
-
-Here's a collection of data from group meetups:
+Here's a collection of data from group meetups
 
 ### <b><span style='color:#5d6d7e ;text-align:center'>❯❯ </span>project introduction</b>
 
@@ -18,3 +16,7 @@ Here's a collection of data from group meetups:
 * Distribution of roles
 
 **Duration:** *1 Hour*
+
+## **Individual Meetings**
+
+A collections of all individual meetings

@@ -8,7 +8,6 @@ tags:
     - HuggingFace
     - HuggingFace Trainer
     - NER
-
 ---
 
 # Named Entity Recognition with Huggingface Trainer

@@ -1,7 +1,6 @@
 ---
 date: 2023-10-13
 title: Using Prophet with PySpark
-subtitle: Utilising Pandas UDF
 authors: [andrey]
 categories:
      - PySpark
@@ -17,7 +16,7 @@ In this notebook, we look at how to use a popular machine learning library `prop
 
 <!-- more -->
 
-![](https://i.imgur.com/b6BBtXv.jpg)
+![](images/avocado.jpg)
 
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 

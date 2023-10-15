@@ -803,7 +803,7 @@
       
         <li class="md-nav__item">
   <a href="#background" class="md-nav__link">
-    Background
+     Background
   </a>
   
     <nav class="md-nav" aria-label="Background">
@@ -1010,11 +1010,11 @@
 
 <h1 id="utilising-prophet-with-pyspark">Utilising Prophet with PySpark<a class="headerlink" href="#utilising-prophet-with-pyspark" title="Permanent link"></a></h1>
 <p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions (<code>UDF</code>), which allows us to use different functionality that is not available in <code>pyspark</code>.</p>
-<p><img alt="" src="https://i.imgur.com/b6BBtXv.jpg" /></p>
 <!-- more -->
 
+<p><img alt="" src="https://i.imgur.com/b6BBtXv.jpg" /></p>
 <p><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></p>
-<h2 id="background"><b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<h2 id="background"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M96 0C43 0 0 43 0 96v320c0 53 43 96 96 96h320c17.7 0 32-14.3 32-32s-14.3-32-32-32v-64c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H96zm0 384h256v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48h192c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg></span> <b>Background</b><a class="headerlink" href="#background" title="Permanent link"></a></h2>
 <h3 id="-prophet"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>Prophet</b><a class="headerlink" href="#-prophet" title="Permanent link"></a></h3>
 <p><code>Prophet</code> is a time series forecasting model. It is based on an additive regression model that takes into account trends, seasonality, and holidays. <code>Prophet</code> also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. </p>
 <h3 id="-udf"><b><span style='color:#be61c7;text-align:center'>❯❯ </span>UDF</b><a class="headerlink" href="#-udf" title="Permanent link"></a></h3>

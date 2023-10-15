@@ -13,13 +13,13 @@ categories:
 
 In this notebook, we look at how to use a popular machine learning library `prophet` with `pyspark`. `pyspark` itself does not contain such an additive regression model, however we can utilise user defined functions (`UDF`), which allows us to use different functionality that is not available in `pyspark`.
 
-![](https://i.imgur.com/b6BBtXv.jpg)
-
 <!-- more -->
+
+![](https://i.imgur.com/b6BBtXv.jpg)
 
 ![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 
-## <b>Background</b>
+## :fontawesome-solid-book: <b>Background</b>
 
 ### <b><span style='color:#be61c7;text-align:center'>❯❯ </span>Prophet</b> 
 

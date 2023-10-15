@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/ds-portfolio/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/personal/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/mllibs/home/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/mllibs/meetups/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/archive/2023/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/pyspark/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/prophet/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/regression/</loc>
-         <lastmod>2023-10-14</lastmod>
+         <lastmod>2023-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

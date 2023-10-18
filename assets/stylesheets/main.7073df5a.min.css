@@ -143,7 +143,7 @@
 .mdx-hero h1 {
     color: currentcolor;
     font-weight: 700;
-    margin-bottom: 10rem;
+    margin-bottom: 20rem;
 }
 
 @media screen and (max-width:29.9375em) {

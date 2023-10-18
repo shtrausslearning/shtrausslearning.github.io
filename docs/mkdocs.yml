@@ -111,8 +111,7 @@ theme:
             name: Switch to light mode
 
     font:
-        text: Roboto
-        code: Roboto Mono
+        text: Ubuntu
 
 extra:
     manifest: manifest.webmanifest

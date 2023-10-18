@@ -175,9 +175,9 @@
     }
 }
 
-@media screen and (min-width:76.25em) {
+@media screen and (min-width:30em) {
     .mdx-hero__image {
-        transform: translateX(5rem)
+        transform: translateX(8rem)
     }
 }
 

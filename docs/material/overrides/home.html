@@ -8,9 +8,18 @@
   <section class="mdx-container">
     <div class="md-grid md-typeset">
       <div class="mdx-hero">
+        <div class="mdx-hero__image">
+          <img src="images/illustration.png" alt="" width="1659" height="1200" draggable="false">
+        </div>
         <div class="mdx-hero__content">
-          <h1>Welcome!</h1>
-          <p>I post mainly on machine learning related topics and my projects I'm working on, feel free to get in touch with me on telegram!</p>
+          <h1>Technical documentation that just works</h1>
+          <p>{{ config.site_description }}. Set up in 5 minutes.</p>
+          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
+            Quick start
+          </a>
+          <a href="{{ 'group/status.html' | url }}" title="Material for MkDocs Insiders" class="md-button">
+            Group Task
+          </a>
         </div>
       </div>
     </div>

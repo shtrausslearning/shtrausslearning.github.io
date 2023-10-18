@@ -143,7 +143,7 @@
 }
 @media screen and (min-width:76.25em){
     .mdx-hero__image{
-        transform:translateX(8rem)
+        transform:translateX(0rem)
     }
 }
 .mdx-hero .md-button{

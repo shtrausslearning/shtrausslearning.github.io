@@ -177,7 +177,7 @@
 
 @media screen and (min-width:30em) {
     .mdx-hero__image {
-        transform: translateX(1rem)
+        transform: translateX(8rem)
     }
 }
 
@@ -225,7 +225,7 @@
 .md-typeset .mdx-iconsearch-result {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    max-height: 50vh;
+    max-height: 20vh;
     overflow-y: auto;
     scrollbar-color: var(--md-default-fg-color--lighter) transparent;
     scrollbar-width: thin;

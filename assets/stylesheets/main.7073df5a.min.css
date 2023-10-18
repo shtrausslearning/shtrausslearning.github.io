@@ -147,7 +147,7 @@
 }
 
 @media screen and (max-width:29.9375em) {
-    .mdx-hero h1 {
+    .mdx-hero h3 {
         font-size: 1.4rem
     }
 }

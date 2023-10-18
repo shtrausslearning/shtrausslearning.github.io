@@ -153,7 +153,7 @@
 }
 
 .mdx-hero__content {
-    padding-bottom: 6rem
+    padding-bottom: 8rem
 }
 
 @media screen and (min-width:60em) {
@@ -225,7 +225,7 @@
 .md-typeset .mdx-iconsearch-result {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    max-height: 20vh;
+    max-height: 50vh;
     overflow-y: auto;
     scrollbar-color: var(--md-default-fg-color--lighter) transparent;
     scrollbar-width: thin;

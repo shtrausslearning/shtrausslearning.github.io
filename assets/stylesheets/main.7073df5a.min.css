@@ -177,7 +177,7 @@
 
 @media screen and (min-width:30em) {
     .mdx-hero__image {
-        transform: translateX(8rem)
+        transform: translateX(1rem)
     }
 }
 

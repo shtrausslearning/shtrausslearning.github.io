@@ -149,13 +149,13 @@ copyright: |
   Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
 
 nav:
-- home: index.md
-- collections: 
-    - Data Science: ds-portfolio.md
+- Home: index.md
+- DS Projects: ds-portfolio.md
+- Bioinformatics Projects: bio-portfolio.md
 
 - mllibs:
     - introduction: mllibs/home.md
     - meetups: mllibs/meetups.md
 
-- blog:
+- Blog:
     - blog/index.md

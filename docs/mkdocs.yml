@@ -159,3 +159,5 @@ nav:
 
 - Blog:
     - blog/index.md
+
+- About: about.md

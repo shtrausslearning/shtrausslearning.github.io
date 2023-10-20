@@ -150,7 +150,11 @@ copyright: |
 
 nav:
 - Home: index.md
-- DS Projects: ds-portfolio.md
+
+- DS Projects: 
+
+    - main: ds-portfolio.md
+    - nlp: potfolio/nlp.md
 
 - mllibs:
     - introduction: mllibs/home.md

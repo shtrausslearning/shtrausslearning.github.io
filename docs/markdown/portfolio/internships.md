@@ -1,6 +1,6 @@
 ## :fontawesome-solid-person-digging:{ .person-digging } <b>Internships</b> 
 
-Here are some projects from my time at internships
+Here are some projects from my time at internships opportunities:
 
 ### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Customer Transaction Predictive Analytics</b>
 

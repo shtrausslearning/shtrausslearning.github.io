@@ -56,6 +56,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/portfolio/finance/</loc>
+         <lastmod>2023-10-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/portfolio/geospatial/</loc>
+         <lastmod>2023-10-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/portfolio/health/</loc>
          <lastmod>2023-10-20</lastmod>
          <changefreq>daily</changefreq>

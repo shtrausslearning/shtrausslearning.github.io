@@ -6,40 +6,28 @@
 
 Here you will find a collection of some of the data science projects I've worked on (mostly Kaggle), if you have any questions, contact me  <sub><a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=283747&logo=Telegram&logoColor=FFFFFF&label=" /></a></sub> 
 
-## :fontawesome-solid-language:{ .language } <b>Natural Language Processing</b> 
+## :fontawesome-regular-hospital: <b>Health</b> 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Banking Consumer Complaint Analysis</b>
+### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Identifying Antibiotic Resistant Bacteria</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/bio-identifying-antibiotic-resistant-bacteria/)
 
-In this study, we aim to create an **automated ticket classification model** for incoming text based complaints, which is a **multiclass classification problem**. Such a model is useful for a company in order to automate the process of sorting financial product reviews & subsequently pass the review to an experient in the relevant field. We explore traditional ML methods, which utilise hidden-state BERT embedding for features, as well as fine-tune DistilBert for our classification problem & compare the two approaches
-
-<center>
-![](https://i.imgur.com/zKbBkIt.png)
-</center>
-
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Twitter Emotion Classification</b>
-
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
-
->In this study, we fine-tune a transformer model so it can classify the `sentiment` of user tweets for 6 different emotions (multiclass classification). We first create a baseline by utilising traditional ML methods that use extracted `BERT` embeddings for features, then we will turn to a more complex transformer encoder, `DistilBert` & `fine-tune` its model weights for our classification problem
+In this study, we investigate data associated with **antibiotic resistance** for different `bacteria`, conducting an explotatory data analysis & creating resistance models for different antibiotics, based on unitig (part of DNA) data which convey the presence or absence of a particular nucleotide sequence in the Bacteria's DNA. We train a model(s) that is able to distinguish whether the bacteria is **resistant** to a particular antibiotic or **not resistant**
 
 <center>
-![](https://i.imgur.com/H2QIl7b.png)
+![img](https://i.imgur.com/jB4GTYs.png)
 </center>
 
-## :fontawesome-solid-person-digging:{ .person-digging } <b>Internships</b> 
+### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Lower Back Pain Symptoms Modeling</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Customer Transaction Predictive Analytics</b>
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
-[![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/ANZ_internship)
-
-> Part of the **[Data@ANZ](https://www.theforage.com/virtual-internships/prototype/ZLJCsrpkHo9pZBJNY/ANZ-Virtual-Internship)** Internship program. The aim of the study is to analyse customer transactions & find their annual income. Based on the deduced data, we needed to create a model that will be able to predict their annual income. Two approaches were investigates, transaction based (all transactions) & customer aggregative (customer's transaction).
+In this study we investigate patient back pain [biomedical data](https://doi.org/10.24432/C5K89B) obtained from a medical resident in Lyon. We create a classification model which is able to determine the difference between **normal patients** and patients who have either **disk hernia** or **spondylolisthesis**, which is a binary classification problem. We utilise PyTorch in order to create a neural network, which utilises both **dropout** and **batch normalisation** layers.
 
 <center>
-![](https://i.imgur.com/EOTidAZ.png)
+![](https://i.imgur.com/ARnd2eQ.png)
 </center>
+
 
 ## :fontawesome-solid-users-rectangle:{ .users-rectangle } <b>Classification</b> 
 
@@ -63,26 +51,6 @@ In this study, we explore different feature engineering approaches for classifyi
 
 <center>
 ![](https://i.imgur.com/79RXDS0.png)
-</center>
-
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Identifying Antibiotic Resistant Bacteria</b>
-
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/bio-identifying-antibiotic-resistant-bacteria/)
-
-In this study, we investigate data associated with **antibiotic resistance** for different `bacteria`, conducting an explotatory data analysis & creating resistance models for different antibiotics, based on unitig (part of DNA) data which convey the presence or absence of a particular nucleotide sequence in the Bacteria's DNA. We train a model(s) that is able to distinguish whether the bacteria is **resistant** to a particular antibiotic or **not resistant**
-
-<center>
-![img](https://i.imgur.com/jB4GTYs.png)
-</center>
-
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Lower Back Pain Symptoms Modeling</b>
-
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
-
-In this study we investigate patient back pain [biomedical data](https://doi.org/10.24432/C5K89B) obtained from a medical resident in Lyon. We create a classification model which is able to determine the difference between **normal patients** and patients who have either **disk hernia** or **spondylolisthesis**, which is a binary classification problem. We utilise PyTorch in order to create a neural network, which utilises both **dropout** and **batch normalisation** layers.
-
-<center>
-![](https://i.imgur.com/ARnd2eQ.png)
 </center>
 
 ## :fontawesome-solid-person-falling:{ .person-falling } <b>Physics Modeling</b> 

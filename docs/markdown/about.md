@@ -16,9 +16,11 @@ Here's a brief summary:
 - Worked on **Meshless methodology** for discretisation & high order interpolation methods (ML approach)<br>
 - Specialise in Computation Fluid Dynamics & Aeroacoustics 
 
-## **Contact**
+## **Hobbies**
 
-**Thank you for reading!**
+I have a lot of hobbies, mostly digital art & photography
+
+## **Contact**
 
 Any questions or comments can be addressed on the :fontawesome-brands-telegram:{ .telegram } **[mldsai-info channel](https://t.me/mldsai_info)** or to me directly :fontawesome-brands-telegram:{ .telegram } **[shtrauss2](https://t.me/shtrauss2)**, on :fontawesome-brands-github:{ .github } **[shtrausslearning](https://github.com/shtrausslearning)** or :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**
 

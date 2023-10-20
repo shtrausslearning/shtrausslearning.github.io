@@ -155,10 +155,9 @@ nav:
 
     - Natural Language Processing: portfolio/nlp.md
     - Internships: portfolio/internships.md
-    - Finance: portfolio/finance.md
     - Geospatial: portfolio/geospatial.md
     - Health: portfolio/health.md
-    - science: portfolio/science.md
+    - Science: portfolio/science.md
 
 - mllibs:
     - introduction: mllibs/home.md

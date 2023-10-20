@@ -1,6 +1,8 @@
 ## :fontawesome-solid-language:{ .language } <b>Natural Language Processing</b> 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Banking Consumer Complaint Analysis</b>
+Natural language processing (NLP) is a branch of artificial intelligence (AI) that deals with the interaction between computers and humans using natural language. It involves the development of algorithms and computational models that can understand, analyze, and generate human language. 
+
+### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>❯❯ Banking Consumer Complaint Analysis</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
 
@@ -10,7 +12,7 @@ In this study, we aim to create an **automated ticket classification model** for
 ![](https://i.imgur.com/zKbBkIt.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Twitter Emotion Classification</b>
+### <b><span style='color:#FFCA58;text-align:center'></span>❯❯ Twitter Emotion Classification</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
 
@@ -20,7 +22,7 @@ In this study, we aim to create an **automated ticket classification model** for
 ![](https://i.imgur.com/H2QIl7b.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>edX Course Recommendations</b> 
+### <b><span style='color:#FFCA58;text-align:center'></span>❯❯ edX Course Recommendations</b> 
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
 

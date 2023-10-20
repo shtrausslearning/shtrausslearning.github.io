@@ -56,6 +56,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/portfolio/internships/</loc>
+         <lastmod>2023-10-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/portfolio/nlp/</loc>
          <lastmod>2023-10-20</lastmod>
          <changefreq>daily</changefreq>

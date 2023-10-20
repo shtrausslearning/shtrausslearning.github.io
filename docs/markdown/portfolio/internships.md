@@ -2,7 +2,7 @@
 
 Here are some projects from my time at internships opportunities:
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Customer Transaction Predictive Analytics</b>
+### <b><span style='color:#FFCA58;text-align:center'></span>Customer Transaction Predictive Analytics</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/ANZ_internship)

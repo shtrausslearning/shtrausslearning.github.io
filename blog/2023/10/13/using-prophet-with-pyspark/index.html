@@ -1525,6 +1525,9 @@ only showing top 4 rows
 </code></pre></div>
 <h3 id="udf_1">UDF<a class="headerlink" href="#udf_1" title="Permanent link"></a></h3>
 <p>Our <code>UDF</code> will be slightly involved, we will be using <code>PandasUDFType.GROUPED_MAP</code> so it should be called with <code>groupby</code> &amp; <code>apply</code></p>
+<blockquote>
+<p><code>PandasUDFType.GROUPED_MAP</code> is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">prophet</span> <span class="kn">import</span> <span class="n">Prophet</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">pandas_udf</span><span class="p">,</span> <span class="n">PandasUDFType</span>
 

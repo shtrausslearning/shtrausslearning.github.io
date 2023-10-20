@@ -491,6 +491,8 @@ schema = ty.StructType([
 
 Our `UDF` will be slightly involved, we will be using `PandasUDFType.GROUPED_MAP` so it should be called with `groupby` & `apply`
 
+> `PandasUDFType.GROUPED_MAP` is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.
+
 ```python
 from prophet import Prophet
 from pyspark.sql.functions import pandas_udf, PandasUDFType

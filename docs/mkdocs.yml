@@ -153,8 +153,8 @@ nav:
 
 - DS Projects: 
 
-    - Main: ds-portfolio.md
     - Natural Language Processing: portfolio/nlp.md
+    - Internships: portfolio/internships.md
 
 - mllibs:
     - introduction: mllibs/home.md

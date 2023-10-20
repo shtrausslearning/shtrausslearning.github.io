@@ -2,7 +2,7 @@
 
 Natural language processing (NLP) is a branch of artificial intelligence (AI) that deals with the interaction between computers and humans using natural language. It involves the development of algorithms and computational models that can understand, analyze, and generate human language. 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>❯❯ Banking Consumer Complaint Analysis</b>
+### <b><span style='color:#FFCA58;text-align:center'></span>Banking Consumer Complaint Analysis</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
 
@@ -12,17 +12,17 @@ In this study, we aim to create an **automated ticket classification model** for
 ![](https://i.imgur.com/zKbBkIt.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>❯❯ Twitter Emotion Classification</b>
+### <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
 
->In this study, we fine-tune a transformer model so it can classify the `sentiment` of user tweets for 6 different emotions (multiclass classification). We first create a baseline by utilising traditional ML methods that use extracted `BERT` embeddings for features, then we will turn to a more complex transformer encoder, `DistilBert` & `fine-tune` its model weights for our classification problem
+In this study, we fine-tune a transformer model so it can classify the `sentiment` of user tweets for 6 different emotions (multiclass classification). We first create a baseline by utilising traditional ML methods that use extracted `BERT` embeddings for features, then we will turn to a more complex transformer encoder, `DistilBert` & `fine-tune` its model weights for our classification problem
 
 <center>
 ![](https://i.imgur.com/H2QIl7b.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>❯❯ edX Course Recommendations</b> 
+### <b><span style='color:#FFCA58;text-align:center'></span>edX Course Recommendations</b> 
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
 

@@ -151,7 +151,6 @@ copyright: |
 nav:
 - Home: index.md
 - DS Projects: ds-portfolio.md
-# - Bioinformatics Projects: bio-portfolio.md
 
 - mllibs:
     - introduction: mllibs/home.md

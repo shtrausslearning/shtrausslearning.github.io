@@ -16,7 +16,7 @@
         <link rel="prev" href="../../10/named-entity-recognition-with-torch/">
       
       
-        <link rel="next" href="../../17/exploring-taxi-trip-data/">
+        <link rel="next" href="../../19/named-entity-recognition-with-huggingface-trainer/">
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
@@ -937,37 +937,37 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-sentence-splitting" class="md-nav__link">
-    ❯❯ Sentence splitting
+  <a href="#sentence-splitting" class="md-nav__link">
+    Sentence splitting
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-motivation" class="md-nav__link">
-    ❯❯ Motivation
+  <a href="#motivation" class="md-nav__link">
+    Motivation
   </a>
   
-    <nav class="md-nav" aria-label="❯❯ Motivation">
+    <nav class="md-nav" aria-label="Motivation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-classifying-user-requests" class="md-nav__link">
-    ❯❯❯ Classifying user requests
+  <a href="#classifying-user-requests" class="md-nav__link">
+    Classifying user requests
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-using-classifier" class="md-nav__link">
-    ❯❯❯ Using Classifier
+  <a href="#using-classifier" class="md-nav__link">
+    Using Classifier
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-using-ner-to-identify-sentence-split-locations" class="md-nav__link">
-    ❯❯❯ Using NER to identify sentence split locations
+  <a href="#using-ner-to-identify-sentence-split-locations" class="md-nav__link">
+    Using NER to identify sentence split locations
   </a>
   
 </li>
@@ -983,16 +983,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2--the-dataset" class="md-nav__link">
-    2 ❯ The Dataset
+  <a href="#the-dataset" class="md-nav__link">
+    The Dataset
   </a>
   
-    <nav class="md-nav" aria-label="2 ❯ The Dataset">
+    <nav class="md-nav" aria-label="The Dataset">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-tagging-split-tag-words" class="md-nav__link">
-    ❯❯ Tagging split tag words
+  <a href="#tagging-split-tag-words" class="md-nav__link">
+    Tagging split tag words
   </a>
   
 </li>
@@ -1192,7 +1192,7 @@
 <blockquote>
 <p class="prompt-info">In this notebook, we define <strong>named entities</strong> to be word(s) that can be defined <strong>as sentence splitters</strong>, which differs from how <code>NER</code> tends to be used for extraction of place names and so on</p>
 </blockquote>
-<h3 id="-sentence-splitting"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Sentence splitting</b><a class="headerlink" href="#-sentence-splitting" title="Permanent link"></a></h3>
+<h3 id="sentence-splitting">Sentence splitting<a class="headerlink" href="#sentence-splitting" title="Permanent link"></a></h3>
 <p>What can be thought to be quite straightforward and non trivial isn't quite so. <strong>Sentence splitting</strong> or sentence simplification is the task of taking a sentence that is usually too long and breaking it up into two or more simpler sentences. In the next section, we'll mention one example, where it can be useful. </p>
 <p>Consider an example:</p>
 <blockquote>
@@ -1205,8 +1205,8 @@
 <kbd>The quick red fox jumped over the lazy brown dog</kbd> <code>and</code> <code>then</code> <kbd>ran away</kbd></p>
 </blockquote>
 <p>We can split the sentence based on two occuring events, which is separated by the words <strong>and then</strong>. By splitting the sentence into two parts we understand that there are two actions that are associated with the object <code>fox</code>. Simple tokenisers such as <strong><a href="https://www.nltk.org/api/nltk.tokenize.sent_tokenize.html">sent_tokenize</a></strong> from <code>NLTK</code> or any other sentence tokeniser are not suited for tokenising the second example, which is where <strong>NER</strong> comes in.</p>
-<h3 id="-motivation"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Motivation</b><a class="headerlink" href="#-motivation" title="Permanent link"></a></h3>
-<h4 id="-classifying-user-requests"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Classifying user requests</b><a class="headerlink" href="#-classifying-user-requests" title="Permanent link"></a></h4>
+<h3 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link"></a></h3>
+<h4 id="classifying-user-requests">Classifying user requests<a class="headerlink" href="#classifying-user-requests" title="Permanent link"></a></h4>
 <p>Let's say we have a problem in which we need to <strong>classify a user request</strong> into two groups; <kbd>class 0</kbd> (impute data) &amp; <kbd>class 1</kbd> (standardise columns) using text input data, a <strong>binary classification problem</strong>. The classification model will activate specific activation functions, so incorrectly classified models will activate the wrong function! </p>
 <p>Hopefully you are familiar with text preprocessing &amp; training using sklearn, because that's what we'll be using in this post. We train a <code>LogisticRegression</code> binary classification model and the model itself is complex enough to get a perfect score on the dataset it was trained on. </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># commands corresponding to activation function</span>
@@ -1233,7 +1233,7 @@
 <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 </code></pre></div>
-<h4 id="-using-classifier"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using Classifier</b><a class="headerlink" href="#-using-classifier" title="Permanent link"></a></h4>
+<h4 id="using-classifier">Using Classifier<a class="headerlink" href="#using-classifier" title="Permanent link"></a></h4>
 <p>Now let's assume we deploy this model, we have two user requests:
 -  <kbd>First of all, impute all missing data with column mean values, then standardise all columns</kbd>
 -  <kbd>impute missing data with column mean values</kbd></p>
@@ -1263,10 +1263,10 @@ text_b [[0.68768998 0.31231002]]
 <blockquote>
 <p class="prompt-info">Similar to if you took <code>cosine_similarity</code> between the input user request and different documents that belong to a class. If the content contains too much additional text, the similarity will start to fall.</p>
 </blockquote>
-<h4 id="-using-ner-to-identify-sentence-split-locations"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using NER to identify sentence split locations</b><a class="headerlink" href="#-using-ner-to-identify-sentence-split-locations" title="Permanent link"></a></h4>
+<h4 id="using-ner-to-identify-sentence-split-locations">Using NER to identify sentence split locations<a class="headerlink" href="#using-ner-to-identify-sentence-split-locations" title="Permanent link"></a></h4>
 <p>We could use <code>regex</code> in an attempt to <strong>find split locations</strong>, and then <strong>cut the document</strong> at <code>regex</code> matched pattern locations, however if we go down the <strong>NER</strong> route, we actually can tag words in the sentence however we want, which is very convenient. Aside from sentence splitting tags such as <code>and then</code>, we would also identify words which don't add value and tag them as well (eg. <code>first of all</code>).</p>
-<h2 id="2--the-dataset"><b><span style='color:#E888BB;text-align:center'>2 ❯ </span>The Dataset</b><a class="headerlink" href="#2--the-dataset" title="Permanent link"></a></h2>
-<h3 id="-tagging-split-tag-words"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Tagging split tag words</b><a class="headerlink" href="#-tagging-split-tag-words" title="Permanent link"></a></h3>
+<h2 id="the-dataset">The Dataset<a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
+<h3 id="tagging-split-tag-words">Tagging split tag words<a class="headerlink" href="#tagging-split-tag-words" title="Permanent link"></a></h3>
 <p>The dataset will be created by us, and is by not means perfect. I used this <strong><a href="https://www.miamioh.edu/hcwe/handouts/sentence-combination/index.html#:~:text=You%20have%20four%20options%20for,moreover%2C%22%20or%20%22thus%22">useful reference</a></strong> in order to try and add various writing variations. As opposed to the <strong>grouped document token</strong> approach I did in <strong><a href="https://www.kaggle.com/code/shtrausslearning/mllibs-ner-based-classification-sentence-split">this notebook</a></strong>, I won't be adding other OOV words to <strong>class (0)</strong>.</p>
 <p>I've created about 20 general sentences and annotated word/token locations at which I would like to identify a <strong>splitting token</strong>. We'll be using the standard <code>BIO</code> tagging system, so we can tag segments of tokens, identifying <strong>beginning &amp; inner tags</strong>. </p>
 <p>Our dataset contains two columns <code>text</code> &amp; its annotation <code>annotated</code> variant.</p>

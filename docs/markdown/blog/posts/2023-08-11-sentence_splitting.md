@@ -31,7 +31,7 @@ So what exactly is `NER`?
 > In this notebook, we define **named entities** to be word(s) that can be defined **as sentence splitters**, which differs from how `NER` tends to be used for extraction of place names and so on
 > {: .prompt-info }
 
-### <b><span style='color:#E888BB;text-align:center'>❯❯ </span>Sentence splitting</b> 
+### Sentence splitting
 
 What can be thought to be quite straightforward and non trivial isn't quite so. **Sentence splitting** or sentence simplification is the task of taking a sentence that is usually too long and breaking it up into two or more simpler sentences. In the next section, we'll mention one example, where it can be useful. 
 
@@ -47,9 +47,9 @@ Something more difficult now:
 
 We can split the sentence based on two occuring events, which is separated by the words **and then**. By splitting the sentence into two parts we understand that there are two actions that are associated with the object `fox`. Simple tokenisers such as **[sent_tokenize](https://www.nltk.org/api/nltk.tokenize.sent_tokenize.html)** from `NLTK` or any other sentence tokeniser are not suited for tokenising the second example, which is where **NER** comes in.
 
-### <b><span style='color:#E888BB;text-align:center'>❯❯ </span>Motivation</b> 
+### Motivation
 
-#### <b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Classifying user requests</b>
+#### Classifying user requests
 
 Let's say we have a problem in which we need to **classify a user request** into two groups; <kbd>class 0</kbd> (impute data) & <kbd>class 1</kbd> (standardise columns) using text input data, a **binary classification problem**. The classification model will activate specific activation functions, so incorrectly classified models will activate the wrong function! 
 
@@ -82,7 +82,7 @@ model = LogisticRegression()
 model.fit(X_train,y_train)
 ```
 
-#### <b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using Classifier</b>
+#### Using Classifier
 
 Now let's assume we deploy this model, we have two user requests:
 -  <kbd>First of all, impute all missing data with column mean values, then standardise all columns</kbd>
@@ -125,14 +125,14 @@ So we can see that the closer the content of the user request is to one of the t
 > Similar to if you took `cosine_similarity` between the input user request and different documents that belong to a class. If the content contains too much additional text, the similarity will start to fall.
 {: .prompt-info }
 
-#### <b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using NER to identify sentence split locations</b>
+#### Using NER to identify sentence split locations
 
 We could use `regex` in an attempt to **find split locations**, and then **cut the document** at `regex` matched pattern locations, however if we go down the **NER** route, we actually can tag words in the sentence however we want, which is very convenient. Aside from sentence splitting tags such as `and then`, we would also identify words which don't add value and tag them as well (eg. `first of all`).
 
 
-## <b><span style='color:#E888BB;text-align:center'>2 ❯ </span>The Dataset</b>
+## The Dataset
 
-### <b><span style='color:#E888BB;text-align:center'>❯❯ </span>Tagging split tag words</b> 
+### Tagging split tag words
 
 The dataset will be created by us, and is by not means perfect. I used this **[useful reference](https://www.miamioh.edu/hcwe/handouts/sentence-combination/index.html#:~:text=You%20have%20four%20options%20for,moreover%2C%22%20or%20%22thus%22)** in order to try and add various writing variations. As opposed to the **grouped document token** approach I did in **[this notebook](https://www.kaggle.com/code/shtrausslearning/mllibs-ner-based-classification-sentence-split)**, I won't be adding other OOV words to **class (0)**.
 

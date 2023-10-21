@@ -1,5 +1,5 @@
 ---
-date: 2023-08-21
+date: 2023-08-19
 title: Named Entity Recognition with Huggingface Trainer
 authors: [andrey]
 categories:

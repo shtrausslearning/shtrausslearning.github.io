@@ -128,6 +128,7 @@ extra:
 
 plugins:
     - blog:
+        blog_toc: true
         post_excerpt: optional
         post_excerpt_separator: <!-- more -->
         archive_name: Archive
@@ -155,9 +156,9 @@ nav:
 
     - Natural Language Processing: portfolio/nlp.md
     - Internships: portfolio/internships.md
-    - Geospatial: portfolio/geospatial.md
-    - Health: portfolio/health.md
     - Science: portfolio/science.md
+    - Health: portfolio/health.md
+    - Geospatial: portfolio/geospatial.md
 
 - mllibs:
     - introduction: mllibs/home.md

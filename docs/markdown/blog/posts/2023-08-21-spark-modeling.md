@@ -11,9 +11,11 @@ tags:
   - modeling
 ---
 
+# **Creating Machine Learning Models with PySpark**
+
 In this post, we will introduce ourselves to `pyspark`, a framework that allows us to work with big data. Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post. We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the modeling stage of our project.
 
-![](https://i.imgur.com/TlrdxNa.jpg)
+![](https://i.imgur.com/SO7B5nM.png)
 
 <!-- more -->
 

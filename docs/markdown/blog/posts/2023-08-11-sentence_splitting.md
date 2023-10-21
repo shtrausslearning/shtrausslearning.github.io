@@ -15,6 +15,8 @@ tags:
 
 In the last post, we talked about how to use **NER** for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding & ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for **NER** tagging, which I've implemented in my project **[mllibs](https://github.com/shtrausslearning/mllibs)**
 
+<!-- more -->
+
 ## Background
 
 ### What is NER?

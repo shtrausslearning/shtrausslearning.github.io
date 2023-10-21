@@ -930,8 +930,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-subset-comparison-approaches" class="md-nav__link">
-    ❯❯ Subset Comparison Approaches
+  <a href="#subset-comparison-approaches" class="md-nav__link">
+    Subset Comparison Approaches
   </a>
   
 </li>
@@ -957,15 +957,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-violin-plot" class="md-nav__link">
-    ❯❯ Violin Plot
+  <a href="#violin-plot" class="md-nav__link">
+    Violin Plot
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-andrew-curves" class="md-nav__link">
-    ❯❯ Andrew Curves
+  <a href="#andrew-curves" class="md-nav__link">
+    Andrew Curves
   </a>
   
 </li>
@@ -984,15 +984,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-anova-test" class="md-nav__link">
-    ❯❯ ANOVA Test
+  <a href="#anova-test" class="md-nav__link">
+    ANOVA Test
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-kolmogorov-smirnov-test" class="md-nav__link">
-    ❯❯ Kolmogorov-Smirnov Test
+  <a href="#kolmogorov-smirnov-test" class="md-nav__link">
+    Kolmogorov-Smirnov Test
   </a>
   
 </li>
@@ -1143,8 +1143,8 @@
 <!-- more -->
 
 <p>The above approach to comparing the two datasets isn't the most ideal, but it should raise a question; are there any other approaches that we can use to compare different subsets of data? This is what we'll look at in this post!</p>
-<h2 id="comparing-subsets"><b>Comparing Subsets</span></b><a class="headerlink" href="#comparing-subsets" title="Permanent link"></a></h2>
-<h3 id="-subset-comparison-approaches"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Subset Comparison Approaches</b><a class="headerlink" href="#-subset-comparison-approaches" title="Permanent link"></a></h3>
+<h2 id="comparing-subsets">Comparing Subsets<a class="headerlink" href="#comparing-subsets" title="Permanent link"></a></h2>
+<h3 id="subset-comparison-approaches">Subset Comparison Approaches<a class="headerlink" href="#subset-comparison-approaches" title="Permanent link"></a></h3>
 <p>We'll look at these approaches:</p>
 <ul>
 <li><strong>Violin plots</strong> comparing the univariate distribution between two subsets</li>
@@ -1153,7 +1153,7 @@
 <li><strong>KS Statistic</strong> to check whether the each variable in train/test comes from the same distribution</li>
 <li><strong>Machine Learning</strong>, to classify the two subsets and compare their metrics</li>
 </ul>
-<h2 id="the-dataset"><b>The Dataset</b><a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
+<h2 id="the-dataset">The Dataset<a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
 <p>We'll use a favourite dataset of mine, which we can load very easily load via <code>seaborn</code>, it contains three categorical variables, so we'll use <code>LabelEncoder</code> to encode them. Then we'll create two subsets from this dataset</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1188,8 +1188,8 @@
 <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span><span class="p">;</span> <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="visualisation-approaches"><b>Visualisation Approaches</b><a class="headerlink" href="#visualisation-approaches" title="Permanent link"></a></h2>
-<h3 id="-violin-plot"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Violin Plot</b><a class="headerlink" href="#-violin-plot" title="Permanent link"></a></h3>
+<h2 id="visualisation-approaches">Visualisation Approaches<a class="headerlink" href="#visualisation-approaches" title="Permanent link"></a></h2>
+<h3 id="violin-plot">Violin Plot<a class="headerlink" href="#violin-plot" title="Permanent link"></a></h3>
 <p>A <strong>violin plot</strong> is a type of data visualization that combines the features of a boxplot and a kernel density plot. It is used to display the distribution of a dataset and shows the <code>median</code>, <code>quartiles</code>, and <code>interquartile range</code> (IQR) like a boxplot, but also displays the shape of the distribution through a density curve. The width of the violin at any point represents the density or frequency of data at that point. Violin plots are useful for comparing the distributions of multiple datasets and identifying any differences or similarities between them</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">violin_plots</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
 
@@ -1231,7 +1231,7 @@
 <span class="n">violin_plots</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="" src="../../../../images/violin.jpg" /></p>
-<h3 id="-andrew-curves"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Andrew Curves</b><a class="headerlink" href="#-andrew-curves" title="Permanent link"></a></h3>
+<h3 id="andrew-curves">Andrew Curves<a class="headerlink" href="#andrew-curves" title="Permanent link"></a></h3>
 <p><strong>Andrews curves</strong> are a type of data visualization that represent each observation in a dataset as a curve. The curve is generated by mapping the values of each feature in the dataset to a sine function, which is then plotted on a two-dimensional plane. Each curve represents one observation in the dataset, and the shape of the curve reflects the values of the features for that observation. It preserves means, distance, and variances. They curves are useful for visualizing the overall structure of a dataset and identifying any patterns or trends that may exist. They can also be used to compare the shapes of curves between different datasets to identify any differences or similarities</p>
 <p>It is given by formula:</p>
 <div class="arithmatex">\[
@@ -1256,8 +1256,8 @@ T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) 
 <span class="n">plot_andrews</span><span class="p">(</span><span class="n">data3</span><span class="p">)</span>
 </code></pre></div>
 <p><img alt="" src="../../../../images/andrews.jpg" /></p>
-<h2 id="statistical-approaches"><b>Statistical Approaches</b><a class="headerlink" href="#statistical-approaches" title="Permanent link"></a></h2>
-<h3 id="-anova-test"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>ANOVA Test</b><a class="headerlink" href="#-anova-test" title="Permanent link"></a></h3>
+<h2 id="statistical-approaches">Statistical Approaches<a class="headerlink" href="#statistical-approaches" title="Permanent link"></a></h2>
+<h3 id="anova-test">ANOVA Test<a class="headerlink" href="#anova-test" title="Permanent link"></a></h3>
 <p><strong>ANOVA</strong> (Analysis of Variance) is a statistical test used to determine whether there are significant differences between the means of two or more groups. It <strong>compares the variance</strong> within each group to the variance between the groups to determine if the differences in means are statistically significant. To use this approach, we'll use the <code>statsmodel</code> library, specifically the <code>ols</code> and <code>anova_lm</code> methods. The <strong>null hypothesis</strong> is that there is no significant difference between the groups being compared. More at <strong><a href="https://www.statsmodels.org/dev/generated/statsmodels.stats.anova.anova_lm.html">statsmodels</a></strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">ols</span>
@@ -1305,7 +1305,7 @@ T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) 
 </code></pre></div>
 <p><img alt="" src="../../../../images/anova.jpg" /></p>
 <p>The <strong>anova</strong> results show that for all features p&gt;0.05, thus the <strong>null hypothesis</strong> is accepted; there is no significant difference between the groups being compared</p>
-<h3 id="-kolmogorov-smirnov-test"><b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Kolmogorov-Smirnov Test</b><a class="headerlink" href="#-kolmogorov-smirnov-test" title="Permanent link"></a></h3>
+<h3 id="kolmogorov-smirnov-test">Kolmogorov-Smirnov Test<a class="headerlink" href="#kolmogorov-smirnov-test" title="Permanent link"></a></h3>
 <p>The <strong>Kolmogorov-Smirnov</strong> test is a statistical test used to determine whether a sample distribution differs significantly from a known or expected distribution. It compares the empirical <strong>cumulative distribution function</strong> (CDF) of the sample to the theoretical CDF of the expected distribution and calculates a test statistic that measures the maximum distance between the two functions. We'll be using the <code>scipy.stats.ks_2samp</code> module, which gives us the option to use three types of <strong>null</strong> &amp; <strong>alternative</strong> hypotheses, by default the <code>two-sided</code> option is used, so that will be our pair, so that's what we'll use. The null hypothesis is that the <strong>two distributions are identical</strong>, F(x)=G(x) for all x; the alternative is that they are not identical.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ks_2samp</span>
 
@@ -1348,7 +1348,7 @@ T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) 
 </code></pre></div>
 <p><img alt="" src="../../../../images/ks_stat.jpg" /></p>
 <p>The <strong>Kolmogorov-Smirnov</strong> test results show that for all the features in the data p&gt;0.05, so the null hypothesis is accepted; for all the features the two subsets the <strong>two distributions are identical</strong></p>
-<h2 id="machine-learning-approach"><b>Machine Learning Approach</b><a class="headerlink" href="#machine-learning-approach" title="Permanent link"></a></h2>
+<h2 id="machine-learning-approach">Machine Learning Approach<a class="headerlink" href="#machine-learning-approach" title="Permanent link"></a></h2>
 <p>As we mentioned <a href="https://shtrausslearning.github.io/posts/compare_dataset/#comparing-subsets">in the beginning</a> we can utilise machine learning to compare different subsets, in fact this probably is the most common approach as it is a necessity everytime you train a new model, you need to validate your model. As a result, comparing metrics on different subsets of data is quite standard. However, what we will do here a little different. We will set our taget variable as <code>dataset</code> &amp; treat the problem as a <strong>binary classification problem</strong>, we'll use the <code>CatBoostClassifier</code> as our model with preset optimised hyperparameters</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">catboost</span> <span class="kn">import</span> <span class="n">CatBoostClassifier</span>
@@ -1382,7 +1382,7 @@ T(n) = \frac{x_1}{sqrt(2)} + x_2sin(n) + x_3 cos(n) + x_4 sin(2n) + x_5 cos(2n) 
 <span class="c1"># TEST AUC: 0.50</span>
 </code></pre></div>
 We aren’t too concerned about the metric value because the features aren’t not optimised for this problem, we’re interested in the <strong>difference between the two models</strong>. The model performs the same on both subsets, which is a good indicator to assume both subsets have a very simular data structure, thus are more or less similar.</p>
-<h2 id="conclusion"><b>Conclusion</b><a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
 <p>In this post, we tried different approaches to compare datasets. We can do this in a number of ways, using <a href="https://shtrausslearning.github.io/posts/compare_dataset/#visualisation-approaches">visualisations</a>, <a href="https://shtrausslearning.github.io/posts/compare_dataset/#statistical-approaches">statistics</a> &amp; <a href="https://shtrausslearning.github.io/posts/compare_dataset/#machine-learning-approach">machine learning approach</a>. In our problem, we could conclude that the two subsets that we created at the <a href="https://shtrausslearning.github.io/posts/compare_dataset/#the-dataset">start of the post</a> There doesn't seem to be an ideal method which fits the problem at hand, so its good practice to do a number of checks when comparing datasets datasets</p>
 <hr />
 <p><strong>Thank you for reading!</strong></p>

@@ -20,19 +20,19 @@ In a **[previous post](https://shtrausslearning.github.io/posts/huggingface_NER/
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/19dwCH-iTdnYgUJM2AVdTsvBirEMJLjXA?usp=sharing)
 
-## :fontawesome-solid-book: <b>Background</b>
+## Background
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Huggingface Trainer</b> 
+### Huggingface Trainer
 
 A Huggingface `Trainer` is a **high-level API** provided by the Huggingface Transformers library that makes it easier to train, fine-tune, and evaluate various Natural Language Processing (NLP) models. It provides a simple and consistent interface for training and evaluating models using various techniques such as text classification, named entity recognition, question answering, and more. The Trainer API abstracts away many of the low-level details of model training and evaluation, like we did in the **[previous post](https://shtrausslearning.github.io/posts/huggingface_NER/)**, allowing users to focus on their specific NLP tasks.
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Why do we need NER in NLP?</b> 
+### Why do we need NER in NLP?
 
 > Named entity recognition (NER) is important because it helps to identify and extract important information from unstructured text data. This can be useful in a variety of applications such as information retrieval, sentiment analysis, and text summarization. NER can also help to improve the accuracy of machine learning models by providing additional features for classification tasks. Additionally, NER is important for natural language processing `NLP` tasks such as machine translation, speech recognition, and question answering systems.
 
 **NER** can be quite a helpful tool in a variety of **NLP** applications. 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Our NER application</b> 
+### Our NER application
 
 Our **NER** application in this example:
 
@@ -48,7 +48,7 @@ Let's look at an example:
 
 : visualise column kdeplot `[source : for]` hf `[param : hue]` author `[pp : fill]` True `[pp : alpha]` 0.1 `[pp : mew]` 1 `[pp : mec]` 1 `[pp : s]` 10 `[pp : stheme]` viridis `[pp : bw]` 10
 
-## <b>The Dataset</b> 
+## The Dataset
 
 We can define a tag parser that supports an input format: `[tag : name]` (the **[massive dataset](https://huggingface.co/datasets/AmazonScience/massive) format)**. First, lets initialise the parser; `parser`, which reads the above format every time it is called. To parse all data in our dataset, we loop through all data and store relevant mapping dictionaries, returning the **tokenised text** & **tokenised tags**. 
 
@@ -72,7 +72,7 @@ annot[:4]
 # 'pca dimensionality reduction [source : using data] mpg [source : subset] numerical columns only']
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Annotation Parser</b> 
+### Annotation Parser
 
 The above format can be parsed using `Parser`, we first need to initialise it
 
@@ -146,7 +146,7 @@ class Parser:
 parser = Parser()
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Parse Dataset</b> 
+### Parse Dataset
 
 To use the parser on a dataset, we loop through all our rows, calling the parser, which fills out `tag_to_id`, `id_to_tag` and returns the tokenised `tags` when it is called
 
@@ -216,7 +216,7 @@ print(line2)
 # O         O      O       B-SOURCE O             B-PARAM O              
 ```
 
-## <b>Transformer Tokeniser</b> 
+## Transformer Tokeniser
 
 The above format of **word/tag** pair works fine if we use the pair for classification as it is. Our approach involves using a **transformer encoder** model (`bert-base-cased`), which has it own tokenisation approach, which means we need to create token tags for each **subtoken** that the tokeniser creates, this means we need to make a little adjustment to our input data
 
@@ -258,7 +258,7 @@ def align_labels_with_tokens(labels, word_ids):
     return new_labels
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Tokeniser Sample</b> 
+### Tokeniser Sample
 
 And let's look at an example of how the `tokeniser` actually splits the input text data, as well as the **token-word** association list; this information allows us to define subtoken tags based on their word tag from `word_ids` data
 
@@ -280,7 +280,7 @@ print(inputs.word_ids())
 # [None, 0, 1, 1, 2, 3, 4, 5, 6, 6, 7, 8, 8, 8, 8, 8, None]
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Subtoken NER tag adjustment</b> 
+### Subtoken NER tag adjustment
 
 Having all relevant pieces, let's return to our original dataset `raw_datasets` which we created in **[parse dataset](https://shtrausslearning.github.io/posts/huggingface_NER2/#-parse-dataset)**
 
@@ -313,7 +313,7 @@ tokenized_datasets['train']
 # })
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Data Collator Adjustment</b> 
+### Data Collator Adjustment
 
 The final preprocessing step is the `data_collator`
 
@@ -334,9 +334,9 @@ batch["labels"]
 #           0, -100]])
 ```
 
-## <b>Prepare for Training</b> 
+## Prepare for Training
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Evaluation Metrics</b> 
+### Evaluation Metrics
 
 The trainer allows us to add an evaluation function which when added to `compute_metrics` in the trainer return the model prediction, which are the `logits` and `labels`. Using this data we can then write an **evaluation metric function** which returns a dictionary of metric and its value pairs
 
@@ -364,7 +364,7 @@ def compute_metrics(eval_preds):
     }
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Define Model</b> 
+### Define Model
 
 Huggingface allows us to easily adjust the **base model** (`bert-base-cased`) for different tasks by loading the task type from the main library. For NER, we need to load `AutoModelForTokenClassification`, for which we then need to define two mapping dictionaries `id2label` & `label2id`
 
@@ -380,7 +380,7 @@ model = AutoModelForTokenClassification.from_pretrained(model_checkpoint,
                                                         label2id=label2id)
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Train Model</b> 
+### Train Model
 
 Time to train our model, we'll train the model for 40 epochs, without an evaluation strategy (validation dataset), using a learning rate in our optimiser is set to 2e-5, which by default is the AdamW optimiser.
 
@@ -423,7 +423,7 @@ Step 	Training Loss 	Validation Loss 	Precision 	Recall 	F1 	Accuracy
 250 	No log 	0.006493 	0.990000 	0.994975 	0.992481 	0.995763
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Save Huggingface Trainer</b> 
+### Save Huggingface Trainer
 
 We can save our `trainer` using `.save_model` method, which saves all relevant needed to utilise the `pipeline` method.
 
@@ -431,7 +431,7 @@ We can save our `trainer` using `.save_model` method, which saves all relevant n
 trainer.save_model("bert-finetuned-ner2")
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Load a Huggingface Pipeline</b> 
+### Load a Huggingface Pipeline
 
 Having saved our `trainer`, we simply call the relevant model checkpoint which we used in `.save_model` and set the `task` argument, which for our **NER** problem is `token-classification`, we also need to set an **aggregation_strategy**:
 
@@ -480,7 +480,7 @@ token_classifier("create a seaborn scatterplot using A, set x=B y: C (mew: 10, m
 
 All in all, we can see that the model predicts the relevant tags quite well, there are some issues with `mew` and `mec` tags probably because of the aggregation strategy doesn't work well with the subword tokens that the tokeniser creates for such a short word as it is likely present in other parts but has a different subword token tags, a problem for another day
 
-## <b>Summary</b> 
+## Summary
 
 In this post we looked at how we can use huggingface to do **named entity recognition**. Let's look at the step that we took:
 

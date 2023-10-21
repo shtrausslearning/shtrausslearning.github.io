@@ -21,13 +21,13 @@ This post is the last of the three posts on the titanic classification problem i
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/12w6EXoyRByFT6q2cmprac1msn7h4aC3o?usp=sharing)
 
-## <b>Background</b>
+## Background
 
 `pyspark` pipeline is a tool for **building and executing data processing workflows**. It allows users to chain together multiple data processing tasks into a single workflow, making it easier to organize and manage complex data processing tasks. The pipeline provides a high-level API for building and executing these workflows, which makes it easier for users to quickly prototype and test new data processing pipelines.
 
 Having created a pipeline, we now need to tune the parameters and find the most optimal `hyperparameter` combination. This is necessary because the default hyperparameter seldom is most optimal, so we can test different combinations, and store a model, which for example shows the best generalisation performance.
 
-## <b>Preprocessing Recap</b>
+## Preprocessing Recap
 
 - We learned how to drop columns that we won't be needing at all in our preprocessing using `.drop`
 - We learned how to extract statistical data from our dataframe, using `.select` and functions `f.avg('column')`
@@ -56,7 +56,7 @@ df.show()
 # +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+
 ```
 
-## <b>Creating Subsets</b>
+## Creating Subsets
 
 The idea of utilising a `pipeline` is to process a given set of data using the same preprocessing steps as all input data on which we apply the pipeline on. 
 For our problem, our input data will look like the table above, lets first split the available data into two datasets; `train` & `test`. We will construct
@@ -66,9 +66,9 @@ our pipeline on the `training` data and then use the same pipeline on the `test`
 train,test = ldf.randomSplit([0.8,0.2],42)
 ```
 
-## <b>Machine Learning Pipeline</b>
+## Machine Learning Pipeline
 
-### <b><span style='color:#f072d3;text-align:center'>❯❯ </span>Creating a Pipeline</b>
+### Creating a Pipeline
 
 To build a `pipeline`, we define the steps that make it up in a list `stages`, our pipeline consists of four steps:
 - `indexer_sex` (`StringIndexer`)
@@ -156,7 +156,7 @@ evaluator.evaluate(yv_pred)
 # 0.8275862068965517
 ```
 
-### <b><span style='color:#f072d3;text-align:center'>❯❯ </span>Hyperparameter Tuning</b>
+### Hyperparameter Tuning
 
 Our pipeline contains a model `RandomForestClassifier` with default hyperparameters. 
 We can can find a better combination of hyperparameters which will give a better model utilising `TrainValidationSplit`, which is a lightweight generalisation evaluator in comparison to `CrossValidator`
@@ -200,7 +200,7 @@ print('min_IG',javobj.getMinInfoGain())
 # min_IG 0.05
 ```
 
-## <b>Conclusion</b>
+## Conclusion
 
 Important imports for `pipeline`
 - `pyspark.ml import Pipeline` (create model)

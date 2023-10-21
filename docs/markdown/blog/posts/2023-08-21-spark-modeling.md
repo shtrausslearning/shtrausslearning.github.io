@@ -6,7 +6,6 @@ categories:
   - PySpark
 tags:
   - pyspark
-  - pipeline
   - classification
   - modeling
 ---

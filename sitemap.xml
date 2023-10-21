@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/20/data-preprocessing-with-pyspark/</loc>
+         <lastmod>2023-10-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/21/creating-machine-learning-models-with-pyspark/</loc>
          <lastmod>2023-10-21</lastmod>
          <changefreq>daily</changefreq>

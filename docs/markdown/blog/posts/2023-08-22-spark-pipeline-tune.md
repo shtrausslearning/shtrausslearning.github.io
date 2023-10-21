@@ -68,7 +68,7 @@ train,test = ldf.randomSplit([0.8,0.2],42)
 
 ## <b>Machine Learning Pipeline</b>
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Creating a Pipeline</b>
+### <b><span style='color:#f072d3;text-align:center'>❯❯ </span>Creating a Pipeline</b>
 
 To build a `pipeline`, we define the steps that make it up in a list `stages`, our pipeline consists of four steps:
 - `indexer_sex` (`StringIndexer`)
@@ -156,7 +156,7 @@ evaluator.evaluate(yv_pred)
 # 0.8275862068965517
 ```
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Hyperparameter Tuning</b>
+### <b><span style='color:#f072d3;text-align:center'>❯❯ </span>Hyperparameter Tuning</b>
 
 Our pipeline contains a model `RandomForestClassifier` with default hyperparameters. 
 We can can find a better combination of hyperparameters which will give a better model utilising `TrainValidationSplit`, which is a lightweight generalisation evaluator in comparison to `CrossValidator`
@@ -212,7 +212,7 @@ Important imports for finetuning
 
 ***
 
-❯❯ `pipeline` allows us to group together preprocessing steps in one model
+**❯❯** `pipeline` allows us to group together preprocessing steps in one model
 
 - Merge all `pipeline` components together
   - ❯ `Pipeline(stages=[steps1,steps2])`
@@ -228,7 +228,7 @@ Important imports for finetuning
 
 ***
 
-❯❯ When we want to `finetune` our machine learning model, which is part of a `pipeline`:
+**❯❯** When we want to `finetune` our machine learning model, which is part of a `pipeline`:
 
 - Create a parameter grid using `pyspark.ml.tuning` **ParamGridBuilder**
   - `ParamGridBuilder().addGrid(model.maxDepth,params)` <br>

@@ -21,6 +21,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch/</loc>
+         <lastmod>2023-10-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/11/named-entity-recognition-for-sentence-splitting/</loc>
+         <lastmod>2023-10-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/20/data-preprocessing-with-pyspark/</loc>
          <lastmod>2023-10-21</lastmod>
          <changefreq>daily</changefreq>

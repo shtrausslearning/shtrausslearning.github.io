@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/">
+        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/11/named-entity-recognition-for-sentence-splitting/">
       
       
-        <link rel="prev" href="../mllibs/meetups/">
+        <link rel="prev" href="../../10/named-entity-recognition-with-torch/">
       
       
-        <link rel="next" href="category/pyspark/">
+        <link rel="next" href="../../19/named-entity-recognition-with-huggingface-trainer/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
-        <title>Blog - Andrey Shtrauss</title>
+        <title>Named Entity Recognition for Sentence Splitting - Andrey Shtrauss</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.35e1ed30.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -50,16 +50,16 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <link rel="stylesheet" href="../assets/stylesheets/main.5136944a.min.css">
+  <link rel="stylesheet" href="../../../../../assets/stylesheets/main.5136944a.min.css">
 
   </head>
   
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#blog" class="md-skip">
+        <a href="#named-entity-recognition-for-sentence-splitting" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
@@ -135,7 +135,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Blog
+              Named Entity Recognition for Sentence Splitting
             
           </span>
         </div>
@@ -233,7 +233,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -252,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../portfolio/nlp/" class="md-tabs__link">
+        <a href="../../../../../portfolio/nlp/" class="md-tabs__link">
           
   
   DS Projects
@@ -270,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../mllibs/home/" class="md-tabs__link">
+        <a href="../../../../../mllibs/home/" class="md-tabs__link">
           
   
   mllibs
@@ -290,7 +290,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../../../" class="md-tabs__link">
           
   
   Blog
@@ -306,7 +306,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../about/" class="md-tabs__link">
+      <a href="../../../../../about/" class="md-tabs__link">
         
   
     
@@ -335,7 +335,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -346,7 +348,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
@@ -375,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -435,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/nlp/" class="md-nav__link">
+      <a href="../../../../../portfolio/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/internships/" class="md-nav__link">
+      <a href="../../../../../portfolio/internships/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -475,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/science/" class="md-nav__link">
+      <a href="../../../../../portfolio/science/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -495,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/health/" class="md-nav__link">
+      <a href="../../../../../portfolio/health/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/geospatial/" class="md-nav__link">
+      <a href="../../../../../portfolio/geospatial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -583,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mllibs/home/" class="md-nav__link">
+      <a href="../../../../../mllibs/home/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -603,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mllibs/meetups/" class="md-nav__link">
+      <a href="../../../../../mllibs/meetups/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -673,25 +675,7 @@
   
   
     <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Blog
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="../../../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -700,82 +684,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-of-subsets" class="md-nav__link">
-    Comparison of Subsets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperparameter-tuning-with-pipelines" class="md-nav__link">
-    Hyperparameter Tuning with Pipelines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-machine-learning-models-with-pyspark" class="md-nav__link">
-    Creating Machine Learning Models with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing-with-pyspark" class="md-nav__link">
-    Data Preprocessing with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-huggingface-trainer" class="md-nav__link">
-    Named Entity Recognition with Huggingface Trainer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-for-sentence-splitting" class="md-nav__link">
-    Named Entity Recognition for Sentence Splitting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-torch-loop" class="md-nav__link">
-    Named Entity Recognition with Torch Loop
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -828,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2023/" class="md-nav__link">
+      <a href="../../../../archive/2023/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -897,7 +805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/pyspark/" class="md-nav__link">
+      <a href="../../../../category/pyspark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -917,7 +825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/eda/" class="md-nav__link">
+      <a href="../../../../category/eda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -937,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/nlp/" class="md-nav__link">
+      <a href="../../../../category/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -972,7 +880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+      <a href="../../../../../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -993,6 +901,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -1012,57 +922,130 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-ner" class="md-nav__link">
+    What is NER?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-sentence-splitting" class="md-nav__link">
+    ❯❯ Sentence splitting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-motivation" class="md-nav__link">
+    ❯❯ Motivation
+  </a>
+  
+    <nav class="md-nav" aria-label="❯❯ Motivation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-classifying-user-requests" class="md-nav__link">
+    ❯❯❯ Classifying user requests
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-using-classifier" class="md-nav__link">
+    ❯❯❯ Using Classifier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-using-ner-to-identify-sentence-split-locations" class="md-nav__link">
+    ❯❯❯ Using NER to identify sentence split locations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2--the-dataset" class="md-nav__link">
+    2 ❯ The Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="2 ❯ The Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-tagging-split-tag-words" class="md-nav__link">
+    ❯❯ Tagging split tag words
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ner-tagging" class="md-nav__link">
+    ❯❯ NER Tagging
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3--parsing-annotations" class="md-nav__link">
+    3 ❯ Parsing annotations
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#comparison-of-subsets" class="md-nav__link">
-    Comparison of Subsets
+  <a href="#4--ner-models" class="md-nav__link">
+    4 ❯ NER Models
   </a>
+  
+    <nav class="md-nav" aria-label="4 ❯ NER Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-training-ner-model" class="md-nav__link">
+    ❯❯ Training NER Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-testing-ner-model" class="md-nav__link">
+    ❯❯ Testing NER model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hyperparameter-tuning-with-pipelines" class="md-nav__link">
-    Hyperparameter Tuning with Pipelines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-machine-learning-models-with-pyspark" class="md-nav__link">
-    Creating Machine Learning Models with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing-with-pyspark" class="md-nav__link">
-    Data Preprocessing with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-huggingface-trainer" class="md-nav__link">
-    Named Entity Recognition with Huggingface Trainer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-for-sentence-splitting" class="md-nav__link">
-    Named Entity Recognition for Sentence Splitting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-torch-loop" class="md-nav__link">
-    Named Entity Recognition with Torch Loop
+  <a href="#5--conclusion" class="md-nav__link">
+    5 ❯ Conclusion
   </a>
   
 </li>
@@ -1076,326 +1059,128 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        <h1 id="blog">Blog<a class="headerlink" href="#blog" title="Permanent link"></a></h1>
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-10-13 00:00:00">October 13, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
             
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Andrey Shtrauss</strong><br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-08-11 00:00:00" class="md-ellipsis">August 11, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/nlp/">NLP</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              12 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
-          <li class="md-meta__item">
-            
-              13 min read
-            
-          </li>
-        
-      </ul>
-      
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="utilising-prophet-with-pyspark"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/"><strong>Utilising Prophet with PySpark</strong></a></h2>
-<p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions <code>UDF</code>, which allows us to use different functionality that is not available in <code>pyspark</code></p>
-<p><img alt="" src="images/avocado.jpg" /></p>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
 
-    <nav class="md-post__action">
-      <a href="2023/10/13/using-prophet-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
+<nav class="md-tags" >
+  
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-09-25 00:00:00">September 25, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/eda/" class="md-meta__link">EDA</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              9 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="comparison-of-subsets"><a class="toclink" href="2023/09/25/comparison-of-subsets/"><strong>Comparison of Subsets</strong></a></h2>
-<p>An important concept in machine learning is <strong>model generalisation</strong> &amp; <strong>performance deterioration</strong>. When we train a model, we perform an <strong>optimisation step</strong>, using <strong>metrics</strong> and/or <strong>loss</strong> values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. However, what if we receive some new data (for example after some time), which is also <strong>a subset</strong> of the entire dataset but it contains a slightly different data relation structure, our models may not perform as well as they did on the data it was trained on, by comparing the metrics of both dataset, we can get an idea of how similar our datasets are.</p>
-<p><img alt="" src="https://i.imgur.com/4mKNGHY.jpg" /></p>
+    
+      <span class="md-tag">sklearn</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">CountVectorizer</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">NER</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">Sentence Splitting</span>
+    
+  
+</nav>
 
-    <nav class="md-post__action">
-      <a href="2023/09/25/comparison-of-subsets/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-22 00:00:00">August 22, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="hyperparameter-tuning-with-pipelines"><a class="toclink" href="2023/08/22/hyperparameter-tuning-with-pipelines/"><strong>Hyperparameter Tuning with Pipelines</strong></a></h2>
-<p>This post is the last of the three posts on the titanic classification problem in <code>pyspark</code>. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising <code>StringIndexer</code> &amp; <code>VectorAssembler</code>, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single <code>pipline</code>. <code>pyspark</code> like <code>sklearn</code> has such pipeline classes that help us keep things organised</p>
-<p><img alt="" src="https://i.imgur.com/yMhC2om.png" /></p>
 
-    <nav class="md-post__action">
-      <a href="2023/08/22/hyperparameter-tuning-with-pipelines/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-21 00:00:00">August 21, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              7 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="creating-machine-learning-models-with-pyspark"><a class="toclink" href="2023/08/21/creating-machine-learning-models-with-pyspark/"><strong>Creating Machine Learning Models with PySpark</strong></a></h2>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <strong><a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a></strong> post. We are continuing on from the previous post <strong><a href="https://shtrausslearning.github.io/posts/spark-preprocess/">PySpark Titanic Preprocessing</a></strong>, where we did some basic <strong>data preprocessing</strong>, here we will continue on with the modeling stage of our project.</p>
-<p><img alt="" src="https://i.imgur.com/SO7B5nM.png" /></p>
+  
+  
 
-    <nav class="md-post__action">
-      <a href="2023/08/21/creating-machine-learning-models-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-20 00:00:00">August 20, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="data-preprocessing-with-pyspark"><a class="toclink" href="2023/08/20/data-preprocessing-with-pyspark/"><strong>Data Preprocessing with PySpark</strong></a></h2>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a> post</p>
-<p><img alt="" src="https://i.imgur.com/1RXWOhX.jpg" /></p>
 
-    <nav class="md-post__action">
-      <a href="2023/08/20/data-preprocessing-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-19 00:00:00">August 19, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/nlp/" class="md-meta__link">NLP</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              11 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="named-entity-recognition-with-huggingface-trainer"><a class="toclink" href="2023/08/19/named-entity-recognition-with-huggingface-trainer/"><strong>Named Entity Recognition with Huggingface Trainer</strong></a></h2>
-<p>In a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong> we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model &amp; defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the <strong>training</strong> &amp; <strong>inference</strong> steps quite a lot. We'll be using the <strong>trainer</strong> &amp; <strong>pipeline</strong> methods of the Huggingface library and will use a dataset used in <strong><a href="https://pypi.org/project/mllibs/">mllibs</a></strong>, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.</p>
-<p><img alt="" src="https://i.imgur.com/kcuAYbI.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/19/named-entity-recognition-with-huggingface-trainer/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-11 00:00:00">August 11, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/nlp/" class="md-meta__link">NLP</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              12 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="named-entity-recognition-for-sentence-splitting"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/"><strong>Named Entity Recognition for Sentence Splitting</strong></a></h2>
+<h1 id="named-entity-recognition-for-sentence-splitting"><strong>Named Entity Recognition for Sentence Splitting</strong><a class="headerlink" href="#named-entity-recognition-for-sentence-splitting" title="Permanent link"></a></h1>
 <p>In the last post, we talked about how to use <strong>NER</strong> for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding &amp; ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for <strong>NER</strong> tagging, which I've implemented in my project <strong><a href="https://github.com/shtrausslearning/mllibs">mllibs</a></strong></p>
-<h3 id="background"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#background">Background</a></h3>
-<h4 id="what-is-ner"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#what-is-ner">What is NER?</a></h4>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<h3 id="what-is-ner">What is NER?<a class="headerlink" href="#what-is-ner" title="Permanent link"></a></h3>
 <p>So what exactly is <code>NER</code>?</p>
 <ul>
 <li><code>NER</code> is a natural language processing technique which identifies and extracts <strong>named entities</strong> from unstructured text</li>
@@ -1405,7 +1190,7 @@
 <blockquote>
 <p class="prompt-info">In this notebook, we define <strong>named entities</strong> to be word(s) that can be defined <strong>as sentence splitters</strong>, which differs from how <code>NER</code> tends to be used for extraction of place names and so on</p>
 </blockquote>
-<h4 id="sentence-splitting"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#sentence-splitting"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Sentence splitting</b></a></h4>
+<h3 id="-sentence-splitting"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Sentence splitting</b><a class="headerlink" href="#-sentence-splitting" title="Permanent link"></a></h3>
 <p>What can be thought to be quite straightforward and non trivial isn't quite so. <strong>Sentence splitting</strong> or sentence simplification is the task of taking a sentence that is usually too long and breaking it up into two or more simpler sentences. In the next section, we'll mention one example, where it can be useful. </p>
 <p>Consider an example:</p>
 <blockquote>
@@ -1418,8 +1203,8 @@
 <kbd>The quick red fox jumped over the lazy brown dog</kbd> <code>and</code> <code>then</code> <kbd>ran away</kbd></p>
 </blockquote>
 <p>We can split the sentence based on two occuring events, which is separated by the words <strong>and then</strong>. By splitting the sentence into two parts we understand that there are two actions that are associated with the object <code>fox</code>. Simple tokenisers such as <strong><a href="https://www.nltk.org/api/nltk.tokenize.sent_tokenize.html">sent_tokenize</a></strong> from <code>NLTK</code> or any other sentence tokeniser are not suited for tokenising the second example, which is where <strong>NER</strong> comes in.</p>
-<h4 id="motivation"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#motivation"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Motivation</b></a></h4>
-<h5 id="classifying-user-requests"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#classifying-user-requests"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Classifying user requests</b></a></h5>
+<h3 id="-motivation"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Motivation</b><a class="headerlink" href="#-motivation" title="Permanent link"></a></h3>
+<h4 id="-classifying-user-requests"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Classifying user requests</b><a class="headerlink" href="#-classifying-user-requests" title="Permanent link"></a></h4>
 <p>Let's say we have a problem in which we need to <strong>classify a user request</strong> into two groups; <kbd>class 0</kbd> (impute data) &amp; <kbd>class 1</kbd> (standardise columns) using text input data, a <strong>binary classification problem</strong>. The classification model will activate specific activation functions, so incorrectly classified models will activate the wrong function! </p>
 <p>Hopefully you are familiar with text preprocessing &amp; training using sklearn, because that's what we'll be using in this post. We train a <code>LogisticRegression</code> binary classification model and the model itself is complex enough to get a perfect score on the dataset it was trained on. </p>
 <div class="highlight"><pre><span></span><code><span class="c1"># commands corresponding to activation function</span>
@@ -1446,7 +1231,7 @@
 <span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
 </code></pre></div>
-<h5 id="using-classifier"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#using-classifier"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using Classifier</b></a></h5>
+<h4 id="-using-classifier"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using Classifier</b><a class="headerlink" href="#-using-classifier" title="Permanent link"></a></h4>
 <p>Now let's assume we deploy this model, we have two user requests:
 -  <kbd>First of all, impute all missing data with column mean values, then standardise all columns</kbd>
 -  <kbd>impute missing data with column mean values</kbd></p>
@@ -1476,10 +1261,10 @@ text_b [[0.68768998 0.31231002]]
 <blockquote>
 <p class="prompt-info">Similar to if you took <code>cosine_similarity</code> between the input user request and different documents that belong to a class. If the content contains too much additional text, the similarity will start to fall.</p>
 </blockquote>
-<h5 id="using-ner-to-identify-sentence-split-locations"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#using-ner-to-identify-sentence-split-locations"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using NER to identify sentence split locations</b></a></h5>
+<h4 id="-using-ner-to-identify-sentence-split-locations"><b><span style='color:#E888BB;text-align:center'>❯❯❯ </span>Using NER to identify sentence split locations</b><a class="headerlink" href="#-using-ner-to-identify-sentence-split-locations" title="Permanent link"></a></h4>
 <p>We could use <code>regex</code> in an attempt to <strong>find split locations</strong>, and then <strong>cut the document</strong> at <code>regex</code> matched pattern locations, however if we go down the <strong>NER</strong> route, we actually can tag words in the sentence however we want, which is very convenient. Aside from sentence splitting tags such as <code>and then</code>, we would also identify words which don't add value and tag them as well (eg. <code>first of all</code>).</p>
-<h3 id="2-the-dataset"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#2-the-dataset"><b><span style='color:#E888BB;text-align:center'>2 ❯ </span>The Dataset</b></a></h3>
-<h4 id="tagging-split-tag-words"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#tagging-split-tag-words"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Tagging split tag words</b></a></h4>
+<h2 id="2--the-dataset"><b><span style='color:#E888BB;text-align:center'>2 ❯ </span>The Dataset</b><a class="headerlink" href="#2--the-dataset" title="Permanent link"></a></h2>
+<h3 id="-tagging-split-tag-words"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Tagging split tag words</b><a class="headerlink" href="#-tagging-split-tag-words" title="Permanent link"></a></h3>
 <p>The dataset will be created by us, and is by not means perfect. I used this <strong><a href="https://www.miamioh.edu/hcwe/handouts/sentence-combination/index.html#:~:text=You%20have%20four%20options%20for,moreover%2C%22%20or%20%22thus%22">useful reference</a></strong> in order to try and add various writing variations. As opposed to the <strong>grouped document token</strong> approach I did in <strong><a href="https://www.kaggle.com/code/shtrausslearning/mllibs-ner-based-classification-sentence-split">this notebook</a></strong>, I won't be adding other OOV words to <strong>class (0)</strong>.</p>
 <p>I've created about 20 general sentences and annotated word/token locations at which I would like to identify a <strong>splitting token</strong>. We'll be using the standard <code>BIO</code> tagging system, so we can tag segments of tokens, identifying <strong>beginning &amp; inner tags</strong>. </p>
 <p>Our dataset contains two columns <code>text</code> &amp; its annotation <code>annotated</code> variant.</p>
@@ -1581,7 +1366,7 @@ text_b [[0.68768998 0.31231002]]
 </tr>
 </tbody>
 </table>
-<h4 id="ner-tagging"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#ner-tagging"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>NER Tagging</b></a></h4>
+<h3 id="-ner-tagging"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>NER Tagging</b><a class="headerlink" href="#-ner-tagging" title="Permanent link"></a></h3>
 <p>I've created a simple <strong>NER</strong> tagging class <code>ner_annotator</code> which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (<code>active_df</code>) and tagging parts of the sentence using the format <kbd>words</kbd><code>-</code><kbd>tag</kbd>, which is used in the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive 1.1</a></strong> dataset on huggingface</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#from IPython.display import clear_output in jupyter</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1770,7 +1555,7 @@ text_b [[0.68768998 0.31231002]]
 <span class="n">temp</span> <span class="o">=</span> <span class="n">ner_annotator</span><span class="p">(</span><span class="n">df_annot</span><span class="p">)</span>  <span class="c1"># instantiate annotation class</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">ner_annotate</span><span class="p">()</span>             <span class="c1"># start annotating</span>
 </code></pre></div>
-<h3 id="3-parsing-annotations"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#3-parsing-annotations"><b><span style='color:#E888BB;text-align:center'>3 ❯ </span>Parsing annotations</b></a></h3>
+<h2 id="3--parsing-annotations"><b><span style='color:#E888BB;text-align:center'>3 ❯ </span>Parsing annotations</b><a class="headerlink" href="#3--parsing-annotations" title="Permanent link"></a></h2>
 <p>Now that we have an annotated dataset, we will need a parser which interprets the resulting annotations, and creates tags for words in a document. <code>Parser</code> will be called using the special class <code>__call__</code>, when we will iterate over our documents. </p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
@@ -1856,8 +1641,8 @@ text_b [[0.68768998 0.31231002]]
     <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="4-ner-models"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#4-ner-models"><b><span style='color:#E888BB;text-align:center'>4 ❯ </span>NER Models</b></a></h3>
-<h4 id="training-ner-model"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#training-ner-model"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Training NER Model</b></a></h4>
+<h2 id="4--ner-models"><b><span style='color:#E888BB;text-align:center'>4 ❯ </span>NER Models</b><a class="headerlink" href="#4--ner-models" title="Permanent link"></a></h2>
+<h3 id="-training-ner-model"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Training NER Model</b><a class="headerlink" href="#-training-ner-model" title="Permanent link"></a></h3>
 <p>We have an annotation parser <code>Parser</code>, now let's prepare the training loop. We read our dataset <code>df</code> and iterate over all rows in the dataset, tokenising the document &amp; storing it in <code>lst_data</code> and parse the annotated <code>annotated</code> column, creating <code>BIO</code> tags for words in the document <code>text</code>, which is stored in <code>lst_tags</code></p>
 <p>The output of preprocessed data <code>lst_data</code> will be a list of tokens in the whole corpus, and <code>lst_tags</code> will be its corresponding <code>BIO</code> tag.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># import relevant libraries</span>
@@ -1919,7 +1704,7 @@ weighted avg       0.81      0.81      0.78       161
  [  1   0 105]] # class O
 </code></pre></div>
 <p>Looks like we have a large ammount of misspredictions for tag <code>B-SPLIT</code>, with the recall being quite low (ie quite a few <code>B-SPLIT</code> are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for <strong>transitional adverbs</strong>, so its quite nice that the model can identify such splitting locations quite well.</p>
-<h4 id="testing-ner-model"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#testing-ner-model"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Testing NER model</b></a></h4>
+<h3 id="-testing-ner-model"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Testing NER model</b><a class="headerlink" href="#-testing-ner-model" title="Permanent link"></a></h3>
 <p>Different models can show different performance upon actual usage, so let's compare how both of them perform</p>
 <p>Our test example:</p>
 <blockquote>
@@ -1971,76 +1756,19 @@ weighted avg       0.81      0.81      0.78       161
 11    that        O
 </code></pre></div>
 <p>We can see that <strong>model complexity</strong> indeed does play a role, as the linear model <code>LogisticRegression</code> wasn't able to identify the the second splitting tokens <code>once</code> <code>done</code>. <code>RandomForest</code> works better as a sentence splitting <code>ner</code> tagging model. Having identified the indicies of <code>ner</code> tags, it is quite straightforward to split the document into <code>word</code> &amp; divide it based on the model prediction tag condition </p>
-<h3 id="5-conclusion"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/#5-conclusion"><b><span style='color:#E888BB;text-align:center'>5 ❯ </span>Conclusion</b></a></h3>
+<h2 id="5--conclusion"><b><span style='color:#E888BB;text-align:center'>5 ❯ </span>Conclusion</b><a class="headerlink" href="#5--conclusion" title="Permanent link"></a></h2>
 <p>In this post we created a <code>NER</code> tagger, which identifies key words that we defined as <strong>sentence splitting words</strong>. Identificaiton of such words allows us to split a long paragraph into parts &amp; analyse or conduct further downstream tasks upon performing splits. We showed that <strong>sentence splitting</strong> can be defined as more than just splitting by punctuation like <code>.</code>, and since people often connect sentences using <strong>transitional adverbs</strong> and alike, <code>NER</code> tagging comes in handy to identify such "weaker" sentence splitters.</p>
 <p>We defined a class that allows us to create our own annotations (<code>ner_annotator</code>), a annotaion parser that allows us to interpret the annotations made by <code>ner_annotator</code>. We created a dataset that contained <code>text</code> and the relevant <code>ner</code> annotations <code>annotations</code>, which we used to train our <code>ner</code> tag model.</p>
 <p>As a result of our model testing, we saw that <code>RandomForest</code> performs quite well in comparison to simpler linear models. Overall, the created model can be utilised for weak sentence splitting</p>
-    <nav class="md-post__action">
-      <a href="2023/08/11/named-entity-recognition-for-sentence-splitting/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-10 00:00:00">August 10, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/nlp/" class="md-meta__link">NLP</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              16 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="named-entity-recognition-with-torch-loop"><a class="toclink" href="2023/08/10/named-entity-recognition-with-torch/"><strong>Named Entity Recognition with Torch Loop</strong></a></h2>
-<p>In this notebook, we'll take a look at how we can utilise <code>HuggingFace</code> to easily load and use <code>BERT</code> for token classification. Whilst we are loading both the base model &amp; tokeniser from <code>HuggingFace</code>, we'll be using a custom <code>Torch</code> training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising <code>Massive</code> dataset by Amazon and fine-tune the transformer encoder <code>BERT</code>, which we can </p>
-<p><img alt="" src="https://i.imgur.com/YB7sv87.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/10/named-entity-recognition-with-torch/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-      
-        
-          
 
 
 
-<nav class="md-pagination">
   
-</nav>
-        
+
+
+
       
-    </div>
+    </article>
   </div>
 
           
@@ -2115,20 +1843,20 @@ weighted avg       0.81      0.81      0.78       161
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
   
-      <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
-        <script src="../javascripts/mathjax.js"></script>
+        <script src="../../../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  <script src="../assets/javascripts/bundle.04c13cf5.min.js"></script>
+  <script src="../../../../../assets/javascripts/bundle.04c13cf5.min.js"></script>
 
   </body>
 </html>

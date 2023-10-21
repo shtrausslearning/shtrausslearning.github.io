@@ -1,0 +1,1998 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Collection of Useful Snippets on Machine Learning related topics">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch/">
+      
+      
+      
+        <link rel="next" href="../../11/named-entity-recognition-for-sentence-splitting/">
+      
+      
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
+    
+    
+      
+        <title>Named Entity Recognition with Torch - Andrey Shtrauss</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.35e1ed30.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link rel="stylesheet" href="../../../../../assets/stylesheets/main.5136944a.min.css">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#named-entity-recognition-with-torch-loop" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://t.me/mldsai_info">
+     <strong>Please follow my telegram channel</strong>
+    <span class="twemoji twitter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </span>
+    <strong>mldsai-info</strong>!
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Andrey Shtrauss
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Named Entity Recognition with Torch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/shtrausslearning/shtrausslearning.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shtrausslearning.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../portfolio/nlp/" class="md-tabs__link">
+          
+  
+  DS Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../mllibs/home/" class="md-tabs__link">
+          
+  
+  mllibs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../../" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+
+    </a>
+    Andrey Shtrauss
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/shtrausslearning/shtrausslearning.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shtrausslearning.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    DS Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DS Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/nlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Natural Language Processing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/internships/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Internships
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/science/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Science
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/health/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Health
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../portfolio/geospatial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geospatial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    mllibs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            mllibs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../mllibs/home/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../mllibs/meetups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    meetups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/pyspark/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PySpark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/eda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../category/nlp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-ner" class="md-nav__link">
+    What is NER?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applications" class="md-nav__link">
+    Applications
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dataset" class="md-nav__link">
+    The Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="The Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#massive-11" class="md-nav__link">
+    Massive 1.1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevant-columns" class="md-nav__link">
+    Relevant Columns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-preprocessing" class="md-nav__link">
+    Text Preprocessing
+  </a>
+  
+    <nav class="md-nav" aria-label="Text Preprocessing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#define-tokeniser--model" class="md-nav__link">
+    Define Tokeniser &amp; Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ner-format" class="md-nav__link">
+    NER format
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-dataset" class="md-nav__link">
+    Create Dataset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bert-multiclass-classifier" class="md-nav__link">
+    BERT Multiclass Classifier
+  </a>
+  
+    <nav class="md-nav" aria-label="BERT Multiclass Classifier">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-architecture" class="md-nav__link">
+    Model Architecture
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-additions" class="md-nav__link">
+    Model Additions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-model" class="md-nav__link">
+    Train Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-model" class="md-nav__link">
+    Save Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-our-ner-tagger" class="md-nav__link">
+    Using our NER tagger
+  </a>
+  
+    <nav class="md-nav" aria-label="Using our NER tagger">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-model" class="md-nav__link">
+    Loading Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-ner-tags-in-a-document" class="md-nav__link">
+    Finding NER tags in a document
+  </a>
+  
+    <nav class="md-nav" aria-label="Finding NER tags in a document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    REFERENCES
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Andrey Shtrauss</strong><br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-08-10 00:00:00" class="md-ellipsis">August 10, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/nlp/">NLP</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              16 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
+
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">HuggingFace</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">PyTorch</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">NER</span>
+    
+  
+</nav>
+
+
+  
+  
+
+
+<h1 id="named-entity-recognition-with-torch-loop"><strong>Named Entity Recognition with Torch Loop</strong><a class="headerlink" href="#named-entity-recognition-with-torch-loop" title="Permanent link"></a></h1>
+<p>In this notebook, we'll take a look at how we can utilise <code>HuggingFace</code> to easily load and use <code>BERT</code> for token classification. Whilst we are loading both the base model &amp; tokeniser from <code>HuggingFace</code>, we'll be using a custom <code>Torch</code> training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising <code>Massive</code> dataset by Amazon and fine-tune the transformer encoder <code>BERT</code>, which we can </p>
+<p><img alt="" src="https://i.imgur.com/YB7sv87.jpg" /></p>
+<!-- more -->
+
+<p><a href="https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<h3 id="what-is-ner">What is NER?<a class="headerlink" href="#what-is-ner" title="Permanent link"></a></h3>
+<ul>
+<li>NER is a natural language processing technique which identifies and extracts named entities from unstructured text</li>
+<li>Named entities refer to words or combination of words that represent specific objects, places etc, in principle it can be anything we define it to be</li>
+<li>NER algorithms use Machine or Deep Learning algorithms to analyse text and recognise pattens that indicate the presence of a named entity</li>
+</ul>
+<h3 id="applications">Applications<a class="headerlink" href="#applications" title="Permanent link"></a></h3>
+<p>Named Entity Recognition has a wide range of applications in the field of Natural Language Processing and Information Retrieval. </p>
+<p>Few such examples have been listed below<sup id="fnref:footnote"><a class="footnote-ref" href="#fn:footnote">1</a></sup>:</p>
+<p>Classifying content for news providers: <br></p>
+<blockquote>
+<p>A large amount of online content is generated by the news and publishing houses on a daily basis and managing them correctly can be a challenging task for the human workers. Named Entity Recognition can automatically scan entire articles and help in identifying and retrieving major people, organizations, and places discussed in them. Thus articles are automatically categorized in defined hierarchies and the content is also much easily discovered. </p>
+</blockquote>
+<p>Automatically Summarizing Resumes: <br></p>
+<blockquote>
+<p>You might have come across various tools that scan your resume and retrieve important information such as Name, Address, Qualification, etc from them. The majority of such tools use the NER software which helps it to retrieve such information. Also one of the challenging tasks faced by the HR Departments across companies is to evaluate a gigantic pile of resumes to shortlist candidates. A lot of these resumes are excessively populated in detail, of which, most of the information is irrelevant to the evaluator. Using the NER model, the relevant information to the evaluator can be easily retrieved from them thereby simplifying the effort required in shortlisting candidates among a pile of resumes.</p>
+</blockquote>
+<p>Optimizing Search Engine Algorithms: <br></p>
+<blockquote>
+<p>When designing a search engine algorithm, It would be an inefficient and computational task to search for an entire query across the millions of articles and websites online, an alternate way is to run a NER model on the articles once and store the entities associated with them permanently. Thus for a quick and efficient search, the key tags in the search query can be compared with the tags associated with the website articles</p>
+</blockquote>
+<p>Powering  Recommendation systems: <br></p>
+<blockquote>
+<p>NER can be used in developing algorithms for recommender systems that make suggestions based on our search history or on our present activity. This is achieved by extracting the entities associated with the content in our history or previous activity and comparing them with the label assigned to other unseen content. Thus we frequently see the content of our interest.</p>
+</blockquote>
+<p>Simplifying Customer Support: <br></p>
+<blockquote>
+<p>Usually, a company gets tons of customer complaints and feedback on a daily basis, and going through each one of them and recognizing the concerned parties is not an easy task. Using NER we can recognize relevant entities in customer complaints and feedback such as Product specifications, department, or company branch location so that the feedback is classified accordingly and forwarded to the appropriate department responsible for the identified product.</p>
+</blockquote>
+<h2 id="the-dataset">The Dataset<a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
+<p>To realise <code>NER</code> with Hugginface, we'll be utilising a muli-language dataset <code>massive</code></p>
+<h3 id="massive-11">Massive 1.1<a class="headerlink" href="#massive-11" title="Permanent link"></a></h3>
+<p>Let's load our dataset <strong>MASSIVE</strong>; the dataset can be found on <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">huggingface</a></strong></p>
+<blockquote>
+<p>MASSIVE 1.1 is a parallel dataset of &gt; 1M utterances across <strong>52 languages</strong> with annotations for the Natural Language Understanding tasks of intent prediction and slot annotation. Utterances span 60 intents and include 55 slot types. MASSIVE was created by localizing the SLURP dataset, composed of general Intelligent Voice Assistant single-shot interactions.</p>
+</blockquote>
+<p>We will be utilising this dataset for <strong>Named Entity Recognition</strong>, let's load our dataset, selecting only a subset of the data <code>ru-RU</code>, which is a subset of column <code>locale</code></p>
+<p>There are quite a number of ways we can extract data from this dataset, let's use the fastest way:
+- By specifying which <code>locale</code> group we want to load (so we don't load everything)
+- Define the subset of rows we want to use by using <code>split</code> (eg. train[10:100])</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Dataset</span>
+
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:100]&quot;</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;AmazonScience/massive&#39;</span><span class="p">,</span> <span class="s2">&quot;ru-RU&quot;</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s2">&quot;test[:100]&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="relevant-columns">Relevant Columns<a class="headerlink" href="#relevant-columns" title="Permanent link"></a></h3>
+<p>Some samples from our <strong>documents</strong>, located in column <code>utt</code> and NER <strong>Annotations</strong> are located in <code>annot_utt</code>, which is in the format <code>[tag : tokens]</code></p>
+<div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span> 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;разбуди меня в девять утра в пятницу&#39;,
+&#39;поставь будильник на два часа вперед&#39;,
+&#39;олли тихо&#39;,
+&#39;отстановись&#39;,
+&#39;олли остановись на десять секунд&#39;,
+&#39;остановись на десять секунд&#39;,
+&#39;сделай освещение здесь чуть более тёплым&#39;,
+&#39;пожалуйста сделай свет подходящий для чтения&#39;,
+&#39;время идти спать&#39;,
+&#39;олли время спать&#39;]
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">train_dataset</span><span class="p">[</span><span class="s1">&#39;annot_utt&#39;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;разбуди меня в [time : девять утра] в [date : пятницу]&#39;,
+&#39;поставь будильник [time : на два часа вперед]&#39;,
+&#39;олли тихо&#39;,
+&#39;отстановись&#39;,
+&#39;олли остановись на [time : десять секунд]&#39;,
+&#39;остановись на [time : десять секунд]&#39;,
+&#39;сделай освещение здесь чуть более [color_type : тёплым]&#39;,
+&#39;пожалуйста сделай свет [color_type : подходящий для чтения]&#39;,
+&#39;время идти спать&#39;,
+&#39;олли время спать&#39;]
+</code></pre></div>
+<h2 id="text-preprocessing">Text Preprocessing<a class="headerlink" href="#text-preprocessing" title="Permanent link"></a></h2>
+<h3 id="define-tokeniser--model">Define Tokeniser &amp; Model<a class="headerlink" href="#define-tokeniser--model" title="Permanent link"></a></h3>
+<p>For preprocessing we'll need a tokeniser, so let's define the tokeniser &amp; the base model</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModel</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;ai-forever/ruBert-base&quot;</span><span class="p">)</span>
+<span class="n">MODEL</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;ai-forever/ruBert-base&quot;</span><span class="p">)</span>
+<span class="c1"># tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-multilingual-cased&quot;)    # multilingual                      </span>
+<span class="c1"># model = AutoModel.from_pretrained(&quot;bert-base-multilingual-cased&quot;)            # multilingual</span>
+<span class="c1"># tokenizer = AutoTokenizer.from_pretrained(&quot;bert-base-uncased&quot;)               # en only</span>
+<span class="c1"># model = AutoModel.from_pretrained(&quot;bert-base-uncased&quot;)                       # en only</span>
+</code></pre></div>
+<h3 id="ner-format">NER format<a class="headerlink" href="#ner-format" title="Permanent link"></a></h3>
+<p><strong>NER</strong> tagging formats can vary quite a bit, let's utilise class <code>Parser</code> to preprocess the NER format in our dataset</p>
+<p>Class <code>Parser</code> contains the relevant preprocessing steps we will take:
+- The class will be called when creating our <code>Dataset</code>, creating <strong>NER tags</strong> for each document
+- Its input will be the <strong>document</strong> &amp; <strong>annotated document</strong>
+    - The document itself is imported in order to create <strong>O tags</strong>
+    - Whilst the <strong>annotated document</strong> is used to extract the <strong>annotated tags</strong>
+    - Tag dictionaries are created <code>tag_to_id</code>, <code>id_to_tag</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">PARSER FOR THE DATASET NER TAG FORMAT</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
+
+    <span class="c1"># RE patterns for tag extraction</span>
+    <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
+    <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([.,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-_`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
+
+    <span class="c1"># initialise, first word/id tag is O (outside)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
+        <span class="p">}</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    CREATE TAGS</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># input : sentence, tagged sentence</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Create Dictionary of Identified Tags&#39;&#39;&#39;</span>
+
+        <span class="c1"># 1. set label B or I    </span>
+
+        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
+        <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> 
+            <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Tokenise Sentence &amp; add tags to not tagged words (O)&#39;&#39;&#39;</span>
+
+        <span class="c1"># 2. add token tag to main tag dictionary</span>
+
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION_PATTERN</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot; \1 &quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_tag</span><span class="p">:</span>
+                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">tags</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    TAG CONVERSION</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># to word2id (tag_to_id)</span>
+    <span class="c1"># to id2word (id_to_tag)</span>
+
+    <span class="k">def</span> <span class="nf">__add_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Number ID &#39;&#39;&#39;</span>
+    <span class="c1"># or just number id for token</span>
+
+    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Token from Number ID&#39;&#39;&#39;</span>
+    <span class="c1"># given id get its token</span>
+
+    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
+<span class="n">parser</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">train_dataset</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;O&#39;, &#39;B-DATE&#39;]
+</code></pre></div>
+<h3 id="create-dataset">Create Dataset<a class="headerlink" href="#create-dataset" title="Permanent link"></a></h3>
+<p>The functions <code>NERDataset</code> is our Dataset class, it requires the <code>Parser</code> class instance </p>
+<p>Input into the <code>parser</code> orbjects are <code>utt</code> &amp; its annotated version <code>annot_utt</code></p>
+<p>The output from <code>parser</code> will be a list of target variable tags <code>BIO</code> tags</p>
+<div class="highlight"><pre><span></span><code>[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;O&#39;, &#39;B-DATE&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;, &#39;I-TIME&#39;, &#39;I-TIME&#39;]
+[&#39;O&#39;, &#39;O&#39;]
+[&#39;O&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;B-TIME&#39;, &#39;I-TIME&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-COLOR_TYPE&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-COLOR_TYPE&#39;, &#39;I-COLOR_TYPE&#39;, &#39;I-COLOR_TYPE&#39;]
+[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;]
+</code></pre></div>
+<p>The <code>NERDataset</code> output each item (document) looks like the following:</p>
+<div class="highlight"><pre><span></span><code><span class="n">tmp</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>                             <span class="c1"># BERT related token inputs</span>
+    <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>   <span class="c1"># token/word association (start,number of tokens in word)</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>                  <span class="c1"># word NER tag</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Now the class itself:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+
+<span class="k">class</span> <span class="nc">NERDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__preprocess</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">processed_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__preprocess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">))):</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">tags</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">])</span>     <span class="c1"># get list of tags</span>
+            <span class="n">tokenizer_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;utt&quot;</span><span class="p">],</span>    <span class="c1"># tokenise document (incl. &lt;bos&gt;,&lt;eos&gt;)</span>
+                                              <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                              <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                              <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+
+            <span class="c1"># token word identifier (each word can have multiple tokens)</span>
+            <span class="n">word_ids</span> <span class="o">=</span> <span class="n">tokenizer_output</span><span class="o">.</span><span class="n">word_ids</span><span class="p">()</span> 
+
+            <span class="c1"># for each word, how many subtokens are there (starts with 1 - first word)</span>
+            <span class="n">subword_group</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span> 
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">word_ids</span><span class="p">)</span> 
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="p">]</span> <span class="c1"># index to aggregate tokens</span>
+
+            <span class="c1"># define bio tags for each word in numerical format using parser</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="p">[</span><span class="n">parser</span><span class="o">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">]</span> 
+
+            <span class="c1"># group all relevant data that will be used in forward pass</span>
+            <span class="n">tmp</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>
+                <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="c1"># check consistency</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">subword_group</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;annot_utt&quot;</span><span class="p">],</span> <span class="n">subword_group</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tmp</span>
+
+<span class="n">train</span> <span class="o">=</span> <span class="n">NERDataset</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">NERDataset</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>  0%|          | 0/1000 [00:00&lt;?, ?it/s]Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
+100%|██████████| 1000/1000 [00:00&lt;00:00, 1690.12it/s]
+100%|██████████| 1000/1000 [00:00&lt;00:00, 1598.76it/s]
+</code></pre></div>
+<h2 id="bert-multiclass-classifier">BERT Multiclass Classifier<a class="headerlink" href="#bert-multiclass-classifier" title="Permanent link"></a></h2>
+<p>We will use a rather custom approach to <code>NER</code>, we have loaded our <code>encoder</code> model, so we'll need to create a tail end for it, so we can use it for <code>NER</code> multiclass classification</p>
+<h3 id="model-architecture">Model Architecture<a class="headerlink" href="#model-architecture" title="Permanent link"></a></h3>
+<p>Let's create a custom training &amp; evaluation loop for our <strong>NER multiclass classification</strong> problem</p>
+<ul>
+<li>In total we have 34 classification tags (including O), so we can define the tail output dimension</li>
+<li>Training the BERT model using <code>input_ids</code> &amp; <code>attention_mask</code> (tokens) we extract the <strong>hidden state</strong> for all <strong>tokens</strong> in document</li>
+<li>Using the created <code>subword_group</code> data, we extract the <strong>token embeddings</strong> that correpospond to each word in the document</li>
+<li>For words which have more than one token, we <strong>average token embeddings</strong> to obtain <strong>word embeddings</strong></li>
+<li>The <strong>word embeddings</strong> are passed to the linear tail classifier, which returns the <strong>logits for each word</strong> in the sentence</li>
+<li>To get the most probable <strong>tag for each word</strong> in the document, we use <code>torch.argmax</code></li>
+</ul>
+<p>To utilise our custom model with methods such as <code>.from_pretrained</code>, let's add <code>PreTrainedModel</code>, which contains <code>nn.Module</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">PreTrainedModel</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">PretrainedConfig</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">AutoConfig</span>
+
+<span class="k">class</span> <span class="nc">MyConfig</span><span class="p">(</span><span class="n">PretrainedConfig</span><span class="p">):</span>
+    <span class="n">model_type</span> <span class="o">=</span> <span class="s1">&#39;mymodel&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">important_param</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">important_param</span> <span class="o">=</span> <span class="n">important_param</span>
+
+<span class="c1"># PreTrainedModel has nn.Module</span>
+
+<span class="k">class</span> <span class="nc">NERClassifier</span><span class="p">(</span><span class="n">PreTrainedModel</span><span class="p">):</span>
+
+    <span class="n">config_class</span> <span class="o">=</span> <span class="n">MyConfig</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">config</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span> <span class="o">=</span> <span class="n">MODEL</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">768</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span> 
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">CLASSES</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span> <span class="c1"># returns list of targets</span>
+
+        <span class="c1"># standard inputs for BERT</span>
+        <span class="n">bert_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># output of transformer encoder will be our hidden state for </span>
+        <span class="c1"># each input_ids </span>
+        <span class="n">last_hidden_state</span> <span class="o">=</span> <span class="n">bert_output</span><span class="p">[</span><span class="s2">&quot;last_hidden_state&quot;</span><span class="p">]</span>
+
+        <span class="c1"># tokens correspond tokenizer divisions </span>
+        <span class="c1"># each word can be split into multiple tokens</span>
+        <span class="c1"># ie. get the mean word embedding </span>
+
+        <span class="n">target</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;subword_group&quot;</span><span class="p">]:</span>
+            <span class="n">b</span><span class="p">,</span> <span class="n">e</span> <span class="o">=</span> <span class="n">group</span>
+            <span class="n">word_embedding</span> <span class="o">=</span> <span class="n">last_hidden_state</span><span class="p">[:,</span> <span class="n">b</span><span class="p">:</span><span class="n">b</span><span class="o">+</span><span class="n">e</span><span class="p">]</span>       <span class="c1"># get the token embeddings</span>
+            <span class="n">agg_embedding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">word_embedding</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># mean word embeddings for tokens</span>
+
+            <span class="c1"># input mean word embedding (1,768) pass into nn.Sequential linear tail end</span>
+            <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__forward_one</span><span class="p">(</span><span class="n">agg_embedding</span><span class="p">)</span>    <span class="c1"># logits data </span>
+            <span class="n">target</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proba</span><span class="p">)</span>
+
+        <span class="n">word_logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">word_logits</span>
+
+    <span class="k">def</span> <span class="nf">__forward_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span>
+</code></pre></div>
+<h3 id="model-additions">Model Additions<a class="headerlink" href="#model-additions" title="Permanent link"></a></h3>
+<p>Aside from defining the classification model architecture for our base model BERT
+- We need to create <strong>dataloaders</strong>, <strong>instantiate</strong> our model (ie tail weights need to be initialised)
+- Define the model evaluation criterion (loss function) 
+- Define the relevant optimiser to update weights</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
+
+<span class="c1"># define data loaders</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="n">CLASSES</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">CLASSES</span><span class="si">}</span><span class="s1"> labels&#39;</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">MyConfig</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># define classifier model, loss fucntion &amp; optimiser</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">NERClassifier</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>  <span class="c1"># for multiclass classification </span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+</code></pre></div>
+<p>In total, we have created 63 tags in <code>word_to_tag</code> </p>
+<div class="highlight"><pre><span></span><code>63 labels
+</code></pre></div>
+<h3 id="train-model">Train Model<a class="headerlink" href="#train-model" title="Permanent link"></a></h3>
+<ul>
+<li>Let's train our model for 20 epochs on <code>train_loader</code> &amp; validate the model using <code>test_loader</code> </li>
+<li>To check how well the model is performing during training, we will use the <code>accuracy</code> metric</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    (1) TRAINING LOOP</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">loss_count</span><span class="p">,</span> <span class="n">loss_sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="c1"># switch to training mode, ie backpropagation on</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
+
+        <span class="c1"># move data to device</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">val</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="c1"># logits of belonging to each of the tag class </span>
+        <span class="c1"># for all words in document</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">clf</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+        <span class="c1"># predicted word tag </span>
+        <span class="n">word_tag</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
+
+        <span class="n">y_true</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="n">y_pred</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">word_tag</span><span class="p">)</span>        
+
+        <span class="c1"># calcualate loss</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+        <span class="n">loss_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">loss_sum</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+<span class="c1">#         nn.utils.clip_grad_norm_(</span>
+<span class="c1">#             parameters=clf.parameters(), max_norm=20</span>
+<span class="c1">#         )</span>
+
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss: </span><span class="si">{</span><span class="n">loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">loss_count</span><span class="si">}</span><span class="s2">; acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">    (2) VALIDATION LOOP</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">test_loss_sum</span><span class="p">,</span> <span class="n">test_loss_count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">test_true</span><span class="p">,</span> <span class="n">test_pred</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+    <span class="c1"># switch to inference mode</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">test_rows</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_loader</span><span class="p">):</span>
+
+            <span class="c1"># move data to device</span>
+            <span class="n">test_inputs</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">key</span><span class="p">:</span> <span class="n">val</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">test_rows</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">}</span>
+            <span class="n">test_outputs</span> <span class="o">=</span> <span class="n">clf</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">)</span>
+
+            <span class="c1"># add metric data</span>
+            <span class="n">test_true</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="n">test_pred</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+            <span class="n">test_loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">test_outputs</span><span class="p">,</span> <span class="n">test_inputs</span><span class="p">[</span><span class="s2">&quot;target&quot;</span><span class="p">])</span>
+            <span class="n">test_loss_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">test_loss_sum</span> <span class="o">+=</span> <span class="n">test_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch-</span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: loss: </span><span class="si">{</span><span class="n">loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">loss_count</span><span class="si">}</span><span class="s2">; acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="se">\</span>
+<span class="s2">          val_loss: </span><span class="si">{</span><span class="n">test_loss_sum</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">test_loss_count</span><span class="si">}</span><span class="s2">, val_acc: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_true</span><span class="p">,</span><span class="w"> </span><span class="n">test_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>100%|██████████| 1000/1000 [01:02&lt;00:00, 16.09it/s]
+Epoch-1: loss: 1.6441781679093839; acc: 0.7374777271827361
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.19it/s]
+Epoch-1: loss: 1.6441781679093839; acc: 0.7374777271827361,          val_loss: 1.2796487891450525, val_acc: 0.7421347230264428
+100%|██████████| 1000/1000 [01:00&lt;00:00, 16.50it/s]
+Epoch-2: loss: 1.1323998833782971; acc: 0.7539101168085528
+100%|██████████| 1000/1000 [00:11&lt;00:00, 87.29it/s]
+Epoch-2: loss: 1.1323998833782971; acc: 0.7539101168085528,          val_loss: 1.065644938390702, val_acc: 0.7639451843273499
+100%|██████████| 1000/1000 [01:01&lt;00:00, 16.32it/s]
+Epoch-3: loss: 0.8694944252893329; acc: 0.7895466244308058
+100%|██████████| 1000/1000 [00:11&lt;00:00, 85.78it/s]
+Epoch-3: loss: 0.8694944252893329; acc: 0.7895466244308058,          val_loss: 0.9206145468372852, val_acc: 0.7815093611271955
+100%|██████████| 1000/1000 [00:58&lt;00:00, 16.95it/s]
+Epoch-4: loss: 0.6839374071029015; acc: 0.8204315977034251
+100%|██████████| 1000/1000 [00:11&lt;00:00, 84.64it/s]
+Epoch-4: loss: 0.6839374071029015; acc: 0.8204315977034251,          val_loss: 0.8384006800730712, val_acc: 0.7915460335842501
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.81it/s]
+Epoch-5: loss: 0.5615229318903293; acc: 0.8445852306473965
+100%|██████████| 1000/1000 [00:11&lt;00:00, 87.55it/s]
+Epoch-5: loss: 0.5615229318903293; acc: 0.8445852306473965,          val_loss: 0.7858886199912521, val_acc: 0.7979154603358425
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.78it/s]
+Epoch-6: loss: 0.4753220743876882; acc: 0.8643832904375371
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.00it/s]
+Epoch-6: loss: 0.4753220743876882; acc: 0.8643832904375371,          val_loss: 0.8105039822029648, val_acc: 0.7971434086083767
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.81it/s]
+Epoch-7: loss: 0.3950597488232888; acc: 0.8774500098990299
+100%|██████████| 1000/1000 [00:11&lt;00:00, 84.88it/s]
+Epoch-7: loss: 0.3950597488232888; acc: 0.8774500098990299,          val_loss: 0.7834225822311127, val_acc: 0.8062150164060992
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.88it/s]
+Epoch-8: loss: 0.33086000567564045; acc: 0.8948723025143536
+100%|██████████| 1000/1000 [00:11&lt;00:00, 84.73it/s]
+Epoch-8: loss: 0.33086000567564045; acc: 0.8948723025143536,          val_loss: 0.767055139105185, val_acc: 0.8096892491796951
+100%|██████████| 1000/1000 [01:00&lt;00:00, 16.50it/s]
+Epoch-9: loss: 0.28477367215882987; acc: 0.9103147891506632
+100%|██████████| 1000/1000 [00:11&lt;00:00, 85.45it/s]
+Epoch-9: loss: 0.28477367215882987; acc: 0.9103147891506632,          val_loss: 0.7778430652543611, val_acc: 0.8029337965643698
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.81it/s]
+Epoch-10: loss: 0.23926631732314127; acc: 0.9227875668184518
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.43it/s]
+Epoch-10: loss: 0.23926631732314127; acc: 0.9227875668184518,          val_loss: 0.7841836358316068, val_acc: 0.8120054043620922
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.82it/s]
+Epoch-11: loss: 0.20171416073056753; acc: 0.9362502474757474
+100%|██████████| 1000/1000 [00:11&lt;00:00, 84.28it/s]
+Epoch-11: loss: 0.20171416073056753; acc: 0.9362502474757474,          val_loss: 0.849082443419844, val_acc: 0.8104613009071607
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.83it/s]
+Epoch-12: loss: 0.17783702248180636; acc: 0.9459512967729162
+100%|██████████| 1000/1000 [00:11&lt;00:00, 87.20it/s]
+Epoch-12: loss: 0.17783702248180636; acc: 0.9459512967729162,          val_loss: 0.7976406391558412, val_acc: 0.8046709129511678
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.88it/s]
+Epoch-13: loss: 0.14918355378504203; acc: 0.9503068699267472
+100%|██████████| 1000/1000 [00:11&lt;00:00, 87.37it/s]
+Epoch-13: loss: 0.14918355378504203; acc: 0.9503068699267472,          val_loss: 0.8160117758086053, val_acc: 0.8118123914302259
+100%|██████████| 1000/1000 [01:00&lt;00:00, 16.60it/s]
+Epoch-14: loss: 0.1313198971484453; acc: 0.962383686398733
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.59it/s]
+Epoch-14: loss: 0.1313198971484453; acc: 0.962383686398733,          val_loss: 0.8072414025840553, val_acc: 0.815479637135688
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.84it/s]
+Epoch-15: loss: 0.11704726772185677; acc: 0.9633735893882399
+100%|██████████| 1000/1000 [00:11&lt;00:00, 85.19it/s]
+Epoch-15: loss: 0.11704726772185677; acc: 0.9633735893882399,          val_loss: 0.8006598546078457, val_acc: 0.8152866242038217
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.79it/s]
+Epoch-16: loss: 0.09824711217604636; acc: 0.9742625222728173
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.90it/s]
+Epoch-16: loss: 0.09824711217604636; acc: 0.9742625222728173,          val_loss: 0.8438674144655451, val_acc: 0.8177957923180853
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.79it/s]
+Epoch-17: loss: 0.0852395541092883; acc: 0.9750544446644229
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.00it/s]
+Epoch-17: loss: 0.0852395541092883; acc: 0.9750544446644229,          val_loss: 0.8193156978896586, val_acc: 0.8143215595444895
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.83it/s]
+Epoch-18: loss: 0.07844399727860218; acc: 0.9784201148287468
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.51it/s]
+Epoch-18: loss: 0.07844399727860218; acc: 0.9784201148287468,          val_loss: 0.8360713951853868, val_acc: 0.8251302837290099
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.86it/s]
+Epoch-19: loss: 0.07729116444718602; acc: 0.9788160760245496
+100%|██████████| 1000/1000 [00:11&lt;00:00, 85.81it/s]
+Epoch-19: loss: 0.07729116444718602; acc: 0.9788160760245496,          val_loss: 0.8346432074703807, val_acc: 0.8210770121598147
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.82it/s]
+Epoch-20: loss: 0.06690881398832789; acc: 0.9798059790140566
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.31it/s]
+Epoch-20: loss: 0.06690881398832789; acc: 0.9798059790140566,          val_loss: 0.8577917314651385, val_acc: 0.8183748311136846
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.80it/s]
+Epoch-21: loss: 0.05367027178355602; acc: 0.985349435755296
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.59it/s]
+Epoch-21: loss: 0.05367027178355602; acc: 0.985349435755296,          val_loss: 0.8853590850097044, val_acc: 0.8235861802740784
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.79it/s]
+Epoch-22: loss: 0.04562243979116829; acc: 0.9879231835280142
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.02it/s]
+Epoch-22: loss: 0.04562243979116829; acc: 0.9879231835280142,          val_loss: 0.8947100080056626, val_acc: 0.8251302837290099
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.80it/s]
+Epoch-23: loss: 0.04487149683444659; acc: 0.9875272223322115
+100%|██████████| 1000/1000 [00:11&lt;00:00, 83.96it/s]
+Epoch-23: loss: 0.04487149683444659; acc: 0.9875272223322115,          val_loss: 0.9012678128228526, val_acc: 0.8257093225246092
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.83it/s]
+Epoch-24: loss: 0.043597472023681805; acc: 0.9869332805385073
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.64it/s]
+Epoch-24: loss: 0.043597472023681805; acc: 0.9869332805385073,          val_loss: 0.9172096501152982, val_acc: 0.8272534259795407
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.78it/s]
+Epoch-25: loss: 0.039683220311884725; acc: 0.9879231835280142
+100%|██████████| 1000/1000 [00:11&lt;00:00, 89.10it/s]
+Epoch-25: loss: 0.039683220311884725; acc: 0.9879231835280142,          val_loss: 0.9694385796532524, val_acc: 0.8204979733642154
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.79it/s]
+Epoch-26: loss: 0.03646317584309327; acc: 0.9899029895070283
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.90it/s]
+Epoch-26: loss: 0.03646317584309327; acc: 0.9899029895070283,          val_loss: 0.9861661683519687, val_acc: 0.8266743871839414
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.75it/s]
+Epoch-27: loss: 0.03880691091310382; acc: 0.9893090477133241
+100%|██████████| 1000/1000 [00:11&lt;00:00, 84.44it/s]
+Epoch-27: loss: 0.03880691091310382; acc: 0.9893090477133241,          val_loss: 0.9058586812789617, val_acc: 0.8210770121598147
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.83it/s]
+Epoch-28: loss: 0.037079696985995725; acc: 0.9887151059196199
+100%|██████████| 1000/1000 [00:11&lt;00:00, 87.97it/s]
+Epoch-28: loss: 0.037079696985995725; acc: 0.9887151059196199,          val_loss: 0.925899648670832, val_acc: 0.8272534259795407
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.94it/s]
+Epoch-29: loss: 0.023646224649064154; acc: 0.9932686596713522
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.34it/s]
+Epoch-29: loss: 0.023646224649064154; acc: 0.9932686596713522,          val_loss: 0.9826786444298395, val_acc: 0.8230071414784791
+100%|██████████| 1000/1000 [00:59&lt;00:00, 16.94it/s]
+Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395
+100%|██████████| 1000/1000 [00:11&lt;00:00, 88.16it/s]
+Epoch-30: loss: 0.030056740869996247; acc: 0.9914868342902395,          val_loss: 1.0284815851225262, val_acc: 0.8245512449334106
+</code></pre></div>
+<h3 id="save-model">Save Model<a class="headerlink" href="#save-model" title="Permanent link"></a></h3>
+<p>We can save the model for future use</p>
+<div class="highlight"><pre><span></span><code><span class="n">clf</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(&#39;./my_model_dir/tokenizer_config.json&#39;,
+ &#39;./my_model_dir/special_tokens_map.json&#39;,
+ &#39;./my_model_dir/vocab.txt&#39;,
+ &#39;./my_model_dir/added_tokens.json&#39;,
+ &#39;./my_model_dir/tokenizer.json&#39;)
+</code></pre></div>
+<h2 id="using-our-ner-tagger">Using our NER tagger<a class="headerlink" href="#using-our-ner-tagger" title="Permanent link"></a></h2>
+<p>We can use our <code>NER</code> tagger by loading a stack of documents and creating a <code>dataset</code>, as we did for the <code>train</code> &amp; <code>test</code> subsets or we can use it for a single sentence, I'll be using a simple inference function.</p>
+<h3 id="loading-model">Loading Model<a class="headerlink" href="#loading-model" title="Permanent link"></a></h3>
+<p>If we want to load the fine-tuned <code>model</code>, we can use <code>.from_pretrained</code> and specify the folder where ther model is located, 
+the <code>tokenizer</code> can be loaded in a similar way</p>
+<div class="highlight"><pre><span></span><code><span class="n">new_model</span> <span class="o">=</span> <span class="n">NERClassifier</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;./my_model_dir&#39;</span><span class="p">)</span>
+<span class="n">new_model</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>NERClassifier(
+  (bert): BertModel(
+    (embeddings): BertEmbeddings(
+      (word_embeddings): Embedding(120138, 768, padding_idx=0)
+      (position_embeddings): Embedding(512, 768)
+      (token_type_embeddings): Embedding(2, 768)
+      (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+      (dropout): Dropout(p=0.1, inplace=False)
+    )
+    (encoder): BertEncoder(
+      (layer): ModuleList(
+        (0-11): 12 x BertLayer(
+          (attention): BertAttention(
+            (self): BertSelfAttention(
+              (query): Linear(in_features=768, out_features=768, bias=True)
+              (key): Linear(in_features=768, out_features=768, bias=True)
+              (value): Linear(in_features=768, out_features=768, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+            (output): BertSelfOutput(
+              (dense): Linear(in_features=768, out_features=768, bias=True)
+              (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (intermediate): BertIntermediate(
+            (dense): Linear(in_features=768, out_features=3072, bias=True)
+            (intermediate_act_fn): GELUActivation()
+          )
+          (output): BertOutput(
+            (dense): Linear(in_features=3072, out_features=768, bias=True)
+            (LayerNorm): LayerNorm((768,), eps=1e-12, elementwise_affine=True)
+            (dropout): Dropout(p=0.1, inplace=False)
+          )
+        )
+      )
+    )
+    (pooler): BertPooler(
+      (dense): Linear(in_features=768, out_features=768, bias=True)
+      (activation): Tanh()
+    )
+  )
+  (seq): Sequential(
+    (0): Linear(in_features=768, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=256, out_features=63, bias=True)
+  )
+)
+</code></pre></div>
+<h3 id="finding-ner-tags-in-a-document">Finding NER tags in a document<a class="headerlink" href="#finding-ner-tags-in-a-document" title="Permanent link"></a></h3>
+<p>We can use our model using something similar to the code below &amp; utilise the same <code>tokenizer</code>, the <code>parser</code> &amp; saved <code>model</code></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ner_inference</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
+
+    <span class="c1"># Tokenise input</span>
+    <span class="n">tokenizer_output</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span>    
+                                 <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                 <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                 <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+
+    <span class="c1"># token word identifier (each word can have multiple tokens)</span>
+    <span class="n">word_ids</span> <span class="o">=</span> <span class="n">tokenizer_output</span><span class="o">.</span><span class="n">word_ids</span><span class="p">()</span> 
+
+    <span class="c1"># for each word, how many subtokens are there (starts with 1 - first word)</span>
+    <span class="n">subword_group</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">group</span><span class="p">)))</span> 
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">word_ids</span><span class="p">)</span> 
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">]</span> <span class="c1"># index to aggregate tokens</span>
+
+    <span class="c1"># group all relevant data that will be used in forward pass </span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="o">**</span><span class="n">tokenizer_output</span><span class="p">,</span>
+        <span class="s2">&quot;subword_group&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">subword_group</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="c1"># get the highest logits value</span>
+    <span class="n">tag_pred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">output</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">tag_pred</span> 
+
+    <span class="k">return</span> <span class="n">tag_pred</span>
+
+<span class="n">ner_inference</span><span class="p">(</span><span class="s1">&#39;В девять утра я улетаю в Зимбабве&#39;</span><span class="p">,</span><span class="n">new_model</span><span class="p">)</span>
+</code></pre></div>
+<p>The model predicts the following tags, which we can <strong>map</strong> using <code>parser.id_to_tag</code></p>
+<div class="highlight"><pre><span></span><code>[0, 2, 0, 0, 0, 0, 0]
+</code></pre></div>
+<h4 id="references">REFERENCES<a class="headerlink" href="#references" title="Permanent link"></a></h4>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:footnote">
+<p><a href="https://www.mygreatlearning.com/blog/named-entity-recognition/#">https://www.mygreatlearning.com/blog/named-entity-recognition/#</a>&#160;<a class="footnote-backref" href="#fnref:footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/shtrausslearning" target="_blank" rel="noopener" title="shtrausslearning" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.kaggle/shtraussleaning" target="_blank" rel="noopener" title="shtrausslearning" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://t.me/mldsai_info" target="_blank" rel="noopener" title="mldsai-info" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+  
+      <script src="../../../../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script src="../../../../../assets/javascripts/bundle.04c13cf5.min.js"></script>
+
+  </body>
+</html>

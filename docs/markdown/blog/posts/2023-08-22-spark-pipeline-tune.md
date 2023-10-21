@@ -13,11 +13,13 @@ tags:
 
 # Hyperparameter Tuning with Pipelines
 
+## **Overview**
+
 This post is the last of the three posts on the titanic classification problem in `pyspark`. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising `StringIndexer` & `VectorAssembler`, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single `pipline`. `pyspark` like `sklearn` has such pipeline classes that help us keep things organised
 
 <!-- more -->
 
-![](https://i.imgur.com/TlrdxNa.jpg)
+![](https://i.imgur.com/cWeMa3K.jpg)
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/12w6EXoyRByFT6q2cmprac1msn7h4aC3o?usp=sharing)
 

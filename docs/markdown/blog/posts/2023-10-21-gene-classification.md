@@ -10,19 +10,20 @@ tags:
      - bioinformatics
 ---
 
-# **Utilising Prophet with PySpark**
+# **Gene Classification using PySpark**
 
-In this notebook, we look at how to use a popular machine learning library `prophet` with `pyspark`. `pyspark` itself does not contain such an additive regression model, however we can utilise user defined functions `UDF`, which allows us to use different functionality that is not available in `pyspark`
+In this notebook, we look at how to work with biological sequence data, by venturing into a classification problem, in which we will be classifying between six different genes groups common to three different species.
 
 <!-- more -->
-
-![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
 
 ## Background
 
 ### Gene Classification Problem
 
 **Gene classification** using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems.
+
+### Genes
+
 
 ### Genes
 

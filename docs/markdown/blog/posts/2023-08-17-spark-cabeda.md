@@ -13,6 +13,9 @@ tags:
 
 В этом посте мы будем использовать `spark` для раздедовательного анализа поездак такси для данных их города Чикаго. Когда данных становится слишком много, `pandas` работает медленее чем `spark`, поэтому будем использовать этот инструмент для разведовательного анализа.
 
+
+![](https://i.imgur.com/NTERkyK.jpg)
+
 <!-- more -->
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1l77AlQZtF0CiVS6g_WsSonlQ2Dj2SlPF?usp=sharing)

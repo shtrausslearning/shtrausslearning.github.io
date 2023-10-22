@@ -165,7 +165,7 @@ Our dataset contains two columns `text` & its annotation `annotated` variant.
 |please do A, next do B|please do A[split : , next] do B|
 |please do A next do B|please do A [split : next] do B|
 
-### <b><span style='color:#E888BB;text-align:center'>❯❯ </span>NER Tagging</b> 
+### NER Tagging
 
 I've created a simple **NER** tagging class `ner_annotator` which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (`active_df`) and tagging parts of the sentence using the format <kbd>words</kbd>`-`<kbd>tag</kbd>, which is used in the **[massive 1.1](https://huggingface.co/datasets/AmazonScience/massive)** dataset on huggingface
 
@@ -362,7 +362,7 @@ temp = ner_annotator(df_annot)  # instantiate annotation class
 temp.ner_annotate()             # start annotating
 ```
 
-## <b><span style='color:#E888BB;text-align:center'>3 ❯ </span>Parsing annotations</b>
+## Parsing annotations
 
 Now that we have an annotated dataset, we will need a parser which interprets the resulting annotations, and creates tags for words in a document. `Parser` will be called using the special class `__call__`, when we will iterate over our documents. 
 
@@ -453,9 +453,9 @@ class Parser:
         return self.get_tag_label(id_)
 ```
 
-## <b><span style='color:#E888BB;text-align:center'>4 ❯ </span>NER Models</b>
+## NER Models
 
-### <b><span style='color:#E888BB;text-align:center'>❯❯ </span>Training NER Model</b> 
+### Training NER Model
 
 We have an annotation parser `Parser`, now let's prepare the training loop. We read our dataset `df` and iterate over all rows in the dataset, tokenising the document & storing it in `lst_data` and parse the annotated `annotated` column, creating `BIO` tags for words in the document `text`, which is stored in `lst_tags`
 
@@ -536,7 +536,7 @@ and **confusion matrix**
 Looks like we have a large ammount of misspredictions for tag `B-SPLIT`, with the recall being quite low (ie quite a few `B-SPLIT` are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for **transitional adverbs**, so its quite nice that the model can identify such splitting locations quite well.
 
 
-### <b><span style='color:#E888BB;text-align:center'>❯❯ </span>Testing NER model</b> 
+### Testing NER model
 
 Different models can show different performance upon actual usage, so let's compare how both of them perform
 
@@ -600,7 +600,7 @@ print(pred_tags)
 
 We can see that **model complexity** indeed does play a role, as the linear model `LogisticRegression` wasn't able to identify the the second splitting tokens `once` `done`. `RandomForest` works better as a sentence splitting `ner` tagging model. Having identified the indicies of `ner` tags, it is quite straightforward to split the document into `word` & divide it based on the model prediction tag condition 
 
-## <b><span style='color:#E888BB;text-align:center'>5 ❯ </span>Conclusion</b>
+## Conclusion
 
 In this post we created a `NER` tagger, which identifies key words that we defined as **sentence splitting words**. Identificaiton of such words allows us to split a long paragraph into parts & analyse or conduct further downstream tasks upon performing splits. We showed that **sentence splitting** can be defined as more than just splitting by punctuation like `.`, and since people often connect sentences using **transitional adverbs** and alike, `NER` tagging comes in handy to identify such "weaker" sentence splitters.
 

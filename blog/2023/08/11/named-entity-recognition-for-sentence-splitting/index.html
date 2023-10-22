@@ -998,8 +998,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-ner-tagging" class="md-nav__link">
-    ❯❯ NER Tagging
+  <a href="#ner-tagging" class="md-nav__link">
+    NER Tagging
   </a>
   
 </li>
@@ -1010,30 +1010,30 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3--parsing-annotations" class="md-nav__link">
-    3 ❯ Parsing annotations
+  <a href="#parsing-annotations" class="md-nav__link">
+    Parsing annotations
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4--ner-models" class="md-nav__link">
-    4 ❯ NER Models
+  <a href="#ner-models" class="md-nav__link">
+    NER Models
   </a>
   
-    <nav class="md-nav" aria-label="4 ❯ NER Models">
+    <nav class="md-nav" aria-label="NER Models">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#-training-ner-model" class="md-nav__link">
-    ❯❯ Training NER Model
+  <a href="#training-ner-model" class="md-nav__link">
+    Training NER Model
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#-testing-ner-model" class="md-nav__link">
-    ❯❯ Testing NER model
+  <a href="#testing-ner-model" class="md-nav__link">
+    Testing NER model
   </a>
   
 </li>
@@ -1044,8 +1044,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5--conclusion" class="md-nav__link">
-    5 ❯ Conclusion
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
   </a>
   
 </li>
@@ -1368,7 +1368,7 @@ text_b [[0.68768998 0.31231002]]
 </tr>
 </tbody>
 </table>
-<h3 id="-ner-tagging"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>NER Tagging</b><a class="headerlink" href="#-ner-tagging" title="Permanent link"></a></h3>
+<h3 id="ner-tagging">NER Tagging<a class="headerlink" href="#ner-tagging" title="Permanent link"></a></h3>
 <p>I've created a simple <strong>NER</strong> tagging class <code>ner_annotator</code> which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (<code>active_df</code>) and tagging parts of the sentence using the format <kbd>words</kbd><code>-</code><kbd>tag</kbd>, which is used in the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive 1.1</a></strong> dataset on huggingface</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#from IPython.display import clear_output in jupyter</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1557,7 +1557,7 @@ text_b [[0.68768998 0.31231002]]
 <span class="n">temp</span> <span class="o">=</span> <span class="n">ner_annotator</span><span class="p">(</span><span class="n">df_annot</span><span class="p">)</span>  <span class="c1"># instantiate annotation class</span>
 <span class="n">temp</span><span class="o">.</span><span class="n">ner_annotate</span><span class="p">()</span>             <span class="c1"># start annotating</span>
 </code></pre></div>
-<h2 id="3--parsing-annotations"><b><span style='color:#E888BB;text-align:center'>3 ❯ </span>Parsing annotations</b><a class="headerlink" href="#3--parsing-annotations" title="Permanent link"></a></h2>
+<h2 id="parsing-annotations">Parsing annotations<a class="headerlink" href="#parsing-annotations" title="Permanent link"></a></h2>
 <p>Now that we have an annotated dataset, we will need a parser which interprets the resulting annotations, and creates tags for words in a document. <code>Parser</code> will be called using the special class <code>__call__</code>, when we will iterate over our documents. </p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
@@ -1643,8 +1643,8 @@ text_b [[0.68768998 0.31231002]]
     <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
 </code></pre></div>
-<h2 id="4--ner-models"><b><span style='color:#E888BB;text-align:center'>4 ❯ </span>NER Models</b><a class="headerlink" href="#4--ner-models" title="Permanent link"></a></h2>
-<h3 id="-training-ner-model"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Training NER Model</b><a class="headerlink" href="#-training-ner-model" title="Permanent link"></a></h3>
+<h2 id="ner-models">NER Models<a class="headerlink" href="#ner-models" title="Permanent link"></a></h2>
+<h3 id="training-ner-model">Training NER Model<a class="headerlink" href="#training-ner-model" title="Permanent link"></a></h3>
 <p>We have an annotation parser <code>Parser</code>, now let's prepare the training loop. We read our dataset <code>df</code> and iterate over all rows in the dataset, tokenising the document &amp; storing it in <code>lst_data</code> and parse the annotated <code>annotated</code> column, creating <code>BIO</code> tags for words in the document <code>text</code>, which is stored in <code>lst_tags</code></p>
 <p>The output of preprocessed data <code>lst_data</code> will be a list of tokens in the whole corpus, and <code>lst_tags</code> will be its corresponding <code>BIO</code> tag.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># import relevant libraries</span>
@@ -1706,7 +1706,7 @@ weighted avg       0.81      0.81      0.78       161
  [  1   0 105]] # class O
 </code></pre></div>
 <p>Looks like we have a large ammount of misspredictions for tag <code>B-SPLIT</code>, with the recall being quite low (ie quite a few <code>B-SPLIT</code> are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for <strong>transitional adverbs</strong>, so its quite nice that the model can identify such splitting locations quite well.</p>
-<h3 id="-testing-ner-model"><b><span style='color:#E888BB;text-align:center'>❯❯ </span>Testing NER model</b><a class="headerlink" href="#-testing-ner-model" title="Permanent link"></a></h3>
+<h3 id="testing-ner-model">Testing NER model<a class="headerlink" href="#testing-ner-model" title="Permanent link"></a></h3>
 <p>Different models can show different performance upon actual usage, so let's compare how both of them perform</p>
 <p>Our test example:</p>
 <blockquote>
@@ -1758,7 +1758,7 @@ weighted avg       0.81      0.81      0.78       161
 11    that        O
 </code></pre></div>
 <p>We can see that <strong>model complexity</strong> indeed does play a role, as the linear model <code>LogisticRegression</code> wasn't able to identify the the second splitting tokens <code>once</code> <code>done</code>. <code>RandomForest</code> works better as a sentence splitting <code>ner</code> tagging model. Having identified the indicies of <code>ner</code> tags, it is quite straightforward to split the document into <code>word</code> &amp; divide it based on the model prediction tag condition </p>
-<h2 id="5--conclusion"><b><span style='color:#E888BB;text-align:center'>5 ❯ </span>Conclusion</b><a class="headerlink" href="#5--conclusion" title="Permanent link"></a></h2>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
 <p>In this post we created a <code>NER</code> tagger, which identifies key words that we defined as <strong>sentence splitting words</strong>. Identificaiton of such words allows us to split a long paragraph into parts &amp; analyse or conduct further downstream tasks upon performing splits. We showed that <strong>sentence splitting</strong> can be defined as more than just splitting by punctuation like <code>.</code>, and since people often connect sentences using <strong>transitional adverbs</strong> and alike, <code>NER</code> tagging comes in handy to identify such "weaker" sentence splitters.</p>
 <p>We defined a class that allows us to create our own annotations (<code>ner_annotator</code>), a annotaion parser that allows us to interpret the annotations made by <code>ner_annotator</code>. We created a dataset that contained <code>text</code> and the relevant <code>ner</code> annotations <code>annotations</code>, which we used to train our <code>ner</code> tag model.</p>
 <p>As a result of our model testing, we saw that <code>RandomForest</code> performs quite well in comparison to simpler linear models. Overall, the created model can be utilised for weak sentence splitting</p>

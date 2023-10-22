@@ -31,9 +31,9 @@ In this notebook, we look at how to work with biological sequence data, by ventu
 
 The dataset that we'll be using contains the following gene classes for three different species, **human**, **chimpanzee** & **dog**, it is added more as a reference for those interested in what each class represents in our data
 
-??? "G Protein-Coupled Receptors"
+![](https://img.shields.io/badge/G Protein-Coupled Receptors-4169E1)
 
-     The **G protein-coupled receptors** (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.
+The **G protein-coupled receptors** (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.
 
 ??? Tyrosine Kinase
 

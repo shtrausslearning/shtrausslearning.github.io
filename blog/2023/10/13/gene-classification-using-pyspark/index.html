@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/pyspark/">
+        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/10/13/gene-classification-using-pyspark/">
       
       
-        <link rel="prev" href="../../">
+        <link rel="prev" href="../../../09/25/comparison-of-subsets/">
       
       
-        <link rel="next" href="../eda/">
+        <link rel="next" href="../using-prophet-with-pyspark/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
-        <title>PySpark - Andrey Shtrauss</title>
+        <title>Gene Classification using PySpark - Andrey Shtrauss</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.35e1ed30.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -50,16 +50,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <link rel="stylesheet" href="../../../assets/stylesheets/main.5136944a.min.css">
+  <link rel="stylesheet" href="../../../../../assets/stylesheets/main.5136944a.min.css">
 
   </head>
   
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pyspark" class="md-skip">
+        <a href="#utilising-prophet-with-pyspark" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
@@ -135,7 +135,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PySpark
+              Gene Classification using PySpark
             
           </span>
         </div>
@@ -233,7 +233,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -252,7 +252,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../portfolio/nlp/" class="md-tabs__link">
+        <a href="../../../../../portfolio/nlp/" class="md-tabs__link">
           
   
   DS Projects
@@ -270,7 +270,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../mllibs/home/" class="md-tabs__link">
+        <a href="../../../../../mllibs/home/" class="md-tabs__link">
           
   
   mllibs
@@ -290,7 +290,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+        <a href="../../../../" class="md-tabs__link">
           
   
   Blog
@@ -306,7 +306,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../about/" class="md-tabs__link">
+      <a href="../../../../../about/" class="md-tabs__link">
         
   
     
@@ -335,7 +335,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -346,7 +348,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
@@ -375,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -435,7 +437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../portfolio/nlp/" class="md-nav__link">
+      <a href="../../../../../portfolio/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,7 +457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../portfolio/internships/" class="md-nav__link">
+      <a href="../../../../../portfolio/internships/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -475,7 +477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../portfolio/science/" class="md-nav__link">
+      <a href="../../../../../portfolio/science/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -495,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../portfolio/health/" class="md-nav__link">
+      <a href="../../../../../portfolio/health/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../portfolio/geospatial/" class="md-nav__link">
+      <a href="../../../../../portfolio/geospatial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -583,7 +585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mllibs/home/" class="md-nav__link">
+      <a href="../../../../../mllibs/home/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -603,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mllibs/meetups/" class="md-nav__link">
+      <a href="../../../../../mllibs/meetups/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -669,9 +671,11 @@
                 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -732,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../archive/2023/" class="md-nav__link">
+      <a href="../../../../archive/2023/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -758,8 +762,6 @@
                 
   
   
-    
-  
   
     
     
@@ -769,12 +771,14 @@
       
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
         
           
           <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
@@ -788,7 +792,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
             Categories
@@ -799,29 +803,9 @@
                 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    PySpark
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../category/pyspark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -830,68 +814,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperparameter-tuning-with-pipelines" class="md-nav__link">
-    Hyperparameter Tuning with Pipelines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-machine-learning-models-with-pyspark" class="md-nav__link">
-    Creating Machine Learning Models with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing-with-pyspark" class="md-nav__link">
-    Data Preprocessing with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exploring-taxi-trip-data" class="md-nav__link">
-    Exploring Taxi Trip Data
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -903,7 +825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../eda/" class="md-nav__link">
+      <a href="../../../../category/eda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -923,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../nlp/" class="md-nav__link">
+      <a href="../../../../category/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -958,7 +880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/" class="md-nav__link">
+      <a href="../../../../../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -979,6 +901,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -998,44 +922,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gene-classification-problem" class="md-nav__link">
+    Gene Classification Problem
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
+        
+          <li class="md-nav__item">
+  <a href="#genes" class="md-nav__link">
+    Genes
+  </a>
+  
+    <nav class="md-nav" aria-label="Genes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transcription-factors" class="md-nav__link">
+    Transcription Factors
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperparameter-tuning-with-pipelines" class="md-nav__link">
-    Hyperparameter Tuning with Pipelines
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-machine-learning-models-with-pyspark" class="md-nav__link">
-    Creating Machine Learning Models with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing-with-pyspark" class="md-nav__link">
-    Data Preprocessing with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exploring-taxi-trip-data" class="md-nav__link">
-    Exploring Taxi Trip Data
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1048,299 +970,138 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        <h1 id="pyspark">PySpark<a class="headerlink" href="#pyspark" title="Permanent link"></a></h1>
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-10-13 00:00:00">October 13, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
             
-              <a href="./" class="md-meta__link">PySpark</a></li>
-        
-        
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Andrey Shtrauss</strong><br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-10-13 00:00:00" class="md-ellipsis">October 13, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/pyspark/">PySpark</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              2 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
-          <li class="md-meta__item">
-            
-              13 min read
-            
-          </li>
-        
-      </ul>
-      
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="utilising-prophet-with-pyspark"><a class="toclink" href="../../2023/10/13/using-prophet-with-pyspark/"><strong>Utilising Prophet with PySpark</strong></a></h2>
-<p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions <code>UDF</code>, which allows us to use different functionality that is not available in <code>pyspark</code></p>
-<p><img alt="" src="https://i.imgur.com/AKN6i7l.jpg" /></p>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
 
-    <nav class="md-post__action">
-      <a href="../../2023/10/13/using-prophet-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
+<nav class="md-tags" >
+  
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-10-13 00:00:00">October 13, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="./" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              2 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="utilising-prophet-with-pyspark"><a class="toclink" href="../../2023/10/13/gene-classification-using-pyspark/"><strong>Utilising Prophet with PySpark</strong></a></h2>
-<p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions <code>UDF</code>, which allows us to use different functionality that is not available in <code>pyspark</code></p>
-
-    <nav class="md-post__action">
-      <a href="../../2023/10/13/gene-classification-using-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
+      <span class="md-tag">pyspark</span>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-22 00:00:00">August 22, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="./" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="hyperparameter-tuning-with-pipelines"><a class="toclink" href="../../2023/08/22/hyperparameter-tuning-with-pipelines/"><strong>Hyperparameter Tuning with Pipelines</strong></a></h2>
-<p>This post is the last of the three posts on the titanic classification problem in <code>pyspark</code>. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising <code>StringIndexer</code> &amp; <code>VectorAssembler</code>, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single <code>pipline</code>. <code>pyspark</code> like <code>sklearn</code> has such pipeline classes that help us keep things organised</p>
-<p><img alt="" src="https://i.imgur.com/yMhC2om.png" /></p>
-
-    <nav class="md-post__action">
-      <a href="../../2023/08/22/hyperparameter-tuning-with-pipelines/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
+  
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-21 00:00:00">August 21, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="./" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              7 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="creating-machine-learning-models-with-pyspark"><a class="toclink" href="../../2023/08/21/creating-machine-learning-models-with-pyspark/"><strong>Creating Machine Learning Models with PySpark</strong></a></h2>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <strong><a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a></strong> post. We are continuing on from the previous post <strong><a href="https://shtrausslearning.github.io/posts/spark-preprocess/">PySpark Titanic Preprocessing</a></strong>, where we did some basic <strong>data preprocessing</strong>, here we will continue on with the modeling stage of our project.</p>
-<p><img alt="" src="https://i.imgur.com/SO7B5nM.png" /></p>
-
-    <nav class="md-post__action">
-      <a href="../../2023/08/21/creating-machine-learning-models-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
+      <span class="md-tag">classification</span>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-20 00:00:00">August 20, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="./" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="data-preprocessing-with-pyspark"><a class="toclink" href="../../2023/08/20/data-preprocessing-with-pyspark/"><strong>Data Preprocessing with PySpark</strong></a></h2>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a> post</p>
-<p><img alt="" src="https://i.imgur.com/1RXWOhX.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="../../2023/08/20/data-preprocessing-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
+  
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-07 00:00:00">August 7, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="./" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              12 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="exploring-taxi-trip-data"><a class="toclink" href="../../2023/08/07/exploring-taxi-trip-data/"><strong>Exploring Taxi Trip Data</strong></a></h2>
-<p>В этом посте мы будем использовать <code>spark</code> для раздедовательного анализа поездак такси для данных их города Чикаго. Когда данных становится слишком много, <code>pandas</code> работает медленее чем <code>spark</code>, поэтому будем использовать этот инструмент для разведовательного анализа.</p>
-<p><img alt="" src="https://i.imgur.com/NTERkyK.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="../../2023/08/07/exploring-taxi-trip-data/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-      
-        
-          
-
-
-
-<nav class="md-pagination">
+    
+      <span class="md-tag">bioinformatics</span>
+    
   
 </nav>
-        
+
+
+  
+  
+
+
+<h1 id="utilising-prophet-with-pyspark"><strong>Utilising Prophet with PySpark</strong><a class="headerlink" href="#utilising-prophet-with-pyspark" title="Permanent link"></a></h1>
+<p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions <code>UDF</code>, which allows us to use different functionality that is not available in <code>pyspark</code></p>
+<!-- more -->
+
+<p><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<h3 id="gene-classification-problem">Gene Classification Problem<a class="headerlink" href="#gene-classification-problem" title="Permanent link"></a></h3>
+<p><strong>Gene classification</strong> using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems. It may also have applications in personalized medicine, where genetic information can be used to tailor treatments to individual patients based on their unique genetic profiles.</p>
+<h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link"></a></h3>
+<h4 id="transcription-factors">Transcription Factors<a class="headerlink" href="#transcription-factors" title="Permanent link"></a></h4>
+<p>The transcription factor gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
+
+
+
+  
+
+
+
       
-    </div>
+    </article>
   </div>
 
           
@@ -1415,20 +1176,20 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
   
-      <script src="../../../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
-        <script src="../../../javascripts/mathjax.js"></script>
+        <script src="../../../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  <script src="../../../assets/javascripts/bundle.04c13cf5.min.js"></script>
+  <script src="../../../../../assets/javascripts/bundle.04c13cf5.min.js"></script>
 
   </body>
 </html>

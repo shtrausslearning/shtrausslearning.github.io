@@ -996,10 +996,36 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dna-encoding" class="md-nav__link">
     DNA Encoding
   </a>
+  
+    <nav class="md-nav" aria-label="DNA Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encoding-samples" class="md-nav__link">
+    Encoding Samples
+  </a>
+  
+    <nav class="md-nav" aria-label="Encoding Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding" class="md-nav__link">
+    One-Hot Encoding
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1152,7 +1178,7 @@
 <p>The <strong>ion channel</strong> gene family is a group of genes that encode proteins responsible for the transport of ions across cell membranes. These proteins are integral membrane proteins that form pores or channels in the lipid bilayer of the cell membrane, allowing the selective movement of ions such as sodium, potassium, calcium, and chloride. Ion channels are critical for many physiological processes, including muscle contraction, nerve signaling, and hormone secretion. Dysregulation of ion channel activity has been implicated in a variety of diseases, including epilepsy, cardiac arrhythmias, and cystic fibrosis. Examples of ion channel genes include SCN1A, KCNQ1, and CFTR.</p>
 <h4 id="transcription-factors">Transcription Factors<a class="headerlink" href="#transcription-factors" title="Permanent link"></a></h4>
 <p>The <strong>transcription factor</strong> gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
-<h3 id="dna-encoding">DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h3>
+<h2 id="dna-encoding">DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h2>
 <p>Biological sequences come in the format:</p>
 <blockquote>
 <p>GTGCCCAGGTTCAGTGAGTGACACAGGCAG</p>
@@ -1165,6 +1191,31 @@
 <li>DNA sequence as a “language”, known as <code>k-mer</code> counting</li>
 </ol>
 <p>So let us implement each of them and see which gives us the perfect input features.</p>
+<h3 id="encoding-samples">Encoding Samples<a class="headerlink" href="#encoding-samples" title="Permanent link"></a></h3>
+<h4 id="one-hot-encoding">One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permanent link"></a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">sklearn</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="k">def</span> <span class="nf">one_hot_encoder</span><span class="p">(</span><span class="n">seq_string</span><span class="p">):</span>
+    <span class="n">int_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
+    <span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">int_encoded</span> <span class="o">=</span> <span class="n">int_encoded</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">)</span>
+    <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">onehot_encoded</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">onehot_encoded</span>
+
+<span class="c1">#So let’s try it out with a simple short sequence:</span>
+<span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;GAATTCTCGAA&#39;</span>
+<span class="n">one_hot_encoder</span><span class="p">(</span><span class="n">string_to_array</span><span class="p">(</span><span class="n">seq_test</span><span class="p">))</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>== "pyspark"</p>
+<div class="highlight"><pre><span></span><code> ==**pypspark** will use the `sklearn` function but will be wrapped in a ==**UDF**==
+</code></pre></div>
 
 
 

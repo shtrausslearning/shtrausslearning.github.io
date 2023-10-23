@@ -54,7 +54,7 @@ The **ion channel** gene family is a group of genes that encode proteins respons
 
 The **transcription factor** gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair
 
-### DNA Encoding
+## DNA Encoding
 
 Biological sequences come in the format:
 
@@ -69,3 +69,31 @@ There are 3 general approaches to encode biological sequence data:
 3. DNA sequence as a “language”, known as `k-mer` counting
 
 So let us implement each of them and see which gives us the perfect input features.
+
+### Encoding Samples
+
+#### One-Hot Encoding
+
+=== "sklearn"
+
+     ```python
+     from sklearn.preprocessing import OneHotEncoder
+
+     def one_hot_encoder(seq_string):
+         int_encoded = label_encoder.transform(seq_string)
+         onehot_encoder = OneHotEncoder(sparse=False, dtype=int)
+         int_encoded = int_encoded.reshape(len(int_encoded), 1)
+         onehot_encoded = onehot_encoder.fit_transform(int_encoded)
+         onehot_encoded = np.delete(onehot_encoded, -1, 1)
+         return onehot_encoded
+
+     #So let’s try it out with a simple short sequence:
+     seq_test = 'GAATTCTCGAA'
+     one_hot_encoder(string_to_array(seq_test))
+     ```
+
+== "pyspark"
+
+     ==**pypspark** will use the `sklearn` function but will be wrapped in a ==**UDF**==
+
+     

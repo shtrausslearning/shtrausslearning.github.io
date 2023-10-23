@@ -69,7 +69,7 @@ spark = SparkSession.builder \
 
 ## Dataset
 
-We're loading three DNA datasets, our dataset is in the form of a `sequence` & subsequent **gene family** label, `class`.
+We're loading three DNA datasets, our dataset is in the form of a `sequence` & subsequent **gene family** label, `class`
 
 ```python
 human = spark.read.csv('human.txt',sep='\t',header=True)

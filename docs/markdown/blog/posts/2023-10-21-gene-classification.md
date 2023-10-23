@@ -56,10 +56,16 @@ The **transcription factor** gene family is a group of genes that encode protein
 
 ### DNA Encoding
 
-There are 3 general approaches to encode sequence data:
+Biological sequences come in the format:
+
+> GTGCCCAGGTTCAGTGAGTGACACAGGCAG
+
+This mimics a standard **NLP** based problem, in which we need to convert text into numerical representation before we can feed this data into our models
+
+There are 3 general approaches to encode biological sequence data:
 
 1. Ordinal encoding DNA Sequence
-2. One-hot encoding DNA Sequence
+2. One-Hot encoding DNA Sequence
 3. DNA sequence as a “language”, known as `k-mer` counting
 
 So let us implement each of them and see which gives us the perfect input features.

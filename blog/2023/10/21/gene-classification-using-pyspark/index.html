@@ -1153,10 +1153,15 @@
 <h4 id="transcription-factors">Transcription Factors<a class="headerlink" href="#transcription-factors" title="Permanent link"></a></h4>
 <p>The <strong>transcription factor</strong> gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
 <h3 id="dna-encoding">DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h3>
-<p>There are 3 general approaches to encode sequence data:</p>
+<p>Biological sequences come in the format:</p>
+<blockquote>
+<p>GTGCCCAGGTTCAGTGAGTGACACAGGCAG</p>
+</blockquote>
+<p>This mimics a standard <strong>NLP</strong> based problem, in which we need to convert text into numerical representation before we can feed this data into our models</p>
+<p>There are 3 general approaches to encode biological sequence data:</p>
 <ol>
 <li>Ordinal encoding DNA Sequence</li>
-<li>One-hot encoding DNA Sequence</li>
+<li>One-Hot encoding DNA Sequence</li>
 <li>DNA sequence as a “language”, known as <code>k-mer</code> counting</li>
 </ol>
 <p>So let us implement each of them and see which gives us the perfect input features.</p>

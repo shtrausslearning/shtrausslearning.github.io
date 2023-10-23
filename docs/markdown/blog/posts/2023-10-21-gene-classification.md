@@ -54,6 +54,41 @@ The **ion channel** gene family is a group of genes that encode proteins respons
 
 The **transcription factor** gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair
 
+## Create Spark Session
+
+As with any other pyspark project, lets create a pyspark session. Let's also import functions so we can use `UDF`
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as f
+
+spark = SparkSession.builder \
+                    .appName('Task') \
+                    .getOrCreate()
+```
+
+## Dataset
+
+We're loading three DNA datasets, our dataset is in the form of a `sequence` & subsequent **gene family** label, `class`.
+
+```python
+human = spark.read.csv('human.txt',sep='\t',header=True)
+chimpanzee = spark.read.csv('chimpanzee.txt',sep='\t',header=True)
+dog = spark.read.csv('dog.txt',sep='\t',header=True)
+human.show(5)
+
++--------------------+-----+
+|            sequence|class|
++--------------------+-----+
+|ATGCCCCAACTAAATAC...|    4|
+|ATGAACGAAAATCTGTT...|    4|
+|ATGTGTGGCATTTGGGC...|    3|
+|ATGTGTGGCATTTGGGC...|    3|
+|ATGCAACAGCATTTTGA...|    3|
++--------------------+-----+
+only showing top 5 rows
+```
+
 ## DNA Encoding
 
 Biological sequences come in the format:
@@ -92,8 +127,8 @@ So let us implement each of them and see which gives us the perfect input featur
      one_hot_encoder(string_to_array(seq_test))
      ```
 
-== "pyspark"
+=== "pyspark"
 
      ==**pypspark** will use the `sklearn` function but will be wrapped in a ==**UDF**==
 
-     
+

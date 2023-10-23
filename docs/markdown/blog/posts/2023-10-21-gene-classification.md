@@ -114,21 +114,32 @@ So let us implement each of them and see which gives us the perfect input featur
      ```python
      from sklearn.preprocessing import OneHotEncoder
 
-     def one_hot_encoder(seq_string):
+     def ohe(seq_string:str):
+         seq_string = lst_string(seq_string)
          int_encoded = label_encoder.transform(seq_string)
-         onehot_encoder = OneHotEncoder(sparse=False, dtype=int)
-         int_encoded = int_encoded.reshape(len(int_encoded), 1)
-         onehot_encoded = onehot_encoder.fit_transform(int_encoded)
-         onehot_encoded = np.delete(onehot_encoded, -1, 1)
-         return onehot_encoded
+         onehot_encoder = OneHotEncoder(sparse_output=False,dtype=int)
+         onehot_encoded = onehot_encoder.fit_transform(int_encoded[:,None])
+         return onehot_encoded.tolist()
 
-     #So let’s try it out with a simple short sequence:
      seq_test = 'GAATTCTCGAA'
-     one_hot_encoder(string_to_array(seq_test))
+     ohe(seq_test)
+     ```
+     ```
+     [[0, 0, 1, 0],
+      [1, 0, 0, 0],
+      [1, 0, 0, 0],
+      [0, 0, 0, 1],
+      [0, 0, 0, 1],
+      [0, 1, 0, 0],
+      [0, 0, 0, 1],
+      [0, 1, 0, 0],
+      [0, 0, 1, 0],
+      [1, 0, 0, 0],
+      [1, 0, 0, 0]]
      ```
 
 === "pyspark"
 
-     ==**pypspark** will use the `sklearn` function but will be wrapped in a ==**UDF**==
+     pyspark will use the `sklearn` function but will be wrapped in a `UDF`
 
 

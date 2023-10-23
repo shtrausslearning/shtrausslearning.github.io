@@ -107,7 +107,15 @@ So let us implement each of them and see which gives us the perfect input featur
 
 ### Encoding Samples
 
+#### Ordinal Encoding
+
+
+
 #### One-Hot Encoding
+
+Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors & these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.
+
+`sklearn` contains a easy to use out of the box solution to OHE, so we'll use that for our function. 
 
 === "sklearn"
 

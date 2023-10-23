@@ -977,6 +977,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#ordinal-encoding" class="md-nav__link">
+    Ordinal Encoding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#one-hot-encoding" class="md-nav__link">
     One-Hot Encoding
   </a>
@@ -1185,7 +1192,10 @@
 </ol>
 <p>So let us implement each of them and see which gives us the perfect input features.</p>
 <h3 id="encoding-samples">Encoding Samples<a class="headerlink" href="#encoding-samples" title="Permanent link"></a></h3>
+<h4 id="ordinal-encoding">Ordinal Encoding<a class="headerlink" href="#ordinal-encoding" title="Permanent link"></a></h4>
 <h4 id="one-hot-encoding">One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permanent link"></a></h4>
+<p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
+<p><code>sklearn</code> contains a easy to use out of the box solution to OHE, so we'll use that for our function. </p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">sklearn</label><label for="__tabbed_1_2">pyspark</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">

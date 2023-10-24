@@ -254,6 +254,42 @@ chimp_dna = chimp_dna.drop('sequence', axis=1)
 dog_dna['kmers'] = dog_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
 dog_dna = dog_dna.drop('sequence', axis=1)
 ```
+```
+     class     words
+0    4    [atgccc, tgcccc, gcccca, ccccaa, cccaac, ccaac...
+1    4    [atgaac, tgaacg, gaacga, aacgaa, acgaaa, cgaaa...
+2    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
+3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
+4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
+```
+
+Let's create a list containg the **kmers** string for each row in the dataset & its related label:
+
+```python
+human_texts = list(human_dna['words'])
+for item in range(len(human_texts)):
+    human_texts[item] = ' '.join(human_texts[item])
+#separate labels
+y_human = human_dna.iloc[:, 0].values # y_human for human_dna
+
+chimp_texts = list(chimp_dna['words'])
+for item in range(len(chimp_texts)):
+    chimp_texts[item] = ' '.join(chimp_texts[item])
+#separate labels
+y_chim = chimp_dna.iloc[:, 0].values # y_chim for chimp_dna
+
+dog_texts = list(dog_dna['words'])
+for item in range(len(dog_texts)):
+    dog_texts[item] = ' '.join(dog_texts[item])
+#separate labels
+y_dog = dog_dna.iloc[:, 0].values  # y_dog for dog_dna
+```
 
 
+```python
+human_texts[0]
+```
 
+```
+'atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag'
+```

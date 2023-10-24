@@ -1114,7 +1114,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              8 min read
+                              9 min read
                             
                           </span>
                         </div>
@@ -1324,7 +1324,7 @@
 <p>Our objective is to train a classification model that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.</p>
 <h2 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link"></a></h2>
 <p>Having already loaded our dataset &amp; define our problem statement, lets create prepare our dataset for training, we'll simply using the <code>apply</code> method &amp; store the list of <strong>kmers</strong> in our dataframe</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
 
 <span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1335,6 +1335,36 @@
 
 <span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">dog_dna</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>     class     words
+0    4    [atgccc, tgcccc, gcccca, ccccaa, cccaac, ccaac...
+1    4    [atgaac, tgaacg, gaacga, aacgaa, acgaaa, cgaaa...
+2    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
+3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
+4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
+</code></pre></div></p>
+<p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset &amp; its related label:</p>
+<div class="highlight"><pre><span></span><code><span class="n">human_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)):</span>
+    <span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+<span class="c1">#separate labels</span>
+<span class="n">y_human</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_human for human_dna</span>
+
+<span class="n">chimp_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)):</span>
+    <span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+<span class="c1">#separate labels</span>
+<span class="n">y_chim</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_chim for chimp_dna</span>
+
+<span class="n">dog_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)):</span>
+    <span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+<span class="c1">#separate labels</span>
+<span class="n">y_dog</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># y_dog for dog_dna</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">human_texts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag&#39;
 </code></pre></div>
 
 

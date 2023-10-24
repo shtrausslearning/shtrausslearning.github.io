@@ -263,7 +263,7 @@ dog_dna = dog_dna.drop('sequence', axis=1)
 4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
 ```
 
-Let's create a list containg the **kmers** string for each row in the dataset & its related label:
+Let's create a list containg the **kmers** string for each row in the dataset (which can simply be using with `fit` in `CountVectorizer`) & its related label:
 
 ```python
 human_texts = list(human_dna['kmers'])
@@ -292,4 +292,30 @@ human_texts[0]
 
 ```
 'atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag'
+```
+
+`CountVectorizer` allows us to control groupings of these kmers, lets use `ngram_range` of 4. We'll call `fit` on the human dataset & `transform` all datasets:
+
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+vectoriser = CountVectorizer(ngram_range=(4,4)) #The n-gram size of 4 is previously determined 
+
+# fit & transform
+X = vectoriser.fit_transform(human_texts)
+X_chimp = vectoriser.transform(chimp_texts)
+X_dog = vectoriser.transform(dog_texts)
+```
+
+This will give us the following dataset size, our dictionary for `ngram=4` gives us 232414 features for our model:
+
+```python
+print(X.shape)
+print(X_chimp.shape)
+print(X_dog.shape)
+```
+
+```
+(4380, 232414)
+(1682, 232414)
+(820, 232414)
 ```

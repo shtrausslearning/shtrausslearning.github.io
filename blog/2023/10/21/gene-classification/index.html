@@ -1114,7 +1114,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              9 min read
+                              10 min read
                             
                           </span>
                         </div>
@@ -1343,20 +1343,20 @@
 3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
 4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
 </code></pre></div></p>
-<p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset &amp; its related label:</p>
-<div class="highlight"><pre><span></span><code><span class="n">human_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+<p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset (which can simply be using with <code>fit</code> in <code>CountVectorizer</code>) &amp; its related label:</p>
+<div class="highlight"><pre><span></span><code><span class="n">human_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)):</span>
     <span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
 <span class="c1">#separate labels</span>
 <span class="n">y_human</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_human for human_dna</span>
 
-<span class="n">chimp_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+<span class="n">chimp_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)):</span>
     <span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
 <span class="c1">#separate labels</span>
 <span class="n">y_chim</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_chim for chimp_dna</span>
 
-<span class="n">dog_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;words&#39;</span><span class="p">])</span>
+<span class="n">dog_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)):</span>
     <span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
 <span class="c1">#separate labels</span>
@@ -1365,6 +1365,24 @@
 <div class="highlight"><pre><span></span><code><span class="n">human_texts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag&#39;
+</code></pre></div>
+<p><code>CountVectorizer</code> allows us to control groupings of these kmers, lets use <code>ngram_range</code> of 4. We'll call <code>fit</code> on the human dataset &amp; <code>transform</code> all datasets:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="n">vectoriser</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="c1">#The n-gram size of 4 is previously determined </span>
+
+<span class="c1"># fit &amp; transform</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)</span>
+<span class="n">X_chimp</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)</span>
+<span class="n">X_dog</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)</span>
+</code></pre></div>
+<p>This will give us the following dataset size, our dictionary for <code>ngram=4</code> gives us 232414 features for our model:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_chimp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X_dog</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>(4380, 232414)
+(1682, 232414)
+(820, 232414)
 </code></pre></div>
 
 

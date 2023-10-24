@@ -350,6 +350,8 @@ classifier.fit(X_train, y_train)
 
 ### Human Dataset Prediction
 
+Let's check how well our model performs on the hold out human dataset:
+
 ```python
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
@@ -412,12 +414,13 @@ f1 = 0.993
 
 ### Dog Dataset Prediction
 
+Let's check the classification performance on the dog test dataset:
+
 ```python
 print(pd.crosstab(pd.Series(y_dog, name='Actual'), pd.Series(y_pred_dog, name='Predicted')))
 accuracy, precision, recall, f1 = get_metrics(y_dog, y_pred_dog)
 print("accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f" % (accuracy, precision, recall, f1))
 ```
-
 
 ```
 Predicted    0   1   2   3    4   5    6

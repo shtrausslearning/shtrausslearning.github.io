@@ -70,7 +70,7 @@ chimp_dna = pd.read_table('../input/dna-sequence-dataset/chimpanzee.txt')
 dog_dna = pd.read_table('../input/dna-sequence-dataset/dog.txt')
 ```
 
-## DNA Encoding
+## :octicons-star-16: DNA Encoding
 
 Biological sequences come in the format:
 

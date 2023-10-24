@@ -321,13 +321,13 @@ print(X_dog.shape)
 ```
 
 
-So, for humans we have 4380 genes converted into uniform length feature vectors of 4-gram k-mer (length 6) counts. For chimp and dog, we have the same number of features with 1682 and 820 genes respectively
-
-So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.
+So, for humans we have 4380 genes converted into **uniform length feature vectors of 4-gram k-mer** (length 6) counts. For chimpanzee and dogs, we have the same number of features with 1682 and 820 genes respectively since we `fit` on the human dataset.
 
 ## Training Model
 
-Here we will use the human data to train the model, holding out 20% of the human data to test the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).
+So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.
+
+Here we will use the human data to train the model, **holding out 20%** of the human data to test/evaluation the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).
 
 Next, train/test split human dataset and build simple multinomial **naive Bayes classifier**
 

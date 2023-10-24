@@ -1432,10 +1432,10 @@
 (1682, 232414)
 (820, 232414)
 </code></pre></div>
-<p>So, for humans we have 4380 genes converted into uniform length feature vectors of 4-gram k-mer (length 6) counts. For chimp and dog, we have the same number of features with 1682 and 820 genes respectively</p>
-<p>So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.</p>
+<p>So, for humans we have 4380 genes converted into <strong>uniform length feature vectors of 4-gram k-mer</strong> (length 6) counts. For chimpanzee and dogs, we have the same number of features with 1682 and 820 genes respectively since we <code>fit</code> on the human dataset.</p>
 <h2 id="training-model">Training Model<a class="headerlink" href="#training-model" title="Permanent link"></a></h2>
-<p>Here we will use the human data to train the model, holding out 20% of the human data to test the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).</p>
+<p>So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.</p>
+<p>Here we will use the human data to train the model, <strong>holding out 20%</strong> of the human data to test/evaluation the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).</p>
 <p>Next, train/test split human dataset and build simple multinomial <strong>naive Bayes classifier</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Splitting the human dataset into the training set and test set</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>

@@ -23,7 +23,7 @@ In this notebook, we look at how to work with biological sequence data, by ventu
 
 ### Genes
 
-The dataset that we'll be using contains the following gene classes for three different species, **human**, **chimpanzee** & **dog**, it is added more as a reference for those interested in what each class represents in our data
+The dataset that we'll be using contains the following **gene classes** for three different species, **human**, **chimpanzee** & **dog**, it is added more as a reference for those interested in what each class represents in our data
 
 **Gene families** are groups of related genes that share a common ancestor. Members of gene families may be paralogs or orthologs. Gene paralogs are genes with similar sequences from within the same species while gene orthologs are genes with similar sequences in different species.
 
@@ -441,3 +441,7 @@ f1 = 0.925
 ### Conclusion
 
 For all gene family data, the model is able to produce good results. It also does on Chimpanzee which is because the chimpanzee and humans share the same genetic hierarchy structure. However, the performance on the dog dataset (in comparison) was not quite as good, probably because dogs and human share less common genes.
+
+## Concluding remarks
+
+In this post we looked at an interesting machine learning applicaiton in the field of bioinformatics. We started with a marked dataset for three difference species, containing labelled gene classes of DNA segments extracted from the genome of these species. Our goal was to create a machine learning model that was able to classify input DNA segments into one of the specified classes. For this we utilised a **kmer** preprocessing approach. The resulting model was able to very convinsingly carry out this task without any significant problems, even on non human datasets (chimpanzee & dogs), which is very promising.

@@ -1089,6 +1089,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#concluding-remarks" class="md-nav__link">
+    Concluding remarks
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1162,7 +1169,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              12 min read
+                              13 min read
                             
                           </span>
                         </div>
@@ -1212,7 +1219,7 @@
 <h3 id="gene-classification-problem">Gene Classification Problem<a class="headerlink" href="#gene-classification-problem" title="Permanent link"></a></h3>
 <p><strong>Gene classification</strong> using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems.</p>
 <h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link"></a></h3>
-<p>The dataset that we'll be using contains the following gene classes for three different species, <strong>human</strong>, <strong>chimpanzee</strong> &amp; <strong>dog</strong>, it is added more as a reference for those interested in what each class represents in our data</p>
+<p>The dataset that we'll be using contains the following <strong>gene classes</strong> for three different species, <strong>human</strong>, <strong>chimpanzee</strong> &amp; <strong>dog</strong>, it is added more as a reference for those interested in what each class represents in our data</p>
 <p><strong>Gene families</strong> are groups of related genes that share a common ancestor. Members of gene families may be paralogs or orthologs. Gene paralogs are genes with similar sequences from within the same species while gene orthologs are genes with similar sequences in different species.</p>
 <h4>G Protein-Coupled Receptors</h4>
 
@@ -1523,6 +1530,8 @@ f1 = 0.925
 </code></pre></div>
 <h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h3>
 <p>For all gene family data, the model is able to produce good results. It also does on Chimpanzee which is because the chimpanzee and humans share the same genetic hierarchy structure. However, the performance on the dog dataset (in comparison) was not quite as good, probably because dogs and human share less common genes.</p>
+<h2 id="concluding-remarks">Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permanent link"></a></h2>
+<p>In this post we looked at an interesting machine learning applicaiton in the field of bioinformatics. We started with a marked dataset for three difference species, containing labelled gene classes of DNA segments extracted from the genome of these species. Our goal was to create a machine learning model that was able to classify input DNA segments into one of the specified classes. For this we utilised a <strong>kmer</strong> preprocessing approach. The resulting model was able to very convinsingly carry out this task without any significant problems, even on non human datasets (chimpanzee &amp; dogs), which is very promising.</p>
 
 
 

@@ -237,5 +237,23 @@ For **DNA** sequence classification methods, its more logical to utilise the `km
 
 Our objective is to train a classification model that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.
 
+## Preprocessing
+
+Having already loaded our dataset & define our problem statement, lets create prepare our dataset for training, we'll simply using the `apply` method & store the list of **kmers** in our dataframe
+
+```python
+def kmers_count(seq:str, size:int) -> list:
+    return [seq[x:x+size].lower() for x in range(len(seq) - size + 1)]
+
+human_dna['kmers'] = human_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
+human_dna = human_dna.drop('sequence', axis=1)
+
+chimp_dna['kmers'] = chimp_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
+chimp_dna = chimp_dna.drop('sequence', axis=1)
+
+dog_dna['kmers'] = dog_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
+dog_dna = dog_dna.drop('sequence', axis=1)
+```
+
 
 

@@ -266,19 +266,19 @@ dog_dna = dog_dna.drop('sequence', axis=1)
 Let's create a list containg the **kmers** string for each row in the dataset & its related label:
 
 ```python
-human_texts = list(human_dna['words'])
+human_texts = list(human_dna['kmers'])
 for item in range(len(human_texts)):
     human_texts[item] = ' '.join(human_texts[item])
 #separate labels
 y_human = human_dna.iloc[:, 0].values # y_human for human_dna
 
-chimp_texts = list(chimp_dna['words'])
+chimp_texts = list(chimp_dna['kmers'])
 for item in range(len(chimp_texts)):
     chimp_texts[item] = ' '.join(chimp_texts[item])
 #separate labels
 y_chim = chimp_dna.iloc[:, 0].values # y_chim for chimp_dna
 
-dog_texts = list(dog_dna['words'])
+dog_texts = list(dog_dna['kmers'])
 for item in range(len(dog_texts)):
     dog_texts[item] = ' '.join(dog_texts[item])
 #separate labels

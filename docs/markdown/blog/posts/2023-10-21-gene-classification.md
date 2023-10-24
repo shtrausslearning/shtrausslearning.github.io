@@ -42,8 +42,6 @@ The dataset that we'll be using contains the following **gene classes** for thre
 
      The **tyrosine phosphatase** gene family is a group of genes that encode proteins involved in cellular signaling pathways. These proteins are enzymes that remove phosphate groups from specific tyrosine residues on target proteins, thereby regulating their activity. Tyrosine phosphatases play critical roles in many physiological processes, such as cell growth, differentiation, and survival. Dysregulation of tyrosine phosphatase signaling has also been implicated in a variety of diseases, including cancer, autoimmune disorders, and developmental disorders. Examples of tyrosine phosphatase genes include PTPN1, PTPN6, and PTPN11.
 
-<br>
-
 === "Synthetase"
 
      The **synthetase** gene family is a group of genes that encode for enzymes called aminoacyl-tRNA synthetases. These enzymes are responsible for attaching specific amino acids to their corresponding tRNA molecules during protein synthesis. There are 20 different aminoacyl-tRNA synthetases, one for each amino acid, and each enzyme recognizes and binds to its specific amino acid and tRNA molecule. The synthetase gene family is highly conserved across all living organisms and mutations in these genes can lead to various genetic disorders.

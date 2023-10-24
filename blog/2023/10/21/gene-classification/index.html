@@ -1041,6 +1041,54 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#training-model" class="md-nav__link">
+    Training Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    Evaluation
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#human-dataset-prediction" class="md-nav__link">
+    Human Dataset Prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chimpanzee-dataset-prediction" class="md-nav__link">
+    Chimpanzee Dataset Prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dog-dataset-prediction" class="md-nav__link">
+    Dog Dataset Prediction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1114,7 +1162,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              10 min read
+                              12 min read
                             
                           </span>
                         </div>
@@ -1343,7 +1391,7 @@
 3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
 4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
 </code></pre></div></p>
-<p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset (which can simply be using with <code>fit</code> in <code>CountVectorizer</code>) &amp; its related label:</p>
+<p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset (which can simply be using with <code>fit</code> in <code>CountVectorizer</code>) like we did in the example &amp; its related label:</p>
 <div class="highlight"><pre><span></span><code><span class="n">human_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)):</span>
     <span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
@@ -1384,6 +1432,95 @@
 (1682, 232414)
 (820, 232414)
 </code></pre></div>
+<p>So, for humans we have 4380 genes converted into uniform length feature vectors of 4-gram k-mer (length 6) counts. For chimp and dog, we have the same number of features with 1682 and 820 genes respectively</p>
+<p>So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.</p>
+<h2 id="training-model">Training Model<a class="headerlink" href="#training-model" title="Permanent link"></a></h2>
+<p>Here we will use the human data to train the model, holding out 20% of the human data to test the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).</p>
+<p>Next, train/test split human dataset and build simple multinomial <strong>naive Bayes classifier</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Splitting the human dataset into the training set and test set</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> 
+                                                    <span class="n">y_human</span><span class="p">,</span> 
+                                                    <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> 
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link"></a></h2>
+<h3 id="human-dataset-prediction">Human Dataset Prediction<a class="headerlink" href="#human-dataset-prediction" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
+<span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">):</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">)</span>
+    <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+    <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span>
+<span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Confusion matrix for predictions on human test DNA sequence
+
+Predicted   0    1   2    3    4   5    6
+Actual                                   
+0          99    0   0    0    1   0    2
+1           0  104   0    0    0   0    2
+2           0    0  78    0    0   0    0
+3           0    0   0  124    0   0    1
+4           1    0   0    0  143   0    5
+5           0    0   0    0    0  51    0
+6           1    0   0    1    0   0  263
+accuracy = 0.984 
+precision = 0.984 
+recall = 0.984 
+f1 = 0.984
+</code></pre></div>
+<h3 id="chimpanzee-dataset-prediction">Chimpanzee Dataset Prediction<a class="headerlink" href="#chimpanzee-dataset-prediction" title="Permanent link"></a></h3>
+<p>Let's check how well the model performs on the chimpanzee dataset:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_chim</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_chimp</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
+<span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_chim</span><span class="p">,</span> <span class="n">y_pred_chimp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Confusion matrix for predictions on Chimpanzee test DNA sequence
+
+Predicted    0    1    2    3    4    5    6
+Actual                                      
+0          232    0    0    0    0    0    2
+1            0  184    0    0    0    0    1
+2            0    0  144    0    0    0    0
+3            0    0    0  227    0    0    1
+4            2    0    0    0  254    0    5
+5            0    0    0    0    0  109    0
+6            0    0    0    0    0    0  521
+accuracy = 0.993 
+precision = 0.994 
+recall = 0.993 
+f1 = 0.993
+</code></pre></div>
+<h3 id="dog-dataset-prediction">Dog Dataset Prediction<a class="headerlink" href="#dog-dataset-prediction" title="Permanent link"></a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_dog</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_dog</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
+<span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_dog</span><span class="p">,</span> <span class="n">y_pred_dog</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Predicted    0   1   2   3    4   5    6
+Actual                                  
+0          127   0   0   0    0   0    4
+1            0  63   0   0    1   0   11
+2            0   0  49   0    1   0   14
+3            1   0   0  81    2   0   11
+4            4   0   0   1  126   0    4
+5            4   0   0   0    1  53    2
+6            0   0   0   0    0   0  260
+accuracy = 0.926 
+precision = 0.934 
+recall = 0.926 
+f1 = 0.925
+</code></pre></div>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h3>
+<p>For all gene family data, the model is able to produce good results. It also does on Chimpanzee which is because the chimpanzee and humans share the same genetic hierarchy structure. However, the performance on the dog dataset (in comparison) was not quite as good, probably because dogs and human share less common genes.</p>
 
 
 

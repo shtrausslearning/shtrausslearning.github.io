@@ -263,7 +263,7 @@ dog_dna = dog_dna.drop('sequence', axis=1)
 4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
 ```
 
-Let's create a list containg the **kmers** string for each row in the dataset (which can simply be using with `fit` in `CountVectorizer`) & its related label:
+Let's create a list containg the **kmers** string for each row in the dataset (which can simply be using with `fit` in `CountVectorizer`) like we did in the example & its related label:
 
 ```python
 human_texts = list(human_dna['kmers'])
@@ -319,3 +319,122 @@ print(X_dog.shape)
 (1682, 232414)
 (820, 232414)
 ```
+
+
+So, for humans we have 4380 genes converted into uniform length feature vectors of 4-gram k-mer (length 6) counts. For chimp and dog, we have the same number of features with 1682 and 820 genes respectively
+
+So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.
+
+## Training Model
+
+Here we will use the human data to train the model, holding out 20% of the human data to test the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).
+
+Next, train/test split human dataset and build simple multinomial **naive Bayes classifier**
+
+```python
+# Splitting the human dataset into the training set and test set
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, 
+                                                    y_human, 
+                                                    test_size = 0.20, 
+                                                    random_state=42)
+```
+
+```python
+from sklearn.naive_bayes import MultinomialNB
+classifier = MultinomialNB(alpha=0.1)
+classifier.fit(X_train, y_train)
+```
+
+## Evaluation
+
+### Human Dataset Prediction
+
+```python
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+
+print(pd.crosstab(pd.Series(y_test, name='Actual'), pd.Series(y_pred, name='Predicted')))
+def get_metrics(y_test, y_predicted):
+    accuracy = accuracy_score(y_test, y_predicted)
+    precision = precision_score(y_test, y_predicted, average='weighted')
+    recall = recall_score(y_test, y_predicted, average='weighted')
+    f1 = f1_score(y_test, y_predicted, average='weighted')
+    return accuracy, precision, recall, f1
+accuracy, precision, recall, f1 = get_metrics(y_test, y_pred)
+print("accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f" % (accuracy, precision, recall, f1))
+```
+
+```
+Confusion matrix for predictions on human test DNA sequence
+
+Predicted   0    1   2    3    4   5    6
+Actual                                   
+0          99    0   0    0    1   0    2
+1           0  104   0    0    0   0    2
+2           0    0  78    0    0   0    0
+3           0    0   0  124    0   0    1
+4           1    0   0    0  143   0    5
+5           0    0   0    0    0  51    0
+6           1    0   0    1    0   0  263
+accuracy = 0.984 
+precision = 0.984 
+recall = 0.984 
+f1 = 0.984
+```
+
+### Chimpanzee Dataset Prediction
+
+Let's check how well the model performs on the chimpanzee dataset:
+
+```python
+print(pd.crosstab(pd.Series(y_chim, name='Actual'), pd.Series(y_pred_chimp, name='Predicted')))
+accuracy, precision, recall, f1 = get_metrics(y_chim, y_pred_chimp)
+print("accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f" % (accuracy, precision, recall, f1))
+```
+
+```
+Confusion matrix for predictions on Chimpanzee test DNA sequence
+
+Predicted    0    1    2    3    4    5    6
+Actual                                      
+0          232    0    0    0    0    0    2
+1            0  184    0    0    0    0    1
+2            0    0  144    0    0    0    0
+3            0    0    0  227    0    0    1
+4            2    0    0    0  254    0    5
+5            0    0    0    0    0  109    0
+6            0    0    0    0    0    0  521
+accuracy = 0.993 
+precision = 0.994 
+recall = 0.993 
+f1 = 0.993
+```
+
+### Dog Dataset Prediction
+
+```python
+print(pd.crosstab(pd.Series(y_dog, name='Actual'), pd.Series(y_pred_dog, name='Predicted')))
+accuracy, precision, recall, f1 = get_metrics(y_dog, y_pred_dog)
+print("accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f" % (accuracy, precision, recall, f1))
+```
+
+
+```
+Predicted    0   1   2   3    4   5    6
+Actual                                  
+0          127   0   0   0    0   0    4
+1            0  63   0   0    1   0   11
+2            0   0  49   0    1   0   14
+3            1   0   0  81    2   0   11
+4            4   0   0   1  126   0    4
+5            4   0   0   0    1  53    2
+6            0   0   0   0    0   0  260
+accuracy = 0.926 
+precision = 0.934 
+recall = 0.926 
+f1 = 0.925
+```
+
+### Conclusion
+
+For all gene family data, the model is able to produce good results. It also does on Chimpanzee which is because the chimpanzee and humans share the same genetic hierarchy structure. However, the performance on the dog dataset (in comparison) was not quite as good, probably because dogs and human share less common genes.

@@ -95,7 +95,7 @@ def ordinal_encoder(my_array:list[str]):
     float_encoded[float_encoded == 4] = 0.00 # anything else
     return float_encoded
 
-# Let’s try it out a simple short sequence
+# let’s try it out with a simple sequence
 seq_test = 'TTCAGCCAGTG'
 ordinal_encoder(lst_string(seq_test))
 ```
@@ -120,6 +120,7 @@ def ohe(seq_string:str):
     onehot_encoded = onehot_encoder.fit_transform(int_encoded[:,None])
     return onehot_encoded.toarray()
 
+# let’s try it out with a simple sequence
 seq_test = 'GAATTCTCGAA'
 ohe(seq_test)
 ```
@@ -146,39 +147,52 @@ DNA and protein sequences can be seen as the language of life. The language enco
 The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.
 
 ```python
-def kmers_count(seq, size):
+def kmers_count(seq:str, size:int) -> list:
     return [seq[x:x+size].lower() for x in range(len(seq) - size + 1)]
 
-#So let’s try it out with a simple sequence:
+# let’s try it out with a simple sequence
 mySeq = 'GTGCCCAGGTTCAGTGAGTGACACAGGCAG'
 kmers_count(mySeq, size=7)
 ```
 
 ```
-['gtgccca',
- 'tgcccag',
- 'gcccagg',
- 'cccaggt',
- 'ccaggtt',
- 'caggttc',
- 'aggttca',
- 'ggttcag',
- 'gttcagt',
- 'ttcagtg',
- 'tcagtga',
- 'cagtgag',
- 'agtgagt',
- 'gtgagtg',
- 'tgagtga',
- 'gagtgac',
- 'agtgaca',
- 'gtgacac',
- 'tgacaca',
- 'gacacag',
- 'acacagg',
- 'cacaggc',
- 'acaggca',
- 'caggcag']
+['gtgccc',
+ 'tgccca',
+ 'gcccag',
+ 'cccagg',
+ 'ccaggt',
+ 'caggtt',
+ 'aggttc',
+ 'ggttca',
+ 'gttcag',
+ 'ttcagt',
+ 'tcagtg',
+ 'cagtga',
+ 'agtgag',
+ 'gtgagt',
+ 'tgagtg',
+ 'gagtga',
+ 'agtgac',
+ 'gtgaca',
+ 'tgacac',
+ 'gacaca',
+ 'acacag',
+ 'cacagg',
+ 'acaggc',
+ 'caggca',
+ 'aggcag']
 ```
+
+`kmers_count` returns a list of sequences (`k-mer` words), which then can be joined together into a single `string`. Once we have this split, we can use **NLP** encoding/embedding methods (eg. `CountVectorizer`) to generate numerical representations of these `k-mer` words
+
+```python
+joined_sentence = ' '.join(words)
+joined_sentence
+```
+
+```
+'gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag'
+```
+
 
 

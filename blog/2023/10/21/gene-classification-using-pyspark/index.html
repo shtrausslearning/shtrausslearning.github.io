@@ -1181,7 +1181,7 @@
     <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.00</span> <span class="c1"># anything else</span>
     <span class="k">return</span> <span class="n">float_encoded</span>
 
-<span class="c1"># Let’s try it out a simple short sequence</span>
+<span class="c1"># let’s try it out with a simple sequence</span>
 <span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;TTCAGCCAGTG&#39;</span>
 <span class="n">ordinal_encoder</span><span class="p">(</span><span class="n">lst_string</span><span class="p">(</span><span class="n">seq_test</span><span class="p">))</span>
 </code></pre></div>
@@ -1199,6 +1199,7 @@
     <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">onehot_encoded</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 
+<span class="c1"># let’s try it out with a simple sequence</span>
 <span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;GAATTCTCGAA&#39;</span>
 <span class="n">ohe</span><span class="p">(</span><span class="n">seq_test</span><span class="p">)</span>
 </code></pre></div>
@@ -1218,37 +1219,44 @@
 <p>An issue still remains is that none of these above methods results in vectors of uniform length, and that is a necessity for feeding data to a classification or regression algorithm. So with the above methods, you have to resort to things like truncating sequences or padding with “0” to get vectors of uniform length.</p>
 <p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
 <p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
 
-<span class="c1">#So let’s try it out with a simple sequence:</span>
+<span class="c1"># let’s try it out with a simple sequence</span>
 <span class="n">mySeq</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
 <span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>[&#39;gtgccca&#39;,
- &#39;tgcccag&#39;,
- &#39;gcccagg&#39;,
- &#39;cccaggt&#39;,
- &#39;ccaggtt&#39;,
- &#39;caggttc&#39;,
- &#39;aggttca&#39;,
- &#39;ggttcag&#39;,
- &#39;gttcagt&#39;,
- &#39;ttcagtg&#39;,
- &#39;tcagtga&#39;,
- &#39;cagtgag&#39;,
- &#39;agtgagt&#39;,
- &#39;gtgagtg&#39;,
- &#39;tgagtga&#39;,
- &#39;gagtgac&#39;,
- &#39;agtgaca&#39;,
- &#39;gtgacac&#39;,
- &#39;tgacaca&#39;,
- &#39;gacacag&#39;,
- &#39;acacagg&#39;,
- &#39;cacaggc&#39;,
- &#39;acaggca&#39;,
- &#39;caggcag&#39;]
+<div class="highlight"><pre><span></span><code>[&#39;gtgccc&#39;,
+ &#39;tgccca&#39;,
+ &#39;gcccag&#39;,
+ &#39;cccagg&#39;,
+ &#39;ccaggt&#39;,
+ &#39;caggtt&#39;,
+ &#39;aggttc&#39;,
+ &#39;ggttca&#39;,
+ &#39;gttcag&#39;,
+ &#39;ttcagt&#39;,
+ &#39;tcagtg&#39;,
+ &#39;cagtga&#39;,
+ &#39;agtgag&#39;,
+ &#39;gtgagt&#39;,
+ &#39;tgagtg&#39;,
+ &#39;gagtga&#39;,
+ &#39;agtgac&#39;,
+ &#39;gtgaca&#39;,
+ &#39;tgacac&#39;,
+ &#39;gacaca&#39;,
+ &#39;acacag&#39;,
+ &#39;cacagg&#39;,
+ &#39;acaggc&#39;,
+ &#39;caggca&#39;,
+ &#39;aggcag&#39;]
+</code></pre></div>
+<p><code>kmers_count</code> returns a list of sequences (<code>k-mer</code> words), which then can be joined together into a single <code>string</code>. Once we have this split, we can use <strong>NLP</strong> encoding/embedding methods (eg. <code>CountVectorizer</code>) to generate numerical representations of these <code>k-mer</code> words</p>
+<div class="highlight"><pre><span></span><code><span class="n">joined_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">joined_sentence</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag&#39;
 </code></pre></div>
 
 

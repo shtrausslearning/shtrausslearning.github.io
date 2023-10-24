@@ -348,11 +348,7 @@ classifier = MultinomialNB(alpha=0.1)
 classifier.fit(X_train, y_train)
 ```
 
-## <div style="color:white;display:fill;border-radius:8px;
-            background-color:#323232;font-size:150%;
-            font-family:Nexa;letter-spacing:0.5px">
-    <p style="padding: 8px;color:white;"><b>4 | EVALUATION</b></p>
-</div>
+## Evaluation
 
 For evaluation, we'll be checking the **confusion matrix** as well as some other metrics like **f1_score** for three different subsets of generalisation data:
 

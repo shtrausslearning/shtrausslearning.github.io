@@ -225,4 +225,8 @@ array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
         0, 1, 0, 0, 1]])
 ```
 
+#### Choice of Encoding
+
+For **DNA** sequence classification methods, its more logical to utilise the `kmers` approach since `kmers` are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence.
+
 

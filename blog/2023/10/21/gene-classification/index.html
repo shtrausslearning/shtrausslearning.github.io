@@ -1027,6 +1027,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    Problem Statement
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1100,7 +1107,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              7 min read
+                              8 min read
                             
                           </span>
                         </div>
@@ -1151,6 +1158,7 @@
 <p><strong>Gene classification</strong> using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems.</p>
 <h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link"></a></h3>
 <p>The dataset that we'll be using contains the following gene classes for three different species, <strong>human</strong>, <strong>chimpanzee</strong> &amp; <strong>dog</strong>, it is added more as a reference for those interested in what each class represents in our data</p>
+<p><strong>Gene families</strong> are groups of related genes that share a common ancestor. Members of gene families may be paralogs or orthologs. Gene paralogs are genes with similar sequences from within the same species while gene orthologs are genes with similar sequences in different species.</p>
 <h4>G Protein-Coupled Receptors</h4>
 
 <p>The <strong>G protein-coupled receptors</strong> (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.</p>
@@ -1305,6 +1313,8 @@
 </code></pre></div>
 <h4 id="choice-of-encoding">Choice of Encoding<a class="headerlink" href="#choice-of-encoding" title="Permanent link"></a></h4>
 <p>For <strong>DNA</strong> sequence classification methods, its more logical to utilise the <code>kmers</code> approach since <code>kmers</code> are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence.</p>
+<h2 id="problem-statement">Problem Statement<a class="headerlink" href="#problem-statement" title="Permanent link"></a></h2>
+<p>Our objective is to train a classification model that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.</p>
 
 
 

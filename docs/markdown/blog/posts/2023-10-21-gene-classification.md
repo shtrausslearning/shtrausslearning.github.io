@@ -25,6 +25,9 @@ In this notebook, we look at how to work with biological sequence data, by ventu
 
 The dataset that we'll be using contains the following gene classes for three different species, **human**, **chimpanzee** & **dog**, it is added more as a reference for those interested in what each class represents in our data
 
+**Gene families** are groups of related genes that share a common ancestor. Members of gene families may be paralogs or orthologs. Gene paralogs are genes with similar sequences from within the same species while gene orthologs are genes with similar sequences in different species.
+
+
 <h4>G Protein-Coupled Receptors</h4>
 
 The **G protein-coupled receptors** (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.
@@ -228,5 +231,11 @@ array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
 #### Choice of Encoding
 
 For **DNA** sequence classification methods, its more logical to utilise the `kmers` approach since `kmers` are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence.
+
+
+## Problem Statement
+
+Our objective is to train a classification model that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.
+
 
 

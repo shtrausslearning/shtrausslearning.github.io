@@ -107,7 +107,7 @@ ordinal_encoder(lst_string(seq_test))
 array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
 ```
 
-One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without padding.
+One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without **truncation** or **padding**
 
 #### One-Hot Encoding
 
@@ -141,7 +141,7 @@ array([[0, 0, 1, 0],
        [1, 0, 0, 0]])
 ```
 
-The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either **padding** or **truncation**. If we had used **unitigs** as in [this notebooks](https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction), this problem would not exist
+The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either **padding** or **truncation** again. If we had used **unitigs** as in **[this notebooks](https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction)**, this problem would not exist
 
 #### K-MER Counting
 
@@ -197,7 +197,7 @@ joined_sentence
 'gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag'
 ```
 
-Having a "corpus" of sequences & their labels, we need to merge them together into a single array, for example if we only have two sequences:
+Having a "corpus" of sequences & their labels, we need to merge them together into a single array, for example if we only have two sequences, **even of different length**:
 
 ```python
 mySeq1 = 'TCTCACACATGTGCCAATCACTGTCACCC'
@@ -206,7 +206,7 @@ sentence1 = ' '.join(kmers_count(mySeq1, size=6))
 sentence2 = ' '.join(kmers_count(mySeq2, size=6))
 ```
 
-Fitting a Bag of Words model, we generate a fixed dictionary size of `kmers`, thus all data will have a dimensionality proportional to the dictionary count. Similar to **OHE**, the content will be (1/0), corresponding to either being present in the string or not.
+Fitting a **Bag of Words** model, we generate a fixed dictionary size of `kmers`, thus all data will have a dimensionality proportional to the dictionary count. Similar to **OHE**, the content will be (1/0), corresponding to either being present in the string or not.
 
 ```python
 # Creating the Bag of Words model:

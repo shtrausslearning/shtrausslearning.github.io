@@ -1205,7 +1205,7 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
 </code></pre></div>
-<p>One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without padding.</p>
+<p>One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without <strong>truncation</strong> or <strong>padding</strong></p>
 <h4 id="one-hot-encoding">One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permanent link"></a></h4>
 <p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
@@ -1233,7 +1233,7 @@
        [1, 0, 0, 0],
        [1, 0, 0, 0]])
 </code></pre></div></p>
-<p>The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either <strong>padding</strong> or <strong>truncation</strong>. If we had used <strong>unitigs</strong> as in <a href="https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction">this notebooks</a>, this problem would not exist</p>
+<p>The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either <strong>padding</strong> or <strong>truncation</strong> again. If we had used <strong>unitigs</strong> as in <strong><a href="https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction">this notebooks</a></strong>, this problem would not exist</p>
 <h4 id="k-mer-counting">K-MER Counting<a class="headerlink" href="#k-mer-counting" title="Permanent link"></a></h4>
 <p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
 <p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
@@ -1276,13 +1276,13 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>&#39;gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag&#39;
 </code></pre></div>
-<p>Having a "corpus" of sequences &amp; their labels, we need to merge them together into a single array, for example if we only have two sequences:</p>
+<p>Having a "corpus" of sequences &amp; their labels, we need to merge them together into a single array, for example if we only have two sequences, <strong>even of different length</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">mySeq1</span> <span class="o">=</span> <span class="s1">&#39;TCTCACACATGTGCCAATCACTGTCACCC&#39;</span>
 <span class="n">mySeq2</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
 <span class="n">sentence1</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">sentence2</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
 </code></pre></div>
-<p>Fitting a Bag of Words model, we generate a fixed dictionary size of <code>kmers</code>, thus all data will have a dimensionality proportional to the dictionary count. Similar to <strong>OHE</strong>, the content will be (1/0), corresponding to either being present in the string or not.</p>
+<p>Fitting a <strong>Bag of Words</strong> model, we generate a fixed dictionary size of <code>kmers</code>, thus all data will have a dimensionality proportional to the dictionary count. Similar to <strong>OHE</strong>, the content will be (1/0), corresponding to either being present in the string or not.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Creating the Bag of Words model:</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 

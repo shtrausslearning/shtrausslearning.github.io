@@ -1,11 +1,10 @@
 ---
 date: 2023-10-21
-title: Gene Classification using PySpark
+title: Gene Classification
 authors: [andrey]
 categories:
-     - PySpark
+     - science
 tags:
-     - pyspark
      - classification
      - bioinformatics
 ---
@@ -78,7 +77,7 @@ There are 3 general approaches to encode biological sequence data:
 
 So let us implement each of them and see which gives us the perfect input features.
 
-### Encoding Samples
+### Encoding Sequences
 
 #### Ordinal Encoding
 
@@ -194,5 +193,9 @@ joined_sentence
 'gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag'
 ```
 
-
-
+```python
+mySeq1 = 'TCTCACACATGTGCCAATCACTGTCACCC'
+mySeq2 = 'GTGCCCAGGTTCAGTGAGTGACACAGGCAG'
+sentence1 = ' '.join(kmers_count(mySeq1, size=6))
+sentence2 = ' '.join(kmers_count(mySeq2, size=6))
+```

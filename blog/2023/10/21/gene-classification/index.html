@@ -10,28 +10,26 @@
       
       
       
-        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/">
+        <link rel="canonical" href="https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/10/21/gene-classification/">
       
       
-        <link rel="prev" href="../mllibs/meetups/">
+        <link rel="prev" href="../../13/using-prophet-with-pyspark/">
       
       
-        <link rel="next" href="category/science/">
       
-      
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.6">
     
     
       
-        <title>Blog - Andrey Shtrauss</title>
+        <title>Gene Classification - Andrey Shtrauss</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.35e1ed30.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.35e1ed30.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.356b1318.min.css">
       
       
 
@@ -50,16 +48,16 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-  <link rel="stylesheet" href="../assets/stylesheets/main.5136944a.min.css">
+  <link rel="stylesheet" href="../../../../../assets/stylesheets/main.5136944a.min.css">
 
   </head>
   
@@ -83,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#blog" class="md-skip">
+        <a href="#gene-classification-using-pyspark" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +113,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-header__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
@@ -135,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Blog
+              Gene Classification
             
           </span>
         </div>
@@ -233,7 +231,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -252,7 +250,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../portfolio/nlp/" class="md-tabs__link">
+        <a href="../../../../../portfolio/nlp/" class="md-tabs__link">
           
   
   DS Projects
@@ -270,7 +268,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../mllibs/home/" class="md-tabs__link">
+        <a href="../../../../../mllibs/home/" class="md-tabs__link">
           
   
   mllibs
@@ -290,7 +288,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../../../../" class="md-tabs__link">
           
   
   Blog
@@ -306,7 +304,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../about/" class="md-tabs__link">
+      <a href="../../../../../about/" class="md-tabs__link">
         
   
     
@@ -335,7 +333,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -346,7 +346,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
+    <a href="../../../../.." title="Andrey Shtrauss" class="md-nav__button md-logo" aria-label="Andrey Shtrauss" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
@@ -375,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -435,7 +435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/nlp/" class="md-nav__link">
+      <a href="../../../../../portfolio/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -455,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/internships/" class="md-nav__link">
+      <a href="../../../../../portfolio/internships/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -475,7 +475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/science/" class="md-nav__link">
+      <a href="../../../../../portfolio/science/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -495,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/health/" class="md-nav__link">
+      <a href="../../../../../portfolio/health/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -515,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../portfolio/geospatial/" class="md-nav__link">
+      <a href="../../../../../portfolio/geospatial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -583,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mllibs/home/" class="md-nav__link">
+      <a href="../../../../../mllibs/home/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -603,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mllibs/meetups/" class="md-nav__link">
+      <a href="../../../../../mllibs/meetups/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -673,25 +673,7 @@
   
   
     <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Blog
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+      <a href="../../../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -700,96 +682,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#gene-classification-using-pyspark" class="md-nav__link">
-    Gene Classification using PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-of-subsets" class="md-nav__link">
-    Comparison of Subsets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperparameter-tuning-with-pipelines" class="md-nav__link">
-    Hyperparameter Tuning with Pipelines
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-machine-learning-models-with-pyspark" class="md-nav__link">
-    Creating Machine Learning Models with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing-with-pyspark" class="md-nav__link">
-    Data Preprocessing with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-huggingface-trainer" class="md-nav__link">
-    Named Entity Recognition with Huggingface Trainer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-for-sentence-splitting" class="md-nav__link">
-    Named Entity Recognition for Sentence Splitting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-torch-loop" class="md-nav__link">
-    Named Entity Recognition with Torch Loop
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exploring-taxi-trip-data" class="md-nav__link">
-    Exploring Taxi Trip Data
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -842,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="archive/2023/" class="md-nav__link">
+      <a href="../../../../archive/2023/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -911,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/science/" class="md-nav__link">
+      <a href="../../../../category/science/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -931,7 +823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/pyspark/" class="md-nav__link">
+      <a href="../../../../category/pyspark/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -951,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/eda/" class="md-nav__link">
+      <a href="../../../../category/eda/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -971,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="category/nlp/" class="md-nav__link">
+      <a href="../../../../category/nlp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1006,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
+      <a href="../../../../../about/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1027,6 +919,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -1046,72 +940,83 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gene-classification-using-pyspark" class="md-nav__link">
-    Gene Classification using PySpark
+  <a href="#background" class="md-nav__link">
+    Background
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gene-classification-problem" class="md-nav__link">
+    Gene Classification Problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genes" class="md-nav__link">
+    Genes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    Dataset
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#utilising-prophet-with-pyspark" class="md-nav__link">
-    Utilising Prophet with PySpark
+  <a href="#dna-encoding" class="md-nav__link">
+    DNA Encoding
+  </a>
+  
+    <nav class="md-nav" aria-label="DNA Encoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encoding-sequences" class="md-nav__link">
+    Encoding Sequences
+  </a>
+  
+    <nav class="md-nav" aria-label="Encoding Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ordinal-encoding" class="md-nav__link">
+    Ordinal Encoding
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#comparison-of-subsets" class="md-nav__link">
-    Comparison of Subsets
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding" class="md-nav__link">
+    One-Hot Encoding
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperparameter-tuning-with-pipelines" class="md-nav__link">
-    Hyperparameter Tuning with Pipelines
+        
+          <li class="md-nav__item">
+  <a href="#k-mer-counting" class="md-nav__link">
+    K-MER Counting
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-machine-learning-models-with-pyspark" class="md-nav__link">
-    Creating Machine Learning Models with PySpark
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing-with-pyspark" class="md-nav__link">
-    Data Preprocessing with PySpark
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-huggingface-trainer" class="md-nav__link">
-    Named Entity Recognition with Huggingface Trainer
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-for-sentence-splitting" class="md-nav__link">
-    Named Entity Recognition for Sentence Splitting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#named-entity-recognition-with-torch-loop" class="md-nav__link">
-    Named Entity Recognition with Torch Loop
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exploring-taxi-trip-data" class="md-nav__link">
-    Exploring Taxi Trip Data
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1124,482 +1029,263 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <div class="md-content__inner">
-      <header class="md-typeset">
-        <h1 id="blog">Blog<a class="headerlink" href="#blog" title="Permanent link"></a></h1>
-      </header>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-10-21 00:00:00">October 21, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
             
-              <a href="category/science/" class="md-meta__link">science</a></li>
-        
-        
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Andrey Shtrauss</strong><br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-10-21 00:00:00" class="md-ellipsis">October 21, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/science/">science</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              6 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="gene-classification-using-pyspark"><a class="toclink" href="2023/10/21/gene-classification/"><strong>Gene Classification using PySpark</strong></a></h2>
-<p>In this notebook, we look at how to work with biological sequence data, by venturing into a classification problem, in which we will be classifying between six different genes groups common to three different species (human,chimpanzee &amp; dog)</p>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
 
-    <nav class="md-post__action">
-      <a href="2023/10/21/gene-classification/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
+<nav class="md-tags" >
+  
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-10-13 00:00:00">October 13, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              13 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="utilising-prophet-with-pyspark"><a class="toclink" href="2023/10/13/using-prophet-with-pyspark/"><strong>Utilising Prophet with PySpark</strong></a></h2>
-<p>In this notebook, we look at how to use a popular machine learning library <code>prophet</code> with <code>pyspark</code>. <code>pyspark</code> itself does not contain such an additive regression model, however we can utilise user defined functions <code>UDF</code>, which allows us to use different functionality that is not available in <code>pyspark</code></p>
-<p><img alt="" src="https://i.imgur.com/AKN6i7l.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/10/13/using-prophet-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
+      <span class="md-tag">classification</span>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-09-25 00:00:00">September 25, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/eda/" class="md-meta__link">EDA</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              9 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="comparison-of-subsets"><a class="toclink" href="2023/09/25/comparison-of-subsets/"><strong>Comparison of Subsets</strong></a></h2>
-<p>An important concept in machine learning is <strong>model generalisation</strong> &amp; <strong>performance deterioration</strong>. When we train a model, we perform an <strong>optimisation step</strong>, using <strong>metrics</strong> and/or <strong>loss</strong> values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. </p>
-<p><img alt="" src="https://i.imgur.com/VVSWEc3.png" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/09/25/comparison-of-subsets/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
+  
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-22 00:00:00">August 22, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="hyperparameter-tuning-with-pipelines"><a class="toclink" href="2023/08/22/hyperparameter-tuning-with-pipelines/"><strong>Hyperparameter Tuning with Pipelines</strong></a></h2>
-<p>This post is the last of the three posts on the titanic classification problem in <code>pyspark</code>. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising <code>StringIndexer</code> &amp; <code>VectorAssembler</code>, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single <code>pipline</code>. <code>pyspark</code> like <code>sklearn</code> has such pipeline classes that help us keep things organised</p>
-<p><img alt="" src="https://i.imgur.com/yMhC2om.png" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/22/hyperparameter-tuning-with-pipelines/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
     
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
+      <span class="md-tag">bioinformatics</span>
     
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-21 00:00:00">August 21, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              7 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="creating-machine-learning-models-with-pyspark"><a class="toclink" href="2023/08/21/creating-machine-learning-models-with-pyspark/"><strong>Creating Machine Learning Models with PySpark</strong></a></h2>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <strong><a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a></strong> post. We are continuing on from the previous post <strong><a href="https://shtrausslearning.github.io/posts/spark-preprocess/">PySpark Titanic Preprocessing</a></strong>, where we did some basic <strong>data preprocessing</strong>, here we will continue on with the modeling stage of our project.</p>
-<p><img alt="" src="https://i.imgur.com/SO7B5nM.png" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/21/creating-machine-learning-models-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-20 00:00:00">August 20, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              6 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="data-preprocessing-with-pyspark"><a class="toclink" href="2023/08/20/data-preprocessing-with-pyspark/"><strong>Data Preprocessing with PySpark</strong></a></h2>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a> post</p>
-<p><img alt="" src="https://i.imgur.com/1RXWOhX.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/20/data-preprocessing-with-pyspark/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-19 00:00:00">August 19, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/nlp/" class="md-meta__link">NLP</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              11 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="named-entity-recognition-with-huggingface-trainer"><a class="toclink" href="2023/08/19/named-entity-recognition-with-huggingface-trainer/"><strong>Named Entity Recognition with Huggingface Trainer</strong></a></h2>
-<p>In a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong> we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model &amp; defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the <strong>training</strong> &amp; <strong>inference</strong> steps quite a lot. We'll be using the <strong>trainer</strong> &amp; <strong>pipeline</strong> methods of the Huggingface library and will use a dataset used in <strong><a href="https://pypi.org/project/mllibs/">mllibs</a></strong>, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.</p>
-<p><img alt="" src="https://i.imgur.com/kcuAYbI.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/19/named-entity-recognition-with-huggingface-trainer/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-11 00:00:00">August 11, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/nlp/" class="md-meta__link">NLP</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              12 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="named-entity-recognition-for-sentence-splitting"><a class="toclink" href="2023/08/11/named-entity-recognition-for-sentence-splitting/"><strong>Named Entity Recognition for Sentence Splitting</strong></a></h2>
-<p>In the last post, we talked about how to use <strong>NER</strong> for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding &amp; ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for <strong>NER</strong> tagging, which I've implemented in my project <strong><a href="https://github.com/shtrausslearning/mllibs">mllibs</a></strong></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/11/named-entity-recognition-for-sentence-splitting/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-10 00:00:00">August 10, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/nlp/" class="md-meta__link">NLP</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              16 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="named-entity-recognition-with-torch-loop"><a class="toclink" href="2023/08/10/named-entity-recognition-with-torch/"><strong>Named Entity Recognition with Torch Loop</strong></a></h2>
-<p>In this notebook, we'll take a look at how we can utilise <code>HuggingFace</code> to easily load and use <code>BERT</code> for token classification. Whilst we are loading both the base model &amp; tokeniser from <code>HuggingFace</code>, we'll be using a custom <code>Torch</code> training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising <code>Massive</code> dataset by Amazon and fine-tune the transformer encoder <code>BERT</code></p>
-<p><img alt="" src="https://i.imgur.com/860MOA6.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/10/named-entity-recognition-with-torch/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-        <article class="md-post md-post--excerpt">
-  <header class="md-post__header">
-    
-      <nav class="md-post__authors md-typeset">
-        
-          <span class="md-author">
-            <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
-          </span>
-        
-      </nav>
-    
-    <div class="md-post__meta md-meta">
-      <ul class="md-meta__list">
-        <li class="md-meta__item">
-          <time datetime="2023-08-07 00:00:00">August 7, 2023</time></li>
-        
-          <li class="md-meta__item">
-            in
-            
-              <a href="category/pyspark/" class="md-meta__link">PySpark</a></li>
-        
-        
-          
-          <li class="md-meta__item">
-            
-              12 min read
-            
-          </li>
-        
-      </ul>
-      
-    </div>
-  </header>
-  <div class="md-post__content md-typeset">
-    <h2 id="exploring-taxi-trip-data"><a class="toclink" href="2023/08/07/exploring-taxi-trip-data/"><strong>Exploring Taxi Trip Data</strong></a></h2>
-<p>В этом посте мы будем использовать <code>spark</code> для раздедовательного анализа поездак такси для данных их города Чикаго. Когда данных становится слишком много, <code>pandas</code> работает медленее чем <code>spark</code>, поэтому будем использовать этот инструмент для разведовательного анализа.</p>
-<p><img alt="" src="https://i.imgur.com/NTERkyK.jpg" /></p>
-
-    <nav class="md-post__action">
-      <a href="2023/08/07/exploring-taxi-trip-data/">
-        Continue reading
-      </a>
-    </nav>
-  </div>
-</article>
-      
-      
-        
-          
-
-
-
-<nav class="md-pagination">
   
 </nav>
-        
+
+
+  
+  
+
+
+<h1 id="gene-classification-using-pyspark"><strong>Gene Classification using PySpark</strong><a class="headerlink" href="#gene-classification-using-pyspark" title="Permanent link"></a></h1>
+<p>In this notebook, we look at how to work with biological sequence data, by venturing into a classification problem, in which we will be classifying between six different genes groups common to three different species (human,chimpanzee &amp; dog)</p>
+<!-- more -->
+
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link"></a></h2>
+<h3 id="gene-classification-problem">Gene Classification Problem<a class="headerlink" href="#gene-classification-problem" title="Permanent link"></a></h3>
+<p><strong>Gene classification</strong> using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems.</p>
+<h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link"></a></h3>
+<p>The dataset that we'll be using contains the following gene classes for three different species, <strong>human</strong>, <strong>chimpanzee</strong> &amp; <strong>dog</strong>, it is added more as a reference for those interested in what each class represents in our data</p>
+<h4>G Protein-Coupled Receptors</h4>
+
+<p>The <strong>G protein-coupled receptors</strong> (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.</p>
+<h4>Tyrosine Kinase</h4>
+
+<p>The <strong>tyrosine kinase</strong> gene family is a group of genes that encode proteins involved in cellular signaling pathways. These proteins are enzymes that add phosphate groups to specific tyrosine residues on target proteins, thereby regulating their activity. Tyrosine kinases play critical roles in many physiological processes, such as cell growth, differentiation, and survival. Dysregulation of tyrosine kinase signaling has been implicated in a variety of diseases, including cancer, autoimmune disorders, and developmental disorders. Examples of tyrosine kinase genes include EGFR, HER2, and BCR-ABL.</p>
+<h4>Tyrosine Phosphatase</h4>
+
+<p>The <strong>tyrosine phosphatase</strong> gene family is a group of genes that encode proteins involved in cellular signaling pathways. These proteins are enzymes that remove phosphate groups from specific tyrosine residues on target proteins, thereby regulating their activity. Tyrosine phosphatases play critical roles in many physiological processes, such as cell growth, differentiation, and survival. Dysregulation of tyrosine phosphatase signaling has also been implicated in a variety of diseases, including cancer, autoimmune disorders, and developmental disorders. Examples of tyrosine phosphatase genes include PTPN1, PTPN6, and PTPN11.</p>
+<h4>Synthetase</h4>
+
+<p>The <strong>synthetase</strong> gene family is a group of genes that encode for enzymes called aminoacyl-tRNA synthetases. These enzymes are responsible for attaching specific amino acids to their corresponding tRNA molecules during protein synthesis. There are 20 different aminoacyl-tRNA synthetases, one for each amino acid, and each enzyme recognizes and binds to its specific amino acid and tRNA molecule. The synthetase gene family is highly conserved across all living organisms and mutations in these genes can lead to various genetic disorders.</p>
+<h4>Synthase</h4>
+
+<p>The <strong>synthase</strong> gene family is a group of genes that encode enzymes responsible for synthesizing various molecules within cells. These enzymes are involved in a wide range of biological processes, including the synthesis of lipids, nucleotides, and amino acids. Different members of the synthase gene family may be involved in different aspects of these processes, and mutations in these genes can lead to a variety of diseases and disorders. Examples of synthase genes include fatty acid synthase, which is involved in the synthesis of fatty acids, and adenylyl cyclase, which synthesizes the signaling molecule cyclic AMP.</p>
+<h4>Ion Channel</h4>
+
+<p>The <strong>ion channel</strong> gene family is a group of genes that encode proteins responsible for the transport of ions across cell membranes. These proteins are integral membrane proteins that form pores or channels in the lipid bilayer of the cell membrane, allowing the selective movement of ions such as sodium, potassium, calcium, and chloride. Ion channels are critical for many physiological processes, including muscle contraction, nerve signaling, and hormone secretion. Dysregulation of ion channel activity has been implicated in a variety of diseases, including epilepsy, cardiac arrhythmias, and cystic fibrosis. Examples of ion channel genes include SCN1A, KCNQ1, and CFTR.</p>
+<h4>Transcription Factors</h4>
+
+<p>The <strong>transcription factor</strong> gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
+<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
+<p>We're loading three DNA datasets, our dataset is in the form of a <code>sequence</code> &amp; subsequent <strong>gene family</strong> label, <code>class</code></p>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<h2 id="dna-encoding">DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h2>
+<p>Biological sequences come in the format:</p>
+<blockquote>
+<p>GTGCCCAGGTTCAGTGAGTGACACAGGCAG</p>
+</blockquote>
+<p>This mimics a standard <strong>NLP</strong> based problem, in which we need to convert text into numerical representation before we can feed this data into our models</p>
+<p>There are 3 general approaches to encode biological sequence data:</p>
+<ol>
+<li>Ordinal encoding DNA Sequence</li>
+<li>One-Hot encoding DNA Sequence</li>
+<li>DNA sequence as a “language”, known as <code>k-mer</code> counting</li>
+</ol>
+<p>So let us implement each of them and see which gives us the perfect input features.</p>
+<h3 id="encoding-sequences">Encoding Sequences<a class="headerlink" href="#encoding-sequences" title="Permanent link"></a></h3>
+<h4 id="ordinal-encoding">Ordinal Encoding<a class="headerlink" href="#ordinal-encoding" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># encode list of strings</span>
+<span class="k">def</span> <span class="nf">ordinal_encoder</span><span class="p">(</span><span class="n">my_array</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">my_array</span><span class="p">)</span>
+    <span class="n">float_encoded</span> <span class="o">=</span> <span class="n">integer_encoded</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="c1"># A</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.50</span> <span class="c1"># C</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="c1"># G</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.00</span> <span class="c1"># T</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.00</span> <span class="c1"># anything else</span>
+    <span class="k">return</span> <span class="n">float_encoded</span>
+
+<span class="c1"># let’s try it out with a simple sequence</span>
+<span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;TTCAGCCAGTG&#39;</span>
+<span class="n">ordinal_encoder</span><span class="p">(</span><span class="n">lst_string</span><span class="p">(</span><span class="n">seq_test</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
+</code></pre></div>
+<h4 id="one-hot-encoding">One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permanent link"></a></h4>
+<p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
+<p><code>sklearn</code> contains a easy to use out of the box solution to OHE, so we'll use that for our function. </p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="k">def</span> <span class="nf">ohe</span><span class="p">(</span><span class="n">seq_string</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">seq_string</span> <span class="o">=</span> <span class="n">lst_string</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
+    <span class="n">int_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
+    <span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">onehot_encoded</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+
+<span class="c1"># let’s try it out with a simple sequence</span>
+<span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;GAATTCTCGAA&#39;</span>
+<span class="n">ohe</span><span class="p">(</span><span class="n">seq_test</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>array([[0, 0, 1, 0],
+       [1, 0, 0, 0],
+       [1, 0, 0, 0],
+       [0, 0, 0, 1],
+       [0, 0, 0, 1],
+       [0, 1, 0, 0],
+       [0, 0, 0, 1],
+       [0, 1, 0, 0],
+       [0, 0, 1, 0],
+       [1, 0, 0, 0],
+       [1, 0, 0, 0]])
+</code></pre></div></p>
+<h4 id="k-mer-counting">K-MER Counting<a class="headerlink" href="#k-mer-counting" title="Permanent link"></a></h4>
+<p>An issue still remains is that none of these above methods results in vectors of uniform length, and that is a necessity for feeding data to a classification or regression algorithm. So with the above methods, you have to resort to things like truncating sequences or padding with “0” to get vectors of uniform length.</p>
+<p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
+<p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1"># let’s try it out with a simple sequence</span>
+<span class="n">mySeq</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
+<span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;gtgccc&#39;,
+ &#39;tgccca&#39;,
+ &#39;gcccag&#39;,
+ &#39;cccagg&#39;,
+ &#39;ccaggt&#39;,
+ &#39;caggtt&#39;,
+ &#39;aggttc&#39;,
+ &#39;ggttca&#39;,
+ &#39;gttcag&#39;,
+ &#39;ttcagt&#39;,
+ &#39;tcagtg&#39;,
+ &#39;cagtga&#39;,
+ &#39;agtgag&#39;,
+ &#39;gtgagt&#39;,
+ &#39;tgagtg&#39;,
+ &#39;gagtga&#39;,
+ &#39;agtgac&#39;,
+ &#39;gtgaca&#39;,
+ &#39;tgacac&#39;,
+ &#39;gacaca&#39;,
+ &#39;acacag&#39;,
+ &#39;cacagg&#39;,
+ &#39;acaggc&#39;,
+ &#39;caggca&#39;,
+ &#39;aggcag&#39;]
+</code></pre></div>
+<p><code>kmers_count</code> returns a list of sequences (<code>k-mer</code> words), which then can be joined together into a single <code>string</code>. Once we have this split, we can use <strong>NLP</strong> encoding/embedding methods (eg. <code>CountVectorizer</code>) to generate numerical representations of these <code>k-mer</code> words</p>
+<div class="highlight"><pre><span></span><code><span class="n">joined_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">joined_sentence</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&#39;gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag&#39;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mySeq1</span> <span class="o">=</span> <span class="s1">&#39;TCTCACACATGTGCCAATCACTGTCACCC&#39;</span>
+<span class="n">mySeq2</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
+<span class="n">sentence1</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">sentence2</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+</code></pre></div>
+
+
+
+  
+
+
+
       
-    </div>
+    </article>
   </div>
 
           
@@ -1674,20 +1360,20 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.sections", "navigation.expand", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
   
-      <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.aecac24b.min.js"></script>
       
-        <script src="../javascripts/mathjax.js"></script>
+        <script src="../../../../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
-  <script src="../assets/javascripts/bundle.04c13cf5.min.js"></script>
+  <script src="../../../../../assets/javascripts/bundle.04c13cf5.min.js"></script>
 
   </body>
 </html>

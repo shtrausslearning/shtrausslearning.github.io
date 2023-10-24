@@ -66,7 +66,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/10/21/gene-classification-using-pyspark/</loc>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/2023/10/21/gene-classification/</loc>
          <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -112,6 +112,11 @@
     </url>
     <url>
          <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/archive/2023/</loc>
+         <lastmod>2023-10-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/shtrausslearning/shtrausslearning.github.io/blog/category/science/</loc>
          <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>

@@ -947,13 +947,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-spark-session" class="md-nav__link">
-    Create Spark Session
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dataset" class="md-nav__link">
     Dataset
   </a>
@@ -986,6 +979,13 @@
           <li class="md-nav__item">
   <a href="#one-hot-encoding" class="md-nav__link">
     One-Hot Encoding
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-mer-counting" class="md-nav__link">
+    K-MER Counting
   </a>
   
 </li>
@@ -1073,7 +1073,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              5 min read
+                              6 min read
                             
                           </span>
                         </div>
@@ -1151,32 +1151,9 @@
 <h4>Transcription Factors</h4>
 
 <p>The <strong>transcription factor</strong> gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
-<h2 id="create-spark-session">Create Spark Session<a class="headerlink" href="#create-spark-session" title="Permanent link"></a></h2>
-<p>As with any other pyspark project, lets create a pyspark session. Let's also import functions so we can use <code>UDF</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
-
-<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
-                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;Task&#39;</span><span class="p">)</span> \
-                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-</code></pre></div>
 <h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
 <p>We're loading three DNA datasets, our dataset is in the form of a <code>sequence</code> &amp; subsequent <strong>gene family</strong> label, <code>class</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">human</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;human.txt&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">chimpanzee</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;chimpanzee.txt&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">dog</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;dog.txt&#39;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">human</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-
-<span class="o">+--------------------+-----+</span>
-<span class="o">|</span>            <span class="n">sequence</span><span class="o">|</span><span class="n">class</span><span class="o">|</span>
-<span class="o">+--------------------+-----+</span>
-<span class="o">|</span><span class="n">ATGCCCCAACTAAATAC</span><span class="o">...|</span>    <span class="mi">4</span><span class="o">|</span>
-<span class="o">|</span><span class="n">ATGAACGAAAATCTGTT</span><span class="o">...|</span>    <span class="mi">4</span><span class="o">|</span>
-<span class="o">|</span><span class="n">ATGTGTGGCATTTGGGC</span><span class="o">...|</span>    <span class="mi">3</span><span class="o">|</span>
-<span class="o">|</span><span class="n">ATGTGTGGCATTTGGGC</span><span class="o">...|</span>    <span class="mi">3</span><span class="o">|</span>
-<span class="o">|</span><span class="n">ATGCAACAGCATTTTGA</span><span class="o">...|</span>    <span class="mi">3</span><span class="o">|</span>
-<span class="o">+--------------------+-----+</span>
-<span class="n">only</span> <span class="n">showing</span> <span class="n">top</span> <span class="mi">5</span> <span class="n">rows</span>
+<div class="highlight"><pre><span></span><code>
 </code></pre></div>
 <h2 id="dna-encoding">DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h2>
 <p>Biological sequences come in the format:</p>
@@ -1193,42 +1170,86 @@
 <p>So let us implement each of them and see which gives us the perfect input features.</p>
 <h3 id="encoding-samples">Encoding Samples<a class="headerlink" href="#encoding-samples" title="Permanent link"></a></h3>
 <h4 id="ordinal-encoding">Ordinal Encoding<a class="headerlink" href="#ordinal-encoding" title="Permanent link"></a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># encode list of strings</span>
+<span class="k">def</span> <span class="nf">ordinal_encoder</span><span class="p">(</span><span class="n">my_array</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+    <span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">my_array</span><span class="p">)</span>
+    <span class="n">float_encoded</span> <span class="o">=</span> <span class="n">integer_encoded</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="c1"># A</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.50</span> <span class="c1"># C</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="c1"># G</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.00</span> <span class="c1"># T</span>
+    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.00</span> <span class="c1"># anything else</span>
+    <span class="k">return</span> <span class="n">float_encoded</span>
+
+<span class="c1"># Let’s try it out a simple short sequence</span>
+<span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;TTCAGCCAGTG&#39;</span>
+<span class="n">ordinal_encoder</span><span class="p">(</span><span class="n">lst_string</span><span class="p">(</span><span class="n">seq_test</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
+</code></pre></div>
 <h4 id="one-hot-encoding">One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permanent link"></a></h4>
 <p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
 <p><code>sklearn</code> contains a easy to use out of the box solution to OHE, so we'll use that for our function. </p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">sklearn</label><label for="__tabbed_1_2">pyspark</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
 
 <span class="k">def</span> <span class="nf">ohe</span><span class="p">(</span><span class="n">seq_string</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="n">seq_string</span> <span class="o">=</span> <span class="n">lst_string</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
     <span class="n">int_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
-    <span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">onehot_encoded</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">onehot_encoded</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
 
 <span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;GAATTCTCGAA&#39;</span>
 <span class="n">ohe</span><span class="p">(</span><span class="n">seq_test</span><span class="p">)</span>
 </code></pre></div>
- <div class="highlight"><pre><span></span><code>[[0, 0, 1, 0],
- [1, 0, 0, 0],
- [1, 0, 0, 0],
- [0, 0, 0, 1],
- [0, 0, 0, 1],
- [0, 1, 0, 0],
- [0, 0, 0, 1],
- [0, 1, 0, 0],
- [0, 0, 1, 0],
- [1, 0, 0, 0],
- [1, 0, 0, 0]]
+<div class="highlight"><pre><span></span><code>array([[0, 0, 1, 0],
+       [1, 0, 0, 0],
+       [1, 0, 0, 0],
+       [0, 0, 0, 1],
+       [0, 0, 0, 1],
+       [0, 1, 0, 0],
+       [0, 0, 0, 1],
+       [0, 1, 0, 0],
+       [0, 0, 1, 0],
+       [1, 0, 0, 0],
+       [1, 0, 0, 0]])
 </code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>pyspark will use the <code>sklearn</code> function but will be wrapped in a <code>UDF</code></p>
-</div>
-</div>
-</div>
+<h4 id="k-mer-counting">K-MER Counting<a class="headerlink" href="#k-mer-counting" title="Permanent link"></a></h4>
+<p>An issue still remains is that none of these above methods results in vectors of uniform length, and that is a necessity for feeding data to a classification or regression algorithm. So with the above methods, you have to resort to things like truncating sequences or padding with “0” to get vectors of uniform length.</p>
+<p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
+<p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+<span class="c1">#So let’s try it out with a simple sequence:</span>
+<span class="n">mySeq</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
+<span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[&#39;gtgccca&#39;,
+ &#39;tgcccag&#39;,
+ &#39;gcccagg&#39;,
+ &#39;cccaggt&#39;,
+ &#39;ccaggtt&#39;,
+ &#39;caggttc&#39;,
+ &#39;aggttca&#39;,
+ &#39;ggttcag&#39;,
+ &#39;gttcagt&#39;,
+ &#39;ttcagtg&#39;,
+ &#39;tcagtga&#39;,
+ &#39;cagtgag&#39;,
+ &#39;agtgagt&#39;,
+ &#39;gtgagtg&#39;,
+ &#39;tgagtga&#39;,
+ &#39;gagtgac&#39;,
+ &#39;agtgaca&#39;,
+ &#39;gtgacac&#39;,
+ &#39;tgacaca&#39;,
+ &#39;gacacag&#39;,
+ &#39;acacagg&#39;,
+ &#39;cacaggc&#39;,
+ &#39;acaggca&#39;,
+ &#39;caggcag&#39;]
+</code></pre></div>
 
 
 

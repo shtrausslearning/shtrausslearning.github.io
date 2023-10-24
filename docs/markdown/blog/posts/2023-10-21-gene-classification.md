@@ -58,7 +58,11 @@ The **transcription factor** gene family is a group of genes that encode protein
 We're loading three DNA datasets, our dataset is in the form of a `sequence` & subsequent **gene family** label, `class`
 
 ```python
+import pandas as pd
 
+human_dna = pd.read_table('../input/dna-sequence-dataset/human.txt')
+chimp_dna = pd.read_table('../input/dna-sequence-dataset/chimpanzee.txt')
+dog_dna = pd.read_table('../input/dna-sequence-dataset/dog.txt')
 ```
 
 ## DNA Encoding

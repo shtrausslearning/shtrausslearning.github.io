@@ -1167,7 +1167,11 @@
 <p>The <strong>transcription factor</strong> gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
 <h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
 <p>We're loading three DNA datasets, our dataset is in the form of a <code>sequence</code> &amp; subsequent <strong>gene family</strong> label, <code>class</code></p>
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">human_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/human.txt&#39;</span><span class="p">)</span>
+<span class="n">chimp_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/chimpanzee.txt&#39;</span><span class="p">)</span>
+<span class="n">dog_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/dog.txt&#39;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="dna-encoding">DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h2>
 <p>Biological sequences come in the format:</p>

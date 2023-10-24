@@ -1212,7 +1212,7 @@
 
 
 <h1 id="gene-classification"><strong>Gene Classification</strong><a class="headerlink" href="#gene-classification" title="Permanent link"></a></h1>
-<p>In this notebook, we look at how to work with biological sequence data, by venturing into a classification problem, in which we will be classifying between six different genes groups common to three different species (human,chimpanzee &amp; dog)</p>
+<p>In this notebook, we look at how to work with biological sequence data, by venturing into a <strong>classification problem</strong>, in which we will be classifying between seven different <strong>genes groups</strong> common to three different species (human,chimpanzee &amp; dog)</p>
 <p><img alt="" src="https://i.imgur.com/bGvobdI.jpg" /></p>
 <!-- more -->
 
@@ -1222,27 +1222,35 @@
 <h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link"></a></h3>
 <p>The dataset that we'll be using contains the following <strong>gene classes</strong> for three different species, <strong>human</strong>, <strong>chimpanzee</strong> &amp; <strong>dog</strong>, it is added more as a reference for those interested in what each class represents in our data</p>
 <p><strong>Gene families</strong> are groups of related genes that share a common ancestor. Members of gene families may be paralogs or orthologs. Gene paralogs are genes with similar sequences from within the same species while gene orthologs are genes with similar sequences in different species.</p>
-<h4>G Protein-Coupled Receptors</h4>
-
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">G Protein-Coupled Receptors</label><label for="__tabbed_1_2">Tyrosine Kinase</label><label for="__tabbed_1_3">Tyrosine Phosphatase</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>The <strong>G protein-coupled receptors</strong> (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.</p>
-<h4>Tyrosine Kinase</h4>
-
+</div>
+<div class="tabbed-block">
 <p>The <strong>tyrosine kinase</strong> gene family is a group of genes that encode proteins involved in cellular signaling pathways. These proteins are enzymes that add phosphate groups to specific tyrosine residues on target proteins, thereby regulating their activity. Tyrosine kinases play critical roles in many physiological processes, such as cell growth, differentiation, and survival. Dysregulation of tyrosine kinase signaling has been implicated in a variety of diseases, including cancer, autoimmune disorders, and developmental disorders. Examples of tyrosine kinase genes include EGFR, HER2, and BCR-ABL.</p>
-<h4>Tyrosine Phosphatase</h4>
-
+</div>
+<div class="tabbed-block">
 <p>The <strong>tyrosine phosphatase</strong> gene family is a group of genes that encode proteins involved in cellular signaling pathways. These proteins are enzymes that remove phosphate groups from specific tyrosine residues on target proteins, thereby regulating their activity. Tyrosine phosphatases play critical roles in many physiological processes, such as cell growth, differentiation, and survival. Dysregulation of tyrosine phosphatase signaling has also been implicated in a variety of diseases, including cancer, autoimmune disorders, and developmental disorders. Examples of tyrosine phosphatase genes include PTPN1, PTPN6, and PTPN11.</p>
-<h4>Synthetase</h4>
-
-<p>The <strong>synthetase</strong> gene family is a group of genes that encode for enzymes called aminoacyl-tRNA synthetases. These enzymes are responsible for attaching specific amino acids to their corresponding tRNA molecules during protein synthesis. There are 20 different aminoacyl-tRNA synthetases, one for each amino acid, and each enzyme recognizes and binds to its specific amino acid and tRNA molecule. The synthetase gene family is highly conserved across all living organisms and mutations in these genes can lead to various genetic disorders.</p>
-<h4>Synthase</h4>
-
-<p>The <strong>synthase</strong> gene family is a group of genes that encode enzymes responsible for synthesizing various molecules within cells. These enzymes are involved in a wide range of biological processes, including the synthesis of lipids, nucleotides, and amino acids. Different members of the synthase gene family may be involved in different aspects of these processes, and mutations in these genes can lead to a variety of diseases and disorders. Examples of synthase genes include fatty acid synthase, which is involved in the synthesis of fatty acids, and adenylyl cyclase, which synthesizes the signaling molecule cyclic AMP.</p>
-<h4>Ion Channel</h4>
-
+</div>
+</div>
+</div>
+<p>=== Synthetase</p>
+<div class="highlight"><pre><span></span><code> The **synthetase** gene family is a group of genes that encode for enzymes called aminoacyl-tRNA synthetases. These enzymes are responsible for attaching specific amino acids to their corresponding tRNA molecules during protein synthesis. There are 20 different aminoacyl-tRNA synthetases, one for each amino acid, and each enzyme recognizes and binds to its specific amino acid and tRNA molecule. The synthetase gene family is highly conserved across all living organisms and mutations in these genes can lead to various genetic disorders.
+</code></pre></div>
+<p>=== Synthase</p>
+<div class="highlight"><pre><span></span><code> The **synthase** gene family is a group of genes that encode enzymes responsible for synthesizing various molecules within cells. These enzymes are involved in a wide range of biological processes, including the synthesis of lipids, nucleotides, and amino acids. Different members of the synthase gene family may be involved in different aspects of these processes, and mutations in these genes can lead to a variety of diseases and disorders. Examples of synthase genes include fatty acid synthase, which is involved in the synthesis of fatty acids, and adenylyl cyclase, which synthesizes the signaling molecule cyclic AMP.
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ion Channel</label><label for="__tabbed_2_2">Transcription Factors</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>The <strong>ion channel</strong> gene family is a group of genes that encode proteins responsible for the transport of ions across cell membranes. These proteins are integral membrane proteins that form pores or channels in the lipid bilayer of the cell membrane, allowing the selective movement of ions such as sodium, potassium, calcium, and chloride. Ion channels are critical for many physiological processes, including muscle contraction, nerve signaling, and hormone secretion. Dysregulation of ion channel activity has been implicated in a variety of diseases, including epilepsy, cardiac arrhythmias, and cystic fibrosis. Examples of ion channel genes include SCN1A, KCNQ1, and CFTR.</p>
-<h4>Transcription Factors</h4>
-
+</div>
+<div class="tabbed-block">
 <p>The <strong>transcription factor</strong> gene family is a group of genes that encode proteins responsible for regulating the expression of other genes. These proteins bind to DNA and control the rate at which genes are transcribed into mRNA, which is then translated into proteins. Transcription factors are involved in a wide range of biological processes, including development, differentiation, and response to environmental stimuli. Different members of the transcription factor gene family may have different target genes and regulatory mechanisms, allowing for precise control of gene expression. Mutations in these genes can lead to a variety of diseases and disorders, including cancer and developmental disorders. Examples of transcription factor genes include homeobox genes, which regulate embryonic development, and p53, which regulates cell cycle progression and DNA repair</p>
+</div>
+</div>
+</div>
 <h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
 <p>We're loading three DNA datasets, our dataset is in the form of a <code>sequence</code> &amp; subsequent <strong>gene family</strong> label, <code>class</code></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>

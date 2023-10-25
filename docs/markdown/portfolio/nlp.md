@@ -32,6 +32,12 @@ In this study, we create an **NLP based recommendation system** which informs a 
 	![](https://i.imgur.com/An0dxm5.png)
 </center>
 
+### <b><span style='color:#FFCA58;text-align:center'></span>Parsing User Review Data</b>
+
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb)
+
+In this study we look at the parsing/scraped side of data. Its no secret that a lot text important information is stored on websites, as a result, for us to utilise this data in our of analyses and modeling, we need a way to extract this information, this process is referred to website parsing. For this example, we'll look at a user service review website, which stored user reviews on a variety of services and objects. We'll be parsing a common banking service & follow up with an exploratory data analysis, which should tell us about the contents of our extracted text data.
+
 ---
 
 **Thank you for reading!**

@@ -8,9 +8,7 @@ Natural language processing (NLP) is a branch of artificial intelligence (AI) th
 
 In this study, we aim to create an **automated ticket classification model** for incoming text based complaints, which is a **multiclass classification problem**. Such a model is useful for a company in order to automate the process of sorting financial product reviews & subsequently pass the review to an experient in the relevant field. We explore traditional ML methods, which utilise hidden-state BERT embedding for features, as well as fine-tune DistilBert for our classification problem & compare the two approaches
 
-<center>
-![](https://i.imgur.com/zKbBkIt.png)
-</center>
+<left>![](https://i.imgur.com/KWgZcP7.png)</left><right>![](https://i.imgur.com/zKbBkIt.png)</right>
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 
@@ -45,6 +43,8 @@ In this study we look at the **parsing/scraping** side of data. Its no secret th
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/3_product-reviews.ipynb) ![name](https://img.shields.io/badge/sklearn-parsing-e589e5) ![name](https://img.shields.io/badge/catboost-requests-e589e5)
 
 In this notebook, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using `TF-IDF` & `Word2Vec` methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based `GridSearchCV` hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
+
+### 
 
 ---
 

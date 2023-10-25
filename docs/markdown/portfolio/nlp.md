@@ -57,7 +57,7 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 ![](images/outlier4.png)
 ![](images/outlier1.png)
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools (re,natasha)</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/preset_NER.ipynb)
 

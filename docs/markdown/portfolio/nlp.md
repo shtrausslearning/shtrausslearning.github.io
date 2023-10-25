@@ -44,11 +44,13 @@ In this study we look at the **parsing/scraping** side of data. Its no secret th
 
 In this notebook, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using `TF-IDF` & `Word2Vec` methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based `GridSearchCV` hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
 
-### :fontawesome-solid-user-group: MLLIBS
+### :fontawesome-solid-user-group: **MLLIBS**
 
 [![name](https://img.shields.io/badge/Repository-Project-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/ANZ_internship)
 
-mllibs is a project aimed to automate various processes using text commands. 
+mllibs is a project aimed to automate various processes using text commands. Development of such helper modules are motivated by the fact that everyones understanding of coding & subject matter (ML in this case) may be different. Often we see people create functions and classes to simplify the process of code automation (which is good practice)
+Likewise, NLP based interpreters follow this trend as well, except, in this case our only inputs for activating certain code is natural language. Using python, we can interpret natural language in the form of string type data, using natural langauge interpreters
+mllibs aims to provide an automated way to do machine learning using **natural language**
 
 ---
 

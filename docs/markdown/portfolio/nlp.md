@@ -8,7 +8,7 @@ Natural language processing (NLP) is a branch of artificial intelligence (AI) th
 
 In this study, we aim to create an **automated ticket classification model** for incoming text based complaints, which is a **multiclass classification problem**. Such a model is useful for a company in order to automate the process of sorting financial product reviews & subsequently pass the review to an experient in the relevant field. We explore traditional ML methods, which utilise hidden-state BERT embedding for features, as well as fine-tune DistilBert for our classification problem & compare the two approaches
 
-![](https://i.imgur.com/TsDAOkD.png){ width="300" } ![](https://i.imgur.com/KWgZcP7.png){ width="300" }
+![](images/banking_consumer_1.png){ width="300" } ![](himages/banking_consumer_2.png){ width="300" }
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 

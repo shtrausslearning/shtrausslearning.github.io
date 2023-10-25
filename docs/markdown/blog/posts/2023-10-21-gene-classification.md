@@ -88,7 +88,7 @@ So let us implement each of them and see which gives us the perfect input featur
 
 ### Encoding Sequences
 
-#### Ordinal Encoding
+#### (1) Ordinal Encoding
 
 
 ```python
@@ -114,7 +114,7 @@ array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
 
 One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without **truncation** or **padding**
 
-#### One-Hot Encoding
+#### (2) One-Hot Encoding
 
 Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors & these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.
 
@@ -148,7 +148,7 @@ array([[0, 0, 1, 0],
 
 The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either **padding** or **truncation** again. If we had used **unitigs** as in **[this notebooks](https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction)**, this problem would not exist
 
-#### K-MER Counting
+#### (3) K-MER Counting
 
 DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, **k-mers** and **peptides** are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.
 

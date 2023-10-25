@@ -990,22 +990,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ordinal-encoding" class="md-nav__link">
-    Ordinal Encoding
+  <a href="#1-ordinal-encoding" class="md-nav__link">
+    (1) Ordinal Encoding
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#one-hot-encoding" class="md-nav__link">
-    One-Hot Encoding
+  <a href="#2-one-hot-encoding" class="md-nav__link">
+    (2) One-Hot Encoding
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#k-mer-counting" class="md-nav__link">
-    K-MER Counting
+  <a href="#3-k-mer-counting" class="md-nav__link">
+    (3) K-MER Counting
   </a>
   
 </li>
@@ -1269,7 +1269,7 @@
 </ol>
 <p>So let us implement each of them and see which gives us the perfect input features.</p>
 <h3 id="encoding-sequences">Encoding Sequences<a class="headerlink" href="#encoding-sequences" title="Permanent link"></a></h3>
-<h4 id="ordinal-encoding">Ordinal Encoding<a class="headerlink" href="#ordinal-encoding" title="Permanent link"></a></h4>
+<h4 id="1-ordinal-encoding">(1) Ordinal Encoding<a class="headerlink" href="#1-ordinal-encoding" title="Permanent link"></a></h4>
 <div class="highlight"><pre><span></span><code><span class="c1"># encode list of strings</span>
 <span class="k">def</span> <span class="nf">ordinal_encoder</span><span class="p">(</span><span class="n">my_array</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
     <span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">my_array</span><span class="p">)</span>
@@ -1288,7 +1288,7 @@
 <div class="highlight"><pre><span></span><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
 </code></pre></div>
 <p>One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without <strong>truncation</strong> or <strong>padding</strong></p>
-<h4 id="one-hot-encoding">One-Hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permanent link"></a></h4>
+<h4 id="2-one-hot-encoding">(2) One-Hot Encoding<a class="headerlink" href="#2-one-hot-encoding" title="Permanent link"></a></h4>
 <p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
 <p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
 
@@ -1316,7 +1316,7 @@
        [1, 0, 0, 0]])
 </code></pre></div></p>
 <p>The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either <strong>padding</strong> or <strong>truncation</strong> again. If we had used <strong>unitigs</strong> as in <strong><a href="https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction">this notebooks</a></strong>, this problem would not exist</p>
-<h4 id="k-mer-counting">K-MER Counting<a class="headerlink" href="#k-mer-counting" title="Permanent link"></a></h4>
+<h4 id="3-k-mer-counting">(3) K-MER Counting<a class="headerlink" href="#3-k-mer-counting" title="Permanent link"></a></h4>
 <p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
 <p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>

@@ -99,6 +99,8 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 	В этом пректе мы создали нейросетевую модель NER которая может распозновать именнованные сущности в отзывах автомобилей. Создали полноценную pipeline для NER тэгера. 
 
 
+I also post additional NLP content on my blog: **[other NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**
+
 ---
 
 **Thank you for reading!**

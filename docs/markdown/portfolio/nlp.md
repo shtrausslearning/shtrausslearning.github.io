@@ -34,6 +34,8 @@ In this study, we create an **NLP based recommendation system** which informs a 
 
 ### <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis & Modeling</b>
 
+![name](https://img.shields.io/badge/Kaggle-Dataset-e589e5)](https://www.kaggle.com/datasets/nageshsingh/dna-sequence-dataset)
+
 #### Parsing Dataset
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb)

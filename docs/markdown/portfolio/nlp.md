@@ -2,7 +2,7 @@
 
 Natural language processing (NLP) is a branch of artificial intelligence (AI) that deals with the interaction between computers and humans using natural language. It involves the development of algorithms and computational models that can understand, analyze, and generate human language. 
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Banking Consumer Complaint Analysis</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Banking Consumer Complaint Analysis</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
 
@@ -12,7 +12,7 @@ In this study, we aim to create an **automated ticket classification model** for
 ![](https://i.imgur.com/zKbBkIt.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
 
@@ -22,7 +22,7 @@ In this study, we fine-tune a transformer model so it can classify the `sentimen
 ![](https://i.imgur.com/H2QIl7b.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>edX Course Recommendations</b> 
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>edX Course Recommendations</b> 
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
 
@@ -32,17 +32,19 @@ In this study, we create an **NLP based recommendation system** which informs a 
 	![](https://i.imgur.com/An0dxm5.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis & Modeling</b>
+### :material-label-multiple-outline: <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis & Modeling</b>
 
-![name](https://img.shields.io/badge/Kaggle-Dataset-e589e5)](https://www.kaggle.com/datasets/nageshsingh/dna-sequence-dataset)
+#### (1) Parsing Dataset
 
-#### Parsing Dataset
+![name](https://img.shields.io/badge/bf4-parsing-e589e5) ![name](https://img.shields.io/badge/py-requests-e589e5)
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb)
 
 In this study we look at the **parsing/scraping** side of data. Its no secret that a lot text important information is stored on websites, as a result, for us to utilise this data in our of analyses and modeling, we need a way to extract this information, this process is referred to website parsing. For this example, we'll look at a user service review website, which stored user reviews on a variety of services and objects. We'll be parsing a common banking service & follow up with an exploratory data analysis, which should tell us about the contents of our extracted text data.
 
-#### Banking Product Review Modeling
+#### (2) Banking Product Review Sentiment Modeling
+
+![name](https://img.shields.io/badge/sklearn-parsing-e589e5) ![name](https://img.shields.io/badge/catboost-requests-e589e5)
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/3_product-reviews.ipynb)
 

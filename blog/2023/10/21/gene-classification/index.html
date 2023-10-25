@@ -1380,9 +1380,9 @@
         0, 1, 0, 0, 1]])
 </code></pre></div>
 <h4 id="choice-of-encoding">Choice of Encoding<a class="headerlink" href="#choice-of-encoding" title="Permanent link"></a></h4>
-<p>For <strong>DNA</strong> sequence classification methods, its more logical to utilise the <code>kmers</code> approach since <code>kmers</code> are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence.</p>
+<p>For <strong>DNA</strong> sequence classification methods, its more logical to utilise the <code>kmers</code> approach since <code>kmers</code> are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence. Which is on top of the non uniform sequence length issue addessed above.</p>
 <h2 id="problem-statement">Problem Statement<a class="headerlink" href="#problem-statement" title="Permanent link"></a></h2>
-<p>Our objective is to train a classification model that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.</p>
+<p>Our objective is to train a <strong>classification model</strong> that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.</p>
 <h2 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link"></a></h2>
 <p>Having already loaded our dataset &amp; define our problem statement, lets create prepare our dataset for training, we'll simply using the <code>apply</code> method &amp; store the list of <strong>kmers</strong> in our dataframe</p>
 <p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>

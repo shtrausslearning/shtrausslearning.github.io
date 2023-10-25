@@ -234,12 +234,13 @@ array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
 
 #### Choice of Encoding
 
-For **DNA** sequence classification methods, its more logical to utilise the `kmers` approach since `kmers` are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence.
+For **DNA** sequence classification methods, its more logical to utilise the `kmers` approach since `kmers` are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence. Which is on top of the non uniform sequence length issue addessed above.
+
 
 
 ## Problem Statement
 
-Our objective is to train a classification model that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.
+Our objective is to train a **classification model** that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.
 
 ## Preprocessing
 

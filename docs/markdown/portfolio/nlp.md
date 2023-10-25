@@ -17,7 +17,7 @@ In this study, we aim to create an **automated ticket classification model** for
 In this study, we fine-tune a transformer model so it can classify the `sentiment` of user tweets for 6 different emotions (multiclass classification). We first create a baseline by utilising traditional ML methods that use extracted `BERT` embeddings for features, then we will turn to a more complex transformer encoder, `DistilBert` & `fine-tune` its model weights for our classification problem
 
 <center>
-![](https://i.imgur.com/H2QIl7b.png)
+![](images/sentiment_tsne.png)
 </center>
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>edX Course Recommendations</b> 

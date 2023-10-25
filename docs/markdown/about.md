@@ -20,6 +20,10 @@ Here's a brief summary:
 
 I have a lot of hobbies, mostly digital art & photography
 
+- Nature Photography [@eos-husky](https://500px.com/p/EOS-Husky) 
+- Administrate my bird group [@da-birds](https://www.deviantart.com/da-birds) 
+- Digital Portrait Art [@straussart](https://www.instagram.com/shtraussart/)
+
 ### **Contact**
 
 Any questions or comments can be addressed on the :fontawesome-brands-telegram:{ .telegram } **[mldsai-info channel](https://t.me/mldsai_info)** or to me directly :fontawesome-brands-telegram:{ .telegram } **[shtrauss2](https://t.me/shtrauss2)**, on :fontawesome-brands-github:{ .github } **[shtrausslearning](https://github.com/shtrausslearning)** or :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**

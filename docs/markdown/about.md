@@ -6,9 +6,7 @@
 
 My name is Andrey! 
 
-I'm Aerodynamicist & Data Analyst. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics & biomimicry related subjects.
-
-*[biomimicry]: Biomimicry is a design approach that takes inspiration from nature and its processes to create innovative solutions to human problems. It involves studying biological systems, structures, and functions, and applying this knowledge to design products, processes, and technologies that are sustainable, efficient, and effective. Examples of biomimicry include designing buildings that mimic termite mounds for natural ventilation, creating adhesives inspired by gecko feet, and developing materials that mimic spider silk for their strength and flexibility. 
+I'm Aerodynamicist & Data Analyst. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects.
 
 ### **Background**
 
@@ -30,3 +28,5 @@ I have a lot of hobbies, mostly digital art & photography
 
 Any questions or comments can be addressed on the :fontawesome-brands-telegram:{ .telegram } **[mldsai-info channel](https://t.me/mldsai_info)** or to me directly :fontawesome-brands-telegram:{ .telegram } **[shtrauss2](https://t.me/shtrauss2)**, on :fontawesome-brands-github:{ .github } **[shtrausslearning](https://github.com/shtrausslearning)** or :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**
 
+*[biomimicry]: "Biomimicry is a design approach that takes inspiration from nature and its processes to create innovative solutions to human problems. It involves studying biological systems, structures, and functions, and applying this knowledge to design products, processes, and technologies that are sustainable, efficient, and effective. Examples of biomimicry include designing buildings that mimic termite mounds for natural ventilation, creating adhesives inspired by gecko feet, and developing materials that mimic spider silk for their strength and flexibility"
+[^1]: Bioinformatics is an interdisciplinary field that combines biology, computer science, and statistics to analyze and interpret biological data. It involves the development and use of computational tools and techniques to study biological systems, such as DNA sequences, protein structures, and gene expression patterns. Bioinformatics is used to identify patterns and relationships in large datasets, predict the structure and function of proteins, and understand the genetic basis of diseases. It plays a critical role in many areas of biological research, including genomics, proteomics, and drug discovery.

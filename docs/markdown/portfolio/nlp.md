@@ -84,6 +84,8 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 
 	**Training NER model using GRU**
 
+	In this project, we train a neural network **NER** model based on **GRU** architecture, which can recognise named entities using **BIO tags** based on car user review data. Unlike the previous notebook, the concept of **NER** is used a little more abstractly, we are interested in any markups for word(s) that we create in the text, not just names. For markups we use tags that describe the quality of the car (eg. appearance, comfort, costs, etc.). The model learns to classify tokens in the text that belong to one of the tag classes. Recognition of such labels is convenient for quick understanding of the content of the review.
+
 === "rus"
 
 	**Создаем Модель Распознования Именованных Сущностей**

@@ -52,10 +52,10 @@ In this notebook, we look at creating a **sentiment model** based on traditional
 Likewise, NLP based interpreters follow this trend as well, except, in this case our only inputs for activating certain code is natural language. Using python, we can interpret natural language in the form of string type data, using natural langauge interpreters
 mllibs aims to provide an automated way to do machine learning using **natural language**
 
-![](images/outlier1.png)
 ![](images/outlier2.png)
 ![](images/outlier3.png)
 ![](images/outlier4.png)
+![](images/outlier1.png)
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools</b>
 

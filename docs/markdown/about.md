@@ -6,7 +6,7 @@
 
 My name is Andrey! 
 
-I'm Aerodynamicist & Data Analyst. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects.
+I'm Aerodynamicist & Data Analyst. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP :3
 
 ### **Background**
 

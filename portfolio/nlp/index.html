@@ -553,6 +553,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sentiment-analysis-of-kazakh-news" class="md-nav__link">
+     Sentiment Analysis of Kazakh news
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1128,6 +1135,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sentiment-analysis-of-kazakh-news" class="md-nav__link">
+     Sentiment Analysis of Kazakh news
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1210,6 +1224,18 @@ mllibs aims to provide an automated way to do machine learning using <strong>nat
 <div class="tabbed-block">
 <p><strong>Создаем Модель Распознования Именованных Сущностей</strong></p>
 <p>В этом проекте мы обучаем нейросетевую <strong>NER</strong> модель на основе <strong>GRU</strong>, которая может распозновать именнованные сущности используя <strong>BIO разметку</strong> на отзывах пользователей автомобилей. В отличий от предыдущего ноута понятие NER используется немного более абстрактно, нас интересует любые разметки которые мы разметим в тексте, а не только имена и тд. В качестве разметок используем тэги которые описывают качество автомобиля (eg. appearance, comfort, costs, и тд.). Модель учится классифицировать в тексте токены которые относятся к одному из тэговых классов. Распознование таких меток удобно для быстого понимания содержания отзыва. </p>
+</div>
+</div>
+</div>
+<h3 id="sentiment-analysis-of-kazakh-news"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 17H15l3.5-5L15 7H6.5l3.5 5-3.5 5m8.5 2H3l4.5-7L3 5h12c.69 0 1.23.3 1.64.86L21 12l-4.36 6.14c-.41.56-.95.86-1.64.86Z"/></svg></span> <b><span style='color:#FFCA58;text-align:center'></span>Sentiment Analysis of Kazakh news</b><a class="headerlink" href="#sentiment-analysis-of-kazakh-news" title="Permanent link"></a></h3>
+<p><a href="https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/9_%D0%9F%D1%80%D0%B5%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%81%D0%BB%D0%BE%D0%B2/khazah-news-sentiment.ipynb"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a> <img alt="" src="https://img.shields.io/badge/nlp-coursework-#e677cc" /></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">eng</label><label for="__tabbed_3_2">rus</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>In this project we create create a model for sentiment analysis using classical NLP + machine learning approaches that utilise standard baseline approaches such as <code>TF-IDF</code> and <code>BoW</code> together with <code>RandomForestClassifier</code> and standard <code>train_test_split</code> to train and evaluate the generalisation performance of the model using <code>f1_score</code> metric since we end up having slightly disbalanced sentiment classes.</p>
+</div>
+<div class="tabbed-block">
+<p>В этом проэкте мы строим модели классического машинного обучения для предсказывания <strong>анализа тональности</strong> Казахских новостей, посмотрим какой подход векторизации текста покажет лучше результат на тестовой выборке. Для предобработки текстовых данных воспользуемся Re, токенизируем с помощью WordPunctTokenizer, удаляем стоп слов из <code>nltk</code> (и добавляем дополнительные), приводим слова в базовую форму используя <code>pymorphy2</code>. Для энкодинг текста воспользуемся методами <strong>BoW</strong> и <strong>TF-IDF</strong> из sklearn (сравниваем оба подхода). Для ограничения размерности матрицы векторного представления используем max_features = 1000. Для классификатора воспользуемся случайным лесом (<code>RandomForestClassifier</code>), для гиперпараметров построим 500 решающих деревьев, другие параметры по умолчанию. Для проверки обобщаюшию способность модели воспользуемся методом <code>train_test_split</code>, тренируем модель на 80% данных, на остальных валидируем, для оценки модели используем <code>f1_score</code> с опции macro, для понимания как влияет дисбаланс классов </p>
 </div>
 </div>
 </div>

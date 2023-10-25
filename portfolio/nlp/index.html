@@ -1181,9 +1181,9 @@ mllibs aims to provide an automated way to do machine learning using <strong>nat
 <p>In this notebook, we look at how to utilise the <strong>natasha</strong> &amp; <strong>re</strong> libraries to do predefined <strong>NER</strong>  tagging. <strong>natasha</strong> comes with already predefined set of classification labels, whilst <strong>re</strong> can be used to identify capitalised words using regular expressions. These tools, together with lemmatisers from <code>pymorphy2</code> allow us to very easily utilise ready instruments for named entity recognition in documents without any model training.</p>
 </div>
 <div class="tabbed-block">
-<p>В этом проекте мы воспользуемся готовым инструментов для распознования именованных сущностей natasha. Библиоека работает только с русским языком. В русском часто всречаются и именованные сущности с латинскими буквами, поэтому воспользуемся регулярными выражением и лематизацией для того чтобы дополнить результаты NER c natasha</p>
-<p>Для входных данных мы используем txt формат для тестирования самого метода и написания вспомогательных функции, после чего мы загружаем главные данные отзывов банка используя csv</p>
-<p>Предобработка текста для двух подходов немного различается, используя natasha мы можем токенизировать и привести токены в нормальный формат используя doc. C регулярками мы токенизируем документ используя re.findall и лематизируем найдены именованные сущности используя pymorphy2</p>
+<p>В этом проекте мы воспользуемся готовым инструментов для распознования именованных сущностей natasha. Библиоека работает только с русским языком. В русском часто всречаются и именованные сущности с латинскими буквами, поэтому воспользуемся регулярными выражением и лематизацией для того чтобы дополнить результаты <strong>NER</strong> c <strong>natasha</strong></p>
+<p>Для входных данных мы используем txt формат для тестирования самого метода и написания вспомогательных функции, после чего мы загружаем главные данные отзывов банка используя <code>csv</code></p>
+<p>Предобработка текста для двух подходов немного различается, используя natasha мы можем токенизировать и привести токены в нормальный формат используя doc. C регулярками мы токенизируем документ используя <code>re.findall</code> и лематизируем найдены именованные сущности используя <code>pymorphy2</code></p>
 </div>
 </div>
 </div>

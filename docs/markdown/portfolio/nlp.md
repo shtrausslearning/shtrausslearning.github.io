@@ -8,7 +8,7 @@ Natural language processing (NLP) is a branch of artificial intelligence (AI) th
 
 In this study, we aim to create an **automated ticket classification model** for incoming text based complaints, which is a **multiclass classification problem**. Such a model is useful for a company in order to automate the process of sorting financial product reviews & subsequently pass the review to an experient in the relevant field. We explore traditional ML methods, which utilise hidden-state BERT embedding for features, as well as fine-tune DistilBert for our classification problem & compare the two approaches
 
-![](https://i.imgur.com/KWgZcP7.png){ width="300" } ![](https://i.imgur.com/zKbBkIt.png){ width="300" }
+![](https://i.imgur.com/TsDAOkD.png){ width="300" } ![](https://i.imgur.com/KWgZcP7.png){ width="300" }
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 
@@ -24,7 +24,7 @@ In this study, we fine-tune a transformer model so it can classify the `sentimen
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
 
-In this study, we create an **NLP based recommendation system** which informs a user about possible courses they make like, based on a couse they have jusy added. We will utilise [scrapped edX](https://www.kaggle.com/datasets/khusheekapoor/edx-courses-dataset-2021) course description data , clean the text data and then convert document into vector form using two different approaches BoW based **TF-IDF** and **word2vec**, then calculate the **consine similarity**, from which we will be able to extract a list of courses which are most similar and so can be recommended.
+In this study, we create an **NLP based recommendation system** which informs a user about possible courses they make like, based on a couse they have jusy added. We will utilise **[scrapped edX](https://www.kaggle.com/datasets/khusheekapoor/edx-courses-dataset-2021)** course description data, clean the text data and then convert document into vector form using two different approaches BoW based **TF-IDF** and **word2vec**, then calculate the **consine similarity**, from which we will be able to extract a list of courses which are most similar and so can be recommended.
 
 <center>
 	![](https://i.imgur.com/An0dxm5.png)

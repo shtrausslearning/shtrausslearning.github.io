@@ -125,6 +125,12 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 
 	Сегодня мы разберем как использовать языковую модель BERT из библиотеки huggingface PyTorch и научимся его файнтьюнить для задачи классификации предложений. **CoLa** (Корпус лингвистической приемлемости), это набор данных-бенчмарк для оценки моделей понимания естественного языка. Он  состоит из предложений из различных источников, таких как новостные статьи и художественной литературы, которые были помечены как **грамматически правильные** или **неправильные**. Набор данных часто используется для оценки способности моделей понимать и интерпретировать грамматическую структуру предложений.
 
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Customer Service Dialogue System for GrabrFi</b>
+
+[![](https://img.shields.io/badge/pdf-presentation-EC1C24?logo=adobe)](pdf/chatbot_grabrfi.pdf)
+
+As part of the final project of the **nlp course**, the aim of the project was to create a dialogue system for a banking service business, focusing on combining various NLP methods that can be utilised in chatbots. Combining a **Telegram** structure that utilises **TF-IDF** with **cosine_similarity**, **multiclass classification** based approach, **Question Answering** (BERT), **generative** (DialoGPT). 
+
 ---
 
 I also post additional NLP content on my blog: **[other NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**

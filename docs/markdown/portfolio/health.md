@@ -2,7 +2,7 @@
 
 Health is an important topic in machine learning because it has the potential to significantly improve healthcare outcomes. Machine learning algorithms can be used to analyze large amounts of medical data and identify patterns that may not be immediately apparent to human analysts. This can help doctors and researchers make more accurate diagnoses, develop more effective treatments, and even predict and prevent certain diseases.
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Identifying Antibiotic Resistant Bacteria</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Identifying Antibiotic Resistant Bacteria</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/bio-identifying-antibiotic-resistant-bacteria/)
 
@@ -12,7 +12,7 @@ In this study, we investigate data associated with **antibiotic resistance** for
 ![img](https://i.imgur.com/jB4GTYs.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Lower Back Pain Symptoms Modeling</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Lower Back Pain Symptoms Modeling</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
 
@@ -22,7 +22,7 @@ In this study we investigate patient back pain [biomedical data](https://doi.org
 ![](https://i.imgur.com/ARnd2eQ.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Ovarian Phase Classification in Felids</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Ovarian Phase Classification in Felids</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/ovarian-phase-classification-in-felids)
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/ovarian-phase-classification-in-felids.ipynb)
@@ -33,7 +33,7 @@ In this study, we investigate feline reproductology data, conducting an explorat
 ![](https://i.imgur.com/79RXDS0.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Heart Disease Classification</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Heart Disease Classification</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/heart-disease-gaussian-process-models)
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/Heart%20Disease%20Classification)

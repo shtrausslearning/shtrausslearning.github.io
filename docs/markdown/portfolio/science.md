@@ -3,7 +3,7 @@
 
 Machine learning is important in the field of science because it can help scientists analyze large amounts of data and identify patterns that may not be immediately apparent. This can lead to new discoveries and insights in various scientific fields, such as physics, chemistry, biology, and astronomy. Machine learning algorithms can also help scientists make more accurate predictions and simulations, which can aid in the development of new technologies and treatments.
 
-### <b><span style='color:#FFCA58;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
 
@@ -13,7 +13,7 @@ In this study, we do an exploratory data analysis of a CFD optimisation study, h
 ![](https://i.imgur.com/27mNmKX.png)
 </center>
 
-### <b><span style='color:#FFCA58;text-align:center'></span>Gaussian Processes | Airfoil Noise Modeling</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Gaussian Processes | Airfoil Noise Modeling</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
 
@@ -22,7 +22,6 @@ In this study, we do an exploratory data analysis of [experimental measurement d
 <center>
 ![](https://i.imgur.com/LE0ciup.png)
 </center>
-
 
 ---
 

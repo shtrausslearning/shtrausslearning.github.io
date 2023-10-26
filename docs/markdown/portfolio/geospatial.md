@@ -1,7 +1,7 @@
 
 ## :material-checkbox-multiple-marked-circle-outline: <b>Geospatial</b> 
 
-### <b><span style='color:#FFCA58;text-align:center'>❯❯ </span>Australian Geospatial Analysis</b>
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Australian Geospatial Analysis</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)
 

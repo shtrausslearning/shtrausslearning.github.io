@@ -100,6 +100,18 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 
 	В этом проэкте мы строим модели классического машинного обучения для предсказывания **анализа тональности** Казахских новостей, посмотрим какой подход векторизации текста покажет лучше результат на тестовой выборке. Для предобработки текстовых данных воспользуемся Re, токенизируем с помощью WordPunctTokenizer, удаляем стоп слов из `nltk` (и добавляем дополнительные), приводим слова в базовую форму используя `pymorphy2`. Для энкодинг текста воспользуемся методами **BoW** и **TF-IDF** из sklearn (сравниваем оба подхода). Для ограничения размерности матрицы векторного представления используем max_features = 1000. Для классификатора воспользуемся случайным лесом (`RandomForestClassifier`), для гиперпараметров построим 500 решающих деревьев, другие параметры по умолчанию. Для проверки обобщаюшию способность модели воспользуемся методом `train_test_split`, тренируем модель на 80% данных, на остальных валидируем, для оценки модели используем `f1_score` с опции macro, для понимания как влияет дисбаланс классов 
 
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Multilabel Toxic Comment Classification</b>
+
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_Нейросетевые%20языковые%20модели/16_Transfer%20learning%3B%20BERT%20model/multilabel-text-classification.ipynb) ![](https://img.shields.io/badge/nlp-Course_Work-f37ed8)
+
+=== "eng"
+
+	In this project we will be creating a **multilabel model** for toxic comment classification using transfomer architecture **BERT**. This main difference between multilabel and multiclass classification is that we are treating this as a binary classification problem, but checking for multiple labels for whether the text belongs to the class or not.
+
+=== "rus"
+
+	В этом ноуте мы применим подход fine-tune для трансформерной модели BERT. Данная задача является задачей multilabel text classification (много меточная классификация). Модели предстоит классифицировать текст в одну или несколько категории из списка (например фильм может быть классифицирован в одну или несколько жанров)
+
 ---
 
 I also post additional NLP content on my blog: **[other NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**

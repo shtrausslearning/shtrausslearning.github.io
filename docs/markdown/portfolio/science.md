@@ -9,7 +9,7 @@ Machine learning is important in the field of science because it can help scient
 
 In this study, we do an exploratory data analysis of a CFD optimisation study, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for `L/D` (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem
 
-![](images/camber_data.png)
+![](images/relations.png)
 ![](images/catboost_eval.png)
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Gaussian Processes | Airfoil Noise Modeling</b>

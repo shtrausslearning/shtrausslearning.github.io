@@ -18,9 +18,7 @@ In this study, we do an exploratory data analysis of a CFD optimisation study, h
 
 In this study, we do an exploratory data analysis of [experimental measurement data](https://doi.org/10.24432/C5VW2C) associated with NACA0012 airfoil noise measurements. We outline the dependencies of parameter and setting variation and its influence on SPL noise level. The data is then used to create a machine learning model, which is able to predict the sound pressure level (SPL) for different combinations of airfoil design parameters.
 
-<center>
-![](https://i.imgur.com/LE0ciup.png)
-</center>
+![](images/splfreq.png)
 
 ---
 

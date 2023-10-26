@@ -110,7 +110,20 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 
 === "rus"
 
-	В этом ноуте мы применим подход fine-tune для трансформерной модели BERT. Данная задача является задачей multilabel text classification (много меточная классификация). Модели предстоит классифицировать текст в одну или несколько категории из списка (например фильм может быть классифицирован в одну или несколько жанров)
+	В этом ноуте мы применим подход **fine-tune** для трансформерной модели **BERT**. Данная задача является задачей multilabel text classification (**много меточная классификация**). Модели предстоит классифицировать текст в одну или несколько категории из списка (например фильм может быть классифицирован в одну или несколько жанров)
+
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Linguistic Acceptability</b>
+
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8/17_Pretrained%20Language%20Model%20Example/binary-text-classification-comment.ipynb) ![](https://img.shields.io/badge/nlp-Course_Work-f37ed8)
+
+
+=== "eng"
+	
+	In this project we will be fine-tuning a transformer model for the language acceptability problem (CoLa). The **CoLa** dataset is a benchmark dataset for evaluating natural language understanding models. CoLa stands for "Corpus of Linguistic Acceptability" and consists of sentences from various sources, such as news articles and fiction, that have been labeled as either grammatically correct or incorrect. The dataset is commonly used to evaluate models' ability to understand and interpret the grammatical structure of sentences.
+
+=== "rus"
+
+	Сегодня мы разберем как использовать языковую модель BERT из библиотеки huggingface PyTorch и научимся его файнтьюнить для задачи классификации предложений. **CoLa** (Корпус лингвистической приемлемости), это набор данных-бенчмарк для оценки моделей понимания естественного языка. Он  состоит из предложений из различных источников, таких как новостные статьи и художественной литературы, которые были помечены как **грамматически правильные** или **неправильные**. Набор данных часто используется для оценки способности моделей понимать и интерпретировать грамматическую структуру предложений.
 
 ---
 

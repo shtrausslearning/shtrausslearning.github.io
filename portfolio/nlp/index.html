@@ -567,6 +567,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fine-tuning-bert-for-linguistic-acceptability" class="md-nav__link">
+     Fine Tuning BERT for Linguistic Acceptability
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1156,6 +1163,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fine-tuning-bert-for-linguistic-acceptability" class="md-nav__link">
+     Fine Tuning BERT for Linguistic Acceptability
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1261,7 +1275,19 @@ mllibs aims to provide an automated way to do machine learning using <strong>nat
 <p>In this project we will be creating a <strong>multilabel model</strong> for toxic comment classification using transfomer architecture <strong>BERT</strong>. This main difference between multilabel and multiclass classification is that we are treating this as a binary classification problem, but checking for multiple labels for whether the text belongs to the class or not.</p>
 </div>
 <div class="tabbed-block">
-<p>В этом ноуте мы применим подход fine-tune для трансформерной модели BERT. Данная задача является задачей multilabel text classification (много меточная классификация). Модели предстоит классифицировать текст в одну или несколько категории из списка (например фильм может быть классифицирован в одну или несколько жанров)</p>
+<p>В этом ноуте мы применим подход <strong>fine-tune</strong> для трансформерной модели <strong>BERT</strong>. Данная задача является задачей multilabel text classification (<strong>много меточная классификация</strong>). Модели предстоит классифицировать текст в одну или несколько категории из списка (например фильм может быть классифицирован в одну или несколько жанров)</p>
+</div>
+</div>
+</div>
+<h3 id="fine-tuning-bert-for-linguistic-acceptability"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 17H15l3.5-5L15 7H6.5l3.5 5-3.5 5m8.5 2H3l4.5-7L3 5h12c.69 0 1.23.3 1.64.86L21 12l-4.36 6.14c-.41.56-.95.86-1.64.86Z"/></svg></span> <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Linguistic Acceptability</b><a class="headerlink" href="#fine-tuning-bert-for-linguistic-acceptability" title="Permanent link"></a></h3>
+<p><a href="https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8/17_Pretrained%20Language%20Model%20Example/binary-text-classification-comment.ipynb"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a> <img alt="" src="https://img.shields.io/badge/nlp-Course_Work-f37ed8" /></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">eng</label><label for="__tabbed_5_2">rus</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>In this project we will be fine-tuning a transformer model for the language acceptability problem (CoLa). The <strong>CoLa</strong> dataset is a benchmark dataset for evaluating natural language understanding models. CoLa stands for "Corpus of Linguistic Acceptability" and consists of sentences from various sources, such as news articles and fiction, that have been labeled as either grammatically correct or incorrect. The dataset is commonly used to evaluate models' ability to understand and interpret the grammatical structure of sentences.</p>
+</div>
+<div class="tabbed-block">
+<p>Сегодня мы разберем как использовать языковую модель BERT из библиотеки huggingface PyTorch и научимся его файнтьюнить для задачи классификации предложений. <strong>CoLa</strong> (Корпус лингвистической приемлемости), это набор данных-бенчмарк для оценки моделей понимания естественного языка. Он  состоит из предложений из различных источников, таких как новостные статьи и художественной литературы, которые были помечены как <strong>грамматически правильные</strong> или <strong>неправильные</strong>. Набор данных часто используется для оценки способности моделей понимать и интерпретировать грамматическую структуру предложений.</p>
 </div>
 </div>
 </div>

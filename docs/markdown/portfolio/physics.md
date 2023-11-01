@@ -1,7 +1,11 @@
 
-## :material-checkbox-multiple-marked-circle-outline: <b>Science</b> 
+## :material-checkbox-multiple-marked-circle-outline: <b>Physics</b> 
 
-Machine learning is important in the field of science because it can help scientists analyse large amounts of data and identify patterns that may not be immediately apparent. This can lead to new discoveries and insights in various scientific fields, such as physics, chemistry, biology, and astronomy. Machine learning algorithms can also help scientists make more accurate predictions and simulations, which can aid in the development of new technologies and treatments.
+Machine learning plays a significant role in physics-related applications by enabling the analysis, prediction, and modeling of complex physical phenomena. Here is an example of how machine learning is used in physics:
+
+Data analysis and pattern recognition: Machine learning algorithms can be used to analyze large datasets generated from experiments or simulations. They can identify patterns, correlations, and anomalies that may not be apparent to human researchers, helping to gain insights into physical processes. 
+
+Some of the projects that I've worked on:
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b>
 

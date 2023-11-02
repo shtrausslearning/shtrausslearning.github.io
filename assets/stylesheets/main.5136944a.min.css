@@ -28,10 +28,6 @@
 	}
 }
 
-.md-typeset .twitter {
-	color: #00acee
-}
-
 .md-typeset .mdx-heart {
 	-webkit-animation: mdx-heart 1s infinite;
 	animation: mdx-heart 1s infinite
@@ -171,7 +167,7 @@
 	.mdx-hero__content {
 		margin-top: 3.5rem;
 		max-width: 17rem;
-		padding-bottom: 0vw
+		padding-bottom: 10vw
 	}
 
 	.mdx-hero__image {

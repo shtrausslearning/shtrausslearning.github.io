@@ -197,6 +197,7 @@
 
 	.mdx-hero__image {
 		order: 2;
+		margin-top: 3.5rem;
 		transform: translateX(4rem);
 		width: 60rem
 	}

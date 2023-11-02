@@ -91,7 +91,7 @@
 
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%)
+	background-image: url("images/bumble1.png")
 }
 
 .mdx-container2 {

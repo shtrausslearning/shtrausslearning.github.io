@@ -98,7 +98,7 @@ theme:
     custom_dir: material/overrides
     palette:
       - scheme: default
-        primary: #2E4053
+        primary: 2E4053
         accent: indigo
         toggle:
           icon: material/toggle-switch-off-outline

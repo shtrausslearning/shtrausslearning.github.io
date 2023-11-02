@@ -97,7 +97,7 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: slate
+      - scheme: default
         primary: black
         accent: orange
         toggle:

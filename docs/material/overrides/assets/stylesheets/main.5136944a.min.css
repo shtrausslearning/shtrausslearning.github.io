@@ -147,7 +147,7 @@
 }
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
 }
 
 .mdx-hero {

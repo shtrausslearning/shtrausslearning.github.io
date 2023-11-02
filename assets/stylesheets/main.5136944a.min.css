@@ -85,23 +85,23 @@
 }
 
 .mdx-container {
-	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #242424 99%, var(--md-default-bg-color) 99%);
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%);
 	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #242424 99%, var(--md-default-bg-color) 99%)
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%)
 }
 
 .mdx-container2 {
-	background: #2E4053;
+	background: #ABFF65;
 	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container2 {
-	background: #2E4053;
+	background: #ABFF65;
 	padding-top: 0rem
 }
 

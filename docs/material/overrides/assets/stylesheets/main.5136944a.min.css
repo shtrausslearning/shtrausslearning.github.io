@@ -85,13 +85,13 @@
 }
 
 .mdx-container {
-	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #F4A2FF 99%, var(--md-default-bg-color) 99%);
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #242424 99%, var(--md-default-bg-color) 99%);
 	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #242424 99%, var(--md-default-bg-color) 99%)
 }
 
 .mdx-container2 {

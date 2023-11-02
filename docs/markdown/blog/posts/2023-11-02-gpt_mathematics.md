@@ -11,6 +11,8 @@ tags:
 
 # **Gene Classification**
 
+hello
+
 In this notebook, we look at how to work with biological sequence data, by venturing into a **classification problem**, in which we will be classifying between seven different **genes groups** common to three different species (human,chimpanzee & dog)
 
 ![](https://i.imgur.com/bGvobdI.jpg)

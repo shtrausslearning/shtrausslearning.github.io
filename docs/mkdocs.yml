@@ -97,12 +97,6 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: default
-        primary: indigo
-        accent: indigo
-        toggle:
-          icon: material/toggle-switch-off-outline
-          name: Switch to dark mode
       - scheme: slate
         primary: black
         accent: orange

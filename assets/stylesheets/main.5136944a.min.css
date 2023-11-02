@@ -95,13 +95,13 @@
 }
 
 .mdx-container2 {
-	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
+	background: #2E4053;
 	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container2 {
-	background: #2E4053
+	background: #2E4053;
 	padding-top: 0rem
 }
 

@@ -133,8 +133,7 @@
 	}
 
 	.mdx-hero__content {
-		top: 0;
-  		left: 0;
+  		position: relative;
 		margin-top: 3.5rem;
 		max-width: 20rem;
 		padding-bottom: 10vw

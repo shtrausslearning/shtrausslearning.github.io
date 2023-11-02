@@ -112,10 +112,6 @@
 	white-space: nowrap
 }
 
-.md-announce .twitter {
-	margin-left: .2em
-}
-
 .mdx-container {
 	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
 	padding-top: 1rem
@@ -173,7 +169,6 @@
 	.mdx-hero__image {
 		order: 2;
 		margin-top: 3.5rem;
-		width: 180rem
 	}
 
 	.mdx-hero__image2 {

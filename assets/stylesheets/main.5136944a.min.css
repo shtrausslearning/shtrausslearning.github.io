@@ -191,14 +191,13 @@
 
 	.mdx-hero__content {
 		margin-top: 3.5rem;
-		max-width: 15rem;
+		max-width: 17rem;
 		padding-bottom: 14vw
 	}
 
 	.mdx-hero__image {
 		order: 2;
 		margin-top: 15rem;
-		transform: translateX(4rem);
 		width: 60rem
 	}
 }

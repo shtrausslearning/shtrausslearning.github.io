@@ -200,6 +200,12 @@
 		margin-top: 15rem;
 		width: 60rem
 	}
+
+	.mdx-hero__image2 {
+		order: 2;
+		margin-top: 15rem;
+		width: 60rem
+	}
 }
 
 @media screen and (min-width:76.25em) {

@@ -98,14 +98,14 @@ theme:
     custom_dir: material/overrides
     palette:
       - scheme: default
-        primary: 2E4053
-        accent: 2E4053
+        primary: indigo
+        accent: indigo
         toggle:
           icon: material/toggle-switch-off-outline
           name: Switch to dark mode
       - scheme: slate
         primary: black
-        accent: indigo
+        accent: black
         toggle:
           icon: material/toggle-switch
           name: Switch to light mode

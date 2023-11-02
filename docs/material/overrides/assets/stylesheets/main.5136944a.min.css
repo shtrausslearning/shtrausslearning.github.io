@@ -188,6 +188,10 @@
 		transform: translateX(4rem);
 		width: 60rem
 	}
+
+	.mdx-hero__image2 {
+		order: 10;
+	}
 }
 
 @media screen and (min-width:76.25em) {

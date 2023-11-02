@@ -203,6 +203,7 @@
 
 	.mdx-hero__image2 {
 		order: 2;
+		opacity: 0.5;
 		margin-top: 3.5rem;
 		width: 60rem
 	}

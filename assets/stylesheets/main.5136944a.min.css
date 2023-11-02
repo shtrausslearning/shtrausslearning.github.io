@@ -32,27 +32,6 @@
 	color: #00acee
 }
 
-.md-typeset .mdx-video {
-	width: auto
-}
-
-.md-typeset .mdx-video__inner {
-	height: 0;
-	padding-bottom: 56.138%;
-	position: relative;
-	width: 100%
-}
-
-.md-typeset .mdx-video iframe {
-	border: none;
-	height: 100%;
-	left: 0;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	width: 100%
-}
-
 .md-typeset .mdx-heart {
 	-webkit-animation: mdx-heart 1s infinite;
 	animation: mdx-heart 1s infinite

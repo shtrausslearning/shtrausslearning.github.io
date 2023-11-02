@@ -86,7 +86,7 @@
 
 .mdx-container {
 	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%);
-	padding-top: 0rem
+	padding-top: 10rem
 }
 
 
@@ -96,7 +96,7 @@
 
 .mdx-container2 {
 	background: #ABFF65;
-	padding-top: 0rem
+	padding-top: 10rem
 }
 
 

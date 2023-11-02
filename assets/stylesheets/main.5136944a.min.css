@@ -140,14 +140,10 @@
 	}
 
 	.mdx-hero__image {
-		top: 0;
-  		left: 0;
-		order: 2;
 		margin-top: 3.5rem;
 	}
 
 	.mdx-hero__image2 {
-		order: 2;
 		opacity: 1.0;
 		margin-top: 3.5rem;
 		width: 60rem

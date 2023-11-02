@@ -105,7 +105,7 @@ theme:
           name: Switch to dark mode
       - scheme: slate
         primary: black
-        accent: black
+        accent: orange
         toggle:
           icon: material/toggle-switch
           name: Switch to light mode

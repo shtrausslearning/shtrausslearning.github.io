@@ -128,13 +128,13 @@
 
 @media screen and (min-width:60em) {
 	.mdx-hero {
-		top: 0;
-  		left: 0;
 		align-items: stretch;
 		display: flex
 	}
 
 	.mdx-hero__content {
+		top: 0;
+  		left: 0;
 		margin-top: 3.5rem;
 		max-width: 20rem;
 		padding-bottom: 10vw

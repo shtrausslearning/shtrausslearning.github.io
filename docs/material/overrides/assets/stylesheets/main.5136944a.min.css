@@ -140,7 +140,8 @@
 	}
 
 	.mdx-hero__image {
-		position: relative;
+		top: 0;
+  		left: 0;
 		order: 2;
 		margin-top: 3.5rem;
 	}

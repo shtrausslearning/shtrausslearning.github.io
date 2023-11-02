@@ -153,6 +153,9 @@
 	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
 }
 
+[data-md-color-scheme=slate] .mdx-container {
+	color: #2E4053
+}
 
 .mdx-hero {
 	color: var(--md-primary-bg-color);

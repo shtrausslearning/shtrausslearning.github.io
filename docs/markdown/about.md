@@ -17,8 +17,8 @@ Here's a brief summary:
 
 - Aerospace Engineering from Tohoku University (graduate) <br>
 - Worked on **Meshless methodology** for discretisation & high order interpolation methods (ML approach)<br>
-- Also worked on Synthetic Turbulence methodolgy as part of **JAXA** project
-- Introduced biomimicry for vehicle aerodynamic optimisation/reverse engineering optimisation
+- Also worked on Synthetic Turbulence methodolgy as part of **JAXA** project (approach configuration subproject)
+- Introduced biomimicry approach for vehicle aerodynamic optimisation/reverse engineering optimisation
 - Specialise in Computation Fluid Dynamics & Aeroacoustics 
 
 ### **Hobbies**

@@ -87,7 +87,7 @@ theme:
         # Navigation settings
         - navigation.instant
         - navigation.instant.progress
-        # - navigation.sections
+        - navigation.sections
         - navigation.expand
         - navigation.tracking
         - navigation.tabs
@@ -143,13 +143,15 @@ copyright: |
 nav:
 - Home: index.md
 
-- DS Projects: 
+- Data Science: 
 
     - Natural Language Processing: portfolio/nlp.md
     - Internships: portfolio/internships.md
     - Physics: portfolio/physics.md
     - Health: portfolio/health.md
     - Geospatial: portfolio/geospatial.md
+
+- Bioinformatics: bio-portfolio.md
 
 - Blog:
     - blog/index.md

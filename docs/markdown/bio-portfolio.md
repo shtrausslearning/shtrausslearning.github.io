@@ -1,6 +1,6 @@
 <center>
-![img](images/bin_bnb.png#only-light){ width="450" }
-![img](images/bin_wnb.png#only-dark){ width="450" }
+![img](images/ds_bnb.png#only-light){ width="450" }
+![img](images/ds_wnb.png#only-dark){ width="450" }
 </center>
 
 Bioinformatics is a fascinating field that allows us to explore the intricate workings of living organisms and make groundbreaking discoveries. By combining biology, computer science, and statistics, bioinformatics offers a unique perspective on the natural world and provides us with tools to solve complex problems. Naturally, it is a field that has me interested :)

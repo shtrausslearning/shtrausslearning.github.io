@@ -7,7 +7,7 @@ Bioinformatics is a fascinating field that allows us to explore the intricate wo
 
 Here you will find a collection of some of the bioinformatics projects I've worked on, if you have any questions, please contact me  <sub><a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=283747&logo=Telegram&logoColor=FFFFFF&label=" /></a></sub> 
 
-### **Biopython | Bioinformatics Basics**
+### :material-label-variant-outline: **Biopython | Bioinformatics Basics**
 
 In this project I look at exploring the basics of the python module **[biopython](https://biopython.org)**. We look at how to define biological sequences using `Seq`, which allows us to work with basic **DNA** and **protein** sequence information. The library also allows us to work with more advanced sequence information using `SeqRecord` which allows us to include **annotations** and **features** found in the sequence.
 
@@ -24,7 +24,7 @@ locus tag: ['YP_pPCP09'], database ref: ['GeneID:2767713'], strand: -1, location
 locus tag: ['YP_pPCP10'], database ref: ['GeneID:2767714'], strand: -1, location: [8087:8360](-)
 ```
 
-### **Biopython | Bioconductor Basics**
+### :material-label-variant-outline: **Biopython | Bioconductor Basics**
 
 In this project we look at exploring the basics of bioinformatics using **[bioconductor](https://www.bioconductor.org)** `Biostrings` and ``
 
@@ -43,12 +43,12 @@ AAStringSet object of length 10:
 [10]    90 MADLKKLQVYGPELPRPYADTVK...YEKLVRIAEDEFTAHLNTLESK gi|45478721|ref|N...
 ```
 
-### **Biological Sequence Operations**
+### :material-label-variant-outline: **Biological Sequence Operations**
 
 In this project we look to create python classes which allow us to work with biological sequences. Similar to the classes `Seq` & `SeqRecord` in **[biopython](https://biopython.org)**, however with various additional operation options.
 
 ![sequence](images/bioseq.png)
 
 
-### **Biopython | Bioconductor Basics**
+### :material-label-variant-outline: **Biopython | Bioconductor Basics**
 

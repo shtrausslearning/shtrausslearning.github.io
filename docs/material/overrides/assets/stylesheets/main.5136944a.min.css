@@ -85,23 +85,23 @@
 }
 
 .mdx-container {
-	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%);
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
 	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%)
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
 }
 
 .mdx-container2 {
-	background: #ABFF65;
+	background: #2E4053;
 	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container2 {
-	background: #ABFF65;
+	background: #2E4053;
 	padding-top: 0rem
 }
 
@@ -133,17 +133,18 @@
 	}
 
 	.mdx-hero__content {
-  		position: relative;
 		margin-top: 3.5rem;
-		max-width: 20rem;
+		max-width: 17rem;
 		padding-bottom: 10vw
 	}
 
 	.mdx-hero__image {
+		order: 2;
 		margin-top: 3.5rem;
 	}
 
 	.mdx-hero__image2 {
+		order: 2;
 		opacity: 1.0;
 		margin-top: 3.5rem;
 		width: 60rem

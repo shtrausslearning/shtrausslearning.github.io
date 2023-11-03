@@ -164,7 +164,7 @@
 }
 
 [data-md-color-scheme=slate] .mdx-container3 {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
+	background-image: url('https://i.imgur.com/LwTHe2C.png');
 }
 
 .mdx-hero {

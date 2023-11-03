@@ -30,3 +30,34 @@ The combination of transformers & generative task models is one of the most usef
 ## The Dataset
 
 The dataset is generated using a loop, we'll use python to generate this dataset 
+
+```python
+n = 1000
+strlen = len(f'{n - 1} + {n - 1} = {n * n - 2}')
+strlen
+
+text = set()
+for i in range(n):
+    for j in range(n):
+
+        # addition
+        example = f'{i} + {j} = {i + j}'
+        example += ' ' * (strlen - len(example))
+        text.add(example)
+        
+        # subtraction
+        example = f'{i} - {j} = {i - j}'
+        example += ' ' * (strlen - len(example))
+        text.add(example)
+        
+        # multiplication
+        example = f'{i} * {j} = {i * j}'
+        example += ' ' * (strlen - len(example))
+        text.add(example)
+        
+        # module
+        if j:
+            example = f'{i} / {j} = {i // j}'
+            example += ' ' * (strlen - len(example))
+            text.add(example)
+```

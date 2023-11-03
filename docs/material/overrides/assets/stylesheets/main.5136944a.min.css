@@ -150,11 +150,11 @@
 }
 
 .mdx-container2 {
-	color: #a63fd9
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
 }
 
 [data-md-color-scheme=slate] .mdx-container2 {
-	color: #2E4053
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
 }
 
 .mdx-hero {

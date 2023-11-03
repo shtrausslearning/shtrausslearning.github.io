@@ -97,9 +97,9 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: default
+      - scheme: material
         primary: indigo
-        accent: purple
+        accent: indigo
 
     font:
         text: Ubuntu

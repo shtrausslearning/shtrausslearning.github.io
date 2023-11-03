@@ -13,7 +13,7 @@ tags:
 
 In this post, we will introduce ourselves to `pyspark`, a framework that allows us to work with big data. Similar to how we did in [my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/) post
 
-![](https://i.imgur.com/1RXWOhX.jpg)
+![](images/wires.jpg)
 
 <!-- more -->
 

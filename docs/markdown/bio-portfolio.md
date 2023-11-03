@@ -9,7 +9,9 @@ Here you will find a collection of some of the bioinformatics projects I've work
 
 ### :material-label-variant-outline: **Biopython | Bioinformatics Basics**
 
-In this project I look at exploring the basics of the python module **[biopython](https://biopython.org)**. We look at how to define biological sequences using `Seq`, which allows us to work with basic **DNA** and **protein** sequence information. The library also allows us to work with more advanced sequence information using `SeqRecord` which allows us to include **annotations** and **features** found in the sequence.
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/biopython-bioinformatics-basics)
+
+In this project I look at exploring the basics of the python module **[biopython](https://biopython.org)**. We look at how to define biological sequences using `Seq`, which allows us to work with basic **DNA** and **protein** sequence information. The library also allows us to work with more advanced sequence information using `SeqRecord` which allows us to include **annotations** and **features** found in the sequence. The notebook is more of an introduction to into various bioinformatics operations that can be done via **biopython**
 
 ```
 locus tag: ['YP_pPCP01'], database ref: ['GeneID:2767718'], strand: 1, location: [86:1109](+)
@@ -24,9 +26,11 @@ locus tag: ['YP_pPCP09'], database ref: ['GeneID:2767713'], strand: -1, location
 locus tag: ['YP_pPCP10'], database ref: ['GeneID:2767714'], strand: -1, location: [8087:8360](-)
 ```
 
-### :material-label-variant-outline: **Biopython | Bioconductor Basics**
+### :material-label-variant-outline: **Bioconductor | Bioinformatics Basics**
 
-In this project we look at exploring the basics of bioinformatics using **[bioconductor](https://www.bioconductor.org)** `Biostrings` and ``
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/bioconductor-bioinformatics-basics)
+
+In this project we look at exploring the basics of bioinformatics using **[bioconductor](https://www.bioconductor.org)** `Biostrings`, which allows us to work with **biological sequences** and `msa`, which can be used for **sequence alignment**
 
 ```
 AAStringSet object of length 10:
@@ -45,10 +49,17 @@ AAStringSet object of length 10:
 
 ### :material-label-variant-outline: **Biological Sequence Operations**
 
-In this project we look to create python classes which allow us to work with biological sequences. Similar to the classes `Seq` & `SeqRecord` in **[biopython](https://biopython.org)**, however with various additional operation options.
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations)
 
-![sequence](images/bioseq.png)
+In this project we look to create python classes which allow us to work with biological sequences. Similar to the classes `Seq` & `SeqRecord` in **[biopython](https://biopython.org)**  The implemented classes form the basis of future library additions,  however with various additional operation options. The library allows to read and work with both **FASTA** and **genbank** formats and allow for 
+
+![sequence](images/compareseq2.png)
 
 
-### :material-label-variant-outline: **Biopython | Bioconductor Basics**
+### :material-label-variant-outline: **Biological Sequence Alignment**
 
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/biological-sequence-alignment)
+
+**Biological sequence alignment** is an important problem in bioinformatics for a number of reasons, for example for understanding genetic variation: By aligning biological sequences, such as DNA or protein sequences, researchers can identify similarities and differences between different organisms or within the same organism. This helps in understanding genetic variation, evolution, and relationships between species. In this project, we create a biological sequence alignment compatible class for **pairwise** & **multiple** sequence for **global** and **local** sequence alignment, in similar fashion to how we created the biological sequence operation related classes in **[biological-sequence-operations](https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations)**. The created classes have been implemented in **[biopylib](https://github.com/shtrausslearning/biopylib)** library
+
+![](images/compareseq.png)

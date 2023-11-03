@@ -24,7 +24,7 @@ In this notebook, we look at transformer models! Instead of using **huggingface*
 
 ### Generative Models
 
-The combination of transformers & generative task models is one of the most useful and applicable to everyday life models. We can teach a model to remember text & when necessary generate what text on related topics on which we trained the model
+The combination of **transformers** & **generative task models** is one of the most useful and applicable to everyday life models (not to even mention exciting :)). As a minimum, we can teach a model to remember text & when necessary generate what text on related topics on which we trained the model. Of course, there are more interesting abilities the model can learn, however, in this post we'll limit ourselves to mathamatics! We'll teach our **GPT model** some basic mathematics such as addition, subtraction, multiplication & division!
 
 
 ## The Dataset

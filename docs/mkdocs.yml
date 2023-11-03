@@ -97,7 +97,7 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: default
+      - scheme: material
         primary: indigo
         accent: indigo
         toggle:

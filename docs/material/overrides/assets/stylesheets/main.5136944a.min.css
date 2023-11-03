@@ -85,13 +85,13 @@
 }
 
 .mdx-container {
-	background: url("images/id_intro.png")
+	background: url("https://i.imgur.com/KqkXpQf.jpg");
 	padding-top: 10rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: url("images/id_intro.png")
+	background: url("https://i.imgur.com/KqkXpQf.jpg")
 }
 
 .mdx-container2 {

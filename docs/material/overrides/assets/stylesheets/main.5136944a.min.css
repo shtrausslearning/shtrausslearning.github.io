@@ -28,6 +28,40 @@
 	}
 }
 
+.md-typeset .twitter {
+	color: #00acee
+}
+
+.md-typeset .mdx-video {
+	width: auto
+}
+
+.md-typeset .mdx-video__inner {
+	height: 0;
+	padding-bottom: 56.138%;
+	position: relative;
+	width: 100%
+}
+
+.md-typeset .mdx-video iframe {
+	border: none;
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 100%
+}
+
+.md-typeset .mdx-heart {
+	-webkit-animation: mdx-heart 1s infinite;
+	animation: mdx-heart 1s infinite
+}
+
+.md-typeset .mdx-insiders {
+	color: #e91e63
+}
+
 .md-typeset .mdx-switch button {
 	cursor: pointer;
 	transition: opacity .25s
@@ -74,6 +108,25 @@
 	break-inside: avoid
 }
 
+.md-typeset .mdx-author {
+	display: flex;
+	font-size: .68rem
+}
+
+.md-typeset .mdx-author img {
+	border-radius: 100%;
+	height: 2rem
+}
+
+.md-typeset .mdx-author p:first-child {
+	flex-shrink: 0;
+	margin-right: .8rem
+}
+
+.md-typeset .mdx-author p>span {
+	display: block
+}
+
 .md-announce a,
 .md-announce a:focus,
 .md-announce a:hover {
@@ -84,36 +137,28 @@
 	white-space: nowrap
 }
 
-.mdx-container {
-	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
-	padding-top: 0rem
+.md-announce .twitter {
+	margin-left: .2em
 }
 
+.mdx-container {
+	background: no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
+	padding-top: 1rem
+}
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
-}
-
-.mdx-container2 {
-	background: #2E4053;
-	padding-top: 0rem
-}
-
-
-[data-md-color-scheme=slate] .mdx-container2 {
-	background: #2E4053;
-	padding-top: 0rem
+	background: no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
 }
 
 .mdx-hero {
 	color: var(--md-primary-bg-color);
-	margin: 0 0rem
+	margin: 0 .8rem
 }
 
 .mdx-hero h1 {
 	color: currentColor;
 	font-weight: 700;
-	margin-bottom: 0rem
+	margin-bottom: 1rem
 }
 
 @media screen and (max-width:29.9375em) {
@@ -123,7 +168,7 @@
 }
 
 .mdx-hero__content {
-	padding-bottom: 0rem
+	padding-bottom: 6rem
 }
 
 @media screen and (min-width:60em) {
@@ -134,19 +179,13 @@
 
 	.mdx-hero__content {
 		margin-top: 3.5rem;
-		max-width: 17rem;
-		padding-bottom: 10vw
+		max-width: 19rem;
+		padding-bottom: 14vw
 	}
 
 	.mdx-hero__image {
 		order: 2;
-		margin-top: 3.5rem;
-	}
-
-	.mdx-hero__image2 {
-		order: 2;
-		opacity: 1.0;
-		margin-top: 3.5rem;
+		transform: translateX(4rem);
 		width: 60rem
 	}
 }
@@ -160,6 +199,7 @@
 .mdx-hero .md-button {
 	color: var(--md-primary-bg-color);
 	margin-right: .5rem;
+	margin-top: .5rem
 }
 
 .mdx-hero .md-button:focus,

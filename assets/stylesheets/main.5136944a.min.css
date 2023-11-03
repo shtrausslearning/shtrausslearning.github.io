@@ -85,22 +85,18 @@
 }
 
 .mdx-container {
-	background: url("https://i.imgur.com/PT1VfWV.jpg");
-	background-size: 2688px 1344px;
-	background-repeat: no-repeat;
-	padding-top: 10rem
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%);
+	padding-top: 0rem
 }
 
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: url("https://i.imgur.com/PT1VfWV.jpg")
-	background-repeat: no-repeat;
-	box-sizing: content-box;
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #ABFF65 99%, var(--md-default-bg-color) 99%)
 }
 
 .mdx-container2 {
 	background: #ABFF65;
-	padding-top: 10rem
+	padding-top: 0rem
 }
 
 

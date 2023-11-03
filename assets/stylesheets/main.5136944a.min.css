@@ -207,7 +207,8 @@
 	}
 
 	.mdx-hero__image2 {
-		margin-top: 3.5rem;
+		margin-top: 10rem;
+		transform: translateX(10rem);
 		order: 10
 	}
 }

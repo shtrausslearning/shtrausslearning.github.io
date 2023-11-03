@@ -154,10 +154,6 @@ nav:
     - Health: portfolio/health.md
     - Geospatial: portfolio/geospatial.md
 
-- mllibs:
-    - introduction: mllibs/home.md
-    - meetups: mllibs/meetups.md
-
 - Blog:
     - blog/index.md
 

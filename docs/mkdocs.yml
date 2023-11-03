@@ -84,7 +84,6 @@ theme:
         repo: fontawesome/brands/github
     language: en
     features:
-        # Navigation settings
         - navigation.instant
         - navigation.instant.progress
         - navigation.sections

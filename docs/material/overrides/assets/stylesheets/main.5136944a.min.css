@@ -142,12 +142,24 @@
 }
 
 .mdx-container {
-	background: no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
 	padding-top: 1rem
 }
 
+
 [data-md-color-scheme=slate] .mdx-container {
-	background: no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
+	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
+}
+
+.mdx-container2 {
+	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
+	padding-top: 1rem
+}
+
+
+[data-md-color-scheme=slate] .mdx-container2 {
+	background: #2E4053
+	padding-top: 0rem
 }
 
 .mdx-hero {
@@ -179,12 +191,13 @@
 
 	.mdx-hero__content {
 		margin-top: 3.5rem;
-		max-width: 19rem;
+		max-width: 30rem;
 		padding-bottom: 14vw
 	}
 
 	.mdx-hero__image {
 		order: 2;
+		margin-top: 10rem;
 		transform: translateX(4rem);
 		width: 60rem
 	}

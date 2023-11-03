@@ -1,5 +1,5 @@
 ---
-date: 2023-10-21
+date: 2023-11-02
 title: GPT knows arithmetics
 authors: [andrey]
 categories:
@@ -7,6 +7,7 @@ categories:
 tags:
      - transformer
      - PyTorch
+     - GPT
 ---
 
 # **Gene Classification**

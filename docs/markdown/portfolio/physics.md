@@ -1,6 +1,6 @@
 <center>
-![img](images/bin_bnb.png#only-light){ width="450" }
-![img](images/bin_wnb.png#only-dark){ width="450" }
+![img](images/ds_bnb.png#only-light){ width="450" }
+![img](images/ds_wnb.png#only-dark){ width="450" }
 </center>
 
 ## :material-checkbox-multiple-marked-circle-outline: <b>Physics</b> 

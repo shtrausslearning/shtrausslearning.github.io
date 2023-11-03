@@ -1,6 +1,11 @@
+<center>
+![img](images/ds_bnb.png#only-light){ width="450" }
+![img](images/ds_wnb.png#only-dark){ width="450" }
+</center>
+
 ## :fontawesome-solid-person-digging:{ .person-digging } <b>Internships</b> 
 
-Here are some projects from my time at internships opportunities:
+Here are some projects from my time at internships opportunities
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Customer Transaction Predictive Analytics</b>
 

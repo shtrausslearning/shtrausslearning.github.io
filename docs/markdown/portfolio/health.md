@@ -1,3 +1,8 @@
+<center>
+![img](images/ds_bnb.png#only-light){ width="450" }
+![img](images/ds_wnb.png#only-dark){ width="450" }
+</center>
+
 ## :fontawesome-regular-hospital: <b>Health</b> 
 
 Health is an important topic in machine learning because it has the potential to significantly improve healthcare outcomes. Machine learning algorithms can be used to analyze large amounts of medical data and identify patterns that may not be immediately apparent to human analysts. This can help doctors and researchers make more accurate diagnoses, develop more effective treatments, and even predict and prevent certain diseases.

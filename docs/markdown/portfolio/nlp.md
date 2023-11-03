@@ -1,3 +1,8 @@
+<center>
+![img](images/ds_bnb.png#only-light){ width="450" }
+![img](images/ds_wnb.png#only-dark){ width="450" }
+</center>
+
 ## :fontawesome-solid-language:{ .language } <b>Natural Language Processing</b> 
 
 Natural language processing (NLP) is a branch of artificial intelligence (AI) that deals with the interaction between computers and humans using natural language. It involves the development of algorithms and computational models that can understand, analyze, and generate human language. 

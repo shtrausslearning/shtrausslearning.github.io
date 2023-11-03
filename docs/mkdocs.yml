@@ -92,7 +92,7 @@ theme:
         - navigation.tracking
         - navigation.tabs
         # - navigation.tabs.sticky 
-        - navigation.top
+        # - navigation.top
         - content.tabs.link
 
     custom_dir: material/overrides

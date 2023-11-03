@@ -145,12 +145,12 @@
 	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%);
 }
 
-.mdx-container2 {
-	color: #2E4053
-}
-
 [data-md-color-scheme=slate] .mdx-container {
 	background: linear-gradient(to bottom, var(--md-primary-fg-color), #a63fd9 99%, var(--md-default-bg-color) 99%)
+}
+
+.mdx-container2 {
+	color: #2E4053
 }
 
 [data-md-color-scheme=slate] .mdx-container2 {

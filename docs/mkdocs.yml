@@ -104,8 +104,8 @@ theme:
           icon: material/toggle-switch-off-outline
           name: Switch to dark mode
       - scheme: slate
-        primary: black
-        accent: deep orange
+        primary: red
+        accent: red
         toggle:
           icon: material/toggle-switch
           name: Switch to light mode

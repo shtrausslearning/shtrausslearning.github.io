@@ -98,8 +98,8 @@ theme:
     custom_dir: material/overrides
     palette:
       - scheme: material
-        primary: indigo
-        accent: indigo
+        primary: black
+        accent: red
 
     font:
         text: Ubuntu

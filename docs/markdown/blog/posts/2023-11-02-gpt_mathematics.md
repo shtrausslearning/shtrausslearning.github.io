@@ -34,7 +34,6 @@ The dataset is generated using a loop, we'll use python to generate this dataset
 ```python
 n = 1000
 strlen = len(f'{n - 1} + {n - 1} = {n * n - 2}')
-strlen
 
 text = set()
 for i in range(n):
@@ -61,3 +60,21 @@ for i in range(n):
             example += ' ' * (strlen - len(example))
             text.add(example)
 ```
+
+```python
+text = list(text)
+text[-10:]
+```
+
+```
+['55 - 256 = -201   ',
+ '765 - 822 = -57   ',
+ '899 - 295 = 604   ',
+ '775 / 692 = 1     ',
+ '301 - 797 = -496  ',
+ '322 * 711 = 228942',
+ '383 * 169 = 64727 ',
+ '441 * 430 = 189630',
+ '240 + 584 = 824   ',
+ '599 + 24 = 623    ']
+ ```

@@ -980,7 +980,6 @@
 <p>The dataset is generated using a loop, we'll use python to generate this dataset </p>
 <div class="highlight"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">strlen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">strlen</span>
 
 <span class="n">text</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1007,6 +1006,19 @@
             <span class="n">example</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">strlen</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">example</span><span class="p">))</span>
             <span class="n">text</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
 </code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">text</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">text</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+</code></pre></div>
+<p><code>['55 - 256 = -201   ',
+ '765 - 822 = -57   ',
+ '899 - 295 = 604   ',
+ '775 / 692 = 1     ',
+ '301 - 797 = -496  ',
+ '322 * 711 = 228942',
+ '383 * 169 = 64727 ',
+ '441 * 430 = 189630',
+ '240 + 584 = 824   ',
+ '599 + 24 = 623    ']</code></p>
 
 
 

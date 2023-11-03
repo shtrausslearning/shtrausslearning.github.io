@@ -10,20 +10,23 @@ tags:
      - GPT
 ---
 
-# **Gene Classification**
+# **GPT learns mathematics**
 
-hello
+In this notebook, we look at transformer models! Instead of using **huggingface**, we can turn to **PyTorch** and implement our own variation of a **generative transformer model**. We'll create a model from scratch, which we will teach how to do basic arithmetics. To do this, we'll need to create our own dataset of mathematical operations & train the **GPT model** from scratch! We might want to do this in order to get an indea of how powerful these generative models are, they are able to learn the combinations and help us when needed. Another reason is of course the need to understand how these models are structured inside.
 
-In this notebook, we look at how to work with biological sequence data, by venturing into a **classification problem**, in which we will be classifying between seven different **genes groups** common to three different species (human,chimpanzee & dog)
-
-![](https://i.imgur.com/bGvobdI.jpg)
+![](images/transformer_id.jpg)
 
 <!-- more -->
 
-[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1TU9_w1eWTsnObTKPKWNcR265EVUHmNWW?usp=sharing) [![name](https://img.shields.io/badge/Kaggle-Dataset-e589e5 )](https://www.kaggle.com/datasets/nageshsingh/dna-sequence-dataset)
+[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)]()
 
-## Background!!!
+## Background
 
-### Gene Classification Problem
+### Generative Models
 
-**Gene classification** using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems.
+The combination of transformers & generative task models is one of the most useful and applicable to everyday life models. We can teach a model to remember text & when necessary generate what text on related topics on which we trained the model
+
+
+## The Dataset
+
+The dataset is generated using a loop, we'll use python to generate this dataset 

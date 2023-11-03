@@ -99,7 +99,7 @@ theme:
     palette:
       - scheme: default
         primary: indigo
-        accent: indigo
+        accent: purple
 
     font:
         text: Ubuntu

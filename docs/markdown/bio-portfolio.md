@@ -63,3 +63,13 @@ In this project we look to create python classes which allow us to work with bio
 **Biological sequence alignment** is an important problem in bioinformatics for a number of reasons, for example for understanding genetic variation: By aligning biological sequences, such as DNA or protein sequences, researchers can identify similarities and differences between different organisms or within the same organism. This helps in understanding genetic variation, evolution, and relationships between species. In this project, we create a biological sequence alignment compatible class for **pairwise** & **multiple** sequence (**global** and **local**) sequence alignment, in similar fashion to how we created the biological sequence operation related classes in **[biological-sequence-operations](https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations)**. The created classes have been implemented in **[biopylib](https://github.com/shtrausslearning/biopylib)** library
 
 ![](images/compareseq.png)
+
+### :material-label-variant-outline: **Gene Classification**
+
+[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://www.kaggle.com/code/shtrausslearning/biological-sequence-alignment)
+
+https://shtrausslearning.github.io/blog/2023/10/21/gene-classification/
+
+---
+
+Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } **[mldsai-info channel](https://t.me/mldsai_info)** or to me directly :fontawesome-brands-telegram:{ .telegram } **[shtrauss2](https://t.me/shtrauss2)**, on :fontawesome-brands-github:{ .github } **[shtrausslearning](https://github.com/shtrausslearning)** or :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**

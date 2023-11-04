@@ -11,20 +11,24 @@ Data analysis and pattern recognition: Machine learning algorithms can be used t
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
+!!! tip "CFD Trade-Off Study Visualisation | Response Model"
 
-In this study, we do an exploratory data analysis of a CFD optimisation study, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for `L/D` (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
 
-![](images/liftdrag.png)
-![](images/catboosteval.png)
+	In this study, we do an exploratory data analysis of a CFD optimisation study, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for `L/D` (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem
+
+	![](images/liftdrag.png)
+	![](images/catboosteval.png)
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Gaussian Processes | Airfoil Noise Modeling</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
+!!! tip "Gaussian Processes | Airfoil Noise Modeling"
 
-In this study, we do an exploratory data analysis of [experimental measurement data](https://doi.org/10.24432/C5VW2C) associated with NACA0012 airfoil noise measurements. We outline the dependencies of parameter and setting variation and its influence on SPL noise level. The data is then used to create a machine learning model, which is able to predict the sound pressure level (SPL) for different combinations of airfoil design parameters.
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
 
-![](images/splfreq.png)
+	In this study, we do an exploratory data analysis of [experimental measurement data](https://doi.org/10.24432/C5VW2C) associated with NACA0012 airfoil noise measurements. We outline the dependencies of parameter and setting variation and its influence on SPL noise level. The data is then used to create a machine learning model, which is able to predict the sound pressure level (SPL) for different combinations of airfoil design parameters.
+
+	![](images/splfreq.png)
 
 ---
 

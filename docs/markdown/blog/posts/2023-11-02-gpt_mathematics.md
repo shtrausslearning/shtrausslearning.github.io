@@ -77,10 +77,10 @@ text[-10:]
  '441 * 430 = 189630',
  '240 + 584 = 824   ',
  '599 + 24 = 623    ']
- ```
+```
 
 
- ```python
+```python
  class Head(nn.Module):
 
     def __init__(self, head_size):

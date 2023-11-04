@@ -541,6 +541,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#spectogram-broadband-model--peak-identifier" class="md-nav__link">
+     Spectogram Broadband Model &amp; Peak Identifier
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1734,6 +1741,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#spectogram-broadband-model--peak-identifier" class="md-nav__link">
+     Spectogram Broadband Model &amp; Peak Identifier
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1769,7 +1783,7 @@
 <h3 id="cfd-trade-off-study-visualisation--response-model"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 17H15l3.5-5L15 7H6.5l3.5 5-3.5 5m8.5 2H3l4.5-7L3 5h12c.69 0 1.23.3 1.64.86L21 12l-4.36 6.14c-.41.56-.95.86-1.64.86Z"/></svg></span> <b><span style='color:#FFCA58;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b><a class="headerlink" href="#cfd-trade-off-study-visualisation--response-model" title="Permanent link"></a></h3>
 <div class="admonition tip">
 <p class="admonition-title">CFD Trade-Off Study Visualisation | Response Model</p>
-<p><a href="https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a></p>
+<p><img alt="" src="https://img.shields.io/badge/category-fluid-9EE72F" /> <a href="https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a></p>
 <p>In this study, we do an exploratory data analysis of a CFD optimisation study, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for <code>L/D</code> (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem</p>
 <p><img alt="" src="images/liftdrag.png" />
 <img alt="" src="images/catboosteval.png" /></p>
@@ -1777,9 +1791,26 @@
 <h3 id="gaussian-processes--airfoil-noise-modeling"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 17H15l3.5-5L15 7H6.5l3.5 5-3.5 5m8.5 2H3l4.5-7L3 5h12c.69 0 1.23.3 1.64.86L21 12l-4.36 6.14c-.41.56-.95.86-1.64.86Z"/></svg></span> <b><span style='color:#FFCA58;text-align:center'></span>Gaussian Processes | Airfoil Noise Modeling</b><a class="headerlink" href="#gaussian-processes--airfoil-noise-modeling" title="Permanent link"></a></h3>
 <div class="admonition tip">
 <p class="admonition-title">Gaussian Processes | Airfoil Noise Modeling</p>
-<p><a href="https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a></p>
+<p><img alt="" src="https://img.shields.io/badge/category-noise-DAF7A6" /> <a href="https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a></p>
 <p>In this study, we do an exploratory data analysis of <a href="https://doi.org/10.24432/C5VW2C">experimental measurement data</a> associated with NACA0012 airfoil noise measurements. We outline the dependencies of parameter and setting variation and its influence on SPL noise level. The data is then used to create a machine learning model, which is able to predict the sound pressure level (SPL) for different combinations of airfoil design parameters.</p>
 <p><img alt="" src="images/splfreq.png" /></p>
+</div>
+<h3 id="spectogram-broadband-model--peak-identifier"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 17H15l3.5-5L15 7H6.5l3.5 5-3.5 5m8.5 2H3l4.5-7L3 5h12c.69 0 1.23.3 1.64.86L21 12l-4.36 6.14c-.41.56-.95.86-1.64.86Z"/></svg></span> <b><span style='color:#FFCA58;text-align:center'></span>Spectogram Broadband Model &amp; Peak Identifier</b><a class="headerlink" href="#spectogram-broadband-model--peak-identifier" title="Permanent link"></a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Spectogram Broadband Model &amp; Peak Identifier</p>
+<p><img alt="" src="https://img.shields.io/badge/category-noise-DAF7A6" /> <a href="https://www.kaggle.com/code/shtrausslearning/spectogram-broadband-model-peak-identifier"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a></p>
+<p>Noise generally can be divided into <strong>broadband noise</strong> (general noise level) &amp; <strong>tonal noises</strong> (peaks at specific frequency bins). They don't have precise definitions, but broadband noises can be abstractly defined as the general noise level in an environement coming from various locations, creating a broad frequency range noise relation to output noise level. Tonal noise sources tend be associated to very clearly distinguishible noise peaks at specific frequencies ( or over a small frequency range ). When we look at a spectogram, each bird specie tends to create quite a repetitive collection of freq vs time structures, usually across a specific frequency range, usually it's a combination of tonal peaks that make up an entire bird call. In this approach, the two terms are used even looser, since there is a time element to this model from the STFT, which can be useful in a variety of scenarios. The <strong>tonal peak frequency identification approach</strong> relies on the assumption that the more data is fed into the system, the more precise the result should get, as occasional secondary birds &amp; other noises should eventually start to show more dissipative distribution in the entire subset that is analysed.</p>
+<p>Looping over all desired audio files of a subset of interest to us (a particular primary label subset):</p>
+<ul>
+<li>First, we load an audio recording that we wish to convert to desired to be used as inputs for CNN models.</li>
+<li>The audio is then split into segments that will define the spectogram time domain limits. Usually we would start with the entire frequency range [0,12.5kHz] and split the recording into a 5 second chunks, creating a time &amp; frequency domain relation.</li>
+<li>For reference, we find the maximum dB value in the entire frequency range, this model will define the peaks of the tonal noises and will always be the maximum.</li>
+<li>The spectogram is then divided into time bins, cfg.model_bins &amp; for each time bin, the maximum value for each frequency is determined.</li>
+<li>A model (<strong>kriging</strong>) for each time bin is created and a simple enemble of all time segments is constructed, this should always create a model that is lower in dB level than the global peak model mentioned earlier. There are certain cases where this is not the case, usually an indicator that there exist an anomaly in the structure of the curve (as shown in the example below).</li>
+<li>The peaks of the model are then found using scipy's find_peaks module, stored into a global list &amp; the Counter module counts all list entries.</li>
+<li>The results are subsequently plotted for each pixel value. The corresponding frequency values can be extracted using the function pxtohz.</li>
+</ul>
+<p><img alt="" src="images/spectogram.png" /></p>
 </div>
 <hr />
 <p><strong>Thank you for reading!</strong></p>

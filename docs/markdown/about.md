@@ -9,8 +9,6 @@ My name is Andrey!
 
 I'm **Aerodynamicist** & **Data Analyst**. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology! 
 
-<sub>The above picture was generated ;)</sub>
-
 ### **Background**
 
 Here's a brief summary:
@@ -28,6 +26,8 @@ I have a lot of hobbies, mostly digital art & photography
 - Nature Photography **[@eos-husky](https://500px.com/p/EOS-Husky)**
 - Administrate my bird group **[@da-birds](https://www.deviantart.com/da-birds)**
 - Digital Portrait Art **[@straussart](https://www.instagram.com/shtraussart/)**
+
+I also love to watch The Blacklist, TBBT, Everybody Loves Raymond and Formula 1 
 
 ### **Contact**
 

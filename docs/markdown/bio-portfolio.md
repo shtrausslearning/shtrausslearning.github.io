@@ -51,7 +51,7 @@ AAStringSet object of length 10:
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations)
 
-In this project we look to create python classes which allow us to work with biological sequences. Similar to the classes `Seq` & `SeqRecord` in **[biopython](https://biopython.org)**  The implemented classes form the basis of future library additions,  however with various additional operation options. The library allows to read and work with both **FASTA** and **genbank** formats and allow for 
+In this project we look to create python classes which allow us to work with biological sequences. Similar to the classes `Seq` & `SeqRecord` in **[biopython](https://biopython.org)**  The implemented classes form the basis of future library additions,  however with various additional operation options. The library allows to read and work with both **FASTA** and **genbank** formats. Do some basic exploratory data analysis of sequences & annotate different parts of the sequence. The created classes have been implemented in **[biopylib](https://github.com/shtrausslearning/biopylib)** library
 
 ![sequence](images/compareseq2.png)
 
@@ -60,6 +60,6 @@ In this project we look to create python classes which allow us to work with bio
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/biological-sequence-alignment)
 
-**Biological sequence alignment** is an important problem in bioinformatics for a number of reasons, for example for understanding genetic variation: By aligning biological sequences, such as DNA or protein sequences, researchers can identify similarities and differences between different organisms or within the same organism. This helps in understanding genetic variation, evolution, and relationships between species. In this project, we create a biological sequence alignment compatible class for **pairwise** & **multiple** sequence for **global** and **local** sequence alignment, in similar fashion to how we created the biological sequence operation related classes in **[biological-sequence-operations](https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations)**. The created classes have been implemented in **[biopylib](https://github.com/shtrausslearning/biopylib)** library
+**Biological sequence alignment** is an important problem in bioinformatics for a number of reasons, for example for understanding genetic variation: By aligning biological sequences, such as DNA or protein sequences, researchers can identify similarities and differences between different organisms or within the same organism. This helps in understanding genetic variation, evolution, and relationships between species. In this project, we create a biological sequence alignment compatible class for **pairwise** & **multiple** sequence (**global** and **local**) sequence alignment, in similar fashion to how we created the biological sequence operation related classes in **[biological-sequence-operations](https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations)**. The created classes have been implemented in **[biopylib](https://github.com/shtrausslearning/biopylib)** library
 
 ![](images/compareseq.png)

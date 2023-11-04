@@ -9,8 +9,6 @@ Machine learning plays a significant role in physics-related applications by ena
 
 Data analysis and pattern recognition: Machine learning algorithms can be used to analyze large datasets generated from experiments or simulations. They can identify patterns, correlations, and anomalies that may not be apparent to human researchers, helping to gain insights into physical processes. 
 
-Some of the projects that I've worked on:
-
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
@@ -27,13 +25,6 @@ In this study, we do an exploratory data analysis of a CFD optimisation study, h
 In this study, we do an exploratory data analysis of [experimental measurement data](https://doi.org/10.24432/C5VW2C) associated with NACA0012 airfoil noise measurements. We outline the dependencies of parameter and setting variation and its influence on SPL noise level. The data is then used to create a machine learning model, which is able to predict the sound pressure level (SPL) for different combinations of airfoil design parameters.
 
 ![](images/splfreq.png)
-
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Hummingbird Classification | Keras CNN Models</b>
-
-In this project, we aim to create an **automated hummindbird recognition** deep learning model. In our quest to create an automated approach, we can be left with a collection or under or over exposed images that will create difficulties for the model to distinguish between different classes correctly. In the entire process of expert identification & dealing with various image related inconsistencies outlied previously, manual identification for monitoring can be quite labourous, so an automated system of identification can go a long way.
-
-![](images/finetune1.png)
-![](images/finetune2.png)
 
 ---
 

@@ -7,16 +7,6 @@
 
 Health is an important topic in machine learning because it has the potential to significantly improve healthcare outcomes. Machine learning algorithms can be used to analyze large amounts of medical data and identify patterns that may not be immediately apparent to human analysts. This can help doctors and researchers make more accurate diagnoses, develop more effective treatments, and even predict and prevent certain diseases.
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Identifying Antibiotic Resistant Bacteria</b>
-
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/bio-identifying-antibiotic-resistant-bacteria/)
-
-In this study, we investigate data associated with **antibiotic resistance** for different `bacteria`, conducting an explotatory data analysis & creating resistance models for different antibiotics, based on unitig (part of DNA) data which convey the presence or absence of a particular nucleotide sequence in the Bacteria's DNA. We train a model(s) that is able to distinguish whether the bacteria is **resistant** to a particular antibiotic or **not resistant**
-
-<center>
-![img](https://i.imgur.com/jB4GTYs.png)
-</center>
-
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Lower Back Pain Symptoms Modeling</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)

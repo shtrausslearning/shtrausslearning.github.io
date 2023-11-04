@@ -16,11 +16,30 @@
 
 	![](images/banking_consumer_1.png){ width="300" } ![](images/banking_consumer_2.png){ width="300" }
 
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>News sentiment based trading strategy</b>
+
+!!! tip "News sentiment based trading strategy"
+
+	![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/news-sentiment-based-trading-strategy)
+
+	In this project, we'll apply **NLP** to financial stock movement prediction. Using **NLP**, we can ask ourselves questions such as, how positive or negative a **news article** (related to financial markets is). It provides a way to monitor **financial market sentiments** by utilising any text based source so we can determine whether the text based source posted on specific day has a positive or negative sentiment score. By combining **historic market data** with **news sources related to financial markets**, we can create a trading strategy that utilises NLP. The whole project revolved around generating accurate **sentiment labels** that would correlate to **event returns**
+
+	Based on historic data, we can calculate the **return** of a specific event, however one of challenges to utilise NLP for such application are the **target labels** and the **ground truths** would be set as the even return direction. We first need to create a model that is able to accurately define the sentiment of the **news source**, to do this we try a couple of different approaches: 
+
+	- The first method, we **manually define labels** and evaluate the performance of the model. The manual approach utilised three strategies combined into one (percentage value extraction, **TextBlob** & Beat/Misses). For encoding, we utilised static **spacy word embeddings** & investigated how the dimensionality of the vectors affected the model accuracy.
+	- We also utilised an expertly labeled dataset & tested the resulting model on the dataset, however there wasn't a too significant increase in accuracy.
+
+	The best performance boost came from the utilisation of Deep Learning **LSTM** with a trainable **embedding laber** architecture, which showed much better generalisation performance than classical machine learning models, including **ensemble methods**
+
+	The last approach we tried as **VADER**, which allows us to utilise a **custom lexicon**, which we can change to something more related: **[**financial markets**](https://www.sciencedirect.com/science/article/abs/pii/S0167923616300240)**. It was interesting to note that the VADER approach resulted in a high postive correlation to **event return**
+
+	![](images/eventreturn.png)
+
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 
 !!! tip "Twitter Emotion Classification"
 
-	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
+	![](https://img.shields.io/badge/category-social-56C2EE) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
 
 	In this study, we fine-tune a transformer model so it can classify the **sentiment** of user tweets for 6 different emotions (multiclass classification). We first create a baseline by utilising traditional ML methods that use extracted **BERT** embeddings for features, then we will turn to a more complex transformer encoder, **DistilBert** & **fine-tune** its model weights for our classification problem
 
@@ -48,13 +67,13 @@
 
 	![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb)
 
-	In this study we look at the **parsing/scraping** side of data. Its no secret that a lot text important information is stored on websites, as a result, for us to utilise this data in our of analyses and modeling, we need a way to extract this information, this process is referred to website parsing. For this example, we'll look at a user service review website, which stored user reviews on a variety of services and objects. We'll be parsing a common banking service & follow up with an exploratory data analysis, which should tell us about the contents of our extracted text data.
+	In this study we look at the **parsing/scraping** side of data. Its no secret that a lot text important information is stored on websites, as a result, for us to utilise this data in our of analyses and modeling, we need a way to extract this information, this process is referred to website parsing. For our study we need to extract customer user reviews from **[irecommend](https://irecommend.ru/content/sberbank?new=50)**. We'll be parsing a common **banking coorporation** that offers a variety of services so the reviews aren't too specific to a particular product. Having parsed our dataset, we'll follow up this with a rather basic **exploratory data analysis** based on **ngram** word combinations, so we can very quickly understand the content of the entire corpus.
 
 	#### (2) Banking Product Review Sentiment Modeling
 
 	![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/3_product-reviews.ipynb)
 
-	In this notebook, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using **TF-IDF** & **Word2Vec** methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based **GridSearchCV** hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
+	Once we have parsed and created our dataset, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using **TF-IDF** & **Word2Vec** methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based **GridSearchCV** hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
 
 ### :material-database-check-outline: **mllibs**
 

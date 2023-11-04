@@ -1,3 +1,4 @@
+
 # Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
 site_name: Andrey Shtrauss
 site_url: https://github.com/shtrausslearning/shtrausslearning.github.io
@@ -101,7 +102,7 @@ theme:
         accent: indigo
 
     font:
-        text: Ubuntu
+        text: Roboto
 
 extra:
     manifest: manifest.webmanifest
@@ -127,6 +128,7 @@ plugins:
                 case: lower
     - search
     - tags
+    - offline
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -152,6 +154,38 @@ nav:
     - Geospatial: portfolio/geospatial.md
 
 - Bioinformatics: bio-portfolio.md
+
+- mllibs:
+
+    - About: mllibs/about.md
+    - Installation: mllibs/install.md
+    - Projects:
+        - ML Project Phases: mllibs/projects/mlproject.md
+        - ML Projects List: 
+            - Gene Family Classification: mllibs/projects/gene_classification.md
+
+    - Modules: 
+        - Available modules: mllibs/modules/list.md
+        - Adding new modules: mllibs/modules/adding.md
+        - Grouping modules: mllibs/modules/grouping.md
+
+    - Documentation: 
+        - iterative: mllibs/documentation/iterative.md
+        - storage: mllibs/documentation/data_storage.md
+        - nlpm: mllibs/documentation/nlpm.md
+        - nlpi: mllibs/documentation/nlpi.md
+        - eda:
+            - eda_simple: mllibs/documentation/eda/meda_simple.md
+            - eda_splot: mllibs/documentation/eda/meda_splot.md 
+            - eda_scplot: mllibs/documentation/eda/meda_scplot.md
+
+    - Group:
+        - Tasks:
+          - Recommendation: mllibs/group/tasks/recom.md
+          - Label Classification: mllibs/group/tasks/label_classifier.md
+        - Task Status: mllibs/group/status.md
+        - Meetings: mllibs/group/meetups.md
+        - Members: mllibs/group/members.md
 
 - Blog:
     - blog/index.md

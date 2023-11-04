@@ -7,13 +7,15 @@
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Australian Geospatial Analysis</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)
+!!! tip "Australian Geospatial Analysis"
 
-In this study, we provide a brief overview on what type of geospatial library tools we can use to visualise & analyse map geospatial data, such as **Choropleth**, **Hexbin**, **Scatter** and **Heatmaps**. In particular, we explore Australian based geospatial maps & visualisation data. We look at problems such as **unemployment rates** for different states and demographic. Analyse **housing median** values, house **sale locations** for different suburbs as well as use [kriging interpolation model](https://github.com/shtrausslearning/mllibs/blob/main/src/mlmodels/kriging_regressor.py) to **estimate temperatures** at locations for which we don't have data.
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)
 
-<center>
-![](images/chloropleth.png)
-</center>
+	In this study, we provide a brief overview on what type of geospatial library tools we can use to visualise & analyse map geospatial data, such as **Choropleth**, **Hexbin**, **Scatter** and **Heatmaps**. In particular, we explore Australian based geospatial maps & visualisation data. We look at problems such as **unemployment rates** for different states and demographic. Analyse **housing median** values, house **sale locations** for different suburbs as well as use [kriging interpolation model](https://github.com/shtrausslearning/mllibs/blob/main/src/mlmodels/kriging_regressor.py) to **estimate temperatures** at locations for which we don't have data.
+
+	<center>
+	![](images/chloropleth.png)
+	</center>
 
 ---
 

@@ -7,7 +7,7 @@
 
 My name is Andrey! 
 
-I'm **Aerodynamicist** & **Data Analyst**. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology! 
+I'm **Aerodynamicist** & **Data Analyst**. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology, which is why this is a big interest of mine nowerdays! 
 
 ### **Background**
 
@@ -15,7 +15,7 @@ Here's a brief summary:
 
 - Aerospace Engineering from Tohoku University (graduate) <br>
 - Worked on **Meshless methodology** for discretisation & high order interpolation methods (ML approach)<br>
-- Also worked on Synthetic Turbulence methodolgy as part of **JAXA** project (approach configuration subproject)
+- Also worked on Synthetic Turbulence methodolgy as part of **JAXA** project (approach configuration subproject), in particular integration of divergence free properties for SEM & its use in aeroacoutics
 - Introduced biomimicry approach for vehicle aerodynamic optimisation/reverse engineering optimisation
 - Specialise in Computation Fluid Dynamics & Aeroacoustics 
 

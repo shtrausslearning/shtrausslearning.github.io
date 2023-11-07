@@ -215,7 +215,7 @@ Natural language course related work
 I also post additional NLP content on my blog: **[NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**
 
 <center>
-![](images/blog_sample2.png)
+![](images/blog_sample4.png)
 </center>
 
 !!! tip "Named Entity Recognition with Huggingface Trainer"

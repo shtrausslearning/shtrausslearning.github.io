@@ -60,6 +60,29 @@
 	![](images/embedding.png)
 	</center>
 
+### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Creating a Transformer Attention Encoder</b> 
+
+!!! tip "Creating a Transformer Attention Encoder"
+
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/creating-a-transformer-attention-encoder?scriptVersionId=149696179)
+
+	In this study, we look some of the basics of a **transformer** architecture model, the **encoder**, by writing and utilising custom **pytorch** classes. Encoder simply put: Converts a **series tokens** into a **series of embedding vectors** (hidden state) & consists of **multiple layers** (**blocks**) constructed together 
+
+	The encoder structure:
+	
+	- Composed of multiple encoder layers (blocks) stacked next to each other (similar to CNN layer stacks)
+	- Each encoder block contains **multi-head self attention** & **fully connected feed forward layer** (for each input embedding)
+
+	Purpose of the Encoder:
+
+	- Input tokens are encoded & modified into a form that **stores some contextual information** in the sequence
+
+	The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**:
+
+	- Transformers can be utilised for various application so they are created in a base form
+	- If we want to utilise them for a specific task, we add an extra component **head** to the transformer
+	- In this example, we'll utilise it for **classification** purposes, and look at how we can combine the base with the **head**
+
 ### :material-label-multiple-outline: <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis & Modeling</b>
 
 !!! tip "Banking Service User Review Analysis & Modeling"
@@ -81,7 +104,7 @@
 !!! tip "mllibs"
 
 	<center>
-	![](images/bnb.png){ width="400" }
+	![](images/mllibs_colour.png){ width="400" }
 
 	[![name](https://img.shields.io/badge/mllibs-Repository-blue?logo=GitHub)](https://github.com/mllibs) [![name](https://img.shields.io/badge/mllibs-Documentation-orange?logo=GitHub)](https://www.mllibs-docs.github.io)
 	</center>
@@ -96,6 +119,12 @@
 	![](images/outlier1.png)
 
 ### :material-label-multiple-outline: <b><span style='color:#FFCA58;text-align:center'></span>OTUS NLP Course Related Work</b>
+
+<center>
+![](images/otus.png){ width="300" }
+</center>
+
+Natural language course related work 
 
 #### <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools (re,natasha)</b>
 
@@ -179,7 +208,7 @@
 
 	![](https://img.shields.io/badge/category-financial-5D58CF) [![](https://img.shields.io/badge/pdf-presentation-EC1C24?logo=adobe)](pdf/chatbot_grabrfi.pdf)
 
-	As part of the final project of the **[nlp course](https://otus.ru/lessons/nlp/)**, the aim of the project was to create a dialogue system for a banking service business, focusing on combining various NLP methods that can be utilised in chatbots. Combining a **Telegram** structure that utilises **TF-IDF** with **cosine_similarity**, **multiclass classification** based approach, **Question Answering** (BERT), **generative** (DialoGPT). The task of answering user questions and queries was split up into different subgroups found in the **[help section](https://help.grabrfi.com)** so that each model would be in charge of its own section, as a result of experimenting with different method activation thresholds, a dialogue system that utilised all of the above methods was created, and all methods were able to work together. This allowed for an understanding of the different approaches that can be utilised in the creation of a dialogue system. 
+	As part of the final project of the **[nlp course](https://otus.ru/lessons/nlp/)**, the aim of the project was to create a dialogue system for a banking service business **GrabrFi**, focusing on combining various NLP methods that can be utilised in chatbots. Combining a **Telegram** structure that utilises **TF-IDF** with **cosine_similarity**, **multiclass classification** based approach, **Question Answering** (BERT), **generative** (DialoGPT). The task of answering user questions and queries was split up into different subgroups found in the **[help section](https://help.grabrfi.com)** so that each model would be in charge of its own section, as a result of experimenting with different method activation thresholds, a dialogue system that utilised all of the above methods was created, and all methods were able to work together. This allowed for an understanding of the different approaches that can be utilised in the creation of a dialogue system. 
 
 	[![](images/grabr.png)](pdf/chatbot_grabrfi.pdf)
 
@@ -190,9 +219,26 @@
 I also post additional NLP content on my blog: **[NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**
 
 <center>
-[![](images/blog_sample2.png){width="400"}](https://shtrausslearning.github.io/blog/category/nlp.html)
+![](images/blog_sample2.png)
 </center>
 
+!!! tip "Named Entity Recognition with Huggingface Trainer"
+
+	![](https://img.shields.io/badge/blog-post-ABEBC6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/08/19/named-entity-recognition-with-huggingface-trainer.html)
+
+	In a **[previous post](https://shtrausslearning.github.io/posts/huggingface_NER/)** we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model & defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the **training** & **inference** steps quite a lot. We'll be using the **trainer** & **pipeline** methods of the Huggingface library and will use a dataset used in **[mllibs](https://pypi.org/project/mllibs/)**, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.
+
+!!! tip "Named Entity Recognition for Sentence Splitting"
+
+	![](https://img.shields.io/badge/blog-post-ABEBC6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/08/11/named-entity-recognition-for-sentence-splitting.html)
+
+	In the last post, we talked about how to use **NER** for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding & ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for **NER** tagging, which I've implemented in my project **[mllibs](https://github.com/shtrausslearning/mllibs)**
+
+!!! tip "Named Entity Recognition with Torch Loop"
+
+	![](https://img.shields.io/badge/blog-post-ABEBC6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch.html)
+
+	In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
 
 **Thank you for reading!**
 

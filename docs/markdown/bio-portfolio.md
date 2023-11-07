@@ -72,9 +72,11 @@ Bioinformatics is a fascinating field that allows us to explore the intricate wo
 
 ### :material-label-variant-outline: **Gene Classification**
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://www.kaggle.com/code/shtrausslearning/biological-sequence-alignment)
+!!! tip "Gene Classification"
 
-https://shtrausslearning.github.io/blog/2023/10/21/gene-classification/
+     ![](https://img.shields.io/badge/blog-post-ABEBC6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/10/21/gene-classification.html)
+
+     In this project, we look at how to work with **biological sequence** data, by venturing into a machine learning classification problem in which we will be classifying between seven different genes groups common to three different species (human,chimpanzee & dog) such as **Ion Channels** & **Transcription Factors**. Each DNA segment has already been labelled for us, so all we need to do is data preprocessing, similar to how we would do it in a NLP problem, however we'll be utilising a specific to bioinformatics encoding process which works well for DNA based data. Utilising classical machine learning methods to train our model, we'll train our model on **human** data and see how well our model generalises on **dog** and **chimpanzee** data as well.
 
 ---
 

@@ -97,10 +97,9 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: slate
+      - scheme: default
         primary: indigo
         accent: indigo
-
     font:
         text: Roboto
 

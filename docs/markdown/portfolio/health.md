@@ -29,7 +29,7 @@ Health is an important topic in machine learning because it has the potential to
 	In this study, we investigate feline reproductology data, conducting an exploratory data analysis of experimental measurements of **estradiol** and **progesterone** levels and attempt to find the relation between different hormone levels during different phases of pregnancy. We  then use the available data to create machine learning models that are able to predict at which stage of an estrous cycle a feline is at the time of testing for different measurement methods, which is a **multiclass classification problem**.
 
 	<center>
-	![](https://i.imgur.com/79RXDS0.png)
+	![](images/roc_curve.png)
 	</center>
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Heart Disease Classification</b>

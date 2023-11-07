@@ -20,7 +20,7 @@ In this notebook, we look at transformer models! Instead of using **huggingface*
 
 ![](https://img.shields.io/badge/status-wip-blue) [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)]()
 
-## Background
+## **Background**
 
 ### Generative Models
 

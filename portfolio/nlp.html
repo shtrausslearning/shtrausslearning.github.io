@@ -2043,21 +2043,16 @@
 <p class="admonition-title">Creating a Transformer Attention Encoder</p>
 <p><a href="https://www.kaggle.com/code/shtrausslearning/creating-a-transformer-attention-encoder?scriptVersionId=149696179"><img alt="Open Notebook" src="https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter" /></a></p>
 <p>In this study, we look some of the basics of a <strong>transformer</strong> architecture model, the <strong>encoder</strong>, by writing and utilising custom <strong>pytorch</strong> classes. Encoder simply put: Converts a <strong>series tokens</strong> into a <strong>series of embedding vectors</strong> (hidden state) &amp; consists of <strong>multiple layers</strong> (<strong>blocks</strong>) constructed together </p>
-<p>The encoder structure:</p>
+<p>The <strong>encoder structure</strong>:</p>
 <ul>
-<li>Composed of multiple encoder layers (blocks) stacked next to each other (similar to CNN layer stacks)</li>
+<li>Composed of <strong>multiple encoder layers (blocks)</strong> stacked next to each other (similar to CNN layer stacks)</li>
 <li>Each encoder block contains <strong>multi-head self attention</strong> &amp; <strong>fully connected feed forward layer</strong> (for each input embedding)</li>
 </ul>
 <p>Purpose of the Encoder:</p>
 <ul>
 <li>Input tokens are encoded &amp; modified into a form that <strong>stores some contextual information</strong> in the sequence</li>
 </ul>
-<p>The basis of the encoder can be utilised for a number of different applications, as is common in <strong>HuggingFace</strong>, we'll create a simple tail end classification class, so the model can be utilised for <strong>classification</strong>:</p>
-<ul>
-<li>Transformers can be utilised for various application so they are created in a base form</li>
-<li>If we want to utilise them for a specific task, we add an extra component <strong>head</strong> to the transformer</li>
-<li>In this example, we'll utilise it for <strong>classification</strong> purposes, and look at how we can combine the base with the <strong>head</strong></li>
-</ul>
+<p>The basis of the encoder can be utilised for a number of different applications, as is common in <strong>HuggingFace</strong>, we'll create a simple tail end classification class, so the model can be utilised for <strong>classification</strong>.</p>
 </div>
 <h3 id="banking-user-review-analysis--modeling"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 18h9l-2 2H4c-.5 0-1.03-.21-1.41-.59C2.21 19.03 2 18.5 2 18V8h2v10M17.63 4.84C17.27 4.33 16.67 4 16 4H8c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h8c.67 0 1.27-.34 1.63-.85L22 10l-4.37-5.16M16 14H8V6h8l3.55 4Z"/></svg></span> <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis &amp; Modeling</b><a class="headerlink" href="#banking-user-review-analysis--modeling" title="Permanent link"></a></h3>
 <div class="admonition tip">

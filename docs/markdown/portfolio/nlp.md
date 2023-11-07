@@ -68,20 +68,16 @@
 
 	In this study, we look some of the basics of a **transformer** architecture model, the **encoder**, by writing and utilising custom **pytorch** classes. Encoder simply put: Converts a **series tokens** into a **series of embedding vectors** (hidden state) & consists of **multiple layers** (**blocks**) constructed together 
 
-	The encoder structure:
+	The **encoder structure**:
 	
-	- Composed of multiple encoder layers (blocks) stacked next to each other (similar to CNN layer stacks)
+	- Composed of **multiple encoder layers (blocks)** stacked next to each other (similar to CNN layer stacks)
 	- Each encoder block contains **multi-head self attention** & **fully connected feed forward layer** (for each input embedding)
 
 	Purpose of the Encoder:
 
 	- Input tokens are encoded & modified into a form that **stores some contextual information** in the sequence
 
-	The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**:
-
-	- Transformers can be utilised for various application so they are created in a base form
-	- If we want to utilise them for a specific task, we add an extra component **head** to the transformer
-	- In this example, we'll utilise it for **classification** purposes, and look at how we can combine the base with the **head**
+	The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**.
 
 ### :material-label-multiple-outline: <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis & Modeling</b>
 

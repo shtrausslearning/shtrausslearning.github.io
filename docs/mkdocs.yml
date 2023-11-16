@@ -101,7 +101,7 @@ theme:
         primary: indigo
         icon: material/brightness-7
         accent: indigo
-      - scheme: slate
+      - scheme: material
         primary: indigo
         icon: material/brightness-4
         accent: indigo

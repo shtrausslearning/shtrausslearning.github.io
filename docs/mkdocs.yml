@@ -97,14 +97,19 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: default
-        primary: indigo
-        icon: material/brightness-7
-        accent: indigo
-      - scheme: material
-        primary: indigo
-        icon: material/brightness-4
-        accent: indigo
+        # Palette toggle for light mode
+        - scheme: default
+          toggle:
+            icon: material/brightness-7 
+
+
+            name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - scheme: slate
+          toggle:
+            icon: material/brightness-4
+            name: Switch to light mode
     font:
         text: Roboto
 

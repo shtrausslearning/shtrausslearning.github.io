@@ -13,41 +13,39 @@ tags:
 
 # **Utilising Prophet with PySpark**
 
-In this notebook, we look at how to use a popular machine learning library `prophet` with `pyspark`. `pyspark` itself does not contain such an additive regression model, however we can utilise user defined functions `UDF`, which allows us to use different functionality that is not available in `pyspark`
+In this notebook, we look at how to use a popular machine learning library **prophet** with the **pyspark** architecture. **pyspark** itself unfortunatelly does not contain such an additive regression model, however we can utilise user defined functions, **UDF**, which allows us to utilise different functionality of different libraries that is not available in **pyspark**
 
-![](images/avocado.jpg)
+![](images/avocado2.jpg)
 
 <!-- more -->
 
-![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)
+[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1nHNPoO7CMBwGg8rIxgAx4KuCZfxvuXBN?usp=sharing) [![name](https://img.shields.io/badge/Dataset-e589e5 )](https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/avocado_sales_prediction/avocado.csv)
 
-## Background6
+## **Background**
 
 ### Prophet
 
-`Prophet` is a time series forecasting model. It is based on an additive regression model that takes into account trends, seasonality, and holidays. `Prophet` also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. 
+`Prophet` is a time series forecasting model. It is based on an additive regression model that takes into account **trends, seasonality, and holidays**. `Prophet` also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. Such a model is not available in the **pyspark** library, so we'll need to utilise **user defined functions** to utilise it with our dataset!
 
 ### UDF
 
-Pandas `UDFs` (User-Defined Functions) allow you to apply a Python function that operates on pandas data frames to Spark data frames. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions.
+**Pandas** `UDFs` (**User-Defined Functions**) are one form of **UDF** that is available in **pyspark**. They allow you to apply a Python function that operates on **pandas dataframes** to Spark dataframes. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions. 
+
+Of course, this is not a guide on **UDF**, nor are we going for the most optimal setup, it is simply an example of how we can use the rich user defined functionality of pyspark to integrate other functionalities not available in pyspark
 
 ### Avocado Price Prediction
 
-Avocado price prediction is the process of using machine learning algorithms to forecast the future prices of avocados based on historical data and other relevant factors such as weather patterns, consumer demand, and supply chain disruptions. This can help stakeholders in the avocado industry make informed decisions about when and where to sell their avocados, as well as how much to charge for them. Avocado price prediction can also provide insights into the factors that affect avocado sales and help optimize the industry's efficiency and profitability.
+**Avocado price prediction** is the process of using machine learning algorithms to forecast the future prices of avocados based on historical data and other relevant factors such as weather patterns, consumer demand, and supply chain disruptions. This can help stakeholders in the avocado industry make informed decisions about when and where to sell their avocados, as well as how much to charge for them. Avocado price prediction can also provide insights into the factors that affect avocado sales and help optimize the industry's efficiency and profitability.
 
-### Objective
-
-Having done some posts on `pyspark`, it seems like a very intuitive library to use
-
-## The Dataset
+## **The Dataset**
 
 It is a well known fact that Millenials LOVE Avocado Toast. It's also a well known fact that all Millenials live in their parents basements.Clearly, they aren't buying home because they are buying too much Avocado Toast! But maybe there's hope… if a Millenial could find a city with cheap avocados, they could live out the Millenial American Dream.
 
-The dataset can be found on **[Kaggle](https://www.kaggle.com/datasets/neuromusic/avocado-prices)** & its original source found **[here](https://hassavocadoboard.com/)**
+The dataset can be found on **[Kaggle](https://www.kaggle.com/datasets/neuromusic/avocado-prices)** & its original source found **[here](https://hassavocadoboard.com/)**, it contains historical sales data for different avocado types in various states the United States
 
 ### Loading data
 
-To load the data, we start a spark session on local
+To load the data, we start a spark session on our local machine
 
 ```python
 ! pip install pyspark
@@ -89,9 +87,11 @@ root
  |-- region: string (nullable = true)
 ```
 
-## Exploring Data
+## **Exploring Data**
 
-Having loaded our data, we sure can do some data exploration, first lets take a peek at our dataset, we'll use `select`,`orderBy` & `show` methods
+As with any dataset, its good to get a better understanding by exploring the data you are working with. Having loaded our data, first lets take a peek at our dataset, 
+
+Let's use `select`,`orderBy` & `show` methods to show our dataset
 
 ```python
 sales.select('Date','type','Total Volume','region')\
@@ -128,6 +128,21 @@ sales.select(col('Date')).distinct().orderBy('Date').show(5)
 +----------+
 only showing top 5 rows
 ```
+
+It's also good to know the range of the `date` of our dataset
+
+```python
+sales.select(f.max(f.col('Date')).alias('last'),f.min(f.col('Date')).alias('first')).show()
+```
+
+```
++----------+----------+
+|      last|     first|
++----------+----------+
+|2018-03-25|2015-01-04|
++----------+----------+
+```
+
 
 We will be using `Total Volume` as our target variable we'll be predicting. We also can note that we have different types `type` of avocados (organic and conventional)
 
@@ -351,7 +366,7 @@ sales.groupBy('region').count().show(100)
 +-------------------+-----+
 ```
 
-So as the name suggests, its a grouping that doesn't actually correspond to states, but rather are some general zones, mostly city specific regions, however we also have `Northeast`, `West`,`Midsouth` & `SouthCentral` regions.
+So as the name suggests, its a grouping that doesn't actually correspond to states, but rather are some general zones, mostly city specific regions, however we also have **Northeast**, **West**,**Midsouth** & **SouthCentral** regions.
 
 Let's check how many values we have for each `region`
 
@@ -388,7 +403,9 @@ sales.groupBy('region').count().orderBy('count', ascending=True).show()
 only showing top 20 rows
 ```
 
-Looks like we mostly have 338 historical data points for each region, except for `WestTexNewMexico`. Let's check how the `Houston` region has been performing.
+Looks like we mostly have **338 historical data** points for each region, except for **WestTexNewMexico**.
+
+Turning our attention to only one region, let's check how the **Houston** region has been performing.
 
 ```python
 # select only a subset of data
@@ -422,16 +439,16 @@ sales.filter(f.col('region') == 'Houston').show()
 +---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
 ```
 
-## Preparing data for modeling
+## **Preparing data for modeling**
 
-Since we don't have any missing data points for this region, let's use it for our model example, let's define a subset `houston_df`
+Since we don't have any missing data points for the **Houston** region, let's use it for our model example, let's define a subset `houston_df`, which will contain only avocado sales data for the **Houston** region
 
 ```python
 # select houson 
 houston_df = sales.filter(f.col('region')=='Houston')
 ```
 
-Let's select only the relevant features
+Let's select only the relevant features which will be used to train our model
 
 ```python
 houston_df = houston_df.groupBy(['Region','type','Date']).agg(f.sum('Total Volume').alias('y'))
@@ -470,9 +487,13 @@ houston_df_final.show(4)
 only showing top 4 rows
 ```
 
+As we will be utilising **prophet**, we can define the different settings of **features** we will be utilising in the modeling process, like `weekly_seasonality` and `yearly_seasonality`, we don't really need to explicitly create features by ourselves. For this study, we'll limit ourselves with these features provided in module.
+
+## **Creating a model**
+
 ### Defining Scheme
 
-Let's prepare the scheme for the outputs of our `UDF`
+Like any UDF, we need to define the output type of our data, let's prepare the **data format scheme** for the outputs of our `UDF`. We will need to use `StructType` and the relevant type improted from `sql.types`
 
 ```python
 import pyspark.sql.types  as ty
@@ -490,7 +511,7 @@ schema = ty.StructType([
 
 ### UDF
 
-Our `UDF` will be slightly involved, we will be using `PandasUDFType.GROUPED_MAP` so it should be called with `groupby` & `apply`
+Our `UDF` will be slightly involved than our typical **UDF**, we will be using `PandasUDFType.GROUPED_MAP` so it should be called with `groupby` & `apply`
 
 > `PandasUDFType.GROUPED_MAP` is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.
 
@@ -500,8 +521,6 @@ from pyspark.sql.functions import pandas_udf, PandasUDFType
 
 @pandas_udf(schema, PandasUDFType.GROUPED_MAP)
 def apply_model(store_pd):
-    
-    store_pd.show()
     
   # instantiate the model and set parameters
     model = Prophet(
@@ -539,7 +558,24 @@ def apply_model(store_pd):
                     'yhat_upper', 'yhat_lower']]
 ```
 
-### Modeling
+### Training process
+
+Our model setup will be the following:
+
+```python
+model = Prophet(
+ interval_width=0.1,
+ growth='linear',
+ daily_seasonality=False,
+ weekly_seasonality=True,
+ yearly_seasonality=True,
+ seasonality_mode='multiplicative'
+)
+```
+
+Having fitted the model on our data (which runs from **2015-01-04** to **2018-03-25**), we'll be making a prediction using `model.make_future_dataframe`, in which we'll be specifying that we want to make a prediction for **6 weeks in advanced**, setting the model prediction parameters. Then we simply call `model.predict` to actually make the prediction.
+
+To create models for both **region** (which in our case will only be Houston) & **type** (organic & convensional), we'll call the `apply` method for the pyspark dataframe
 
 ```python
 results = houston_df_final.groupby(['Region','type']).apply(apply_model)
@@ -574,6 +610,10 @@ results.show()
 only showing top 20 rows
 ```
 
+### Model Prediction Visualisation
+
+Now to visualise the results, lets do some preparation
+
 ```python
 import pyspark.pandas as ps
 organic_data = results.filter(f.col('type')=='organic').pandas_api()
@@ -582,23 +622,25 @@ conventional_data = results.filter(f.col('type')=='conventional').pandas_api()
 conventional_data = conventional_data.set_index(['ds'])
 ```
 
-### Visualisation
-
-Let's visualise the `organic` subset model
+Let's visualise the `organic` subset model predictions
 
 ```python
-organic_data[['y','yhat']].plot.line(backend='matplotlib',figsize=(14,5))
+organic_data[['y','yhat']].plot.line(backend='plotly')
 ```
 
-![](images/organic.png)
+![](images/organic2.png)
 
 And now the `convensional` subset model
 
 ```python
-conventional_data[['y','yhat']].plot.line(backend='matplotlib',figsize=(14,5))
+conventional_data[['y','yhat']].plot.line(backend='plotly')
 ```
 
-![](images/conventional.png)
+![](images/conventional2.png)
+
+## **Concluding remarks**
+
+In this post we looked how to utilise **pyspark** together with a common **time series** prediction library **prophet**. We achieved this with the use of **pyspark** user defined functionality which it offers to allow us to continue working with **pyspark** dataframe inputs. Of course such functionality would result in performance drops when using large datasets, so it must be used with caution, especially **pandas UDF**. Our goal was to do some data exploration with **pyspark** & predict the total required volume of avocadoes for 6 weeks in advanced, for two different types of avocados and for the Houston region. We used the entire available dataset without any validation techniques to confirm the accuracy of our prediction, so that is something you can definitely try out next, validation of models is of course very important!
 
 
 **Thank you for reading!**

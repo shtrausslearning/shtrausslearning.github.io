@@ -97,14 +97,16 @@ theme:
 
     custom_dir: material/overrides
     palette:
-        - scheme: default
-          primary: blue grey
+        - scheme: slate
+          primary: indigo
+          accent: indigo
           toggle:
             icon: material/toggle-switch
             name: Switch to dark mode
 
-        - scheme: slate
-          primary: blue grey 
+        - scheme: material
+          primary: indigo
+          accent: indigo
           toggle:
             icon: material/toggle-switch-off-outline
             name: Switch to light mode

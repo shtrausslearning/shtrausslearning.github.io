@@ -97,19 +97,19 @@ theme:
 
     custom_dir: material/overrides
     palette:
-        - scheme: slate
-          primary: indigo
-          accent: indigo
-          toggle:
-            icon: material/toggle-switch
-            name: Switch to dark mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
 
-        - scheme: material
-          primary: indigo
-          accent: indigo
-          toggle:
-            icon: material/toggle-switch-off-outline
-            name: Switch to light mode
     font:
         text: Ubuntu
 

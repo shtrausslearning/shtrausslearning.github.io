@@ -1,4 +1,4 @@
-Machine learning plays a big part in biology due to its ability to analyze and make sense of large and complex biological datasets. Here are a few reasons why machine learning is important in biology:
+**Machine learning** plays a big part in biology due to its ability to analyze and make sense of large and complex biological datasets. Here are a few reasons why machine learning is important in biology:
 
 1. Data analysis: Biology generates vast amounts of data, such as genomic sequences, protein structures, and gene expression profiles. Machine learning algorithms can process and analyze these datasets to identify patterns, relationships, and insights that may not be apparent to human researchers.
 

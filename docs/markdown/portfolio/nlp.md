@@ -8,7 +8,6 @@ In this study, we aim to create an **automated ticket classification model** for
 
 ![](images/banking_consumer_1.png){ width="300" } ![](images/banking_consumer_2.png){ width="300" }
 
----
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>News sentiment based trading strategy</b>
 
@@ -27,8 +26,6 @@ The last approach we tried as **VADER**, which allows us to utilise a **custom l
 
 ![](images/eventreturn.png)
 
----
-
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Twitter Emotion Classification</b>
 
 ![](https://img.shields.io/badge/category-social-56C2EE) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
@@ -39,7 +36,6 @@ In this study, we fine-tune a transformer model so it can classify the **sentime
 ![](images/sentiment_tsne.png)
 </center>
 
----
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>edX Course Recommendations</b> 
 
@@ -50,8 +46,6 @@ In this study, we create an **NLP based recommendation system** which informs a 
 <center>
 ![](images/embedding.png)
 </center>
-
----
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Creating a Transformer Attention Encoder</b> 
 
@@ -70,8 +64,6 @@ Purpose of the Encoder:
 
 The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**.
 
----
-
 ### :material-label-multiple-outline: <b><span style='color:#FFCA58;text-align:center'></span>Banking User Review Analysis & Modeling</b>
 
 #### (1) Parsing Dataset
@@ -85,8 +77,6 @@ In this study we look at the **parsing/scraping** side of data. Its no secret th
 ![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/3_product-reviews.ipynb)
 
 Once we have parsed and created our dataset, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using **TF-IDF** & **Word2Vec** methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based **GridSearchCV** hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
-
----
 
 ### :material-database-check-outline: **mllibs**
 
@@ -104,8 +94,6 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 ![](images/outlier3.png)
 ![](images/outlier4.png)
 ![](images/outlier1.png)
-
----
 
 ### :material-label-multiple-outline: <b><span style='color:#FFCA58;text-align:center'></span>OTUS NLP Course Related Work</b>
 
@@ -187,8 +175,6 @@ As part of the final project of the **[nlp course](https://otus.ru/lessons/nlp/)
 
 [![](images/grabr.png)](pdf/chatbot_grabrfi.pdf)
 
----
-
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>NLP related blog posts</b>
 
 I also post additional NLP content on my blog: **[NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**
@@ -210,6 +196,8 @@ I also post additional NLP content on my blog: **[NLP projects](https://shtrauss
 	![](https://img.shields.io/badge/blog-post-ABEBC6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch.html)
 
 	In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
+
+---
 
 **Thank you for reading!**
 

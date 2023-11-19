@@ -22,17 +22,20 @@ Here's a brief summary:
 
 ### :simple-kaggle: **Kaggle** & :fontawesome-brands-square-github: **GitHub**
 
-![](images/kaggle.png)
-
 I'm quite active on **Kaggle**, or at least I try to be, I'm always trying to improve my **data science** & **machine learning** skills, so kaggle is the place to be! I really enjoy being a part of this community, it has taught me so many thing & allows me to interact with people from all over the world with similar interests, which is awesome! 
 
 If you would like to collaborate on a **machine leaning project** (mainly people new to the field), please contact me on telegram! **[shtrauss2](https://t.me/shtrauss2)**
 
 <center>
-[![](images/mllibs_colour.png){ width="400" }](https://github.com/mllibs)
+![img](images/kaggle.png#only-light)
+![img](images/dkaggle.png#only-dark)
 </center>
 
-I have found **NLP** in particular to be one of the more fascinating parts of data science, so I have created a project which utilises **NLP for code automation**, I enjoy working with people who take part in this project, so if you would like to contribute please let me know! The project will be presented at the **[ods.ai nlp-course](https://ods.ai/tracks/nlp-course-autumn-23/)**, the group/organisation can be found on :fontawesome-brands-square-github: **[github](https://github.com/mllibs)**
+<center>
+[![](images/wnb.png#only-dark){ width="400" }](https://github.com/mllibs)
+</center>
+
+I have found **NLP** in particular to be one of the more fascinating parts of data science, so I have created a project which utilises **NLP for code automation**, I enjoy working with people who take part in this project, so if you would like to contribute please let me know! 
 
 ### **Hobbies**
 

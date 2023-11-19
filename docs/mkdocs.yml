@@ -91,27 +91,25 @@ theme:
         - navigation.expand
         - navigation.tracking
         - navigation.tabs
-        # - navigation.tabs.sticky 
-        # - navigation.top
+        - navigation.tabs.sticky 
+        - navigation.top
         - content.tabs.link
 
     custom_dir: material/overrides
     palette:
-        # Palette toggle for light mode
         - scheme: default
+          primary: blue grey
           toggle:
-            icon: material/brightness-7 
-
-
+            icon: material/toggle-switch
             name: Switch to dark mode
 
-        # Palette toggle for dark mode
         - scheme: slate
+          primary: blue grey 
           toggle:
-            icon: material/brightness-4
+            icon: material/toggle-switch-off-outline
             name: Switch to light mode
     font:
-        text: Roboto
+        text: Ubuntu
 
 extra:
     manifest: manifest.webmanifest
@@ -156,7 +154,7 @@ nav:
 - Data Science: 
 
     - NLP: portfolio/nlp.md
-    - Internships: portfolio/internships.md
+    - Financial: portfolio/financial.md
     - Physics: portfolio/physics.md
     - Biology: portfolio/biology.md
     - Health: portfolio/health.md

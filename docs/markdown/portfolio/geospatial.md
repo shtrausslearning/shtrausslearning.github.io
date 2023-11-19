@@ -1,10 +1,3 @@
-<center>
-![img](images/ds_bnb.png#only-light){ width="450" }
-![img](images/ds_wnb.png#only-dark){ width="450" }
-</center>
-
-## :material-checkbox-multiple-marked-circle-outline: <b>Geospatial</b> 
-
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Australian Geospatial Analysis</b>
 
 !!! tip "Australian Geospatial Analysis"

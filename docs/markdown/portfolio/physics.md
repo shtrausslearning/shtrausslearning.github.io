@@ -5,7 +5,7 @@ Data analysis and pattern recognition: Machine learning algorithms can be used t
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>CFD Trade-Off Study Visualisation | Response Model</b>
 
-![](https://img.shields.io/badge/category-fluid-9EE72F) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
+![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
 
 In this study, we do an **exploratory data analysis** of a CFD optimisation study, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for **L/D** (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem
 
@@ -18,7 +18,7 @@ In this study, we do an **exploratory data analysis** of a CFD optimisation stud
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Gaussian Processes | Airfoil Noise Modeling</b>
 
-![](https://img.shields.io/badge/category-noise-DAF7A6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
+![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
 
 In this study, we do an exploratory data analysis of [experimental measurement data](https://doi.org/10.24432/C5VW2C) associated with NACA0012 airfoil noise measurements. We outline the dependencies of parameter and setting variation and its influence on SPL noise level. The data is then used to create a machine learning model, which is able to predict the sound pressure level (SPL) for different combinations of airfoil design parameters.
 
@@ -30,7 +30,7 @@ In this study, we do an exploratory data analysis of [experimental measurement d
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Spectogram Broadband Model & Peak Identifier</b>
 
-![](https://img.shields.io/badge/category-noise-DAF7A6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/spectogram-broadband-model-peak-identifier)
+![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/spectogram-broadband-model-peak-identifier)
 
 Noise generally can be divided into **broadband noise** (general noise level) & **tonal noises** (peaks at specific frequency bins). They don't have precise definitions, but broadband noises can be abstractly defined as the general noise level in an environement coming from various locations, creating a broad frequency range noise relation to output noise level. Tonal noise sources tend be associated to very clearly distinguishible noise peaks at specific frequencies ( or over a small frequency range ). When we look at a spectogram, each bird specie tends to create quite a repetitive collection of freq vs time structures, usually across a specific frequency range, usually it's a combination of tonal peaks that make up an entire bird call. In this approach, the two terms are used even looser, since there is a time element to this model from the STFT, which can be useful in a variety of scenarios. The **tonal peak frequency identification approach** relies on the assumption that the more data is fed into the system, the more precise the result should get, as occasional secondary birds & other noises should eventually start to show more dissipative distribution in the entire subset that is analysed.
 

@@ -199,7 +199,7 @@ I also post additional NLP content on my blog: **[NLP projects](https://shtrauss
 
 !!! tip "Named Entity Recognition with Torch Loop"
 
-	![](https://img.shields.io/badge/category-NER-5D58CF) ![](https://img.shields.io/badge/blog-post-ABEBC6) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch.html)
+	![](https://img.shields.io/badge/category-NER-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=markdown)](https://shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch.html)
 
 	In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
 

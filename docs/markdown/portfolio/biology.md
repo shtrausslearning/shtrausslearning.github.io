@@ -8,7 +8,7 @@
 
 and of course many more...
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Identifying Antibiotic Resistant Bacteria</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Identifying Antibiotic Resistant Bacteria</b>
 
 ![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/bio-identifying-antibiotic-resistant-bacteria/)
 
@@ -18,7 +18,7 @@ In this study, we investigate data associated with **antibiotic resistance** for
 ![img](images/kfold_antibiotics.png)
 </center>
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Hummingbird Classification | Keras CNN Models</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Hummingbird Classification | Keras CNN Models</b>
 
 ![](https://img.shields.io/badge/category-multiclass_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/hummingbird-classification-keras-cnn-models)
 
@@ -27,7 +27,7 @@ In this project, we aimed to create an **automated hummindbird recognition** dee
 ![](images/finetune1.png)
 ![](images/finetune2.png)
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Transcription Factor Binding Location Prediction</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Transcription Factor Binding Location Prediction</b>
 
 ![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction)
 
@@ -37,7 +37,7 @@ The process of converting a **nucleotide sequence** into an **amino acid chain**
 
 ---
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Histopathic Cancer Detection</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Histopathic Cancer Detection</b>
 
 ![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/pytorch-cnn-binary-image-classification)
 

@@ -1,6 +1,6 @@
 **Health** is an important topic in **machine learning** because it has the potential to significantly improve healthcare outcomes. Machine learning algorithms can be used to **analyse large amounts of medical data** and identify patterns that may not be immediately apparent to human analysts. This can help doctors and researchers make more accurate diagnoses, develop more effective treatments, and even predict and prevent certain diseases.
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Lower Back Pain Symptoms Modeling</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Lower Back Pain Symptoms Modeling</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
 
@@ -10,7 +10,7 @@ In this study we investigate patient back pain **[biomedical data](https://doi.o
 ![](images/pairplot3.png)
 </center>
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Ovarian Phase Classification in Felids</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Ovarian Phase Classification in Felids</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/ovarian-phase-classification-in-felids)
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/ovarian-phase-classification-in-felids.ipynb)
@@ -21,7 +21,7 @@ In this study, we investigate feline reproductology data, conducting an explorat
 ![](images/roc_curve.png)
 </center>
 
-### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Heart Disease Classification</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Heart Disease Classification</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/heart-disease-gaussian-process-models)
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/Heart%20Disease%20Classification)

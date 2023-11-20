@@ -14,8 +14,6 @@ In this study, we do an **exploratory data analysis** of a CFD optimisation stud
 ![](images/catboosteval.png)
 </center>
 
-***
-
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Gaussian Processes | Airfoil Noise Modeling</b>
 
 ![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
@@ -25,8 +23,6 @@ In this study, we do an exploratory data analysis of [experimental measurement d
 <center>
 ![](images/splfreq.png)
 </center>
-
-***
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Spectogram Broadband Model & Peak Identifier</b>
 

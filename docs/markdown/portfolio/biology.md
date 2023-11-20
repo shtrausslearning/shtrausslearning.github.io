@@ -35,8 +35,6 @@ The process of converting a **nucleotide sequence** into an **amino acid chain**
 
 ![](images/auc_tf.png)
 
----
-
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Histopathic Cancer Detection</b>
 
 ![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/pytorch-cnn-binary-image-classification)

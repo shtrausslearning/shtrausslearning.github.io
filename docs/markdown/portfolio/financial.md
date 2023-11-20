@@ -10,8 +10,6 @@ Part of the **[Data@ANZ](https://www.theforage.com/virtual-internships/prototype
 ![](images/eda_spending.png)
 </center>
 
-***
-
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Building an Asset Trading Strategy</b>
 
 ![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/building-an-asset-trading-strategy)
@@ -23,8 +21,6 @@ The problem of predicting a **buy (value=1)** or **sell (value=0)** signal for a
 <center>
 ![](images/fasset_cv.png)
 </center>
-
-***
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Prediction of Stable Customer Funds</b>
 

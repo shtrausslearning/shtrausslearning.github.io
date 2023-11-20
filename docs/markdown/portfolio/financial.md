@@ -1,6 +1,6 @@
 **Machine learning** plays a significant role in **finance** by helping to analyse large volumes of financial data, identify patterns and trends, make predictions, and automate decision-making processes. It can be used for tasks such as **risk management**, **fraud detection**, **algorithmic trading**, **credit scoring**, **customer segmentation**, and personalized **investment recommendations**. Machine learning algorithms can process and analyze data much faster and more accurately than humans, enabling financial institutions to make better-informed decisions and improve their overall performance.
 
-### :material-label-variant-outline: <b>Customer Transaction Predictive Analytics</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Customer Transaction Predictive Analytics</b>
 
 ![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics) [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/ANZ_internship)
 
@@ -12,7 +12,7 @@ Part of the **[Data@ANZ](https://www.theforage.com/virtual-internships/prototype
 
 ***
 
-### :material-label-variant-outline: <b>Building an Asset Trading Strategy</b>
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Building an Asset Trading Strategy</b>
 
 ![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/building-an-asset-trading-strategy)
 
@@ -22,6 +22,18 @@ The problem of predicting a **buy (value=1)** or **sell (value=0)** signal for a
 
 <center>
 ![](images/fasset_cv.png)
+</center>
+
+***
+
+### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Prediction of Stable Customer Funds</b>
+
+![](https://img.shields.io/badge/category-financial-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/building-an-asset-trading-strategy)
+
+In this project, we aim to create machine learning models that will be able to **predict future customer funds**, based on historical trends. The **total customer assets** can vary significantly in time, and since banks are in the business of lending money, this is needed for more accurate fund allocation (optimise the allocation for lending) so they can be utilised for credit applications. We utilise **gradient boosting** models (CatBoost) & do some **feature engineering** in order to improve the models for short term predictions (3 month) and longer term predictions (6 months). Having created baseline models, we also optimise the model hyperparameters using **Optuna** for different prediction periods.
+
+<center>
+![](images/sbe_box.png)
 </center>
 
 ---

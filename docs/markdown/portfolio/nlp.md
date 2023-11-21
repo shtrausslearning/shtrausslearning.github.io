@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 **Natural language processing (NLP)** is a branch of artificial intelligence (AI) that deals with the interaction between computers and humans using natural language. It involves the development of algorithms and computational models that can understand, analyze, and generate human language. 
 
 ### :material-label-variant-outline: <b><span style='color:#FFCA58;text-align:center'></span>Banking Consumer Complaint Analysis</b>

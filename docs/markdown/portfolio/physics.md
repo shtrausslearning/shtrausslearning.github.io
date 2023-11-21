@@ -1,3 +1,6 @@
+---
+comments: true
+---
 
 **Machine learning** plays a significant role in physics-related applications by enabling the analysis, prediction, and modeling of complex physical phenomena. Here is an example of how machine learning is used in physics:
 

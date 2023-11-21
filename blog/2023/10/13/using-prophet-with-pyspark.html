@@ -2015,24 +2015,24 @@
 <p>The dataset can be found on <strong><a href="https://www.kaggle.com/datasets/neuromusic/avocado-prices">Kaggle</a></strong> &amp; its original source found <strong><a href="https://hassavocadoboard.com/">here</a></strong>, it contains historical sales data for different avocado types in various states the United States</p>
 <h3 id="loading-data">Loading data<a class="headerlink" href="#loading-data" title="Permanent link"></a></h3>
 <p>To load the data, we start a spark session on our local machine</p>
-<div class="highlight"><pre><span></span><code><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyspark</span>
+<pre><code class="language-python">! pip install pyspark
 
-<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-<span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">f</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+from pyspark.sql import SparkSession
+import pyspark.sql.functions as f
+import pandas as pd
 
-<span class="c1"># Start spark session</span>
-<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span>\
-                    <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local&quot;</span><span class="p">)</span>\
-                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;prophet&quot;</span><span class="p">)</span>\
-                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-</code></pre></div>
+# Start spark session
+spark = SparkSession.builder\
+                    .master(&quot;local&quot;)\
+                    .appName(&quot;prophet&quot;)\
+                    .getOrCreate()
+</code></pre>
 <p>To read the data, we'll use the <code>session.read.csv</code>, together with <code>inferSchema</code> method and look at the table schematics using <code>printSchema()</code> method to automatically assign types to table columns</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># read csv</span>
-<span class="n">sales</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/avocado-prices/avocado.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>root
+<pre><code class="language-python"># read csv
+sales = spark.read.csv('/kaggle/input/avocado-prices/avocado.csv',header=True,inferSchema=True)
+sales.printSchema()
+</code></pre>
+<pre><code>root
  |-- _c0: integer (nullable = true)
  |-- Date: date (nullable = true)
  |-- AveragePrice: double (nullable = true)
@@ -2047,15 +2047,15 @@
  |-- type: string (nullable = true)
  |-- year: integer (nullable = true)
  |-- region: string (nullable = true)
-</code></pre></div>
+</code></pre>
 <h2 id="exploring-data"><strong>Exploring Data</strong><a class="headerlink" href="#exploring-data" title="Permanent link"></a></h2>
 <p>As with any dataset, its good to get a better understanding by exploring the data you are working with. Having loaded our data, first lets take a peek at our dataset, </p>
 <p>Let's use <code>select</code>,<code>orderBy</code> &amp; <code>show</code> methods to show our dataset</p>
-<p><div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">,</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>\
-     <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>\
-     <span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+----------+------------+------------+----------------+
+<pre><code class="language-python">sales.select('Date','type','Total Volume','region')\
+     .orderBy('Date')\
+     .show(5)
+</code></pre>
+<pre><code>+----------+------------+------------+----------------+
 |      Date|        type|Total Volume|          region|
 +----------+------------+------------+----------------+
 |2015-01-04|conventional|   116253.44|BuffaloRochester|
@@ -2064,11 +2064,11 @@
 |2015-01-04|conventional|   435021.49|         Atlanta|
 |2015-01-04|conventional|   166006.29|       Charlotte|
 +----------+------------+------------+----------------+
-</code></pre></div></p>
+</code></pre>
 <p>The <code>Date</code> unique values can be called and checked, we have weekly data for different regions</p>
-<div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+----------+
+<pre><code class="language-python">sales.select(col('Date')).distinct().orderBy('Date').show(5)
+</code></pre>
+<pre><code>+----------+
 |      Date|
 +----------+
 |2015-01-04|
@@ -2078,33 +2078,33 @@
 |2015-02-01|
 +----------+
 only showing top 5 rows
-</code></pre></div>
+</code></pre>
 <p>It's also good to know the range of the <code>date</code> of our dataset</p>
-<div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;last&#39;</span><span class="p">),</span><span class="n">f</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;first&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+----------+----------+
+<pre><code class="language-python">sales.select(f.max(f.col('Date')).alias('last'),f.min(f.col('Date')).alias('first')).show()
+</code></pre>
+<pre><code>+----------+----------+
 |      last|     first|
 +----------+----------+
 |2018-03-25|2015-01-04|
 +----------+----------+
-</code></pre></div>
+</code></pre>
 <p>We will be using <code>Total Volume</code> as our target variable we'll be predicting. We also can note that we have different types <code>type</code> of avocados (organic and conventional)</p>
-<div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+------------+
+<pre><code class="language-python">sales.select(col('type')).distinct().show()
+</code></pre>
+<pre><code>+------------+
 |        type|
 +------------+
 |     organic|
 |conventional|
 +------------+
-</code></pre></div>
+</code></pre>
 <p>So what we'll be doing is creating a model to predict the sales for both of these types, which is something we'll need to incorporate into our <code>UDF</code></p>
 <p>We can also check the <code>region</code> limits for <code>Total Volume</code>, we can do this by using <code>agg</code> method with the <code>groupby</code> dataframe type (<code>pyspark.sql.group.GroupedData</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># min and maximum of sale volume</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># get max of column</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># get min of column</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+------------------+-----------------+
+<pre><code class="language-python"># min and maximum of sale volume
+sales.groupby('region').agg(f.max('Total Volume')).show()  # get max of column
+sales.groupby('region').agg(f.min('Total Volume')).show()  # get min of column
+</code></pre>
+<pre><code>+------------------+-----------------+
 |            region|max(Total Volume)|
 +------------------+-----------------+
 |     PhoenixTucson|       2200550.27|
@@ -2155,16 +2155,16 @@ only showing top 20 rows
 |HarrisburgScranton|           971.81|
 +------------------+-----------------+
 only showing top 20 rows
-</code></pre></div>
+</code></pre>
 <p>We can note that we have data for not only the different <code>regions</code>, but also for the entire country <code>TotalUS</code>. Also interesting to note is that the difference in <code>max</code> and <code>min</code> values is quite high.</p>
 <p>Let's find the locations (<code>region</code>) with the highest <code>total volumes</code> </p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">desc</span><span class="p">,</span><span class="n">col</span>
+<pre><code class="language-python">from pyspark.sql.functions import desc,col
 
-<span class="n">by_volume</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="s2">&quot;Total Volume&quot;</span><span class="p">))</span>\
-                 <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;TotalUS&#39;</span><span class="p">)</span>
-<span class="n">by_volume</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+by_volume = sales.orderBy(desc(&quot;Total Volume&quot;))\
+                 .where(col('region') != 'TotalUS')
+by_volume.show(5)
+</code></pre>
+<pre><code>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
 |_c0|      Date|AveragePrice| Total Volume|      4046|      4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year|    region|
 +---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
 | 47|2017-02-05|        0.66|1.127474911E7|4377537.67|2558039.85|193764.89| 4145406.7|2508731.79|1627453.06|    9221.85|conventional|2017|      West|
@@ -2174,43 +2174,44 @@ only showing top 20 rows
 | 46|2016-02-07|         0.7|1.036169817E7|2930343.28|3950852.38| 424389.6|3056112.91|2693843.02| 344774.59|    17495.3|conventional|2016|California|
 +---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
 only showing top 5 rows
-</code></pre></div>
+</code></pre>
 <p>We can note that <code>California</code> &amp; <code>West</code> regions have had the highest values for <code>Total Volume</code> on 2017-02-05</p>
 <p>Its also interest to note the difference in <code>Total Volume</code> for both types of avocado, so lets check that, lets just check the difference in <code>max</code> values</p>
-<div class="highlight"><pre><span></span><code><span class="n">by_volume</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+------------+-----------------+
+<pre><code class="language-python">by_volume.groupby('type').agg(f.max('Total Volume')).show()
+</code></pre>
+<pre><code>+------------+-----------------+
 |        type|max(Total Volume)|
 +------------+-----------------+
 |     organic|        793464.77|
 |conventional|    1.127474911E7|
 +------------+-----------------+
-</code></pre></div>
+</code></pre>
 <p>So we can note that tehre is a significant diffence in <code>Total Volume</code>, let's also check when this actually occured:</p>
-<div class="highlight"><pre><span></span><code><span class="n">by_volume</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.127474911E7</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="n">by_volume</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">793464.77</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+<pre><code class="language-python">by_volume.filter(f.col('Total Volume') == 1.127474911E7).show()
+by_volume.filter(f.col('Total Volume') == 793464.77).show()
+
+</code></pre>
+<pre><code>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
 |_c0|      Date|AveragePrice| Total Volume|      4046|      4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year|region|
 +---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
 | 47|2017-02-05|        0.66|1.127474911E7|4377537.67|2558039.85|193764.89| 4145406.7|2508731.79|1627453.06|    9221.85|conventional|2017|  West|
 +---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+</code></pre>
+<pre><code>+---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
 |_c0|      Date|AveragePrice|Total Volume|    4046|     4225| 4770|Total Bags|Small Bags|Large Bags|XLarge Bags|   type|year|   region|
 +---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
 |  5|2018-02-18|        1.39|   793464.77|150620.0|425616.86|874.9| 216353.01| 197949.51|   18403.5|        0.0|organic|2018|Northeast|
 +---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
-</code></pre></div>
+</code></pre>
 <p>Let's also check how many regions there actually are:</p>
-<div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>54
-</code></pre></div>
+<pre><code class="language-python">sales.select('region').distinct().count()
+</code></pre>
+<pre><code>54
+</code></pre>
 <p>Which is interesting as there are only 50 states in the US, so perhaps <code>west</code> is a summation for all states on the west coast, lets check if there is also an east coast</p>
-<div class="highlight"><pre><span></span><code><span class="n">sales</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+-------------------+-----+
+<pre><code class="language-python">sales.groupBy('region').count().show(100)
+</code></pre>
+<pre><code>+-------------------+-----+
 |             region|count|
 +-------------------+-----+
 |      PhoenixTucson|  338|
@@ -2268,13 +2269,13 @@ only showing top 5 rows
 |          Northeast|  338|
 |    RichmondNorfolk|  338|
 +-------------------+-----+
-</code></pre></div>
+</code></pre>
 <p>So as the name suggests, its a grouping that doesn't actually correspond to states, but rather are some general zones, mostly city specific regions, however we also have <strong>Northeast</strong>, <strong>West</strong>,<strong>Midsouth</strong> &amp; <strong>SouthCentral</strong> regions.</p>
 <p>Let's check how many values we have for each <code>region</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># value counts</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+------------------+-----+
+<pre><code class="language-python"># value counts
+sales.groupBy('region').count().orderBy('count', ascending=True).show()
+</code></pre>
+<pre><code>+------------------+-----+
 |            region|count|
 +------------------+-----+
 |  WestTexNewMexico|  335|
@@ -2299,13 +2300,13 @@ only showing top 5 rows
 |HarrisburgScranton|  338|
 +------------------+-----+
 only showing top 20 rows
-</code></pre></div>
+</code></pre>
 <p>Looks like we mostly have <strong>338 historical data</strong> points for each region, except for <strong>WestTexNewMexico</strong>.</p>
 <p>Turning our attention to only one region, let's check how the <strong>Houston</strong> region has been performing.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># select only a subset of data</span>
-<span class="n">sales</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Houston&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+<pre><code class="language-python"># select only a subset of data
+sales.filter(f.col('region') == 'Houston').show()
+</code></pre>
+<pre><code>+---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
 |_c0|      Date|AveragePrice|Total Volume|     4046|     4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year| region|
 +---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
 |  0|2015-12-27|        0.78|   944506.54|389773.22|288003.62|126150.81| 140578.89|  73711.94|  36493.62|   30373.33|conventional|2015|Houston|
@@ -2329,17 +2330,17 @@ only showing top 20 rows
 | 18|2015-08-23|        0.89|   933166.17|509472.17| 321616.5|  4323.68|  97753.82|  62733.47|  35020.35|        0.0|conventional|2015|Houston|
 | 19|2015-08-16|        0.92|   968899.09|565965.79|297434.65|  3479.25|  102019.4|  65764.02|  36255.38|        0.0|conventional|2015|Houston|
 +---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
-</code></pre></div>
+</code></pre>
 <h2 id="preparing-data-for-modeling"><strong>Preparing data for modeling</strong><a class="headerlink" href="#preparing-data-for-modeling" title="Permanent link"></a></h2>
 <p>Since we don't have any missing data points for the <strong>Houston</strong> region, let's use it for our model example, let's define a subset <code>houston_df</code>, which will contain only avocado sales data for the <strong>Houston</strong> region</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># select houson </span>
-<span class="n">houston_df</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;Houston&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python"># select houson 
+houston_df = sales.filter(f.col('region')=='Houston')
+</code></pre>
 <p>Let's select only the relevant features which will be used to train our model</p>
-<div class="highlight"><pre><span></span><code><span class="n">houston_df</span> <span class="o">=</span> <span class="n">houston_df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
-<span class="n">houston_df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+-------+------------+----------+----------+
+<pre><code class="language-python">houston_df = houston_df.groupBy(['Region','type','Date']).agg(f.sum('Total Volume').alias('y'))
+houston_df.show(5)
+</code></pre>
+<pre><code>+-------+------------+----------+----------+
 | Region|        type|      Date|         y|
 +-------+------------+----------+----------+
 |Houston|conventional|2016-03-06|1091432.18|
@@ -2349,14 +2350,14 @@ only showing top 20 rows
 |Houston|     organic|2017-07-23|  40100.89|
 +-------+------------+----------+----------+
 only showing top 5 rows
-</code></pre></div>
-<p><div class="highlight"><pre><span></span><code># change column datatype
-houston_df = houston_df.withColumn(&#39;y&#39;,f.round(&#39;y&#39;,2))
-houston_df = houston_df.withColumn(&#39;ds&#39;,f.to_date(&#39;Date&#39;))
-houston_df_final = houston_df.select([&#39;Region&#39;,&#39;type&#39;,&#39;ds&#39;,&#39;y&#39;])
+</code></pre>
+<pre><code># change column datatype
+houston_df = houston_df.withColumn('y',f.round('y',2))
+houston_df = houston_df.withColumn('ds',f.to_date('Date'))
+houston_df_final = houston_df.select(['Region','type','ds','y'])
 houston_df_final.show(4)
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+-------+------------+----------+----------+
+</code></pre>
+<pre><code>+-------+------------+----------+----------+
 | Region|        type|        ds|         y|
 +-------+------------+----------+----------+
 |Houston|conventional|2016-03-06|1091432.18|
@@ -2365,86 +2366,86 @@ houston_df_final.show(4)
 |Houston|     organic|2015-05-24|  12358.51|
 +-------+------------+----------+----------+
 only showing top 4 rows
-</code></pre></div></p>
+</code></pre>
 <p>As we will be utilising <strong>prophet</strong>, we can define the different settings of <strong>features</strong> we will be utilising in the modeling process, like <code>weekly_seasonality</code> and <code>yearly_seasonality</code>, we don't really need to explicitly create features by ourselves. For this study, we'll limit ourselves with these features provided in module.</p>
 <h2 id="creating-a-model"><strong>Creating a model</strong><a class="headerlink" href="#creating-a-model" title="Permanent link"></a></h2>
 <h3 id="defining-scheme">Defining Scheme<a class="headerlink" href="#defining-scheme" title="Permanent link"></a></h3>
 <p>Like any UDF, we need to define the output type of our data, let's prepare the <strong>data format scheme</strong> for the outputs of our <code>UDF</code>. We will need to use <code>StructType</code> and the relevant type improted from <code>sql.types</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyspark.sql.types</span>  <span class="k">as</span> <span class="nn">ty</span>
+<pre><code class="language-python">import pyspark.sql.types  as ty
 
-<span class="n">schema</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">StructType</span><span class="p">([</span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">StringType</span><span class="p">()),</span>     <span class="c1"># our main features</span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span> <span class="n">StringType</span><span class="p">()),</span>      <span class="c1"># </span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">TimestampType</span><span class="p">()),</span>      <span class="c1"># </span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">FloatType</span><span class="p">()),</span>           <span class="c1">#</span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;yhat&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">()),</span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;yhat_upper&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">()),</span>
-                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;yhat_lower&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">()),</span>
-                     <span class="p">])</span> 
-</code></pre></div>
+schema = ty.StructType([
+                     ty.StructField('Region', ty.StringType()),     # our main features
+                     ty.StructField('type', ty. StringType()),      # 
+                     ty.StructField('ds', ty.TimestampType()),      # 
+                     ty.StructField('y', ty.FloatType()),           #
+                     ty.StructField('yhat', ty.DoubleType()),
+                     ty.StructField('yhat_upper', ty.DoubleType()),
+                     ty.StructField('yhat_lower', ty.DoubleType()),
+                     ]) 
+</code></pre>
 <h3 id="udf_1">UDF<a class="headerlink" href="#udf_1" title="Permanent link"></a></h3>
 <p>Our <code>UDF</code> will be slightly involved than our typical <strong>UDF</strong>, we will be using <code>PandasUDFType.GROUPED_MAP</code> so it should be called with <code>groupby</code> &amp; <code>apply</code></p>
 <blockquote>
 <p><code>PandasUDFType.GROUPED_MAP</code> is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">prophet</span> <span class="kn">import</span> <span class="n">Prophet</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">pandas_udf</span><span class="p">,</span> <span class="n">PandasUDFType</span>
+<pre><code class="language-python">from prophet import Prophet
+from pyspark.sql.functions import pandas_udf, PandasUDFType
 
-<span class="nd">@pandas_udf</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">PandasUDFType</span><span class="o">.</span><span class="n">GROUPED_MAP</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">apply_model</span><span class="p">(</span><span class="n">store_pd</span><span class="p">):</span>
+@pandas_udf(schema, PandasUDFType.GROUPED_MAP)
+def apply_model(store_pd):
 
-  <span class="c1"># instantiate the model and set parameters</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span>
-      <span class="n">interval_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-      <span class="n">growth</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
-      <span class="n">daily_seasonality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-      <span class="n">weekly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-      <span class="n">yearly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-      <span class="n">seasonality_mode</span><span class="o">=</span><span class="s1">&#39;multiplicative&#39;</span>
-    <span class="p">)</span>
+  # instantiate the model and set parameters
+    model = Prophet(
+      interval_width=0.1,
+      growth='linear',
+      daily_seasonality=False,
+      weekly_seasonality=True,
+      yearly_seasonality=True,
+      seasonality_mode='multiplicative'
+    )
 
-    <span class="c1"># fit the model to historical data</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">store_pd</span><span class="p">)</span>
+    # fit the model to historical data
+    model.fit(store_pd)
 
-    <span class="c1"># Create a data frame that lists 90 dates starting from Jan 1 2018</span>
-    <span class="n">future</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">make_future_dataframe</span><span class="p">(</span>
-      <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
-      <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
-      <span class="n">include_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    # Create a data frame that lists 90 dates starting from Jan 1 2018
+    future = model.make_future_dataframe(
+      periods=6,
+      freq='w',
+      include_history=True)
 
-    <span class="c1"># Out of sample prediction</span>
-    <span class="n">future</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+    # Out of sample prediction
+    future = model.predict(future)
 
-    <span class="c1"># Create a data frame that contains store, item, y, and yhat</span>
-    <span class="n">f_pd</span> <span class="o">=</span> <span class="n">future</span><span class="p">[[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_upper&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_lower&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">st_pd</span> <span class="o">=</span> <span class="n">store_pd</span><span class="p">[[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">f_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;ds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">f_pd</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
-    <span class="n">st_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;ds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">st_pd</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
-    <span class="n">result_pd</span> <span class="o">=</span> <span class="n">f_pd</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">st_pd</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ds&#39;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+    # Create a data frame that contains store, item, y, and yhat
+    f_pd = future[['ds', 'yhat', 'yhat_upper', 'yhat_lower']].copy()
+    st_pd = store_pd[['ds', 'Region','y']].copy()
+    f_pd.loc[:,'ds'] = pd.to_datetime(f_pd['ds'])
+    st_pd.loc[:,'ds'] = pd.to_datetime(st_pd['ds'])
+    result_pd = f_pd.join(st_pd.set_index('ds'), on='ds', how='left')
 
-    <span class="n">result_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">store_pd</span><span class="p">[</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">result_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">store_pd</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    result_pd.loc[:,'Region'] = store_pd['Region'].iloc[0]
+    result_pd.loc[:,'type'] = store_pd['type'].iloc[0]
 
-    <span class="k">return</span> <span class="n">result_pd</span><span class="p">[[</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat&#39;</span><span class="p">,</span>
-                    <span class="s1">&#39;yhat_upper&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_lower&#39;</span><span class="p">]]</span>
-</code></pre></div>
+    return result_pd[['Region','type', 'ds', 'y', 'yhat',
+                    'yhat_upper', 'yhat_lower']]
+</code></pre>
 <h3 id="training-process">Training process<a class="headerlink" href="#training-process" title="Permanent link"></a></h3>
 <p>Our model setup will be the following:</p>
-<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span>
- <span class="n">interval_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
- <span class="n">growth</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
- <span class="n">daily_seasonality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
- <span class="n">weekly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
- <span class="n">yearly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
- <span class="n">seasonality_mode</span><span class="o">=</span><span class="s1">&#39;multiplicative&#39;</span>
-<span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python">model = Prophet(
+ interval_width=0.1,
+ growth='linear',
+ daily_seasonality=False,
+ weekly_seasonality=True,
+ yearly_seasonality=True,
+ seasonality_mode='multiplicative'
+)
+</code></pre>
 <p>Having fitted the model on our data (which runs from <strong>2015-01-04</strong> to <strong>2018-03-25</strong>), we'll be making a prediction using <code>model.make_future_dataframe</code>, in which we'll be specifying that we want to make a prediction for <strong>6 weeks in advanced</strong>, setting the model prediction parameters. Then we simply call <code>model.predict</code> to actually make the prediction.</p>
 <p>To create models for both <strong>region</strong> (which in our case will only be Houston) &amp; <strong>type</strong> (organic &amp; convensional), we'll call the <code>apply</code> method for the pyspark dataframe</p>
-<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="n">houston_df_final</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">apply_model</span><span class="p">)</span>
-<span class="n">results</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>+-------+------------+-------------------+----------+------------------+------------------+------------------+
+<pre><code class="language-python">results = houston_df_final.groupby(['Region','type']).apply(apply_model)
+results.show()
+</code></pre>
+<pre><code>+-------+------------+-------------------+----------+------------------+------------------+------------------+
 | Region|        type|                 ds|         y|              yhat|        yhat_upper|        yhat_lower|
 +-------+------------+-------------------+----------+------------------+------------------+------------------+
 |Houston|conventional|2015-01-04 00:00:00| 1062990.6| 967605.2625150415| 987966.9732773455| 952305.7433327858|
@@ -2469,22 +2470,22 @@ only showing top 4 rows
 |Houston|conventional|2015-05-17 00:00:00|1025659.56| 1139019.362908239|1164737.2354728119|1124616.7852877746|
 +-------+------------+-------------------+----------+------------------+------------------+------------------+
 only showing top 20 rows
-</code></pre></div>
+</code></pre>
 <h3 id="model-prediction-visualisation">Model Prediction Visualisation<a class="headerlink" href="#model-prediction-visualisation" title="Permanent link"></a></h3>
 <p>Now to visualise the results, lets do some preparation</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyspark.pandas</span> <span class="k">as</span> <span class="nn">ps</span>
-<span class="n">organic_data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;organic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pandas_api</span><span class="p">()</span>
-<span class="n">organic_data</span> <span class="o">=</span> <span class="n">organic_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
-<span class="n">conventional_data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;conventional&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pandas_api</span><span class="p">()</span>
-<span class="n">conventional_data</span> <span class="o">=</span> <span class="n">conventional_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
-</code></pre></div>
+<pre><code class="language-python">import pyspark.pandas as ps
+organic_data = results.filter(f.col('type')=='organic').pandas_api()
+organic_data = organic_data.set_index(['ds'])
+conventional_data = results.filter(f.col('type')=='conventional').pandas_api()
+conventional_data = conventional_data.set_index(['ds'])
+</code></pre>
 <p>Let's visualise the <code>organic</code> subset model predictions</p>
-<div class="highlight"><pre><span></span><code><span class="n">organic_data</span><span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;yhat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;plotly&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python">organic_data[['y','yhat']].plot.line(backend='plotly')
+</code></pre>
 <p><img alt="" src="../../../images/organic2.png" /></p>
 <p>And now the <code>convensional</code> subset model</p>
-<div class="highlight"><pre><span></span><code><span class="n">conventional_data</span><span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;yhat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;plotly&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python">conventional_data[['y','yhat']].plot.line(backend='plotly')
+</code></pre>
 <p><img alt="" src="../../../images/conventional2.png" /></p>
 <h2 id="concluding-remarks"><strong>Concluding remarks</strong><a class="headerlink" href="#concluding-remarks" title="Permanent link"></a></h2>
 <p>In this post we looked how to utilise <strong>pyspark</strong> together with a common <strong>time series</strong> prediction library <strong>prophet</strong>. We achieved this with the use of <strong>pyspark</strong> user defined functionality which it offers to allow us to continue working with <strong>pyspark</strong> dataframe inputs. Of course such functionality would result in performance drops when using large datasets, so it must be used with caution, especially <strong>pandas UDF</strong>. Our goal was to do some data exploration with <strong>pyspark</strong> &amp; predict the total required volume of avocadoes for 6 weeks in advanced, for two different types of avocados and for the Houston region. We used the entire available dataset without any validation techniques to confirm the accuracy of our prediction, so that is something you can definitely try out next, validation of models is of course very important!</p>

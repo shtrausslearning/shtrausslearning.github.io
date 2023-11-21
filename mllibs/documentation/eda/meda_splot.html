@@ -1223,22 +1223,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#srelplot" class="md-nav__link">
-     srelplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#sboxplot" class="md-nav__link">
      sboxplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sresidplot" class="md-nav__link">
-     sresidplot
   </a>
   
 </li>
@@ -1251,13 +1237,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#shistplot" class="md-nav__link">
-     shistplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#skdeplot" class="md-nav__link">
      skdeplot
   </a>
@@ -1265,22 +1244,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#slmplot" class="md-nav__link">
-     slmplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#spairplot" class="md-nav__link">
      spairplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#slineplot" class="md-nav__link">
-     slineplot
   </a>
   
 </li>
@@ -1971,22 +1936,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#srelplot" class="md-nav__link">
-     srelplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#sboxplot" class="md-nav__link">
      sboxplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sresidplot" class="md-nav__link">
-     sresidplot
   </a>
   
 </li>
@@ -1999,13 +1950,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#shistplot" class="md-nav__link">
-     shistplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#skdeplot" class="md-nav__link">
      skdeplot
   </a>
@@ -2013,22 +1957,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#slmplot" class="md-nav__link">
-     slmplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#spairplot" class="md-nav__link">
      spairplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#slineplot" class="md-nav__link">
-     slineplot
   </a>
   
 </li>
@@ -2081,76 +2011,76 @@
 <p><code>/src/eda/meda_splot.py</code><sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></p>
 <h2 id="requirements"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14 12-4-4v3H2v2h8v3m10 2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3h2V6h12v12H6v-3H4v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2Z"/></svg></span> <strong>Requirements</strong><a class="headerlink" href="#requirements" title="Permanent link"></a></h2>
 <p>Module import information</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mllibs.nlpi</span> <span class="kn">import</span> <span class="n">nlpi</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="kn">import</span> <span class="nn">warnings</span><span class="p">;</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">mllibs.nlpm</span> <span class="kn">import</span> <span class="n">parse_json</span>
-<span class="kn">import</span> <span class="nn">pkg_resources</span>
-<span class="kn">import</span> <span class="nn">json</span>
-</code></pre></div>
+<pre><code class="language-python">from mllibs.nlpi import nlpi
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+from collections import OrderedDict
+import warnings; warnings.filterwarnings('ignore')
+from mllibs.nlpm import parse_json
+import pkg_resources
+import json
+</code></pre>
 <h2 id="selection"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 17h3v-3h2v3h3v2h-3v3h-2v-3h-3v-2m-2 0v2H9v-2h3m-5 0v2H3v-4h2v2h2m-4-4v-3h2v3H3m0-5V4h4v2H5v2H3m6-4h3v2H9V4m6 0h4v4h-2V6h-2V4m4 6v2h-2v-2h2Z"/></svg></span> <strong>Selection</strong><a class="headerlink" href="#selection" title="Permanent link"></a></h2>
 <p>Activation functions need to be assigned a unique label. Here's the process of <code>label</code> &amp; activation function selection </p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">sel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+<pre><code class="language-python">def sel(self,args:dict):
 
-    <span class="n">select</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;pred_task&#39;</span><span class="p">]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">data_name</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data_name&#39;</span><span class="p">]</span>
+    select = args['pred_task']
+    self.data_name = args['data_name']
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
+    ''' 
 
-<span class="sd">    ADD EXTRA COLUMNS TO DATA </span>
+    ADD EXTRA COLUMNS TO DATA 
 
-<span class="sd">    model_prediction | splits_col</span>
-
-
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="c1"># split columns (tts,kfold,skfold) </span>
-    <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;splits_col&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
-
-        <span class="n">split_dict</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;splits_col&#39;</span><span class="p">]</span>
-        <span class="n">extra_columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">split_dict</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span><span class="n">extra_columns</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># model predictions</span>
-    <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;model_prediction&#39;</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
-
-        <span class="n">prediction_dict</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="s1">&#39;model_prediction&#39;</span><span class="p">]</span>
-        <span class="n">extra_columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">prediction_dict</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">extra_columns</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">extra_columns</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">)</span>
-        <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span><span class="n">extra_columns</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    model_prediction | splits_col
 
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
+    '''
+    # split columns (tts,kfold,skfold) 
+    if(len(nlpi.data[self.data_name[0]]['splits_col']) != 0):
 
-<span class="sd">    Activatation Function</span>
+        split_dict = nlpi.data[self.data_name[0]]['splits_col']
+        extra_columns = pd.concat(split_dict,axis=1)
+        args['data'] = pd.concat([args['data'],extra_columns],axis=1)
 
-<span class="sd">    &#39;&#39;&#39;</span>
+    # model predictions
+    if(len(nlpi.data[self.data_name[0]]['model_prediction']) != 0):
 
-    <span class="k">if</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;sscatterplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_scatterplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span><span class="s1">&#39;srelplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_relplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;sboxplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_boxplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;sresidplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_residplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;sviolinplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_violinplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;shistplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_histplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;skdeplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_kdeplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;slmplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_lmplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;spairplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_pairplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;slineplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_lineplot</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-    <span class="k">elif</span><span class="p">(</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;scorrplot&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seaborn_heatmap</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-</code></pre></div>
+        prediction_dict = nlpi.data[self.data_name[0]]['model_prediction']
+        extra_columns = pd.concat(prediction_dict,axis=1)
+        extra_columns.columns = extra_columns.columns.map('_'.join)
+        args['data'] = pd.concat([args['data'],extra_columns],axis=1)
+
+
+    ''' 
+
+    Activatation Function
+
+    '''
+
+    if(select == 'sscatterplot'):
+        self.seaborn_scatterplot(args)
+    elif(select =='srelplot'):
+        self.seaborn_relplot(args)
+    elif(select == 'sboxplot'):
+        self.seaborn_boxplot(args)
+    elif(select == 'sresidplot'):
+        self.seaborn_residplot(args)
+    elif(select == 'sviolinplot'):
+        self.seaborn_violinplot(args)
+    elif(select == 'shistplot'):
+        self.seaborn_histplot(args)
+    elif(select == 'skdeplot'):
+        self.seaborn_kdeplot(args)
+    elif(select == 'slmplot'):
+        self.seaborn_lmplot(args)
+    elif(select == 'spairplot'):
+        self.seaborn_pairplot(args)
+    elif(select == 'slineplot'):
+        self.seaborn_lineplot(args)
+    elif(select == 'scorrplot'):
+        self.seaborn_heatmap(args)
+</code></pre>
 <h2 id="activation-functions"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg></span> <strong>Activation Functions</strong><a class="headerlink" href="#activation-functions" title="Permanent link"></a></h2>
 <p>Here you will find the relevant activation functions available in class <code>meda_splot</code></p>
 <h3 id="sscatterplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>sscatterplot</code><a class="headerlink" href="#sscatterplot" title="Permanent link"></a></h3>
@@ -2161,88 +2091,95 @@
 <p>The Seaborn scatterplot is a useful tool for exploring and visualizing relationships in your data, and can help you to identify any outliers or unusual observations.</p>
 <h4>code:</h4>
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_scatterplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 7 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 8 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 9 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="10 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="14 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="15 "></span>
-<span class="linenos" data-linenos="16 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="19 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="20 "></span>    <span class="p">})</span>
-<span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="23 "></span>                    <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="24 "></span>                    <span class="n">hue</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="25 "></span>                    <span class="n">alpha</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="26 "></span>                    <span class="n">linewidth</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mew&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="27 "></span>                    <span class="n">edgecolor</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mec&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="28 "></span>                    <span class="n">s</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="29 "></span>                    <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="30 "></span>                    <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">)</span>
-<span class="linenos" data-linenos="31 "></span>
-<span class="linenos" data-linenos="32 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="33 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="34 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="srelplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>srelplot</code><a class="headerlink" href="#srelplot" title="Permanent link"></a></h3>
-<h4>description:</h4>
+<p>```python linenums="1"
+<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/staticmethod" title="GitHub User: staticmethod">@staticmethod</a>
+def seaborn_scatterplot(args:dict):</p>
+<div class="highlight"><pre><span></span><code>if(args[&#39;hue&#39;] is not None):
 
-<p>A Seaborn relplot is a type of plot used to visualize the relationship between two variables in a dataset. It is created using the seaborn library in Python and is often used to identify patterns and trends in the data.</p>
-<p>The plot shows a scatterplot of the data points, with each point representing a single observation. The x and y axes show the values of the two variables being plotted, and the plot can be customized to show additional information, such as a regression line or confidence intervals.</p>
-<p>The relplot can also be used to group the data by a categorical variable, creating separate plots for each group. This allows you to compare the relationship between the variables across different groups within the dataset.</p>
-<p>Overall, the Seaborn relplot is a powerful tool for exploring and visualizing relationships in your data.</p>
-<h4>code:</h4>
+    hueloc = args[&#39;data&#39;][args[&#39;hue&#39;]]
+    if(type(nlpi.pp[&#39;stheme&#39;]) is str):
+        palette = nlpi.pp[&#39;stheme&#39;]
+    else:
+        palette = palette_rgb[:len(hueloc.value_counts())]
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_relplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 8 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 9 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>           
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="p">})</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">relplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="22 "></span>                <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="23 "></span>                <span class="n">col</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="24 "></span>                <span class="n">row</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="25 "></span>                <span class="n">hue</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="26 "></span>                <span class="n">col_wrap</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;col_wrap&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="27 "></span>                <span class="n">kind</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="28 "></span>                <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="29 "></span>                <span class="n">alpha</span><span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="30 "></span>                <span class="n">s</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="31 "></span>                <span class="n">linewidth</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mew&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="32 "></span>                <span class="n">edgecolor</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mec&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="33 "></span>                <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="36 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="37 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
+else:
+    hueloc = None
+    palette = palette_rgb
+
+sns.set_style(&quot;whitegrid&quot;, {
+    &quot;ytick.major.size&quot;: 0.1,
+    &quot;ytick.minor.size&quot;: 0.05,
+    &#39;grid.linestyle&#39;: &#39;--&#39;
+})
+
+sns.scatterplot(x=args[&#39;x&#39;], 
+                y=args[&#39;y&#39;],
+                hue=args[&#39;hue&#39;],
+                alpha = nlpi.pp[&#39;alpha&#39;],
+                linewidth=nlpi.pp[&#39;mew&#39;],
+                edgecolor=nlpi.pp[&#39;mec&#39;],
+                s = nlpi.pp[&#39;s&#39;],
+                data=args[&#39;data&#39;],
+                palette=palette)
+
+sns.despine(left=True, bottom=True)
+plt.show()
+nlpi.resetpp()
 </code></pre></div>
+<pre><code>
+### :octicons-file-code-16: `srelplot`
+
+&lt;h4&gt;description:&lt;/h4&gt;
+
+A Seaborn relplot is a type of plot used to visualize the relationship between two variables in a dataset. It is created using the seaborn library in Python and is often used to identify patterns and trends in the data.
+
+The plot shows a scatterplot of the data points, with each point representing a single observation. The x and y axes show the values of the two variables being plotted, and the plot can be customized to show additional information, such as a regression line or confidence intervals.
+
+The relplot can also be used to group the data by a categorical variable, creating separate plots for each group. This allows you to compare the relationship between the variables across different groups within the dataset.
+
+Overall, the Seaborn relplot is a powerful tool for exploring and visualizing relationships in your data.
+
+&lt;h4&gt;code:&lt;/h4&gt;
+
+```python linenums=&quot;1&quot;
+@staticmethod
+def seaborn_relplot(args:dict):
+
+    if(args['hue'] is not None):
+        hueloc = args['data'][args['hue']]
+        if(type(nlpi.pp['stheme']) is str):
+            palette = nlpi.pp['stheme']
+        else:
+            palette = palette_rgb[:len(hueloc.value_counts())]
+
+    else:
+        hueloc = None
+        palette = palette_rgb           
+
+    sns.set_style(&quot;whitegrid&quot;, {
+        &quot;ytick.major.size&quot;: 0.1,
+        &quot;ytick.minor.size&quot;: 0.05,
+        'grid.linestyle': '--'
+    })
+
+    sns.relplot(x=args['x'], 
+                y=args['y'],
+                col=args['col'],
+                row=args['row'],
+                hue=args['hue'], 
+                col_wrap=args['col_wrap'],
+                kind=args['kind'],
+                palette=palette,
+                alpha= nlpi.pp['alpha'],
+                s = nlpi.pp['s'],
+                linewidth=nlpi.pp['mew'],
+                edgecolor=nlpi.pp['mec'],
+                data=args['data'])
+
+    sns.despine(left=True, bottom=True)
+    plt.show()
+    nlpi.resetpp()
+</code></pre>
 <h3 id="sboxplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>sboxplot</code><a class="headerlink" href="#sboxplot" title="Permanent link"></a></h3>
 <h4>description:</h4>
 
@@ -2251,59 +2188,65 @@
 <p>The boxplot can be customized to show additional information, such as the mean value or confidence intervals, and can be grouped by a categorical variable to compare the distribution of different groups within the dataset. By examining the boxplot, you can identify any skewness or asymmetry in the distribution, as well as any extreme values that may need to be addressed.</p>
 <h4>code:</h4>
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_boxplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 8 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 9 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="p">})</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;bw&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos="22 "></span>        <span class="n">bw</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="linenos" data-linenos="23 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="24 "></span>        <span class="n">bw</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;bw&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="25 "></span>
-<span class="linenos" data-linenos="26 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="27 "></span>                <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="28 "></span>                <span class="n">hue</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="29 "></span>                <span class="n">width</span><span class="o">=</span><span class="n">bw</span><span class="p">,</span>
-<span class="linenos" data-linenos="30 "></span>                <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="31 "></span>                <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="32 "></span>
-<span class="linenos" data-linenos="33 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="34 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="sresidplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>sresidplot</code><a class="headerlink" href="#sresidplot" title="Permanent link"></a></h3>
-<h4>description:</h4>
+<p>```python linenums="1"
+<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/staticmethod" title="GitHub User: staticmethod">@staticmethod</a>
+def seaborn_boxplot(args:dict):</p>
+<div class="highlight"><pre><span></span><code>if(args[&#39;hue&#39;] is not None):
+    hueloc = args[&#39;data&#39;][args[&#39;hue&#39;]]
+    if(type(nlpi.pp[&#39;stheme&#39;]) is str):
+        palette = nlpi.pp[&#39;stheme&#39;]
+    else:
+        palette = palette_rgb[:len(hueloc.value_counts())]
 
-<p>A Seaborn residual plot is a type of plot used to visualize the residuals (the difference between the predicted values and the actual values) of a regression model. It is created using the seaborn library in Python and is often used to check whether the assumptions of linear regression are met, such as linearity, homoscedasticity, and normality. </p>
-<p>The plot shows the distribution of the residuals on the y-axis and the predicted values on the x-axis. The residuals are plotted as points with a horizontal line at zero to show the expected value of the residuals if the model is accurate. The plot also includes a fitted line that represents the regression line of the model.</p>
-<p>By examining the residual plot, you can identify patterns or trends in the residuals that may indicate that the model is not appropriate for the data or that there are outliers or influential points that need to be addressed.</p>
-<h4>code:</h4>
+else:
+    hueloc = None
+    palette = palette_rgb
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos="2 "></span><span class="k">def</span> <span class="nf">seaborn_residplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos="3 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">residplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="4 "></span>                  <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="5 "></span>                  <span class="n">color</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
-<span class="linenos" data-linenos="6 "></span>                  <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="7 "></span>
-<span class="linenos" data-linenos="8 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="9 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+sns.set_style(&quot;whitegrid&quot;, {
+    &quot;ytick.major.size&quot;: 0.1,
+    &quot;ytick.minor.size&quot;: 0.05,
+    &#39;grid.linestyle&#39;: &#39;--&#39;
+})
+
+if(args[&#39;bw&#39;] is None):
+    bw = 0.8
+else:
+    bw = eval(args[&#39;bw&#39;])
+
+sns.boxplot(x=args[&#39;x&#39;], 
+            y=args[&#39;y&#39;],
+            hue=args[&#39;hue&#39;],
+            width=bw,
+            palette=palette,
+            data=args[&#39;data&#39;])
+
+sns.despine(left=True, bottom=True)
+plt.show()
 </code></pre></div>
+<pre><code>
+### :octicons-file-code-16: `sresidplot`
+
+&lt;h4&gt;description:&lt;/h4&gt;
+
+A Seaborn residual plot is a type of plot used to visualize the residuals (the difference between the predicted values and the actual values) of a regression model. It is created using the seaborn library in Python and is often used to check whether the assumptions of linear regression are met, such as linearity, homoscedasticity, and normality. 
+
+The plot shows the distribution of the residuals on the y-axis and the predicted values on the x-axis. The residuals are plotted as points with a horizontal line at zero to show the expected value of the residuals if the model is accurate. The plot also includes a fitted line that represents the regression line of the model.
+
+By examining the residual plot, you can identify patterns or trends in the residuals that may indicate that the model is not appropriate for the data or that there are outliers or influential points that need to be addressed.
+
+&lt;h4&gt;code:&lt;/h4&gt;
+
+```python linenums=&quot;1&quot;
+@staticmethod
+def seaborn_residplot(args:dict):
+    sns.residplot(x=args['x'], 
+                  y=args['y'],
+                  color=nlpi.pp['stheme'][1],
+                  data=args['data'])
+
+    sns.despine(left=True, bottom=True)
+    plt.show()
+</code></pre>
 <h3 id="sviolinplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>sviolinplot</code><a class="headerlink" href="#sviolinplot" title="Permanent link"></a></h3>
 <h4>description:</h4>
 
@@ -2312,81 +2255,87 @@
 <p>The Seaborn violinplot is a useful tool for exploring and visualizing the distribution of your data, and can help you to identify any differences or similarities between groups or categories.</p>
 <h4>code:</h4>
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_violinplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 8 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 9 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="p">})</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="22 "></span>                   <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="23 "></span>                   <span class="n">hue</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="24 "></span>                   <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="25 "></span>                   <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="26 "></span>
-<span class="linenos" data-linenos="27 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="28 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="29 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="shistplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>shistplot</code><a class="headerlink" href="#shistplot" title="Permanent link"></a></h3>
-<h4>description:</h4>
+<p>```python linenums="1"
+<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/staticmethod" title="GitHub User: staticmethod">@staticmethod</a>
+def seaborn_violinplot(args:dict):</p>
+<div class="highlight"><pre><span></span><code>if(args[&#39;hue&#39;] is not None):
+    hueloc = args[&#39;data&#39;][args[&#39;hue&#39;]]
+    if(type(nlpi.pp[&#39;stheme&#39;]) is str):
+        palette = nlpi.pp[&#39;stheme&#39;]
+    else:
+        palette = palette_rgb[:len(hueloc.value_counts())]
 
-<p>A Seaborn histplot is a type of plot used to visualize the distribution of a single variable in a dataset. It is created using the seaborn library in Python and is often used to explore the shape of the distribution, as well as any outliers or gaps in the data.</p>
-<p>The plot shows a histogram, which is a bar chart that represents the frequency of values in the dataset. The x-axis represents the range of values, and the y-axis represents the frequency of those values. The bars are typically grouped into bins, which represent a range of values.</p>
-<p>The Seaborn histplot can also show additional information, such as the density of the data or a kernel density estimate. It is a useful tool for exploring and visualizing the distribution of your data, and can help you to identify any patterns or trends in the data.</p>
-<h4>code:</h4>
+else:
+    hueloc = None
+    palette = palette_rgb
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_histplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 8 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 9 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="p">})</span>
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span>    <span class="c1"># bar width</span>
-<span class="linenos" data-linenos="22 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;bw&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos="23 "></span>        <span class="n">bw</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span>
-<span class="linenos" data-linenos="24 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="25 "></span>        <span class="n">bw</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;bw&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="26 "></span>
-<span class="linenos" data-linenos="27 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="28 "></span>                 <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="29 "></span>                 <span class="n">hue</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="30 "></span>                 <span class="n">bins</span> <span class="o">=</span> <span class="n">bw</span><span class="p">,</span>
-<span class="linenos" data-linenos="31 "></span>                 <span class="n">palette</span> <span class="o">=</span> <span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="32 "></span>                 <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="33 "></span>
-<span class="linenos" data-linenos="34 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="35 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="36 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
+sns.set_style(&quot;whitegrid&quot;, {
+    &quot;ytick.major.size&quot;: 0.1,
+    &quot;ytick.minor.size&quot;: 0.05,
+    &#39;grid.linestyle&#39;: &#39;--&#39;
+})
+
+sns.violinplot(x=args[&#39;x&#39;], 
+               y=args[&#39;y&#39;],
+               hue=args[&#39;hue&#39;],
+               palette=palette,
+               data=args[&#39;data&#39;])
+
+sns.despine(left=True, bottom=True)
+plt.show()
+nlpi.resetpp()
 </code></pre></div>
+<pre><code>
+### :octicons-file-code-16: `shistplot`
+
+&lt;h4&gt;description:&lt;/h4&gt;
+
+A Seaborn histplot is a type of plot used to visualize the distribution of a single variable in a dataset. It is created using the seaborn library in Python and is often used to explore the shape of the distribution, as well as any outliers or gaps in the data.
+
+The plot shows a histogram, which is a bar chart that represents the frequency of values in the dataset. The x-axis represents the range of values, and the y-axis represents the frequency of those values. The bars are typically grouped into bins, which represent a range of values.
+
+The Seaborn histplot can also show additional information, such as the density of the data or a kernel density estimate. It is a useful tool for exploring and visualizing the distribution of your data, and can help you to identify any patterns or trends in the data.
+
+&lt;h4&gt;code:&lt;/h4&gt;
+
+```python linenums=&quot;1&quot;
+@staticmethod
+def seaborn_histplot(args:dict):
+
+    if(args['hue'] is not None):
+        hueloc = args['data'][args['hue']]
+        if(type(nlpi.pp['stheme']) is str):
+            palette = nlpi.pp['stheme']
+        else:
+            palette = palette_rgb[:len(hueloc.value_counts())]
+
+    else:
+        hueloc = None
+        palette = palette_rgb
+
+    sns.set_style(&quot;whitegrid&quot;, {
+        &quot;ytick.major.size&quot;: 0.1,
+        &quot;ytick.minor.size&quot;: 0.05,
+        'grid.linestyle': '--'
+    })
+
+    # bar width
+    if(args['bw'] is None):
+        bw = 'auto'
+    else:
+        bw = eval(args['bw'])
+
+    sns.histplot(x=args['x'], 
+                 y=args['y'],
+                 hue = args['hue'],
+                 bins = bw,
+                 palette = palette,
+                 data=args['data'])
+
+    sns.despine(left=True, bottom=True)
+    plt.show()
+    nlpi.resetpp()
+</code></pre>
 <h3 id="skdeplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>skdeplot</code><a class="headerlink" href="#skdeplot" title="Permanent link"></a></h3>
 <h4>description:</h4>
 
@@ -2395,75 +2344,81 @@
 <p>A Seaborn kdeplot can also show additional information, such as a rug plot that indicates the location of each individual data point along the x-axis. It is a useful tool for exploring and visualizing the distribution of your data, and can help you to identify any patterns or trends in the data.</p>
 <h4>code:</h4>
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_kdeplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 8 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 9 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="p">})</span>            
-<span class="linenos" data-linenos="20 "></span>
-<span class="linenos" data-linenos="21 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="22 "></span>                <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="23 "></span>                <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="24 "></span>                <span class="n">fill</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;fill&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="25 "></span>                <span class="n">data</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="26 "></span>                <span class="n">hue</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="27 "></span>
-<span class="linenos" data-linenos="28 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="29 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="30 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="slmplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>slmplot</code><a class="headerlink" href="#slmplot" title="Permanent link"></a></h3>
-<h4>description:</h4>
+<p>```python linenums="1"
+<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/staticmethod" title="GitHub User: staticmethod">@staticmethod</a>
+def seaborn_kdeplot(args:dict):</p>
+<div class="highlight"><pre><span></span><code>if(args[&#39;hue&#39;] is not None):
+    hueloc = args[&#39;data&#39;][args[&#39;hue&#39;]]
+    if(type(nlpi.pp[&#39;stheme&#39;]) is str):
+        palette = nlpi.pp[&#39;stheme&#39;]
+    else:
+        palette = palette_rgb[:len(hueloc.value_counts())]
 
-<p>A Seaborn lmplot is a type of plot used to visualize the relationship between two variables in a dataset, typically using a scatter plot with a regression line. It can be used to explore the correlation between two variables and to identify any patterns or trends in the data.</p>
-<p>The lmplot function in Seaborn allows you to specify various parameters, such as the x and y variables, the data source, and the type of regression model to use. It also allows you to add additional information to the plot, such as confidence intervals and hue variables that can be used to group the data by a categorical variable.</p>
-<p>Overall, Seaborn lmplots are a useful tool for exploring and visualizing the relationship between two variables in a dataset, and can help you to gain insights into the underlying patterns and trends in your data.</p>
-<h4>code:</h4>
+else:
+    hueloc = None
+    palette = palette_rgb
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@staticmethod</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">seaborn_lmplot</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 3 "></span>
-<span class="linenos" data-linenos=" 4 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 7 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 8 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 9 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">})</span>
-<span class="linenos" data-linenos="19 "></span>
-<span class="linenos" data-linenos="20 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="21 "></span>               <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="22 "></span>               <span class="n">hue</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="23 "></span>               <span class="n">col</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;col&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="24 "></span>               <span class="n">row</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;row&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="25 "></span>               <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="26 "></span>               <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">)</span>
-<span class="linenos" data-linenos="27 "></span>
-<span class="linenos" data-linenos="28 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="29 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+sns.set_style(&quot;whitegrid&quot;, {
+    &quot;ytick.major.size&quot;: 0.1,
+    &quot;ytick.minor.size&quot;: 0.05,
+    &#39;grid.linestyle&#39;: &#39;--&#39;
+})
+
+sns.kdeplot(x=args[&#39;x&#39;],
+            y=args[&#39;y&#39;],
+            palette=palette,
+            fill=nlpi.pp[&#39;fill&#39;],
+            data = args[&#39;data&#39;],
+            hue = args[&#39;hue&#39;])
+
+sns.despine(left=True, bottom=True)
+plt.show()
+nlpi.resetpp()
 </code></pre></div>
+<pre><code>
+### :octicons-file-code-16: `slmplot`
+
+&lt;h4&gt;description:&lt;/h4&gt;
+
+A Seaborn lmplot is a type of plot used to visualize the relationship between two variables in a dataset, typically using a scatter plot with a regression line. It can be used to explore the correlation between two variables and to identify any patterns or trends in the data.
+
+The lmplot function in Seaborn allows you to specify various parameters, such as the x and y variables, the data source, and the type of regression model to use. It also allows you to add additional information to the plot, such as confidence intervals and hue variables that can be used to group the data by a categorical variable.
+
+Overall, Seaborn lmplots are a useful tool for exploring and visualizing the relationship between two variables in a dataset, and can help you to gain insights into the underlying patterns and trends in your data.
+
+&lt;h4&gt;code:&lt;/h4&gt;
+
+```python linenums=&quot;1&quot;
+@staticmethod
+def seaborn_lmplot(args:dict):
+
+    if(args['hue'] is not None):
+        hueloc = args['data'][args['hue']]
+        if(type(nlpi.pp['stheme']) is str):
+            palette = nlpi.pp['stheme']
+        else:
+            palette = palette_rgb[:len(hueloc.value_counts())]
+
+    else:
+        hueloc = None
+        palette = palette_rgb
+
+    sns.set_style(&quot;whitegrid&quot;, {
+        &quot;ytick.major.size&quot;: 0.1,
+        &quot;ytick.minor.size&quot;: 0.05,
+        'grid.linestyle': '--'})
+
+    sns.lmplot(x=args['x'], 
+               y=args['y'],
+               hue=args['hue'],
+               col=args['col'],
+               row=args['row'],
+               data=args['data'],
+               palette=palette)
+
+    sns.despine(left=True, bottom=True)
+    plt.show()
+</code></pre>
 <h3 id="spairplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>spairplot</code><a class="headerlink" href="#spairplot" title="Permanent link"></a></h3>
 <h4>description:</h4>
 
@@ -2472,83 +2427,89 @@
 <p>Overall, Seaborn pairplots are a useful tool for exploring and visualizing the relationships between variables in a dataset, and can help you to gain insights into the underlying patterns and trends in your data.</p>
 <h4>code:</h4>
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">def</span> <span class="nf">seaborn_pairplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span>    <span class="n">num</span><span class="p">,</span><span class="n">cat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_types</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 6 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 7 "></span>        <span class="n">num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">num</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
-<span class="linenos" data-linenos=" 8 "></span>        <span class="n">subgroups</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
-<span class="linenos" data-linenos=" 9 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">):</span>
-<span class="linenos" data-linenos="10 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">][:</span><span class="n">subgroups</span><span class="p">]</span>
-<span class="linenos" data-linenos="11 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="12 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos="13 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="14 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="15 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos="16 "></span>
-<span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="19 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="20 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="21 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="22 "></span>     <span class="p">})</span>
-<span class="linenos" data-linenos="23 "></span>
-<span class="linenos" data-linenos="24 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">num</span><span class="p">,</span>
-<span class="linenos" data-linenos="25 "></span>                 <span class="n">hue</span><span class="o">=</span><span class="n">hueloc</span><span class="p">,</span>
-<span class="linenos" data-linenos="26 "></span>                 <span class="n">corner</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="linenos" data-linenos="27 "></span>                 <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="28 "></span>                 <span class="n">diag_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mew&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="29 "></span>                           <span class="s1">&#39;fill&#39;</span><span class="p">:</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;fill&#39;</span><span class="p">]},</span>
-<span class="linenos" data-linenos="30 "></span>                 <span class="n">plot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mec&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="31 "></span>                           <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mew&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="32 "></span>                           <span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="33 "></span>                           <span class="s1">&#39;s&#39;</span><span class="p">:</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">]})</span>   
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="36 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="37 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="slineplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>slineplot</code><a class="headerlink" href="#slineplot" title="Permanent link"></a></h3>
-<h4>description:</h4>
+<p>```python linenums="1"
+def seaborn_pairplot(self,args:dict):</p>
+<div class="highlight"><pre><span></span><code>num,cat = self.split_types(args[&#39;data&#39;])
 
-<p>A Seaborn lineplot is a type of plot used to visualize the relationship between two continuous variables. It creates a line chart that displays the trend in the data over time or across some other continuous variable. Lineplots are useful for identifying trends and patterns in data, as well as for comparing the values of different variables over time or across different categories.</p>
-<p>The lineplot function in Seaborn allows you to specify various parameters, such as the data source, the variables to include, and the type of aggregation to use (e.g., mean, median, or sum). It also allows you to add additional information to the plot, such as hue variables that can be used to group the data by a categorical variable.</p>
-<p>Overall, Seaborn lineplots are a useful tool for exploring and visualizing the relationships between continuous variables in a dataset, and can help you to gain insights into the underlying patterns and trends in your data.</p>
-<h4>code:</h4>
+if(args[&#39;hue&#39;] is not None):
+    hueloc = args[&#39;hue&#39;]
+    num = pd.concat([num,args[&#39;data&#39;][args[&#39;hue&#39;]]],axis=1) 
+    subgroups = len(args[&#39;data&#39;][args[&#39;hue&#39;]].value_counts())
+    if(type(nlpi.pp[&#39;stheme&#39;]) is list):
+        palette = nlpi.pp[&#39;stheme&#39;][:subgroups]
+    else:
+        palette = nlpi.pp[&#39;stheme&#39;]
+else:
+    hueloc = None
+    palette = nlpi.pp[&#39;stheme&#39;]
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">def</span> <span class="nf">seaborn_lineplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 4 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 6 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 7 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 8 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="11 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="p">{</span>
-<span class="linenos" data-linenos="15 "></span>        <span class="s2">&quot;ytick.major.size&quot;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s2">&quot;ytick.minor.size&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="s1">&#39;grid.linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span>
-<span class="linenos" data-linenos="18 "></span>     <span class="p">})</span>
-<span class="linenos" data-linenos="19 "></span>
-<span class="linenos" data-linenos="20 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> 
-<span class="linenos" data-linenos="21 "></span>                 <span class="n">y</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="22 "></span>                 <span class="n">hue</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="23 "></span>                 <span class="n">alpha</span><span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="24 "></span>                 <span class="n">linewidth</span><span class="o">=</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;mew&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="25 "></span>                 <span class="n">data</span><span class="o">=</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span>
-<span class="linenos" data-linenos="26 "></span>                 <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">)</span>
-<span class="linenos" data-linenos="27 "></span>
-<span class="linenos" data-linenos="28 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="29 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="30 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
+
+sns.set_style(&quot;whitegrid&quot;, {
+    &quot;ytick.major.size&quot;: 0.1,
+    &quot;ytick.minor.size&quot;: 0.05,
+    &#39;grid.linestyle&#39;: &#39;--&#39;
+ })
+
+sns.pairplot(num,
+             hue=hueloc,
+             corner=True,
+             palette=palette,
+             diag_kws={&#39;linewidth&#39;:nlpi.pp[&#39;mew&#39;],
+                       &#39;fill&#39;:nlpi.pp[&#39;fill&#39;]},
+             plot_kws={&#39;edgecolor&#39;:nlpi.pp[&#39;mec&#39;],
+                       &#39;linewidth&#39;:nlpi.pp[&#39;mew&#39;],
+                       &#39;alpha&#39;:nlpi.pp[&#39;alpha&#39;],
+                       &#39;s&#39;:nlpi.pp[&#39;s&#39;]})
+
+sns.despine(left=True, bottom=True)
+plt.show()
+nlpi.resetpp()
 </code></pre></div>
+<pre><code>
+### :octicons-file-code-16: `slineplot`
+
+&lt;h4&gt;description:&lt;/h4&gt;
+
+A Seaborn lineplot is a type of plot used to visualize the relationship between two continuous variables. It creates a line chart that displays the trend in the data over time or across some other continuous variable. Lineplots are useful for identifying trends and patterns in data, as well as for comparing the values of different variables over time or across different categories.
+
+The lineplot function in Seaborn allows you to specify various parameters, such as the data source, the variables to include, and the type of aggregation to use (e.g., mean, median, or sum). It also allows you to add additional information to the plot, such as hue variables that can be used to group the data by a categorical variable.
+
+Overall, Seaborn lineplots are a useful tool for exploring and visualizing the relationships between continuous variables in a dataset, and can help you to gain insights into the underlying patterns and trends in your data.
+
+&lt;h4&gt;code:&lt;/h4&gt;
+
+```python linenums=&quot;1&quot;
+def seaborn_lineplot(self,args:dict):
+
+    if(args['hue'] is not None):
+        hueloc = args['data'][args['hue']]
+        if(type(nlpi.pp['stheme']) is str):
+            palette = nlpi.pp['stheme']
+        else:
+            palette = palette_rgb[:len(hueloc.value_counts())]
+
+    else:
+        hueloc = None
+        palette = palette_rgb
+
+    sns.set_style(&quot;whitegrid&quot;, {
+        &quot;ytick.major.size&quot;: 0.1,
+        &quot;ytick.minor.size&quot;: 0.05,
+        'grid.linestyle': '--'
+     })
+
+    sns.lineplot(x=args['x'], 
+                 y=args['y'],
+                 hue=args['hue'],
+                 alpha= nlpi.pp['alpha'],
+                 linewidth=nlpi.pp['mew'],
+                 data=args['data'],
+                 palette=palette)
+
+    sns.despine(left=True, bottom=True)
+    plt.show()
+    nlpi.resetpp()
+</code></pre>
 <h3 id="scorrplot"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v8.586A1.75 1.75 0 0 1 14.25 15h-9a.75.75 0 0 1 0-1.5h9a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 10 4.25V1.5H5.75a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0Zm1.72 4.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734l1.47-1.47-1.47-1.47a.75.75 0 0 1 0-1.06ZM3.28 7.78 1.81 9.25l1.47 1.47a.751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Zm8.22-6.218V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></svg></span> <code>scorrplot</code><a class="headerlink" href="#scorrplot" title="Permanent link"></a></h3>
 <h4>description:</h4>
 
@@ -2556,27 +2517,28 @@
 <p>Seaborn heatmaps can be customized with various parameters, such as the color palette, the axis labels, and the size and shape of the plot. They are useful for identifying patterns and trends in large datasets, and can help to highlight areas of high or low correlation between variables. Overall, Seaborn heatmaps are a powerful tool for exploring and visualizing complex data relationships in a clear and intuitive way.</p>
 <h4>code:</h4>
 
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">def</span> <span class="nf">seaborn_heatmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span>    <span class="k">if</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 4 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;hue&#39;</span><span class="p">]]</span>
-<span class="linenos" data-linenos=" 5 "></span>        <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">])</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">):</span>
-<span class="linenos" data-linenos=" 6 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">nlpi</span><span class="o">.</span><span class="n">pp</span><span class="p">[</span><span class="s1">&#39;stheme&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos=" 7 "></span>        <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 8 "></span>            <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">hueloc</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())]</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="11 "></span>        <span class="n">hueloc</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">palette</span> <span class="o">=</span> <span class="n">palette_rgb</span>
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span>    <span class="n">num</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_types</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="15 "></span>    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-<span class="linenos" data-linenos="16 "></span>                <span class="n">square</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>                <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
-<span class="linenos" data-linenos="18 "></span>
-<span class="linenos" data-linenos="19 "></span>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="linenos" data-linenos="20 "></span>    <span class="n">nlpi</span><span class="o">.</span><span class="n">resetpp</span><span class="p">()</span>
+<p>```python linenums="1"
+def seaborn_heatmap(self,args:dict):</p>
+<div class="highlight"><pre><span></span><code>if(args[&#39;hue&#39;] is not None):
+    hueloc = args[&#39;data&#39;][args[&#39;hue&#39;]]
+    if(type(nlpi.pp[&#39;stheme&#39;]) is str):
+        palette = nlpi.pp[&#39;stheme&#39;]
+    else:
+        palette = palette_rgb[:len(hueloc.value_counts())]
+
+else:
+    hueloc = None
+    palette = palette_rgb
+
+num,_ = self.split_types(args[&#39;data&#39;])
+sns.heatmap(num,cmap=palette,
+            square=False,lw=2,
+            annot=True,cbar=True)
+
+plt.show()
+nlpi.resetpp()
 </code></pre></div>
+<p>```</p>
 <div class="footnote">
 <hr />
 <ol>

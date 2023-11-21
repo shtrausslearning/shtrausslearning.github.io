@@ -2064,12 +2064,12 @@
 </div>
 <h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
 <p>We're loading three DNA datasets, our dataset is in the form of a <code>sequence</code> &amp; subsequent <strong>gene family</strong> label, <code>class</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<pre><code class="language-python">import pandas as pd
 
-<span class="n">human_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/human.txt&#39;</span><span class="p">)</span>
-<span class="n">chimp_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/chimpanzee.txt&#39;</span><span class="p">)</span>
-<span class="n">dog_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/dog.txt&#39;</span><span class="p">)</span>
-</code></pre></div>
+human_dna = pd.read_table('../input/dna-sequence-dataset/human.txt')
+chimp_dna = pd.read_table('../input/dna-sequence-dataset/chimpanzee.txt')
+dog_dna = pd.read_table('../input/dna-sequence-dataset/dog.txt')
+</code></pre>
 <h2 id="dna-encoding"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg></span> DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h2>
 <p>Biological sequences come in the format:</p>
 <blockquote>
@@ -2085,40 +2085,40 @@
 <p>So let us implement each of them and see which gives us the perfect input features.</p>
 <h3 id="encoding-sequences">Encoding Sequences<a class="headerlink" href="#encoding-sequences" title="Permanent link"></a></h3>
 <h4 id="1-ordinal-encoding">(1) Ordinal Encoding<a class="headerlink" href="#1-ordinal-encoding" title="Permanent link"></a></h4>
-<div class="highlight"><pre><span></span><code><span class="c1"># encode list of strings</span>
-<span class="k">def</span> <span class="nf">ordinal_encoder</span><span class="p">(</span><span class="n">my_array</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
-    <span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">my_array</span><span class="p">)</span>
-    <span class="n">float_encoded</span> <span class="o">=</span> <span class="n">integer_encoded</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="c1"># A</span>
-    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.50</span> <span class="c1"># C</span>
-    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="c1"># G</span>
-    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.00</span> <span class="c1"># T</span>
-    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.00</span> <span class="c1"># anything else</span>
-    <span class="k">return</span> <span class="n">float_encoded</span>
+<pre><code class="language-python"># encode list of strings
+def ordinal_encoder(my_array:list[str]):
+    integer_encoded = label_encoder.transform(my_array)
+    float_encoded = integer_encoded.astype(float)
+    float_encoded[float_encoded == 0] = 0.25 # A
+    float_encoded[float_encoded == 1] = 0.50 # C
+    float_encoded[float_encoded == 2] = 0.75 # G
+    float_encoded[float_encoded == 3] = 1.00 # T
+    float_encoded[float_encoded == 4] = 0.00 # anything else
+    return float_encoded
 
-<span class="c1"># let’s try it out with a simple sequence</span>
-<span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;TTCAGCCAGTG&#39;</span>
-<span class="n">ordinal_encoder</span><span class="p">(</span><span class="n">lst_string</span><span class="p">(</span><span class="n">seq_test</span><span class="p">))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
-</code></pre></div>
+# let’s try it out with a simple sequence
+seq_test = 'TTCAGCCAGTG'
+ordinal_encoder(lst_string(seq_test))
+</code></pre>
+<pre><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
+</code></pre>
 <p>One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without <strong>truncation</strong> or <strong>padding</strong></p>
 <h4 id="2-one-hot-encoding">(2) One-Hot Encoding<a class="headerlink" href="#2-one-hot-encoding" title="Permanent link"></a></h4>
 <p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+<pre><code class="language-python">from sklearn.preprocessing import OneHotEncoder
 
-<span class="k">def</span> <span class="nf">ohe</span><span class="p">(</span><span class="n">seq_string</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-    <span class="n">seq_string</span> <span class="o">=</span> <span class="n">lst_string</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
-    <span class="n">int_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
-    <span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-    <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">onehot_encoded</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+def ohe(seq_string:str):
+    seq_string = lst_string(seq_string)
+    int_encoded = label_encoder.transform(seq_string)
+    onehot_encoder = OneHotEncoder(sparse_output=True,dtype=int)
+    onehot_encoded = onehot_encoder.fit_transform(int_encoded[:,None])
+    return onehot_encoded.toarray()
 
-<span class="c1"># let’s try it out with a simple sequence</span>
-<span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;GAATTCTCGAA&#39;</span>
-<span class="n">ohe</span><span class="p">(</span><span class="n">seq_test</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>array([[0, 0, 1, 0],
+# let’s try it out with a simple sequence
+seq_test = 'GAATTCTCGAA'
+ohe(seq_test)
+</code></pre>
+<pre><code>array([[0, 0, 1, 0],
        [1, 0, 0, 0],
        [1, 0, 0, 0],
        [0, 0, 0, 1],
@@ -2129,169 +2129,169 @@
        [0, 0, 1, 0],
        [1, 0, 0, 0],
        [1, 0, 0, 0]])
-</code></pre></div></p>
+</code></pre>
 <p>The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either <strong>padding</strong> or <strong>truncation</strong> again. If we had used <strong>unitigs</strong> as in <strong><a href="https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction">this notebooks</a></strong>, this problem would not exist</p>
 <h4 id="3-k-mer-counting">(3) K-MER Counting<a class="headerlink" href="#3-k-mer-counting" title="Permanent link"></a></h4>
 <p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
 <p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+<pre><code class="language-python">def kmers_count(seq:str, size:int) -&gt; list:
+    return [seq[x:x+size].lower() for x in range(len(seq) - size + 1)]
 
-<span class="c1"># let’s try it out with a simple sequence</span>
-<span class="n">mySeq</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
-<span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>[&#39;gtgccc&#39;,
- &#39;tgccca&#39;,
- &#39;gcccag&#39;,
- &#39;cccagg&#39;,
- &#39;ccaggt&#39;,
- &#39;caggtt&#39;,
- &#39;aggttc&#39;,
- &#39;ggttca&#39;,
- &#39;gttcag&#39;,
- &#39;ttcagt&#39;,
- &#39;tcagtg&#39;,
- &#39;cagtga&#39;,
- &#39;agtgag&#39;,
- &#39;gtgagt&#39;,
- &#39;tgagtg&#39;,
- &#39;gagtga&#39;,
- &#39;agtgac&#39;,
- &#39;gtgaca&#39;,
- &#39;tgacac&#39;,
- &#39;gacaca&#39;,
- &#39;acacag&#39;,
- &#39;cacagg&#39;,
- &#39;acaggc&#39;,
- &#39;caggca&#39;,
- &#39;aggcag&#39;]
-</code></pre></div>
+# let’s try it out with a simple sequence
+mySeq = 'GTGCCCAGGTTCAGTGAGTGACACAGGCAG'
+kmers_count(mySeq, size=7)
+</code></pre>
+<pre><code>['gtgccc',
+ 'tgccca',
+ 'gcccag',
+ 'cccagg',
+ 'ccaggt',
+ 'caggtt',
+ 'aggttc',
+ 'ggttca',
+ 'gttcag',
+ 'ttcagt',
+ 'tcagtg',
+ 'cagtga',
+ 'agtgag',
+ 'gtgagt',
+ 'tgagtg',
+ 'gagtga',
+ 'agtgac',
+ 'gtgaca',
+ 'tgacac',
+ 'gacaca',
+ 'acacag',
+ 'cacagg',
+ 'acaggc',
+ 'caggca',
+ 'aggcag']
+</code></pre>
 <p><code>kmers_count</code> returns a list of sequences (<code>k-mer</code> words), which then can be joined together into a single <code>string</code>. Once we have this split, we can use <strong>NLP</strong> encoding/embedding methods (eg. <code>CountVectorizer</code>) to generate numerical representations of these <code>k-mer</code> words</p>
-<div class="highlight"><pre><span></span><code><span class="n">joined_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
-<span class="n">joined_sentence</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>&#39;gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag&#39;
-</code></pre></div>
+<pre><code class="language-python">joined_sentence = ' '.join(words)
+joined_sentence
+</code></pre>
+<pre><code>'gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag'
+</code></pre>
 <p>Having a "corpus" of sequences &amp; their labels, we need to merge them together into a single array, for example if we only have two sequences, <strong>even of different length</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">mySeq1</span> <span class="o">=</span> <span class="s1">&#39;TCTCACACATGTGCCAATCACTGTCACCC&#39;</span>
-<span class="n">mySeq2</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
-<span class="n">sentence1</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">sentence2</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
-</code></pre></div>
+<pre><code class="language-python">mySeq1 = 'TCTCACACATGTGCCAATCACTGTCACCC'
+mySeq2 = 'GTGCCCAGGTTCAGTGAGTGACACAGGCAG'
+sentence1 = ' '.join(kmers_count(mySeq1, size=6))
+sentence2 = ' '.join(kmers_count(mySeq2, size=6))
+</code></pre>
 <p>Fitting a <strong>Bag of Words</strong> model, we generate a fixed dictionary size of <code>kmers</code>, thus all data will have a dimensionality proportional to the dictionary count. Similar to <strong>OHE</strong>, the content will be (1/0), corresponding to either being present in the string or not.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Creating the Bag of Words model:</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<pre><code class="language-python"># Creating the Bag of Words model:
+from sklearn.feature_extraction.text import CountVectorizer
 
-<span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">sentence1</span><span class="p">,</span> <span class="n">sentence2</span><span class="p">])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
+cv = CountVectorizer()
+X = cv.fit_transform([sentence1, sentence2]).toarray()
+</code></pre>
+<pre><code>array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
         0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0,
         1, 0, 1, 1, 0],
        [0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0,
         1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1,
         0, 1, 0, 0, 1]])
-</code></pre></div>
+</code></pre>
 <h4 id="choice-of-encoding">Choice of Encoding<a class="headerlink" href="#choice-of-encoding" title="Permanent link"></a></h4>
 <p>For <strong>DNA</strong> sequence classification methods, its more logical to utilise the <code>kmers</code> approach since <code>kmers</code> are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence. Which is on top of the non uniform sequence length issue addessed above.</p>
 <h2 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link"></a></h2>
 <p>Our objective is to train a <strong>classification model</strong> that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.</p>
 <h2 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link"></a></h2>
 <p>Having already loaded our dataset &amp; define our problem statement, lets create prepare our dataset for training, we'll simply using the <code>apply</code> method &amp; store the list of <strong>kmers</strong> in our dataframe</p>
-<p><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+<pre><code class="language-python">def kmers_count(seq:str, size:int) -&gt; list:
+    return [seq[x:x+size].lower() for x in range(len(seq) - size + 1)]
 
-<span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">human_dna</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+human_dna['kmers'] = human_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
+human_dna = human_dna.drop('sequence', axis=1)
 
-<span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">chimp_dna</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+chimp_dna['kmers'] = chimp_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
+chimp_dna = chimp_dna.drop('sequence', axis=1)
 
-<span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">dog_dna</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>     class     words
+dog_dna['kmers'] = dog_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
+dog_dna = dog_dna.drop('sequence', axis=1)
+</code></pre>
+<pre><code>     class     words
 0    4    [atgccc, tgcccc, gcccca, ccccaa, cccaac, ccaac...
 1    4    [atgaac, tgaacg, gaacga, aacgaa, acgaaa, cgaaa...
 2    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
 3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
 4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
-</code></pre></div></p>
+</code></pre>
 <p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset (which can simply be using with <code>fit</code> in <code>CountVectorizer</code>) like we did in the example &amp; its related label:</p>
-<div class="highlight"><pre><span></span><code><span class="n">human_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)):</span>
-    <span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
-<span class="c1">#separate labels</span>
-<span class="n">y_human</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_human for human_dna</span>
+<pre><code class="language-python">human_texts = list(human_dna['kmers'])
+for item in range(len(human_texts)):
+    human_texts[item] = ' '.join(human_texts[item])
+#separate labels
+y_human = human_dna.iloc[:, 0].values # y_human for human_dna
 
-<span class="n">chimp_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)):</span>
-    <span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
-<span class="c1">#separate labels</span>
-<span class="n">y_chim</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_chim for chimp_dna</span>
+chimp_texts = list(chimp_dna['kmers'])
+for item in range(len(chimp_texts)):
+    chimp_texts[item] = ' '.join(chimp_texts[item])
+#separate labels
+y_chim = chimp_dna.iloc[:, 0].values # y_chim for chimp_dna
 
-<span class="n">dog_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)):</span>
-    <span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
-<span class="c1">#separate labels</span>
-<span class="n">y_dog</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># y_dog for dog_dna</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="n">human_texts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>&#39;atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag&#39;
-</code></pre></div>
+dog_texts = list(dog_dna['kmers'])
+for item in range(len(dog_texts)):
+    dog_texts[item] = ' '.join(dog_texts[item])
+#separate labels
+y_dog = dog_dna.iloc[:, 0].values  # y_dog for dog_dna
+</code></pre>
+<pre><code class="language-python">human_texts[0]
+</code></pre>
+<pre><code>'atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag'
+</code></pre>
 <p><code>CountVectorizer</code> allows us to control groupings of these kmers, lets use <code>ngram_range</code> of 4. We'll call <code>fit</code> on the human dataset &amp; <code>transform</code> all datasets:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-<span class="n">vectoriser</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="c1">#The n-gram size of 4 is previously determined </span>
+<pre><code class="language-python">from sklearn.feature_extraction.text import CountVectorizer
+vectoriser = CountVectorizer(ngram_range=(4,4)) #The n-gram size of 4 is previously determined 
 
-<span class="c1"># fit &amp; transform</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)</span>
-<span class="n">X_chimp</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)</span>
-<span class="n">X_dog</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)</span>
-</code></pre></div>
+# fit &amp; transform
+X = vectoriser.fit_transform(human_texts)
+X_chimp = vectoriser.transform(chimp_texts)
+X_dog = vectoriser.transform(dog_texts)
+</code></pre>
 <p>This will give us the following dataset size, our dictionary for <code>ngram=4</code> gives us 232414 features for our model:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X_chimp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X_dog</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>(4380, 232414)
+<pre><code class="language-python">print(X.shape)
+print(X_chimp.shape)
+print(X_dog.shape)
+</code></pre>
+<pre><code>(4380, 232414)
 (1682, 232414)
 (820, 232414)
-</code></pre></div>
+</code></pre>
 <p>So, for humans we have 4380 genes converted into <strong>uniform length feature vectors of 4-gram k-mer</strong> (length 6) counts. For chimpanzee and dogs, we have the same number of features with 1682 and 820 genes respectively since we <code>fit</code> on the human dataset.</p>
 <h2 id="training-model">Training Model<a class="headerlink" href="#training-model" title="Permanent link"></a></h2>
 <p>So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.</p>
 <p>Here we will use the human data to train the model, <strong>holding out 20%</strong> of the human data to test/evaluation the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).</p>
 <p>Next, train/test split human dataset and build simple multinomial <strong>naive Bayes classifier</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Splitting the human dataset into the training set and test set</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> 
-                                                    <span class="n">y_human</span><span class="p">,</span> 
-                                                    <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> 
-                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
-<span class="n">classifier</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python"># Splitting the human dataset into the training set and test set
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, 
+                                                    y_human, 
+                                                    test_size = 0.20, 
+                                                    random_state=42)
+</code></pre>
+<pre><code class="language-python">from sklearn.naive_bayes import MultinomialNB
+classifier = MultinomialNB(alpha=0.1)
+classifier.fit(X_train, y_train)
+</code></pre>
 <h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link"></a></h2>
 <p>For evaluation, we'll be checking the <strong>confusion matrix</strong> as well as some other metrics like <strong>f1_score</strong> for three different subsets of generalisation data:</p>
 <h3 id="human-dataset-prediction">Human Dataset Prediction<a class="headerlink" href="#human-dataset-prediction" title="Permanent link"></a></h3>
 <p>Let's check how well our model performs on the hold out human dataset:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+<pre><code class="language-python">from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
-<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
-<span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">):</span>
-    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">)</span>
-    <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
-    <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
-    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span>
-<span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Confusion matrix for predictions on human test DNA sequence
+print(pd.crosstab(pd.Series(y_test, name='Actual'), pd.Series(y_pred, name='Predicted')))
+def get_metrics(y_test, y_predicted):
+    accuracy = accuracy_score(y_test, y_predicted)
+    precision = precision_score(y_test, y_predicted, average='weighted')
+    recall = recall_score(y_test, y_predicted, average='weighted')
+    f1 = f1_score(y_test, y_predicted, average='weighted')
+    return accuracy, precision, recall, f1
+accuracy, precision, recall, f1 = get_metrics(y_test, y_pred)
+print(&quot;accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f&quot; % (accuracy, precision, recall, f1))
+</code></pre>
+<pre><code>Confusion matrix for predictions on human test DNA sequence
 
 Predicted   0    1   2    3    4   5    6
 Actual                                   
@@ -2306,14 +2306,14 @@ accuracy = 0.984
 precision = 0.984 
 recall = 0.984 
 f1 = 0.984
-</code></pre></div>
+</code></pre>
 <h3 id="chimpanzee-dataset-prediction">Chimpanzee Dataset Prediction<a class="headerlink" href="#chimpanzee-dataset-prediction" title="Permanent link"></a></h3>
 <p>Let's check how well the model performs on the chimpanzee dataset:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_chim</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_chimp</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
-<span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_chim</span><span class="p">,</span> <span class="n">y_pred_chimp</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Confusion matrix for predictions on Chimpanzee test DNA sequence
+<pre><code class="language-python">print(pd.crosstab(pd.Series(y_chim, name='Actual'), pd.Series(y_pred_chimp, name='Predicted')))
+accuracy, precision, recall, f1 = get_metrics(y_chim, y_pred_chimp)
+print(&quot;accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f&quot; % (accuracy, precision, recall, f1))
+</code></pre>
+<pre><code>Confusion matrix for predictions on Chimpanzee test DNA sequence
 
 Predicted    0    1    2    3    4    5    6
 Actual                                      
@@ -2328,14 +2328,14 @@ accuracy = 0.993
 precision = 0.994 
 recall = 0.993 
 f1 = 0.993
-</code></pre></div>
+</code></pre>
 <h3 id="dog-dataset-prediction">Dog Dataset Prediction<a class="headerlink" href="#dog-dataset-prediction" title="Permanent link"></a></h3>
 <p>Let's check the classification performance on the dog test dataset:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_dog</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_dog</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
-<span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_dog</span><span class="p">,</span> <span class="n">y_pred_dog</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Predicted    0   1   2   3    4   5    6
+<pre><code class="language-python">print(pd.crosstab(pd.Series(y_dog, name='Actual'), pd.Series(y_pred_dog, name='Predicted')))
+accuracy, precision, recall, f1 = get_metrics(y_dog, y_pred_dog)
+print(&quot;accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f&quot; % (accuracy, precision, recall, f1))
+</code></pre>
+<pre><code>Predicted    0   1   2   3    4   5    6
 Actual                                  
 0          127   0   0   0    0   0    4
 1            0  63   0   0    1   0   11
@@ -2348,7 +2348,7 @@ accuracy = 0.926
 precision = 0.934 
 recall = 0.926 
 f1 = 0.925
-</code></pre></div>
+</code></pre>
 <h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h3>
 <p>For all gene family data, the model is able to produce good results. It also does on Chimpanzee which is because the chimpanzee and humans share the same genetic hierarchy structure. However, the performance on the dog dataset (in comparison) was not quite as good, probably because dogs and human share less common genes.</p>
 <h2 id="concluding-remarks">Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permanent link"></a></h2>

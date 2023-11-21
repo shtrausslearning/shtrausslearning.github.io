@@ -976,40 +976,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#module-configuration-file" class="md-nav__link">
-     Module Configuration File
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#naming-conventions" class="md-nav__link">
-     Naming Conventions
-  </a>
-  
-    <nav class="md-nav" aria-label="Naming Conventions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#activation-function-name" class="md-nav__link">
-    Activation function name
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-names" class="md-nav__link">
-    File names
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1889,40 +1855,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#module-configuration-file" class="md-nav__link">
-     Module Configuration File
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#naming-conventions" class="md-nav__link">
-     Naming Conventions
-  </a>
-  
-    <nav class="md-nav" aria-label="Naming Conventions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#activation-function-name" class="md-nav__link">
-    Activation function name
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#file-names" class="md-nav__link">
-    File names
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1974,57 +1906,55 @@
 <p>Modules can inherent any class, however as a minimum, it must always inherent the <code>nlpi</code> class</p>
 <h3 id="activation-functions">activation functions<a class="headerlink" href="#activation-functions" title="Permanent link"></a></h3>
 <p>Activation functions require only a single argument, <code>args:dict</code> aside from <code>self</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sample module class structure</span>
+<p>```python</p>
+<h1 id="sample-module-class-structure">sample module class structure<a class="headerlink" href="#sample-module-class-structure" title="Permanent link"></a></h1>
+<p>class Sample(nlpi):</p>
+<div class="highlight"><pre><span></span><code># initialise module
+def __init__(self,nlp_config):
+    self.name = &#39;sample&#39;             # unique module name identifier (used in nlpm/nlpi)
+    self.nlp_config = nlp_config  # text based info related to module (used in nlpm/nlpi)
 
-<span class="k">class</span> <span class="nc">Sample</span><span class="p">(</span><span class="n">nlpi</span><span class="p">):</span>
+# function selector
+def sel(self,args:dict):
 
-    <span class="c1"># initialise module</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nlp_config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span>             <span class="c1"># unique module name identifier (used in nlpm/nlpi)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nlp_config</span> <span class="o">=</span> <span class="n">nlp_config</span>  <span class="c1"># text based info related to module (used in nlpm/nlpi)</span>
+    self.select = args[&#39;pred_task&#39;]
+    self.args = args
 
-    <span class="c1"># function selector</span>
-    <span class="k">def</span> <span class="nf">sel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    if(self.select == &#39;function&#39;):
+        self.function(self.args)
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;pred_task&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
-
-        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
-
-    <span class="c1"># activation function</span>
-    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="k">pass</span>
+# activation function
+def function(self,args:dict):
+    pass
 </code></pre></div>
+<p>```</p>
 </div>
 <h2 id="module-configuration-file"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5.45 5.154A4.25 4.25 0 0 0 9.25 7.5h1.378a2.251 2.251 0 1 1 0 1.5H9.25A5.734 5.734 0 0 1 5 7.123v3.505a2.25 2.25 0 1 1-1.5 0V5.372a2.25 2.25 0 1 1 1.95-.218ZM4.25 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm8.5-4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM5 3.25a.75.75 0 1 0 0 .005V3.25Z"/></svg></span> <strong>Module Configuration File</strong><a class="headerlink" href="#module-configuration-file" title="Permanent link"></a></h2>
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
 <p>The <strong>configuration</strong> file contains information about the module (eg.<code>sample</code>) &amp; its stored functions <code>info</code>, as well as the <code>corpus</code> used in classificaiton of function labels <code>name</code></p>
-<div class="highlight"><pre><span></span><code><span class="nt">&quot;modules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-
-<span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;function&quot;</span><span class="p">,</span>
-<span class="nt">&quot;corpus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="s2">&quot;sample&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;subtopic&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;input_format&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;token_compat&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;arg_compat&quot;</span><span class="p">:</span><span class="s2">&quot;...&quot;</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="p">},</span>
-
-<span class="err">...</span>
-
-<span class="p">]</span>
-</code></pre></div>
+<p>``` json
+"modules": [</p>
+<p>{
+  "name": "function",
+"corpus": [
+          "&hellip;",
+          ],
+  "info": {
+          "module":"sample",
+          "action":"&hellip;",
+          "topic":"&hellip;",
+          "subtopic":"&hellip;",
+          "input_format":"&hellip;",
+          "description":"&hellip;",
+          "output":"&hellip;",
+          "token_compat":"&hellip;",
+          "arg_compat":"&hellip;"
+          }
+},</p>
+<p>&hellip;</p>
+<p>]
+```</p>
 </div>
 <h2 id="naming-conventions"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8h-2c0 3.32-2.68 6-6 6a6 6 0 0 1-6-6 6 6 0 0 1 6-6c.43 0 .86.05 1.27.14l1.61-1.6C15.96 2.18 15 2 14 2m6.59 1.58L14 10.17l-2.38-2.38-1.41 1.42L14 13l8-8m-17.07.82A8.01 8.01 0 0 0 2 12a8 8 0 0 0 8 8c.64 0 1.27-.08 1.88-.23-1.76-.39-3.38-1.27-4.71-2.48A6.001 6.001 0 0 1 4 12c0-.3.03-.59.07-.89C4.03 10.74 4 10.37 4 10c0-1.44.32-2.87.93-4.18Z"/></svg></span> <strong>Naming Conventions</strong><a class="headerlink" href="#naming-conventions" title="Permanent link"></a></h2>
 <div class="admonition question">

@@ -1936,15 +1936,15 @@
 <li>Module instances are loaded are loaded via <mark><strong>collection.load()</strong></mark></li>
 <li>Classification model(s) are trained using <mark><strong>collection.train()</strong></mark></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># link all modules into one collection</span>
-<span class="n">collection</span> <span class="o">=</span> <span class="n">nlpm</span><span class="p">()</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">load</span><span class="p">([</span>
-                 <span class="n">eda_simple</span><span class="p">(),</span>    <span class="c1"># [eda] simple pandas EDA</span>
-                 <span class="n">eda_splot</span><span class="p">(),</span>     <span class="c1"># [eda] standard seaborn plots</span>
-                 <span class="n">eda_scplot</span><span class="p">(),</span>    <span class="c1"># [eda] seaborn column plots</span>
-                <span class="p">])</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-</code></pre></div>
+<pre><code class="language-python"># link all modules into one collection
+collection = nlpm()
+collection.load([
+                 eda_simple(),    # [eda] simple pandas EDA
+                 eda_splot(),     # [eda] standard seaborn plots
+                 eda_scplot(),    # [eda] seaborn column plots
+                ])
+collection.train()
+</code></pre>
 <p>More detailed information about this process can be found on the <strong><code>nlpi</code></strong> documentation page</p>
 <p>**</p>
 

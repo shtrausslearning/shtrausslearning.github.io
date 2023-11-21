@@ -2041,30 +2041,31 @@
 <h4 id="classifying-user-requests">Classifying user requests<a class="headerlink" href="#classifying-user-requests" title="Permanent link"></a></h4>
 <p>Let's say we have a problem in which we need to <strong>classify a user request</strong> into two groups; <kbd>class 0</kbd> (impute data) &amp; <kbd>class 1</kbd> (standardise columns) using text input data, a <strong>binary classification problem</strong>. The classification model will activate specific activation functions, so incorrectly classified models will activate the wrong function! </p>
 <p>Hopefully you are familiar with text preprocessing &amp; training using sklearn, because that's what we'll be using in this post. We train a <code>LogisticRegression</code> binary classification model and the model itself is complex enough to get a perfect score on the dataset it was trained on. </p>
-<div class="highlight"><pre><span></span><code><span class="c1"># commands corresponding to activation function</span>
-<span class="n">train</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;impute missing, mean value&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;impute missing, average value&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;fill missing, mean value&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;standardise columns&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;normalise columns&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;standardise&quot;</span>
-         <span class="p">]</span>
+<pre><code class="language-python">
+# commands corresponding to activation function
+train = [&quot;impute missing, mean value&quot;,
+         &quot;impute missing, average value&quot;,
+         &quot;fill missing, mean value&quot;,
+         &quot;standardise columns&quot;,
+         &quot;normalise columns&quot;,
+         &quot;standardise&quot;
+         ]
 
-<span class="c1"># target labels</span>
-<span class="n">y_train</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;imp-mean&#39;</span><span class="p">,</span><span class="s1">&#39;imp-mean&#39;</span><span class="p">,</span><span class="s1">&#39;imp-mean&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">]</span>
+# target labels
+y_train = ['imp-mean','imp-mean','imp-mean','std','std','std']
 
-<span class="c1"># encoder data</span>
-<span class="k">def</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+# encoder data
+def tokenizer(text):
+    return word_tokenize(text)
 
-<span class="c1"># Bag of Words Encoding</span>
-<span class="n">encoder</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
-<span class="n">X_train</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+# Bag of Words Encoding
+encoder = CountVectorizer()
+X_train = encoder.fit_transform(train)
 
-<span class="c1"># Train model to predict between two classes</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
-</code></pre></div>
+# Train model to predict between two classes
+model = LogisticRegression()
+model.fit(X_train,y_train)
+</code></pre>
 <h4 id="using-classifier">Using Classifier<a class="headerlink" href="#using-classifier" title="Permanent link"></a></h4>
 <p>Now let's assume we deploy this model, we have two user requests:
 -  <kbd>First of all, impute all missing data with column mean values, then standardise all columns</kbd>
@@ -2074,23 +2075,25 @@
 <p>The second request contains only one request:
 - <kbd>impute missing data with column mean values</kbd></p>
 <p>Let's check how both models would perform:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># user request</span>
-<span class="n">request_a</span> <span class="o">=</span> <span class="s2">&quot;First of all, impute all missing data with column mean values and then standardise all columns.&quot;</span>
-<span class="n">request_b</span> <span class="o">=</span> <span class="s2">&quot;impute missing data with column mean values&quot;</span>
+<pre><code class="language-python">
+# user request
+request_a = &quot;First of all, impute all missing data with column mean values and then standardise all columns.&quot;
+request_b = &quot;impute missing data with column mean values&quot;
 
-<span class="c1"># test model on new data</span>
-<span class="n">X_test_a</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">request_a</span><span class="p">])</span>
-<span class="n">X_test_b</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">request_b</span><span class="p">])</span>
-<span class="n">y_pred_a</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_a</span><span class="p">)</span>
-<span class="n">y_pred_b</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_b</span><span class="p">)</span>
+# test model on new data
+X_test_a = encoder.transform([request_a])
+X_test_b = encoder.transform([request_b])
+y_pred_a = model.predict_proba(X_test_a)
+y_pred_b = model.predict_proba(X_test_b)
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;text_a:&#39;</span><span class="p">,</span><span class="n">y_pred_a</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;text_b&#39;</span><span class="p">,</span><span class="n">y_pred_b</span><span class="p">)</span>
-</code></pre></div>
+print('text_a:',y_pred_a)
+print('text_b',y_pred_b)
+
+</code></pre>
 <p><code>predict_proba</code> gives us the following probability distribution, we are using a threshold of 0.5 which is the default for <code>predict_proba</code>, ie. for <strong>text_a</strong>, the model has predicted <code>class 1</code> (standardise columns) ✘, &amp; for <strong>text_b</strong>, <code>class 0</code> (impute data) ✔</p>
-<div class="highlight"><pre><span></span><code>text_a: [[0.49158457 0.50841543]]  
+<pre><code>text_a: [[0.49158457 0.50841543]]  
 text_b [[0.68768998 0.31231002]]
-</code></pre></div>
+</code></pre>
 <p>So we can see that the closer the content of the user request is to one of the text it was trained on, the more accurate the model. Intuitively, there clearly is a need to split the first user request into parts because the request doesn't fit into either of the two categories, so if we can tag tokens <code>,</code> &amp; <code>then</code>, we can split the sentence into two. Having two separate sentences, we then can repredict on both of these sentences to get the correct predictions.</p>
 <blockquote>
 <p class="prompt-info">Similar to if you took <code>cosine_similarity</code> between the input user request and different documents that belong to a class. If the content contains too much additional text, the similarity will start to fall.</p>
@@ -2202,327 +2205,329 @@ text_b [[0.68768998 0.31231002]]
 </table>
 <h3 id="ner-tagging">NER Tagging<a class="headerlink" href="#ner-tagging" title="Permanent link"></a></h3>
 <p>I've created a simple <strong>NER</strong> tagging class <code>ner_annotator</code> which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (<code>active_df</code>) and tagging parts of the sentence using the format <kbd>words</kbd><code>-</code><kbd>tag</kbd>, which is used in the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive 1.1</a></strong> dataset on huggingface</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#from IPython.display import clear_output in jupyter</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">warnings</span><span class="p">;</span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<pre><code class="language-python">#from IPython.display import clear_output in jupyter
+import pandas as pd
+import numpy as np
+import re
+import warnings;warnings.filterwarnings('ignore')
 
-<span class="c1"># NER Annotation Class</span>
+# NER Annotation Class
 
-<span class="k">class</span> <span class="nc">ner_annotator</span><span class="p">:</span>
+class ner_annotator:
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="kc">None</span>
+    def __init__(self,df:pd.DataFrame):
+        self.df = df
+        self.word2tag = {}
+        self.LABEL_PATTERN = r&quot;\[(.*?)\]&quot;
+        self.deactive_df = None
+        self.active_df = None
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">__initialise</span><span class="p">()</span>
+        self.__initialise()
 
-    <span class="k">def</span> <span class="nf">__initialise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    def __initialise(self):
 
-<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+        '''
 
-<span class="sd">        [1] ANNOTATION COLUMN RELATED OPERATIONS</span>
+        [1] ANNOTATION COLUMN RELATED OPERATIONS
 
-<span class="sd">        &#39;&#39;&#39;</span>
+        '''
 
-        <span class="c1"># if annotaion column is all empty</span>
+        # if annotaion column is all empty
 
-        <span class="k">if</span><span class="p">(</span><span class="s1">&#39;annotated&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+        if('annotated' in self.df.columns):
 
-            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            if(self.df['annotated'].isna().sum() == self.df.shape[0]):
+                self.df['annotated'] = None
 
-            <span class="c1"># if annotation column is not empty</span>
+            # if annotation column is not empty
 
-            <span class="k">elif</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            elif(self.df['annotated'].isna().sum() != self.df.shape[0]):
 
-                <span class="c1"># Store Tags</span>
-                <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-                    <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span><span class="p">):</span>
-                        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="p">)</span>
-                        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
-                            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">[</span><span class="n">phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+                # Store Tags
+                for idx,row_data in self.df.iterrows():
+                    if(type(row_data['annotated']) == str):
+                        matches = re.findall(self.LABEL_PATTERN, row_data['annotated'] )
+                        for match in matches:
+                            tag, phrase = match.split(&quot; : &quot;)
+                            self.word2tag[phrase] = tag
 
-        <span class="c1"># if annotation column is not present</span>
+        # if annotation column is not present
 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">word2tag</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>    
+        else:
+            word2tag = {}
+            self.df['annotated'] = None    
 
-        <span class="c1"># active_df -&gt; NaN are present</span>
-        <span class="c1"># deactive_df -&gt; already has annotations</span>
+        # active_df -&gt; NaN are present
+        # deactive_df -&gt; already has annotations
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+        self.active_df = self.df[self.df['annotated'].isna()]
+        self.deactive_df = self.df[~self.df['annotated'].isna()]
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    '''
 
-<span class="sd">    REVIEW ANNOTATIONS</span>
+    REVIEW ANNOTATIONS
 
-<span class="sd">    &#39;&#39;&#39;</span>
-    <span class="c1"># nullify rows which are not NaN, but don&#39;t have </span>
+    '''
+    # nullify rows which are not NaN, but don't have 
 
-    <span class="k">def</span> <span class="nf">review_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">)][</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">annot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">)][</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    def review_annotations(self):
+        idx = list(self.deactive_df[~self.deactive_df[&quot;annotated&quot;].str.contains(self.LABEL_PATTERN)]['annotated'].index)
+        annot = list(self.deactive_df[~self.deactive_df[&quot;annotated&quot;].str.contains(self.LABEL_PATTERN)]['annotated'].values)
 
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">annot</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+        for i,j in zip(idx,annot):
+            print(i,j)
 
-    <span class="c1"># drop annotations (from deactive_df)</span>
+    # drop annotations (from deactive_df)
 
-    <span class="k">def</span> <span class="nf">drop_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">idx</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
-        <span class="n">remove_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-        <span class="n">remove_df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">,</span><span class="n">remove_df</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dopped annotations saving &gt;&gt; annot.csv&#39;</span><span class="p">)</span>
-        <span class="n">pd</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">]))</span>
+    def drop_annotations(self,idx:list):
+        remove_df = self.deactive_df.iloc[idx]
+        remove_df['annotated'] = None
+        self.active_df = pd.concat([self.active_df,remove_df])
+        self.deactive_df = self.deactive_df.drop(list(idx),axis=0)
+        self.deactive_df.sort_index()
+        print('dopped annotations saving &gt;&gt; annot.csv')
+        pd.to_csv('annot.csv',pd.concat([self.active_df,self.deactive_df]))
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+    '''
 
-<span class="sd">    ANNOTATE ON ACTIVE ONLY</span>
+    ANNOTATE ON ACTIVE ONLY
 
-<span class="sd">    &#39;&#39;&#39;</span>
+    '''
 
-    <span class="k">def</span> <span class="nf">ner_annotate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    def ner_annotate(self):
 
-        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        for idx,row_data in self.active_df.iterrows():
 
-            <span class="n">q</span> <span class="o">=</span> <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span> <span class="c1"># question</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">q</span>                    <span class="c1"># annotated question holder</span>
+            q = row_data['question'] # question
+            t = q                    # annotated question holder
 
-            <span class="n">annotate_row</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">while</span> <span class="n">annotate_row</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            annotate_row = True
+            while annotate_row is True:
 
-                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current Annotations:&#39;</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+                print('Current Annotations:')
+                print(t,'\n')
 
-                <span class="c1"># user input</span>
-                <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;tag (word-tag) format &gt;&gt; &#39;</span><span class="p">)</span>
+                # user input
+                user = input('tag (word-tag) format &gt;&gt; ')
 
-                <span class="c1"># [1] end of annotation (go to next row)</span>
+                # [1] end of annotation (go to next row)
 
-                <span class="k">if</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;quit&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]):</span>
+                if(user in ['quit','q']):
 
-                    <span class="n">annotate_row</span> <span class="o">=</span> <span class="kc">False</span>
-                    <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+                    annotate_row = False
+                    row_data['annotated'] = t
 
-                    <span class="c1"># Store Tags</span>
-                    <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-                    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
-                        <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">[</span><span class="n">phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+                    # Store Tags
+                    matches = re.findall(self.LABEL_PATTERN, t)
+                    for match in matches:
+                        tag, phrase = match.split(&quot; : &quot;)
+                        self.word2tag[phrase] = tag
 
-                        <span class="c1"># clean up output</span>
-                        <span class="c1">#               clear_output(wait=True)</span>
+                        # clean up output
+                        #               clear_output(wait=True)
 
-                        <span class="c1"># [2] stop annotation loop</span>
+                        # [2] stop annotation loop
 
-                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="s1">&#39;stop&#39;</span><span class="p">):</span>
+                elif(user in 'stop'):
 
-                    <span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-                    <span class="n">ldf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-                    <span class="k">return</span> 
+                    ldf = pd.concat([self.deactive_df,self.active_df],axis=0)
+                    ldf.to_csv('annot.csv',index=False)
+                    return 
 
-                <span class="c1"># [3] Reset current Row Tags</span>
+                # [3] Reset current Row Tags
 
-                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">]):</span>
+                elif(user in ['reset','r']):
 
-                    <span class="n">t</span><span class="o">=</span><span class="n">q</span> 
-                    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-                    <span class="c1">#           clear_output(wait=True)</span>
-                    <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;tag (word-tag) format &gt;&gt; &#39;</span><span class="p">)</span>
+                    t=q 
+                    print(t,'\n')
+                    #           clear_output(wait=True)
+                    user = input('tag (word-tag) format &gt;&gt; ')
 
-                <span class="c1"># [4] Show current word2tag mapping dictionary</span>
+                # [4] Show current word2tag mapping dictionary
 
-                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;show&#39;</span><span class="p">):</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">)</span>
+                elif(user == 'show'):
+                    print(self.word2tag)
 
-                <span class="c1"># [5] Automatically set tags from existing tags in word2tag </span>
+                # [5] Automatically set tags from existing tags in word2tag 
 
-                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;dict&#39;</span><span class="p">):</span>
+                elif(user == 'dict'):
 
-                    <span class="c1"># use dictionary to automatically set tags</span>
-                    <span class="k">for</span> <span class="n">word</span><span class="p">,</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                        <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">t</span><span class="p">):</span>
-                            <span class="n">express</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">]&#39;</span> 
-                            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">express</span><span class="p">)</span>            
+                    # use dictionary to automatically set tags
+                    for word,tag in self.word2tag.items():
+                        if(word in t):
+                            express = f'[{tag} : {word}]' 
+                            t = t.replace(word,express)            
 
-                            <span class="c1"># Tags Specified</span>
+                            # Tags Specified
 
-                <span class="c1"># [6] We are actually annotating document</span>
+                # [6] We are actually annotating document
 
-                <span class="k">elif</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">user</span><span class="p">):</span>
+                elif('-' in user):
 
-                    <span class="c1"># parse input</span>
-                    <span class="n">word</span><span class="p">,</span><span class="n">tag</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+                    # parse input
+                    word,tag = user.split('-')
 
-                    <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
-                        <span class="n">word</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;please add word &gt;&gt; &#39;</span><span class="p">)</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
-                        <span class="n">tag</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;please add tag &gt;&gt; &#39;</span><span class="p">)</span>
+                    if(word == ''):
+                        word = input('please add word &gt;&gt; ')
+                    if(tag == ''):
+                        tag = input('please add tag &gt;&gt; ')
 
-                    <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">t</span><span class="p">):</span>
-                        <span class="n">express</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">]&#39;</span> 
-                        <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">express</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not found in sentence&#39;</span><span class="p">)</span>
+                    if(word in t):
+                        express = f'[{tag} : {word}]' 
+                        t = t.replace(word,express)
+                    else:
+                        print('not found in sentence')
 
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;please use (word-tag format)&#39;</span><span class="p">)</span>
+                else:
+                    print('please use (word-tag format)')
 
-        <span class="c1"># finished annotation</span>
-        <span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">ldf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</code></pre></div>
+        # finished annotation
+        ldf = pd.concat([self.deactive_df,self.active_df],axis=0)
+        ldf.to_csv('annot.csv',index=False)
+</code></pre>
 <p>We can annotate the dataset using the folowing commands:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># read dataset</span>
-<span class="n">df_annot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">)</span>   <span class="c1"># read dataframe</span>
+<pre><code class="language-python">
+# read dataset
+df_annot = pd.read_csv('annot.csv')   # read dataframe
 
-<span class="n">temp</span> <span class="o">=</span> <span class="n">ner_annotator</span><span class="p">(</span><span class="n">df_annot</span><span class="p">)</span>  <span class="c1"># instantiate annotation class</span>
-<span class="n">temp</span><span class="o">.</span><span class="n">ner_annotate</span><span class="p">()</span>             <span class="c1"># start annotating</span>
-</code></pre></div>
+temp = ner_annotator(df_annot)  # instantiate annotation class
+temp.ner_annotate()             # start annotating
+</code></pre>
 <h2 id="parsing-annotations">Parsing annotations<a class="headerlink" href="#parsing-annotations" title="Permanent link"></a></h2>
 <p>Now that we have an annotated dataset, we will need a parser which interprets the resulting annotations, and creates tags for words in a document. <code>Parser</code> will be called using the special class <code>__call__</code>, when we will iterate over our documents. </p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-<span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<pre><code class="language-python">
+from typing import List
+import regex as re
+from nltk.tokenize import word_tokenize
+import numpy as np
 
-<span class="sd">&#39;&#39;&#39;</span>
+'''
 
-<span class="sd">PARSER FOR THE DATASET NER TAG FORMAT</span>
+PARSER FOR THE DATASET NER TAG FORMAT
 
-<span class="sd">&#39;&#39;&#39;</span>
+'''
 
-<span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
+class Parser:
 
-    <span class="c1"># RE patterns for tag extraction</span>
-    <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
-    <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([.,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-_`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
+    # RE patterns for tag extraction
+    LABEL_PATTERN = r&quot;\[(.*?)\]&quot;
+    PUNCTUATION_PATTERN = r&quot;([.,\/#!$%\^&amp;\*;:{}=\-_`~()'\&quot;’¿])&quot;
 
-    <span class="c1"># initialise, first word/id tag is O (outside)</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mi">0</span>
-        <span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
-        <span class="p">}</span>
+    # initialise, first word/id tag is O (outside)
+    def __init__(self):
+        self.tag_to_id = {
+            &quot;O&quot;: 0
+        }
+        self.id_to_tag = {
+            0: &quot;O&quot;
+        }
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; CREATE TAGS &#39;&#39;&#39;</span>
+    ''' CREATE TAGS '''
 
-    <span class="c1"># input : sentence, tagged sentence</span>
+    # input : sentence, tagged sentence
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    def __call__(self, sentence: str, annotated: str) -&gt; List[str]:
 
-<span class="w">        </span><span class="sd">&#39;&#39;&#39; Create Dictionary of Identified Tags&#39;&#39;&#39;</span>
+        ''' Create Dictionary of Identified Tags'''
 
-        <span class="c1"># 1. set label B or I    </span>
+        # 1. set label B or I    
 
-        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
-        <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
-            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
-            <span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> 
-            <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-                <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+        matches = re.findall(self.LABEL_PATTERN, annotated)
+        word_to_tag = {}
+        for match in matches:
+            tag, phrase = match.split(&quot; : &quot;)
+            words = phrase.split(&quot; &quot;) 
+            word_to_tag[words[0]] = f&quot;B-{tag.upper()}&quot;
+            for w in words[1:]:
+                word_to_tag[w] = f&quot;I-{tag.upper()}&quot;
 
-<span class="w">        </span><span class="sd">&#39;&#39;&#39; Tokenise Sentence &amp; add tags to not tagged words (O)&#39;&#39;&#39;</span>
+        ''' Tokenise Sentence &amp; add tags to not tagged words (O)'''
 
-        <span class="c1"># 2. add token tag to main tag dictionary</span>
+        # 2. add token tag to main tag dictionary
 
-        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION_PATTERN</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot; \1 &quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_tag</span><span class="p">:</span>
-                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+        tags = []
+        sentence = re.sub(self.PUNCTUATION_PATTERN, r&quot; \1 &quot;, sentence)
+        for w in sentence.split():
+            if w not in word_to_tag:
+                tags.append(&quot;O&quot;)
+            else:
+                tags.append(word_to_tag[w])
+                self.__add_tag(word_to_tag[w])
 
-        <span class="k">return</span> <span class="n">tags</span>
+        return tags
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; TAG CONVERSION &#39;&#39;&#39;</span>
+    ''' TAG CONVERSION '''
 
-    <span class="c1"># to word2id (tag_to_id)</span>
-    <span class="c1"># to id2word (id_to_tag)</span>
+    # to word2id (tag_to_id)
+    # to id2word (id_to_tag)
 
-    <span class="k">def</span> <span class="nf">__add_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+    def __add_tag(self, tag: str):
+        if tag in self.tag_to_id:
+            return
+        id_ = len(self.tag_to_id)
+        self.tag_to_id[tag] = id_
+        self.id_to_tag[id_] = tag
 
-<span class="w">        </span><span class="sd">&#39;&#39;&#39; Get Tag Number ID &#39;&#39;&#39;</span>
-        <span class="c1"># or just number id for token</span>
+        ''' Get Tag Number ID '''
+        # or just number id for token
 
-    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
+    def get_id(self, tag: str):
+        return self.tag_to_id[tag]
 
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Token from Number ID&#39;&#39;&#39;</span>
-    <span class="c1"># given id get its token</span>
+    ''' Get Tag Token from Number ID'''
+    # given id get its token
 
-    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
-</code></pre></div>
+    def get_label(self, id_: int):
+        return self.get_tag_label(id_)
+</code></pre>
 <h2 id="ner-models">NER Models<a class="headerlink" href="#ner-models" title="Permanent link"></a></h2>
 <h3 id="training-ner-model">Training NER Model<a class="headerlink" href="#training-ner-model" title="Permanent link"></a></h3>
 <p>We have an annotation parser <code>Parser</code>, now let's prepare the training loop. We read our dataset <code>df</code> and iterate over all rows in the dataset, tokenising the document &amp; storing it in <code>lst_data</code> and parse the annotated <code>annotated</code> column, creating <code>BIO</code> tags for words in the document <code>text</code>, which is stored in <code>lst_tags</code></p>
 <p>The output of preprocessed data <code>lst_data</code> will be a list of tokens in the whole corpus, and <code>lst_tags</code> will be its corresponding <code>BIO</code> tag.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># import relevant libraries</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>    
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<pre><code class="language-python"># import relevant libraries
+import pandas as pd    
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_extraction.text import CountVectorizer
 
-<span class="c1"># import our NER annotated documents</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">)</span>   <span class="c1"># read dataframe</span>
+# import our NER annotated documents
+parser = Parser()
+df = pd.read_csv('annot.csv')   # read dataframe
 
-<span class="c1"># parse our NER tag data &amp; tokenise our text</span>
-<span class="n">lst_data</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">lst_tags</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">lst_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]))</span>
-    <span class="n">lst_tags</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">parser</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]))</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>[&#39;Please&#39;, &#39;do&#39;, &#39;A&#39;, &#39;and&#39;, &#39;then&#39;, &#39;do&#39;, &#39;B&#39;, &#39;using&#39;, &#39;C&#39;, &#39;Do&#39;] # lst_data
-[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-SPLIT&#39;, &#39;I-SPLIT&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;]  # lst_tags
-</code></pre></div>
+# parse our NER tag data &amp; tokenise our text
+lst_data = []; lst_tags = []
+for ii,row in df.iterrows():
+    lst_data.extend(word_tokenize(row['question']))
+    lst_tags.extend(parser(row[&quot;question&quot;], row[&quot;annotated&quot;]))
+</code></pre>
+<pre><code>['Please', 'do', 'A', 'and', 'then', 'do', 'B', 'using', 'C', 'Do'] # lst_data
+['O', 'O', 'O', 'B-SPLIT', 'I-SPLIT', 'O', 'O', 'O', 'O', 'O']  # lst_tags
+</code></pre>
 <p>The tokens are then converted into <code>BoW</code> vectors using <code>CountVectorizer</code>, which is then fed into the model <code>LogisticRegression</code>. <code>accuracy</code> will be used as an evaluation metric in order for us to compare the models. We'll also look at the <code>confusion matrix</code> to see which classes were actually miss predicted.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># define encoder</span>
-<span class="n">encoder</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<pre><code class="language-python"># define encoder
+encoder = CountVectorizer()
 
-<span class="c1"># fit the encoder on our corpus</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">lst_data</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lst_tags</span><span class="p">)</span>
+# fit the encoder on our corpus
+X = encoder.fit_transform(lst_data)
+y = np.array(lst_tags)
 
-<span class="c1"># try our different models</span>
-<span class="c1">#model = LogisticRegression()</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+# try our different models
+#model = LogisticRegression()
+model = RandomForestClassifier()
 
-<span class="c1"># train model</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</code></pre></div>
+# train model
+model.fit(X,y)
+y_pred = model.predict(X)
+print(f'accuracy: {round(accuracy_score(y_pred,y),3)}')
+</code></pre>
 <p>Our trained model performance:</p>
 <ul>
 <li><code>LogisticRegression</code> accuracy: 0.77</li>
 <li><code>RandomForestClassifier</code> accuracy: 0.808</li>
 </ul>
 <p><code>accuracy</code> doesn't really tell us the whole picture, since a model might be simply confusing <code>B</code> and <code>I</code> tags; for our problem is not that critical since we don't really need to distinguish them, let's review the <strong>classification_report</strong></p>
-<div class="highlight"><pre><span></span><code>              precision    recall  f1-score   support
+<pre><code>              precision    recall  f1-score   support
 
      B-SPLIT       0.77      0.33      0.47        30
      I-SPLIT       0.88      0.60      0.71        25
@@ -2531,12 +2536,12 @@ text_b [[0.68768998 0.31231002]]
     accuracy                           0.81       161
    macro avg       0.82      0.64      0.69       161
 weighted avg       0.81      0.81      0.78       161
-</code></pre></div>
+</code></pre>
 <p>and <strong>confusion matrix</strong></p>
-<div class="highlight"><pre><span></span><code>[[ 10   2  18]  # class B-SPLIT
+<pre><code>[[ 10   2  18]  # class B-SPLIT
  [  2  15   8]  # class I-SPLIT
  [  1   0 105]] # class O
-</code></pre></div>
+</code></pre>
 <p>Looks like we have a large ammount of misspredictions for tag <code>B-SPLIT</code>, with the recall being quite low (ie quite a few <code>B-SPLIT</code> are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for <strong>transitional adverbs</strong>, so its quite nice that the model can identify such splitting locations quite well.</p>
 <h3 id="testing-ner-model">Testing NER model<a class="headerlink" href="#testing-ner-model" title="Permanent link"></a></h3>
 <p>Different models can show different performance upon actual usage, so let's compare how both of them perform</p>
@@ -2545,22 +2550,22 @@ weighted avg       0.81      0.81      0.78       161
 <p>'please do this and then do that, once done do that' <br></p>
 </blockquote>
 <p>Intuitively, we would want to split the sentence into three sections, let's see how our models perform:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># test our model</span>
-<span class="k">def</span> <span class="nf">ner_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">):</span>
+<pre><code class="language-python"># test our model
+def ner_model(inputs):
 
-    <span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-    <span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>    
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;word&#39;</span><span class="p">:</span><span class="n">tokens</span><span class="p">,</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span><span class="n">y_pred_test</span><span class="p">})</span>
+    tokens = word_tokenize(inputs)
+    y_pred_test = model.predict(encoder.transform(tokens))    
+    return pd.DataFrame({'word':tokens,'tag':y_pred_test})
 
-<span class="c1"># test model on some samples</span>
-<span class="n">to_tag</span> <span class="o">=</span> <span class="s1">&#39;please do this and then do that, once done do that&#39;</span>
+# test model on some samples
+to_tag = 'please do this and then do that, once done do that'
 
-<span class="c1"># predict tags </span>
-<span class="n">pred_tags</span> <span class="o">=</span> <span class="n">ner_model</span><span class="p">(</span><span class="n">to_tag</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pred_tags</span><span class="p">)</span>
-</code></pre></div>
+# predict tags 
+pred_tags = ner_model(to_tag)
+print(pred_tags)
+</code></pre>
 <p><code>LogisticRegression</code> prediction tags:</p>
-<div class="highlight"><pre><span></span><code>      word      tag
+<pre><code>      word      tag
 0   please        O
 1       do        O
 2     this        O
@@ -2573,9 +2578,9 @@ weighted avg       0.81      0.81      0.78       161
 9     done        O
 10      do        O
 11    that        O
-</code></pre></div>
+</code></pre>
 <p><code>RandomForest</code> prediction tags:</p>
-<div class="highlight"><pre><span></span><code>      word      tag
+<pre><code>      word      tag
 0   please        O
 1       do        O
 2     this        O
@@ -2588,7 +2593,7 @@ weighted avg       0.81      0.81      0.78       161
 9     done  I-SPLIT
 10      do        O
 11    that        O
-</code></pre></div>
+</code></pre>
 <p>We can see that <strong>model complexity</strong> indeed does play a role, as the linear model <code>LogisticRegression</code> wasn't able to identify the the second splitting tokens <code>once</code> <code>done</code>. <code>RandomForest</code> works better as a sentence splitting <code>ner</code> tagging model. Having identified the indicies of <code>ner</code> tags, it is quite straightforward to split the document into <code>word</code> &amp; divide it based on the model prediction tag condition </p>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
 <p>In this post we created a <code>NER</code> tagger, which identifies key words that we defined as <strong>sentence splitting words</strong>. Identificaiton of such words allows us to split a long paragraph into parts &amp; analyse or conduct further downstream tasks upon performing splits. We showed that <strong>sentence splitting</strong> can be defined as more than just splitting by punctuation like <code>.</code>, and since people often connect sentences using <strong>transitional adverbs</strong> and alike, <code>NER</code> tagging comes in handy to identify such "weaker" sentence splitters.</p>

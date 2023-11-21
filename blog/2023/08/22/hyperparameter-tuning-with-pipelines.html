@@ -1951,32 +1951,32 @@
 <li>We known how to fill missing data in different columns using a single value with a dictionary; <code>f.fillna({'column':'value'})</code></li>
 <li>We know how to add or replace a column, using <code>f.withColumn</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Ticket&#39;</span><span class="p">,</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Cabin&#39;</span><span class="p">)</span>
-<span class="n">av_age</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)))</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="nb">round</span><span class="p">(</span><span class="n">av_age</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)})</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Family_Size&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;SibSp&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Parch&#39;</span><span class="p">))</span>  <span class="c1"># add values from two columns</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Alone&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># fill all with 0</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;Alone&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Family_size&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Alone&#39;</span><span class="p">]))</span> <span class="c1"># conditional filling</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<pre><code class="language-python">df = spark.read.csv('train.csv',header=True,inferSchema=True)
+df = df.drop('Ticket','Name','Cabin')
+av_age = df.select(f.avg(f.col('age')))
+df = df.fillna({'age':round(av_age.collect()[0][0],2)})
+df = df.withColumn('Family_Size',f.col('SibSp') + f.col('Parch'))  # add values from two columns
+df = df.withColumn('Alone',f.lit(0))  # fill all with 0
+df = df.withColumn('Alone',f.when(df['Family_size'] == 0,1).otherwise(df['Alone'])) # conditional filling
+df = df.drop('any')
+df.show()
 
-<span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
-<span class="c1"># |PassengerId|Survived|Pclass|   Sex| Age|SibSp|Parch|   Fare|Embarked|Family_Size|Alone|</span>
-<span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
-<span class="c1"># |          1|       0|     3|  male|22.0|    1|    0|   7.25|       S|          1|    0|</span>
-<span class="c1"># |          2|       1|     1|female|38.0|    1|    0|71.2833|       C|          1|    0|</span>
-<span class="c1"># |          3|       1|     3|female|26.0|    0|    0|  7.925|       S|          0|    1|</span>
-<span class="c1"># |          4|       1|     1|female|35.0|    1|    0|   53.1|       S|          1|    0|</span>
-<span class="c1"># |          5|       0|     3|  male|35.0|    0|    0|   8.05|       S|          0|    1|</span>
-<span class="c1"># +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+</span>
-</code></pre></div>
+# +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+
+# |PassengerId|Survived|Pclass|   Sex| Age|SibSp|Parch|   Fare|Embarked|Family_Size|Alone|
+# +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+
+# |          1|       0|     3|  male|22.0|    1|    0|   7.25|       S|          1|    0|
+# |          2|       1|     1|female|38.0|    1|    0|71.2833|       C|          1|    0|
+# |          3|       1|     3|female|26.0|    0|    0|  7.925|       S|          0|    1|
+# |          4|       1|     1|female|35.0|    1|    0|   53.1|       S|          1|    0|
+# |          5|       0|     3|  male|35.0|    0|    0|   8.05|       S|          0|    1|
+# +-----------+--------+------+------+----+-----+-----+-------+--------+-----------+-----+
+</code></pre>
 <h2 id="creating-subsets">Creating Subsets<a class="headerlink" href="#creating-subsets" title="Permanent link"></a></h2>
 <p>The idea of utilising a <code>pipeline</code> is to process a given set of data using the same preprocessing steps as all input data on which we apply the pipeline on. 
 For our problem, our input data will look like the table above, lets first split the available data into two datasets; <code>train</code> &amp; <code>test</code>. We will construct
 our pipeline on the <code>training</code> data and then use the same pipeline on the <code>test</code> dataset.</p>
-<div class="highlight"><pre><span></span><code><span class="n">train</span><span class="p">,</span><span class="n">test</span> <span class="o">=</span> <span class="n">ldf</span><span class="o">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],</span><span class="mi">42</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python">train,test = ldf.randomSplit([0.8,0.2],42)
+</code></pre>
 <h2 id="machine-learning-pipeline">Machine Learning Pipeline<a class="headerlink" href="#machine-learning-pipeline" title="Permanent link"></a></h2>
 <h3 id="creating-a-pipeline">Creating a Pipeline<a class="headerlink" href="#creating-a-pipeline" title="Permanent link"></a></h3>
 <p>To build a <code>pipeline</code>, we define the steps that make it up in a list <code>stages</code>, our pipeline consists of four steps:
@@ -1984,106 +1984,106 @@ our pipeline on the <code>training</code> data and then use the same pipeline on
 - <code>indexer_embarked</code> (<code>StringIndexer</code>)
 - <code>feature</code> transformation (<code>VectorAssembler</code>)
 - <code>rf_classifier</code> model (model which inputs the final result of all transformations above)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.classification</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">StringIndexer</span>
-<span class="kn">from</span> <span class="nn">pyspark.ml.feature</span> <span class="kn">import</span> <span class="n">VectorAssembler</span>
+<pre><code class="language-python">from pyspark.ml.classification import RandomForestClassifier
+from pyspark.ml import Pipeline
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.feature import VectorAssembler
 
 
-<span class="c1"># Create indexer columns (step 1 &amp; step 2)</span>
-<span class="n">indexer_sex</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span>
-                            <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;Sex_index&#39;</span><span class="p">)</span>
-<span class="n">indexer_embarked</span> <span class="o">=</span> <span class="n">StringIndexer</span><span class="p">(</span><span class="n">inputCol</span><span class="o">=</span><span class="s1">&#39;Embarked&#39;</span><span class="p">,</span>
-                                 <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;Embarked_index&#39;</span><span class="p">)</span>
+# Create indexer columns (step 1 &amp; step 2)
+indexer_sex = StringIndexer(inputCol='Sex',
+                            outputCol='Sex_index')
+indexer_embarked = StringIndexer(inputCol='Embarked',
+                                 outputCol='Embarked_index')
 
-<span class="n">train_sex</span> <span class="o">=</span> <span class="n">indexer_sex</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
-<span class="n">train_embarked</span> <span class="o">=</span> <span class="n">indexer_embarked</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_sex</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_sex</span><span class="p">)</span>
+train_sex = indexer_sex.fit(train).transform(train)
+train_embarked = indexer_embarked.fit(train_sex).transform(train_sex)
 
-<span class="c1"># Assemble all features into a single column using VectorAssembler (step 3)</span>
-<span class="n">feature</span> <span class="o">=</span> <span class="n">VectorAssembler</span><span class="p">(</span><span class="n">inputCols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span><span class="s1">&#39;SibSp&#39;</span><span class="p">,</span><span class="s1">&#39;Parch&#39;</span><span class="p">,</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span>
-                                     <span class="s1">&#39;Family_Size&#39;</span><span class="p">,</span><span class="s1">&#39;Embarked_index&#39;</span><span class="p">,</span><span class="s1">&#39;Sex_index&#39;</span><span class="p">],</span>
-                          <span class="n">outputCol</span><span class="o">=</span><span class="s1">&#39;features&#39;</span><span class="p">)</span>
+# Assemble all features into a single column using VectorAssembler (step 3)
+feature = VectorAssembler(inputCols=['Pclass','Age','SibSp','Parch','Fare',
+                                     'Family_Size','Embarked_index','Sex_index'],
+                          outputCol='features')
 
-<span class="n">result</span> <span class="o">=</span> <span class="n">feature</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train_embarked</span><span class="p">)</span>
+result = feature.transform(train_embarked)
 
-<span class="c1"># Define model (step 4)</span>
-<span class="n">rf_classifier</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span>
-                                       <span class="n">featuresCol</span><span class="o">=</span><span class="s1">&#39;features&#39;</span><span class="p">)</span>
+# Define model (step 4)
+rf_classifier = RandomForestClassifier(labelCol='Survived',
+                                       featuresCol='features')
 
-<span class="c1"># merge all pipeline components</span>
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="n">indexer_sex</span><span class="p">,</span>
-                            <span class="n">indexer_embarked</span><span class="p">,</span>
-                            <span class="n">feature</span><span class="p">,</span>
-                            <span class="n">rf_classifier</span><span class="p">])</span>
-<span class="c1"># Pipeline_67a25ab8838b</span>
-</code></pre></div>
+# merge all pipeline components
+pipeline = Pipeline(stages=[indexer_sex,
+                            indexer_embarked,
+                            feature,
+                            rf_classifier])
+# Pipeline_67a25ab8838b
+</code></pre>
 <p>Let's use the <code>pipeline</code> model on the training data &amp; save it so we can use it on new data. Our pipeline model <code>pipeline</code> stores in itself information about what transformations we need to apply to any incoming data, so we won't need to call <code>pipeline</code> components (eg. <code>indexer_embarked</code>) if we want to use the model later.</p>
-<div class="highlight"><pre><span></span><code><span class="n">p_model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
-<span class="n">p_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;p_model&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre><code class="language-python">p_model = pipeline.fit(train)
+p_model.save('p_model')
+</code></pre>
 <p>Now let's load and use the model on new data (the <code>test</code> data, which we haven't touched yet). The <code>pipline</code> model can be loaded in the same way we load standard model, which had the ability to <code>.load</code>; <code>PipelineModel</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.pipeline</span> <span class="kn">import</span> <span class="n">PipelineModel</span>
+<pre><code class="language-python">from pyspark.ml.pipeline import PipelineModel
 
-<span class="c1"># load pipeline model</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">PipelineModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;p_model&#39;</span><span class="p">)</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1"># transform model on new data</span>
-<span class="n">yv_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
-<span class="n">yv_pred</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">&#39;features&#39;</span><span class="p">,</span><span class="s1">&#39;rawPrediction&#39;</span><span class="p">,</span><span class="s1">&#39;probability&#39;</span><span class="p">,</span><span class="s1">&#39;prediction&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+# load pipeline model
+model = PipelineModel.load('p_model')
+</code></pre>
+<pre><code class="language-python"># transform model on new data
+yv_pred = model.transform(test)
+yv_pred.select(['features','rawPrediction','probability','prediction']).show(5)
 
-<span class="c1"># +--------------------+--------------------+--------------------+----------+</span>
-<span class="c1"># |            features|       rawPrediction|         probability|prediction|</span>
-<span class="c1"># +--------------------+--------------------+--------------------+----------+</span>
-<span class="c1"># |(8,[0,1,4,7],[3.0...|[8.61510797966188...|[0.43075539898309...|       1.0|</span>
-<span class="c1"># |(8,[0,1,4],[1.0,5...|[15.1208402070771...|[0.75604201035385...|       0.0|</span>
-<span class="c1"># |[3.0,27.0,0.0,2.0...|[7.50139928738481...|[0.37506996436924...|       1.0|</span>
-<span class="c1"># |[3.0,39.0,1.0,5.0...|[16.7158036061856...|[0.83579018030928...|       0.0|</span>
-<span class="c1"># |[3.0,29.7,0.0,0.0...|[5.75011597218139...|[0.28750579860906...|       1.0|</span>
-<span class="c1"># +--------------------+--------------------+--------------------+----------+</span>
-</code></pre></div>
+# +--------------------+--------------------+--------------------+----------+
+# |            features|       rawPrediction|         probability|prediction|
+# +--------------------+--------------------+--------------------+----------+
+# |(8,[0,1,4,7],[3.0...|[8.61510797966188...|[0.43075539898309...|       1.0|
+# |(8,[0,1,4],[1.0,5...|[15.1208402070771...|[0.75604201035385...|       0.0|
+# |[3.0,27.0,0.0,2.0...|[7.50139928738481...|[0.37506996436924...|       1.0|
+# |[3.0,39.0,1.0,5.0...|[16.7158036061856...|[0.83579018030928...|       0.0|
+# |[3.0,29.7,0.0,0.0...|[5.75011597218139...|[0.28750579860906...|       1.0|
+# +--------------------+--------------------+--------------------+----------+
+</code></pre>
 <p>Now let's evaluate the model prediction using <code>MulticlassClassificationEvaluator</code></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">MulticlassClassificationEvaluator</span>
+<pre><code class="language-python">from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 
-<span class="c1"># evaluator</span>
-<span class="n">evaluator</span> <span class="o">=</span> <span class="n">MulticlassClassificationEvaluator</span><span class="p">(</span><span class="n">labelCol</span><span class="o">=</span><span class="s1">&#39;Survived&#39;</span><span class="p">,</span>
-                                              <span class="n">predictionCol</span><span class="o">=</span><span class="s1">&#39;prediction&#39;</span><span class="p">,</span>
-                                              <span class="n">metricName</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
-<span class="n">evaluator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">yv_pred</span><span class="p">)</span>
-<span class="c1"># 0.8275862068965517</span>
-</code></pre></div>
+# evaluator
+evaluator = MulticlassClassificationEvaluator(labelCol='Survived',
+                                              predictionCol='prediction',
+                                              metricName='accuracy')
+evaluator.evaluate(yv_pred)
+# 0.8275862068965517
+</code></pre>
 <h3 id="hyperparameter-tuning">Hyperparameter Tuning<a class="headerlink" href="#hyperparameter-tuning" title="Permanent link"></a></h3>
 <p>Our pipeline contains a model <code>RandomForestClassifier</code> with default hyperparameters. 
 We can can find a better combination of hyperparameters which will give a better model utilising <code>TrainValidationSplit</code>, which is a lightweight generalisation evaluator in comparison to <code>CrossValidator</code></p>
 <p>First thigs first, we need to create a parametric grid, which will store all the hyperaparameter combinations we will test.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">ParamGridBuilder</span><span class="p">,</span> <span class="n">TrainValidationSplit</span>
+<pre><code class="language-python">from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
 
-<span class="c1"># create a parameter grid</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">ParamGridBuilder</span><span class="p">()</span><span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf_classifier</span><span class="o">.</span><span class="n">maxDepth</span><span class="p">,[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>\
-                         <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf_classifier</span><span class="o">.</span><span class="n">maxBins</span><span class="p">,[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>\
-                         <span class="o">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">rf_classifier</span><span class="o">.</span><span class="n">minInfoGain</span><span class="p">,[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.15</span><span class="p">])</span><span class="o">.</span><span class="n">build</span><span class="p">()</span> 
+# create a parameter grid
+grid = ParamGridBuilder().addGrid(rf_classifier.maxDepth,[4,5,6])\
+                         .addGrid(rf_classifier.maxBins,[3,4,5])\
+                         .addGrid(rf_classifier.minInfoGain,[0.05,0.1,0.15]).build() 
 
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="s1">&#39;combinations&#39;</span><span class="p">)</span>
-<span class="c1"># 27 combinations</span>
-</code></pre></div>
+print(len(grid),'combinations')
+# 27 combinations
+</code></pre>
 <p><code>TrainValidationSplit</code> requires an estimator; which is our <code>pipeline</code> model, the defined grid, evaluator and train-test split ratio</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Similar to CrossValidator, but more lightweight</span>
-<span class="n">gs</span> <span class="o">=</span> <span class="n">TrainValidationSplit</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">pipeline</span><span class="p">,</span>
-                          <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
-                          <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
-                          <span class="n">trainRatio</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<pre><code class="language-python"># Similar to CrossValidator, but more lightweight
+gs = TrainValidationSplit(estimator=pipeline,
+                          estimatorParamMaps=grid,
+                          evaluator=evaluator,
+                          trainRatio=0.8)
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
-</code></pre></div>
+model = gs.fit(train)
+</code></pre>
 <p>To get the best model, we simply write model.bestModel, which has hyperparameters, which can be extracted as per below:</p>
-<div class="highlight"><pre><span></span><code><span class="n">javobj</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bestModel</span><span class="o">.</span><span class="n">stages</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">_java_obj</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxdepth&#39;</span><span class="p">,</span><span class="n">javobj</span><span class="o">.</span><span class="n">getMaxDepth</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;maxdepth&#39;</span><span class="p">,</span><span class="n">javobj</span><span class="o">.</span><span class="n">getMaxBins</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;min_IG&#39;</span><span class="p">,</span><span class="n">javobj</span><span class="o">.</span><span class="n">getMinInfoGain</span><span class="p">())</span>
+<pre><code class="language-python">javobj = model.bestModel.stages[-1]._java_obj
+print('maxdepth',javobj.getMaxDepth())
+print('maxdepth',javobj.getMaxBins())
+print('min_IG',javobj.getMinInfoGain())
 
-<span class="c1"># maxdepth 5</span>
-<span class="c1"># maxdepth 5</span>
-<span class="c1"># min_IG 0.05</span>
-</code></pre></div>
+# maxdepth 5
+# maxdepth 5
+# min_IG 0.05
+</code></pre>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
 <p>Important imports for <code>pipeline</code>
 - <code>pyspark.ml import Pipeline</code> (create model)

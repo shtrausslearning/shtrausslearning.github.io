@@ -2031,50 +2031,49 @@
 <p class="admonition-title">Function Approach</p>
 <h4 id="1-function">(1) Function<a class="headerlink" href="#1-function" title="Permanent link"></a></h4>
 <p>Function based code automation should be very familiar to people who code, we define a function &amp; then simply call the function, entering any relevant input arguments which it requires, in this case <code>n</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">fib_list</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
-    <span class="k">while</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">n</span><span class="p">:</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    <span class="k">return</span> <span class="n">result</span>
-
-<span class="n">fib_list</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
-</code></pre></div>
+<p>```python
+def fib_list(n):
+    result = []
+    a,b = 0,1
+    while a&lt;n:
+        result.append(a)
+        a,b = b, a + b
+    return result</p>
+<p>fib_list(5) 
+```</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Class Approach</p>
 <h4 id="2-class">(2) Class<a class="headerlink" href="#2-class" title="Permanent link"></a></h4>
 <p>Another common approach to automate code is using a class based approach. Utilising <code>OOP</code> concepts we can initialise &amp; then call class <code>methods</code> in order to automate code:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">fib_list</span><span class="p">:</span>
+<p>```python</p>
+<p>class fib_list:</p>
+<div class="highlight"><pre><span></span><code>def __init__(self,n):
+    self.n = n
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
-
-    <span class="k">def</span> <span class="nf">get_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
-        <span class="k">while</span> <span class="n">a</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
-            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-            <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-        <span class="k">return</span> <span class="n">result</span>
-
-<span class="n">fib</span> <span class="o">=</span> <span class="n">fib_list</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">fib</span><span class="o">.</span><span class="n">get_list</span><span class="p">()</span>
+def get_list(self):
+    result = []
+    a,b = 0,1
+    while a&lt;self.n:
+        result.append(a)
+        a,b = b, a + b
+    return result
 </code></pre></div>
+<p>fib = fib_list(5)
+fib.get_list()
+```</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Natural Language Approach</p>
 <h4 id="3-natural-language">(3) Natural Language<a class="headerlink" href="#3-natural-language" title="Permanent link"></a></h4>
 <p>Another approach, which <code>mllibs</code> uses in natural language based code automation:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">input</span> <span class="o">=</span> <span class="s1">&#39;calculate the fibonacci&#39;</span>
-         <span class="n">sequence</span> <span class="k">for</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="mi">5</span><span class="s1">&#39;</span>
-
-<span class="n">nlp_interpreter</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> 
-</code></pre></div>
+<p>```python
+input = 'calculate the fibonacci'
+         sequence for the value of 5'</p>
+<p>nlp_interpreter(input) 
+```</p>
 <p>All these methods will give the following result:</p>
-<div class="highlight"><pre><span></span><code>[0, 1, 1, 2, 3]
-</code></pre></div>
+<p><code>[0, 1, 1, 2, 3]</code></p>
 </div>
 <h3 id="library-components"><strong>Library Components</strong><a class="headerlink" href="#library-components" title="Permanent link"></a></h3>
 <p><b><code>mllibs</code></b> consists of two parts:</p>
@@ -2097,78 +2096,80 @@
 <h3 id="module-component-structure"><strong>Module Component Structure</strong><a class="headerlink" href="#module-component-structure" title="Permanent link"></a></h3>
 <p>Currently new modules can be added using a custom class <code>sample</code> and a configuration dictionary 
 <code>configure_sample</code></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># sample module class structure</span>
-<span class="k">class</span> <span class="nc">sample</span><span class="p">(</span><span class="n">nlpi</span><span class="p">):</span>
+<pre><code class="language-python">
+# sample module class structure
+class sample(nlpi):
 
-    <span class="c1"># called in nlpm</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nlp_config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span>             <span class="c1"># unique module name identifier (used in nlpm/nlpi)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nlp_config</span> <span class="o">=</span> <span class="n">nlp_config</span>  <span class="c1"># text based info related to module (used in nlpm/nlpi)</span>
+    # called in nlpm
+    def __init__(self,nlp_config):
+        self.name = 'sample'             # unique module name identifier (used in nlpm/nlpi)
+        self.nlp_config = nlp_config  # text based info related to module (used in nlpm/nlpi)
 
-    <span class="c1"># called in nlpi</span>
-    <span class="k">def</span> <span class="nf">sel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+    # called in nlpi
+    def sel(self,args:dict):
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">&#39;pred_task&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        self.select = args['pred_task']
+        self.args = args
 
-        <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select</span> <span class="o">==</span> <span class="s1">&#39;function&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+        if(self.select == 'function'):
+            self.function(self.args)
 
-    <span class="c1"># use standard or static methods</span>
+    # use standard or static methods
 
-    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="k">pass</span>
+    def function(self,args:dict):
+        pass
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
-        <span class="k">pass</span>
+    @staticmethod
+    def function(args:dict):
+        pass
 
 
-<span class="n">corpus_sample</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">({</span><span class="s2">&quot;function&quot;</span><span class="p">:[</span><span class="s1">&#39;task&#39;</span><span class="p">]}</span>
-<span class="n">info_sample</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;module&#39;</span><span class="p">:</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;action&#39;</span><span class="p">:</span><span class="s1">&#39;action&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;topic&#39;</span><span class="p">:</span><span class="s1">&#39;topic&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;subtopic&#39;</span><span class="p">:</span><span class="s1">&#39;sub topic&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;input_format&#39;</span><span class="p">:</span><span class="s1">&#39;input format for data&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;output_format&#39;</span><span class="p">:</span><span class="s1">&#39;output format for data&#39;</span><span class="p">,</span>
-                            <span class="s1">&#39;description&#39;</span><span class="p">:</span><span class="s1">&#39;write description&#39;</span><span class="p">}}</span>
+corpus_sample = OrderedDict({&quot;function&quot;:['task']}
+info_sample = {'function': {'module':'sample',
+                            'action':'action',
+                            'topic':'topic',
+                            'subtopic':'sub topic',
+                            'input_format':'input format for data',
+                            'output_format':'output format for data',
+                            'description':'write description'}}
 
-<span class="c1"># configuration dictionary (passed in nlpm)</span>
-<span class="n">configure_sample</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;corpus&#39;</span><span class="p">:</span><span class="n">corpus_sample</span><span class="p">,</span><span class="s1">&#39;info&#39;</span><span class="p">:</span><span class="n">info_sample</span><span class="p">}</span>
-</code></pre></div>
+# configuration dictionary (passed in nlpm)
+configure_sample = {'corpus':corpus_sample,'info':info_sample}
+</code></pre>
 <h3 id="merging-modules"><strong>Merging Modules</strong><a class="headerlink" href="#merging-modules" title="Permanent link"></a></h3>
 <p><strong><code>Modules</code></strong> which we create need to be assembled together into a <strong><code>collection</code></strong> of modules, there are two ways to do this: manually importing and grouping modules or using  <strong><code>interface</code></strong> class</p>
 <div class="admonition abstract">
 <p class="admonition-title">Manually Import Modules</p>
 <h4 id="manually-importing-modules"><strong>Manually Importing Modules</strong><a class="headerlink" href="#manually-importing-modules" title="Permanent link"></a></h4>
 <p>First we need to combine all our module components together, this will link all passed modules together</p>
-<div class="highlight"><pre><span></span><code><span class="n">collection</span> <span class="o">=</span> <span class="n">nlpm</span><span class="p">()</span>
-<span class="n">collection</span><span class="o">.</span><span class="n">load</span><span class="p">([</span><span class="n">loader</span><span class="p">(</span><span class="n">configure_loader</span><span class="p">),</span>
-                 <span class="n">simple_eda</span><span class="p">(</span><span class="n">configure_eda</span><span class="p">),</span>
-                 <span class="n">encoder</span><span class="p">(</span><span class="n">configure_nlpencoder</span><span class="p">),</span>
-                 <span class="n">embedding</span><span class="p">(</span><span class="n">configure_nlpembed</span><span class="p">),</span>
-                 <span class="n">cleantext</span><span class="p">(</span><span class="n">configure_nlptxtclean</span><span class="p">),</span>
-                 <span class="n">sklinear</span><span class="p">(</span><span class="n">configure_sklinear</span><span class="p">),</span>
-                 <span class="n">hf_pipeline</span><span class="p">(</span><span class="n">configure_hfpipe</span><span class="p">),</span>
-                 <span class="n">eda_plot</span><span class="p">(</span><span class="n">configure_edaplt</span><span class="p">)])</span>  
-</code></pre></div>
+<p><code>python
+collection = nlpm()
+collection.load([loader(configure_loader),
+                 simple_eda(configure_eda),
+                 encoder(configure_nlpencoder),
+                 embedding(configure_nlpembed),
+                 cleantext(configure_nlptxtclean),
+                 sklinear(configure_sklinear),
+                 hf_pipeline(configure_hfpipe),
+                 eda_plot(configure_edaplt)])</code></p>
 <p>Then we need to train <code>interpreter</code> models</p>
-<div class="highlight"><pre><span></span><code><span class="n">collection</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-</code></pre></div>
+<p><code>python
+collection.train()</code></p>
 <p>Lastly, pass the collection of modules (<code>nlpm</code> instance) to the interpreter <code>nlpi</code> </p>
-<div class="highlight"><pre><span></span><code><span class="n">session</span> <span class="o">=</span> <span class="n">nlpi</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
-</code></pre></div>
+<p><code>python
+session = nlpi(collection)</code></p>
 <p>class <code>nlpi</code> can be used with method <code>exec</code> for user input interpretation</p>
-<div class="highlight"><pre><span></span><code><span class="n">session</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s1">&#39;create a scatterplot using data with x dimension1 y dimension2&#39;</span><span class="p">)</span>
-</code></pre></div>
+<p>```python</p>
+<p>session.exec('create a scatterplot using data with x dimension1 y dimension2')</p>
+<p>```</p>
 </div>
 <div class="admonition abstract">
 <p class="admonition-title">Load Preset Modules</p>
 <h4 id="import-default-libraries"><strong>Import Default Libraries</strong><a class="headerlink" href="#import-default-libraries" title="Permanent link"></a></h4>
 <p>The faster way, includes all loaded modules and groups them together for us:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mllibs.interface</span> <span class="kn">import</span> <span class="n">interface</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">interface</span><span class="p">()</span>
-</code></pre></div>
+<p><code>python
+from mllibs.interface import interface
+session = interface()</code></p>
 </div>
 <h3 id="how-to-contibute"><strong>How to Contibute</strong><a class="headerlink" href="#how-to-contibute" title="Permanent link"></a></h3>
 <div class="admonition question">

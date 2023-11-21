@@ -2009,7 +2009,7 @@
     
     
     
-      <span class="md-tag">EDA</span>
+      <span class="md-tag">eda</span>
     
   
 </nav>
@@ -2509,6 +2509,55 @@ taxi_add.show(5)
   
 
 
+    
+    <h2 id="__comments">Comments</h2>
+    
+    <!-- Insert generated snippet here -->
+    <script src="https://giscus.app/client.js"
+            data-repo="shtrausslearning/shtrausslearning.github.io"
+            data-repo-id="R_kgDOKepqew"
+            data-category="General"
+            data-category-id="DIC_kwDOKepqe84CaIkI"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="light_protanopia"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+
+    <!-- Synchronize giscus theme with palette -->
+    <script>
+            var giscus = document.querySelector("script[src*=giscus]")
+
+        /* Set palette on initial load */
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+            var theme = palette.color.scheme === "slate" ? "dark" : "light"
+            giscus.setAttribute("data-theme", theme) // (1)!
+  }
+
+        /* Register event handlers after documented loaded */
+        document.addEventListener("DOMContentLoaded", function() {
+            var ref = document.querySelector("[data-md-component=palette]")
+            ref.addEventListener("change", function() {
+                var palette = __md_get("__palette")
+                if (palette && typeof palette.color === "object") {
+                    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+                    /* Instruct giscus to change theme */
+                    var frame = document.querySelector(".giscus-frame")
+                    frame.contentWindow.postMessage(
+                        { giscus: { setConfig: { theme } } },
+                        "https://giscus.app"
+                    )
+                }
+            })
+        })
+    </script>
     
       
     </article>

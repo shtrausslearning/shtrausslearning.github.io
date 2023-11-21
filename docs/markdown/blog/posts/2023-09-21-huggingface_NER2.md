@@ -5,9 +5,9 @@ authors: [andrey]
 categories:
     - NLP
 tags:
-    - HuggingFace
-    - HuggingFace Trainer
-    - NER
+    - huggingface
+    - ner
+comments: true
 ---
 
 # **Named Entity Recognition with Huggingface Trainer**

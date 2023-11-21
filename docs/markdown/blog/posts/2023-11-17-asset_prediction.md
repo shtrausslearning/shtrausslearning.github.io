@@ -5,6 +5,7 @@ authors: [andrey]
 categories:
      - finance
 tags:
+     - machine learning
      - catboost
      - optuna
      - time series

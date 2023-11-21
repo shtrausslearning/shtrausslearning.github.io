@@ -5,9 +5,10 @@ authors: [andrey]
 categories:
     - NLP
 tags:
-    - HuggingFace
-    - PyTorch
-    - NER
+    - huggingface
+    - pytorch
+    - ner
+comments: true
 ---
 
 # **Named Entity Recognition with Torch Loop**

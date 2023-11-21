@@ -6,7 +6,8 @@ categories:
      - PySpark
 tags:
      - pyspark
-     - EDA
+     - eda
+comments: true
 ---
 
 # **Exploring Taxi Trip Data**

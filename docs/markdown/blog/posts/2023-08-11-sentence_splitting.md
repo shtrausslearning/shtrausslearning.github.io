@@ -6,9 +6,10 @@ categories:
     - NLP
 tags:
     - sklearn
-    - CountVectorizer
-    - NER
-    - Sentence Splitting
+    - bow
+    - ner
+    - sentence splitting
+comments: true
 ---
 
 # **Named Entity Recognition for Sentence Splitting**

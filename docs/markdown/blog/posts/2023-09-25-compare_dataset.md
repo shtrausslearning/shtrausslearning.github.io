@@ -5,9 +5,10 @@ authors: [andrey]
 categories:
     - EDA
 tags:
-    - EDA
+    - eda
     - machine learning
     - classification
+comments: true
 ---
 
 # **Comparison of Subsets**

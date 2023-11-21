@@ -3,10 +3,11 @@ date: 2023-08-20
 title: Data Preprocessing with PySpark
 authors: [andrey]
 categories:
-  - PySpark
+    - PySpark
 tags:
-  - pyspark
-  - preprocessing
+    - pyspark
+    - preprocessing
+comments: true
 ---
 
 # **Data Preprocessing with PySpark**

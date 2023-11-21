@@ -6,6 +6,8 @@ categories:
      - business
 tags:
      - regression
+     - machine learning
+     - cognizant
 comments: true
 --- 
 
@@ -18,7 +20,7 @@ comments: true
 
 ## <b>Background</b>
 
-## **Project Statement**
+### **Project Statement**
 
 In this project, we aim to help **Gala Groceries** who have approached **Cognizant** to help them with supply chain issues. Specifically, they are interested in wanting to know how better stock the items that they sell"
 
@@ -26,9 +28,10 @@ In this project, we aim to help **Gala Groceries** who have approached **Cogniza
 
 ### **Gala Groceries**
 
-**Gala Groceries** is a technology-led grocery store chain based in the USA. They rely heavily on new technologies, such as IoT to give them a competitive edge over other grocery stores. 
+More information about the client:
 
-They pride themselves on providing the best quality, fresh produce from locally sourced suppliers. However, this comes with many challenges to consistently deliver on this objective year-round.
+- **Gala Groceries** is a technology-led grocery store chain based in the USA. They rely heavily on new technologies, such as IoT to give them a competitive edge over other grocery stores. 
+- They pride themselves on providing the best quality, fresh produce from locally sourced suppliers. However, this comes with many challenges to consistently deliver on this objective year-round.
 
 **Gala Groceries** approached Cognizant to **help them with a supply chain issue**. **Groceries are highly perishable items**. **If you overstock, you are wasting money on excessive storage and waste**, but if you **understock, then you risk losing customers**. They want to know how to better stock the items that they sell.
 

@@ -3,11 +3,12 @@ date: 2023-08-21
 title: Creating Machine Learning Models with PySpark
 authors: [andrey]
 categories:
-  - PySpark
+    - PySpark
 tags:
-  - pyspark
-  - classification
-  - modeling
+    - pyspark
+    - classification
+    - modeling
+comments: true
 ---
 
 # **Creating Machine Learning Models with PySpark**

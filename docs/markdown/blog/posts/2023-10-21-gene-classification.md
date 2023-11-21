@@ -7,6 +7,8 @@ categories:
 tags:
      - classification
      - bioinformatics
+     - machine learning
+comments: true
 ---
 
 # **Gene Classification**

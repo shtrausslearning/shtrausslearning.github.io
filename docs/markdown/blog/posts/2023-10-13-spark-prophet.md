@@ -5,10 +5,13 @@ authors: [andrey]
 categories:
      - PySpark
 tags:
+     - machine learning
      - pyspark
      - prophet
      - regression
-     - EDA
+     - time series
+     - eda
+comments: true
 ---
 
 # **Utilising Prophet with PySpark**

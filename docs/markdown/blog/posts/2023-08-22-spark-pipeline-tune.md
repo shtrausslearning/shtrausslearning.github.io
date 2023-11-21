@@ -3,12 +3,13 @@ date: 2023-08-22
 title: Hyperparameter Tuning with Pipelines
 authors: [andrey]
 categories:
-  - PySpark
+    - PySpark
 tags:
-  - pyspark
-  - pipeline
-  - classification
-  - hyperparameter tuning
+    - pyspark
+    - pipeline
+    - classification
+    - hyperparameter tuning
+comments: true
 ---
 
 # **Hyperparameter Tuning with Pipelines**

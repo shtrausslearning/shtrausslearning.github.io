@@ -38,6 +38,6 @@ More information about the client:
 
 This is a high-level business problem and will require you to dive into the data in order to formulate some questions and recommendations to the client about what else we need in order to answer that question
 
-### The dataset
+### **The dataset**
 
-The client has agreed to share more data in the form of sensor data. They use sensors to measure temperature storage facilities where products are stored in the warehouse, and they also use stock levels within the refrigerators and freezers in store. 
+The client has agreed to share data in the form of sensor data. They use **sensors to measure temperature storage facilities where products are stored** in the warehouse, and they also use **stock levels** within the refrigerators and freezers in store

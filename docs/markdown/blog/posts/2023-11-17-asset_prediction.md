@@ -176,7 +176,7 @@ VALUE   0.01    0.94    -0.05   0.1     1.0
 
 Both metrics can be found in the `statsmodels` library (**`smt.graphics.plot_pacf`** and **`sm.tsa.stattools.adfuller`**)
 
-```python
+```py
 import statsmodels.tsa.api as smt
 import statsmodels.api as sm
 

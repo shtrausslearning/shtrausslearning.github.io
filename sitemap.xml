@@ -71,11 +71,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shtrausslearning.github.io/blog/2024/11/02/gpt-knows-arithmetics.html</loc>
-         <lastmod>2023-11-21</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html</loc>
          <lastmod>2023-11-21</lastmod>
          <changefreq>daily</changefreq>
@@ -241,17 +236,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shtrausslearning.github.io/blog/archive/2024.html</loc>
-         <lastmod>2023-11-21</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://shtrausslearning.github.io/blog/archive/2023.html</loc>
-         <lastmod>2023-11-21</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://shtrausslearning.github.io/blog/category/nlp.html</loc>
          <lastmod>2023-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -277,6 +262,11 @@
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/eda.html</loc>
+         <lastmod>2023-11-21</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://shtrausslearning.github.io/blog/category/nlp.html</loc>
          <lastmod>2023-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>

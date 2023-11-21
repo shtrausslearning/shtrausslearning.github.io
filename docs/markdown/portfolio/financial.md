@@ -24,7 +24,7 @@ The problem of predicting a **buy (value=1)** or **sell (value=0)** signal for a
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Prediction of Stable Customer Funds</b>
 
-![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/building-an-asset-trading-strategy)
+![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://colab.research.google.com/drive/12NsWf3ePkrF7bhfTwEfJVVismvZmKXVb?usp=sharing) [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html)
 
 In this project, we aim to create machine learning models that will be able to **predict future customer funds**, based on historical trends. The **total customer assets** can vary significantly in time, and since banks are in the business of lending money, this is needed for more accurate fund allocation (optimise the allocation for lending) so they can be utilised for credit applications. We utilise **gradient boosting** models (CatBoost) & do some **feature engineering** in order to improve the models for short term predictions (3 month) and longer term predictions (6 months). Having created baseline models, we also optimise the model hyperparameters using **Optuna** for different prediction periods.
 

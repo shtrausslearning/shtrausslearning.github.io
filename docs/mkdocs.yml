@@ -11,6 +11,7 @@ docs_dir: markdown
 ##################################################################
 
 markdown_extensions:
+    - meta
     - markdown.extensions.toc:
         slugify: !!python/name:pymdownx.slugs.uslugify
         permalink: ""
@@ -114,6 +115,7 @@ theme:
         text: Ubuntu
 
 extra:
+    disqus: shtrausslearning.github.io
     manifest: manifest.webmanifest
     social:
     - icon: fontawesome/brands/github

@@ -6,6 +6,7 @@ categories:
      - business
 tags:
      - regression
+comments: true
 --- 
 
 # **Prediction of Product Stock Levels**

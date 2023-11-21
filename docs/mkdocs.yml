@@ -109,7 +109,6 @@ theme:
         text: Ubuntu
 
 extra:
-    disqus: shtrausslearning-github-io
     manifest: manifest.webmanifest
     social:
     - icon: fontawesome/brands/github

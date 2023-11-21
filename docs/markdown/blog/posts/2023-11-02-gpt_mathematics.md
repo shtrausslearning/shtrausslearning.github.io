@@ -18,7 +18,7 @@ In this notebook, we look at transformer models! Instead of using **huggingface*
 
 <!-- more -->
 
-![](https://img.shields.io/badge/status-wip-blue) [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)]()
+![](https://img.shields.io/badge/status-wip-blue) [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Colab-yellow?logo=Google&logoColor=FDBA18)]()
 
 ## **Background**
 

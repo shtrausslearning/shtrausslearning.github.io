@@ -6,7 +6,6 @@ categories:
      - business
 tags:
      - regression
-disqus: shtrausslearning.github.io
 --- 
 
 # **Prediction of Product Stock Levels**

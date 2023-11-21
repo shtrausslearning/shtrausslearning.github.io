@@ -8,9 +8,10 @@ Data analysis and pattern recognition: Machine learning algorithms can be used t
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>CFD Trade-Off Study Visualisation | Response Model</b>
 
-![](https://img.shields.io/badge/category-regression-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
+![](https://img.shields.io/badge/category-regression-5D58CF) 
+[![Kaggle](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
 
-In this study, we do an **exploratory data analysis** of a CFD optimisation study, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for **L/D** (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem
+In this study, we do an **exploratory data analysis** of a **CFD optimisation study**, having extracted table data for different variables in a simulation, we aim to find the most optimal design using different visualisation techniques. The data is then utilised to create a response model for **L/D** (predict L/D based on other parameters), we investigate which machine learning models work the best for this problem
 
 <center>
 ![](images/liftdrag.png)

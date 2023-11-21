@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Australian Geospatial Analysis</b>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)

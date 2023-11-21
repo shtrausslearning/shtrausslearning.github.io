@@ -1,3 +1,7 @@
+---
+comments: true
+---
+
 **Machine learning** plays a significant role in **finance** by helping to analyse large volumes of financial data, identify patterns and trends, make predictions, and automate decision-making processes. It can be used for tasks such as **risk management**, **fraud detection**, **algorithmic trading**, **credit scoring**, **customer segmentation**, and personalized **investment recommendations**. Machine learning algorithms can process and analyze data much faster and more accurately than humans, enabling financial institutions to make better-informed decisions and improve their overall performance.
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Customer Transaction Predictive Analytics</b>

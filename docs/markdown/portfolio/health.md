@@ -6,7 +6,7 @@ comments: true
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Lower Back Pain Symptoms Modeling</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
+![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Kaggle-View_on_Kaggle-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
 
 In this study we investigate patient back pain **[biomedical data](https://doi.org/10.24432/C5K89B)** obtained from a medical resident in Lyon. We create a classification model which is able to determine the difference between **normal patients** and patients who have either **disk hernia** or **spondylolisthesis**, which is a binary classification problem. We utilise **PyTorch** and created a **custom dataset class** to load the tabular CSV data & load the data into batches using **data loaders**. A rather simple **neural network structure** that utilises standard **generalisation strategies** such as **dropout** and **batch normalisation** was assembled & the model was trained and tested in the validation dataset.
 
@@ -16,10 +16,9 @@ In this study we investigate patient back pain **[biomedical data](https://doi.o
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Ovarian Phase Classification in Felids</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/ovarian-phase-classification-in-felids)
-[![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/ovarian-phase-classification-in-felids.ipynb)
+![](https://img.shields.io/badge/category-multiclass_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Kaggle-View_on_Kaggle-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/ovarian-phase-classification-in-felids) [![Run in Google Colab](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/Data-Science-Portfolio/blob/main/ovarian-phase-classification-in-felids.ipynb)
 
-In this study, we investigate feline reproductology data, conducting an exploratory data analysis of experimental measurements of **estradiol** and **progesterone** levels and attempt to find the relation between different hormone levels during different phases of pregnancy. We  then use the available data to create machine learning models that are able to predict at which stage of an estrous cycle a feline is at the time of testing for different measurement methods, which is a **multiclass classification problem**.
+In this study, we investigate **feline reproductology data**, conducting an **exploratory data analysis** of experimental measurements of **estradiol** and **progesterone** levels and attempt to find the relation between different hormone levels during different phases of pregnancy. We  then use the available data to create machine learning models that are able to predict at which stage of an estrous cycle a feline is at the time of testing for different measurement methods, which is a **multiclass classification problem**.
 
 <center>
 ![](images/roc_curve.png)
@@ -27,8 +26,7 @@ In this study, we investigate feline reproductology data, conducting an explorat
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Heart Disease Classification</b>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/heart-disease-gaussian-process-models)
-[![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/Heart%20Disease%20Classification)
+![](https://img.shields.io/badge/category-binary_classification-5D58CF) [![Open Notebook](https://img.shields.io/badge/Kaggle-View_on_Kaggle-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/heart-disease-gaussian-process-models) [![Run in Google Colab](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/Heart%20Disease%20Classification)
 
 In this study, we explore different **feature engineering** approaches, we group features into different combinations based on their subgroup types and attempt to find the best combination for classifying patients with heart disease. Having found the best feature combinations, we utilise brute force grid searches for hyperparameter optimisation in order to find the best performing model.
 

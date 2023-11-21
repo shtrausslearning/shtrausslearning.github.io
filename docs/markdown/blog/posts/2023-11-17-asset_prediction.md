@@ -8,6 +8,7 @@ tags:
      - catboost
      - optuna
      - time series
+comments: true
 --- 
 
 # **Prediction of customer stable funds volume**

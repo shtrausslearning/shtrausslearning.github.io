@@ -1883,7 +1883,7 @@
 </table>
 <p>```python linenums="1" hl_lines="14-38 46-74 86-92 94-104 118-147 155-178" 
 def load(self,modules:list):</p>
-<div class="language-text highlight"><pre><span></span><code>print(&#39;[note] loading modules ...&#39;)
+<div class="highlight"><pre><span></span><code>print(&#39;[note] loading modules ...&#39;)
 
 # dictionary for storing model label (text not numeric)
 self.label = {}
@@ -2138,13 +2138,13 @@ def train(self,type='mlloop'):
 <p>MACHINE LEARNING LOOP </p>
 <p>'''</p>
 <p>def mlloop(self,corpus:dict,module_name:str):</p>
-<div class="language-text highlight"><pre><span></span><code># corpus : text [pd.Series] [0-...]
+<div class="highlight"><pre><span></span><code># corpus : text [pd.Series] [0-...]
 # class : labels [pd.Series] [0-...]
 
 # lemmatiser
 </code></pre></div>
 <h1 id="lemma--wordnetlemmatizer">lemma = WordNetLemmatizer()<a class="headerlink" href="#lemma--wordnetlemmatizer" title="Permanent link"></a></h1>
-<div class="language-text highlight"><pre><span></span><code># define a function for preprocessing
+<div class="highlight"><pre><span></span><code># define a function for preprocessing
 </code></pre></div>
 <h1 id="def-cleantext">def clean(text):<a class="headerlink" href="#def-cleantext" title="Permanent link"></a></h1>
 <h1 id="tokens--word_tokenizetext-tokenize-the-text">tokens = word_tokenize(text) #tokenize the text<a class="headerlink" href="#tokens--word_tokenizetext-tokenize-the-text" title="Permanent link"></a></h1>
@@ -2155,7 +2155,7 @@ def train(self,type='mlloop'):
 <h1 id="return--joinclean_list-joins-the-tokens">return " ".join(clean_list)# joins the tokens<a class="headerlink" href="#return--joinclean_list-joins-the-tokens" title="Permanent link"></a></h1>
 <h1 id="clean-corpus">clean corpus<a class="headerlink" href="#clean-corpus" title="Permanent link"></a></h1>
 <h1 id="corpustext--corpustextapplyclean">corpus['text'] = corpus['text'].apply(clean)<a class="headerlink" href="#corpustext--corpustextapplyclean" title="Permanent link"></a></h1>
-<div class="language-text highlight"><pre><span></span><code>&#39;&#39;&#39;
+<div class="highlight"><pre><span></span><code>&#39;&#39;&#39;
 
 Convert text to numeric representation
 
@@ -2164,7 +2164,7 @@ Convert text to numeric representation
 # vect = CountVectorizer()
 </code></pre></div>
 <h1 id="vect--countvectorizertokenizerlambda-x-word_tokenizex">vect = CountVectorizer(tokenizer=lambda x: word_tokenize(x))<a class="headerlink" href="#vect--countvectorizertokenizerlambda-x-word_tokenizex" title="Permanent link"></a></h1>
-<div class="language-text highlight"><pre><span></span><code># vect = CountVectorizer(tokenizer=lambda x: WhitespaceTokenizer().tokenize(x))
+<div class="highlight"><pre><span></span><code># vect = CountVectorizer(tokenizer=lambda x: WhitespaceTokenizer().tokenize(x))
 # vect = CountVectorizer(tokenizer=lambda x: nltk_wtokeniser(x),
                        # stop_words=[&#39;create&#39;])
 vect = TfidfVectorizer(tokenizer=lambda x: nltk_wtokeniser(x))

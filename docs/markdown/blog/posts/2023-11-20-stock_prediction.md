@@ -18,11 +18,13 @@ disqus: shtrausslearning.github.io
 
 ## <b>Background</b>
 
+## **Project Statement**
+
 In this project, we aim to help **Gala Groceries** who have approached **Cognizant** to help them with supply chain issues. Specifically, they are interested in wanting to know how better stock the items that they sell"
 
 > Can we accurately predict the stock levels of products based on sales data and sensor data on an hourly basis in order to more intelligently procure products from our suppliers?” 
 
-### Gala Groceries
+### **Gala Groceries**
 
 **Gala Groceries** is a technology-led grocery store chain based in the USA. They rely heavily on new technologies, such as IoT to give them a competitive edge over other grocery stores. 
 

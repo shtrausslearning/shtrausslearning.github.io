@@ -25,16 +25,9 @@ markdown_extensions:
     - markdown.extensions.footnotes:
     - markdown.extensions.md_in_html:
     - pymdownx.highlight:
-        extend_pygments_lang:
-          - name: php-inline
-            lang: php
-            options:
-              startinline: true
-          - name: pycon3
-            lang: pycon
-            options:
-              python3: true
-        linenums_style: pymdownx-inline
+        anchor_linenums: true
+        line_spans: __span
+        pygments_lang_class: true
     - pymdownx.inlinehilite:
         custom_inline:
           - name: math

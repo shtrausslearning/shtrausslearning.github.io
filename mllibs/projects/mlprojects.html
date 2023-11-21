@@ -2035,7 +2035,7 @@ import re</p>
 <h1 id="preprocess-string">preprocess string<a class="headerlink" href="#preprocess-string" title="Permanent link"></a></h1>
 <p>def lst_string(seq_string:str) -&gt; list[str]:
     seq_string = seq_string.lower()</p>
-<div class="highlight"><pre><span></span><code># check validity
+<div class="language-text highlight"><pre><span></span><code># check validity
 # if(len(re.findall(&#39;[^acgt]&#39;,seq_string)) &gt; 0):
 #     print(re.findall(&#39;[^acgt]&#39;,seq_string))
 
@@ -2060,7 +2060,7 @@ label_encoder.fit_transform(np.array(['a','c','g','t','z']))
 <h1 id="output-pdseries-list-of-ordinal-encoding">output: [pd.Series] list of ordinal encoding<a class="headerlink" href="#output-pdseries-list-of-ordinal-encoding" title="Permanent link"></a></h1>
 <h1 id="encode-list-of-strings">encode list of strings<a class="headerlink" href="#encode-list-of-strings" title="Permanent link"></a></h1>
 <p>def ordinal_encoder_full(seq:str):</p>
-<div class="highlight"><pre><span></span><code># convert string to nucleotide
+<div class="language-text highlight"><pre><span></span><code># convert string to nucleotide
 my_array = lst_string(seq)
 
 # transform ordinally
@@ -2129,12 +2129,12 @@ import re</p>
 <p>'''</p>
 <h1 id="requires-data-pddataframe-input-dataset-containing-column-with-biological-sequences">requires: data: [pd.DataFrame] Input Dataset containing column with biological sequences<a class="headerlink" href="#requires-data-pddataframe-input-dataset-containing-column-with-biological-sequences" title="Permanent link"></a></h1>
 <h1 id="-column-str-column-name-containing-biological-sequence-data--corpus">: column [str] Column name containing <abbr title="A typical sequence: ATCGGCTAAGTCCGTAGCCTAGCGGATCGATCGA">biological sequence</abbr> data / corpus<a class="headerlink" href="#-column-str-column-name-containing-biological-sequence-data--corpus" title="Permanent link"></a></h1>
-<div class="highlight"><pre><span></span><code>      : seq_len [int] Sequence Lenth Fixation Count (Pad/Truncate)
+<div class="language-text highlight"><pre><span></span><code>      : seq_len [int] Sequence Lenth Fixation Count (Pad/Truncate)
 </code></pre></div>
 <h1 id="returns--x-nparray-matrix-of-encoded-dataset">returns : X [np.array] matrix of encoded dataset<a class="headerlink" href="#returns--x-nparray-matrix-of-encoded-dataset" title="Permanent link"></a></h1>
 <p>'''</p>
 <p>def create_ordinal_X_fixed(inputs:dict):</p>
-<div class="highlight"><pre><span></span><code># preprocess string
+<div class="language-text highlight"><pre><span></span><code># preprocess string
 def lst_string(seq_string:str) -&gt; list[str]:
     seq_string = seq_string.lower()
     seq_string = re.sub(&#39;[^acgt]&#39;, &#39;&#39;, seq_string) # replace all not acgt w/ n
@@ -2217,7 +2217,7 @@ X = merge_encoding_arrays(truncated_encoded,f&quot;ordinal_{inputs[&#39;seq_len&
 <p>'''</p>
 <h1 id="create-kmers-lists-for-all-sequences-in-dataset">create kmers lists for all sequences in dataset<a class="headerlink" href="#create-kmers-lists-for-all-sequences-in-dataset" title="Permanent link"></a></h1>
 <p>def kmers_count_all(df:pd.DataFrame,column:str):</p>
-<div class="highlight"><pre><span></span><code># add kmers list to dataframe
+<div class="language-text highlight"><pre><span></span><code># add kmers list to dataframe
 df[&#39;kmers_list&#39;] = df.apply(lambda x: kmers_count(x[column]), axis=1)
 df = df.drop(column, axis=1)
 
@@ -2251,7 +2251,7 @@ lst_kmers_dog = kmers_count_all(dog_dna,'sequence')
 <h1 id="cv-countvectorizer-fitted-instance">cv [CountVectorizer] fitted instance<a class="headerlink" href="#cv-countvectorizer-fitted-instance" title="Permanent link"></a></h1>
 <h1 id="output-x">output: X<a class="headerlink" href="#output-x" title="Permanent link"></a></h1>
 <p>def create_bow_predict(lst:list,cv=None):</p>
-<div class="highlight"><pre><span></span><code>try:
+<div class="language-text highlight"><pre><span></span><code>try:
     X = cv.transform(lst)  
 except:
     X = None
@@ -2283,7 +2283,7 @@ X_dog = create_bow_predict(lst_kmers_dog,cv)
 <h1 id="returns--cv-countvectorizer-encoder-of-kmers-corpus">returns : cv [CountVectorizer] encoder of kmers corpus<a class="headerlink" href="#returns--cv-countvectorizer-encoder-of-kmers-corpus" title="Permanent link"></a></h1>
 <h1 id="x-nparray-matrix-of-encoded-dataset">X [np.array] matrix of encoded dataset<a class="headerlink" href="#x-nparray-matrix-of-encoded-dataset" title="Permanent link"></a></h1>
 <p>def create_kmer_X(inputs:dict):</p>
-<div class="highlight"><pre><span></span><code># create list of kmers
+<div class="language-text highlight"><pre><span></span><code># create list of kmers
 def kmers_count(seq:str, size:int=6) -&gt; list:
     return &#39; &#39;.join([seq[x:x+size].lower() for x in range(len(seq) - size + 1)])
 
@@ -2324,7 +2324,7 @@ return cv,X
 <p>```json
 {
   "modules": [</p>
-<div class="highlight"><pre><span></span><code>{
+<div class="language-text highlight"><pre><span></span><code>{
   &quot;name&quot;: &quot;bencode_ordinalX_fixed&quot;,
 &quot;corpus&quot;: [
             &quot;create biological ordinal encoding&quot;,

@@ -1989,12 +1989,12 @@
   
 
 
-<h1 id="named-entity-recognition-for-sentence-splitting"><strong>Named Entity Recognition for Sentence Splitting</strong><a class="headerlink" href="#named-entity-recognition-for-sentence-splitting" title="Permanent link"></a></h1>
+<h1 id="named-entity-recognition-for-sentence-splitting"><strong>Named Entity Recognition for Sentence Splitting</strong><a class="headerlink" href="#named-entity-recognition-for-sentence-splitting" title="Permanent link">&para;</a></h1>
 <p>In the last post, we talked about how to use <strong>NER</strong> for tagging named entities using transformers. In this sections, we'll try something a little more simpler, utilising traditional encoding &amp; ML methods. One advantage of using such models is the cost of training. We'll also look at a less common example for <strong>NER</strong> tagging, which I've implemented in my project <strong><a href="https://github.com/shtrausslearning/mllibs">mllibs</a></strong></p>
 <!-- more -->
 
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link"></a></h2>
-<h3 id="what-is-ner">What is NER?<a class="headerlink" href="#what-is-ner" title="Permanent link"></a></h3>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-ner">What is NER?<a class="headerlink" href="#what-is-ner" title="Permanent link">&para;</a></h3>
 <p>So what exactly is <code>NER</code>?</p>
 <ul>
 <li><code>NER</code> is a natural language processing technique which identifies and extracts <strong>named entities</strong> from unstructured text</li>
@@ -2004,7 +2004,7 @@
 <blockquote>
 <p class="prompt-info">In this notebook, we define <strong>named entities</strong> to be word(s) that can be defined <strong>as sentence splitters</strong>, which differs from how <code>NER</code> tends to be used for extraction of place names and so on</p>
 </blockquote>
-<h3 id="sentence-splitting">Sentence splitting<a class="headerlink" href="#sentence-splitting" title="Permanent link"></a></h3>
+<h3 id="sentence-splitting">Sentence splitting<a class="headerlink" href="#sentence-splitting" title="Permanent link">&para;</a></h3>
 <p>What can be thought to be quite straightforward and non trivial isn't quite so. <strong>Sentence splitting</strong> or sentence simplification is the task of taking a sentence that is usually too long and breaking it up into two or more simpler sentences. In the next section, we'll mention one example, where it can be useful. </p>
 <p>Consider an example:</p>
 <blockquote>
@@ -2017,36 +2017,35 @@
 <kbd>The quick red fox jumped over the lazy brown dog</kbd> <code>and</code> <code>then</code> <kbd>ran away</kbd></p>
 </blockquote>
 <p>We can split the sentence based on two occuring events, which is separated by the words <strong>and then</strong>. By splitting the sentence into two parts we understand that there are two actions that are associated with the object <code>fox</code>. Simple tokenisers such as <strong><a href="https://www.nltk.org/api/nltk.tokenize.sent_tokenize.html">sent_tokenize</a></strong> from <code>NLTK</code> or any other sentence tokeniser are not suited for tokenising the second example, which is where <strong>NER</strong> comes in.</p>
-<h3 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link"></a></h3>
-<h4 id="classifying-user-requests">Classifying user requests<a class="headerlink" href="#classifying-user-requests" title="Permanent link"></a></h4>
+<h3 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h3>
+<h4 id="classifying-user-requests">Classifying user requests<a class="headerlink" href="#classifying-user-requests" title="Permanent link">&para;</a></h4>
 <p>Let's say we have a problem in which we need to <strong>classify a user request</strong> into two groups; <kbd>class 0</kbd> (impute data) &amp; <kbd>class 1</kbd> (standardise columns) using text input data, a <strong>binary classification problem</strong>. The classification model will activate specific activation functions, so incorrectly classified models will activate the wrong function! </p>
 <p>Hopefully you are familiar with text preprocessing &amp; training using sklearn, because that's what we'll be using in this post. We train a <code>LogisticRegression</code> binary classification model and the model itself is complex enough to get a perfect score on the dataset it was trained on. </p>
-<pre><code class="language-python">
-# commands corresponding to activation function
-train = [&quot;impute missing, mean value&quot;,
-         &quot;impute missing, average value&quot;,
-         &quot;fill missing, mean value&quot;,
-         &quot;standardise columns&quot;,
-         &quot;normalise columns&quot;,
-         &quot;standardise&quot;
-         ]
-
-# target labels
-y_train = ['imp-mean','imp-mean','imp-mean','std','std','std']
-
-# encoder data
-def tokenizer(text):
-    return word_tokenize(text)
-
-# Bag of Words Encoding
-encoder = CountVectorizer()
-X_train = encoder.fit_transform(train)
-
-# Train model to predict between two classes
-model = LogisticRegression()
-model.fit(X_train,y_train)
-</code></pre>
-<h4 id="using-classifier">Using Classifier<a class="headerlink" href="#using-classifier" title="Permanent link"></a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># commands corresponding to activation function</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">train</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;impute missing, mean value&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>         <span class="s2">&quot;impute missing, average value&quot;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>         <span class="s2">&quot;fill missing, mean value&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>         <span class="s2">&quot;standardise columns&quot;</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>         <span class="s2">&quot;normalise columns&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>         <span class="s2">&quot;standardise&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>         <span class="p">]</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># target labels</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">y_train</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;imp-mean&#39;</span><span class="p">,</span><span class="s1">&#39;imp-mean&#39;</span><span class="p">,</span><span class="s1">&#39;imp-mean&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">,</span><span class="s1">&#39;std&#39;</span><span class="p">]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># encoder data</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">def</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">return</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># Bag of Words Encoding</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">encoder</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">X_train</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># Train model to predict between two classes</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="using-classifier">Using Classifier<a class="headerlink" href="#using-classifier" title="Permanent link">&para;</a></h4>
 <p>Now let's assume we deploy this model, we have two user requests:
 -  <kbd>First of all, impute all missing data with column mean values, then standardise all columns</kbd>
 -  <kbd>impute missing data with column mean values</kbd></p>
@@ -2055,33 +2054,31 @@ model.fit(X_train,y_train)
 <p>The second request contains only one request:
 - <kbd>impute missing data with column mean values</kbd></p>
 <p>Let's check how both models would perform:</p>
-<pre><code class="language-python">
-# user request
-request_a = &quot;First of all, impute all missing data with column mean values and then standardise all columns.&quot;
-request_b = &quot;impute missing data with column mean values&quot;
-
-# test model on new data
-X_test_a = encoder.transform([request_a])
-X_test_b = encoder.transform([request_b])
-y_pred_a = model.predict_proba(X_test_a)
-y_pred_b = model.predict_proba(X_test_b)
-
-print('text_a:',y_pred_a)
-print('text_b',y_pred_b)
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># user request</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">request_a</span> <span class="o">=</span> <span class="s2">&quot;First of all, impute all missing data with column mean values and then standardise all columns.&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">request_b</span> <span class="o">=</span> <span class="s2">&quot;impute missing data with column mean values&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># test model on new data</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">X_test_a</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">request_a</span><span class="p">])</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">X_test_b</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">request_b</span><span class="p">])</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">y_pred_a</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_a</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">y_pred_b</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_b</span><span class="p">)</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;text_a:&#39;</span><span class="p">,</span><span class="n">y_pred_a</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;text_b&#39;</span><span class="p">,</span><span class="n">y_pred_b</span><span class="p">)</span>
+</span></code></pre></div>
 <p><code>predict_proba</code> gives us the following probability distribution, we are using a threshold of 0.5 which is the default for <code>predict_proba</code>, ie. for <strong>text_a</strong>, the model has predicted <code>class 1</code> (standardise columns) ✘, &amp; for <strong>text_b</strong>, <code>class 0</code> (impute data) ✔</p>
-<pre><code>text_a: [[0.49158457 0.50841543]]  
-text_b [[0.68768998 0.31231002]]
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>text_a: [[0.49158457 0.50841543]]  
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>text_b [[0.68768998 0.31231002]]
+</span></code></pre></div>
 <p>So we can see that the closer the content of the user request is to one of the text it was trained on, the more accurate the model. Intuitively, there clearly is a need to split the first user request into parts because the request doesn't fit into either of the two categories, so if we can tag tokens <code>,</code> &amp; <code>then</code>, we can split the sentence into two. Having two separate sentences, we then can repredict on both of these sentences to get the correct predictions.</p>
 <blockquote>
 <p class="prompt-info">Similar to if you took <code>cosine_similarity</code> between the input user request and different documents that belong to a class. If the content contains too much additional text, the similarity will start to fall.</p>
 </blockquote>
-<h4 id="using-ner-to-identify-sentence-split-locations">Using NER to identify sentence split locations<a class="headerlink" href="#using-ner-to-identify-sentence-split-locations" title="Permanent link"></a></h4>
+<h4 id="using-ner-to-identify-sentence-split-locations">Using NER to identify sentence split locations<a class="headerlink" href="#using-ner-to-identify-sentence-split-locations" title="Permanent link">&para;</a></h4>
 <p>We could use <code>regex</code> in an attempt to <strong>find split locations</strong>, and then <strong>cut the document</strong> at <code>regex</code> matched pattern locations, however if we go down the <strong>NER</strong> route, we actually can tag words in the sentence however we want, which is very convenient. Aside from sentence splitting tags such as <code>and then</code>, we would also identify words which don't add value and tag them as well (eg. <code>first of all</code>).</p>
-<h2 id="the-dataset">The Dataset<a class="headerlink" href="#the-dataset" title="Permanent link"></a></h2>
-<h3 id="tagging-split-tag-words">Tagging split tag words<a class="headerlink" href="#tagging-split-tag-words" title="Permanent link"></a></h3>
+<h2 id="the-dataset">The Dataset<a class="headerlink" href="#the-dataset" title="Permanent link">&para;</a></h2>
+<h3 id="tagging-split-tag-words">Tagging split tag words<a class="headerlink" href="#tagging-split-tag-words" title="Permanent link">&para;</a></h3>
 <p>The dataset will be created by us, and is by not means perfect. I used this <strong><a href="https://www.miamioh.edu/hcwe/handouts/sentence-combination/index.html#:~:text=You%20have%20four%20options%20for,moreover%2C%22%20or%20%22thus%22">useful reference</a></strong> in order to try and add various writing variations. As opposed to the <strong>grouped document token</strong> approach I did in <strong><a href="https://www.kaggle.com/code/shtrausslearning/mllibs-ner-based-classification-sentence-split">this notebook</a></strong>, I won't be adding other OOV words to <strong>class (0)</strong>.</p>
 <p>I've created about 20 general sentences and annotated word/token locations at which I would like to identify a <strong>splitting token</strong>. We'll be using the standard <code>BIO</code> tagging system, so we can tag segments of tokens, identifying <strong>beginning &amp; inner tags</strong>. </p>
 <p>Our dataset contains two columns <code>text</code> &amp; its annotation <code>annotated</code> variant.</p>
@@ -2183,399 +2180,397 @@ text_b [[0.68768998 0.31231002]]
 </tr>
 </tbody>
 </table>
-<h3 id="ner-tagging">NER Tagging<a class="headerlink" href="#ner-tagging" title="Permanent link"></a></h3>
+<h3 id="ner-tagging">NER Tagging<a class="headerlink" href="#ner-tagging" title="Permanent link">&para;</a></h3>
 <p>I've created a simple <strong>NER</strong> tagging class <code>ner_annotator</code> which we can use manually tag each row in the dataframe, it works by iteratively going through all rows in a dataframe, looping on only rows which have not been annotated yet (<code>active_df</code>) and tagging parts of the sentence using the format <kbd>words</kbd><code>-</code><kbd>tag</kbd>, which is used in the <strong><a href="https://huggingface.co/datasets/AmazonScience/massive">massive 1.1</a></strong> dataset on huggingface</p>
-<pre><code class="language-python">#from IPython.display import clear_output in jupyter
-import pandas as pd
-import numpy as np
-import re
-import warnings;warnings.filterwarnings('ignore')
-
-# NER Annotation Class
-
-class ner_annotator:
-
-    def __init__(self,df:pd.DataFrame):
-        self.df = df
-        self.word2tag = {}
-        self.LABEL_PATTERN = r&quot;\[(.*?)\]&quot;
-        self.deactive_df = None
-        self.active_df = None
-
-        self.__initialise()
-
-    def __initialise(self):
-
-        '''
-
-        [1] ANNOTATION COLUMN RELATED OPERATIONS
-
-        '''
-
-        # if annotaion column is all empty
-
-        if('annotated' in self.df.columns):
-
-            if(self.df['annotated'].isna().sum() == self.df.shape[0]):
-                self.df['annotated'] = None
-
-            # if annotation column is not empty
-
-            elif(self.df['annotated'].isna().sum() != self.df.shape[0]):
-
-                # Store Tags
-                for idx,row_data in self.df.iterrows():
-                    if(type(row_data['annotated']) == str):
-                        matches = re.findall(self.LABEL_PATTERN, row_data['annotated'] )
-                        for match in matches:
-                            tag, phrase = match.split(&quot; : &quot;)
-                            self.word2tag[phrase] = tag
-
-        # if annotation column is not present
-
-        else:
-            word2tag = {}
-            self.df['annotated'] = None    
-
-        # active_df -&gt; NaN are present
-        # deactive_df -&gt; already has annotations
-
-        self.active_df = self.df[self.df['annotated'].isna()]
-        self.deactive_df = self.df[~self.df['annotated'].isna()]
-
-    '''
-
-    REVIEW ANNOTATIONS
-
-    '''
-    # nullify rows which are not NaN, but don't have 
-
-    def review_annotations(self):
-        idx = list(self.deactive_df[~self.deactive_df[&quot;annotated&quot;].str.contains(self.LABEL_PATTERN)]['annotated'].index)
-        annot = list(self.deactive_df[~self.deactive_df[&quot;annotated&quot;].str.contains(self.LABEL_PATTERN)]['annotated'].values)
-
-        for i,j in zip(idx,annot):
-            print(i,j)
-
-    # drop annotations (from deactive_df)
-
-    def drop_annotations(self,idx:list):
-        remove_df = self.deactive_df.iloc[idx]
-        remove_df['annotated'] = None
-        self.active_df = pd.concat([self.active_df,remove_df])
-        self.deactive_df = self.deactive_df.drop(list(idx),axis=0)
-        self.deactive_df.sort_index()
-        print('dopped annotations saving &gt;&gt; annot.csv')
-        pd.to_csv('annot.csv',pd.concat([self.active_df,self.deactive_df]))
-
-    '''
-
-    ANNOTATE ON ACTIVE ONLY
-
-    '''
-
-    def ner_annotate(self):
-
-        for idx,row_data in self.active_df.iterrows():
-
-            q = row_data['question'] # question
-            t = q                    # annotated question holder
-
-            annotate_row = True
-            while annotate_row is True:
-
-                print('Current Annotations:')
-                print(t,'\n')
-
-                # user input
-                user = input('tag (word-tag) format &gt;&gt; ')
-
-                # [1] end of annotation (go to next row)
-
-                if(user in ['quit','q']):
-
-                    annotate_row = False
-                    row_data['annotated'] = t
-
-                    # Store Tags
-                    matches = re.findall(self.LABEL_PATTERN, t)
-                    for match in matches:
-                        tag, phrase = match.split(&quot; : &quot;)
-                        self.word2tag[phrase] = tag
-
-                        # clean up output
-                        #               clear_output(wait=True)
-
-                        # [2] stop annotation loop
-
-                elif(user in 'stop'):
-
-                    ldf = pd.concat([self.deactive_df,self.active_df],axis=0)
-                    ldf.to_csv('annot.csv',index=False)
-                    return 
-
-                # [3] Reset current Row Tags
-
-                elif(user in ['reset','r']):
-
-                    t=q 
-                    print(t,'\n')
-                    #           clear_output(wait=True)
-                    user = input('tag (word-tag) format &gt;&gt; ')
-
-                # [4] Show current word2tag mapping dictionary
-
-                elif(user == 'show'):
-                    print(self.word2tag)
-
-                # [5] Automatically set tags from existing tags in word2tag 
-
-                elif(user == 'dict'):
-
-                    # use dictionary to automatically set tags
-                    for word,tag in self.word2tag.items():
-                        if(word in t):
-                            express = f'[{tag} : {word}]' 
-                            t = t.replace(word,express)            
-
-                            # Tags Specified
-
-                # [6] We are actually annotating document
-
-                elif('-' in user):
-
-                    # parse input
-                    word,tag = user.split('-')
-
-                    if(word == ''):
-                        word = input('please add word &gt;&gt; ')
-                    if(tag == ''):
-                        tag = input('please add tag &gt;&gt; ')
-
-                    if(word in t):
-                        express = f'[{tag} : {word}]' 
-                        t = t.replace(word,express)
-                    else:
-                        print('not found in sentence')
-
-                else:
-                    print('please use (word-tag format)')
-
-        # finished annotation
-        ldf = pd.concat([self.deactive_df,self.active_df],axis=0)
-        ldf.to_csv('annot.csv',index=False)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#from IPython.display import clear_output in jupyter</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kn">import</span> <span class="nn">re</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">import</span> <span class="nn">warnings</span><span class="p">;</span><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># NER Annotation Class</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">class</span> <span class="nc">ner_annotator</span><span class="p">:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__initialise</span><span class="p">()</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="k">def</span> <span class="nf">__initialise</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="sd">        [1] ANNOTATION COLUMN RELATED OPERATIONS</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="sd">        &#39;&#39;&#39;</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>        <span class="c1"># if annotaion column is all empty</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="k">if</span><span class="p">(</span><span class="s1">&#39;annotated&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>            <span class="c1"># if annotation column is not empty</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>            <span class="k">elif</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>                <span class="c1"># Store Tags</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>                <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>                    <span class="k">if</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>                        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="p">)</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>                        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>                            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>                            <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">[</span><span class="n">phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>        <span class="c1"># if annotation column is not present</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>            <span class="n">word2tag</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>    
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>        <span class="c1"># active_df -&gt; NaN are present</span>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>        <span class="c1"># deactive_df -&gt; already has annotations</span>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="sd">    REVIEW ANNOTATIONS</span>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>    <span class="c1"># nullify rows which are not NaN, but don&#39;t have </span>
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>    <span class="k">def</span> <span class="nf">review_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">)][</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>        <span class="n">annot</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">)][</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">annot</span><span class="p">):</span>
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>    <span class="c1"># drop annotations (from deactive_df)</span>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>    <span class="k">def</span> <span class="nf">drop_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">idx</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>        <span class="n">remove_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>        <span class="n">remove_df</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">,</span><span class="n">remove_df</span><span class="p">])</span>
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">idx</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dopped annotations saving &gt;&gt; annot.csv&#39;</span><span class="p">)</span>
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>        <span class="n">pd</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">]))</span>
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>
+</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>
+</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="sd">    ANNOTATE ON ACTIVE ONLY</span>
+</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>
+</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>
+</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>    <span class="k">def</span> <span class="nf">ner_annotate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>
+</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">row_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>
+</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>            <span class="n">q</span> <span class="o">=</span> <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]</span> <span class="c1"># question</span>
+</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>            <span class="n">t</span> <span class="o">=</span> <span class="n">q</span>                    <span class="c1"># annotated question holder</span>
+</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>
+</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>            <span class="n">annotate_row</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>            <span class="k">while</span> <span class="n">annotate_row</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>
+</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Current Annotations:&#39;</span><span class="p">)</span>
+</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>                <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>
+</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>                <span class="c1"># user input</span>
+</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>                <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;tag (word-tag) format &gt;&gt; &#39;</span><span class="p">)</span>
+</span><span id="__span-3-105"><a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>
+</span><span id="__span-3-106"><a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a>                <span class="c1"># [1] end of annotation (go to next row)</span>
+</span><span id="__span-3-107"><a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>
+</span><span id="__span-3-108"><a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>                <span class="k">if</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;quit&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]):</span>
+</span><span id="__span-3-109"><a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>
+</span><span id="__span-3-110"><a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a>                    <span class="n">annotate_row</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-3-111"><a id="__codelineno-3-111" name="__codelineno-3-111" href="#__codelineno-3-111"></a>                    <span class="n">row_data</span><span class="p">[</span><span class="s1">&#39;annotated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+</span><span id="__span-3-112"><a id="__codelineno-3-112" name="__codelineno-3-112" href="#__codelineno-3-112"></a>
+</span><span id="__span-3-113"><a id="__codelineno-3-113" name="__codelineno-3-113" href="#__codelineno-3-113"></a>                    <span class="c1"># Store Tags</span>
+</span><span id="__span-3-114"><a id="__codelineno-3-114" name="__codelineno-3-114" href="#__codelineno-3-114"></a>                    <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+</span><span id="__span-3-115"><a id="__codelineno-3-115" name="__codelineno-3-115" href="#__codelineno-3-115"></a>                    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+</span><span id="__span-3-116"><a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a>                        <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
+</span><span id="__span-3-117"><a id="__codelineno-3-117" name="__codelineno-3-117" href="#__codelineno-3-117"></a>                        <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">[</span><span class="n">phrase</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+</span><span id="__span-3-118"><a id="__codelineno-3-118" name="__codelineno-3-118" href="#__codelineno-3-118"></a>
+</span><span id="__span-3-119"><a id="__codelineno-3-119" name="__codelineno-3-119" href="#__codelineno-3-119"></a>                        <span class="c1"># clean up output</span>
+</span><span id="__span-3-120"><a id="__codelineno-3-120" name="__codelineno-3-120" href="#__codelineno-3-120"></a>                        <span class="c1">#               clear_output(wait=True)</span>
+</span><span id="__span-3-121"><a id="__codelineno-3-121" name="__codelineno-3-121" href="#__codelineno-3-121"></a>
+</span><span id="__span-3-122"><a id="__codelineno-3-122" name="__codelineno-3-122" href="#__codelineno-3-122"></a>                        <span class="c1"># [2] stop annotation loop</span>
+</span><span id="__span-3-123"><a id="__codelineno-3-123" name="__codelineno-3-123" href="#__codelineno-3-123"></a>
+</span><span id="__span-3-124"><a id="__codelineno-3-124" name="__codelineno-3-124" href="#__codelineno-3-124"></a>                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="s1">&#39;stop&#39;</span><span class="p">):</span>
+</span><span id="__span-3-125"><a id="__codelineno-3-125" name="__codelineno-3-125" href="#__codelineno-3-125"></a>
+</span><span id="__span-3-126"><a id="__codelineno-3-126" name="__codelineno-3-126" href="#__codelineno-3-126"></a>                    <span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-127"><a id="__codelineno-3-127" name="__codelineno-3-127" href="#__codelineno-3-127"></a>                    <span class="n">ldf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-3-128"><a id="__codelineno-3-128" name="__codelineno-3-128" href="#__codelineno-3-128"></a>                    <span class="k">return</span> 
+</span><span id="__span-3-129"><a id="__codelineno-3-129" name="__codelineno-3-129" href="#__codelineno-3-129"></a>
+</span><span id="__span-3-130"><a id="__codelineno-3-130" name="__codelineno-3-130" href="#__codelineno-3-130"></a>                <span class="c1"># [3] Reset current Row Tags</span>
+</span><span id="__span-3-131"><a id="__codelineno-3-131" name="__codelineno-3-131" href="#__codelineno-3-131"></a>
+</span><span id="__span-3-132"><a id="__codelineno-3-132" name="__codelineno-3-132" href="#__codelineno-3-132"></a>                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;reset&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">]):</span>
+</span><span id="__span-3-133"><a id="__codelineno-3-133" name="__codelineno-3-133" href="#__codelineno-3-133"></a>
+</span><span id="__span-3-134"><a id="__codelineno-3-134" name="__codelineno-3-134" href="#__codelineno-3-134"></a>                    <span class="n">t</span><span class="o">=</span><span class="n">q</span> 
+</span><span id="__span-3-135"><a id="__codelineno-3-135" name="__codelineno-3-135" href="#__codelineno-3-135"></a>                    <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-3-136"><a id="__codelineno-3-136" name="__codelineno-3-136" href="#__codelineno-3-136"></a>                    <span class="c1">#           clear_output(wait=True)</span>
+</span><span id="__span-3-137"><a id="__codelineno-3-137" name="__codelineno-3-137" href="#__codelineno-3-137"></a>                    <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;tag (word-tag) format &gt;&gt; &#39;</span><span class="p">)</span>
+</span><span id="__span-3-138"><a id="__codelineno-3-138" name="__codelineno-3-138" href="#__codelineno-3-138"></a>
+</span><span id="__span-3-139"><a id="__codelineno-3-139" name="__codelineno-3-139" href="#__codelineno-3-139"></a>                <span class="c1"># [4] Show current word2tag mapping dictionary</span>
+</span><span id="__span-3-140"><a id="__codelineno-3-140" name="__codelineno-3-140" href="#__codelineno-3-140"></a>
+</span><span id="__span-3-141"><a id="__codelineno-3-141" name="__codelineno-3-141" href="#__codelineno-3-141"></a>                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;show&#39;</span><span class="p">):</span>
+</span><span id="__span-3-142"><a id="__codelineno-3-142" name="__codelineno-3-142" href="#__codelineno-3-142"></a>                    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="p">)</span>
+</span><span id="__span-3-143"><a id="__codelineno-3-143" name="__codelineno-3-143" href="#__codelineno-3-143"></a>
+</span><span id="__span-3-144"><a id="__codelineno-3-144" name="__codelineno-3-144" href="#__codelineno-3-144"></a>                <span class="c1"># [5] Automatically set tags from existing tags in word2tag </span>
+</span><span id="__span-3-145"><a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a>
+</span><span id="__span-3-146"><a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>                <span class="k">elif</span><span class="p">(</span><span class="n">user</span> <span class="o">==</span> <span class="s1">&#39;dict&#39;</span><span class="p">):</span>
+</span><span id="__span-3-147"><a id="__codelineno-3-147" name="__codelineno-3-147" href="#__codelineno-3-147"></a>
+</span><span id="__span-3-148"><a id="__codelineno-3-148" name="__codelineno-3-148" href="#__codelineno-3-148"></a>                    <span class="c1"># use dictionary to automatically set tags</span>
+</span><span id="__span-3-149"><a id="__codelineno-3-149" name="__codelineno-3-149" href="#__codelineno-3-149"></a>                    <span class="k">for</span> <span class="n">word</span><span class="p">,</span><span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2tag</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-3-150"><a id="__codelineno-3-150" name="__codelineno-3-150" href="#__codelineno-3-150"></a>                        <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">t</span><span class="p">):</span>
+</span><span id="__span-3-151"><a id="__codelineno-3-151" name="__codelineno-3-151" href="#__codelineno-3-151"></a>                            <span class="n">express</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">]&#39;</span> 
+</span><span id="__span-3-152"><a id="__codelineno-3-152" name="__codelineno-3-152" href="#__codelineno-3-152"></a>                            <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">express</span><span class="p">)</span>            
+</span><span id="__span-3-153"><a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a>
+</span><span id="__span-3-154"><a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a>                            <span class="c1"># Tags Specified</span>
+</span><span id="__span-3-155"><a id="__codelineno-3-155" name="__codelineno-3-155" href="#__codelineno-3-155"></a>
+</span><span id="__span-3-156"><a id="__codelineno-3-156" name="__codelineno-3-156" href="#__codelineno-3-156"></a>                <span class="c1"># [6] We are actually annotating document</span>
+</span><span id="__span-3-157"><a id="__codelineno-3-157" name="__codelineno-3-157" href="#__codelineno-3-157"></a>
+</span><span id="__span-3-158"><a id="__codelineno-3-158" name="__codelineno-3-158" href="#__codelineno-3-158"></a>                <span class="k">elif</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="ow">in</span> <span class="n">user</span><span class="p">):</span>
+</span><span id="__span-3-159"><a id="__codelineno-3-159" name="__codelineno-3-159" href="#__codelineno-3-159"></a>
+</span><span id="__span-3-160"><a id="__codelineno-3-160" name="__codelineno-3-160" href="#__codelineno-3-160"></a>                    <span class="c1"># parse input</span>
+</span><span id="__span-3-161"><a id="__codelineno-3-161" name="__codelineno-3-161" href="#__codelineno-3-161"></a>                    <span class="n">word</span><span class="p">,</span><span class="n">tag</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+</span><span id="__span-3-162"><a id="__codelineno-3-162" name="__codelineno-3-162" href="#__codelineno-3-162"></a>
+</span><span id="__span-3-163"><a id="__codelineno-3-163" name="__codelineno-3-163" href="#__codelineno-3-163"></a>                    <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+</span><span id="__span-3-164"><a id="__codelineno-3-164" name="__codelineno-3-164" href="#__codelineno-3-164"></a>                        <span class="n">word</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;please add word &gt;&gt; &#39;</span><span class="p">)</span>
+</span><span id="__span-3-165"><a id="__codelineno-3-165" name="__codelineno-3-165" href="#__codelineno-3-165"></a>                    <span class="k">if</span><span class="p">(</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+</span><span id="__span-3-166"><a id="__codelineno-3-166" name="__codelineno-3-166" href="#__codelineno-3-166"></a>                        <span class="n">tag</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;please add tag &gt;&gt; &#39;</span><span class="p">)</span>
+</span><span id="__span-3-167"><a id="__codelineno-3-167" name="__codelineno-3-167" href="#__codelineno-3-167"></a>
+</span><span id="__span-3-168"><a id="__codelineno-3-168" name="__codelineno-3-168" href="#__codelineno-3-168"></a>                    <span class="k">if</span><span class="p">(</span><span class="n">word</span> <span class="ow">in</span> <span class="n">t</span><span class="p">):</span>
+</span><span id="__span-3-169"><a id="__codelineno-3-169" name="__codelineno-3-169" href="#__codelineno-3-169"></a>                        <span class="n">express</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1"> : </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s1">]&#39;</span> 
+</span><span id="__span-3-170"><a id="__codelineno-3-170" name="__codelineno-3-170" href="#__codelineno-3-170"></a>                        <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="n">express</span><span class="p">)</span>
+</span><span id="__span-3-171"><a id="__codelineno-3-171" name="__codelineno-3-171" href="#__codelineno-3-171"></a>                    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-3-172"><a id="__codelineno-3-172" name="__codelineno-3-172" href="#__codelineno-3-172"></a>                        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not found in sentence&#39;</span><span class="p">)</span>
+</span><span id="__span-3-173"><a id="__codelineno-3-173" name="__codelineno-3-173" href="#__codelineno-3-173"></a>
+</span><span id="__span-3-174"><a id="__codelineno-3-174" name="__codelineno-3-174" href="#__codelineno-3-174"></a>                <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-3-175"><a id="__codelineno-3-175" name="__codelineno-3-175" href="#__codelineno-3-175"></a>                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;please use (word-tag format)&#39;</span><span class="p">)</span>
+</span><span id="__span-3-176"><a id="__codelineno-3-176" name="__codelineno-3-176" href="#__codelineno-3-176"></a>
+</span><span id="__span-3-177"><a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a>        <span class="c1"># finished annotation</span>
+</span><span id="__span-3-178"><a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a>        <span class="n">ldf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">deactive_df</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">active_df</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-179"><a id="__codelineno-3-179" name="__codelineno-3-179" href="#__codelineno-3-179"></a>        <span class="n">ldf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></code></pre></div>
 <p>We can annotate the dataset using the folowing commands:</p>
-<pre><code class="language-python">
-# read dataset
-df_annot = pd.read_csv('annot.csv')   # read dataframe
-
-temp = ner_annotator(df_annot)  # instantiate annotation class
-temp.ner_annotate()             # start annotating
-</code></pre>
-<h2 id="parsing-annotations">Parsing annotations<a class="headerlink" href="#parsing-annotations" title="Permanent link"></a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># read dataset</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">df_annot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">)</span>   <span class="c1"># read dataframe</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">temp</span> <span class="o">=</span> <span class="n">ner_annotator</span><span class="p">(</span><span class="n">df_annot</span><span class="p">)</span>  <span class="c1"># instantiate annotation class</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">temp</span><span class="o">.</span><span class="n">ner_annotate</span><span class="p">()</span>             <span class="c1"># start annotating</span>
+</span></code></pre></div>
+<h2 id="parsing-annotations">Parsing annotations<a class="headerlink" href="#parsing-annotations" title="Permanent link">&para;</a></h2>
 <p>Now that we have an annotated dataset, we will need a parser which interprets the resulting annotations, and creates tags for words in a document. <code>Parser</code> will be called using the special class <code>__call__</code>, when we will iterate over our documents. </p>
-<pre><code class="language-python">
-from typing import List
-import regex as re
-from nltk.tokenize import word_tokenize
-import numpy as np
-
-'''
-
-PARSER FOR THE DATASET NER TAG FORMAT
-
-'''
-
-class Parser:
-
-    # RE patterns for tag extraction
-    LABEL_PATTERN = r&quot;\[(.*?)\]&quot;
-    PUNCTUATION_PATTERN = r&quot;([.,\/#!$%\^&amp;\*;:{}=\-_`~()'\&quot;’¿])&quot;
-
-    # initialise, first word/id tag is O (outside)
-    def __init__(self):
-        self.tag_to_id = {
-            &quot;O&quot;: 0
-        }
-        self.id_to_tag = {
-            0: &quot;O&quot;
-        }
-
-    ''' CREATE TAGS '''
-
-    # input : sentence, tagged sentence
-
-    def __call__(self, sentence: str, annotated: str) -&gt; List[str]:
-
-        ''' Create Dictionary of Identified Tags'''
-
-        # 1. set label B or I    
-
-        matches = re.findall(self.LABEL_PATTERN, annotated)
-        word_to_tag = {}
-        for match in matches:
-            tag, phrase = match.split(&quot; : &quot;)
-            words = phrase.split(&quot; &quot;) 
-            word_to_tag[words[0]] = f&quot;B-{tag.upper()}&quot;
-            for w in words[1:]:
-                word_to_tag[w] = f&quot;I-{tag.upper()}&quot;
-
-        ''' Tokenise Sentence &amp; add tags to not tagged words (O)'''
-
-        # 2. add token tag to main tag dictionary
-
-        tags = []
-        sentence = re.sub(self.PUNCTUATION_PATTERN, r&quot; \1 &quot;, sentence)
-        for w in sentence.split():
-            if w not in word_to_tag:
-                tags.append(&quot;O&quot;)
-            else:
-                tags.append(word_to_tag[w])
-                self.__add_tag(word_to_tag[w])
-
-        return tags
-
-    ''' TAG CONVERSION '''
-
-    # to word2id (tag_to_id)
-    # to id2word (id_to_tag)
-
-    def __add_tag(self, tag: str):
-        if tag in self.tag_to_id:
-            return
-        id_ = len(self.tag_to_id)
-        self.tag_to_id[tag] = id_
-        self.id_to_tag[id_] = tag
-
-        ''' Get Tag Number ID '''
-        # or just number id for token
-
-    def get_id(self, tag: str):
-        return self.tag_to_id[tag]
-
-    ''' Get Tag Token from Number ID'''
-    # given id get its token
-
-    def get_label(self, id_: int):
-        return self.get_tag_label(id_)
-</code></pre>
-<h2 id="ner-models">NER Models<a class="headerlink" href="#ner-models" title="Permanent link"></a></h2>
-<h3 id="training-ner-model">Training NER Model<a class="headerlink" href="#training-ner-model" title="Permanent link"></a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">regex</span> <span class="k">as</span> <span class="nn">re</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="sd">PARSER FOR THE DATASET NER TAG FORMAT</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">class</span> <span class="nc">Parser</span><span class="p">:</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="c1"># RE patterns for tag extraction</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="n">LABEL_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\[(.*?)\]&quot;</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">PUNCTUATION_PATTERN</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;([.,\/#!$%\^&amp;\*;:</span><span class="si">{}</span><span class="s2">=\-_`~()&#39;</span><span class="se">\&quot;</span><span class="s2">’¿])&quot;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="c1"># initialise, first word/id tag is O (outside)</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>            <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="mi">0</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        <span class="p">}</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>            <span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>        <span class="p">}</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; CREATE TAGS &#39;&#39;&#39;</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="c1"># input : sentence, tagged sentence</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotated</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39; Create Dictionary of Identified Tags&#39;&#39;&#39;</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>        <span class="c1"># 1. set label B or I    </span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>        <span class="n">matches</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LABEL_PATTERN</span><span class="p">,</span> <span class="n">annotated</span><span class="p">)</span>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>        <span class="n">word_to_tag</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>        <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">matches</span><span class="p">:</span>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>            <span class="n">tag</span><span class="p">,</span> <span class="n">phrase</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; : &quot;</span><span class="p">)</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>            <span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> 
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>            <span class="n">word_to_tag</span><span class="p">[</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;B-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>            <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>                <span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;I-</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39; Tokenise Sentence &amp; add tags to not tagged words (O)&#39;&#39;&#39;</span>
+</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>
+</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>        <span class="c1"># 2. add token tag to main tag dictionary</span>
+</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>
+</span><span id="__span-5-50"><a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-5-51"><a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>        <span class="n">sentence</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION_PATTERN</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot; \1 &quot;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+</span><span id="__span-5-52"><a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+</span><span id="__span-5-53"><a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_to_tag</span><span class="p">:</span>
+</span><span id="__span-5-54"><a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+</span><span id="__span-5-55"><a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-5-56"><a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>                <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+</span><span id="__span-5-57"><a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__add_tag</span><span class="p">(</span><span class="n">word_to_tag</span><span class="p">[</span><span class="n">w</span><span class="p">])</span>
+</span><span id="__span-5-58"><a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>
+</span><span id="__span-5-59"><a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a>        <span class="k">return</span> <span class="n">tags</span>
+</span><span id="__span-5-60"><a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a>
+</span><span id="__span-5-61"><a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; TAG CONVERSION &#39;&#39;&#39;</span>
+</span><span id="__span-5-62"><a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a>
+</span><span id="__span-5-63"><a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a>    <span class="c1"># to word2id (tag_to_id)</span>
+</span><span id="__span-5-64"><a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a>    <span class="c1"># to id2word (id_to_tag)</span>
+</span><span id="__span-5-65"><a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a>
+</span><span id="__span-5-66"><a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a>    <span class="k">def</span> <span class="nf">__add_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-5-67"><a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a>        <span class="k">if</span> <span class="n">tag</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">:</span>
+</span><span id="__span-5-68"><a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a>            <span class="k">return</span>
+</span><span id="__span-5-69"><a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a>        <span class="n">id_</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">)</span>
+</span><span id="__span-5-70"><a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span> <span class="o">=</span> <span class="n">id_</span>
+</span><span id="__span-5-71"><a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">id_to_tag</span><span class="p">[</span><span class="n">id_</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+</span><span id="__span-5-72"><a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a>
+</span><span id="__span-5-73"><a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="w">        </span><span class="sd">&#39;&#39;&#39; Get Tag Number ID &#39;&#39;&#39;</span>
+</span><span id="__span-5-74"><a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a>        <span class="c1"># or just number id for token</span>
+</span><span id="__span-5-75"><a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a>
+</span><span id="__span-5-76"><a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-5-77"><a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tag_to_id</span><span class="p">[</span><span class="n">tag</span><span class="p">]</span>
+</span><span id="__span-5-78"><a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a>
+</span><span id="__span-5-79"><a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a><span class="w">    </span><span class="sd">&#39;&#39;&#39; Get Tag Token from Number ID&#39;&#39;&#39;</span>
+</span><span id="__span-5-80"><a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a>    <span class="c1"># given id get its token</span>
+</span><span id="__span-5-81"><a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a>
+</span><span id="__span-5-82"><a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a>    <span class="k">def</span> <span class="nf">get_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="__span-5-83"><a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tag_label</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="ner-models">NER Models<a class="headerlink" href="#ner-models" title="Permanent link">&para;</a></h2>
+<h3 id="training-ner-model">Training NER Model<a class="headerlink" href="#training-ner-model" title="Permanent link">&para;</a></h3>
 <p>We have an annotation parser <code>Parser</code>, now let's prepare the training loop. We read our dataset <code>df</code> and iterate over all rows in the dataset, tokenising the document &amp; storing it in <code>lst_data</code> and parse the annotated <code>annotated</code> column, creating <code>BIO</code> tags for words in the document <code>text</code>, which is stored in <code>lst_tags</code></p>
 <p>The output of preprocessed data <code>lst_data</code> will be a list of tokens in the whole corpus, and <code>lst_tags</code> will be its corresponding <code>BIO</code> tag.</p>
-<pre><code class="language-python"># import relevant libraries
-import pandas as pd    
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.feature_extraction.text import CountVectorizer
-
-# import our NER annotated documents
-parser = Parser()
-df = pd.read_csv('annot.csv')   # read dataframe
-
-# parse our NER tag data &amp; tokenise our text
-lst_data = []; lst_tags = []
-for ii,row in df.iterrows():
-    lst_data.extend(word_tokenize(row['question']))
-    lst_tags.extend(parser(row[&quot;question&quot;], row[&quot;annotated&quot;]))
-</code></pre>
-<pre><code>['Please', 'do', 'A', 'and', 'then', 'do', 'B', 'using', 'C', 'Do'] # lst_data
-['O', 'O', 'O', 'B-SPLIT', 'I-SPLIT', 'O', 'O', 'O', 'O', 'O']  # lst_tags
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># import relevant libraries</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>    
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># import our NER annotated documents</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">parser</span> <span class="o">=</span> <span class="n">Parser</span><span class="p">()</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;annot.csv&#39;</span><span class="p">)</span>   <span class="c1"># read dataframe</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># parse our NER tag data &amp; tokenise our text</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="n">lst_data</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">lst_tags</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="n">lst_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;question&#39;</span><span class="p">]))</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="n">lst_tags</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">parser</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;annotated&quot;</span><span class="p">]))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[&#39;Please&#39;, &#39;do&#39;, &#39;A&#39;, &#39;and&#39;, &#39;then&#39;, &#39;do&#39;, &#39;B&#39;, &#39;using&#39;, &#39;C&#39;, &#39;Do&#39;] # lst_data
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>[&#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;B-SPLIT&#39;, &#39;I-SPLIT&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;, &#39;O&#39;]  # lst_tags
+</span></code></pre></div>
 <p>The tokens are then converted into <code>BoW</code> vectors using <code>CountVectorizer</code>, which is then fed into the model <code>LogisticRegression</code>. <code>accuracy</code> will be used as an evaluation metric in order for us to compare the models. We'll also look at the <code>confusion matrix</code> to see which classes were actually miss predicted.</p>
-<pre><code class="language-python"># define encoder
-encoder = CountVectorizer()
-
-# fit the encoder on our corpus
-X = encoder.fit_transform(lst_data)
-y = np.array(lst_tags)
-
-# try our different models
-#model = LogisticRegression()
-model = RandomForestClassifier()
-
-# train model
-model.fit(X,y)
-y_pred = model.predict(X)
-print(f'accuracy: {round(accuracy_score(y_pred,y),3)}')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># define encoder</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">encoder</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># fit the encoder on our corpus</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">X</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">lst_data</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lst_tags</span><span class="p">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># try our different models</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1">#model = LogisticRegression()</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">()</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># train model</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;accuracy: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Our trained model performance:</p>
 <ul>
 <li><code>LogisticRegression</code> accuracy: 0.77</li>
 <li><code>RandomForestClassifier</code> accuracy: 0.808</li>
 </ul>
 <p><code>accuracy</code> doesn't really tell us the whole picture, since a model might be simply confusing <code>B</code> and <code>I</code> tags; for our problem is not that critical since we don't really need to distinguish them, let's review the <strong>classification_report</strong></p>
-<pre><code>              precision    recall  f1-score   support
-
-     B-SPLIT       0.77      0.33      0.47        30
-     I-SPLIT       0.88      0.60      0.71        25
-           O       0.80      0.99      0.89       106
-
-    accuracy                           0.81       161
-   macro avg       0.82      0.64      0.69       161
-weighted avg       0.81      0.81      0.78       161
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>              precision    recall  f1-score   support
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>     B-SPLIT       0.77      0.33      0.47        30
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>     I-SPLIT       0.88      0.60      0.71        25
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>           O       0.80      0.99      0.89       106
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    accuracy                           0.81       161
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>   macro avg       0.82      0.64      0.69       161
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>weighted avg       0.81      0.81      0.78       161
+</span></code></pre></div>
 <p>and <strong>confusion matrix</strong></p>
-<pre><code>[[ 10   2  18]  # class B-SPLIT
- [  2  15   8]  # class I-SPLIT
- [  1   0 105]] # class O
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>[[ 10   2  18]  # class B-SPLIT
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a> [  2  15   8]  # class I-SPLIT
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a> [  1   0 105]] # class O
+</span></code></pre></div>
 <p>Looks like we have a large ammount of misspredictions for tag <code>B-SPLIT</code>, with the recall being quite low (ie quite a few <code>B-SPLIT</code> are misspredicted), which is to be expected. classification accuracy is much higher when we have tags with multiple splitting words, these tend to be cases for <strong>transitional adverbs</strong>, so its quite nice that the model can identify such splitting locations quite well.</p>
-<h3 id="testing-ner-model">Testing NER model<a class="headerlink" href="#testing-ner-model" title="Permanent link"></a></h3>
+<h3 id="testing-ner-model">Testing NER model<a class="headerlink" href="#testing-ner-model" title="Permanent link">&para;</a></h3>
 <p>Different models can show different performance upon actual usage, so let's compare how both of them perform</p>
 <p>Our test example:</p>
 <blockquote>
 <p>'please do this and then do that, once done do that' <br></p>
 </blockquote>
 <p>Intuitively, we would want to split the sentence into three sections, let's see how our models perform:</p>
-<pre><code class="language-python"># test our model
-def ner_model(inputs):
-
-    tokens = word_tokenize(inputs)
-    y_pred_test = model.predict(encoder.transform(tokens))    
-    return pd.DataFrame({'word':tokens,'tag':y_pred_test})
-
-# test model on some samples
-to_tag = 'please do this and then do that, once done do that'
-
-# predict tags 
-pred_tags = ner_model(to_tag)
-print(pred_tags)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># test our model</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">def</span> <span class="nf">ner_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">):</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">y_pred_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>    
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;word&#39;</span><span class="p">:</span><span class="n">tokens</span><span class="p">,</span><span class="s1">&#39;tag&#39;</span><span class="p">:</span><span class="n">y_pred_test</span><span class="p">})</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># test model on some samples</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">to_tag</span> <span class="o">=</span> <span class="s1">&#39;please do this and then do that, once done do that&#39;</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># predict tags </span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">pred_tags</span> <span class="o">=</span> <span class="n">ner_model</span><span class="p">(</span><span class="n">to_tag</span><span class="p">)</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">pred_tags</span><span class="p">)</span>
+</span></code></pre></div>
 <p><code>LogisticRegression</code> prediction tags:</p>
-<pre><code>      word      tag
-0   please        O
-1       do        O
-2     this        O
-3      and  B-SPLIT
-4     then  I-SPLIT
-5       do        O
-6     that        O
-7        ,        O
-8     once        O
-9     done        O
-10      do        O
-11    that        O
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>      word      tag
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>0   please        O
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>1       do        O
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>2     this        O
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>3      and  B-SPLIT
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>4     then  I-SPLIT
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>5       do        O
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>6     that        O
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>7        ,        O
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>8     once        O
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>9     done        O
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>10      do        O
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>11    that        O
+</span></code></pre></div>
 <p><code>RandomForest</code> prediction tags:</p>
-<pre><code>      word      tag
-0   please        O
-1       do        O
-2     this        O
-3      and  B-SPLIT
-4     then  I-SPLIT
-5       do        O
-6     that        O
-7        ,        O
-8     once  I-SPLIT
-9     done  I-SPLIT
-10      do        O
-11    that        O
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>      word      tag
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>0   please        O
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>1       do        O
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>2     this        O
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>3      and  B-SPLIT
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>4     then  I-SPLIT
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>5       do        O
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>6     that        O
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>7        ,        O
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>8     once  I-SPLIT
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>9     done  I-SPLIT
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>10      do        O
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>11    that        O
+</span></code></pre></div>
 <p>We can see that <strong>model complexity</strong> indeed does play a role, as the linear model <code>LogisticRegression</code> wasn't able to identify the the second splitting tokens <code>once</code> <code>done</code>. <code>RandomForest</code> works better as a sentence splitting <code>ner</code> tagging model. Having identified the indicies of <code>ner</code> tags, it is quite straightforward to split the document into <code>word</code> &amp; divide it based on the model prediction tag condition </p>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h2>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>In this post we created a <code>NER</code> tagger, which identifies key words that we defined as <strong>sentence splitting words</strong>. Identificaiton of such words allows us to split a long paragraph into parts &amp; analyse or conduct further downstream tasks upon performing splits. We showed that <strong>sentence splitting</strong> can be defined as more than just splitting by punctuation like <code>.</code>, and since people often connect sentences using <strong>transitional adverbs</strong> and alike, <code>NER</code> tagging comes in handy to identify such "weaker" sentence splitters.</p>
 <p>We defined a class that allows us to create our own annotations (<code>ner_annotator</code>), a annotaion parser that allows us to interpret the annotations made by <code>ner_annotator</code>. We created a dataset that contained <code>text</code> and the relevant <code>ner</code> annotations <code>annotations</code>, which we used to train our <code>ner</code> tag model.</p>
 <p>As a result of our model testing, we saw that <code>RandomForest</code> performs quite well in comparison to simpler linear models. Overall, the created model can be utilised for weak sentence splitting</p>

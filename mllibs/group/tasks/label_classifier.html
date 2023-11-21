@@ -1892,11 +1892,11 @@
 
   <h1>Label Classification</h1>
 
-<h2 id="module-function-label-classifier"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9C12.04 2.21 11.53 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .53.21 1.04.59 1.41l.41.4c.9-.54 1.94-.81 3-.81 3.31 0 6 2.69 6 6 0 1.06-.28 2.09-.82 3l.4.4c.37.38.89.6 1.42.6s1.04-.21 1.41-.59l7-7c.38-.37.59-.88.59-1.41s-.21-1.04-.59-1.42M5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7m3.13 7.27-3.87 3.9-1.35-1.37L2 18.22 4.75 21l5.28-5.32-1.4-1.41"/></svg></span> <strong>Module Function Label Classifier</strong><a class="headerlink" href="#module-function-label-classifier" title="Permanent link"></a></h2>
+<h2 id="module-function-label-classifier"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.41 11.58-9-9C12.04 2.21 11.53 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .53.21 1.04.59 1.41l.41.4c.9-.54 1.94-.81 3-.81 3.31 0 6 2.69 6 6 0 1.06-.28 2.09-.82 3l.4.4c.37.38.89.6 1.42.6s1.04-.21 1.41-.59l7-7c.38-.37.59-.88.59-1.41s-.21-1.04-.59-1.42M5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7m3.13 7.27-3.87 3.9-1.35-1.37L2 18.22 4.75 21l5.28-5.32-1.4-1.41"/></svg></span> <strong>Module Function Label Classifier</strong><a class="headerlink" href="#module-function-label-classifier" title="Permanent link">&para;</a></h2>
 <p>Linking the input user requests to desired activation functions in integrated modules can be achieved using multiclass classification. </p>
-<h3 id="required-knowledge">Required Knowledge<a class="headerlink" href="#required-knowledge" title="Permanent link"></a></h3>
+<h3 id="required-knowledge">Required Knowledge<a class="headerlink" href="#required-knowledge" title="Permanent link">&para;</a></h3>
 <p>There is some required knowledge of the internals of the library</p>
-<h4 id="corpus">Corpus<a class="headerlink" href="#corpus" title="Permanent link"></a></h4>
+<h4 id="corpus">Corpus<a class="headerlink" href="#corpus" title="Permanent link">&para;</a></h4>
 <p>The dataset for each added module is located in <strong><a href="https://github.com/mllibs/mllibs/tree/main/src/mllibs/corpus"><code>src/corpus</code></a></strong></p>
 <details>
 <summary>Module corpus &amp; Module class relation</summary>
@@ -1908,23 +1908,23 @@
 <p>Example:</p>
 <p>Module class (<mark>eda_simple</mark>) is stored in <code>src/eda/meda_simple.py</code> &amp; its corpus is stored in <code>src/corpus/eda_simple.json</code></p>
 </details>
-<h4 id="nlpm">nlpm<a class="headerlink" href="#nlpm" title="Permanent link"></a></h4>
+<h4 id="nlpm">nlpm<a class="headerlink" href="#nlpm" title="Permanent link">&para;</a></h4>
 <p>The <mark><strong>nlpm</strong></mark> class has several functions, one of these is to <strong>assemble corpuses</strong> into a format used by the classifier. Each functionality module needs to be added into a single group &amp; given a corresponding label.</p>
-<h4 id="grouping-added-modules">Grouping Added Modules<a class="headerlink" href="#grouping-added-modules" title="Permanent link"></a></h4>
+<h4 id="grouping-added-modules">Grouping Added Modules<a class="headerlink" href="#grouping-added-modules" title="Permanent link">&para;</a></h4>
 <ul>
 <li>A <mark><strong>collection</strong></mark> (group of added modules) instance is first created</li>
 <li>Module instances are loaded are loaded via <mark><strong>collection.load()</strong></mark></li>
 <li>Classification model(s) are trained using <mark><strong>collection.train()</strong></mark></li>
 </ul>
-<pre><code class="language-python"># link all modules into one collection
-collection = nlpm()
-collection.load([
-                 eda_simple(),    # [eda] simple pandas EDA
-                 eda_splot(),     # [eda] standard seaborn plots
-                 eda_scplot(),    # [eda] seaborn column plots
-                ])
-collection.train()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># link all modules into one collection</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">collection</span> <span class="o">=</span> <span class="n">nlpm</span><span class="p">()</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">collection</span><span class="o">.</span><span class="n">load</span><span class="p">([</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                 <span class="n">eda_simple</span><span class="p">(),</span>    <span class="c1"># [eda] simple pandas EDA</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                 <span class="n">eda_splot</span><span class="p">(),</span>     <span class="c1"># [eda] standard seaborn plots</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                 <span class="n">eda_scplot</span><span class="p">(),</span>    <span class="c1"># [eda] seaborn column plots</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                <span class="p">])</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">collection</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</span></code></pre></div>
 <p>More detailed information about this process can be found on the <strong><code>nlpi</code></strong> documentation page</p>
 <p>**</p>
 

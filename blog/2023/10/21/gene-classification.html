@@ -2011,19 +2011,19 @@
   
 
 
-<h1 id="gene-classification"><strong>Gene Classification</strong><a class="headerlink" href="#gene-classification" title="Permanent link"></a></h1>
+<h1 id="gene-classification"><strong>Gene Classification</strong><a class="headerlink" href="#gene-classification" title="Permanent link">&para;</a></h1>
 <p>In this notebook, we look at how to work with biological sequence data, by venturing into a <strong>classification problem</strong>, in which we will be classifying between seven different <strong>genes groups</strong> common to three different species (human,chimpanzee &amp; dog)</p>
 <p><img alt="" src="../../../images/medgene.jpg" /></p>
 <!-- more -->
 
 <p><a href="https://colab.research.google.com/drive/1TU9_w1eWTsnObTKPKWNcR265EVUHmNWW?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Colab-yellow?logo=Google&amp;logoColor=FDBA18" /></a> <a href="https://www.kaggle.com/datasets/nageshsingh/dna-sequence-dataset"><img alt="name" src="https://img.shields.io/badge/Kaggle-Dataset-e589e5" /></a></p>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link"></a></h2>
-<h3 id="gene-classification-problem">Gene Classification Problem<a class="headerlink" href="#gene-classification-problem" title="Permanent link"></a></h3>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<h3 id="gene-classification-problem">Gene Classification Problem<a class="headerlink" href="#gene-classification-problem" title="Permanent link">&para;</a></h3>
 <p><strong>Gene classification</strong> using machine learning is the process of using algorithms and statistical models to analyze large datasets of genetic information and predict the function or characteristics of different genes. Machine learning techniques can be used to identify patterns in gene expression data, classify genes into different functional categories, or predict the likelihood of a gene being associated with a particular disease or phenotype. This approach can help researchers to better understand the complex relationships between genes, their functions, and their interactions with other biological systems.</p>
-<h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link"></a></h3>
+<h3 id="genes">Genes<a class="headerlink" href="#genes" title="Permanent link">&para;</a></h3>
 <p>The dataset that we'll be using contains the following <strong>gene classes</strong> for three different species, <strong>human</strong>, <strong>chimpanzee</strong> &amp; <strong>dog</strong>, it is added more as a reference for those interested in what each class represents in our data</p>
 <p><strong>Gene families</strong> are groups of related genes that share a common ancestor. Members of gene families may be paralogs or orthologs. Gene paralogs are genes with similar sequences from within the same species while gene orthologs are genes with similar sequences in different species.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">G Protein-Coupled Receptors</label><label for="__tabbed_1_2">Tyrosine Kinase</label><label for="__tabbed_1_3">Tyrosine Phosphatase</label><label for="__tabbed_1_4">Synthetase</label><label for="__tabbed_1_5">Synthase</label><label for="__tabbed_1_6">Ion Channel</label><label for="__tabbed_1_7">Transcription Factors</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="genes-g-protein-coupled-receptors" name="__tabbed_1" type="radio" /><input id="genes-tyrosine-kinase" name="__tabbed_1" type="radio" /><input id="genes-tyrosine-phosphatase" name="__tabbed_1" type="radio" /><input id="genes-synthetase" name="__tabbed_1" type="radio" /><input id="genes-synthase" name="__tabbed_1" type="radio" /><input id="genes-ion-channel" name="__tabbed_1" type="radio" /><input id="genes-transcription-factors" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="genes-g-protein-coupled-receptors">G Protein-Coupled Receptors</label><label for="genes-tyrosine-kinase">Tyrosine Kinase</label><label for="genes-tyrosine-phosphatase">Tyrosine Phosphatase</label><label for="genes-synthetase">Synthetase</label><label for="genes-synthase">Synthase</label><label for="genes-ion-channel">Ion Channel</label><label for="genes-transcription-factors">Transcription Factors</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The <strong>G protein-coupled receptors</strong> (GPCRs) gene family is a large and diverse group of genes that encode proteins involved in cellular signaling pathways. These receptors are located on the surface of cells and are activated by a wide range of ligands, including hormones, neurotransmitters, and environmental stimuli. GPCRs play critical roles in regulating many physiological processes, such as sensory perception, hormone secretion, and immune response. Dysregulation of GPCR signaling has been implicated in a variety of diseases, including cancer, diabetes, and cardiovascular disorders.</p>
@@ -2048,15 +2048,15 @@
 </div>
 </div>
 </div>
-<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link"></a></h2>
+<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h2>
 <p>We're loading three DNA datasets, our dataset is in the form of a <code>sequence</code> &amp; subsequent <strong>gene family</strong> label, <code>class</code></p>
-<pre><code class="language-python">import pandas as pd
-
-human_dna = pd.read_table('../input/dna-sequence-dataset/human.txt')
-chimp_dna = pd.read_table('../input/dna-sequence-dataset/chimpanzee.txt')
-dog_dna = pd.read_table('../input/dna-sequence-dataset/dog.txt')
-</code></pre>
-<h2 id="dna-encoding"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg></span> DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link"></a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">human_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/human.txt&#39;</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">chimp_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/chimpanzee.txt&#39;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">dog_dna</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;../input/dna-sequence-dataset/dog.txt&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="dna-encoding"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"/></svg></span> DNA Encoding<a class="headerlink" href="#dna-encoding" title="Permanent link">&para;</a></h2>
 <p>Biological sequences come in the format:</p>
 <blockquote>
 <p>GTGCCCAGGTTCAGTGAGTGACACAGGCAG</p>
@@ -2069,275 +2069,275 @@ dog_dna = pd.read_table('../input/dna-sequence-dataset/dog.txt')
 <li>DNA sequence as a “language”, known as <code>k-mer</code> counting</li>
 </ol>
 <p>So let us implement each of them and see which gives us the perfect input features.</p>
-<h3 id="encoding-sequences">Encoding Sequences<a class="headerlink" href="#encoding-sequences" title="Permanent link"></a></h3>
-<h4 id="1-ordinal-encoding">(1) Ordinal Encoding<a class="headerlink" href="#1-ordinal-encoding" title="Permanent link"></a></h4>
-<pre><code class="language-python"># encode list of strings
-def ordinal_encoder(my_array:list[str]):
-    integer_encoded = label_encoder.transform(my_array)
-    float_encoded = integer_encoded.astype(float)
-    float_encoded[float_encoded == 0] = 0.25 # A
-    float_encoded[float_encoded == 1] = 0.50 # C
-    float_encoded[float_encoded == 2] = 0.75 # G
-    float_encoded[float_encoded == 3] = 1.00 # T
-    float_encoded[float_encoded == 4] = 0.00 # anything else
-    return float_encoded
-
-# let’s try it out with a simple sequence
-seq_test = 'TTCAGCCAGTG'
-ordinal_encoder(lst_string(seq_test))
-</code></pre>
-<pre><code>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
-</code></pre>
+<h3 id="encoding-sequences">Encoding Sequences<a class="headerlink" href="#encoding-sequences" title="Permanent link">&para;</a></h3>
+<h4 id="1-ordinal-encoding">(1) Ordinal Encoding<a class="headerlink" href="#1-ordinal-encoding" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># encode list of strings</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">def</span> <span class="nf">ordinal_encoder</span><span class="p">(</span><span class="n">my_array</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">my_array</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">float_encoded</span> <span class="o">=</span> <span class="n">integer_encoded</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="c1"># A</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.50</span> <span class="c1"># C</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="c1"># G</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.00</span> <span class="c1"># T</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">float_encoded</span><span class="p">[</span><span class="n">float_encoded</span> <span class="o">==</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.00</span> <span class="c1"># anything else</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">float_encoded</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># let’s try it out with a simple sequence</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;TTCAGCCAGTG&#39;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">ordinal_encoder</span><span class="p">(</span><span class="n">lst_string</span><span class="p">(</span><span class="n">seq_test</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>array([1.  , 1.  , 0.5 , 0.25, 0.75, 0.5 , 0.5 , 0.25, 0.75, 1.  , 0.75])
+</span></code></pre></div>
 <p>One slight issue with such an approach is that if we have biological sequences of different length, we won't be able to concatenate them together without <strong>truncation</strong> or <strong>padding</strong></p>
-<h4 id="2-one-hot-encoding">(2) One-Hot Encoding<a class="headerlink" href="#2-one-hot-encoding" title="Permanent link"></a></h4>
+<h4 id="2-one-hot-encoding">(2) One-Hot Encoding<a class="headerlink" href="#2-one-hot-encoding" title="Permanent link">&para;</a></h4>
 <p>Another approach is to use one-hot encoding to represent the DNA sequence. For example, “ATGC” would become [0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0] vectors &amp; these one-hot encoded vectors are then concatenated into 2-dimensional arrays. Ie. each vector represents the presence or absence of a particular nucleotides in the sequence, the total length then becomes the total number of nucleotides x nucleotide absence/present vector.</p>
-<pre><code class="language-python">from sklearn.preprocessing import OneHotEncoder
-
-def ohe(seq_string:str):
-    seq_string = lst_string(seq_string)
-    int_encoded = label_encoder.transform(seq_string)
-    onehot_encoder = OneHotEncoder(sparse_output=True,dtype=int)
-    onehot_encoded = onehot_encoder.fit_transform(int_encoded[:,None])
-    return onehot_encoded.toarray()
-
-# let’s try it out with a simple sequence
-seq_test = 'GAATTCTCGAA'
-ohe(seq_test)
-</code></pre>
-<pre><code>array([[0, 0, 1, 0],
-       [1, 0, 0, 0],
-       [1, 0, 0, 0],
-       [0, 0, 0, 1],
-       [0, 0, 0, 1],
-       [0, 1, 0, 0],
-       [0, 0, 0, 1],
-       [0, 1, 0, 0],
-       [0, 0, 1, 0],
-       [1, 0, 0, 0],
-       [1, 0, 0, 0]])
-</code></pre>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span> <span class="nf">ohe</span><span class="p">(</span><span class="n">seq_string</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">seq_string</span> <span class="o">=</span> <span class="n">lst_string</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">int_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">seq_string</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">onehot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">onehot_encoded</span> <span class="o">=</span> <span class="n">onehot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">int_encoded</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="k">return</span> <span class="n">onehot_encoded</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># let’s try it out with a simple sequence</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">seq_test</span> <span class="o">=</span> <span class="s1">&#39;GAATTCTCGAA&#39;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">ohe</span><span class="p">(</span><span class="n">seq_test</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>array([[0, 0, 1, 0],
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>       [1, 0, 0, 0],
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>       [1, 0, 0, 0],
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>       [0, 0, 0, 1],
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>       [0, 0, 0, 1],
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>       [0, 1, 0, 0],
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>       [0, 0, 0, 1],
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>       [0, 1, 0, 0],
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>       [0, 0, 1, 0],
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>       [1, 0, 0, 0],
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>       [1, 0, 0, 0]])
+</span></code></pre></div></p>
 <p>The size of these matrices will be directly proptional to their total nucleotide count. If we have sequences of different length, we would need to resort to either <strong>padding</strong> or <strong>truncation</strong> again. If we had used <strong>unitigs</strong> as in <strong><a href="https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction">this notebooks</a></strong>, this problem would not exist</p>
-<h4 id="3-k-mer-counting">(3) K-MER Counting<a class="headerlink" href="#3-k-mer-counting" title="Permanent link"></a></h4>
+<h4 id="3-k-mer-counting">(3) K-MER Counting<a class="headerlink" href="#3-k-mer-counting" title="Permanent link">&para;</a></h4>
 <p>DNA and protein sequences can be seen as the language of life. The language encodes instructions as well as functions for the molecules that are found in all life forms. The sequence language resemblance continues with the genome as the book, subsequences (genes and gene families) are sentences and chapters, <strong>k-mers</strong> and <strong>peptides</strong> are words, and nucleotide bases and amino acids are the alphabets. Since the relationship seems so likely, it stands to reason that the natural language processing(NLP) should also implement the natural language of DNA and protein sequences.</p>
 <p>The method we use here is manageable and easy. We first take the long biological sequence and break it down into k-mer length overlapping “words”. For example, if we use “words” of length 6 (hexamers), “ATGCATGCA” becomes: ‘ATGCAT’, ‘TGCATG’, ‘GCATGC’, ‘CATGCA’. Hence our example sequence is broken down into 4 hexamer words.</p>
-<pre><code class="language-python">def kmers_count(seq:str, size:int) -&gt; list:
-    return [seq[x:x+size].lower() for x in range(len(seq) - size + 1)]
-
-# let’s try it out with a simple sequence
-mySeq = 'GTGCCCAGGTTCAGTGAGTGACACAGGCAG'
-kmers_count(mySeq, size=7)
-</code></pre>
-<pre><code>['gtgccc',
- 'tgccca',
- 'gcccag',
- 'cccagg',
- 'ccaggt',
- 'caggtt',
- 'aggttc',
- 'ggttca',
- 'gttcag',
- 'ttcagt',
- 'tcagtg',
- 'cagtga',
- 'agtgag',
- 'gtgagt',
- 'tgagtg',
- 'gagtga',
- 'agtgac',
- 'gtgaca',
- 'tgacac',
- 'gacaca',
- 'acacag',
- 'cacagg',
- 'acaggc',
- 'caggca',
- 'aggcag']
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># let’s try it out with a simple sequence</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">mySeq</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[&#39;gtgccc&#39;,
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a> &#39;tgccca&#39;,
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a> &#39;gcccag&#39;,
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a> &#39;cccagg&#39;,
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a> &#39;ccaggt&#39;,
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a> &#39;caggtt&#39;,
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a> &#39;aggttc&#39;,
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a> &#39;ggttca&#39;,
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a> &#39;gttcag&#39;,
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a> &#39;ttcagt&#39;,
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a> &#39;tcagtg&#39;,
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a> &#39;cagtga&#39;,
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a> &#39;agtgag&#39;,
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a> &#39;gtgagt&#39;,
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a> &#39;tgagtg&#39;,
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a> &#39;gagtga&#39;,
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a> &#39;agtgac&#39;,
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a> &#39;gtgaca&#39;,
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a> &#39;tgacac&#39;,
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a> &#39;gacaca&#39;,
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a> &#39;acacag&#39;,
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a> &#39;cacagg&#39;,
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a> &#39;acaggc&#39;,
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a> &#39;caggca&#39;,
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a> &#39;aggcag&#39;]
+</span></code></pre></div>
 <p><code>kmers_count</code> returns a list of sequences (<code>k-mer</code> words), which then can be joined together into a single <code>string</code>. Once we have this split, we can use <strong>NLP</strong> encoding/embedding methods (eg. <code>CountVectorizer</code>) to generate numerical representations of these <code>k-mer</code> words</p>
-<pre><code class="language-python">joined_sentence = ' '.join(words)
-joined_sentence
-</code></pre>
-<pre><code>'gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag'
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">joined_sentence</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">joined_sentence</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>&#39;gtgccc tgccca gcccag cccagg ccaggt caggtt aggttc ggttca gttcag ttcagt tcagtg cagtga agtgag gtgagt tgagtg gagtga agtgac gtgaca tgacac gacaca acacag cacagg acaggc caggca aggcag&#39;
+</span></code></pre></div>
 <p>Having a "corpus" of sequences &amp; their labels, we need to merge them together into a single array, for example if we only have two sequences, <strong>even of different length</strong>:</p>
-<pre><code class="language-python">mySeq1 = 'TCTCACACATGTGCCAATCACTGTCACCC'
-mySeq2 = 'GTGCCCAGGTTCAGTGAGTGACACAGGCAG'
-sentence1 = ' '.join(kmers_count(mySeq1, size=6))
-sentence2 = ' '.join(kmers_count(mySeq2, size=6))
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">mySeq1</span> <span class="o">=</span> <span class="s1">&#39;TCTCACACATGTGCCAATCACTGTCACCC&#39;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">mySeq2</span> <span class="o">=</span> <span class="s1">&#39;GTGCCCAGGTTCAGTGAGTGACACAGGCAG&#39;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">sentence1</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">sentence2</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">kmers_count</span><span class="p">(</span><span class="n">mySeq2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">))</span>
+</span></code></pre></div>
 <p>Fitting a <strong>Bag of Words</strong> model, we generate a fixed dictionary size of <code>kmers</code>, thus all data will have a dimensionality proportional to the dictionary count. Similar to <strong>OHE</strong>, the content will be (1/0), corresponding to either being present in the string or not.</p>
-<pre><code class="language-python"># Creating the Bag of Words model:
-from sklearn.feature_extraction.text import CountVectorizer
-
-cv = CountVectorizer()
-X = cv.fit_transform([sentence1, sentence2]).toarray()
-</code></pre>
-<pre><code>array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
-        0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0,
-        1, 0, 1, 1, 0],
-       [0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0,
-        1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1,
-        0, 1, 0, 0, 1]])
-</code></pre>
-<h4 id="choice-of-encoding">Choice of Encoding<a class="headerlink" href="#choice-of-encoding" title="Permanent link"></a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Creating the Bag of Words model:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">X</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">sentence1</span><span class="p">,</span> <span class="n">sentence2</span><span class="p">])</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>array([[1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1,
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>        0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0,
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        1, 0, 1, 1, 0],
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>       [0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0,
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1,
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        0, 1, 0, 0, 1]])
+</span></code></pre></div>
+<h4 id="choice-of-encoding">Choice of Encoding<a class="headerlink" href="#choice-of-encoding" title="Permanent link">&para;</a></h4>
 <p>For <strong>DNA</strong> sequence classification methods, its more logical to utilise the <code>kmers</code> approach since <code>kmers</code> are commonly used in sequence analysis and genome assembly, as they can provide information about the composition and structure of the sequence. Which is on top of the non uniform sequence length issue addessed above.</p>
-<h2 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link"></a></h2>
+<h2 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h2>
 <p>Our objective is to train a <strong>classification model</strong> that is trained on the human DNA sequence and can predict a gene family based on the DNA sequence of the coding sequence. To test the model, we will use the DNA sequence of humans, dogs, and chimpanzees and compare model accuracies.</p>
-<h2 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link"></a></h2>
+<h2 id="preprocessing">Preprocessing<a class="headerlink" href="#preprocessing" title="Permanent link">&para;</a></h2>
 <p>Having already loaded our dataset &amp; define our problem statement, lets create prepare our dataset for training, we'll simply using the <code>apply</code> method &amp; store the list of <strong>kmers</strong> in our dataframe</p>
-<pre><code class="language-python">def kmers_count(seq:str, size:int) -&gt; list:
-    return [seq[x:x+size].lower() for x in range(len(seq) - size + 1)]
-
-human_dna['kmers'] = human_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
-human_dna = human_dna.drop('sequence', axis=1)
-
-chimp_dna['kmers'] = chimp_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
-chimp_dna = chimp_dna.drop('sequence', axis=1)
-
-dog_dna['kmers'] = dog_dna.apply(lambda x: kmers_count(x['sequence']), axis=1)
-dog_dna = dog_dna.drop('sequence', axis=1)
-</code></pre>
-<pre><code>     class     words
-0    4    [atgccc, tgcccc, gcccca, ccccaa, cccaac, ccaac...
-1    4    [atgaac, tgaacg, gaacga, aacgaa, acgaaa, cgaaa...
-2    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
-3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
-4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
-</code></pre>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">def</span> <span class="nf">kmers_count</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="k">return</span> <span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">human_dna</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">chimp_dna</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">kmers_count</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="n">dog_dna</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>     class     words
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>0    4    [atgccc, tgcccc, gcccca, ccccaa, cccaac, ccaac...
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>1    4    [atgaac, tgaacg, gaacga, aacgaa, acgaaa, cgaaa...
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>2    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>3    3    [atgtgt, tgtgtg, gtgtgg, tgtggc, gtggca, tggca...
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>4    3    [atgcaa, tgcaac, gcaaca, caacag, aacagc, acagc...
+</span></code></pre></div></p>
 <p>Let's create a list containg the <strong>kmers</strong> string for each row in the dataset (which can simply be using with <code>fit</code> in <code>CountVectorizer</code>) like we did in the example &amp; its related label:</p>
-<pre><code class="language-python">human_texts = list(human_dna['kmers'])
-for item in range(len(human_texts)):
-    human_texts[item] = ' '.join(human_texts[item])
-#separate labels
-y_human = human_dna.iloc[:, 0].values # y_human for human_dna
-
-chimp_texts = list(chimp_dna['kmers'])
-for item in range(len(chimp_texts)):
-    chimp_texts[item] = ' '.join(chimp_texts[item])
-#separate labels
-y_chim = chimp_dna.iloc[:, 0].values # y_chim for chimp_dna
-
-dog_texts = list(dog_dna['kmers'])
-for item in range(len(dog_texts)):
-    dog_texts[item] = ' '.join(dog_texts[item])
-#separate labels
-y_dog = dog_dna.iloc[:, 0].values  # y_dog for dog_dna
-</code></pre>
-<pre><code class="language-python">human_texts[0]
-</code></pre>
-<pre><code>'atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag'
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">human_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">human_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)):</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">human_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1">#separate labels</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="n">y_human</span> <span class="o">=</span> <span class="n">human_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_human for human_dna</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="n">chimp_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chimp_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)):</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1">#separate labels</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">y_chim</span> <span class="o">=</span> <span class="n">chimp_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># y_chim for chimp_dna</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="n">dog_texts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dog_dna</span><span class="p">[</span><span class="s1">&#39;kmers&#39;</span><span class="p">])</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)):</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">[</span><span class="n">item</span><span class="p">])</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="c1">#separate labels</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="n">y_dog</span> <span class="o">=</span> <span class="n">dog_dna</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>  <span class="c1"># y_dog for dog_dna</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">human_texts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>&#39;atgccc tgcccc gcccca ccccaa cccaac ccaact caacta aactaa actaaa ctaaat taaata aaatac aatact atacta tactac actacc ctaccg taccgt accgta ccgtat cgtatg gtatgg tatggc atggcc tggccc ggccca gcccac cccacc ccacca caccat accata ccataa cataat ataatt taatta aattac attacc ttaccc tacccc accccc ccccca ccccat cccata ccatac catact atactc tactcc actcct ctcctt tcctta ccttac cttaca ttacac tacact acacta cactat actatt ctattc tattcc attcct ttcctc tcctca cctcat ctcatc tcatca catcac atcacc tcaccc caccca acccaa cccaac ccaact caacta aactaa actaaa ctaaaa taaaaa aaaaat aaaata aaatat aatatt atatta tattaa attaaa ttaaac taaaca aaacac aacaca acacaa cacaaa acaaac caaact aaacta aactac actacc ctacca taccac accacc ccacct caccta acctac cctacc ctacct tacctc acctcc cctccc ctccct tccctc ccctca cctcac ctcacc tcacca caccaa accaaa ccaaag caaagc aaagcc aagccc agccca gcccat cccata ccataa cataaa ataaaa taaaaa aaaaat aaaata aaataa aataaa ataaaa taaaaa aaaaaa aaaaat aaaatt aaatta aattat attata ttataa tataac ataaca taacaa aacaaa acaaac caaacc aaaccc aaccct accctg ccctga cctgag ctgaga tgagaa gagaac agaacc gaacca aaccaa accaaa ccaaaa caaaat aaaatg aaatga aatgaa atgaac tgaacg gaacga aacgaa acgaaa cgaaaa gaaaat aaaatc aaatct aatctg atctgt tctgtt ctgttc tgttcg gttcgc ttcgct tcgctt cgcttc gcttca cttcat ttcatt tcattc cattca attcat ttcatt tcattg cattgc attgcc ttgccc tgcccc gccccc ccccca ccccac cccaca ccacaa cacaat acaatc caatcc aatcct atccta tcctag&#39;
+</span></code></pre></div>
 <p><code>CountVectorizer</code> allows us to control groupings of these kmers, lets use <code>ngram_range</code> of 4. We'll call <code>fit</code> on the human dataset &amp; <code>transform</code> all datasets:</p>
-<pre><code class="language-python">from sklearn.feature_extraction.text import CountVectorizer
-vectoriser = CountVectorizer(ngram_range=(4,4)) #The n-gram size of 4 is previously determined 
-
-# fit &amp; transform
-X = vectoriser.fit_transform(human_texts)
-X_chimp = vectoriser.transform(chimp_texts)
-X_dog = vectoriser.transform(dog_texts)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">vectoriser</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="c1">#The n-gram size of 4 is previously determined </span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># fit &amp; transform</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">X</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">human_texts</span><span class="p">)</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="n">X_chimp</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">chimp_texts</span><span class="p">)</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="n">X_dog</span> <span class="o">=</span> <span class="n">vectoriser</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dog_texts</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This will give us the following dataset size, our dictionary for <code>ngram=4</code> gives us 232414 features for our model:</p>
-<pre><code class="language-python">print(X.shape)
-print(X_chimp.shape)
-print(X_dog.shape)
-</code></pre>
-<pre><code>(4380, 232414)
-(1682, 232414)
-(820, 232414)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">X_chimp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">X_dog</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>(4380, 232414)
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>(1682, 232414)
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>(820, 232414)
+</span></code></pre></div>
 <p>So, for humans we have 4380 genes converted into <strong>uniform length feature vectors of 4-gram k-mer</strong> (length 6) counts. For chimpanzee and dogs, we have the same number of features with 1682 and 820 genes respectively since we <code>fit</code> on the human dataset.</p>
-<h2 id="training-model">Training Model<a class="headerlink" href="#training-model" title="Permanent link"></a></h2>
+<h2 id="training-model">Training Model<a class="headerlink" href="#training-model" title="Permanent link">&para;</a></h2>
 <p>So now that we know how to transform our DNA sequences into uniform length numerical vectors in the form of k-mer counts and ngrams, we can now go ahead and build a classification model that can predict the DNA sequence function based only on the sequence itself.</p>
 <p>Here we will use the human data to train the model, <strong>holding out 20%</strong> of the human data to test/evaluation the model. Then we can challenge the model’s generalizability by trying to predict sequence function in other species (the chimpanzee and dog).</p>
 <p>Next, train/test split human dataset and build simple multinomial <strong>naive Bayes classifier</strong></p>
-<pre><code class="language-python"># Splitting the human dataset into the training set and test set
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, 
-                                                    y_human, 
-                                                    test_size = 0.20, 
-                                                    random_state=42)
-</code></pre>
-<pre><code class="language-python">from sklearn.naive_bayes import MultinomialNB
-classifier = MultinomialNB(alpha=0.1)
-classifier.fit(X_train, y_train)
-</code></pre>
-<h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link"></a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Splitting the human dataset into the training set and test set</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> 
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>                                                    <span class="n">y_human</span><span class="p">,</span> 
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>                                                    <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.20</span><span class="p">,</span> 
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">classifier</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h2>
 <p>For evaluation, we'll be checking the <strong>confusion matrix</strong> as well as some other metrics like <strong>f1_score</strong> for three different subsets of generalisation data:</p>
-<h3 id="human-dataset-prediction">Human Dataset Prediction<a class="headerlink" href="#human-dataset-prediction" title="Permanent link"></a></h3>
+<h3 id="human-dataset-prediction">Human Dataset Prediction<a class="headerlink" href="#human-dataset-prediction" title="Permanent link">&para;</a></h3>
 <p>Let's check how well our model performs on the hold out human dataset:</p>
-<pre><code class="language-python">from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-
-print(pd.crosstab(pd.Series(y_test, name='Actual'), pd.Series(y_pred, name='Predicted')))
-def get_metrics(y_test, y_predicted):
-    accuracy = accuracy_score(y_test, y_predicted)
-    precision = precision_score(y_test, y_predicted, average='weighted')
-    recall = recall_score(y_test, y_predicted, average='weighted')
-    f1 = f1_score(y_test, y_predicted, average='weighted')
-    return accuracy, precision, recall, f1
-accuracy, precision, recall, f1 = get_metrics(y_test, y_pred)
-print(&quot;accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f&quot; % (accuracy, precision, recall, f1))
-</code></pre>
-<pre><code>Confusion matrix for predictions on human test DNA sequence
-
-Predicted   0    1   2    3    4   5    6
-Actual                                   
-0          99    0   0    0    1   0    2
-1           0  104   0    0    0   0    2
-2           0    0  78    0    0   0    0
-3           0    0   0  124    0   0    1
-4           1    0   0    0  143   0    5
-5           0    0   0    0    0  51    0
-6           1    0   0    1    0   0  263
-accuracy = 0.984 
-precision = 0.984 
-recall = 0.984 
-f1 = 0.984
-</code></pre>
-<h3 id="chimpanzee-dataset-prediction">Chimpanzee Dataset Prediction<a class="headerlink" href="#chimpanzee-dataset-prediction" title="Permanent link"></a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">):</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">)</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Confusion matrix for predictions on human test DNA sequence
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Predicted   0    1   2    3    4   5    6
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>Actual                                   
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>0          99    0   0    0    1   0    2
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>1           0  104   0    0    0   0    2
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>2           0    0  78    0    0   0    0
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>3           0    0   0  124    0   0    1
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>4           1    0   0    0  143   0    5
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>5           0    0   0    0    0  51    0
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>6           1    0   0    1    0   0  263
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>accuracy = 0.984 
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>precision = 0.984 
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>recall = 0.984 
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>f1 = 0.984
+</span></code></pre></div>
+<h3 id="chimpanzee-dataset-prediction">Chimpanzee Dataset Prediction<a class="headerlink" href="#chimpanzee-dataset-prediction" title="Permanent link">&para;</a></h3>
 <p>Let's check how well the model performs on the chimpanzee dataset:</p>
-<pre><code class="language-python">print(pd.crosstab(pd.Series(y_chim, name='Actual'), pd.Series(y_pred_chimp, name='Predicted')))
-accuracy, precision, recall, f1 = get_metrics(y_chim, y_pred_chimp)
-print(&quot;accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f&quot; % (accuracy, precision, recall, f1))
-</code></pre>
-<pre><code>Confusion matrix for predictions on Chimpanzee test DNA sequence
-
-Predicted    0    1    2    3    4    5    6
-Actual                                      
-0          232    0    0    0    0    0    2
-1            0  184    0    0    0    0    1
-2            0    0  144    0    0    0    0
-3            0    0    0  227    0    0    1
-4            2    0    0    0  254    0    5
-5            0    0    0    0    0  109    0
-6            0    0    0    0    0    0  521
-accuracy = 0.993 
-precision = 0.994 
-recall = 0.993 
-f1 = 0.993
-</code></pre>
-<h3 id="dog-dataset-prediction">Dog Dataset Prediction<a class="headerlink" href="#dog-dataset-prediction" title="Permanent link"></a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_chim</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_chimp</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_chim</span><span class="p">,</span> <span class="n">y_pred_chimp</span><span class="p">)</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Confusion matrix for predictions on Chimpanzee test DNA sequence
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>Predicted    0    1    2    3    4    5    6
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>Actual                                      
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>0          232    0    0    0    0    0    2
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>1            0  184    0    0    0    0    1
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>2            0    0  144    0    0    0    0
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>3            0    0    0  227    0    0    1
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>4            2    0    0    0  254    0    5
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>5            0    0    0    0    0  109    0
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>6            0    0    0    0    0    0  521
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>accuracy = 0.993 
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>precision = 0.994 
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>recall = 0.993 
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>f1 = 0.993
+</span></code></pre></div>
+<h3 id="dog-dataset-prediction">Dog Dataset Prediction<a class="headerlink" href="#dog-dataset-prediction" title="Permanent link">&para;</a></h3>
 <p>Let's check the classification performance on the dog test dataset:</p>
-<pre><code class="language-python">print(pd.crosstab(pd.Series(y_dog, name='Actual'), pd.Series(y_pred_dog, name='Predicted')))
-accuracy, precision, recall, f1 = get_metrics(y_dog, y_pred_dog)
-print(&quot;accuracy = %.3f \nprecision = %.3f \nrecall = %.3f \nf1 = %.3f&quot; % (accuracy, precision, recall, f1))
-</code></pre>
-<pre><code>Predicted    0   1   2   3    4   5    6
-Actual                                  
-0          127   0   0   0    0   0    4
-1            0  63   0   0    1   0   11
-2            0   0  49   0    1   0   14
-3            1   0   0  81    2   0   11
-4            4   0   0   1  126   0    4
-5            4   0   0   0    1  53    2
-6            0   0   0   0    0   0  260
-accuracy = 0.926 
-precision = 0.934 
-recall = 0.926 
-f1 = 0.925
-</code></pre>
-<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link"></a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_dog</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Actual&#39;</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_pred_dog</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)))</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">y_dog</span><span class="p">,</span> <span class="n">y_pred_dog</span><span class="p">)</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;accuracy = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">precision = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">recall = </span><span class="si">%.3f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">f1 = </span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Predicted    0   1   2   3    4   5    6
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>Actual                                  
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>0          127   0   0   0    0   0    4
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>1            0  63   0   0    1   0   11
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>2            0   0  49   0    1   0   14
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>3            1   0   0  81    2   0   11
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>4            4   0   0   1  126   0    4
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>5            4   0   0   0    1  53    2
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>6            0   0   0   0    0   0  260
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>accuracy = 0.926 
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>precision = 0.934 
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>recall = 0.926 
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>f1 = 0.925
+</span></code></pre></div>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
 <p>For all gene family data, the model is able to produce good results. It also does on Chimpanzee which is because the chimpanzee and humans share the same genetic hierarchy structure. However, the performance on the dog dataset (in comparison) was not quite as good, probably because dogs and human share less common genes.</p>
-<h2 id="concluding-remarks">Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permanent link"></a></h2>
+<h2 id="concluding-remarks">Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permanent link">&para;</a></h2>
 <p>In this post we looked at an interesting machine learning applicaiton in the field of bioinformatics. We started with a marked dataset for three difference species, containing labelled gene classes of DNA segments extracted from the genome of these species. </p>
 <p>Our goal was to create a machine learning model that was able to classify input DNA segments into one of the specified classes. For this we utilised a <strong>kmer</strong> preprocessing approach. This preprocessing step probably was the most difficult part of the entire project:</p>
 <ul>

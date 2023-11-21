@@ -86,12 +86,10 @@ Once we have parsed and created our dataset, we look at creating a **sentiment m
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>mllibs</b>
 
-<center>
 ![Image title](images/mllibs_c_nob.png#only-light){ width="400" }
 ![Image title](images/mllibs_wnb.png#only-dark){ width="400" }
 
 [![name](https://img.shields.io/badge/mllibs-Repository-blue?logo=GitHub)](https://github.com/mllibs) [![name](https://img.shields.io/badge/mllibs-Documentation-orange?logo=GitHub)](https://www.mllibs-docs.github.io)
-</center>
 
 **mllibs** is a project aimed to automate various processes using text commands. Development of such helper modules are motivated by the fact that everyones understanding of coding & subject matter (ML in this case) may be different. Often we see people create functions and classes to simplify the process of **code automation** (which is good practice)
 Likewise, NLP based interpreters follow this trend as well, except, in this case our only inputs for activating certain code is natural language. Using python, we can interpret natural language in the form of string type data, using natural langauge interpreters
@@ -104,12 +102,10 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>OTUS NLP Course Work</b>
 
-<center>
 ![Image title](images/otus_b.PNG#only-light){ width="400" }
 ![Image title](images/otus_w.PNG#only-dark){ width="400" }
 
 [![name](https://img.shields.io/badge/course-website-blue)](https://otus.ru/lessons/nlp/) [![name](https://img.shields.io/badge/course-repository-orange?logo=GitHub)](https://github.com/shtrausslearning/otus_nlp_course)
-</center>
 
 Natural language course related work on a variety of **Natural Language Processing** topics
 

@@ -13,6 +13,9 @@ comments: true
 
 # **Prediction of Product Stock Levels**
 
+In this project, we work with a client **Gala Groceries**, who has contacted **Cognizant** for logistics advice about **product storage**. Specifically, they are interested in wanting to know **how better stock the items that they sell**. Our role is to take on this project as a data scientist and understand what the client actually needs. This will result in the formulation/confirmation of a new project statement, in which we will be focusing on **predicting stock levels of products**. Such a model would enable the client to estimate their product stock levels at a given time & make subsequent business decisions in a more effective manner reducing understocking and overstocking losses.
+
+![](images/cognizant_id.jpg)
 
 <!-- more -->
 
@@ -23,7 +26,7 @@ comments: true
 
 ### **Project Statement**
 
-In this project, we aim to help **Gala Groceries** who have approached **Cognizant** to help them with supply chain issues. Specifically, ==**they are interested in wanting to know how better stock the items that they sell**==
+In this project, we aim to help **Gala Groceries** who have approached **Cognizant** to help them with supply chain issues. Specifically, **they are interested in wanting to know how better stock the items that they sell**
 
 > Can we accurately predict the stock levels of products based on sales data and sensor data on an hourly basis in order to more intelligently procure products from our suppliers?” 
 
@@ -69,11 +72,19 @@ Lets define a plan as to how we'll use the data to solve the problem statement t
 
 ![](images/path.png)
 
-## **Baseline Model Iteration**
+## **Project Iterations**
+
+### :octicons-git-compare-16: **Baseline Model Iteration**
 
 Modeling is an **iterative process**, let's begin with a **general baseline**, upon which we will try to improve, by considering a much larger range of preprocessing & model options. As defined in the **strategic plan**, we will go through most of the steps, however we'll keep things a little more simple at first, and do more testing in subsequent iterations.
 
-### **Datasets**
+### :octicons-git-compare-16: **Model Investigation Iteration**
+
+
+
+## :octicons-git-compare-16: **Baseline Model Iteration**
+
+### **1 | Datasets**
 
 Samples from the **three datasets** are defined above can be visualised below:
 
@@ -113,7 +124,7 @@ Samples from the **three datasets** are defined above can be visualised below:
 +--------------------+-------------------+-----------+
 ```
 
-### **Preprocessing**
+### **2 | Preprocessing**
 
 #### Converting to datetime
 
@@ -131,7 +142,7 @@ stock_df = convert_to_datetime(stock_df, 'timestamp')
 temp_df = convert_to_datetime(temp_df, 'timestamp')
 ```
 
-#### Converting to datetime
+#### :octicons-star-16: Converting to datetime
 
 If we revisit the problem statement: 
 
@@ -141,8 +152,8 @@ on an hourly basis in order to more intelligently procure products from our supp
 ```
 
 - The client indicates that they want the model to **predict on an hourly basis**. 
--Looking at the data model, we can see that only column that we can use to merge the 3 datasets together is `timestamp`
-- So, we must first transform the `timestamp` column in all 3 datasets to be based on the **hour of the day**, then we can merge the datasets together
+- Looking at the data model, we can see that only column that we can use to merge the 3 datasets together is **timestamp**
+- So, we must first transform the **timestamp** column in all 3 datasets to be based on the **hour of the day**, then we can merge the datasets together
 
 ```python
 from datetime import datetime
@@ -270,7 +281,7 @@ merged_df.head()
 +-------------------+--------------------+-------------------+--------+--------------------+-------------+------------+------------+----------+
 ```
 
-### **Feature Engineering**
+### **3 | Feature Engineering**
 
 #### :material-numeric-1-box-multiple-outline: **Time based features**
 
@@ -281,6 +292,18 @@ merged_df['day'] = merged_df['timestamp'].dt.day
 merged_df['dow'] = merged_df['timestamp'].dt.dayofweek
 merged_df['hour'] = merged_df['timestamp'].dt.hour
 merged_df.drop(columns=['timestamp'], inplace=True)
+```
+
+```
++--------------------+-------------------+--------+--------------------+-------------+----------+---+---+----+
+|          product_id|estimated_stock_pct|quantity|         temperature|     category|unit_price|day|dow|hour|
++--------------------+-------------------+--------+--------------------+-------------+----------+---+---+----+
+|00e120bb-89d6-4df...|               0.89|     3.0|-0.02884984025559...|      kitchen|     11.19|  1|  1|   9|
+|01f3cdd9-8e9e-4df...|               0.14|     3.0|-0.02884984025559...|   vegetables|      1.49|  1|  1|   9|
+|01ff0803-ae73-423...|               0.67|     0.0|-0.02884984025559...|baby products|     14.19|  1|  1|   9|
+|0363eb21-8c74-47e...|               0.82|     0.0|-0.02884984025559...|    beverages|     20.19|  1|  1|   9|
+|03f0b20e-3b5b-444...|               0.05|     0.0|-0.02884984025559...|         pets|      8.19|  1|  1|   9|
++--------------------+-------------------+--------+--------------------+-------------+----------+---+---+----+
 ```
 
 #### :material-numeric-2-box-multiple-outline: **One-Hot Encoding**
@@ -333,7 +356,9 @@ dtypes: datetime64[ns](1), float64(4), int64(3), object(1), uint8(22)
 memory usage: 1.1+ MB
 ```
 
-### **Modeling**
+Okay, now that we have assembled our dataset, lets understand what we are actually modeling; our aim is to train a model that will be able to 
+
+###  **4 | Modeling**
 
 Time to do some modeling! `estimated_stock_pct` is our target variable.
 
@@ -394,7 +419,7 @@ Average MAE: 0.24
 
 We can see that the mean absolute error (**MAE**) is almost exactly the same each time, averaged to **0.24**. This is a good sign, it shows that the **performance of the model is consistent across different random samples** of the data, which is what we want. In other words, it shows a robust nature.
 
-The MAE was chosen as a performance metric because it describes how closely the machine learning model was able to predict the exact value of estimated_stock_pct
+**MAE** was chosen as a performance metric because it describes how closely the machine learning model was able to predict the exact value of **estimated_stock_pct**
 
 Even though the model is predicting robustly, this value for MAE is not so good, since the **average value of the target variable is around 0.51**, meaning that the accuracy as a percentage was around 50%. In an ideal world, we would want the MAE to be as low as possible.
 
@@ -416,4 +441,13 @@ px.bar(ldf,x='feature',y='importance',template='plotly_white',height=300,width=7
 ```
 
 ![](images/fi_loop1.png)
+
+
+## **II. Model Investigation Iteration**
+
+***
+
+Not a bad start start, however the client won't be satisfied with a model that performs this poorly, we need to make at least explore how well this model performs compared to other models for a start. We also need to spend more time on **data preparation**
+
+
 

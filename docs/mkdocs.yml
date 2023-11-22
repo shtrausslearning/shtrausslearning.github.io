@@ -75,7 +75,6 @@ theme:
         - navigation.expand
         - navigation.tracking
         - navigation.tabs
-        - navigation.top
         - content.tabs.link
 
 
@@ -88,7 +87,7 @@ theme:
         icon: material/toggle-switch
         name: Switch to dark mode
     - scheme: slate
-      primary: black
+      primary: indigo
       accent: indigo
       toggle:
         icon: material/toggle-switch-off-outline

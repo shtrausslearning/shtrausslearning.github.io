@@ -76,13 +76,28 @@ Lets define a plan as to how we'll use the data to solve the problem statement t
 
 ### :octicons-git-compare-16: **Baseline Model Iteration**
 
-Modeling is an **iterative process**, let's begin with a **general baseline**, upon which we will try to improve, by considering a much larger range of preprocessing & model options. As defined in the **strategic plan**, we will go through most of the steps, however we'll keep things a little more simple at first, and do more testing in subsequent iterations.
+!!! info "asda"
+
+    Modeling is an **iterative process**, let's begin with a **general baseline**, upon which we will try to improve, by considering a much larger range of preprocessing & model options. As defined in the **strategic plan**, we will go through most of the steps, however we'll keep things a little more simple at first, and do more testing in subsequent iterations. 
+
+    - **Preprocessing**: Filling NaN, Adding Date Features, Adding one-hot-encoding of **category**
+    - **Modeling**: **RandomForest** with default hyperparameters, we test **10 random splits** and average **the MAE**
 
 ### :octicons-git-compare-16: **Model Investigation Iteration**
 
+!!! info
 
+    Having a baseline, lets focus some attention to **feature transformations** as they can impact model accuracy. We'll also pay more attention to variations of machine learning models and utilise our knowledge of hyperaparameters and gridsearch optimisation to find the most optimal hyperparameters
+
+    - **Preprocessing**: Filling NaN, Adding Date Features, Logarithmic Feature Transformation, 
+    - **Modeling**: 
 
 ## :octicons-git-compare-16: **Baseline Model Iteration**
+
+Modeling is an **iterative process**, let's begin with a **general baseline**, upon which we will try to improve, by considering a much larger range of preprocessing & model options. As defined in the **strategic plan**, we will go through most of the steps, however we'll keep things a little more simple at first, and do more testing in subsequent iterations. 
+
+    - **Preprocessing**: Filling NaN, Adding Date Features, Adding one-hot-encoding of **category**
+    - **Modeling**: **RandomForest** with default hyperparameters, we test **10 random splits** and average **the MAE**
 
 ### **1 | Datasets**
 
@@ -174,7 +189,7 @@ temp_df = convert_timestamp_to_hourly(temp_df, 'timestamp')
 
 #### Aggregations
 
-For the **sales** data, we want to group the data by timestamp but also by **product_id**. When we aggregate, we must choose which columns to aggregate by the grouping. For now, let's aggregate quantity.
+For the **sales** data, we want to group the data by **timestamp** but also by **product_id**. When we aggregate, since the client is interested in **hourly product estimates**. We must choose which columns to aggregate by the grouping. For now, let's aggregate quantity and get the total sum.
 
 ```python
 sales_agg = sales_df.groupby(['timestamp', 'product_id'],as_index=False).agg({'quantity': 'sum'})
@@ -443,11 +458,339 @@ px.bar(ldf,x='feature',y='importance',template='plotly_white',height=300,width=7
 ![](images/fi_loop1.png)
 
 
-## **II. Model Investigation Iteration**
+## **:octicons-git-compare-16: Model Investigation Iteration**
 
-***
+Having a baseline, lets focus some attention to **feature transformations** as they can impact model accuracy. We'll also pay more attention to variations of machine learning models and utilise our knowledge of hyperaparameters and gridsearch optimisation to find the most optimal hyperparameters
+
+- **Preprocessing**: Filling NaN, Adding Date Features, Logarithmic Feature Transformation, Normalisation of features  
+- **Modeling**: 
+
+### **1 | Recap Preprocessing**
 
 Not a bad start start, however the client won't be satisfied with a model that performs this poorly, we need to make at least explore how well this model performs compared to other models for a start. We also need to spend more time on **data preparation**
 
 
+```python
+# read datasets
+sales_df = pd.read_csv(f"sales.csv")
+sales_df.drop(columns=["Unnamed: 0"], inplace=True, errors='ignore')
+stock_df = pd.read_csv(f"sensor_stock_levels.csv")
+stock_df.drop(columns=["Unnamed: 0"], inplace=True, errors='ignore')
+temp_df = pd.read_csv(f"sensor_storage_temperature.csv")
+temp_df.drop(columns=["Unnamed: 0"], inplace=True, errors='ignore')
 
+def convert_to_datetime(data: pd.DataFrame = None, column: str = None):
+  dummy = data.copy()
+  dummy[column] = pd.to_datetime(dummy[column], format='%Y-%m-%d %H:%M:%S')
+  return dummy
+
+# convert str to datetime
+sales_df = convert_to_datetime(sales_df, 'timestamp')
+stock_df = convert_to_datetime(stock_df, 'timestamp')
+temp_df = convert_to_datetime(temp_df, 'timestamp')
+
+from datetime import datetime
+
+# helper function to convert datetime to desired format
+def convert_timestamp_to_hourly(data: pd.DataFrame = None, column: str = None):
+  dummy = data.copy()
+  new_ts = dummy[column].tolist() # timestamp list [Timestamp(),Timestamp(),...]
+  new_ts = [i.strftime('%Y-%m-%d %H:00:00') for i in new_ts] # change the value of timestamp
+  new_ts = [datetime.strptime(i, '%Y-%m-%d %H:00:00') for i in new_ts] # change to datetime
+  dummy[column] = new_ts # replace
+  return dummy
+
+# convert datetime to hour approximation
+sales_df = convert_timestamp_to_hourly(sales_df, 'timestamp')
+stock_df = convert_timestamp_to_hourly(stock_df, 'timestamp')
+temp_df = convert_timestamp_to_hourly(temp_df, 'timestamp')
+
+# aggregate data based on time & product ID
+# total sales & mean estimated stock percentage
+# add temperature aggregations for timestamp
+sales_agg = sales_df.groupby(['timestamp', 'product_id'],as_index=False).agg({'quantity': 'sum'})
+stock_agg = stock_df.groupby(['timestamp', 'product_id'],as_index=False).agg({'estimated_stock_pct': 'mean'})
+temp_agg = temp_df.groupby(['timestamp'],as_index=False).agg(temp_max=('temperature',"mean"),
+                                                             temp_min=('temperature','min'),
+                                                             temp_median=('temperature','median'),
+                                                             temp_mean=('temperature','mean'))
+
+merged_df = stock_agg.merge(sales_agg, on=['timestamp', 'product_id'], how='left')
+merged_df = merged_df.merge(temp_agg, on='timestamp', how='left')
+merged_df['quantity'] = merged_df['quantity'].fillna(0)
+
+# add features to aggregated dataframe 
+product_categories = sales_df[['product_id', 'category']]
+product_categories = product_categories.drop_duplicates()
+product_price = sales_df[['product_id', 'unit_price']]
+product_price = product_price.drop_duplicates()
+merged_df = merged_df.merge(product_categories, on="product_id", how="left")
+merged_df = merged_df.merge(product_price, on="product_id", how="left")
+
+# add time based features
+merged_df['day'] = merged_df['timestamp'].dt.day
+merged_df['dow'] = merged_df['timestamp'].dt.dayofweek
+merged_df['hour'] = merged_df['timestamp'].dt.hour
+spark.createDataFrame(merged_df.tail()).show()
+```
+
+```
++-------------------+--------------------+-------------------+--------+--------------------+--------+-----------+--------------------+--------------+----------+---+---+----+
+|          timestamp|          product_id|estimated_stock_pct|quantity|            temp_max|temp_min|temp_median|           temp_mean|      category|unit_price|day|dow|hour|
++-------------------+--------------------+-------------------+--------+--------------------+--------+-----------+--------------------+--------------+----------+---+---+----+
+|2022-03-07 19:00:00|ecac012c-1dec-41d...|                0.5|     4.0|-0.16507739938080493|  -30.58|       0.18|-0.16507739938080493|         fruit|      4.99|  7|  0|  19|
+|2022-03-07 19:00:00|ed7f6b14-67c9-42a...|               0.26|     0.0|-0.16507739938080493|  -30.58|       0.18|-0.16507739938080493|          meat|     19.99|  7|  0|  19|
+|2022-03-07 19:00:00|edf4ac93-4e14-4a3...|               0.78|     3.0|-0.16507739938080493|  -30.58|       0.18|-0.16507739938080493|packaged foods|      6.99|  7|  0|  19|
+|2022-03-07 19:00:00|f01b189c-6345-463...|               0.92|     3.0|-0.16507739938080493|  -30.58|       0.18|-0.16507739938080493|          meat|     14.99|  7|  0|  19|
+|2022-03-07 19:00:00|f3bec808-bee0-459...|               0.01|     2.0|-0.16507739938080493|  -30.58|       0.18|-0.16507739938080493|     beverages|      5.19|  7|  0|  19|
++-------------------+--------------------+-------------------+--------+--------------------+--------+-----------+--------------------+--------------+----------+---+---+----+
+```
+
+### **2 | Feature Transformations**
+
+One of the important things to notice is whether the distribution itself is having an influence on the model evaluation metrics, so let's look into two forms for preprocessing; **column transformation** & **normalisation** & **label encoding**
+
+In the following section, we'll be creating different dataframe variations of `merged_df`:
+- `merged_df_tr` : Which will contain only **column transformations** & **label encoding**
+- `merged_df_tr_minmax` : The same transformations as `merged_df_tr` but with the **addition of normalisation**
+
+#### :material-numeric-1-box-multiple-outline: **Column Transformations**
+
+Let us now check the skewness values for each of the columns
+
+```python
+from scipy.stats import skew,kurtosis
+
+skew_data = merged_df[c].apply(lambda x: skew(x),axis=0)
+
+# estimated_stock_pct    0.006773
+# quantity               2.384249
+# temp_median            0.068542
+# unit_price             0.507440
+# day                   -0.002082
+# dow                    0.002152
+# hour                  -0.001072
+# dtype: float64
+```
+
+Our **skewness** value for **quantity** is rather high, lets use logarithmic transformation to modify the univariate distribution & compare the boxplot distributions for the numeric columns
+
+```python
+# column transformations
+def log_column(df,columns):
+    df[columns] = df[columns].apply(lambda x: np.log(x + 1))
+    return df
+
+merged_df_tr = log_column(merged_df,'quantity')
+
+px.box(merged_df_tr[c],
+       y=merged_df[c].columns,
+       template='plotly_white',
+       width=600,height=400,
+       title='univariate feature distribution')
+```
+
+<center>
+![](images/before_box.png){width="375"} ![](images/after_box.png){width="375"}
+</center>
+
+Looks much better now, lets also check the **skewness metric** once again to confirm we have a numeric improvement
+
+```python
+skew_data = merged_df[c].apply(lambda x: skew(x),axis=0)
+
+# estimated_stock_pct    0.006773
+# quantity               1.357097
+# temp_median            0.068542
+# unit_price             0.507440
+# day                   -0.002082
+# dow                    0.002152
+# hour                  -0.001072
+# dtype: float64
+```
+
+#### :material-numeric-2-box-multiple-outline: **Normalisation of columns**
+
+Another often important column transformation is **normalisation**, let's utilise **MinMax** normalisation for numerical columns
+
+```python
+from sklearn.preprocessing import MaxAbsScaler,Normalizer
+
+# column normalisation
+def normalise_columns(df,columns,norm_id):
+    normaliser = Normalizer(norm=norm_id)
+    df[columns] = normaliser.fit_transform(df[columns])
+    return df
+
+# transformation & minmax
+merged_df_tr_minmax = normalise_columns(merged_df_tr,numerical,'max')
+```
+
+```python
+from sklearn.preprocessing import LabelEncoder,OneHotEncoder
+import seaborn as sns
+
+# encoding transformations
+le=LabelEncoder()
+merged_df_tr['category']=le.fit_transform(merged_df_tr['category'])
+merged_df_tr_minmax['category']=le.fit_transform(merged_df_tr_minmax['category'])
+```
+
+### **3 | Helper Functions**
+
+Its good practice to start grouping things that will allow us to automate the machine learning training loop
+
+- `split_data` will be used to remove irrelovant columns (this will be standard for all incoming dataframes) & do a train/test split of the dataset, so we can do both **evaluation** & **test** metric accessments (via GridSearch + Test set)
+- `p` & `pt` functions are used for **cross validation** & **train/test split** metric assessment using **MAE**
+- We'll try a variety of models:
+    - HistGradientBoostingRegressor (More efficient Gradient Boosting[^1])
+    - AdaBoostRegressor (Simple Gradient Boosting)
+    - RandomForestRegressor (Decision Tree Ensemble)
+    - SGDRegressor (Optimisable LR w/ regularisation options in gradient boosting etc)
+    - ARDRegression (LR that automatically determines the relevance of each feature in making predictions)
+
+[^1]: Uses **histograms to represent the data** in a more efficient way. Instead of using individual data points, it bins the data into histograms and uses these bins to make predictions, which can be more memory-efficient and faster compared to the traditional GradientBoosting algorithm
+
+And we'll conclude which performs best
+
+```python
+from sklearn.model_selection import train_test_split as tts
+
+def split_data(df):
+
+    # remove product_id, category
+    df = df[df.columns.difference(['product_id','category'])]
+    y=df.estimated_stock_pct
+    x=df.drop(columns='estimated_stock_pct')
+
+    xtrain , xtest, ytrain, ytest = tts(x,y,shuffle=True,train_size=.75)
+    print(f"xtrain: {xtrain.shape} and xtest: {xtest.shape}")
+    print(f"ytrain: {ytrain.shape} and ytest: {ytest.shape}")
+    return xtrain,xtest,ytrain,ytest
+```
+
+```python
+# randomised gridsearch cross validation
+# 7 kfolds
+def p(g,model,name):
+    pt=RandomizedSearchCV(estimator=model,cv=7,
+                          param_distributions=g,
+                          n_jobs=-1,
+                          random_state=344)
+
+    pt.fit(xtrain,ytrain)
+    best = pt.best_estimator_
+    best.fit(xtrain,ytrain)
+    ypred = best.predict(xtest)
+
+    pk.dump(best, open(f'"{name}.pkl"', 'wb'))
+    return name,mean_absolute_error(ytest,ypred)
+
+# Standard Train/Test evaluation
+def pt(model,name):
+    model.fit(xtrain,ytrain)
+    ypred = model.predict(xtest)
+    pk.dump(model, open(f'"{name}.pkl"', 'wb'))
+    return name,mean_absolute_error(ytest,ypred)
+```
+
+```python
+def check_models():
+
+    results = {'name':[],'mae':[]}
+
+    # Histogram Gradient Boosting
+    h=HistGradientBoostingRegressor(random_state=34563,
+                                    max_bins=244,
+                                    max_depth=30)
+
+    g={'learning_rate':[0.1,0.01],
+    'max_iter':[100,200,500,600,800,900],
+    'max_leaf_nodes':[20,30],
+    'l2_regularization':[1,0.01],
+    'tol':[1e-7,1e-8]}
+
+    name,mae = p(g,h,'histgrdbstreg')
+    results['name'].append(name); results['mae'].append(mae)
+
+    # Adaboost Gradient Boosting
+    ada=AdaBoostRegressor(estimator=DecisionTreeRegressor(max_depth=16))
+
+    grid={'n_estimators':[7,8,10],
+        'learning_rate':[1.2,1.6,2],
+        'loss':['linear', 'square', 'exponential']}
+
+    name,mae = p(grid,ada,'adabstreg')
+    results['name'].append(name); results['mae'].append(mae)
+
+    # Bagging Regressor
+    bag=BaggingRegressor(estimator=DecisionTreeRegressor(max_depth=17),
+                        oob_score=False,
+                        n_jobs=-1)
+
+    bgrid={'n_estimators':[10,13,16]}
+    name, mae = p(bgrid,bag,'bagreg')
+    results['name'].append(name); results['mae'].append(mae)
+
+    # Random Forest
+    r=RandomForestRegressor(n_jobs=-1,oob_score=True)
+
+    rgrid={'max_depth':[170,190,200,210],
+        'max_features':['sqrt', 'log2'],
+        'max_samples':[30,100,150,200],
+        'max_leaf_nodes':[20,40,60,100]}
+
+    name,mae = p(rgrid,r,'randfrstreg')
+    results['name'].append(name); results['mae'].append(mae)
+
+    # Stochastic Gradient Regressor
+    sgd=SGDRegressor()
+    sgdg={'penalty':['l2', 'l1', 'elasticnet', None],
+        'max_iter':[100,400,800],
+        'tol':[1e-3,1e-5,1e-8],
+        'alpha':[0.1,.001,0.0001,1],
+        'learning_rate':['constant','optimal','invscaling','adaptive']
+        }
+    name, mae = p(sgdg,sgd,'sgdreg')
+    results['name'].append(name); results['mae'].append(mae)
+
+    # Bayesian ARD regression.
+    a=ARDRegression()
+    gg={'alpha_1':[1e-3,1e-5,1e-7,1e-9],
+    'alpha_2':[1e-3,1e-5,1e-7],
+    'lambda_1':[1e-1,1e-3,1e-5,1e-7],
+    'n_iter':[100,200,300],
+    'lambda_2':[1e-3,1e-5,1e-7,1e-9],
+    'tol':[1e-3,1e-5,1e-7,1e-9]}
+
+    name, mae = p(gg,a,'ardreg')
+    results['name'].append(name); results['mae'].append(mae)
+
+    return results
+```
+
+### **4 | Training Models**
+
+Having defined all the helper functions above, the actual training code is very minimal, we'll store the **MAE** metrics of all tested models for both datasets that we're testing in **results_tr** and **merged_df_tr_minmax**
+
+First of all, our **baseline with gridsearchcv**:
+
+```python
+xtrain,xtest,ytrain,ytest = split_data(merged_df)
+pt(RandomForestRegressor(),'randomforest')
+# ('randomforest', 0.25014228782291775)
+```
+
+Our feature engineering modifications:
+
+```python
+# column transformation
+xtrain,xtest,ytrain,ytest = split_data(merged_df_tr)
+results_tr = check_models()
+np.mean(results_tr_minmax['mae']) # 0.2253
+
+# column transformation + normalisation
+xtrain,xtest,ytrain,ytest = split_data(merged_df_tr_minmax)
+results_tr_minmax = check_models()
+np.mean(results_tr_minmax['mae'])  # 0.2268
+```

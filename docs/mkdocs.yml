@@ -77,17 +77,16 @@ theme:
         - navigation.tabs
         - content.tabs.link
 
-
     custom_dir: material/overrides
     palette:
     - scheme: default
-      primary: indigo
+      primary: black
       accent: indigo
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
+      primary: black
       accent: indigo
       toggle:
         icon: material/toggle-switch-off-outline

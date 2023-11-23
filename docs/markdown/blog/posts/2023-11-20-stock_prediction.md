@@ -778,14 +778,9 @@ Having a baseline, lets focus some attention to **feature transformations** as t
     np.mean(results_tr_minmax['mae'])  # 0.2268
     ```
 
-<div style=" background-color:#17202a; padding: 30px 10px 30px; border-radius: 8px; color: white;padding-right: 200px; padding-left: 30px">
-    
-<b>❮ <span style='color:#94D4F6;text-align:right'>CONCLUSION</span> START ❯</b>
-    
-<ul>
-    <li>Monitoring ovarian function and detecting pregnancy in felids is important for wild felines</li>
-</ul>
-    
-<b>❮ <span style='color:#94D4F6;text-align:right'>CONCLUSION</span> END ❯</b>
-    
-</div>
+
+## **:octicons-git-compare-16: Model Investigation Iteration**
+
+Contact with the client:
+
+> Most importantly, once the modeling process is complete, we need you to communicate your work and analysis in the form of a single PowerPoint slide, so that we can present the results back to the business. The key here is to use business-friendly language and to explain your results in a way that the business will understand. For example, ensure that when you’re summarizing the performance of the results you don’t use technical metrics, but rather convert it into numbers that they’ll understand. 

@@ -1961,8 +1961,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#model-investigation-iteration_1" class="md-nav__link">
-     Model Investigation Iteration
+  <a href="#contact-with-client" class="md-nav__link">
+    Contact with Client
   </a>
   
 </li>
@@ -2132,8 +2132,8 @@
 <li><strong>Preprocessing</strong>: Filling NaN, Adding Date Features, Adding one-hot-encoding of <strong>category</strong></li>
 <li><strong>Modeling</strong>: <strong>RandomForest</strong> with default hyperparameters, we test <strong>10 random splits</strong> and average <strong>the MAE</strong></li>
 </ul>
-<details class="tip">
-<summary>Baseline RandomForest</summary>
+<div class="admonition tip">
+<p class="admonition-title">Baseline RandomForest</p>
 <h3 id="1-datasets"><strong>1 | Datasets</strong><a class="headerlink" href="#1-datasets" title="Permanent link">&para;</a></h3>
 <p>Samples from the <strong>three datasets</strong> are defined above can be visualised below:</p>
 <div class="language-markdown highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+--------------------+-------------------+--------------------+--------+-------------+----------+--------+-----+------------+
@@ -2420,15 +2420,15 @@
 </span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ldf</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;feature&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;importance&#39;</span><span class="p">,</span><span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span><span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">)</span>
 </span></code></pre></div>
 <p><img alt="" src="../../../images/fi_loop1.png" /></p>
-</details>
+</div>
 <h2 id="model-investigation-iteration"><strong><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM6 12v-1.646a.25.25 0 0 1 .427-.177l2.396 2.396a.25.25 0 0 1 0 .354l-2.396 2.396A.25.25 0 0 1 6 15.146V13.5H5A2.5 2.5 0 0 1 2.5 11V5.372a2.25 2.25 0 1 1 1.5 0V11a1 1 0 0 0 1 1ZM4 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0ZM12.75 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"/></svg></span> Model Investigation Iteration</strong><a class="headerlink" href="#model-investigation-iteration" title="Permanent link">&para;</a></h2>
 <p>Having a baseline, lets focus some attention to <strong>feature transformations</strong> as they can impact model accuracy. We'll also pay more attention to variations of machine learning models and utilise our knowledge of hyperaparameters and gridsearch optimisation to find the most optimal hyperparameters</p>
 <ul>
 <li><strong>Preprocessing</strong>: Filling NaN, Adding Date Features, Logarithmic Feature Transformation, Normalisation of features  </li>
 <li><strong>Modeling</strong>: For modeling we investigate </li>
 </ul>
-<details class="tip">
-<summary>Hyperparameter Optimisation Models</summary>
+<div class="admonition tip">
+<p class="admonition-title">Hyperparameter Optimisation Models</p>
 <h3 id="1-recap-preprocessing"><strong>1 | Recap Preprocessing</strong><a class="headerlink" href="#1-recap-preprocessing" title="Permanent link">&para;</a></h3>
 <p>Not a bad start start, however the client won't be satisfied with a model that performs this poorly, we need to make at least explore how well this model performs compared to other models for a start. We also need to spend more time on <strong>data preparation</strong></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># read datasets</span>
@@ -2715,17 +2715,28 @@
 </span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="n">results_tr_minmax</span> <span class="o">=</span> <span class="n">check_models</span><span class="p">()</span>
 </span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">results_tr_minmax</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">])</span>  <span class="c1"># 0.2268</span>
 </span></code></pre></div>
-</details>
-<h2 id="model-investigation-iteration_1"><strong><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM6 12v-1.646a.25.25 0 0 1 .427-.177l2.396 2.396a.25.25 0 0 1 0 .354l-2.396 2.396A.25.25 0 0 1 6 15.146V13.5H5A2.5 2.5 0 0 1 2.5 11V5.372a2.25 2.25 0 1 1 1.5 0V11a1 1 0 0 0 1 1ZM4 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0ZM12.75 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Z"/></svg></span> Model Investigation Iteration</strong><a class="headerlink" href="#model-investigation-iteration_1" title="Permanent link">&para;</a></h2>
-<p>Contact with the client:</p>
+</div>
+<h2 id="contact-with-client"><strong>Contact with Client</strong><a class="headerlink" href="#contact-with-client" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Most importantly, once the modeling process is complete, we need you to communicate your work and analysis in the form of a single PowerPoint slide, so that we can present the results back to the business. The key here is to use business-friendly language and to explain your results in a way that the business will understand. For example, ensure that when you’re summarizing the performance of the results you don’t use technical metrics, but rather convert it into numbers that they’ll understand. </p>
 </blockquote>
+<p>To summarise the results of the modeling phase, it is suggested to utilise two figures:</p>
+<ul>
+<li>Feature importance using tuned tree based models<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
+<li>Relative metric results of all models<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
+</ul>
+<p><img alt="" src="../../../images/task3.png" /></p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
 <p>Uses <strong>histograms to represent the data</strong> in a more efficient way. Instead of using individual data points, it bins the data into histograms and uses these bins to make predictions, which can be more memory-efficient and faster compared to the traditional GradientBoosting algorithm&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Feature importance will allow us to convey the importance of different factors that affect the results&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>The data used for training the models may not be diverse enough or may not contain enough relevant features to effectively differentiate between different models. It could also indicate that the models are not capturing the complexity of the underlying data, or that the models are not being trained with enough variability in the input data. In such cases, it may be necessary to re-evaluate the feature selection process, gather more diverse and relevant data,&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

@@ -79,7 +79,7 @@ Modeling is an **iterative process**, let's begin with a **general baseline**, u
 - **Preprocessing**: Filling NaN, Adding Date Features, Adding one-hot-encoding of **category**
 - **Modeling**: **RandomForest** with default hyperparameters, we test **10 random splits** and average **the MAE**
 
-??? tip "Baseline RandomForest"
+!!! tip "Baseline RandomForest"
 
     ### **1 | Datasets**
 
@@ -447,7 +447,7 @@ Having a baseline, lets focus some attention to **feature transformations** as t
 - **Preprocessing**: Filling NaN, Adding Date Features, Logarithmic Feature Transformation, Normalisation of features  
 - **Modeling**: For modeling we investigate 
 
-??? tip "Hyperparameter Optimisation Models"
+!!! tip "Hyperparameter Optimisation Models"
 
     ### **1 | Recap Preprocessing**
 
@@ -779,8 +779,17 @@ Having a baseline, lets focus some attention to **feature transformations** as t
     ```
 
 
-## **:octicons-git-compare-16: Model Investigation Iteration**
-
-Contact with the client:
+## **Contact with Client**
 
 > Most importantly, once the modeling process is complete, we need you to communicate your work and analysis in the form of a single PowerPoint slide, so that we can present the results back to the business. The key here is to use business-friendly language and to explain your results in a way that the business will understand. For example, ensure that when you’re summarizing the performance of the results you don’t use technical metrics, but rather convert it into numbers that they’ll understand. 
+
+To summarise the results of the modeling phase, it is suggested to utilise two figures:
+
+- Feature importance using tuned tree based models[^2]
+- Relative metric results of all models[^3]
+
+[^2]: Feature importance will allow us to convey the importance of different factors that affect the results 
+[^3]: The data used for training the models may not be diverse enough or may not contain enough relevant features to effectively differentiate between different models. It could also indicate that the models are not capturing the complexity of the underlying data, or that the models are not being trained with enough variability in the input data. In such cases, it may be necessary to re-evaluate the feature selection process, gather more diverse and relevant data,
+
+![](images/task3.png)
+

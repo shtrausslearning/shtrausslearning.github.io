@@ -4,7 +4,7 @@ comments: true
 
 ## Natural Language Processing
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Banking Consumer Complaint Analysis</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Banking Consumer Complaint Analysis</b></h3>
 
 ![](https://img.shields.io/badge/category-multiclass-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
@@ -15,7 +15,7 @@ In this study, we aim to create an **automated ticket classification model** for
 ![](images/banking_consumer_2.png){ width="300" }
 
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>News sentiment based trading strategy</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>News sentiment based trading strategy</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF)
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/news-sentiment-based-trading-strategy)
@@ -34,7 +34,7 @@ The last approach we tried as **VADER**, which allows us to utilise a **custom l
 ![](images/eventreturn.png)
 
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Twitter Emotion Classification</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Twitter Emotion Classification</b></h3>
 
 ![](https://img.shields.io/badge/category-multiclass-5D58CF)
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
@@ -45,7 +45,7 @@ In this study, we fine-tune a transformer model so it can classify the **sentime
 ![](images/sentiment_tsne.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>edX Course Recommendations</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>edX Course Recommendations</b></h3>
 
 ![](https://img.shields.io/badge/category-recommendation-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
@@ -56,7 +56,7 @@ In this study, we create an **NLP based recommendation system** which informs a 
 ![](images/embedding.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Creating a Transformer Attention Encoder</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Creating a Transformer Attention Encoder</b></h3>
 
 ![](https://img.shields.io/badge/category-educative-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/creating-a-transformer-attention-encoder?scriptVersionId=149696179n)
@@ -90,7 +90,7 @@ In this study we look at the **parsing/scraping** side of data. Its no secret th
 
 Once we have parsed and created our dataset, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using **TF-IDF** & **Word2Vec** methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based **GridSearchCV** hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>mllibs</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>mllibs</b></h3>
 
 <center>
 ![Image title](images/mllibs_c_nob.png#only-light){ width="400" }
@@ -109,7 +109,7 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 ![](images/outlier4.png)
 ![](images/outlier1.png)
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>OTUS NLP Course Work</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>OTUS NLP Course Work</b></h3>
 
 <center>
 ![Image title](images/otus_b.PNG#only-light){ width="400" }
@@ -121,7 +121,7 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 
 Natural language course related work on a variety of **Natural Language Processing** topics
 
-<h4> :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools (re,natasha)</b></h4>
+<h4><b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools (re,natasha)</b></h4>
 
 ![](https://img.shields.io/badge/category-NER-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/preset_NER.ipynb)
 
@@ -133,7 +133,7 @@ Natural language course related work on a variety of **Natural Language Processi
 
 	В этом проекте мы воспользуемся готовым инструментов для распознования именованных сущностей natasha. Библиоека работает только с русским языком. В русском часто всречаются и именованные сущности с латинскими буквами, поэтому воспользуемся регулярными выражением и лематизацией для того чтобы дополнить результаты **NER** c **natasha**
 
-<h4> :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Training a NER model with GRU</b></h4>
+<h4><b><span style='color:#FFCA58;text-align:center'></span>Training a NER model with GRU</b></h4>
 
 ![](https://img.shields.io/badge/category-NER-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/gru_NER.ipynb)
 
@@ -149,7 +149,7 @@ Natural language course related work on a variety of **Natural Language Processi
 
 	В этом проекте мы обучаем нейросетевую **NER** модель на основе **GRU**, которая может распозновать именнованные сущности используя **BIO разметку** на отзывах пользователей автомобилей. В отличий от предыдущего ноута понятие NER используется немного более абстрактно, нас интересует любые разметки которые мы разметим в тексте, а не только имена и тд. В качестве разметок используем тэги которые описывают качество автомобиля (eg. appearance, comfort, costs, и тд.). Модель учится классифицировать в тексте токены которые относятся к одному из тэговых классов. Распознование таких меток удобно для быстого понимания содержания отзыва. 
 
-<h4> :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Sentiment Analysis of Kazakh News</b></h4>
+<h4><b><span style='color:#FFCA58;text-align:center'></span>Sentiment Analysis of Kazakh News</b></h4>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/9_%D0%9F%D1%80%D0%B5%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%81%D0%BB%D0%BE%D0%B2/khazah-news-sentiment.ipynb)
 
@@ -161,7 +161,7 @@ Natural language course related work on a variety of **Natural Language Processi
 
 	В этом проэкте мы строим модели классического машинного обучения для предсказывания **анализа тональности** Казахских новостей, посмотрим какой подход векторизации текста покажет лучше результат на тестовой выборке. Для предобработки текстовых данных воспользуемся Re, токенизируем с помощью WordPunctTokenizer, удаляем стоп слов из **`nltk`** (и добавляем дополнительные), приводим слова в базовую форму используя **`pymorphy2`**. Для энкодинг текста воспользуемся методами **BoW** и **TF-IDF** из sklearn (сравниваем оба подхода). Для ограничения размерности матрицы векторного представления используем max_features = 1000. Для классификатора воспользуемся случайным лесом (**`RandomForestClassifier`**), для гиперпараметров построим 500 решающих деревьев, другие параметры по умолчанию. Для проверки обобщаюшию способность модели воспользуемся методом **`train_test_split`**, тренируем модель на 80% данных, на остальных валидируем, для оценки модели используем **`f1_score`** с опции macro, для понимания как влияет дисбаланс классов 
 
-<h4> :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Multilabel Toxic Comment Classification</b></h4>
+<h4><b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Multilabel Toxic Comment Classification</b></h4>
 
 ![](https://img.shields.io/badge/category-multilabel-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_Нейросетевые%20языковые%20модели/16_Transfer%20learning%3B%20BERT%20model/multilabel-text-classification.ipynb) 
 
@@ -185,7 +185,7 @@ Natural language course related work on a variety of **Natural Language Processi
 
 	Сегодня мы разберем как использовать языковую модель из библиотеки huggingface PyTorch и научимся его файнтьюнить для задачи классификации предложений. **CoLa** (Корпус лингвистической приемлемости), это набор данных-бенчмарк для оценки моделей понимания естественного языка. Он  состоит из предложений из различных источников, таких как новостные статьи и художественной литературы, которые были помечены как **грамматически правильные** или **неправильные**. Набор данных часто используется для оценки способности моделей понимать и интерпретировать грамматическую структуру предложений. Для этой задачи мы воспользуемся базовой моделей **BERT (bert-base-uncased)** с библиотекой **huggingface**, что даст нам возможность быстро адаптировать модель для бирарной классификации с **BertForSequenceClassification** 
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Customer Service Dialogue System for GrabrFi</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Customer Service Dialogue System for GrabrFi</b></h3>
 
 ![](https://img.shields.io/badge/category-dialogue_system-5D58CF) [![](https://img.shields.io/badge/pdf-presentation-EC1C24?logo=adobe)](pdf/chatbot_grabrfi.pdf)
 
@@ -193,7 +193,7 @@ As part of the final project of the **[nlp course](https://otus.ru/lessons/nlp/)
 
 [![](images/grabr.png)](pdf/chatbot_grabrfi.pdf)
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>NLP related blog posts</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>NLP related blog posts</b></h3>
 
 I also post additional NLP content on my blog: **[NLP projects](https://shtrausslearning.github.io/blog/category/nlp/)**
 
@@ -217,12 +217,12 @@ I also post additional NLP content on my blog: **[NLP projects](https://shtrauss
 
 ## Business
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Prediction of stock levels of products</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Prediction of stock levels of products</b></h3>
 
 
 ## Financial
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Customer Transaction Predictive Analytics</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Customer Transaction Predictive Analytics</b></h3>
 
 ![](https://img.shields.io/badge/category-regression-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
@@ -234,7 +234,7 @@ Part of the **[Data@ANZ](https://www.theforage.com/virtual-internships/prototype
 ![](images/eda_spending.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Building an Asset Trading Strategy</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Building an Asset Trading Strategy</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/building-an-asset-trading-strategy)
@@ -247,7 +247,7 @@ The problem of predicting a **buy (value=1)** or **sell (value=0)** signal for a
 ![](images/fasset_cv.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Prediction of Stable Customer Funds</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Prediction of Stable Customer Funds</b></h3>
 
 ![](https://img.shields.io/badge/category-regression-5D58CF) 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Colab-yellow?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/12NsWf3ePkrF7bhfTwEfJVVismvZmKXVb?usp=sharing) 
@@ -261,7 +261,7 @@ In this project, we aim to create machine learning models that will be able to *
 
 ## Physics
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>CFD Trade-Off Study Visualisation | Response Model</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b></h3>
 
 ![](https://img.shields.io/badge/category-regression-5D58CF) 
 [![Kaggle](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/cfd-trade-off-study-visualisation-response-model)
@@ -273,7 +273,7 @@ In this study, we do an **exploratory data analysis** of a **CFD optimisation st
 ![](images/catboosteval.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Gaussian Processes | Airfoil Noise Modeling</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Gaussian Processes | Airfoil Noise Modeling</b></h3>
 
 ![](https://img.shields.io/badge/category-regression-5D58CF)
 [![Kaggle](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling)
@@ -284,7 +284,7 @@ In this study, we do an exploratory data analysis of [experimental measurement d
 ![](images/splfreq.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Spectogram Broadband Model & Peak Identifier</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Spectogram Broadband Model & Peak Identifier</b></h3>
 
 ![](https://img.shields.io/badge/category-regression-5D58CF) 
 [![Kaggle](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/spectogram-broadband-model-peak-identifier)
@@ -305,7 +305,7 @@ Looping over all desired audio files of a subset of interest to us (a particular
 
 ## Biology
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Identifying Antibiotic Resistant Bacteria</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Identifying Antibiotic Resistant Bacteria</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/bio-identifying-antibiotic-resistant-bacteria/)
@@ -316,7 +316,7 @@ In this study, we investigate data associated with **antibiotic resistance** for
 ![img](images/kfold_antibiotics.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Hummingbird Classification | Keras CNN Models</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Hummingbird Classification | Keras CNN Models</b></h3>
 
 ![](https://img.shields.io/badge/category-multiclass-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/hummingbird-classification-keras-cnn-models)
@@ -326,7 +326,7 @@ In this project, we aimed to create an **automated hummindbird recognition** dee
 ![](images/finetune1.png)
 ![](images/finetune2.png)
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Transcription Factor Binding Location Prediction</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Transcription Factor Binding Location Prediction</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/transcription-factor-binding-location-prediction)
@@ -335,7 +335,7 @@ The process of converting a **nucleotide sequence** into an **amino acid chain**
 
 ![](images/auc_tf.png)
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Histopathic Cancer Detection</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Histopathic Cancer Detection</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/pytorch-cnn-binary-image-classification)
@@ -346,7 +346,7 @@ In this project, we dive into the world of **computer vision**. Microscopic eval
 
 ## Health
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Lower Back Pain Symptoms Modeling</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Lower Back Pain Symptoms Modeling</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/lower-back-pain-symptoms)
@@ -357,7 +357,7 @@ In this study we investigate patient back pain **[biomedical data](https://doi.o
 ![](images/pairplot3.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Ovarian Phase Classification in Felids</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Ovarian Phase Classification in Felids</b></h3>
 
 ![](https://img.shields.io/badge/category-multiclass-5D58CF) 
 [![Kaggle](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/ovarian-phase-classification-in-felids) 
@@ -369,7 +369,7 @@ In this study, we investigate **feline reproductology data**, conducting an **ex
 ![](images/roc_curve.png)
 </center>
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Heart Disease Classification</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Heart Disease Classification</b></h3>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) 
 [![Kaggle](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/heart-disease-gaussian-process-models) 
@@ -386,7 +386,7 @@ We utilise an sklearn compatible custom Regressor model **([model found here](ht
 
 ## Geospatial
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Australian Geospatial Analysis</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Australian Geospatial Analysis</b></h3>
 
 [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)
 

@@ -74,6 +74,223 @@ We have the following features:
 - **total** : the total ammount of product purchased
 - **payment_type** : the type of payment which the client used to purchase the product
 
+### **Statistical Tests**
+
+Statistical tests are quite useful to check some hypothesis that can arise, let's use chi2 test to analyse the relationship between **two categorical variables**
+
+```python
+import pingouin as pg
+
+def crosstables(df,cat1,cat2):
+    
+    print('>>>>>>>>>>>>>>>>>>>>>>>>>>>> Frequencies <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+    print('')
+    w=pd.crosstab(df[cat1],df[cat2])
+    print(w)
+    print('')
+    print('>>>>>>>>>>>>>>>>>>>>>>>> Chi-square test <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+    e,o,st=pg.chi2_independence(data=df,x=cat1,y=cat2)
+    print(f"Chi-Square Statistic:")
+    print(spark.createDataFrame(st.round(3)).show())
+
+crosstables(df,'customer_type','quantity')
+crosstables(df,'customer_type','payment_type')
+crosstables(df,'payment_type','quantity')
+crosstables(df,'category','customer_type')
+crosstables(df,'category','quantity')
+```
+
+??? info "customer_type & quantity relations"
+
+    Let's check is there is any relationship between **customer_type** & **quantities** purchased
+
+    ```
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>> Frequencies <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    quantity         1    2    3    4
+    customer_type                    
+    basic          405  350  395  376
+    gold           379  383  374  381
+    non-member     420  395  378  408
+    premium        384  397  422  387
+    standard       391  395  385  424
+
+    >>>>>>>>>>>>>>>>>>>>>>>> Chi-square test <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Chi-Square Statistic:
+    +------------------+------+------+----+-----+------+-----+
+    |              test|lambda|  chi2| dof| pval|cramer|power|
+    +------------------+------+------+----+-----+------+-----+
+    |           pearson|   1.0| 10.52|12.0| 0.57| 0.021|0.175|
+    |      cressie-read| 0.667| 10.52|12.0| 0.57| 0.021|0.175|
+    |    log-likelihood|   0.0| 10.52|12.0| 0.57| 0.021|0.175|
+    |     freeman-tukey|  -0.5|10.522|12.0| 0.57| 0.021|0.175|
+    |mod-log-likelihood|  -1.0|10.525|12.0| 0.57| 0.021|0.175|
+    |            neyman|  -2.0|10.534|12.0|0.569| 0.021|0.176|
+    +------------------+------+------+----+-----+------+-----+
+
+    Since the P value(pearson) is greater than 0.05 so there is **no actual relationship between the **customer_type** and **quantities**
+    ```
+
+
+??? info "customer_type & payment_type relations"
+
+    Let's check is there is any relationship between **customer_type** & **payment_type** purchased
+
+    ```
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>> Frequencies <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    payment_type   cash  credit card  debit card  e-wallet
+    customer_type                                         
+    basic           373          386         391       376
+    gold            358          389         352       418
+    non-member      434          396         402       369
+    premium         434          382         388       386
+    standard        428          396         385       386
+
+    >>>>>>>>>>>>>>>>>>>>>>>> Chi-square test <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Chi-Square Statistic:
+    +------------------+------+------+----+-----+------+-----+
+    |              test|lambda|  chi2| dof| pval|cramer|power|
+    +------------------+------+------+----+-----+------+-----+
+    |           pearson|   1.0|17.135|12.0|0.145| 0.027|0.282|
+    |      cressie-read| 0.667|17.116|12.0|0.145| 0.027|0.282|
+    |    log-likelihood|   0.0|17.084|12.0|0.146| 0.027|0.281|
+    |     freeman-tukey|  -0.5|17.066|12.0|0.147| 0.027|0.281|
+    |mod-log-likelihood|  -1.0|17.051|12.0|0.148| 0.027| 0.28|
+    |            neyman|  -2.0|17.036|12.0|0.148| 0.027| 0.28|
+    +------------------+------+------+----+-----+------+-----+
+    ```
+
+    Since the P value(pearson) is greater than 0.05 so there is **no actual relationship between the **customer_type** and **quantities**
+
+??? info "payment_type & quantity relations"
+
+    Let's check is there is any relationship between **payment_type** & **payment_type** purchased
+
+    ```
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>> Frequencies <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    quantity        1    2    3    4
+    payment_type                    
+    cash          480  502  495  550
+    credit card   506  485  460  498
+    debit card    483  451  488  496
+    e-wallet      510  482  511  432
+
+    >>>>>>>>>>>>>>>>>>>>>>>> Chi-square test <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Chi-Square Statistic:
+    +------------------+------+------+---+-----+------+-----+
+    |              test|lambda|  chi2|dof| pval|cramer|power|
+    +------------------+------+------+---+-----+------+-----+
+    |           pearson|   1.0|17.613|9.0| 0.04| 0.027|0.331|
+    |      cressie-read| 0.667|17.687|9.0|0.039| 0.027|0.333|
+    |    log-likelihood|   0.0|17.843|9.0|0.037| 0.028|0.336|
+    |     freeman-tukey|  -0.5|17.966|9.0|0.036| 0.028|0.338|
+    |mod-log-likelihood|  -1.0|18.095|9.0|0.034| 0.028|0.341|
+    |            neyman|  -2.0|18.371|9.0|0.031| 0.028|0.346|
+    +------------------+------+------+---+-----+------+-----+
+
+    Since all the p value(pearson) are lower than 0.05 so there is a relationship between **payment_type**  and **quantity**. However, there is a very weak association between the payment type and quantity variables
+    ```
+
+??? info "category & customer_type relations"
+
+    Let's check is there is any relationship between **category** & **customer_type** purchased
+
+    ```
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>> Frequencies <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    customer_type          basic  gold  non-member  premium  standard
+    category                                                         
+    baby products             49    46          45       39        45
+    baked goods               87    73          85       89       109
+    baking                    53    55          47       55        54
+    beverages                 66    47          57       63        68
+    canned foods              89    77          88       93        84
+    cheese                    42    63          77       60        51
+    cleaning products         57    56          67       63        49
+    condiments and sauces     35    37          37       37        35
+    dairy                     71    71          82       76        75
+    frozen                    45    59          48       55        56
+    fruit                    186   197         187      206       222
+    kitchen                   85    79          64       76        78
+    meat                      78    82          73       77        72
+    medicine                  47    41          63       52        40
+    packaged foods           106    94         101      104       102
+    personal care             30    45          33       31        38
+    pets                      26    34          36       36        29
+    refrigerated items        90    73         102       76        84
+    seafood                   44    50          54       55        50
+    snacks                    59    50          52       44        58
+    spices and herbs          21    14          26       21        43
+    vegetables               160   174         177      182       153
+
+    >>>>>>>>>>>>>>>>>>>>>>>> Chi-square test <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Chi-Square Statistic:
+    +------------------+------+------+----+-----+------+-----+
+    |              test|lambda|  chi2| dof| pval|cramer|power|
+    +------------------+------+------+----+-----+------+-----+
+    |           pearson|   1.0|87.391|84.0|0.378| 0.053|0.467|
+    |      cressie-read| 0.667|86.838|84.0|0.394| 0.053|0.463|
+    |    log-likelihood|   0.0|86.121|84.0|0.415| 0.052|0.459|
+    |     freeman-tukey|  -0.5|85.907|84.0|0.422| 0.052|0.458|
+    |mod-log-likelihood|  -1.0|85.964|84.0| 0.42| 0.052|0.458|
+    |            neyman|  -2.0|86.886|84.0|0.393| 0.053|0.464|
+    +------------------+------+------+----+-----+------+-----+
+    ```
+
+    Since all the p value(pearson) are greater than 0.05 so there is no relationship between **customer_type** and **category**
+
+??? info "category & quantity relations"
+
+    Let's check is there is any relationship between **category** & **quantity** purchased
+
+    ```
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>> Frequencies <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    quantity                 1    2    3    4
+    category                                 
+    baby products           57   67   48   52
+    baked goods            122  107  103  111
+    baking                  73   63   63   65
+    beverages               69   71   79   82
+    canned foods           106  110  104  111
+    cheese                  57   66   86   84
+    cleaning products       77   75   62   78
+    condiments and sauces   43   48   49   41
+    dairy                   92   89   96   98
+    frozen                  65   61   75   62
+    fruit                  271  251  238  238
+    kitchen                 93   98   98   93
+    meat                   107   87   94   94
+    medicine                60   65   60   58
+    packaged foods         129  118  125  135
+    personal care           39   43   50   45
+    pets                    39   51   30   41
+    refrigerated items     112  100   99  114
+    seafood                 54   58   65   76
+    snacks                  69   62   69   63
+    spices and herbs        34   28   38   25
+    vegetables             211  202  223  210
+
+    >>>>>>>>>>>>>>>>>>>>>>>> Chi-square test <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    Chi-Square Statistic:
+    +------------------+------+------+----+-----+------+-----+
+    |              test|lambda|  chi2| dof| pval|cramer|power|
+    +------------------+------+------+----+-----+------+-----+
+    |           pearson|   1.0| 46.05|63.0|0.946| 0.044|0.361|
+    |      cressie-read| 0.667|46.011|63.0|0.947| 0.044| 0.36|
+    |    log-likelihood|   0.0|46.008|63.0|0.947| 0.044| 0.36|
+    |     freeman-tukey|  -0.5|46.071|63.0|0.946| 0.044|0.361|
+    |mod-log-likelihood|  -1.0|46.191|63.0|0.945| 0.044|0.362|
+    |            neyman|  -2.0| 46.61|63.0|0.939| 0.045|0.366|
+    +------------------+------+------+----+-----+------+-----+
+    ```
+
+    Since all the p value(pearson) are greater than 0.05 so there is no relationship between **category** and **quantity**
+
+From most tests we can conclude that there is only a relationship between **payment_type** and **quantity** amongst the tested cases.
+
 
 ### **Letter to DS lead**
 

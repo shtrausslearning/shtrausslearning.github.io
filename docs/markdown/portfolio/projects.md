@@ -2,7 +2,7 @@
 comments: true
 ---
 
-![](images/ds_bnb.png){ width="350" }
+![](images/ds_wnb.png)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3670A0?&logo=python&logoColor=ffffff&style=for-the-badge" />

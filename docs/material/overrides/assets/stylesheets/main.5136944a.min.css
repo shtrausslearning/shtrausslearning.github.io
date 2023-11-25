@@ -159,14 +159,6 @@
 
 }
 
-.mdx-container3 {
-	background-image: url('https://i.imgur.com/RegWey2.jpg');
-}
-
-[data-md-color-scheme=slate] .mdx-container3 {
-	background-image: url('https://i.imgur.com/RegWey2.jpg');
-}
-
 .mdx-hero {
 	color: var(--md-primary-bg-color);
 	margin: 0 .8rem
@@ -197,7 +189,7 @@
 	.mdx-hero__content {
 		margin-top: 3.5rem;
 		max-width: 19rem;
-		padding-bottom: 14vw
+		padding-bottom: 2vw
 	}
 
 	.mdx-hero__image {

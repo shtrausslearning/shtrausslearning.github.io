@@ -47,7 +47,62 @@ The client has agreed to share data in the form of sensor data. They use **senso
 
 ## **Initial Data Exploration**
 
-Initially, the Data Engineering team is able to extract **one weeks worth of sales data** for one of the **Gala Groceries** stores, this will allow us to find some insights into the data and in general feel more confident with the data that we will be using in future machine learning modeling. Our task at hand is to summarise what we have learned from the data, as well as make some suggestions about what we will be needing in order to fulfill the business requirement of the client.
+Initially, the Data Engineering team is able to extract **one weeks worth of sales data** for one of the **Gala Groceries** stores, this will allow us to find some insights into the data and in general feel more confident with the data that we will be using in future machine learning modeling. Our task at hand is to summarise what we have learned from the data, as well as make some suggestions about what we will be needing in order to fulfill the **business requirement** of the client.
+
+Let's take a look at our sample dataset:
+
+```
++--------------------+-------------------+--------------------+--------+-------------+----------+--------+-----+------------+
+|      transaction_id|          timestamp|          product_id|category|customer_type|unit_price|quantity|total|payment_type|
++--------------------+-------------------+--------------------+--------+-------------+----------+--------+-----+------------+
+|a1c82654-c52c-45b...|2022-03-02 09:51:38|3bc6c1ea-0198-46d...|   fruit|         gold|      3.99|       2| 7.98|    e-wallet|
+|931ad550-09e8-4da...|2022-03-06 10:33:59|ad81b46c-bf38-41c...|   fruit|     standard|      3.99|       1| 3.99|    e-wallet|
+|ae133534-6f61-4cd...|2022-03-04 17:20:21|7c55cbd4-f306-4c0...|   fruit|      premium|      0.19|       2| 0.38|    e-wallet|
+|157cebd9-aaf0-475...|2022-03-02 17:23:58|80da8348-1707-403...|   fruit|         gold|      0.19|       4| 0.76|    e-wallet|
+|a81a6cd3-5e0c-44a...|2022-03-05 14:32:43|7f5e86e6-f06f-45f...|   fruit|        basic|      4.49|       2| 8.98|  debit card|
++--------------------+-------------------+--------------------+--------+-------------+----------+--------+-----+------------+
+```
+
+We have the following features:
+
+- **transaction_id** : represents a unique transaction identified
+- **timestamp** : time at which a product was purchased
+- **product_id** : the unique identifier of the product which was purchased
+- **category** : the category of product which was purchased
+- **unit_price** : the price of the purchased product
+- **quantity** : the ammount of product purchased
+- **total** : the total ammount of product purchased
+- **payment_type** : the type of payment which the client used to purchase the product
+
+
+### **Letter to DS lead**
+
+We have to email the findings of our data exploration & discuss our ideas about the client's needs
+
+!!! info
+
+    Dear [insert name of recipient]
+
+    I received the sample dataset from the Data Engineering team and I’ve been analysing the sample on behalf of the Data Science team.
+
+    I found the following insights as part of the analysis:
+
+    - Fruit & vegetables are the 2 most frequently bought product categories
+    - Non-members are the most frequent buyers within the store
+    - Cash is the most frequently used payment method, 
+    - 11am is the busiest hour with regards to number of transactions
+    - On average non-members overspent gold, standard and basic members & premium members spent the most
+
+    As a reminder, the client has indicated that they wanted to know the following: “How to better stock the items that they sell.”
+
+    With respect to this business question, my recommendations are the following:
+
+    As this is a very broad statement, we need to identify a specific problem statement that the business would like to solve, so as an example, we can focus on predicting the store demand on an hourly basis, in order to smooth out the procurement logistics of each store so that they procure only the necessary product quantities on a weekly basis. We obviously need more data, the current sample only covers a week worth of data at a single store.
+
+    Based on the problem statement that we move forward with, we will need more informative dataset features related to stocking of products, for example, if we’re modelling demand for products, we may want to include information about stock levels or weather conditions, customer spending habits, all these feature combinations must be tested.
+
+    Kind Regards,
+    [name of sender]
 
 
 ## **Framing the Problem Statement**
@@ -72,7 +127,7 @@ Lets define a plan as to how we'll use the data to solve the problem statement t
 
 ![](images/path.png)
 
-## :octicons-git-compare-16: **Baseline Model Iteration**
+## :octicons-git-compare-16: **Baseline Model**
 
 Modeling is an **iterative process**, let's begin with a **general baseline**, upon which we will try to improve, by considering a much larger range of preprocessing & model options. As defined in the **strategic plan**, we will go through most of the steps, however we'll keep things a little more simple at first, and do more testing in subsequent iterations. 
 
@@ -440,12 +495,12 @@ Modeling is an **iterative process**, let's begin with a **general baseline**, u
     ![](images/fi_loop1.png)
 
 
-## **:octicons-git-compare-16: Model Investigation Iteration**
+## **:octicons-git-compare-16: Model Optimisation**
 
-Having a baseline, lets focus some attention to **feature transformations** as they can impact model accuracy. We'll also pay more attention to variations of machine learning models and utilise our knowledge of hyperaparameters and gridsearch optimisation to find the most optimal hyperparameters
+Having a **baseline**, lets focus some attention to **feature transformations** as they can impact model accuracy. We'll also pay more attention to variations of machine learning models and utilise our knowledge of hyperaparameters and gridsearch optimisation to find the most optimal hyperparameters
 
-- **Preprocessing**: Filling NaN, Adding Date Features, Logarithmic Feature Transformation, Normalisation of features  
-- **Modeling**: For modeling we investigate 
+- **Preprocessing**: Filling NaN, Adding Date Features, Logarithmic Feature Transformation, Normalisation of features, **label encoding** with and without **numerical column normalisation**
+- **Modeling**: For modeling we investigate how different models perform using a gridsearch optimisation cycle for different models
 
 !!! tip "Hyperparameter Optimisation Models"
 
@@ -575,7 +630,7 @@ Having a baseline, lets focus some attention to **feature transformations** as t
     ```
 
     <center>
-    ![](images/before_box.png){width="350"} ![](images/after_box.png){width="350"}
+    ![](images/before_box.png){width="300"} ![](images/after_box.png){width="300"}
     </center>
 
     Looks much better now, lets also check the **skewness metric** once again to confirm we have a numeric improvement
@@ -779,7 +834,7 @@ Having a baseline, lets focus some attention to **feature transformations** as t
     ```
 
 
-## **Contact with Client**
+### **5 | Contact with Client**
 
 > Most importantly, once the modeling process is complete, we need you to communicate your work and analysis in the form of a single PowerPoint slide, so that we can present the results back to the business. The key here is to use business-friendly language and to explain your results in a way that the business will understand. For example, ensure that when you’re summarizing the performance of the results you don’t use technical metrics, but rather convert it into numbers that they’ll understand. 
 
@@ -792,4 +847,14 @@ To summarise the results of the modeling phase, it is suggested to utilise two f
 [^3]: The data used for training the models may not be diverse enough or may not contain enough relevant features to effectively differentiate between different models. It could also indicate that the models are not capturing the complexity of the underlying data, or that the models are not being trained with enough variability in the input data. In such cases, it may be necessary to re-evaluate the feature selection process, gather more diverse and relevant data,
 
 ![](images/task3.png)
+
+In response to the presentation:
+
+> **Gala Groceries** saw the results of the machine learning model as promising and believe that with more data and time, it can add real value to the business.
+
+
+
+## **Concluding Remarks**
+
+This was a rather interesting project focusing on how a client tries to improve their business by utilising artificial intelligence. The client had a general idea of what they wanted, and in the process of completing the project a specific project goal was created. Based on the sales and sensor data that the client has integrated into their business, we were able to create a production ready model which the **DevOps** team has implemented. The early feedback implied that the model was rather underperforming because it was most likely underfitting the data, we simply haven't gathered enough data for the model to start performing optimally. Nevertheless, we went through the entire data scientist cycle and obtained optimised models that with the help of data preprocessing were able to score **MAE** in the region of 0.22, which is about 10% less that the initial baseline that we tried.
 

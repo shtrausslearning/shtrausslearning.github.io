@@ -114,6 +114,7 @@ mllibs aims to provide an automated way to do machine learning using **natural l
 <center>
 ![Image title](images/otus_b.PNG#only-light){ width="400" }
 ![Image title](images/otus_w.PNG#only-dark){ width="400" }
+
 [![name](https://img.shields.io/badge/course-website-blue)](https://otus.ru/lessons/nlp/) 
 [![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course)
 </center>

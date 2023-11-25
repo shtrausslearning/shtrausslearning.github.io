@@ -236,6 +236,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://shtrausslearning.github.io/portfolio/projects.html</loc>
+         <lastmod>2023-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://shtrausslearning.github.io/blog/archive/2023.html</loc>
          <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>

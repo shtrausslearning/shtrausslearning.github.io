@@ -137,6 +137,7 @@ nav:
 
 - Data Science: 
 
+    - General: portfolio/projects.md
     - NLP: portfolio/nlp.md
     - Business: portfolio/business.md
     - Financial: portfolio/financial.md

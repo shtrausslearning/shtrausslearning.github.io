@@ -2,6 +2,10 @@
 comments: true
 ---
 
+![](images/ds_bnb.png)
+
+A collection of **data science** projects which utilise **machine** and/or **deep learning**, I've grouped them based on the most relevant topic for your conveniene.
+
 ## Natural Language Processing
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>Banking Consumer Complaint Analysis</b></h3>

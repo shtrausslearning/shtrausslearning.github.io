@@ -23,8 +23,7 @@ Here's a brief summary:
 ### :simple-kaggle: **Kaggle** & :fontawesome-brands-square-github: **GitHub**
 
 <center>
-![Image title](images/kaggle.png#only-light)
-![Image title](images/dkaggle.png#only-dark)
+![Image title](images/kaggle.png)
 </center>
 
 I'm quite active on **Kaggle**, or at least I try to be, I'm always trying to improve my **data science** & **machine learning** skills, so kaggle is the place to be! I really enjoy being a part of this community, it has taught me so many thing & allows me to interact with people from all over the world with similar interests, which is awesome! 

@@ -79,7 +79,7 @@ theme:
 
     custom_dir: material/overrides
     palette:
-    - scheme: default
+    - scheme: slate
       primary: black
       accent: indigo
     #   toggle:

@@ -19,7 +19,7 @@ In this project, we work with a client **Gala Groceries**, who has contacted **C
 
 <!-- more -->
 
-[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Colab-yellow?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/12NsWf3ePkrF7bhfTwEfJVVismvZmKXVb?usp=sharing) [![Run in Google Colab](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)]()
+[![Run in Google Colab](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/cognizant_artificial_intelligence)
 
 
 ## <b>Background</b>
@@ -289,8 +289,41 @@ crosstables(df,'category','quantity')
 
     Since all the p value(pearson) are greater than 0.05 so there is no relationship between **category** and **quantity**
 
-From most tests we can conclude that there is only a relationship between **payment_type** and **quantity** amongst the tested cases.
+From most tests we can conclude that there is only a relationship between **payment_type** and **quantity** amongst the tested categorical column comparison cases
 
+### **Visualisations**
+
+Visualisation & utilisation of data wrangling to understand our data a little more and feel more comfortable with it is an important part of a DS project, some interesting findings are included below:
+
+#### **Category based statistics**
+
+**Meat**, **kitchen**, **seafood** & **medicine** are amongst the highely prices units, **snacks** & **fruit** are amongst the more cheaper items sold at the store
+
+![](images/eda1.png)
+
+The **total sum** of purchases gives us the following information: 
+
+![](images/eda5.png)
+
+#### **Customer Type Visualisations**
+
+Whilst we will be more focusing on the task of creating a model that will predict the estimated stock levels, some interesting insights into customer purchases are still interesting to explore, for example, on average **non members tend to buy more beverages**, **gold members tend to procure more cheese products**, **premium members tend to produre more personalised case products**
+
+![](images/eda2.png)
+
+We can also visualise the mean producure ment values for each category, **premium and basic** members tend to spend more on **baby products**
+
+![](images/eda3.png)
+
+We can divide our data into different days and visualise the **procurement mean of each customer_type**. **premium and non-members** tend to spend the most
+
+![](images/eda4.png)
+
+Let's look at the breakdown of the contibution to the total procurement of each customer type across each category
+
+![](images/eda6.png)
+
+Of course there are many more things we can explore, let's focus on the business task at hand and write an email to the **DS lead** about the client's request.
 
 ### **Letter to DS lead**
 
@@ -306,7 +339,7 @@ We have to email the findings of our data exploration & discuss our ideas about 
 
     - Fruit & vegetables are the 2 most frequently bought product categories
     - Non-members are the most frequent buyers within the store
-    - Cash is the most frequently used payment method, 
+    - Cash is the most frequently used payment method
     - 11am is the busiest hour with regards to number of transactions
     - On average non-members overspent gold, standard and basic members & premium members spent the most
 
@@ -318,7 +351,8 @@ We have to email the findings of our data exploration & discuss our ideas about 
 
     Based on the problem statement that we move forward with, we will need more informative dataset features related to stocking of products, for example, if we’re modelling demand for products, we may want to include information about stock levels or weather conditions, customer spending habits, all these feature combinations must be tested.
 
-    Kind Regards,
+    Kind Regards, 
+
     [name of sender]
 
 
@@ -711,6 +745,8 @@ Modeling is an **iterative process**, let's begin with a **general baseline**, u
 
     ![](images/fi_loop1.png)
 
+    Despite not having an optimised model, we can still visualise the features that impact the model predictions. We can see that **baked goods** and **baby products** categories are important, however we should first optimise the model.
+
 
 ## **:octicons-git-compare-16: Model Optimisation**
 
@@ -1068,8 +1104,6 @@ To summarise the results of the modeling phase, it is suggested to utilise two f
 In response to the presentation:
 
 > **Gala Groceries** saw the results of the machine learning model as promising and believe that with more data and time, it can add real value to the business.
-
-
 
 ## **Concluding Remarks**
 

@@ -2216,8 +2216,6 @@
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">crosstables</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;category&#39;</span><span class="p">,</span><span class="s1">&#39;customer_type&#39;</span><span class="p">)</span>
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">crosstables</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="s1">&#39;category&#39;</span><span class="p">,</span><span class="s1">&#39;quantity&#39;</span><span class="p">)</span>
 </span></code></pre></div>
-<details class="info">
-<summary>customer_type &amp; quantity relations</summary>
 <p>Let's check is there is any relationship between <strong>customer_type</strong> &amp; <strong>quantities</strong> purchased</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Frequencies &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -2241,12 +2239,8 @@
 </span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>|mod-log-likelihood|  -1.0|10.525|12.0| 0.57| 0.021|0.175|
 </span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>|            neyman|  -2.0|10.534|12.0|0.569| 0.021|0.176|
 </span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>+------------------+------+------+----+-----+------+-----+
-</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
-</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>Since the P value(pearson) is greater than 0.05 so there is **no actual relationship between the **customer_type** and **quantities**
 </span></code></pre></div>
-</details>
-<details class="info">
-<summary>customer_type &amp; payment_type relations</summary>
+<p>Since the P value(pearson) is greater than 0.05 so there is <strong>no actual relationship between the **customer_type</strong> and <strong>quantities</strong></p>
 <p>Let's check is there is any relationship between <strong>customer_type</strong> &amp; <strong>payment_type</strong> purchased</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Frequencies &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
@@ -2272,9 +2266,6 @@
 </span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>+------------------+------+------+----+-----+------+-----+
 </span></code></pre></div>
 <p>Since the P value(pearson) is greater than 0.05 so there is <strong>no actual relationship between the **customer_type</strong> and <strong>quantities</strong></p>
-</details>
-<details class="info">
-<summary>payment_type &amp; quantity relations</summary>
 <p>Let's check is there is any relationship between <strong>payment_type</strong> &amp; <strong>payment_type</strong> purchased</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Frequencies &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
@@ -2297,12 +2288,8 @@
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>|mod-log-likelihood|  -1.0|18.095|9.0|0.034| 0.028|0.341|
 </span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>|            neyman|  -2.0|18.371|9.0|0.031| 0.028|0.346|
 </span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>+------------------+------+------+---+-----+------+-----+
-</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
-</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>Since all the p value(pearson) are lower than 0.05 so there is a relationship between **payment_type**  and **quantity**. However, there is a very weak association between the payment type and quantity variables
 </span></code></pre></div>
-</details>
-<details class="info">
-<summary>category &amp; customer_type relations</summary>
+<p>Since all the p value(pearson) are lower than 0.05 so there is a relationship between <strong>payment_type</strong>  and <strong>quantity</strong>. However, there is a very weak association between the payment type and quantity variables</p>
 <p>Let's check is there is any relationship between <strong>category</strong> &amp; <strong>customer_type</strong> purchased</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Frequencies &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
@@ -2345,9 +2332,6 @@
 </span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>+------------------+------+------+----+-----+------+-----+
 </span></code></pre></div>
 <p>Since all the p value(pearson) are greater than 0.05 so there is no relationship between <strong>customer_type</strong> and <strong>category</strong></p>
-</details>
-<details class="info">
-<summary>category &amp; quantity relations</summary>
 <p>Let's check is there is any relationship between <strong>category</strong> &amp; <strong>quantity</strong> purchased</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Frequencies &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
@@ -2390,7 +2374,6 @@
 </span><span id="__span-6-39"><a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>+------------------+------+------+----+-----+------+-----+
 </span></code></pre></div>
 <p>Since all the p value(pearson) are greater than 0.05 so there is no relationship between <strong>category</strong> and <strong>quantity</strong></p>
-</details>
 <p>From most tests we can conclude that there is only a relationship between <strong>payment_type</strong> and <strong>quantity</strong> amongst the tested categorical column comparison cases</p>
 <h3 id="visualisations"><strong>Visualisations</strong><a class="headerlink" href="#visualisations" title="Permanent link">&para;</a></h3>
 <p>Visualisation &amp; utilisation of data wrangling to understand our data a little more and feel more comfortable with it is an important part of a DS project, some interesting findings are included below:</p>

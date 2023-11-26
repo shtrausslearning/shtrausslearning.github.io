@@ -81,6 +81,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://shtrausslearning.github.io/blog/2023/11/25/linear-model-equations-and-regularisation.html</loc>
+         <lastmod>2023-11-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://shtrausslearning.github.io/mllibs/about.html</loc>
          <lastmod>2023-11-26</lastmod>
          <changefreq>daily</changefreq>
@@ -242,6 +247,11 @@
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/archive/2023.html</loc>
+         <lastmod>2023-11-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://shtrausslearning.github.io/blog/category/linear-model.html</loc>
          <lastmod>2023-11-26</lastmod>
          <changefreq>daily</changefreq>
     </url>

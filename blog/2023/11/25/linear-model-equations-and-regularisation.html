@@ -10,13 +10,11 @@
       
       
       
-        <link rel="canonical" href="https://shtrausslearning.github.io/blog/2023/08/20/data-preprocessing-with-pyspark.html">
+        <link rel="canonical" href="https://shtrausslearning.github.io/blog/2023/11/25/linear-model-equations-and-regularisation.html">
       
       
-        <link rel="prev" href="../19/named-entity-recognition-with-huggingface-trainer.html">
+        <link rel="prev" href="../20/prediction-of-product-stock-levels.html">
       
-      
-        <link rel="next" href="../21/creating-machine-learning-models-with-pyspark.html">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -24,7 +22,7 @@
     
     
       
-        <title>Data Preprocessing with PySpark - Andrey Shtrauss</title>
+        <title>Linear Model Equations and Regularisation - Andrey Shtrauss</title>
       
     
     
@@ -85,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#data-preprocessing-with-pyspark" class="md-skip">
+        <a href="#coding-linear-logistic-regression" class="md-skip">
           Skip to content
         </a>
       
@@ -135,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Data Preprocessing with PySpark
+              Linear Model Equations and Regularisation
             
           </span>
         </div>
@@ -1758,16 +1756,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
+  <a href="#linear-regression" class="md-nav__link">
+    Linear Regression
   </a>
   
-    <nav class="md-nav" aria-label="Introduction">
+    <nav class="md-nav" aria-label="Linear Regression">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#spark-over-pandas" class="md-nav__link">
-    Spark over Pandas
+  <a href="#_1" class="md-nav__link">
+    Задача оптимизации гиперпараметров
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    Реализация Матричных Операции
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    Реализация Градиентного Спуска
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    Регуляризация
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linearregression" class="md-nav__link">
+    Предсказание с LinearRegression
   </a>
   
 </li>
@@ -1778,65 +1804,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-spark-session" class="md-nav__link">
-    Start Spark Session
+  <a href="#logistic-regression" class="md-nav__link">
+    Logistic Regression
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#loading-data" class="md-nav__link">
-    Loading Data
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-preprocessing" class="md-nav__link">
-    Data Preprocessing
-  </a>
-  
-    <nav class="md-nav" aria-label="Data Preprocessing">
+    <nav class="md-nav" aria-label="Logistic Regression">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dataframe-column-types" class="md-nav__link">
-    DataFrame Column Types
+  <a href="#_5" class="md-nav__link">
+    Задача оптимизации гиперпараметров
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#dataframe-statistics" class="md-nav__link">
-    DataFrame Statistics
+  <a href="#_6" class="md-nav__link">
+    Реализация Градиентного Спуска
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#show-missing-data" class="md-nav__link">
-    Show Missing Data
+  <a href="#_7" class="md-nav__link">
+    Регуляризация
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#dropping-irrelovant-columns" class="md-nav__link">
-    Dropping Irrelovant Columns
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-columns-to-dataframe" class="md-nav__link">
-    Adding Columns to DataFrame
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#data-imputation" class="md-nav__link">
-    Data Imputation
+  <a href="#logisticregression" class="md-nav__link">
+    Предсказание с LogisticRegression
   </a>
   
 </li>
@@ -1847,8 +1845,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion" class="md-nav__link">
-    Conclusion
+  <a href="#_8" class="md-nav__link">
+    Подведем Итоги
   </a>
   
 </li>
@@ -1904,7 +1902,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
-                        <time datetime="2023-08-20 00:00:00" class="md-ellipsis">August 20, 2023</time>
+                        <time datetime="2023-11-25 00:00:00" class="md-ellipsis">November 25, 2023</time>
                       </div>
                     </li>
                     
@@ -1915,7 +1913,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/pyspark.html">PySpark</a></span>
+                              <a href="../../../category/linear-model.html">linear model</a></span>
                         </div>
                       </li>
                     
@@ -1952,13 +1950,19 @@
     
     
     
-      <span class="md-tag">pyspark</span>
+      <span class="md-tag">regression</span>
     
   
     
     
     
-      <span class="md-tag">preprocessing</span>
+      <span class="md-tag">classification</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">linear model</span>
     
   
 </nav>
@@ -1968,192 +1972,197 @@
   
 
 
-<h1 id="data-preprocessing-with-pyspark"><strong>Data Preprocessing with PySpark</strong><a class="headerlink" href="#data-preprocessing-with-pyspark" title="Permanent link">&para;</a></h1>
-<p>In this post, we will introduce ourselves to <code>pyspark</code>, a framework that allows us to work with big data. Similar to how we did in <a href="https://shtrausslearning.github.io/posts/first-ml-project/">my first machine learning project</a> post</p>
-<p><img alt="" src="../../../images/wires.jpg" /></p>
+<h1 id="coding-linear-logistic-regression"><strong>Coding Linear &amp; Logistic Regression</strong><a class="headerlink" href="#coding-linear-logistic-regression" title="Permanent link">&para;</a></h1>
+<p>Посмотрим на некий обзор главных моментов которые дадут нам возможность реализовать линейные модели в python и numpy. Посмотрим как отличается линейная регрессия от логистической, и как можно добавлять регуляризацию для этих моделей, чтобы можно было контролировать обобщающию способность модели</p>
+<p><img alt="" src="../../../images/lightning.png" /></p>
 <!-- more -->
 
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>In this post, we'll introduce ourselves to <code>pyspark</code>, working on a commonly used classification problem; the titanic. Our focus will be to learn the basics of how to work with <code>pyspark</code> when we work on machine learning projects. We'll split this little project into two parts; <kdb>part I</kdb> part will include <strong>data loading</strong>, <strong>data preprocessing</strong> (<strong>feature engineering</strong> and <strong>data cleaning</strong>). Second part, <kdb>part II</kdb> will include data preparation for <strong>machine learning</strong> and subsequent <strong>model training</strong> and <strong>evaluation</strong></p>
-<h3 id="spark-over-pandas">Spark over Pandas<a class="headerlink" href="#spark-over-pandas" title="Permanent link">&para;</a></h3>
-<p>In the <strong><a href="https://shtrausslearning.github.io/posts/first-ml-project/">previous post</a></strong>, we used <code>pandas</code> for working with <strong>tabular data</strong>. <code>pandas</code> is indeed quite convenient to use as it has a very rich functionality to work with tabular data, <code>pyspark</code> in comparison is much simplier, however it offers the user to work with <code>big data</code>, which <code>pandas</code> tends to strugle with.</p>
-<p>Some advantages of <code>pyspark</code> over <code>pandas</code>:</p>
-<blockquote>
-<ol>
-<li>Scalability: PySpark is designed to handle large datasets that cannot be processed on a single machine. It can distribute the processing of data across a cluster of machines, which makes it suitable for big data applications. Pandas, on the other hand, is limited by the memory of a single machine. <br></li>
-<li>Speed: PySpark is faster than pandas when dealing with large datasets. This is because PySpark uses distributed computing and can process data in parallel across multiple machines. Pandas, on the other hand, is limited by the processing power of a single machine. <br></li>
-<li>Machine learning: PySpark has built-in machine learning libraries such as MLlib and MLflow, which makes it easy to perform machine learning tasks on large datasets. Pandas does not have built-in machine learning libraries. <br></li>
-</ol>
-</blockquote>
-<p>Overall, <code>pyspark</code> is a better choice for <strong>big data</strong> applications that require <strong>distributed computing</strong> and machine learning capabilities. Pandas is suitable for smaller datasets that can be processed on a single machine.</p>
-<h2 id="start-spark-session">Start Spark Session<a class="headerlink" href="#start-spark-session" title="Permanent link">&para;</a></h2>
-<p>First of all, we create a <code>spark</code> session, importing <code>SparkSession</code> from <code>pyspark.sql</code> and creating an instance, to which we will refence to when reading our data</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># create spark session</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span>\
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>\
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<p><a href="https://github.com/shtrausslearning/Skill-Factory-Machine-Learning-Course/tree/main/3_%D0%9B%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D1%8B%D0%B5%20%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Github-Repository-97c446?logo=Github&amp;logoColor=DAF7A6" /></a></p>
+<h2 id="linear-regression"><strong>Linear Regression</strong><a class="headerlink" href="#linear-regression" title="Permanent link">&para;</a></h2>
+<p>В этом разделе посмотрим на реализацию <strong>линейных моделей</strong> в python и numpy. Есть различные подходя для решения задачи линейной регрессии, мы посмотрим на реализацию с помощью <strong>матричных операции</strong> и с <strong>градиентном спуском</strong>. Так же посмотрим как добавлять гегуляризацию для этой модели</p>
+<h3 id="_1"><strong><span style='color:#686dec'>Задача оптимизации гиперпараметров</span></strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>Существует несколько вариантов для выбора <strong>гипераметров</strong> линейной регрессии</p>
+<ul>
+<li>Через прямые матричные операции</li>
+<li>Через градиентны спуск</li>
+</ul>
+<p>Я думаю важно знать о обоих подходов и как они реализуются</p>
+<h3 id="_2"><strong><span style='color:#686dec'>Реализация Матричных Операции</span></strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Линейная регрессия выражается следующей зависимостью:</p>
+<div class="arithmatex">\[y=X\theta+\epsilon\]</div>
+<ul>
+<li><span class="arithmatex">\(X\)</span> — матрица объекты-признаки</li>
+<li><span class="arithmatex">\(y\)</span> — вектор целевых значений</li>
+</ul>
+<p>Cоответствующих:</p>
+<ul>
+<li><span class="arithmatex">\(X\)</span>, <span class="arithmatex">\(\theta\)</span> — параметр линейной регрессии, <span class="arithmatex">\(\epsilon\)</span> — некоторый шум</li>
+</ul>
+<p>Наша задача, <strong>минимизировать среднеквадратическую</strong> ошибку между <span class="arithmatex">\(y\)</span> и <span class="arithmatex">\(X\theta\)</span> (используюя <strong>Least Squares Method</strong>)</p>
+<p>Используя матричную формулеровку, следует выражение для <span class="arithmatex">\(\theta\)</span> как:</p>
+<div class="arithmatex">\[X^Ty=X^TX\theta \rightarrow \theta=(X^TX)^{-1}X^Ty\]</div>
+<p>Который нам дает оптимальный <span class="arithmatex">\(\theta\)</span> в этой постоновке задачи, решая <span class="arithmatex">\(\theta\)</span> мы можем делать предсказание <span class="arithmatex">\(y=X\theta+\epsilon\)</span></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">linreg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">lsm</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">X</span><span class="p">))</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">Xt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">lsm</span><span class="p">,</span><span class="n">Xt</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">theta</span>
 </span></code></pre></div>
-<h2 id="loading-data">Loading Data<a class="headerlink" href="#loading-data" title="Permanent link">&para;</a></h2>
-<p>The dataset can be found from <strong><a href="https://raw.githubusercontent.com/AlexKbit/stepik-ds-course/master/Week3/spark-practice/train.csv">this source</a></strong>, which we can simply download using <code>wget</code> in Jupyter</p>
-<p><code>pyspark</code> supports a variety of input formats, to load a <code>csv</code> file, we can call <code>spark.read</code>. When reading our table, we should ideally specify the data types. We'll see below, which types are loaded when we don't specify them. 
-- Another alternative is to <strong>automaticaly detect</strong> suitable types for each column, we can do this by writing <code>inferSchema=True</code> in either <code>.csv</code> or <code>.options</code>
-- Or we can specify our own <strong>schema</strong> using <code>.schema(schema)</code>, like something shown below:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructTypes</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">()</span> \
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;PassengerId&quot;</span><span class="p">,</span><span class="n">IntegerType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span> \
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span><span class="n">StringType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span> \
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Fare&quot;</span><span class="p">,</span><span class="n">DoubleType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span> \
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>      <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Decommisioned&quot;</span><span class="p">,</span><span class="n">BooleanType</span><span class="p">(),</span><span class="kc">True</span><span class="p">)</span>
+<h3 id="_3"><strong><span style='color:#686dec'>Реализация Градиентного Спуска</span></strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Алтернативный подход для решения этой задачи (оптимизации гиперпараметров) является с методом градиентного спуска</p>
+<p>Для реализации линейной регрессии с помощью методов оптимизации будем использовать функцию ошибки <strong>среднего квадратичного</strong>, которая является выпуклой функцией в n-мерном пространстве <span class="arithmatex">\(\mathbb{R}^n\)</span> и в общем виде выглядит следующим образом:</p>
+<div class="arithmatex">\[MSE = \frac{1}{n} * \sum_{i=1}^{n}{(y_i - a(x_i))^2}\]</div>
+<ul>
+<li><span class="arithmatex">\(x_i\)</span> — вектор-признак <span class="arithmatex">\(i\)</span>-го объекта обучающей выборки</li>
+<li><span class="arithmatex">\(y_i\)</span> — истинное значение для <span class="arithmatex">\(i\)</span>-го объекта,</li>
+<li><span class="arithmatex">\(a(x)\)</span> — алгоритм, предсказывающий для данного объекта <span class="arithmatex">\(x\)</span> целевое значение</li>
+<li><span class="arithmatex">\(n\)</span> — кол-во объектов в выборке</li>
+</ul>
+<p>В случае линейной регрессии <span class="arithmatex">\(MSE\)</span> представляется как:</p>
+<div class="arithmatex">\[MSE(X, y, \theta) = \frac{1}{2n} * \sum_{i=1}^{n}{(y_i - \theta^Tx_i)^2} = \frac{1}{2n} \lVert{y - X\theta}\rVert_{2}^{2}=\frac{1}{2n} (y - X\theta)^T(y - X\theta)\]</div>
+<ul>
+<li><span class="arithmatex">\(\theta\)</span> — параметр модели линейной регрессии</li>
+<li><span class="arithmatex">\(X\)</span> — матрица объекты-признаки</li>
+<li><span class="arithmatex">\(y\)</span> - вектор истинных значений, соответствующих <span class="arithmatex">\(X\)</span></li>
+</ul>
+<p>Возьмем первый вариант представления функции ошибки и <strong>посчитаем ее градиент по параметру <span class="arithmatex">\(\theta\)</span></strong>, предварительно переименовав <span class="arithmatex">\(MSE\)</span> в <span class="arithmatex">\(L\)</span>:</p>
+<div class="arithmatex">\[L=\frac{1}{2n} * \sum_{i=1}^{n}{(y_i - \theta^Tx_i)^2}\]</div>
+<div class="arithmatex">\[\nabla L = \frac{1}{n}\sum_{i=1}^{n}{(\theta^Tx_i - y_i) \cdot x_i} = \frac{1}{n}X^T(X\theta - y)\]</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">mse_grad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">return</span> <span class="n">grad</span>
 </span></code></pre></div>
-<p>Let's read our dataset, that contains a header, which requires <code>header=True</code>, like in <code>pandas</code></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># -RECORD 0---------------------------</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#  PassengerId | 1                    </span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">#  Survived    | 0                    </span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">#  Pclass      | 3                    </span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1">#  Name        | Braund, Mr. Owen ... </span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">#  Sex         | male                 </span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1">#  Age         | 22.0                 </span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1">#  SibSp       | 1                    </span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1">#  Parch       | 0                    </span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1">#  Ticket      | A/5 21171            </span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1">#  Fare        | 7.25                 </span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1">#  Cabin       | null                 </span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="c1">#  Embarked    | S                    </span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># only showing top 1 row</span>
+<p>Нам еще нужны функции для шага градиентного спуска и оптимизационный цикл</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># шаг градиентного спуска</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">def</span> <span class="nf">grad_step</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">theta_grad</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="k">return</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">*</span><span class="n">theta_grad</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># оптимизационный цикл</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">def</span> <span class="nf">optimise</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">,</span><span class="n">n_iters</span><span class="p">):</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="c1"># theta0</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="n">start_theta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="c1"># оптимизационный цикл</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="n">theta_grad</span> <span class="o">=</span> <span class="n">mse_grad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="n">theta</span> <span class="o">=</span> <span class="n">grad_step</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">theta_grad</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">return</span> <span class="n">theta</span>
 </span></code></pre></div>
-<h2 id="data-preprocessing">Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permanent link">&para;</a></h2>
-<h3 id="dataframe-column-types">DataFrame Column Types<a class="headerlink" href="#dataframe-column-types" title="Permanent link">&para;</a></h3>
-<p>Like in <code>pandas</code>, we can call the method <code>.dtypes</code>, to show the column types. Default column type interpretations aren't always ideal, so its useful to load your own <code>schema</code></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># [(&#39;PassengerId&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">#  (&#39;Survived&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1">#  (&#39;Pclass&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">#  (&#39;Name&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">#  (&#39;Sex&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1">#  (&#39;Age&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">#  (&#39;SibSp&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">#  (&#39;Parch&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">#  (&#39;Ticket&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1">#  (&#39;Fare&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1">#  (&#39;Cabin&#39;, &#39;string&#39;),</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="c1">#  (&#39;Embarked&#39;, &#39;string&#39;)]</span>
+<p>Мы начинаем с начального условия <strong>theta</strong> итеративно меняем его с помощью градиента, мы используем градиентный спуск для <mark><strong>обновления параметров модели (весов) в направлении, противоположном градиенту функции потерь</strong>, чтобы <strong>минимизировать ошибку предсказания</strong></mark></p>
+<h3 id="_4"><strong><span style='color:#686dec'>Регуляризация</span></strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>Далее посмотрим как можно реализовать <strong>регуляризацию</strong> в линейную регрессию, это важное понятие потому что оно даст нам возможность контролировать обобщаюшию способность модели, давая нам контроль над влиянием изменения гиперпараметров модели при ее оптимизации. Существет несколько подходов, L1 и L2 регуляризация:</p>
+<ul>
+<li>Для L1 нормалтзации: <strong>Регуляризация также штрафует большие коэффициенты</strong>, и может свести их к нулю!</li>
+<li>Для L2 нормалтзации: <strong>Регуляризация штрафует большие коэффициенты</strong>, но не обнуляет их, а лишь делает их ближе к нулю. Это помогает уменьшить вариативность модели и сделать её более стабильной</li>
+</ul>
+<p>Рассмотрим как это можно реализовать при использования <strong>градиентного спуска</strong></p>
+<p>После <strong>добавления регуляризации функция ошибки</strong> линейной регрессии будет выглядеть следующим образом:</p>
+<div class="arithmatex">\[L=\frac{1}{2n} * \sum_{i=1}^{n}{(y_i - \theta^Tx_i)^2} + \frac{\lambda}{2m}\sum_{j}^{m}{\theta_j^2}\]</div>
+<p>А ее <strong>градиент по параметру</strong> <span class="arithmatex">\(\theta\)</span>:</p>
+<div class="arithmatex">\[\nabla L = \frac{1}{n}\sum_{i=1}^{n}{(\theta^Tx_i - y_i) \cdot x_i} + \frac{\lambda}{m}\sum_{j=1}^{m}{\theta_j} = \frac{1}{n}X^T(X\theta - y) + \frac{\lambda}{m}\sum_{j=1}^{m}{\theta_j}\]</div>
+<p>Что мы делаем, мы добавляем <strong>дополнительный термин</strong> который пропорционален квадрату величины коэффициентов в квадратную функцию потерь (на подобие <strong><a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">RidgeRegressor</a></strong>)</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># градиент квадратной функции потерь</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">def</span> <span class="nf">mse_grad_reg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># стандартный градиент функции потерь</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">grad_temp</span> <span class="o">=</span> <span class="n">lambd</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>  <span class="c1"># дополнительный термин</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="k">return</span> <span class="n">grad</span> <span class="o">+</span> <span class="n">grad_temp</span>
 </span></code></pre></div>
-<h3 id="dataframe-statistics">DataFrame Statistics<a class="headerlink" href="#dataframe-statistics" title="Permanent link">&para;</a></h3>
-<p>Like in <code>pandas</code>, we can utilise method <code>describe</code>, in order to show column statistics. </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">([</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span><span class="s1">&#39;Age&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># +-------+------+------------------+</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># |summary|   Sex|               Age|</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># +-------+------+------------------+</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># |  count|   891|               714|</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># |   mean|  null| 29.69911764705882|</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># | stddev|  null|14.526497332334035|</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># |    min|female|              0.42|</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># |    max|  male|                 9|</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># +-------+------+------------------+</span>
+<h3 id="linearregression"><strong><span style='color:#686dec'>Предсказание с LinearRegression</span></strong><a class="headerlink" href="#linearregression" title="Permanent link">&para;</a></h3>
+<p>Имея оптимизированные параметры <span class="arithmatex">\(\theta_\)</span>, мы можем делаить предсказания используя функцию</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="show-missing-data">Show Missing Data<a class="headerlink" href="#show-missing-data" title="Permanent link">&para;</a></h3>
-<p>If we want to count the missing data in all our columns we can do the following:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="n">f</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">|</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">(),</span> <span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># |PassengerId|Survived|Pclass|Sex|Age|SibSp|Parch|Fare|Embarked|Family_Size|Alone|</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># |          0|       0|     0|  0|  0|    0|    0|   0|       2|          0|    0|</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># +-----------+--------+------+---+---+-----+-----+----+--------+-----------+-----+</span>
+<h2 id="logistic-regression"><strong>Logistic Regression</strong><a class="headerlink" href="#logistic-regression" title="Permanent link">&para;</a></h2>
+<h3 id="_5"><strong><span style='color:#686dec'>Задача оптимизации гиперпараметров</span></strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>Теперь посмотрим на <strong>логистическую регрессию</strong> в этом разделе, ее реализацию в python и numpy. Задача классификации с линейной модели немного отличается от регрессии. Посмотрим как реализовать ее с помощью <strong>градиетного спуска</strong>, и так же посмотрим на пример регуляризации.</p>
+<h3 id="_6"><strong><span style='color:#686dec'>Реализация Градиентного Спуска</span></strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>В случае логистической регрессией, мы можем использовать только <strong>градиентный спуск</strong>, потому что нет явного матричного способа найти оптимальные коэффициенты</p>
+<p>Начнем с функции сигмойда, <strong>sigmoid функция</strong>:</p>
+<div class="arithmatex">\[h_{\theta}(x)=\frac{1}{1+\exp^{-\theta x}},\]</div>
+<ul>
+<li><span class="arithmatex">\(\theta\)</span> — вектор параметров логистической регрессии</li>
+<li><span class="arithmatex">\(x\)</span> - вектор признаков объекта из выборки</li>
+</ul>
+<p><strong>Функция ошибки</strong> для логистической регрессии в случае <strong>бинарной классификации</strong> называется <strong>бинарной кросс-энтропией</strong> (log loss) и записывается следующим образом:</p>
+<div class="arithmatex">\[L=-\frac{1}{n}(y_i \log h_{\theta}(x_i) + (1-y_i) \log(1-h_{\theta}(x_i)))\]</div>
+<p>Для геализации градиентного спуска, нам нудем <strong>градиент функции потерь</strong></p>
+<p>Соответствующий градиент функции ошибки равен:</p>
+<div class="arithmatex">\[\nabla L=\frac{1}{n}\sum_{i=1}^{n}{(h_{\theta}(x_i)-y_i)x_i}\]</div>
+<p>Реализуем <strong>функцию сигмойда</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Функция Сигмойда</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)))</span>
 </span></code></pre></div>
-<p>We can show rows with missing data using <code>.where</code> and <code>.f.col('column').isNull()</code></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">age_miss</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">())</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">age_miss</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># |PassengerId|Survived|Pclass|                Name|   Sex| Age|SibSp|Parch|Ticket|  Fare|Cabin|Embarked|</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># |          6|       0|     3|    Moran, Mr. James|  male|null|    0|    0|330877|8.4583| null|       Q|</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># |         18|       1|     2|Williams, Mr. Cha...|  male|null|    0|    0|244373|  13.0| null|       S|</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># |         20|       1|     3|Masselmani, Mrs. ...|female|null|    0|    0|  2649| 7.225| null|       C|</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># |         27|       0|     3|Emir, Mr. Farred ...|  male|null|    0|    0|  2631| 7.225| null|       C|</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># |         29|       1|     3|&quot;O&#39;Dwyer, Miss. E...|female|null|    0|    0|330959|7.8792| null|       Q|</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># +-----------+--------+------+--------------------+------+----+-----+-----+------+------+-----+--------+</span>
+<p><strong>Функция ошибки logloss</strong>, разница с регрессии только в <strong>sigmoid(X,theta)</strong>, в регресии используем <strong>X.theta</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Градиент бинарной кросс энтропии</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># sigmoid(X,theta) - классификации</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># X.theta - регрессии</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">def</span> <span class="nf">bin_crossentropy_grad</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span> <span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="k">return</span> <span class="n">grad</span>
 </span></code></pre></div>
-<h3 id="dropping-irrelovant-columns">Dropping Irrelovant Columns<a class="headerlink" href="#dropping-irrelovant-columns" title="Permanent link">&para;</a></h3>
-<p>We can decide to remove columns that we won't be needing in our project by calling <code>.drop</code>, which is the same in <code>pandas</code></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Ticket&#39;</span><span class="p">,</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Fare&#39;</span><span class="p">,</span><span class="s1">&#39;Cabin&#39;</span><span class="p">)</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># |PassengerId|Survived|Pclass|   Sex|Age|SibSp|Parch|Embarked|</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># |          1|       0|     3|  male| 22|    1|    0|       S|</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># |          2|       1|     1|female| 38|    1|    0|       C|</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># |          3|       1|     3|female| 26|    0|    0|       S|</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># |          4|       1|     1|female| 35|    1|    0|       S|</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># |          5|       0|     3|  male| 35|    0|    0|       S|</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+</span>
+<p>Как и ранее, нам нужна функция которая выполняет один шаг градиентного спуска, а так же вес цикл оптимизации гиперпараметров <span class="arithmatex">\(\theta\)</span></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Шаг градиентного спуска</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">def</span> <span class="nf">gradient_step</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_grad</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="k">return</span> <span class="n">theta</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">theta_grad</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># Главная функция </span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">def</span> <span class="nf">optimize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">grad_func</span><span class="p">,</span> <span class="n">start_theta</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">n_iters</span><span class="p">):</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="n">start_theta</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        <span class="n">theta_grad</span> <span class="o">=</span> <span class="n">grad_func</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>        <span class="n">theta</span> <span class="o">=</span> <span class="n">gradient_step</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">theta_grad</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="k">return</span> <span class="n">theta</span>
 </span></code></pre></div>
-<h3 id="adding-columns-to-dataframe">Adding Columns to DataFrame<a class="headerlink" href="#adding-columns-to-dataframe" title="Permanent link">&para;</a></h3>
-<p>Column additions do however work a little differently, to add a column we add <code>.withColumn</code></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;FamilySize&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;SibSp&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Parch&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+----------+</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># |PassengerId|Survived|Pclass|   Sex|Age|SibSp|Parch|Embarked|FamilySize|</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+----------+</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># |          1|       0|     3|  male| 22|    1|    0|       S|       2.0|</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># |          2|       1|     1|female| 38|    1|    0|       C|       2.0|</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># |          3|       1|     3|female| 26|    0|    0|       S|       1.0|</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># |          4|       1|     1|female| 35|    1|    0|       S|       2.0|</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1"># |          5|       0|     3|  male| 35|    0|    0|       S|       1.0|</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="c1"># +-----------+--------+------+------+---+-----+-----+--------+----------+</span>
+<h3 id="_7"><strong><span style='color:#686dec'>Регуляризация</span></strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Процесс идентичный, как и в линейной регрессии, мы <strong>добавляем дополнительный термин в функцию потерь</strong>, в этот раз это бинарная кросс энтропия (logloss)</p>
+<p>Функция ошибки для логистической регрессии в случае бинарной классификации с регуляризатором записывается следующим образом:</p>
+<div class="arithmatex">\[L=-\frac{1}{n}(y_i \log h_{\theta}(x_i) + (1-y_i) \log(1-h_{\theta}(x_i)))+\frac{\lambda}{2m}\sum_{j}^{m}{\theta_j^2}\]</div>
+<ul>
+<li><span class="arithmatex">\(x_i\)</span> — вектор признаков</li>
+<li><span class="arithmatex">\(i\)</span>-го примера из обучающей выборки</li>
+<li><span class="arithmatex">\(y_i\)</span> — истинный класс для соответствующего примера (0 или 1),- <span class="arithmatex">\(n\)</span> — число примеров в обучающей выборке</li>
+<li><span class="arithmatex">\(m\)</span> — количество нефиктивных признаков</li>
+<li><span class="arithmatex">\(\lambda\)</span> — параметр регуляризации</li>
+<li><span class="arithmatex">\(h_{\theta}(x)\)</span> — sigmoid функция, равная:</li>
+</ul>
+<div class="arithmatex">\[h_{\theta}(x)=\frac{1}{1+\exp^{-\theta x}}\]</div>
+<ul>
+<li><span class="arithmatex">\(\theta\)</span> — вектор параметров логистической регрессии</li>
+<li><span class="arithmatex">\(x\)</span> - вектор признаков объекта из выборки</li>
+</ul>
+<p>Соответствующий <strong>градиент функции ошибки</strong> равен:</p>
+<div class="arithmatex">\[\nabla L=\frac{1}{n}\sum_{i=1}^{n}{(h_{\theta}(x_i)-y_i)x_i}+\frac{\lambda}{m}\sum_{j}^{m}{\theta_j}\]</div>
+<p>И ее реализация:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># градиент бинарной кросс энтропии</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">def</span> <span class="nf">logloss_reg</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>   <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>   <span class="n">grad</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>   <span class="n">grad_term</span> <span class="o">=</span> <span class="n">lambd</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>   <span class="k">return</span> <span class="n">grad</span> <span class="o">+</span> <span class="n">grad_term</span>
 </span></code></pre></div>
-<p>We can also define a condition, based on which we'll create a unique feature</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;male&#39;</span><span class="p">)</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;female&#39;</span><span class="p">)</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">)</span>
+<h3 id="logisticregression"><strong><span style='color:#686dec'>Предсказание с LogisticRegression</span></strong><a class="headerlink" href="#logisticregression" title="Permanent link">&para;</a></h3>
+<p>Найдя оптимальные гиперпараметры <span class="arithmatex">\(\theta\)</span> , мы можем делать предсказания с помошью функции сигмойды. Она дает нам вероятности принадлежности к положительному классу в диапазоне [0,1]. Мы можем как и в sklearn анолагично именовать их <strong>predict</strong> &amp; <strong>predict_proba</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Вероятность принадлежности класса (0/1)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">):</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>   <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Предсказание с порогом 0.5</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>   <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.5</span>
 </span></code></pre></div>
-<h3 id="data-imputation">Data Imputation<a class="headerlink" href="#data-imputation" title="Permanent link">&para;</a></h3>
-<p>Data imputation can be done via <code>fillna</code>, we pass a dictionary containing key,value pair for column name and value respectively </p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">av_age</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">avg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">)))</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">av_age</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># +-----------------+</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># |         avg(age)|</span>
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># +-----------------+</span>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># |29.69911764705882|</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1"># +-----------------+</span>
-</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
-</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># To convert to python types, we can write:</span>
-</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">av_age</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 29.69911764705882</span>
-</span></code></pre></div>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">ndf</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span><span class="n">av_age</span><span class="o">.</span><span class="n">collect</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]})</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">ndf</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># |PassengerId|Survived|Pclass|                Name|   Sex|              Age|SibSp|Parch|          Ticket|   Fare|Cabin|Embarked|</span>
-</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+</span>
-</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># |          1|       0|     3|Braund, Mr. Owen ...|  male|             22.0|    1|    0|       A/5 21171|   7.25| null|       S|</span>
-</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="c1"># |          2|       1|     1|Cumings, Mrs. Joh...|female|             38.0|    1|    0|        PC 17599|71.2833|  C85|       C|</span>
-</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># |          3|       1|     3|Heikkinen, Miss. ...|female|             26.0|    0|    0|STON/O2. 3101282|  7.925| null|       S|</span>
-</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># |          4|       1|     1|Futrelle, Mrs. Ja...|female|             35.0|    1|    0|          113803|   53.1| C123|       S|</span>
-</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># |          5|       0|     3|Allen, Mr. Willia...|  male|             35.0|    0|    0|          373450|   8.05| null|       S|</span>
-</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># +-----------+--------+------+--------------------+------+-----------------+-----+-----+----------------+-------+-----+--------+</span>
-</span></code></pre></div>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
-<p>Let's review what we have covered in this post:
-- We learned how to drop columns, using <code>.drop</code>
-- We learned how to extract statistical data from our dataframe, using <code>.select</code> and functions <code>f.avg('column')</code>
-- We known how to fill missing data in different columns using a single value with a dictionary; <code>f.fillna({'column':'value'})</code>
-- Add or replace a column, using <code>f.withColumn</code>
-- <code>StringIndexer(inputCol,outputCol).fit(data)</code> - convert categorical into a numerical representation
-- Once we are done with our feature matrix, we can convert all the relevant features into a single feature that will be used as input into the model using <code>VectorAssembler(inputCols,outputCol).transform(data)</code></p>
+<h2 id="_8"><strong>Подведем Итоги</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>В этом посте мы рассмотрели как можно реализовать <strong>линейную</strong> и <strong>логистическую регрессию</strong> в простом виде. Так же отметили как можно добавить регуляризацию для обоих вариантов. Для линейной регресии мы представили два варианта <strong>решения оптимизации гиперпараметров линейных моделей</strong>. Подход градиетного спуска используется чаще всего на практике, так как вычисления обратной матрицы является трудозатратным процессом. </p>
+<p>Для решения задачи выбора гиперпараметров линейной регресии с помошью градиентного спуска нам нужно знать градиент среднеквадратической ошибки, так же и для логистической регресиии нам нужно знать градиент бинарной кросс энтропии, это пожалуй остновной момент. Зная формулы для <span class="arithmatex">\(\frac{dL}{d\theta}\)</span>, мы можем воспользоваться градиентном спуском для оптимизации гиперпараметров.</p>
+<p>Так же мы увидили как можно добавлять регуляризацию, собственно <strong>добавляя дополнительный термин в функцию потерь</strong>, дает нам возможность штрафовать большие значения весов, чем больше значение <span class="arithmatex">\(\alpha\)</span>, тем больше эффект регуляризации и веса будут уменьшатся для больших значении.</p>
 
 
 

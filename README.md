@@ -1,4 +1,4 @@
-![](https://i.imgur.com/tTskO1Q.png)
+![](https://i.imgur.com/2qsffpd.png)
 
 ## Purpose
 

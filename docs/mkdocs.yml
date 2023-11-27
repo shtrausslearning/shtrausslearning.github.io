@@ -79,18 +79,18 @@ theme:
 
     custom_dir: material/overrides
     palette:
+    - scheme: material
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
     - scheme: slate
       primary: black
       accent: indigo
-    #   toggle:
-    #     icon: material/toggle-switch
-    #     name: Switch to dark mode
-    # - scheme: slate
-    #   primary: black
-    #   accent: indigo
-    #   toggle:
-    #     icon: material/toggle-switch-off-outline
-    #     name: Switch to light mode
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
 
     font:
         text: Ubuntu
@@ -140,7 +140,7 @@ nav:
     - General: portfolio/projects.md
     - NLP: portfolio/nlp.md
     - Business: portfolio/business.md
-    - Financial: portfolio/financial.md
+    - Finance: portfolio/financial.md
     - Physics: portfolio/physics.md
     - Biology: portfolio/biology.md
     - Health: portfolio/health.md

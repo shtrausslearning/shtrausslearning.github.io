@@ -30,8 +30,10 @@ In this study, we investigate data associated with **antibiotic resistance** for
 
 In this project, we aimed to create an **automated hummindbird recognition** deep learning model. In our quest to create an automated approach, we can be left with a collection or under or over exposed images that will create difficulties for the model to distinguish between different classes correctly. For this reason we tried different **image augmentation** techniques & and different combinations of them and found combinations that would generalise well in a variety of ambient lighting conditions. We also trained a basic **convolution** type model & **fine tuned** different SOA (such as **ResNet**) models in order to utilise already preexisting model features. 
 
+<center>
 ![](images/finetune1.png)
 ![](images/finetune2.png)
+</center>
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Transcription Factor Binding Location Prediction</b>
 

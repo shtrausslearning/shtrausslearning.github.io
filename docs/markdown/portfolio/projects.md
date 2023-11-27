@@ -13,7 +13,7 @@ comments: true
 
 A collection of **data science** projects which utilise **machine** and/or **deep learning**, I've grouped them based on the most relevant topic for your conveniene.
 
-## Natural Language Processing
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Natural Language Processing</span></b>
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>Banking Consumer Complaint Analysis</b></h3>
 
@@ -85,7 +85,7 @@ Purpose of the Encoder:
 
 The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**.
 
-<h3> <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Banking User Review Analysis & Modeling</b></h3>
+<h3> <b><span style='color:#7058f8;text-align:center'></span>Banking User Review Analysis & Modeling</b></h3>
 
 <h4>Parsing Dataset</h4>
 
@@ -184,7 +184,7 @@ Natural language course related work on a variety of **Natural Language Processi
 
 	В этом ноуте мы применим подход **fine-tune** для трансформерной модели **BERT**. Данная задача является задачей multilabel text classification (**много меточная классификация**). Модели предстоит классифицировать текст в одну или несколько категории из списка (например фильм может быть классифицирован в одну или несколько жанров)
 
-<h4> :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Linguistic Acceptability</b></h4>
+<h4> <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Linguistic Acceptability</b></h4>
 
 ![](https://img.shields.io/badge/category-binary-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8/17_Pretrained%20Language%20Model%20Example/binary-text-classification-comment.ipynb) 
 
@@ -226,12 +226,18 @@ I also post additional NLP content on my blog: **[NLP projects](https://shtrauss
 
 	In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
 
-## Business
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Business</span></b>
 
-<h3> <b><span style='color:#7058f8;text-align:center'></span>Prediction of stock levels of products</b></h3>
+<h3><b><span style='color:#7058f8;text-align:center'></span>Modeling of product stock levels</b></h3>
+
+[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)]()
+
+**Groceries** are highly perishable items. If you **overstock**, you are wasting money on excessive storage and waste, but if you **understock**, then you risk losing customers. The client wants to know how to better stock the items that they sell. In this project, we aim to help Gala Groceries, who have approached Cognizant to help them with **optimising product supply demand**. To fullfil the requirement of the client, we create machine learning models that **predict the levels of stock in the store** using **customer transactions** and **IoT sensor data**, using various preprocessing methods, a series of machine learning modeling cyles is completed, improving the model using various methods of data cleaning, transformation and hyperparameter optimisations. We also explore how well different models perform and give feedback to the client about what most significantly affects the stock levels.
+
+![](images/task3.png)
 
 
-## Financial
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Financial</span></b>
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>Customer Transaction Predictive Analytics</b></h3>
 
@@ -267,10 +273,11 @@ The problem of predicting a **buy (value=1)** or **sell (value=0)** signal for a
 In this project, we aim to create machine learning models that will be able to **predict future customer funds**, based on historical trends. The **total customer assets** can vary significantly in time, and since banks are in the business of lending money, this is needed for more accurate fund allocation (optimise the allocation for lending) so they can be utilised for credit applications. We utilise **gradient boosting** models (CatBoost) & do some **feature engineering** in order to improve the models for short term predictions (3 month) and longer term predictions (6 months). Having created baseline models, we also optimise the model hyperparameters using **Optuna** for different prediction periods.
 
 <center>
-![](images/sbe_box.png)
+![](images/fe2_6m.png)
+![](images/fe2_optuna_6m.png)
 </center>
 
-## Physics
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Physics</span></b>
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>CFD Trade-Off Study Visualisation | Response Model</b></h3>
 
@@ -314,7 +321,7 @@ Looping over all desired audio files of a subset of interest to us (a particular
 
 ![](images/spectogram.png)
 
-## Biology
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Biology</span></b>
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>Identifying Antibiotic Resistant Bacteria</b></h3>
 
@@ -355,7 +362,7 @@ In this project, we dive into the world of **computer vision**. Microscopic eval
 
 ![](images/histopathic.png)
 
-## Health
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Health</span></b>
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>Lower Back Pain Symptoms Modeling</b></h3>
 
@@ -395,11 +402,11 @@ We utilise an sklearn compatible custom Regressor model **([model found here](ht
 ![](images/heart2.png)
 </center>
 
-## Geospatial
+## <b><span style='color:#686dec'>:octicons-bookmark-fill-24: Geospatial</span></b>
 
 <h3> <b><span style='color:#7058f8;text-align:center'></span>Australian Geospatial Analysis</b></h3>
 
-[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)
+![](https://img.shields.io/badge/category-eda-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia)
 
 In this study, we provide a brief overview on what type of geospatial library tools we can use to visualise & analyse map geospatial data, such as **Choropleth**, **Hexbin**, **Scatter** and **Heatmaps**. In particular, we explore Australian based geospatial maps & visualisation data. We look at problems such as **unemployment rates** for different states and demographic. Analyse **housing median** values, house **sale locations** for different suburbs as well as use [kriging interpolation model](https://github.com/shtrausslearning/mllibs/blob/main/src/mlmodels/kriging_regressor.py) to **estimate temperatures** at locations for which we don't have data.
 

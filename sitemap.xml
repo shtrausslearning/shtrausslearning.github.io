@@ -71,11 +71,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shtrausslearning.github.io/blog/2024/11/29/gpt-knows-arithmetics.html</loc>
-         <lastmod>2023-11-29</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html</loc>
          <lastmod>2023-11-29</lastmod>
          <changefreq>daily</changefreq>
@@ -87,6 +82,11 @@
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/11/25/linear-model-equations-and-regularisation.html</loc>
+         <lastmod>2023-11-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://shtrausslearning.github.io/blog/2024/11/29/gpt-knows-arithmetics.html</loc>
          <lastmod>2023-11-29</lastmod>
          <changefreq>daily</changefreq>
     </url>

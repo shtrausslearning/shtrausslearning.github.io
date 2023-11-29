@@ -10,7 +10,7 @@ tags:
      - GPT
 ---
 
-# **GPT learns mathematics**
+# **Transformer Decoder**
 
 In this notebook, we look at transformer models! Instead of using **huggingface**, we can turn to **PyTorch** and implement our own variation of a **generative transformer model**. We'll create a model from scratch, which we will teach how to do basic arithmetics. To do this, we'll need to create our own dataset of mathematical operations & train the **GPT model** from scratch! We might want to do this in order to get an indea of how powerful these generative models are, they are able to learn the combinations and help us when needed. Another reason is of course the need to understand how these models are structured inside.
 
@@ -22,14 +22,14 @@ In this notebook, we look at transformer models! Instead of using **huggingface*
 
 ## **Background**
 
-### Generative Models
+### **<span style='color:#686dec'>Generative Models</span>**
 
 The combination of **transformers** & **generative task models** is one of the most useful and applicable to everyday life models (not to even mention exciting :)). As a minimum, we can teach a model to remember text & when necessary generate what text on related topics on which we trained the model. Of course, there are more interesting abilities the model can learn, however, in this post we'll limit ourselves to mathamatics! We'll teach our **GPT model** some basic mathematics such as addition, subtraction, multiplication & division!
 
 
 ## **The Dataset**
 
-The dataset is generated using a loop, we'll use python to generate this dataset 
+The dataset is generated using a loop, we'll use python to generate this dataset. It consists of mathematical operations **addition, subtraction, multiplication and intiger division** 
 
 ```python
 n = 1000
@@ -54,12 +54,14 @@ for i in range(n):
         example += ' ' * (strlen - len(example))
         text.add(example)
         
-        # module
+        # intiger division 
         if j:
             example = f'{i} / {j} = {i // j}'
             example += ' ' * (strlen - len(example))
             text.add(example)
 ```
+
+Show some examples from the dataset:
 
 ```python
 text = list(text)
@@ -77,6 +79,61 @@ text[-10:]
  '441 * 430 = 189630',
  '240 + 584 = 824   ',
  '599 + 24 = 623    ']
+```
+
+
+## **GPT**
+
+**GPT** is a transformer decoder, lets look at its architecture, using the visual transformer illustration
+
+![](images/encoder_decoder.jpeg)
+
+Lets look at the class architecture, the model **forward** method contains the achitecture components, 
+
+- First our input data is passed through standard **nn.Embedding**
+
+```python
+class GPTLanguageModel(nn.Module):
+
+    def __init__(self):
+        super().__init__()
+        self.token_embedding = nn.Embedding(vocab_size, n_embd)
+        self.position_embedding = nn.Embedding(block_size, n_embd)
+        self.blocks = nn.Sequential(*[Block(n_embd, n_head=n_head) for _ in range(n_layer)])
+        self.ln_f = nn.LayerNorm(n_embd)
+        self.lm_head = nn.Linear(n_embd, vocab_size)
+
+    def forward(self, idx, targets=None):
+        B, T = idx.shape
+        tok_emb = self.token_embedding(idx) # (B,T,C)
+        pos_emb = self.position_embedding(torch.arange(T,device=device)) # (T,C)
+        x = tok_emb + pos_emb # (B,T,C)
+        x = self.blocks(x) # (B,T,C)
+        x = self.ln_f(x) # (B,T,C)
+        logits = self.lm_head(x)
+
+        if targets is None:
+            loss = None
+        else:
+#             logits = logits[:, 8:, :]  # <-----
+            B, T, C = logits.shape
+            logits = logits.reshape(B*T, C) # view
+#             targets = targets[:, 8:]  # <-----
+            targets = targets.reshape(B*T)  # view
+            loss = F.cross_entropy(logits, targets)
+
+        return logits, loss
+
+    def generate(self, idx, max_new_tokens):
+        for _ in range(max_new_tokens):
+            idx_cond = idx[:, -block_size:]
+            logits, loss = self(idx_cond)
+            logits = logits[:, -1, :] # (B, C)
+            probs = F.softmax(logits, dim=-1) # (B, C)
+#             idx_next = torch.multinomial(probs, num_samples=1) # (B, 1)
+            idx_next = torch.argmax(probs, axis=1).reshape(1, -1)
+            idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
+        return idx
 ```
 
 
@@ -148,49 +205,4 @@ class Block(nn.Module):
         x = x + self.sa(self.ln1(x))
         x = x + self.ffwd(self.ln2(x))
         return x
-```
-
-```python
-class GPTLanguageModel(nn.Module):
-
-    def __init__(self):
-        super().__init__()
-        self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
-        self.position_embedding_table = nn.Embedding(block_size, n_embd)
-        self.blocks = nn.Sequential(*[Block(n_embd, n_head=n_head) for _ in range(n_layer)])
-        self.ln_f = nn.LayerNorm(n_embd)
-        self.lm_head = nn.Linear(n_embd, vocab_size)
-
-    def forward(self, idx, targets=None):
-        B, T = idx.shape
-
-        tok_emb = self.token_embedding_table(idx) # (B,T,C)
-        pos_emb = self.position_embedding_table(torch.arange(T, device=device)) # (T,C)
-        x = tok_emb + pos_emb # (B,T,C)
-        x = self.blocks(x) # (B,T,C)
-        x = self.ln_f(x) # (B,T,C)
-        logits = self.lm_head(x)
-
-        if targets is None:
-            loss = None
-        else:
-#             logits = logits[:, 8:, :]  # <-----
-            B, T, C = logits.shape
-            logits = logits.reshape(B*T, C) # view
-#             targets = targets[:, 8:]  # <-----
-            targets = targets.reshape(B*T)  # view
-            loss = F.cross_entropy(logits, targets)
-
-        return logits, loss
-
-    def generate(self, idx, max_new_tokens):
-        for _ in range(max_new_tokens):
-            idx_cond = idx[:, -block_size:]
-            logits, loss = self(idx_cond)
-            logits = logits[:, -1, :] # (B, C)
-            probs = F.softmax(logits, dim=-1) # (B, C)
-#             idx_next = torch.multinomial(probs, num_samples=1) # (B, 1)
-            idx_next = torch.argmax(probs, axis=1).reshape(1, -1)
-            idx = torch.cat((idx, idx_next), dim=1) # (B, T+1)
-        return idx
 ```

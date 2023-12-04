@@ -1,5 +1,5 @@
 ---
-date: 2024-11-29
+date: 2023-11-29
 title: GPT knows arithmetics
 authors: [andrey]
 categories:
@@ -115,10 +115,8 @@ class GPTLanguageModel(nn.Module):
         if targets is None:
             loss = None
         else:
-#             logits = logits[:, 8:, :]  # <-----
             B, T, C = logits.shape
             logits = logits.reshape(B*T, C) # view
-#             targets = targets[:, 8:]  # <-----
             targets = targets.reshape(B*T)  # view
             loss = F.cross_entropy(logits, targets)
 

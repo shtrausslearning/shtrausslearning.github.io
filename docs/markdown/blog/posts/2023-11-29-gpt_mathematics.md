@@ -2,6 +2,7 @@
 date: 2023-11-29
 title: GPT knows arithmetics
 authors: [andrey]
+draft: true
 categories:
      - NLP
 tags:

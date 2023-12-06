@@ -97,6 +97,9 @@ theme:
 
 extra:
     manifest: manifest.webmanifest
+    analytics:
+      provider: google
+      property: G-R7CLKWM3LT
     social:
     - icon: fontawesome/brands/github
       link: https://github.com/shtrausslearning

@@ -182,6 +182,7 @@
 
 @media screen and (min-width:60em) {
 	.mdx-hero {
+/*		align-items: stretch;*/
 	}
 
 	.mdx-hero__content {
@@ -196,18 +197,8 @@
 
 	.mdx-hero__image2 {
 		order: 2;
-		transform: translateX(0rem);
-		width: 60rem
-	}
-
-	.mdx-hero__image3 {
-		transform: translateX(20rem);
-		order: 10
-	}
-
-	.mdx-hero__image4 {
 		transform: translateX(50rem);
-		order: 10
+		width: 60rem
 	}
 
 }

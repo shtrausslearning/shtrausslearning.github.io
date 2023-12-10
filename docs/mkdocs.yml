@@ -76,6 +76,12 @@ theme:
         - navigation.tracking
         - navigation.tabs
         - content.tabs.link
+        - announce.dismiss
+        - content.action.edit
+        - content.action.view
+        - content.code.annotate
+        - content.code.copy
+        - content.tooltips
 
     custom_dir: material/overrides
     palette:

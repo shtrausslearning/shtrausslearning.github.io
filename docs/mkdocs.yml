@@ -78,14 +78,11 @@ theme:
         - navigation.footer
         - navigation.indexes
         - content.tabs.link
-        - content.code.annotate
-        - content.code.copy
         - content.tooltips
         - search.highlight
         - search.share
         - search.suggest
         - toc.follow
-        # - toc.integrate
 
     custom_dir: material/overrides
     palette:

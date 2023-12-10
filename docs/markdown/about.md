@@ -1,4 +1,4 @@
-![](images/track.jpg)
+![](images/id_about.jpg)
 
 [![](https://img.shields.io/badge/Kaggle-Grandmaster-FAE01C)](https://kaggle.com/shtrausslearning) <a href='https://www.kaggle.com/shtrausslearning/'> ![](https://img.shields.io/github/followers/shtrausslearning?style=social) <a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=3776AB&logo=Telegram&logoColor=FFFFFF&label=" /></a>
 
@@ -22,20 +22,11 @@ Here's a brief summary:
 
 ### :simple-kaggle: **Kaggle** & :fontawesome-brands-square-github: **GitHub**
 
-<center>
-![Image title](images/kaggle.png)
-</center>
-
 I'm quite active on **Kaggle**, or at least I try to be, I'm always trying to improve my **data science** & **machine learning** skills, so kaggle is the place to be! I really enjoy being a part of this community, it has taught me so many thing & allows me to interact with people from all over the world with similar interests, which is awesome! 
 
 If you would like to collaborate on a **machine leaning project** (mainly people new to the field), please contact me on telegram! **[shtrauss2](https://t.me/shtrauss2)**
 
-<center>
-[![Image title](images/cnb.png#only-light){ width="450" }](https://github.com/mllibs)
-[![Image title](images/wnb.png#only-dark){ width="450" }](https://github.com/mllibs)
-</center>
-
-I have found **NLP** in particular to be one of the more fascinating parts of data science, so I have created a project which utilises **NLP for code automation**, I enjoy working with people who take part in this project, so if you would like to contribute please let me know! 
+I have found **NLP** in particular to be one of the more fascinating parts of data science, so I have created a project **[mllibs](https://github.com/mllibs)** which utilises **NLP for code automation**, I enjoy working with people who take part in this project, so if you would like to contribute please let me know! 
 
 ### **Hobbies**
 

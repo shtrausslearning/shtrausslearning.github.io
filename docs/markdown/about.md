@@ -20,11 +20,21 @@ Here's a brief summary:
 - Taught Bachelor Students & created CFD related projects for them to defend
 - Specialise in Computation Fluid Dynamics & Aeroacoustics 
 
-### **Stack**
+### **Data Science Library Stack**
 
 I use a variety of tools for different purposes, here are some of my favourite tools used for **data analysis**, **machine learning**, **deep learning** and **NLP applications**
 
+<center>
 ![](images/python_256_256.PNG){width="60"} ![](images/pandas_256_256.PNG){width="60"} ![](images/scipy_256_256.PNG){width="60"} ![](images/sklearn_256_256.PNG){width="60"} ![](images/plotly_256_256.PNG){width="60"} ![](images/pyspark_256_256.PNG){width="60"} ![](images/torch_256_256.PNG){width="60"} ![](images/powerbi_256_256.PNG){width="60"} ![](images/mllibs_256_256.PNG){width="60"} ![](images/hf_256_256.PNG){width="60"}
+</center>
+
+Python related libraries I use:
+
+- **Data exploration** (pandas,pyspark,scipy,statsmodels)
+- **Data visualisation** (matplotlib,seaborn,plotly)
+- **ML** (sklearn,pyspark)
+- **DL** (pytorch)
+- **NLP** (natasha,pymophy,pymystem3,re,gensim,spacy,nltk)
 
 ### :simple-kaggle: **Kaggle** & :fontawesome-brands-square-github: **GitHub**
 

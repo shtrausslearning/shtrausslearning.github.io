@@ -192,16 +192,26 @@
 	}
 
 	.mdx-hero__image {
-		order: 2;
 		transform: translateX(-50rem);
 		width: 60rem
 	}
 
 	.mdx-hero__image2 {
-		margin-top: 5rem;
-		transform: translateX(5rem);
+		order: 2;
+		transform: translateX(0rem);
+		width: 60rem
+	}
+
+	.mdx-hero__image3 {
+		transform: translateX(20rem);
 		order: 10
 	}
+
+	.mdx-hero__image4 {
+		transform: translateX(50rem);
+		order: 10
+	}
+
 }
 
 @media screen and (min-width:76.25em) {

@@ -6,7 +6,7 @@ comments: true
 
 ### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Modeling of product stock levels</b>
 
-[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)]()
+[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://shtrausslearning.github.io/blog/2023/11/20/prediction-of-product-stock-levels.html#customer-type-visualisations)
 
 **Groceries** are highly perishable items. If you **overstock**, you are wasting money on excessive storage and waste, but if you **understock**, then you risk losing customers. The client wants to know how to better stock the items that they sell. In this project, we aim to help Gala Groceries, who have approached Cognizant to help them with **optimising product supply demand**. To fullfil the requirement of the client, we create machine learning models that **predict the levels of stock in the store** using **customer transactions** and **IoT sensor data**, using various preprocessing methods, a series of machine learning modeling cyles is completed, improving the model using various methods of data cleaning, transformation and hyperparameter optimisations. We also explore how well different models perform and give feedback to the client about what most significantly affects the stock levels.
 

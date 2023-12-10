@@ -183,7 +183,7 @@ nav:
         - Meetings: mllibs/group/meetups.md
         - Members: mllibs/group/members.md
 
-- Blog:
+- Articles:
     - blog/index.md
 
 - About: about.md

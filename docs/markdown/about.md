@@ -20,6 +20,12 @@ Here's a brief summary:
 - Taught Bachelor Students & created CFD related projects for them to defend
 - Specialise in Computation Fluid Dynamics & Aeroacoustics 
 
+### **Stack**
+
+I use a variety of tools for different purposes, here are some of my favourite tools used for **data analysis**, **machine learning**, **deep learning** and **NLP applications**
+
+![](images/python_256_256.PNG){width="60"} ![](images/pandas_256_256.PNG){width="60"} ![](images/scipy_256_256.PNG){width="60"} ![](images/sklearn_256_256.PNG){width="60"} ![](images/plotly_256_256.PNG){width="60"} ![](images/pyspark_256_256.PNG){width="60"} ![](images/torch_256_256.PNG){width="60"} ![](images/powerbi_256_256.PNG){width="60"} ![](images/mllibs_256_256.PNG){width="60"} ![](images/hf_256_256.PNG){width="60"}
+
 ### :simple-kaggle: **Kaggle** & :fontawesome-brands-square-github: **GitHub**
 
 I'm quite active on **Kaggle**, or at least I try to be, I'm always trying to improve my **data science** & **machine learning** skills, so kaggle is the place to be! I really enjoy being a part of this community, it has taught me so many thing & allows me to interact with people from all over the world with similar interests, which is awesome! 

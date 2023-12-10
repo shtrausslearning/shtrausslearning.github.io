@@ -1,1 +1,1 @@
-![](images/articles_id2.png)
+![](images/articles_id3.png)

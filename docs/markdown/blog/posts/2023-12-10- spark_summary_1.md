@@ -2,7 +2,7 @@
 date: 2023-12-10
 title: PySpark Daily December Summary I
 authors: [andrey]
-draft: true
+draft: false
 categories:
      - PySpark
 tags:
@@ -584,14 +584,6 @@ Lets try to summarise everything important from these posts
 - Reading a CSV file using **spark.read.options(X).csv('data.csv')**
 - Define a custom schema with **spark.read.csv('data.csv',schema=schema)**
 - Scheme format: **schema = StructType([StructField("name",Type, True)])**
-- Automatically define column types using **spark.read.csv('data.csv',inferSchema=True)**
-- Create SQL table view using **spark.createOrReplaceTempView('name')** 
-- Interact with data using SQL via **spark.sql(query)**
-- Selecting columns in dataframe **df.select(X)**, works with aggregations like in SQL (see window functions)
-- Filtering dataframe based on column condition **df.where(X) | df.filter(X)**
-- Adding a new column: **df.withColumn('name',X)**
-- Renaming columns: **df.withColumnRenamed('A','B')**
-- Rearranging index index, same as pandas notation **df.agg({"col": "aggregation"})**
 - Some important Types, which can be imported from **pyspark.sql.types**
 
     - StringType: Represents string values
@@ -600,7 +592,16 @@ Lets try to summarise everything important from these posts
     - BooleanType: Represents boolean values
     - DateType: Represents date values.
     - TimestampType: Represents timestamp values.
-    - StructType: Represents a structure or record with multiple fields.
+    - StructType: Represents a structure or record with multiple fields
+    
+- Automatically define column types using **spark.read.csv('data.csv',inferSchema=True)**
+- Create SQL table view using **spark.createOrReplaceTempView('name')** 
+- Interact with data using SQL via **spark.sql(query)**
+- Selecting columns in dataframe **df.select(X)**, works with aggregations like in SQL (see window functions)
+- Filtering dataframe based on column condition **df.where(X) | df.filter(X)**
+- Adding a new column: **df.withColumn('name',X)**
+- Renaming columns: **df.withColumnRenamed('A','B')**
+- Rearranging index index, same as pandas notation **df.agg({"col": "aggregation"})**
 
 **Training models:**
 

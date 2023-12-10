@@ -86,6 +86,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://shtrausslearning.github.io/blog/2023/12/10/pyspark-daily-december-summary-i.html</loc>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://shtrausslearning.github.io/mllibs/about.html</loc>
          <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
@@ -251,6 +256,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://shtrausslearning.github.io/blog/category/pyspark.html</loc>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://shtrausslearning.github.io/blog/category/linear-model.html</loc>
          <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
@@ -267,11 +277,6 @@
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/science.html</loc>
-         <lastmod>2023-12-10</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://shtrausslearning.github.io/blog/category/pyspark.html</loc>
          <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>

@@ -7,6 +7,7 @@ categories:
      - PySpark
 tags:
      - pyspark
+comments: true
 ---
 
 # **PySpark Daily December Summary I**
@@ -593,7 +594,7 @@ Lets try to summarise everything important from these posts
     - DateType: Represents date values.
     - TimestampType: Represents timestamp values.
     - StructType: Represents a structure or record with multiple fields
-    
+
 - Automatically define column types using **spark.read.csv('data.csv',inferSchema=True)**
 - Create SQL table view using **spark.createOrReplaceTempView('name')** 
 - Interact with data using SQL via **spark.sql(query)**

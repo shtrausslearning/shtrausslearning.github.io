@@ -1,4 +1,3 @@
-
 # Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
 site_name: Andrey Shtrauss
 site_url: https://shtrausslearning.github.io/
@@ -89,6 +88,15 @@ theme:
       - scheme: slate
         primary: black
         accent: indigo
+        toggle:
+          icon: material/toggle-switch
+          name: Switch to light mode
+      - scheme: default
+        primary: black
+        accent: indigo
+        toggle:
+          icon: material/toggle-switch-off-outline
+          name: Switch to dark mode
           
     font:
         text: Ubuntu
@@ -185,3 +193,4 @@ nav:
     - blog/index.md
 
 - About: about.md
+

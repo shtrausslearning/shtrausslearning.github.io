@@ -44,6 +44,10 @@ If you would like to collaborate on a **machine leaning project** (mainly people
 
 I have found **NLP** in particular to be one of the more fascinating parts of data science, so I have created a project **[mllibs](https://github.com/mllibs)** which utilises **NLP for code automation**, I enjoy working with people who take part in this project, so if you would like to contribute please let me know! 
 
+### **mldsai**
+
+I started a **[telegram channel](https://t.me/mldsai_info)** in which I post various things about data science that interest me. I often post about **pyspark**, trying to improve my knowledge in this field, as it is an important tool in big data. I also post **[article](https://shtrausslearning.github.io/blog/index.html)** content on my blog as well, please join if that interests you!
+
 ### **Hobbies**
 
 I have a lot of hobbies, mostly digital art & photography

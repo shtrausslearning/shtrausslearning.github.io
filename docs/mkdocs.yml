@@ -75,13 +75,17 @@ theme:
         - navigation.expand
         - navigation.tracking
         - navigation.tabs
+        - navigation.footer
+        - navigation.indexes
         - content.tabs.link
-        - announce.dismiss
-        - content.action.edit
-        - content.action.view
         - content.code.annotate
         - content.code.copy
         - content.tooltips
+        - search.highlight
+        - search.share
+        - search.suggest
+        - toc.follow
+        # - toc.integrate
 
     custom_dir: material/overrides
     palette:

@@ -182,7 +182,6 @@
 
 @media screen and (min-width:60em) {
 	.mdx-hero {
-		align-items: stretch;
 	}
 
 	.mdx-hero__content {

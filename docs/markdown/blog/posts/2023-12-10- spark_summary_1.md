@@ -625,7 +625,10 @@ Lets try to summarise everything important from these posts
 - Aggregation over a window **rollingMean = avg(data).over(windowSpec)**
 - Use aggregation with select: **df.select(df["date"], df["value"], rollingMean) or withColumn etc**
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 359eb7b6 (Updates to Website)
 ***
 
 

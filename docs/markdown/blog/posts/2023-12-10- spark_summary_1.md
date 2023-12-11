@@ -625,6 +625,8 @@ Lets try to summarise everything important from these posts
 - Aggregation over a window **rollingMean = avg(data).over(windowSpec)**
 - Use aggregation with select: **df.select(df["date"], df["value"], rollingMean) or withColumn etc**
 
+<!DOCTYPE html>
+<html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -641,19 +643,19 @@ Lets try to summarise everything important from these posts
 
 .overlay {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  bottom: 100%;
   left: 0;
   right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .5s ease;
   background-color: #008CBA;
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
 }
 
 .container:hover .overlay {
-  opacity: 1;
+  bottom: 0;
+  height: 100%;
 }
 
 .text {
@@ -671,16 +673,18 @@ Lets try to summarise everything important from these posts
 </head>
 <body>
 
-<h2>Fade in Overlay</h2>
+<h2>Slide in Overlay from the Top</h2>
 <p>Hover over the image to see the effect.</p>
 
 <div class="container">
-  <img src="avocado1.png" alt="Avatar" class="image">
+  <img src="images/spark_intro.png" alt="Avatar" class="image">
   <div class="overlay">
     <div class="text">Hello World</div>
   </div>
 </div>
-
+ 
+</body>
+</html>
 
 
 ***

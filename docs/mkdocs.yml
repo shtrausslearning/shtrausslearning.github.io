@@ -117,6 +117,24 @@ extra:
       link: https://t.me/mldsai_info
       name: mldsai-info
 
+    toolbox:
+      - ['figma-logo.svg', 'affinity-logo.svg', 'miro-logo.svg', 'adobexd-logo.svg']
+      - ['visual-studio-code-logo.svg', 'git-icon.svg', 'html5-logo.svg', 'css3-logo.svg', 'markdown-icon.svg']
+      - ['google-workspace-logo.svg','jira-logo.svg', 'confluence-logo.svg', 'basecamp-logo.svg']
+    companies: 
+      - ['iter.svg', 'pecas.svg', 'ull.svg', 'system73.svg']
+
+    cards:
+      - image: 'img/digital-products.svg'
+        title: 'Digital products'
+        url: 'work/digital-products/'
+      - image: 'img/branding.svg'
+        title: 'Branding'
+        url: 'work/branding/'
+      - image: 'img/blog.svg'
+        title: 'Blog'
+        url: 'blog/' 
+
 plugins:
     - blog:
         blog_toc: true
@@ -129,6 +147,7 @@ plugins:
     - search
     - tags
     - offline
+    - glightbox
 
 extra_javascript:
   - javascripts/mathjax.js

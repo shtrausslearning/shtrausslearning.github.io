@@ -1,0 +1,247 @@
+@import url('home.css');
+
+/*Colors and main styling*/
+
+* {
+  --color-shades-blue-100: #D8F0F6;
+  --color-shades-blue-200: #B1E1ED;
+  --color-shades-blue-300: #8BD2E5;
+  --color-shades-blue-400: #64C3DC;
+  --color-shades-blue-500: #3DB4D3;
+  --color-shades-blue-600: #3190A9;
+  --color-shades-blue-700: #256C7F;
+  --color-shades-blue-800: #184854;
+  --color-shades-blue-900: #0C242A;
+  --color-shades-pink-50: #F2D8E1;
+  --color-shades-pink-100: #E5B0C3;
+  --color-shades-pink-200: #D989A4;
+  --color-shades-pink-300: #CC6186;
+  --color-shades-pink-400: #BF3A68;
+  --color-shades-pink-500: #992E53;
+  --color-shades-pink-600: #73233E;
+  --color-shades-pink-700: #4C172A;
+  --color-shades-pink-800: #260C15;
+  --color-shades-yellow-50: #FDF4D3;
+  --color-shades-yellow-100: #FBE9A6;
+  --color-shades-yellow-200: #FADD7A;
+  --color-shades-yellow-300: #F8D24D;
+  --color-shades-yellow-400: #F6C721;
+  --color-shades-yellow-500: #C59F1A;
+  --color-shades-yellow-600: #947714;
+  --color-shades-yellow-700: #62500D;
+  --color-shades-yellow-800: #312807;
+  --grayscale-gray-00-white: #FFFFFF;
+  --grayscale-gray-50: #F9FAFB;
+  --grayscale-gray-100: #F3F4F6;
+  --grayscale-gray-200: #E5E7EB;
+  --grayscale-gray-300: #D1D5DB;
+  --grayscale-gray-400: #9CA3AF;
+  --grayscale-gray-500: #6B7280;
+  --grayscale-gray-600: #4B5563;
+  --grayscale-gray-700: #374151;
+  --grayscale-gray-800: #1F2937;
+  --grayscale-gray-900: #111827;
+  --grayscale-gray-920: #1C1D24;
+  --grayscale-gray-950: #030712;
+  --grayscale-gray-99-black: #000000;
+  --gray-50-004: rgba(249,250,251,0.04);
+  --gray-920-008: rgba(28,29,36,0.08);
+  --primary-light-008: rgba(217,137,164,0.08);
+  --primary-dark: var(--color-shades-pink-700);
+  --primary-light: var(--color-shades-pink-200);
+  --primary: var(--color-shades-pink-300);
+  --secondary: var(--color-shades-yellow-300);
+  --tertiary: var(--color-shades-blue-400);
+}
+
+[data-md-color-scheme="darkanelia"] {
+  --md-primary-fg-color:               var(--primary);
+  --md-primary-fg-color--light:        var(--primary-light);
+  --md-primary-fg-color--dark:         var(--primary-dark);
+
+  --md-accent-fg-color:                var(--tertiary);
+  
+  --md-default-fg-color:               var(--grayscale-gray-50);
+  --md-default-fg-color--light:        hsla(0, 0%, 100%, 0.7);
+  --md-default-fg-color--lighter:      hsla(0, 0%, 100%, 0.3);
+  --md-default-fg-color--lightest:     hsla(0, 0%, 100%, 0.12); 
+  --md-default-bg-color:               var(--grayscale-gray-920);
+  --md-default-bg-color--light:        hsla(0, 0%, 0%, 0.54);
+  --md-default-bg-color--lighter:      hsla(0, 0%, 0%, 0.32);
+  --md-default-bg-color--lightest:     hsla(0, 0%, 0%, 0.07);
+
+  --md-typeset-color:                  var(--md-default-fg-color);
+  --md-typeset-a-color:                var(--md-primary-fg-color);
+
+  --header-background:                 var(--md-default-bg-color);
+  --section-bg-color:                  var(--gray-50-004); 
+
+}
+
+[data-md-color-scheme="lightanelia"] {
+  --md-primary-fg-color:               var(--primary);
+  --md-primary-fg-color--light:        var(--primary-light);
+  --md-primary-fg-color--dark:         var(--primary-dark);
+
+    --md-accent-fg-color:                var(--tertiary);
+  
+    --md-default-fg-color:             var(--grayscale-gray-950);
+    --md-default-fg-color--light:      hsla(0, 0%, 0%, 0.54);
+    --md-default-fg-color--lighter:    hsla(0, 0%, 0%, 0.32);
+    --md-default-fg-color--lightest:   hsla(0, 0%, 0%, 0.07);
+    --md-default-bg-color:             var(--grayscale-gray-00-white);
+    --md-default-bg-color--light:      hsla(0, 0%, 100%, 0.7);
+    --md-default-bg-color--lighter:    hsla(0, 0%, 100%, 0.3);
+    --md-default-bg-color--lightest:   hsla(0, 19%, 13%, 0.12);
+
+    --md-typeset-color:                var(--md-default-fg-color);
+    --md-typeset-a-color:              var(--md-primary-fg-color);
+
+    --header-background:               var(--md-default-bg-color);
+    --section-bg-color:                var(--gray-920-008);  
+
+  }
+
+.md-grid {
+  max-width: 56rem;
+}
+
+#anelialogo path {
+  fill:var(--md-default-fg-color);
+}
+
+::selection {
+  color: var(--md-default-bg-color);
+  background-color: var(--md-primary-fg-color);
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../manrope/Manrope-VariableFont_wght.ttf");
+}
+
+:root {
+  --md-text-font: 'Manrope', Arial, Helvetica, sans-serif; 
+}
+
+.md-typeset{
+  font-family: var(--md-text-font);
+}
+
+/*Buttons*/
+
+.md-typeset .md-button--primary {
+  border-radius: 2px;
+  border: 0.1rem solid;
+  background-color: var(--md-typeset-color);
+  border-color: var(--md-typeset-color);
+  color: var(--md-default-bg-color); 
+  border-style: revert; /*Important*/
+  padding: 0.625em 2em;
+  margin-top: .5rem;
+  margin-right: .5rem;
+}
+
+.md-typeset .md-button--primary:focus,
+.md-typeset .md-button--primary:hover {
+    background-color: var(--md-primary-fg-color);
+    background-image: linear-gradient(to right, var(--color-shades-pink-400),var(--color-shades-blue-500));
+    color: var(--md-default-bg-color);
+    border-color: var(--md-default-bg-color);
+}
+
+
+.md-typeset .md-button--secondary {
+  color: var(--md-typeset-color);
+  border-radius: 2rem;
+  border: 0.1rem solid var(--md-typeset-color);
+  padding: 0.625em 2em;
+  margin-top: .5rem;
+  margin-right: .5rem;
+}
+
+.md-typeset .md-button--secondary:focus,
+.md-typeset .md-button--secondary:hover {
+    background-color: var(--md-default-bg-color);
+    color: var(--md-accent-fg-color);
+    border-color: var(--md-accent-fg-color);
+}
+
+.md-typeset .md-button--tertiary {
+  color: var(--md-typeset-color);
+  border-radius: 0;
+  border: none;
+  padding: 0.625em 1rem;
+  margin-top: .5rem;
+  margin-right: .5rem;
+}
+
+.md-typeset .md-button--tertiary:focus,
+.md-typeset .md-button--tertiary:hover {
+    background-color: var(--md-default-bg-color);
+    color: var(--md-accent-fg-color);
+    border-bottom: 0.1rem solid var(--md-accent-fg-color);
+}
+
+.md-typeset ul li {
+  margin-bottom: 0;
+}
+
+.md-card {
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.16);
+  padding: 16px;
+  border-radius: 2px;
+  max-width: 300px;
+  margin: auto;
+}
+
+.md-card-content h2 {
+  margin-top: 0;
+}
+
+.md-card-content p {
+  margin-bottom: 16px;
+}
+
+.md-card-content img {
+  width: 100%;
+  height: auto;
+}
+
+
+  .md-typeset h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--md-typeset-color);
+  }
+
+  .md-typeset {
+    font-size: .9rem;
+  }
+
+  .md-header--shadow {
+    box-shadow: none;
+}
+
+.md-header, .md-tabs {
+  background-color: var(--header-background);
+  color: var(--md-default-fg-color);
+}
+
+.md-search__input+.md-search__icon{
+  color: var(--md-default-fg-color);
+}
+
+.md-search__form{
+  background-color: var(--md-default-bg-color);
+
+}
+.md-search__input {
+  border: 1px solid var(--md-default-fg-color);
+  border-radius: 2rem;
+  color: var(--md-typeset-color);
+}
+
+.md-search__input::placeholder{
+  color: var(--md-typeset-color);
+}

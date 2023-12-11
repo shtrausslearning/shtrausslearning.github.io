@@ -64,8 +64,9 @@ markdown_extensions:
 theme:
     name: material
     icon:
-        logo: fontawesome/solid/code 
-        repo: fontawesome/brands/github
+      logo: myicons/anelia-logo
+      repo: fontawesome/brands/github
+    favicon: assets/favicon.png  
     language: en
     features:
         - navigation.instant

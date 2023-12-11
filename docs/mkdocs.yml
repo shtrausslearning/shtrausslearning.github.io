@@ -100,6 +100,7 @@ theme:
           
     font:
         text: Ubuntu
+        code: Ubuntu Mono
 
 extra:
     manifest: manifest.webmanifest

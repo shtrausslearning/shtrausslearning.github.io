@@ -66,7 +66,7 @@ theme:
     icon:
       logo: myicons/anelia-logo
       repo: fontawesome/brands/github
-    favicon: assets/favicon.png  
+    favicon: assets/images/favicon.png  
     language: en
     features:
         - navigation.instant

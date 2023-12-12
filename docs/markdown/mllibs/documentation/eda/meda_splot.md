@@ -1,11 +1,11 @@
 
 ## **Module Group**
 
-`src/eda`[^1]
+src/eda[^1]
 
 ## **Project Stage ID**
 
-[^1]: Reference to the sub folder in `src`
+[^1]: Reference to the sub folder in **src**
 
 4[^2]
 
@@ -13,7 +13,7 @@
 
 ## :material-frequently-asked-questions: **Purpose**
 
-The purpose of this module is to provide the user with the ability to utilise the basic visualisation tools provided in the library [seaborn](https://seaborn.pydata.org/)
+The purpose of this module is to provide the user with the ability to utilise the basic visualisation tools provided in the library **[seaborn](https://seaborn.pydata.org/)**
 
 ## :fontawesome-solid-location-arrow: **Location**
 
@@ -21,15 +21,11 @@ Here are the locations of the relevant files associated with the module
 
 <h4>module information:</h4>
 
-`/corpus/meda_splot.json`[^3]
-
-[^3]: [github](https://github.com/shtrausslearning/mllibs/blob/main/src/mllibs/corpus/meda_splot.json)
+/src/eda/meda_splot.json
 
 <h4>module activation functions:</h4>
 
-`/src/eda/meda_splot.py`[^4]
-
-[^4]: [github](https://github.com/shtrausslearning/mllibs/blob/main/src/mllibs/eda/meda_splot.py)
+/src/eda/meda_splot.py
 
 ## :material-import: **Requirements**
 
@@ -49,7 +45,7 @@ import json
 
 ## :material-selection-drag: **Selection**
 
-Activation functions need to be assigned a unique label. Here's the process of `label` & activation function selection 
+Activation functions need to be assigned a unique label. Here's the process of **label** & activation function selection 
 
 ```python
 def sel(self,args:dict):
@@ -115,11 +111,11 @@ def sel(self,args:dict):
 
 Here you will find the relevant activation functions available in class `meda_splot`
 
-### :octicons-file-code-16: `sscatterplot`
+### :octicons-file-code-16: ==sscatterplot==
 
 <h4>description:</h4>
 
-A Seaborn scatterplot is a type of plot used to visualize the relationship between two variables in a dataset. It is created using the seaborn library in Python and is often used to identify patterns and trends in the data.
+A Seaborn **scatterplot** is a type of plot used to visualize the relationship between two variables in a dataset. It is created using the seaborn library in Python and is often used to identify patterns and trends in the data.
 
 The plot shows a scatterplot of the data points, with each point representing a single observation. The x and y axes show the values of the two variables being plotted, and the plot can be customized to show additional information, such as a regression line or confidence intervals.
 
@@ -164,7 +160,7 @@ def seaborn_scatterplot(args:dict):
     nlpi.resetpp()
 ```
 
-### :octicons-file-code-16: `srelplot`
+### :octicons-file-code-16: ==srelplot==
 
 <h4>description:</h4>
 
@@ -217,7 +213,7 @@ def seaborn_relplot(args:dict):
     plt.show()
     nlpi.resetpp()
 ```
-### :octicons-file-code-16: `sboxplot`
+### :octicons-file-code-16: ==sboxplot==
 
 <h4>description:</h4>
 
@@ -290,7 +286,7 @@ def seaborn_residplot(args:dict):
     plt.show()
 ```
 
-### :octicons-file-code-16: `sviolinplot`
+### :octicons-file-code-16: ==sviolinplot==
 
 <h4>description:</h4>
 
@@ -334,7 +330,7 @@ def seaborn_violinplot(args:dict):
     nlpi.resetpp()
 ```
 
-### :octicons-file-code-16: `shistplot`
+### :octicons-file-code-16: ==shistplot==
 
 <h4>description:</h4>
 
@@ -385,7 +381,7 @@ def seaborn_histplot(args:dict):
     nlpi.resetpp()
 ```
 
-### :octicons-file-code-16: `skdeplot`
+### :octicons-file-code-16: ==skdeplot==
 
 <h4>description:</h4>
 
@@ -430,7 +426,7 @@ def seaborn_kdeplot(args:dict):
     nlpi.resetpp()
 ```
 
-### :octicons-file-code-16: `slmplot`
+### :octicons-file-code-16: ==slmplot==
 
 <h4>description:</h4>
 
@@ -474,7 +470,7 @@ def seaborn_lmplot(args:dict):
     plt.show()
 ```
 
-### :octicons-file-code-16: `spairplot`
+### :octicons-file-code-16: ==spairplot==
 
 <h4>description:</h4>
 
@@ -526,7 +522,7 @@ def seaborn_pairplot(self,args:dict):
     nlpi.resetpp()
 ```
 
-### :octicons-file-code-16: `slineplot`
+### :octicons-file-code-16: ==slineplot==
 
 <h4>description:</h4>
 
@@ -571,7 +567,7 @@ def seaborn_lineplot(self,args:dict):
     nlpi.resetpp()
 ```
 
-### :octicons-file-code-16: `scorrplot`
+### :octicons-file-code-16: ==scorrplot==
 
 <h4>description:</h4>
 

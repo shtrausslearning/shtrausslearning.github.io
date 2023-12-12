@@ -179,6 +179,7 @@ nav:
         - eda:
             - eda_simple: mllibs/documentation/eda/meda_simple.md
             - eda_splot: mllibs/documentation/eda/meda_splot.md 
+            - eda_pplot: mllibs/documentation/eda/meda_pplot.md 
             - eda_scplot: mllibs/documentation/eda/meda_scplot.md
         - stats:
             - mstats_tests: mllibs/documentation/stats/mstats_tests.md

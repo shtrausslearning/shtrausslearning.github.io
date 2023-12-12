@@ -1,11 +1,11 @@
 
 ## **Module Group**
 
-`src/eda`[^1]
+src/eda[^1]
 
 ## **Project Stage ID**
 
-[^1]: Reference to the sub folder in `src`
+[^1]: Reference to the sub folder in **src**
 
 4[^2]
 
@@ -21,15 +21,11 @@ Here are the locations of the relevant files associated with the module
 
 <h4>module information:</h4>
 
-`/corpus/meda_scplot.json`[^3]
-
-[^3]: [github](https://github.com/shtrausslearning/mllibs/blob/main/src/mllibs/corpus/meda_scplot.json)
+/src/eda/meda_scplot.json
 
 <h4>module activation functions:</h4>
 
-`/src/eda/meda_scplot.py`[^4]
-
-[^4]: [github](https://github.com/shtrausslearning/mllibs/blob/main/src/mllibs/eda/meda_scplot.py)
+/src/eda/meda_scplot.py
 
 ## :material-import: **Requirements**
 
@@ -50,7 +46,7 @@ import json
 
 ## :material-selection-drag: **Selection**
 
-Activation functions need to be assigned a unique label. Here's the process of `label` & activation function selection 
+Activation functions need to be assigned a unique label. Here's the process of **label** & activation function selection 
 
 ```python
 def sel(self,args:dict):
@@ -67,7 +63,7 @@ def sel(self,args:dict):
 
 ## :octicons-code-16: **Activation Functions**
 
-Here you will find the relevant activation functions available in class `meda_scplot`
+Here you will find the relevant activation functions available in class **meda_scplot**
 
 ### :octicons-file-code-16: `col_kde`
 

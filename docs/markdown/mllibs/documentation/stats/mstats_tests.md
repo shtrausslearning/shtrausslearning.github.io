@@ -1,7 +1,7 @@
 
 ## **Module Group**
 
-`src/stats`[^1]
+src/stats[^1]
 
 ## **Project Stage ID**
 
@@ -19,9 +19,13 @@ The purpose of this module is to provide the user with the ability to do **data 
 
 Here are the locations of the relevant files associated with the module
 
-<h4>module information</h4> : `/src/stats/mstats_tests.json`
+<h4>module information</h4> 
 
-<h4>module activation functions </h4> : `/src/stats/mstats_tests.py`
+/src/stats/mstats_tests.json
+
+<h4>module activation functions </h4>
+
+/src/stats/mstats_tests.py
 
 ## :material-import: **Requirements**
 

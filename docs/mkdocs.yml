@@ -91,7 +91,7 @@ theme:
         accent: indigo
         toggle:
           icon: material/toggle-switch
-          name: Switch to light mode
+          name: Switch to lighst mode
       - scheme: default
         primary: black
         accent: indigo

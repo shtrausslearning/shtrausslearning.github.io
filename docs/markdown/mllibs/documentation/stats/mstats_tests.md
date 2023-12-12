@@ -39,6 +39,7 @@ import json
 from scipy import stats
 from scipy.stats import kstest, shapiro, chisquare, jarque_bera, f_oneway
 from statsmodels.stats.diagnostic import lilliefors
+import pingouin as pg
 ```
 
 ## :material-selection-drag: **Selection**
@@ -46,50 +47,55 @@ from statsmodels.stats.diagnostic import lilliefors
 Activation functions need to be assigned a unique label. Here's the process of `label` & activation function selection 
 
 ```python
-# select activation function
-def sel(self,args:dict):
-            
-    self.args = args
-    select = args['pred_task']
-    self.data_name = args['data_name']
-    self.subset = args['subset']
-    print('subset',self.subset)
+    # select activation function
+    def sel(self,args:dict):
+                
+        self.args = args
+        select = args['pred_task']
+        self.data_name = args['data_name']
+        self.subset = args['subset']
+        print('subset',self.subset)
 
-    # [t-tests]
-    
-    if(select == 'its_ttest'):
-        self.its_ttest(args)
-    if(select == 'p_ttest'):
-        self.paired_ttest(args)
-    if(select == 'os_ttest'):
-        self.os_ttest(args)
+        # [t-tests]
+        
+        if(select == 'its_ttest'):
+            self.its_ttest(args)
+        if(select == 'p_ttest'):
+            self.paired_ttest(args)
+        if(select == 'os_ttest'):
+            self.os_ttest(args)
 
-    # [u-test] [anova]
+        # [u-test] [anova]
 
-    if(select == 'utest'):
-        self.utest(args)
-    if(select == 'two_sample_anova'):
-        self.two_sample_anova(args)
+        if(select == 'utest'):
+            self.utest(args)
+        if(select == 'two_sample_anova'):
+            self.two_sample_anova(args)
 
-    # [check] Kolmogorov Smirnov Tests
+        # [check] Kolmogorov Smirnov Tests
 
-    if(select == 'ks_sample_normal'):
-        self.kstest_onesample_normal(args)
-    if(select == 'ks_sample_uniform'):
-        self.kstest_onesample_uniform(args)
-    if(select == 'ks_sample_exponential'):
-        self.kstest_onesample_exponential(args)
+        if(select == 'ks_sample_normal'):
+            self.kstest_onesample_normal(args)
+        if(select == 'ks_sample_uniform'):
+            self.kstest_onesample_uniform(args)
+        if(select == 'ks_sample_exponential'):
+            self.kstest_onesample_exponential(args)
 
-    # [check] Normality distribution checks
+        # [check] Normality distribution checks
 
-    if(select == 'lilliefors_normal'):
-        self.lilliefors_normal(args)
-    if(select == 'shapirowilk_normal'):
-        self.shapirowilk_normal(args)
-    if(select == 'jarque_bera_norma'):
-        self.jarquebera_normal(args)
-    if(select == 'chi2_test'):
-        self.chi2_test(args)
+        if(select == 'lilliefors_normal'):
+            self.lilliefors_normal(args)
+        if(select == 'shapirowilk_normal'):
+            self.shapirowilk_normal(args)
+        if(select == 'jarque_bera_norma'):
+            self.jarquebera_normal(args)
+
+        # [check] chi2 tests
+
+        if(select == 'chi2_test'):
+            self.chi2_test(args)
+        if(select == 'chi2_peng'):
+            self.chi2_test_peng(args)
 ```
 
 ## :octicons-code-16: **Activation Functions**

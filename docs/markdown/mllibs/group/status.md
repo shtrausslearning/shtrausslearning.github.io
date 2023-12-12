@@ -2,7 +2,7 @@ In this section, we document the module feature registration, each subtask is br
 
 ## :octicons-tasklist-16: **Available Tasks**
 
-### :fontawesome-regular-comment-dots: **[User Recommendation System](tasks/recom.md)**
+### :fontawesome-regular-comment-dots: User Recommendation System
 
 <h4>Description</h4>
 
@@ -19,7 +19,7 @@ The purpose of such functionality is to provide helpful suggestions, tips based 
 
 ***
 
-### :material-tag-check: **[Module Function Label Classifier](tasks/label_classifier.md)**
+### :material-tag-check: Module Function Label Classifier
 
 <h4>Description</h4>
 
@@ -34,10 +34,4 @@ The purpose of such as classifier is to associated input text requests with modu
 :material-file-question: not available
 
 ***
-
-## :material-file-document-arrow-right-outline: **Task Allocation**
-
-
-
-
 

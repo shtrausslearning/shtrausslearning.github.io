@@ -24,200 +24,77 @@ There are different ways we can automate code execution:
 - The first two (<b>`function`</b>,<b>`class`</b>) should be familiar, such approaches presume we have coding knowledge.
 - Another approach is to utilise <b>`natural language`</b> to automate code automation, this method doesn't require any coding knowledge. 
 
-!!! tip "Function Approach"
+#### (1) Function 
 
-    #### (1) Function 
+Function based code automation should be very familiar to people who code, we define a function & then simply call the function, entering any relevant input arguments which it requires, in this case `n`
 
-    Function based code automation should be very familiar to people who code, we define a function & then simply call the function, entering any relevant input arguments which it requires, in this case `n`
+```python
+def fib_list(n):
+    result = []
+    a,b = 0,1
+    while a<n:
+        result.append(a)
+        a,b = b, a + b
+    return result
 
-    ```python
-    def fib_list(n):
+fib_list(5) 
+```
+
+#### (2) Class 
+
+Another common approach to automate code is using a class based approach. Utilising `OOP` concepts we can initialise & then call class `methods` in order to automate code:
+
+```python
+
+class fib_list:
+    
+    def __init__(self,n):
+        self.n = n
+
+    def get_list(self):
         result = []
         a,b = 0,1
-        while a<n:
+        while a<self.n:
             result.append(a)
             a,b = b, a + b
         return result
 
-    fib_list(5) 
-    ```
-
-!!! tip "Class Approach"
-
-    #### (2) Class 
-
-    Another common approach to automate code is using a class based approach. Utilising `OOP` concepts we can initialise & then call class `methods` in order to automate code:
-
-    ```python
-
-    class fib_list:
-        
-        def __init__(self,n):
-            self.n = n
-
-        def get_list(self):
-            result = []
-            a,b = 0,1
-            while a<self.n:
-                result.append(a)
-                a,b = b, a + b
-            return result
-
-    fib = fib_list(5)
-    fib.get_list()
-    ```
-
-!!! tip "Natural Language Approach"
-
-    #### (3) Natural Language
-
-    Another approach, which `mllibs` uses in natural language based code automation:
-
-    ```python
-    input = 'calculate the fibonacci'
-             sequence for the value of 5'
-
-    nlp_interpreter(input) 
-    ```
-
-    All these methods will give the following result:
-
-    ```
-    [0, 1, 1, 2, 3]
-    ```
-
-### **Library Components**
-
-<b>`mllibs`</b> consists of two parts:
-
-!!! info "core module"
-
-    (1) modules associated with the **interpreter**
-
-    - `nlpm` - groups together everything required for the interpreter module `nlpi`
-    - `nlpi` - main interpreter component module (requires `nlpm` instance)
-    - `snlpi` - single request interpreter module (uses `nlpi`)
-    - `mnlpi` - multiple request interpreter module (uses `nlpi`)
-    - `interface` - interactive module (chat type)
-
-!!! info "added modules"
-
-    (2) custom added modules, for mllibs these library are associated with **machine learning** topics
-
-    You can check all the activations functions using <code>session.fl()</code> as shown in the sample notebooks in folder <code>examples</code>
-
-### **Module Component Structure**
-
-Currently new modules can be added using a custom class `sample` and a configuration dictionary 
-`configure_sample`
-
-```python
-
-# sample module class structure
-class sample(nlpi):
-    
-    # called in nlpm
-    def __init__(self,nlp_config):
-        self.name = 'sample'             # unique module name identifier (used in nlpm/nlpi)
-        self.nlp_config = nlp_config  # text based info related to module (used in nlpm/nlpi)
-        
-    # called in nlpi
-    def sel(self,args:dict):
-        
-        self.select = args['pred_task']
-        self.args = args
-        
-        if(self.select == 'function'):
-            self.function(self.args)
-        
-    # use standard or static methods
-        
-    def function(self,args:dict):
-        pass
-        
-    @staticmethod
-    def function(args:dict):
-        pass
-    
-
-corpus_sample = OrderedDict({"function":['task']}
-info_sample = {'function': {'module':'sample',
-                            'action':'action',
-                            'topic':'topic',
-                            'subtopic':'sub topic',
-                            'input_format':'input format for data',
-                            'output_format':'output format for data',
-                            'description':'write description'}}
-                         
-# configuration dictionary (passed in nlpm)
-configure_sample = {'corpus':corpus_sample,'info':info_sample}
+fib = fib_list(5)
+fib.get_list()
 ```
 
-### **Merging Modules**
 
-**`Modules`** which we create need to be assembled together into a **`collection`** of modules, there are two ways to do this: manually importing and grouping modules or using  **`interface`** class
+#### (3) Natural Language
 
-!!! abstract "Manually Import Modules"
+Another approach, which `mllibs` uses in natural language based code automation:
 
-    #### **Manually Importing Modules**
+```python
+input = 'calculate the fibonacci'
+         sequence for the value of 5'
 
-    First we need to combine all our module components together, this will link all passed modules together
+nlp_interpreter(input) 
+```
 
-    ```python
-    collection = nlpm()
-    collection.load([loader(configure_loader),
-                     simple_eda(configure_eda),
-                     encoder(configure_nlpencoder),
-                     embedding(configure_nlpembed),
-                     cleantext(configure_nlptxtclean),
-                     sklinear(configure_sklinear),
-                     hf_pipeline(configure_hfpipe),
-                     eda_plot(configure_edaplt)])  
-    ```
+All these methods will give the following result:
 
-    Then we need to train `interpreter` models
-
-    ```python
-    collection.train()
-    ```
-
-    Lastly, pass the collection of modules (`nlpm` instance) to the interpreter `nlpi` 
-
-    ```python
-    session = nlpi(collection)
-    ```
-
-    class `nlpi` can be used with method `exec` for user input interpretation
-
-    ```python
-
-    session.exec('create a scatterplot using data with x dimension1 y dimension2')
-
-    ```
-
-!!! abstract "Load Preset Modules"
-
-    #### **Import Default Libraries**
-
-    The faster way, includes all loaded modules and groups them together for us:
-
-    ```python
-    from mllibs.interface import interface
-    session = interface()
-    ```
+```
+[0, 1, 1, 2, 3]
+```
 
 ### **How to Contibute**
 
-!!! question
+<h4>Predefined Tasks</h4>
 
-    Want to add your own project to our collection? We welcome all contributions, big or small. 
+I'm constantly looking for people to contribute to the development of the library. I've **[created a page](https://shtrausslearning.github.io/mllibs/group/status.html#task-allocation)** where I set different tasks that you can do and join the **[mllibs group](https://github.com/mllibs)**, if you are interested, please get in touch me on telegram **[shtrauss2](https://t.me/shtrauss2)** or via :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**
 
-    Here's how you can get started:
+<h4>Our own ideas and contributions</h4>
 
-    1. Fork the repository
-    2. Create a new branch for your changes
-    3. Make your changes and commit them
-    4. Submit a pull request
+Here's how you can get started:
+
+1. Fork the repository
+2. Create a new branch for your changes
+3. Make your changes and commit them
+4. Submit a pull requirest
 
 
 ### **Contact**

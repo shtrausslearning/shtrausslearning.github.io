@@ -176,17 +176,14 @@ nav:
     - Documentation: 
         - iterative: mllibs/documentation/iterative.md
         - storage: mllibs/documentation/data_storage.md
-        - nlpm: mllibs/documentation/nlpm.md
-        - nlpi: mllibs/documentation/nlpi.md
         - eda:
             - eda_simple: mllibs/documentation/eda/meda_simple.md
             - eda_splot: mllibs/documentation/eda/meda_splot.md 
             - eda_scplot: mllibs/documentation/eda/meda_scplot.md
+        - stats:
+            - mstats_tests: mllibs/documentation/stats/mstats_tests.md
 
     - Group:
-        - Tasks:
-          - Recommendation: mllibs/group/tasks/recom.md
-          - Label Classification: mllibs/group/tasks/label_classifier.md
         - Task Status: mllibs/group/status.md
         - Meetings: mllibs/group/meetups.md
         - Members: mllibs/group/members.md

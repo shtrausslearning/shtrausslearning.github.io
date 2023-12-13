@@ -1186,6 +1186,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#extracting-data-content" class="md-nav__link">
+    Extracting Data Content
+  </a>
+  
+    <nav class="md-nav" aria-label="Extracting Data Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-storage" class="md-nav__link">
+    DataFrame Storage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1956,6 +1976,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#extracting-data-content" class="md-nav__link">
+    Extracting Data Content
+  </a>
+  
+    <nav class="md-nav" aria-label="Extracting Data Content">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataframe-storage" class="md-nav__link">
+    DataFrame Storage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1976,41 +2016,171 @@
 
   <h1>storage</h1>
 
+<p><a href=""><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>
 <h2 id="data-storage"><strong>Data Storage</strong><a class="headerlink" href="#data-storage" title="Permanent link">&para;</a></h2>
-<p>To utilise automisation with <strong>mllibs</strong>, data needs to be stored in <strong>nlpi</strong> instances (nlpi)</p>
+<p>To utilise automisation with <strong>mllibs</strong>, data needs to be stored in <strong>nlpi</strong> instances. Input data is allocated a <strong>name tag</strong>, allowing the user to reference the data source in a query so it can be used as an input into the selected <strong>activation function</strong></p>
 <h3 id="loading-preset-datasets"><strong>Loading Preset Datasets</strong><a class="headerlink" href="#loading-preset-datasets" title="Permanent link">&para;</a></h3>
 <p>Both <a href="https://github.com/mwaskom/seaborn"><strong>Seaborn</strong></a> and <a href="https://plotly.com/python-api-reference/generated/plotly.express.data.html"><strong>Plotly</strong></a> offer preset dataset which can be used for simple data analyses and testing. A mixture of different datasets from both have been selected to be loaded with the method <strong>load_sample_data</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">load_sample_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">(),</span><span class="s1">&#39;stocks&#39;</span><span class="p">)</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tips</span><span class="p">(),</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iris</span><span class="p">(),</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">carshare</span><span class="p">(),</span><span class="s1">&#39;carshare&#39;</span><span class="p">)</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experiment</span><span class="p">(),</span><span class="s1">&#39;experiment&#39;</span><span class="p">)</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">wind</span><span class="p">(),</span><span class="s1">&#39;wind&#39;</span><span class="p">)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;flights&#39;</span><span class="p">),</span><span class="s1">&#39;flights&#39;</span><span class="p">)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">),</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;taxis&#39;</span><span class="p">),</span><span class="s1">&#39;taxis&#39;</span><span class="p">)</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">),</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">),</span><span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">load_sample_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">(),</span><span class="s1">&#39;stocks&#39;</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tips</span><span class="p">(),</span><span class="s1">&#39;tips&#39;</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iris</span><span class="p">(),</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">carshare</span><span class="p">(),</span><span class="s1">&#39;carshare&#39;</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experiment</span><span class="p">(),</span><span class="s1">&#39;experiment&#39;</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">wind</span><span class="p">(),</span><span class="s1">&#39;wind&#39;</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;flights&#39;</span><span class="p">),</span><span class="s1">&#39;flights&#39;</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">),</span><span class="s1">&#39;penguins&#39;</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;taxis&#39;</span><span class="p">),</span><span class="s1">&#39;taxis&#39;</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">),</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;mpg&#39;</span><span class="p">),</span><span class="s1">&#39;mpg&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>once the <strong>nlpi</strong> instance has been created, you can store all the above data in <strong>nlpi.data</strong> and reference to them by their allocated name, shown above</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">load_sample_data</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="loading-local-data"><strong>Loading local data</strong><a class="headerlink" href="#loading-local-data" title="Permanent link">&para;</a></h3>
 <p>To load your own data, you need to use <strong>nlpi.store_data</strong>. At present only two formats are used as storage types python <strong>lists</strong> and pandas <strong>dataframes</strong>. They can be imported directly</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">data</span><span class="p">:(</span><span class="nb">list</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">),</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">data</span><span class="p">:(</span><span class="nb">list</span> <span class="ow">or</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">),</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p>Or as part of a dictionary input:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">data</span><span class="p">:{</span><span class="s1">&#39;name1&#39;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span><span class="s1">&#39;name2&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">})</span>
-</span></code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">data</span><span class="p">:{</span><span class="s1">&#39;name1&#39;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span><span class="s1">&#39;name2&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">})</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="active-columns"><strong>Active Columns</strong><a class="headerlink" href="#active-columns" title="Permanent link">&para;</a></h3>
 <p>When using <strong>natural language</strong> for automation, specifying a subset of a <strong>dataframe</strong> in a single query can make them them quite long. As a result, the use of <strong>active columns</strong> or simply put defined <strong>subset column lists</strong> is utilised in <strong>mllibs</strong> and can be defined by setting. An important distinguish to note is that <strong>active columns</strong> are not <strong>data souces</strong>, they are stored in the existing data dictionary under the key <strong>ac</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">store_ac</span><span class="p">(</span><span class="s1">&#39;data_name&#39;</span><span class="p">,</span><span class="s1">&#39;active_column name&#39;</span><span class="p">,[</span><span class="s1">&#39;column A&#39;</span><span class="p">,</span><span class="s1">&#39;column B&#39;</span><span class="p">])</span>
-</span></code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">nlpi</span><span class="o">.</span><span class="n">store_ac</span><span class="p">(</span><span class="s1">&#39;data_name&#39;</span><span class="p">,</span><span class="s1">&#39;active_column name&#39;</span><span class="p">,[</span><span class="s1">&#39;column A&#39;</span><span class="p">,</span><span class="s1">&#39;column B&#39;</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
 <p>Utilisation of <strong>active columns</strong> can be done via defining the name of the active column using <strong>{}</strong> quotations marks inside a query</p>
+<h2 id="extracting-data-content"><strong>Extracting Data Content</strong><a class="headerlink" href="#extracting-data-content" title="Permanent link">&para;</a></h2>
+<p>If you have the need to extract data related content, you can call <strong>nlpi.data['data_name']</strong></p>
+<h4 id="dataframe-storage"><strong>DataFrame Storage</strong><a class="headerlink" href="#dataframe-storage" title="Permanent link">&para;</a></h4>
+<p><strong>nlpi</strong> stores a variety of data related to <strong>DataFrames</strong>, the stored content changes depending on the implemented <strong>activation functions</strong>, here's an example:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span>
+<span class="normal"><a href="#__codelineno-5-28">28</a></span>
+<span class="normal"><a href="#__codelineno-5-29">29</a></span>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span>
+<span class="normal"><a href="#__codelineno-5-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span>            <span class="n">date</span>      <span class="n">GOOG</span>      <span class="n">AAPL</span>      <span class="n">AMZN</span>        <span class="n">FB</span>      <span class="n">NFLX</span>      <span class="n">MSFT</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a> <span class="mi">0</span>    <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>  <span class="mf">1.000000</span>  <span class="mf">1.000000</span>  <span class="mf">1.000000</span>  <span class="mf">1.000000</span>  <span class="mf">1.000000</span>  <span class="mf">1.000000</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a> <span class="mi">1</span>    <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">08</span>  <span class="mf">1.018172</span>  <span class="mf">1.011943</span>  <span class="mf">1.061881</span>  <span class="mf">0.959968</span>  <span class="mf">1.053526</span>  <span class="mf">1.015988</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a> <span class="mi">2</span>    <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">15</span>  <span class="mf">1.032008</span>  <span class="mf">1.019771</span>  <span class="mf">1.053240</span>  <span class="mf">0.970243</span>  <span class="mf">1.049860</span>  <span class="mf">1.020524</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a> <span class="mi">3</span>    <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">22</span>  <span class="mf">1.066783</span>  <span class="mf">0.980057</span>  <span class="mf">1.140676</span>  <span class="mf">1.016858</span>  <span class="mf">1.307681</span>  <span class="mf">1.066561</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a> <span class="mi">4</span>    <span class="mi">2018</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">29</span>  <span class="mf">1.008773</span>  <span class="mf">0.917143</span>  <span class="mf">1.163374</span>  <span class="mf">1.018357</span>  <span class="mf">1.273537</span>  <span class="mf">1.040708</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a> <span class="o">..</span>          <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a> <span class="mi">100</span>  <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">02</span>  <span class="mf">1.216280</span>  <span class="mf">1.546914</span>  <span class="mf">1.425061</span>  <span class="mf">1.075997</span>  <span class="mf">1.463641</span>  <span class="mf">1.720717</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a> <span class="mi">101</span>  <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">09</span>  <span class="mf">1.222821</span>  <span class="mf">1.572286</span>  <span class="mf">1.432660</span>  <span class="mf">1.038855</span>  <span class="mf">1.421496</span>  <span class="mf">1.752239</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a> <span class="mi">102</span>  <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">16</span>  <span class="mf">1.224418</span>  <span class="mf">1.596800</span>  <span class="mf">1.453455</span>  <span class="mf">1.104094</span>  <span class="mf">1.604362</span>  <span class="mf">1.784896</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a> <span class="mi">103</span>  <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span>  <span class="mf">1.226504</span>  <span class="mf">1.656000</span>  <span class="mf">1.521226</span>  <span class="mf">1.113728</span>  <span class="mf">1.567170</span>  <span class="mf">1.802472</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a> <span class="mi">104</span>  <span class="mi">2019</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span>  <span class="mf">1.213014</span>  <span class="mf">1.678000</span>  <span class="mf">1.503360</span>  <span class="mf">1.098475</span>  <span class="mf">1.540883</span>  <span class="mf">1.788185</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a> <span class="p">[</span><span class="mi">105</span> <span class="n">rows</span> <span class="n">x</span> <span class="mi">7</span> <span class="n">columns</span><span class="p">],</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a> <span class="s1">&#39;subset&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a> <span class="s1">&#39;splits&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a> <span class="s1">&#39;splits_col&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a> <span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="s1">&#39;GOOG&#39;</span><span class="p">,</span> <span class="s1">&#39;AAPL&#39;</span><span class="p">,</span> <span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;FB&#39;</span><span class="p">,</span> <span class="s1">&#39;NFLX&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">],</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a> <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a> <span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a> <span class="s1">&#39;num&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span> <span class="s1">&#39;AAPL&#39;</span><span class="p">,</span> <span class="s1">&#39;AMZN&#39;</span><span class="p">,</span> <span class="s1">&#39;FB&#39;</span><span class="p">,</span> <span class="s1">&#39;NFLX&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">],</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a> <span class="s1">&#39;miss&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">105</span><span class="p">,</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24"></a> <span class="s1">&#39;dim&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25"></a> <span class="s1">&#39;model_prediction&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26"></a> <span class="s1">&#39;model_correct&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27"></a> <span class="s1">&#39;model_error&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28"></a> <span class="s1">&#39;ac&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29"></a> <span class="s1">&#39;ft&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30"></a> <span class="s1">&#39;outliers&#39;</span><span class="p">:</span> <span class="p">{},</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31"></a> <span class="s1">&#39;dimred&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+</span></code></pre></div></td></tr></table></div>
 
 
   
 
 
 
+    
+    <h2 id="__comments">Comments</h2>
+    
+    <!-- Insert generated snippet here -->
+    <script src="https://giscus.app/client.js"
+            data-repo="shtrausslearning/shtrausslearning.github.io"
+            data-repo-id="R_kgDOKepqew"
+            data-category="General"
+            data-category-id="DIC_kwDOKepqe84CaIkI"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="light_protanopia"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
+
+    <!-- Synchronize giscus theme with palette -->
+    <script>
+            var giscus = document.querySelector("script[src*=giscus]")
+
+        /* Set palette on initial load */
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+            var theme = palette.color.scheme === "slate" ? "dark" : "light"
+            giscus.setAttribute("data-theme", theme) // (1)!
+  }
+
+        /* Register event handlers after documented loaded */
+        document.addEventListener("DOMContentLoaded", function() {
+            var ref = document.querySelector("[data-md-component=palette]")
+            ref.addEventListener("change", function() {
+                var palette = __md_get("__palette")
+                if (palette && typeof palette.color === "object") {
+                    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+                    /* Instruct giscus to change theme */
+                    var frame = document.querySelector(".giscus-frame")
+                    frame.contentWindow.postMessage(
+                        { giscus: { setConfig: { theme } } },
+                        "https://giscus.app"
+                    )
+                }
+            })
+        })
+    </script>
     
                 
               </article>

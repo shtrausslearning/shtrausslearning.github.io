@@ -289,8 +289,6 @@ df.show()
 +-------+---+------+
 ```
 
-
-
 ***
 
 **Thank you for reading!**

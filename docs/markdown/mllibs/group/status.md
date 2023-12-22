@@ -15,7 +15,7 @@ The purpose of such functionality is to provide helpful suggestions, tips based 
 
 <h4>Approval</h4>
 
-:material-check-bold: In motion
+[:material-check-bold: In motion]()
 
 ***
 

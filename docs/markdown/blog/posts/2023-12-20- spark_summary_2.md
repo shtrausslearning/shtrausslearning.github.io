@@ -387,8 +387,6 @@ def capitalise_name(name):
 
 # Add new column Apply the pandas UDF on the DataFrame
 df = df.withColumn("Capitalised", capitalise_name(df["Name"]))
-
-# Show the result
 df.show()
 
 +-------+---+-----------+

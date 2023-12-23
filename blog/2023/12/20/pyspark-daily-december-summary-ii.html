@@ -2372,17 +2372,15 @@
 </span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># Add new column Apply the pandas UDF on the DataFrame</span>
 </span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;Capitalised&quot;</span><span class="p">,</span> <span class="n">capitalise_name</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]))</span>
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1"># Show the result</span>
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="o">+-------+---+-----------+</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="o">|</span>   <span class="n">Name</span><span class="o">|</span><span class="n">Age</span><span class="o">|</span><span class="n">Capitalised</span><span class="o">|</span>
 </span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="o">+-------+---+-----------+</span>
-</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="o">|</span>   <span class="n">Name</span><span class="o">|</span><span class="n">Age</span><span class="o">|</span><span class="n">Capitalised</span><span class="o">|</span>
-</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="o">+-------+---+-----------+</span>
-</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="o">|</span>  <span class="n">alice</span><span class="o">|</span> <span class="mi">25</span><span class="o">|</span>      <span class="n">Alice</span><span class="o">|</span>
-</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="o">|</span>    <span class="n">bob</span><span class="o">|</span> <span class="mi">30</span><span class="o">|</span>        <span class="n">Bob</span><span class="o">|</span>
-</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="o">|</span><span class="n">charlie</span><span class="o">|</span> <span class="mi">35</span><span class="o">|</span>    <span class="n">Charlie</span><span class="o">|</span>
-</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="o">+-------+---+-----------+</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="o">|</span>  <span class="n">alice</span><span class="o">|</span> <span class="mi">25</span><span class="o">|</span>      <span class="n">Alice</span><span class="o">|</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="o">|</span>    <span class="n">bob</span><span class="o">|</span> <span class="mi">30</span><span class="o">|</span>        <span class="n">Bob</span><span class="o">|</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="o">|</span><span class="n">charlie</span><span class="o">|</span> <span class="mi">35</span><span class="o">|</span>    <span class="n">Charlie</span><span class="o">|</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="o">+-------+---+-----------+</span>
 </span></code></pre></div>
 <hr />
 <p><strong>Thank you for reading!</strong></p>

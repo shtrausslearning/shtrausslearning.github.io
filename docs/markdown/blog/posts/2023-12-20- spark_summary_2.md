@@ -289,6 +289,117 @@ df.show()
 +-------+---+------+
 ```
 
+### <b>13/12/2023</b>
+
+<h4><b><span style='color:#E888BB'>❯❯❯</span> PySpark UDF to create features for modeling</b></h4>
+
+**UDF** can be used like apply in pandas dataframes, allowing custom logic modifications to columns values. 
+
+In this example we'll create a **new feature** (new_column) based on the row values of other columns, and use it as feature input into our model **LinearRegression**. To do this, we will need to utilise the previously visited **VectorAssembler** as the inputCols
+
+Suppose we have two features **x1**,**x2** and we want to add an extra feature that is created from using the values from these two columns. To do this we create **custom_udf** and define the operations and output type **DoubleType**
+
+To add a new column with the new value we simply use **withColumn** and call the UDF function with column values as input.
+
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import udf
+from pyspark.sql.types import DoubleType
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.regression import LinearRegression
+
+# Create a Spark session
+spark = SparkSession.builder.getOrCreate()
+
+# Sample data
+data = [(1, 2, 5), 
+        (4, 1, 10), 
+        (7, 3, 15)]
+df = spark.createDataFrame(data, ["x1", "x2", "y"])
+
+# Define a UDF to perform a custom operation
+def custom_operation(x1,x2):
+    return x1 * 2.0 + x2
+
+custom_udf = udf(custom_operation, DoubleType())
+
+# Apply the UDF to create a new column
+df = df.withColumn("new_column", custom_udf(df["x1"], df["x2"]))
+df.show()
+
+# Assemble features into a vector
+assembler = VectorAssembler(inputCols=["x1","new_column"], outputCol="features")
+df = assembler.transform(df)
+df.show()
+
+# # Train a linear regression model
+lr = LinearRegression(featuresCol="features", labelCol="y")
+model = lr.fit(df)
+spark.stop()
+```
+
+### <b>14/12/2023</b>
+
+<h4><b><span style='color:#E888BB'>❯❯❯</span> PySpark UDF to create features for modeling</b></h4>
+
+PySpark offers another type of **UDF**, **PandasUDF**, which can be imported from functions as well like **udf**. Unlike **UDF**, we need to specify which type of pandasUDF we will be using (**functionType**), one of these types is **PandasUDFType.SCALAR**. 
+
+**PandasUDFType.SCALAR** is a constant in PySpark that represents the type of **pandas UDF (SCALAR)**
+
+- A scalar **pandas UDF** takes one or more columns as input and returns a single column as output
+- It operates on a single row at a time and can be used to apply arbitrary Python functions to the data in a DataFrame
+
+```python
+from pyspark.sql import SparkSession
+
+# Create a Spark session
+spark = SparkSession.builder.getOrCreate()
+
+# Create a sample DataFrame
+data = [("alice", 25), 
+        ("bob", 30), 
+        ("charlie", 35)]
+
+df = spark.createDataFrame(data, ["Name", "Age"])
+df.show()
+
++-------+---+
+|   Name|Age|
++-------+---+
+|  alice| 25|
+|    bob| 30|
+|charlie| 35|
++-------+---+
+```
+
+We can define the UDF as a decorator **@pandas_udf**, we can add a simple functionality to capitalise the input string column using **capitalise_name**
+
+```python
+from pyspark.sql.functions import pandas_udf, PandasUDFType
+
+# Define a pandas UDF
+# return type & function type
+
+@pandas_udf(returnType="string", functionType=PandasUDFType.SCALAR)
+def capitalise_name(name):
+    return name.str.capitalize()
+
+# Add new column Apply the pandas UDF on the DataFrame
+df = df.withColumn("Capitalised", capitalise_name(df["Name"]))
+
+# Show the result
+df.show()
+
++-------+---+-----------+
+|   Name|Age|Capitalised|
++-------+---+-----------+
+|  alice| 25|      Alice|
+|    bob| 30|        Bob|
+|charlie| 35|    Charlie|
++-------+---+-----------+
+```
+
 ***
 
 **Thank you for reading!**

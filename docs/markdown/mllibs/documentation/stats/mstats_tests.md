@@ -1,9 +1,9 @@
 
-## **Module Group**
+## :fontawesome-solid-layer-group: **Module Group**
 
 src/stats[^1]
 
-## **Project Stage ID**
+## :material-identifier: **Project Stage ID**
 
 [^1]: Reference to the sub folder in `src`
 
@@ -104,14 +104,13 @@ Activation functions need to be assigned a unique label. Here's the process of `
 
 ## :octicons-code-16: **Activation Functions**
 
-Here you will find the relevant **activation functions** available in class `mstats_tests`
+Here you will find the relevant **activation functions** available in class **mstats_tests**
 
 ### <b>:octicons-file-code-16: ==its_ttest==</b>
 
 <h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
 
-Independent two sample **Student's t-test**: This test is used to compare the **means of two independent samples**. It assumes that the data is (normally distributed) and that the (variances of the 
-two groups are equal)
+Independent two sample **Student's t-test**: This test is used to compare the **means of two independent samples**. It assumes that the data is (normally distributed) and that the (variances of the two groups are equal)
 
 <h4>code:</h4>
 

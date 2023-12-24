@@ -1,11 +1,9 @@
 
-## **Information**
-
-### :fontawesome-solid-layer-group: **Module Group**
+## :fontawesome-solid-layer-group: **Module Group**
 
 src/stats[^1]
 
-### :material-identifier: **Project Stage ID**
+## :material-identifier: **Project Stage ID**
 
 [^1]: Reference to the sub folder in `src`
 
@@ -13,12 +11,11 @@ src/stats[^1]
 
 [^2]: Reference to the machine learning project phase identification defined [here](../../projects/mlproject.md)
 
-### :material-frequently-asked-questions: **Purpose**
+## :material-frequently-asked-questions: **Purpose**
 
 The purpose of this module is to provide the user with a graphic visualisation of the statistical difference between two samples
 
-
-### :fontawesome-solid-location-arrow: **Module Files**
+## :fontawesome-solid-location-arrow: **Module Files**
 
 Here are the locations of the relevant files associated with the module
 
@@ -30,7 +27,7 @@ Here are the locations of the relevant files associated with the module
 
 /src/stats/mstats_plot.py
 
-### :material-import: **Requirements**
+## :material-import: **Requirements**
 
 Module import information 
 
@@ -48,7 +45,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 ```
 
-### :material-selection-drag: **Selection**
+## :material-selection-drag: **Selection**
 
 Activation functions need to be assigned a unique label. Here's the process of **label** & activation function selection 
 
@@ -122,7 +119,7 @@ interpreter.store_data({'distribution_A':sample1,
                         'distribution_B':sample2})
 
 # request
-req = "compare the histograms of two samples distribution_B distribution_A nbins 50"
+req = "compare the histograms of two samples distribution_B and distribution_A nbins 50"
 
 # execution of request
 interpreter[req]
@@ -174,5 +171,64 @@ interpreter.store_data({'distribution_A':sample1,
 req = "compare kde plot of two samples distribution_B distribution_A"
 
 # execution of request
+interpreter[req]
+```
+
+### <b>:octicons-file-code-16: ==dp_bootstrap==</b>
+
+<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+
+In this method, two samples are resampled and multiple bootstrap samples are generated. Each bootstrap sample has the same size as the original sample & the mean of the distribution is stored and plotted
+
+<h4>code:</h4>
+
+```python
+# plot Bootstrap Histogram Distribution 
+
+def dp_bootstrap(self,args:dict):
+
+    pre = {'nsamples':100}
+
+    sample1 = np.array(args['data'][0])
+    sample2 = np.array(args['data'][1])
+
+    # Number of bootstrap samples
+    num_bootstrap_samples = self.sfp(args,pre,'nsamples')
+
+    # Perform bootstrap sampling and compute test statistic for each sample
+    data = {'one':[],'two':[]}
+    for i in range(num_bootstrap_samples):
+
+        # Resample with replacement
+        bootstrap_sample1 = np.random.choice(sample1, size=len(sample1), replace=True)
+        bootstrap_sample2 = np.random.choice(sample2, size=len(sample2), replace=True)
+        
+        # Compute difference in CTR for bootstrap sample
+        data['one'].append(np.mean(bootstrap_sample1))
+        data['two'].append(np.mean(bootstrap_sample2))
+
+    fig = px.histogram(data,x=['one','two'],
+                       marginal="box",
+                       template='plotly_white',nbins=args['nbins'],
+                       color_discrete_sequence=self.default_colors[0],
+                       title='Comparing Bootstrap distributions')
+
+    fig.update_traces(opacity=0.8)
+    fig.update_layout(barmode='group') # ['stack', 'group', 'overlay', 'relative']
+    fig.update_layout(height=350,width=700)  
+    fig.show()
+```
+
+<h4>sample request:</h4>
+
+```python
+sample1 = list(np.random.exponential(scale=1, size=1000))
+sample2 = list(np.random.exponential(scale=1, size=1000))
+
+interpreter.store_data({'distribution_A':sample1,
+                        'distribution_B':sample2})
+
+req = "create bootstrap samples for two dataset distribution_B distribution_A nbins: 50"
+
 interpreter[req]
 ```

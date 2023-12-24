@@ -61,6 +61,10 @@ def sel(self,args:dict):
         self.dp_hist(args)
     if(select == 'dp_kde'):
         self.dp_kde(args)
+    if(select == 'dp_bootstrap'):
+        self.dp_bootstrap(args)
+    if(select == 'dp_wildbootstrap'):
+        self.dp_wildbootstrap(args)
 ```
 
 ## :octicons-code-16: **Activation Functions**
@@ -176,7 +180,7 @@ interpreter[req]
 
 ### <b>:octicons-file-code-16: ==dp_bootstrap==</b>
 
-<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+<h4><b>data: [<code>list</code>,<code>list</code>] targ: [<code>nbins</code>,<code>nsamples</code>]</b></h4>
 
 In this method, two samples are resampled and multiple bootstrap samples are generated. Each bootstrap sample has the same size as the original sample & the mean of the distribution is stored and plotted
 
@@ -229,6 +233,69 @@ interpreter.store_data({'distribution_A':sample1,
                         'distribution_B':sample2})
 
 req = "create bootstrap samples for two dataset distribution_B distribution_A nbins: 50"
+
+interpreter[req]
+```
+
+### <b>:octicons-file-code-16: ==dp_wildbootstrap==</b>
+
+<h4><b>data: [<code>list</code>,<code>list</code>] targ: [<code>nbins</code>,<code>nsamples</code>]</b></h4>
+
+This method is useful when dealing with heteroscedastic data or data with dependence structures. It involves resampling the residuals from a model fitted to the original data, rather than resampling the original data itself. The A/B test is performed on each bootstrap sample of residuals, and the test statistic values are recorded.
+
+<h4>code:</h4>
+
+```python
+# plot Wild Bootstrap Histogram Distribution 
+
+# Wild Bootstrap: This method is useful when dealing with heteroscedastic data or data with dependence structures. 
+# It involves resampling the residuals from a model fitted to the original data, rather than resampling the original data itself. 
+# The A/B test is performed on each bootstrap sample of residuals, and the test statistic values are recorded.
+
+def dp_wildbootstrap(self,args:dict):
+
+    pre = {'nsamples':100}
+
+    sample1 = np.array(args['data'][0])
+    sample2 = np.array(args['data'][1])
+
+    # Number of bootstrap samples
+    num_bootstrap_samples = self.sfpne(args,pre,'nsamples')
+    
+    # Function to estimate parameter
+    def estimate_parameter(data):
+        return np.mean(data)
+    
+    # Perform Wild Bootstrap
+    boot1 = IIDBootstrap(sample1)
+    boot_estimates1 = boot1.apply(estimate_parameter, num_bootstrap_samples)
+    boot2 = IIDBootstrap(sample2)
+    boot_estimates2 = boot2.apply(estimate_parameter, num_bootstrap_samples)
+    
+    data = {'one':boot_estimates1[:,0],'two':boot_estimates2[:,0]}
+
+    fig = px.histogram(data,x=['one','two'],
+                       marginal="box",
+                       template='plotly_white',nbins=args['nbins'],
+                       color_discrete_sequence=self.default_colors[0],
+                       title='Comparing Wild Bootstrap distributions')
+
+    fig.update_traces(opacity=0.8)
+    fig.update_layout(barmode='group') # ['stack', 'group', 'overlay', 'relative']
+    fig.update_layout(height=350,width=700)  
+    fig.show()
+```
+
+<h4>sample request:</h4>
+
+```python
+sample1 = list(np.random.exponential(scale=1, size=1000))
+sample2 = list(np.random.exponential(scale=1, size=1000))
+
+interpreter.store_data({'distribution_A':sample1,
+                        'distribution_B':sample2})
+
+req = "create wild bootstrap samples for two dataset distribution_B distribution_A nbins: 50"
 
 interpreter[req]
 ```

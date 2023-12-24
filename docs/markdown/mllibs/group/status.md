@@ -1,4 +1,4 @@
-In this section, we document the module feature registration, each subtask is briefly described. More detailed information about each task can be viewed in the link provided in the task description
+In this section, we document the module feature registration (at least the main ones), each subtask is briefly described. Some smaller tasks can come and go and are all available in **[issue section](https://github.com/mllibs/mllibs)** on github
 
 ## :octicons-tasklist-16: **Available Tasks**
 
@@ -10,28 +10,19 @@ Currently there doesn't exist a mechanism that would allow a user to explore the
 
 <h4>Purpose</h4>
 
-The purpose of such functionality is to provide helpful suggestions, tips based on their preferences
+The purpose of such functionality is to provide helpful suggestions, tips based on information the user provides, data they load & the functions they utilise
 
 
 <h4>Approval</h4>
 
-[:material-check-bold: In motion]()
+:material-checkbox-multiple-marked-circle-outline: In motion
 
-***
+<h4>GitHub Tasks</h4>
 
-### :material-tag-check: Module Function Label Classifier
+Subtasks opened for this task:
 
-<h4>Description</h4>
-
-In order for module functionality to be activated, there needs to be an inbuilt library functionality that would link an input user request to module functionality
-
-<h4>Purpose</h4>
-
-The purpose of such as classifier is to associated input text requests with module functions
-
-<h4>Approval</h4>
-	
-:material-file-question: not available
+- :material-checkbox-multiple-blank-circle-outline: **[Added Feature : User Description Classifier](https://github.com/mllibs/mllibs/issues/3)**
+- :material-checkbox-multiple-blank-circle-outline: **[Added Feature : Column/Content based ML project classifier](https://github.com/mllibs/mllibs/issues/8)**
 
 ***
 

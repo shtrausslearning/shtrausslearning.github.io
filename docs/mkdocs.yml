@@ -177,13 +177,14 @@ nav:
         - <b>iterative</b>: mllibs/documentation/iterative.md
         - <b>storage</b>: mllibs/documentation/data_storage.md
         - <b>eda</b>:
-            - eda_splot: mllibs/documentation/eda/meda_splot.md 
-            - eda_pplot: mllibs/documentation/eda/meda_pplot.md 
-            - eda_scplot: mllibs/documentation/eda/meda_scplot.md
+            - meda_splot: mllibs/documentation/eda/meda_splot.md 
+            - meda_pplot: mllibs/documentation/eda/meda_pplot.md 
+            - meda_scplot: mllibs/documentation/eda/meda_scplot.md
         - <b>pd</b>:
-            - pd_talktodata: mllibs/documentation/pd/mpd_talktodata.md
+            - mpd_talktodata: mllibs/documentation/pd/mpd_talktodata.md
         - <b>stats</b>:
             - mstats_tests: mllibs/documentation/stats/mstats_tests.md
+            - mstats_plot: mllibs/documentation/stats/mstats_plot.md
 
     - Group:
         - Task Status: mllibs/group/status.md

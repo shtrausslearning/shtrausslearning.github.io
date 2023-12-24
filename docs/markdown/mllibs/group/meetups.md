@@ -1,14 +1,8 @@
----
-tags:
-	- meetups
-	- members
----
-
 ## :material-account-group: **Group Meetings**
 
 Here's a collection of data from group meetups
 
-??? ":simple-zoom: project introduction"
+!!! ":simple-zoom: project introduction"
 
 	:notebook_with_decorative_cover: **[Slides](pdf/151023.pdf)**
 
@@ -26,11 +20,9 @@ Here's a collection of data from group meetups
 
 A collections of all individual meetings
 
-??? "Recommendation System Subtask"
+!!! "Recommendation System Subtask"
 
 	:calendar: Oct 17, 2023
-
-
 
 	Attendees:
 

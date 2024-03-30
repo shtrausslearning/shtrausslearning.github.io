@@ -1994,15 +1994,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#elementary-questions" class="md-nav__link">
-    ❯❯❯ Elementary Questions
+  <a href="#a-elementary-questions" class="md-nav__link">
+    ❯❯❯ a) Elementary Questions
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#main-problem" class="md-nav__link">
-    ❯❯❯ Main Problem
+  <a href="#b-main-problem" class="md-nav__link">
+    ❯❯❯ b) Main Problem
   </a>
   
 </li>
@@ -2253,7 +2253,7 @@
 </span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="n">employee</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
 </span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="n">employee</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">&quot;EMPLOYEE&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="elementary-questions"><b><span style='color:#E888BB'>❯❯❯</span> Elementary Questions</b><a class="headerlink" href="#elementary-questions" title="Permanent link">&para;</a></h3>
+<h3 id="a-elementary-questions"><b><span style='color:#E888BB'>❯❯❯</span> a) Elementary Questions</b><a class="headerlink" href="#a-elementary-questions" title="Permanent link">&para;</a></h3>
 <p>Some basic concepts in SQL, joining, subqueries and CTE. Some of the more interesting things that one might not come across in SQL problems often is a WHERE condition format such as:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">WHERE</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p">(</span><span class="n">DEPARTAMENT_ID</span><span class="p">,</span><span class="w"> </span><span class="n">SALARY</span><span class="p">)</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span>
@@ -2390,10 +2390,9 @@
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>|             2|
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>+--------------+
 </span></code></pre></div>
-<h3 id="main-problem"><b><span style='color:#E888BB'>❯❯❯</span> Main Problem</b><a class="headerlink" href="#main-problem" title="Permanent link">&para;</a></h3>
+<h3 id="b-main-problem"><b><span style='color:#E888BB'>❯❯❯</span> b) Main Problem</b><a class="headerlink" href="#b-main-problem" title="Permanent link">&para;</a></h3>
 <p>Now lets move onto the main problem of the interview questions. We need to have a <strong>postgres</strong> session started. I'll be using <strong>psycopg2</strong> to connect to the database.gs The two main tables EMPLOYEE and DEPARTMENT which we'll need have been described above. We need to add new data to our database which describes the number of hours a an employee has worked.</p>
-<p><strong>Problem Aim</strong></p>
-<p>Our goal is to write a code that will allow us to <strong>update the database</strong> with employee working hours data &amp; <strong>create a simple analysis</strong> based on the data that each employee provides us. </p>
+<p>Our goal is to write a code that will allow employees to <strong>update the database</strong> with employee working hours data &amp; <strong>create a simple analysis</strong> based on the data that each employee provides us. </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="sd">&#39;&#39;&#39;</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="sd">Необходимо дополнить структуру новыми данными в связи с задачей фиксации отработанного времени.</span>

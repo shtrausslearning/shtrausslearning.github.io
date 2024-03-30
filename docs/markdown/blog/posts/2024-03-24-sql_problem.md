@@ -158,7 +158,7 @@ employee = spark.createDataFrame(data, schema)
 employee.createOrReplaceTempView("EMPLOYEE")
 ```     
 
-### <b><span style='color:#E888BB'>❯❯❯</span> Elementary Questions</b>
+### <b><span style='color:#E888BB'>❯❯❯</span> a) Elementary Questions</b>
 
 Some basic concepts in SQL, joining, subqueries and CTE. Some of the more interesting things that one might not come across in SQL problems often is a WHERE condition format such as:
 
@@ -322,13 +322,11 @@ spark.sql(tquery).show()
 +--------------+
 ```
 
-### <b><span style='color:#E888BB'>❯❯❯</span> Main Problem</b>
+### <b><span style='color:#E888BB'>❯❯❯</span> b) Main Problem</b>
 
 Now lets move onto the main problem of the interview questions. We need to have a **postgres** session started. I'll be using **psycopg2** to connect to the database.gs The two main tables EMPLOYEE and DEPARTMENT which we'll need have been described above. We need to add new data to our database which describes the number of hours a an employee has worked.
 
-**Problem Aim**
-
-Our goal is to write a code that will allow us to **update the database** with employee working hours data & **create a simple analysis** based on the data that each employee provides us. 
+Our goal is to write a code that will allow employees to **update the database** with employee working hours data & **create a simple analysis** based on the data that each employee provides us. 
 
 ```python
 '''

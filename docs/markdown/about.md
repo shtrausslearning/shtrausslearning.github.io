@@ -7,7 +7,7 @@
 
 My name is Andrey! 
 
-I'm a **Data Analyst** in IT. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology, which is why this is a big interest of mine nowerdays! 
+I'm a **Big Data Analyst** in IT. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology, which is why this is a big interest of mine nowerdays! 
 
 ### **Background**
 
@@ -18,7 +18,7 @@ Here's a brief summary:
 - Also worked on Synthetic Turbulence methodolgy as part of **JAXA** project, in particular integration of divergence free properties for SEM & its use in aeroacoutics
 - Introduced biomimicry approach for vehicle aerodynamic optimisation/reverse engineering optimisation
 - Specialise in Computation Fluid Dynamics & Aeroacoustics 
-- My interest has taken me into the financial sector, where I currently work with Big Data, helping the business side of things 
+- My interest has taken me into the financial sector, where I currently work with **Big Data**, helping the business side of things which I really enjoy doing.
 
 ### **Data Science Library Stack**
 

@@ -29,7 +29,7 @@ An interview question related to SQL knowledge from a financial bank which I tho
 
 <!-- more -->
 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)
+[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)
 
 
 ### <b><span style='color:#E888BB'>❯❯❯</span> Available Data</b>

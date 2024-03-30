@@ -1,0 +1,197 @@
+# Site Settings
+site_name: Anelia - Digital Designer
+site_author: Anelia Stoyanova
+docs_dir: docs 
+repo_url: https://github.com/anelllya/portfolio
+repo_name: anelllya/portfolio
+
+
+# Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
+site_name: Andrey Shtrauss
+site_url: https://shtrausslearning.github.io/
+repo_name: 'shtrausslearning.github.io'
+repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
+edit_uri: tree/master/docs/src/markdown
+site_description: A Collection of Useful Snippets on Machine Learning related topics
+docs_dir: markdown
+
+copyright: >
+  Copyright © 2012 - <span id='currentYear'></span> Anelia Stoyanova - 
+   <a href="#__consent">Change cookie settings</a>
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/home.css
+extra_javascript:
+  - javascripts/extra.js
+
+# Material Configuration
+theme:
+  font: false
+  name: material
+  custom_dir: overrides # Contains custom 'home.html' coverpage (and 'main.html')
+  icon:
+    logo: myicons/anelia-logo
+    repo: fontawesome/brands/github
+  favicon: img/favicon.png  
+  features:
+    - toc.follow
+    - navigation.indexes          # Implied section 'index.md' files
+    - navigation.tabs             # Static upper section tabs (exist)
+    - navigation.tabs.sticky      # Static upper section tabs (stay)
+    - navigation.footer           # Add 'previous' and 'next' buttons in the footer
+    - navigation.instant          # Keep navigation from reloading
+    - navigation.instant.progress # Display page loading progress-bar ( > 400ms)
+    - navigation.instant.preview
+    - navigation.tracking
+    - navigation.top
+    - navigation.sections
+    - search.highlight            # Highlight all occurrences of queried string
+    - search.share                # Search Query can be copied to Clipboard
+    - search.suggest              # Display likeliest completion for the last queried word  
+  palette:
+    # Light Mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: lightanelia
+      toggle:
+        icon: material/weather-night
+        name: Switch to Dark Mode
+    # Dark Mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: darkanelia
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to Light Mode
+  watch: 
+    - includes   
+
+nav:
+  - Home: index.md
+  - Work:
+    - work/index.md 
+    - Digital:
+      - KUNO: work/digital/kuno.md
+    - Content: 
+      - PECA'S Tenerife: work/content/pecas.md
+    - Brands:
+      - Hornets Hockey: work/brands/hornets-hockey.md
+      - Cosmobots: work/brands/cosmo-bots.md
+  - Blog: 
+      - blog/index.md
+  - About: about.md
+  
+
+plugins:
+  - search
+  - glightbox
+  - blog:
+      post_url_date_format: yyyy/MM
+      post_excerpt: required
+      blog_toc: true
+      archive: true
+      archive_toc: true
+      categories: true
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - md_in_html
+  - footnotes
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+
+
+extra:
+  analytics:
+      provider: hotjar
+      property: 3796880
+  consent:
+    cookies:
+      analytics: Hotjar
+      checked: true
+  social:
+    - icon: fontawesome/brands/linkedin 
+      link: https://www.linkedin.com/in/anelia-stoyanova/
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/anelllya/
+    - icon: fontawesome/brands/codepen
+      link: https://codepen.io/anelllya
+    - icon: fontawesome/brands/x-twitter
+      link: https://twitter.com/anelllya
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:anelia.em.stoyanova@gmail.com
+
+  toolbox:
+    - ['figma-logo.svg', 'affinity-logo.svg', 'miro-logo.svg', 'adobexd-logo.svg']
+    - ['visual-studio-code-logo.svg', 'git-icon.svg', 'html5-logo.svg', 'css3-logo.svg', 'markdown-icon.svg']
+    - ['google-workspace-logo.svg','jira-logo.svg', 'confluence-logo.svg', 'basecamp-logo.svg']
+  companies: 
+    - ['iter.svg', 'pecas.svg', 'ull.svg', 'system73.svg', 'IMT.svg']
+
+  cards:
+    - image: 'img/digital-products.svg'
+      title: 'Digital'
+      url: 'work/digital/kuno/'
+    - image: 'img/branding.svg'
+      title: 'Brands'
+      url: 'work/brands/hornets-hockey/'
+    - image: 'img/blog.svg'
+      title: 'Blog'
+      url: 'blog/' 
+  consent:
+      title: Cookie consent
+      description: >- 
+        We use cookies to recognize your repeated visits and preferences, as well
+        as to measure the effectiveness of  this portfolio and whether users
+        find what they're searching for. With your consent, you're helping us to
+        make this portfolio better.
+  
+  work:
+    - image: '../img/featured-images/kuno.webp'
+      title: 'Online Video Platform'
+      url: 'digital/kuno/'
+      category: 'Digital'
+      year: '2019-2022'
+    - image: '../img/featured-images/pecas.webp'
+      title: 'PECA’S Tenerife'
+      url: 'content/pecas/'
+      category: 'Content'
+      year: '2017-2018'
+    - image: '../img/featured-images/cosmobots.webp'
+      title: 'Cosmobots'
+      url: 'brands/cosmo-bots/'
+      category: 'Brands'
+      year: '2018'
+    - image: '../img/featured-images/hornets-cover.webp'
+      title: 'Hornets Hockey'
+      url: 'brands/hornets-hockey/'
+      category: 'Brands'
+      year: '2023'
+
+    
+
+
+  # Custom Homepage Elements
+  home_tagline: Creating Digital Experiences
+  home_description: Let’s elevate your digital presence together using unique fusion of creativity, innovation, and tailored approach. <br /><br /> Ready to transform your digital landscape? 
+  
+  # Custom Homepage Button(s)
+  home_button1_name: Let's talk                     # Comment this parameter out to remove the button.
+  home_button1_url: mailto:anelia.em.stoyanova@gmail.com                      # This path starts at your root mkdocs directory.
+  home_button1_theme: md-button md-button--primary # Options: "md-button", "md-button md-button--primary"

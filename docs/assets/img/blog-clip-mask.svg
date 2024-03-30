@@ -1,0 +1,20 @@
+<svg width="126" height="77" viewBox="0 0 126 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H16V16H0V0Z" fill="black"/>
+<path d="M0 31H16V47H0V31Z" fill="black"/>
+<path d="M16 0H31V16H16V0Z" fill="black"/>
+<path d="M16 31H31V47H16V31Z" fill="black"/>
+<path d="M31 0H47V16H31V0Z" fill="black"/>
+<path d="M31 16H47V31H31V16Z" fill="black"/>
+<path d="M31 47H47V62H31V47Z" fill="black"/>
+<path d="M0 47H16V62H0V47Z" fill="black"/>
+<path d="M0 62H16V77H0V62Z" fill="black"/>
+<path d="M47 16H62V31H47V16Z" fill="black"/>
+<path d="M47 31H62V47H47V31Z" fill="black"/>
+<path d="M62 0H78V16H62V0Z" fill="black"/>
+<path d="M78 0H94V16H78V0Z" fill="black"/>
+<path d="M62 16H78V31H62V16Z" fill="black"/>
+<path d="M78 31H94V47H78V31Z" fill="black"/>
+<path d="M94 16H110V31H94V16Z" fill="black"/>
+<path d="M94 0H110V16H94V0Z" fill="black"/>
+<path d="M110 0H126V16H110V0Z" fill="black"/>
+</svg>

@@ -1,19 +1,9 @@
 # Site Settings
-site_name: Anelia - Digital Designer
+site_name: Andrey Shtrauss
 site_author: Anelia Stoyanova
 docs_dir: docs 
-repo_url: https://github.com/anelllya/portfolio
-repo_name: anelllya/portfolio
-
-
-# Set up navigation: https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
-site_name: Andrey Shtrauss
-site_url: https://shtrausslearning.github.io/
-repo_name: 'shtrausslearning.github.io'
-repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
-edit_uri: tree/master/docs/src/markdown
-site_description: A Collection of Useful Snippets on Machine Learning related topics
-docs_dir: markdown
+repo_url: https://github.com/shtrausslearning/portfolio
+repo_name: strausslearning/portfolio
 
 copyright: >
   Copyright © 2012 - <span id='currentYear'></span> Anelia Stoyanova - 

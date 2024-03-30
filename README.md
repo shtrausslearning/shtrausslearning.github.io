@@ -1,19 +1,33 @@
-# Building a portfolio
+![](https://i.imgur.com/2qsffpd.png)
 
-## Material for Mkdocs 
+## Purpose
 
-Material for mkdocs is a very cool static site generator for documentation. It works well and I decided to go static with my portfolio. 
+Friendly place to keep up to date my personal website with materials I find useful.
 
-I have used material for mkdocs before on a technical project, but since it is documentation oriented, I didn't think I could make it work as a portfolio, but then I found some examples with a fully overriden home page and I got inspired. 
+## What I used
 
-Example: 
- - [tylerdotrar](https://github.com/tylerdotrar/mkdocs-coverpage)
+Main page is built with [MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
-In the end, I created a completely different home page, but this got me going.
+All files needed to build website are under `docs/`.
 
-Here we are, out in the wild, my portfolio is available to view as a normal website, but it is also available as an open git repository so other people might get inspired too. 
+## Install required packages
 
-All of the modifiactions I have made are combinations of my ideas and things I have found on the web, and ofcourse, making them work with the site generator. 
+```bash
+$ pip install -r requirements.txt
+```
 
-[Welcome to my digital playground](https://anelllya.github.io/portfolio/)
+## Building documentation
 
+Check `$ make help` for more info.
+
+### Rebuild docs automatically and push to github:
+
+```bash
+$ make servedocs
+```
+
+### Rebuild docs automatically and display locally:
+
+```bash
+$ make docs
+```

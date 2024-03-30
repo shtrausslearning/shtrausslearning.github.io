@@ -1,5 +1,3 @@
-# Obsidian Style Attachment Support (Example Site)
-mkdocs-roamlinks-plugin==0.3.2
-mkdocs-glightbox==0.3.5
-mkdocs-material==9.5.2
-mkdocs-git-revision-date-localized-plugin
+# external requirements
+mkdocs
+mkdocs-material

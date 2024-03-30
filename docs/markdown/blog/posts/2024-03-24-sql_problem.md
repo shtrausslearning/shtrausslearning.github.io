@@ -848,6 +848,7 @@ fig.show("png")
 ```
 
 ![](images/sql_q1.png)
+
 ![](images/sql_q2.png)
 
 ### <b><span style='color:#E888BB'>❯❯❯</span> Concluding Remarks</b>

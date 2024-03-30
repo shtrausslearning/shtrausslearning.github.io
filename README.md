@@ -15,5 +15,3 @@ Here we are, out in the wild, my portfolio is available to view as a normal webs
 
 All of the modifiactions I have made are combinations of my ideas and things I have found on the web, and ofcourse, making them work with the site generator. 
 
-[Welcome to my digital playground](https://anelllya.github.io/portfolio/)
-

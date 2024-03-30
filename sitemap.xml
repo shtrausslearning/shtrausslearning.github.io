@@ -2,322 +2,332 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://shtrausslearning.github.io/index.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/about.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/bio-portfolio.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/index.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/10/named-entity-recognition-with-torch.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/11/named-entity-recognition-for-sentence-splitting.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/07/exploring-taxi-trip-data.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/20/data-preprocessing-with-pyspark.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/21/creating-machine-learning-models-with-pyspark.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/22/hyperparameter-tuning-with-pipelines.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/08/19/named-entity-recognition-with-huggingface-trainer.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/09/25/comparison-of-subsets.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/10/21/gene-classification.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/11/20/prediction-of-product-stock-levels.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/11/25/linear-model-equations-and-regularisation.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/12/10/pyspark-daily-december-summary-i.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/2023/12/20/pyspark-daily-december-summary-ii.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://shtrausslearning.github.io/blog/2023/12/20/pyspark-daily-december-summary-ii.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <loc>https://shtrausslearning.github.io/blog/2024/03/24/sql-interview-problem.html</loc>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/about.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/install.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/iterative.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/data_storage.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/iterative.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/eda/meda_pplot.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/eda/meda_scplot.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/eda/meda_splot.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/pd/mpd_talktodata.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/stats/mstats_plot.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/stats/mstats_tests.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/documentation/stats/sample.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/meetups.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/members.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/status.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/tasks/label_classifier.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/tasks/label_generator.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/tasks/ner_classifier.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/group/tasks/recom.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/modules/adding.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/modules/grouping.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/modules/list.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/projects/gene_classification.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/projects/mlproject.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/projects/mlprojects.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/mllibs/tutorials/overview.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/biology.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/business.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/financial.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/geospatial.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/health.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/nlp.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/physics.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/portfolio/projects.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://shtrausslearning.github.io/blog/archive/2024.html</loc>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/archive/2023.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://shtrausslearning.github.io/blog/category/sql.html</loc>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/pyspark.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/linear-model.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/business.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/finance.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/science.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/eda.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/category/nlp.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/page/2/index.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://shtrausslearning.github.io/blog/archive/2023/page/2.html</loc>
-         <lastmod>2024-03-27</lastmod>
+         <lastmod>2024-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

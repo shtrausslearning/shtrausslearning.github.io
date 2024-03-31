@@ -86,13 +86,12 @@ theme:
 
     custom_dir: material/overrides
     palette:
-      - scheme: default
+      - scheme: slate
         primary: black
         accent: indigo
         toggle:
-          icon: material/toggle-switch-off-outline
-          name: Switch to dark mode
-          
+          icon: material/toggle-switch
+          name: Switch to lighst mode          
     font:
         text: Ubuntu
         code: Roboto Mono

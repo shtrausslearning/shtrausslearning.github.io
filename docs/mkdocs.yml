@@ -101,7 +101,7 @@ theme:
           
     font:
         text: Ubuntu
-        code: Ubuntu Mono
+        code: Roboto Mono
 
 extra:
     manifest: manifest.webmanifest

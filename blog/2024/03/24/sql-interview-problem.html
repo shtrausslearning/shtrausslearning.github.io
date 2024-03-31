@@ -45,8 +45,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -1974,7 +1974,7 @@
       
         <li class="md-nav__item">
   <a href="#available-data" class="md-nav__link">
-    ❯❯❯ Available Data
+    ❯❯ Available Data
   </a>
   
 </li>
@@ -1987,22 +1987,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#our-tools-data" class="md-nav__link">
-    ❯❯❯ Our Tools &amp; Data
+  <a href="#tools-data" class="md-nav__link">
+    ❯❯❯ Tools &amp; Data
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#a-elementary-questions" class="md-nav__link">
-    ❯❯❯ a) Elementary Questions
+    ❯❯ a) Elementary Questions
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#b-main-problem" class="md-nav__link">
-    ❯❯❯ b) Main Problem
+  <a href="#main-problem" class="md-nav__link">
+    ❯❯❯ Main Problem
   </a>
   
 </li>
@@ -2141,7 +2141,7 @@
 <!-- more -->
 
 <p><a href="https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb"><img alt="GitHub" src="https://img.shields.io/badge/Github-Repository-97c446?logo=Github&amp;logoColor=DAF7A6" /></a></p>
-<h3 id="available-data"><b><span style='color:#E888BB'>❯❯❯</span> Available Data</b><a class="headerlink" href="#available-data" title="Permanent link">&para;</a></h3>
+<h2 id="available-data"><b><span style='color:#E888BB'>❯❯</span> Available Data</b><a class="headerlink" href="#available-data" title="Permanent link">&para;</a></h2>
 <p>We are given two tables, which contain information about the department for employees, containing their name and identifier, and another table containing employee information, as shown below: </p>
 <p>DEPARTMENT</p>
 <ul>
@@ -2156,8 +2156,8 @@
 <li><strong>NAME</strong> VARCHAR2(100) <FK2></li>
 <li><strong>SALARY</strong> NUMBER </li>
 </ul>
-<h3 id="problems"><b><span style='color:#E888BB'>❯❯❯</span> Problems</b><a class="headerlink" href="#problems" title="Permanent link">&para;</a></h3>
-<p>a) <strong>The elementary questions:</strong></p>
+<h2 id="problems"><b><span style='color:#E888BB'>❯❯❯</span> Problems</b><a class="headerlink" href="#problems" title="Permanent link">&para;</a></h2>
+<p><strong>The elementary questions:</strong></p>
 <p>These are quite standard simple questions about general understanding of SQL</p>
 <ul>
 <li>1) Вывести список сотрудников, получающих зароботную плату больше чем у руководителя</li>
@@ -2166,7 +2166,7 @@
 <li>4) Вывести список сотрудников, не имеющих назначенного руководителя, работующего в том же отделе</li>
 <li>5) Найти список ID отделов с максимальной суммарной зарплатой сотрудников</li>
 </ul>
-<p>b) <strong>The last task states:</strong></p>
+<p><strong>The last task states:</strong></p>
 <p>Необходимо дополнить структуру новыми данными в связи с задачей фиксации отработанного
 времени. Условия:</p>
 <ul>
@@ -2187,7 +2187,7 @@
 </ul>
 <p>So we know that a company has employees working in different time zones, and doesn't change in the context of the problem. The standard working hours are 8 hours from 9 am. </p>
 <p>Each employee must fill in the hours spent working for each day. This data will be used to determine how many people are working at the same period in time, taking into consideration this shift in timezones.</p>
-<h3 id="our-tools-data"><b><span style='color:#E888BB'>❯❯❯</span> Our Tools &amp; Data</b><a class="headerlink" href="#our-tools-data" title="Permanent link">&para;</a></h3>
+<h2 id="tools-data"><b><span style='color:#E888BB'>❯❯❯</span> Tools &amp; Data</b><a class="headerlink" href="#tools-data" title="Permanent link">&para;</a></h2>
 <p>We'll need some sample data, I'll be using <strong>postgres</strong>, pyspark is mainly for presentation purposes. I've created only two Departments (Business and Analytics) and 7 employees work across both of these departments as shown below:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">StructType</span><span class="p">,</span> <span class="n">StructField</span><span class="p">,</span> <span class="n">IntegerType</span><span class="p">,</span> <span class="n">StringType</span><span class="p">,</span> <span class="n">FloatType</span><span class="p">,</span> <span class="n">DateType</span>
@@ -2253,7 +2253,7 @@
 </span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="n">employee</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
 </span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="n">employee</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">&quot;EMPLOYEE&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="a-elementary-questions"><b><span style='color:#E888BB'>❯❯❯</span> a) Elementary Questions</b><a class="headerlink" href="#a-elementary-questions" title="Permanent link">&para;</a></h3>
+<h2 id="a-elementary-questions"><b><span style='color:#E888BB'>❯❯</span> a) Elementary Questions</b><a class="headerlink" href="#a-elementary-questions" title="Permanent link">&para;</a></h2>
 <p>Some basic concepts in SQL, joining, subqueries and CTE. Some of the more interesting things that one might not come across in SQL problems often is a WHERE condition format such as:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">WHERE</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p">(</span><span class="n">DEPARTAMENT_ID</span><span class="p">,</span><span class="w"> </span><span class="n">SALARY</span><span class="p">)</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span>
@@ -2390,7 +2390,7 @@
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>|             2|
 </span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>+--------------+
 </span></code></pre></div>
-<h3 id="b-main-problem"><b><span style='color:#E888BB'>❯❯❯</span> b) Main Problem</b><a class="headerlink" href="#b-main-problem" title="Permanent link">&para;</a></h3>
+<h2 id="main-problem"><b><span style='color:#E888BB'>❯❯❯</span> Main Problem</b><a class="headerlink" href="#main-problem" title="Permanent link">&para;</a></h2>
 <p>Now lets move onto the main problem of the interview questions. We need to have a <strong>postgres</strong> session started. I'll be using <strong>psycopg2</strong> to connect to the database.gs The two main tables EMPLOYEE and DEPARTMENT which we'll need have been described above. We need to add new data to our database which describes the number of hours a an employee has worked.</p>
 <p>Our goal is to write a code that will allow employees to <strong>update the database</strong> with employee working hours data &amp; <strong>create a simple analysis</strong> based on the data that each employee provides us. </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="sd">&#39;&#39;&#39;</span>
@@ -2892,7 +2892,7 @@
 </span></code></pre></div>
 <p><img alt="" src="../../../images/sql_q1.png" /></p>
 <p><img alt="" src="../../../images/sql_q2.png" /></p>
-<h3 id="concluding-remarks"><b><span style='color:#E888BB'>❯❯❯</span> Concluding Remarks</b><a class="headerlink" href="#concluding-remarks" title="Permanent link">&para;</a></h3>
+<h2 id="concluding-remarks"><b><span style='color:#E888BB'>❯❯❯</span> Concluding Remarks</b><a class="headerlink" href="#concluding-remarks" title="Permanent link">&para;</a></h2>
 <p>So there we go, we have made a simple script that will allow us to count the number of employees present at work at any given period in a company which operates in different timezone based on the data that the users working hour data reported by each employee. This would allow the company to monitor working load, and note periods at which there are too few employees working to keep the business operating effectively. There are probably ways to improve the code, but this is what I managed in a 24 hour timeframe.</p>
 <hr />
 <p><strong>Thank you for reading!</strong></p>

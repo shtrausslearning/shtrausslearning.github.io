@@ -100,7 +100,7 @@ theme:
           name: Switch to dark mode
           
     font:
-        text: Ubuntu
+        text: Roboto
         code: Roboto Mono
 
 extra:

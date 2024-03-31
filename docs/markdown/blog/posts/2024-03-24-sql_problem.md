@@ -32,29 +32,11 @@ An interview question related to SQL knowledge from a financial bank which I tho
 [![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)
 
 
-## <b><span style='color:#E888BB'>❯❯</span> Available Data</b>
+### **<span style='color:#686dec'> Questions</span>**
 
-We are given two tables, which contain information about the department for employees, containing their name and identifier, and another table containing employee information, as shown below: 
-
-DEPARTMENT
-
-- **ID** NUMBER <PK>
-- **NAME** VARCHAR2(100) 
-
-EMPLOYEE 
-
-- **ID** NUMBER <PK>
-- **DEPARTMENT_ID** NUMBER 
-- **CHIEF_ID** NUMBER <FK1>
-- **NAME** VARCHAR2(100) <FK2>
-- **SALARY** NUMBER 
-
-## <b><span style='color:#E888BB'>❯❯❯</span> Problems</b>
-
-**The elementary questions:**
+**Elementary Questions**
 
 These are quite standard simple questions about general understanding of SQL
-
 
 - 1) Вывести список сотрудников, получающих зароботную плату больше чем у руководителя
 - 2) Вывести список сотрудников, получающих максимальную зароботную плату в своем отделе
@@ -63,7 +45,7 @@ These are quite standard simple questions about general understanding of SQL
 - 5) Найти список ID отделов с максимальной суммарной зарплатой сотрудников
 
 
-**The last task states:**
+**Main Problem**
 
 Необходимо дополнить структуру новыми данными в связи с задачей фиксации отработанного
 времени. Условия:
@@ -87,7 +69,24 @@ So we know that a company has employees working in different time zones, and doe
 
 Each employee must fill in the hours spent working for each day. This data will be used to determine how many people are working at the same period in time, taking into consideration this shift in timezones.
 
-## <b><span style='color:#E888BB'>❯❯❯</span> Tools & Data</b>
+### **<span style='color:#686dec'> Available Data</span>**
+
+We are given two tables, which contain information about the department for employees, containing their name and identifier, and another table containing employee information, as shown below: 
+
+DEPARTMENT
+
+- **ID** NUMBER <PK>
+- **NAME** VARCHAR2(100) 
+
+EMPLOYEE 
+
+- **ID** NUMBER <PK>
+- **DEPARTMENT_ID** NUMBER 
+- **CHIEF_ID** NUMBER <FK1>
+- **NAME** VARCHAR2(100) <FK2>
+- **SALARY** NUMBER 
+
+### **<span style='color:#686dec'> Tools & Data</span>**
 
 We'll need some sample data, I'll be using **postgres**, pyspark is mainly for presentation purposes. I've created only two Departments (Business and Analytics) and 7 employees work across both of these departments as shown below:
 
@@ -158,7 +157,7 @@ employee = spark.createDataFrame(data, schema)
 employee.createOrReplaceTempView("EMPLOYEE")
 ```     
 
-## <b><span style='color:#E888BB'>❯❯</span> a) Elementary Questions</b>
+### **<span style='color:#686dec'> Elementary Questions</span>**
 
 Some basic concepts in SQL, joining, subqueries and CTE. Some of the more interesting things that one might not come across in SQL problems often is a WHERE condition format such as:
 
@@ -322,7 +321,7 @@ spark.sql(tquery).show()
 +--------------+
 ```
 
-## <b><span style='color:#E888BB'>❯❯❯</span> Main Problem</b>
+### **<span style='color:#686dec'> Main Problem</span>**
 
 Now lets move onto the main problem of the interview questions. We need to have a **postgres** session started. I'll be using **psycopg2** to connect to the database.gs The two main tables EMPLOYEE and DEPARTMENT which we'll need have been described above. We need to add new data to our database which describes the number of hours a an employee has worked.
 
@@ -849,7 +848,7 @@ fig.show("png")
 
 ![](images/sql_q2.png)
 
-## <b><span style='color:#E888BB'>❯❯❯</span> Concluding Remarks</b>
+### **<span style='color:#686dec'> Concluding Remarks</span>**
 
 So there we go, we have made a simple script that will allow us to count the number of employees present at work at any given period in a company which operates in different timezone based on the data that the users working hour data reported by each employee. This would allow the company to monitor working load, and note periods at which there are too few employees working to keep the business operating effectively. There are probably ways to improve the code, but this is what I managed in a 24 hour timeframe.
 

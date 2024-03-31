@@ -7,7 +7,7 @@
 
 My name is Andrey! 
 
-I'm a **Big Data Analyst** in IT. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology, which is why this is a big interest of mine nowerdays! 
+I'm a **Big Data Analyst** in IT/Bank. I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. I'm also quite fond of bioinformatics[^1] & biomimicry related subjects and absolute love NLP. I am very fascinated my modern NLP related and Deep Learning Technology, which is why this is a big interest of mine nowerdays! 
 
 ### **Background**
 
@@ -24,11 +24,7 @@ Here's a brief summary:
 
 I use a variety of tools for different purposes, here are some of my favourite tools used for **data analysis**, **machine learning**, **deep learning** and **NLP applications**
 
-<center>
-![](images/python_256_256.PNG){width="60"} ![](images/pandas_256_256.PNG){width="60"} ![](images/scipy_256_256.PNG){width="60"} ![](images/sklearn_256_256.PNG){width="60"} ![](images/plotly_256_256.PNG){width="60"} ![](images/pyspark_256_256.PNG){width="60"} ![](images/torch_256_256.PNG){width="60"} ![](images/powerbi_256_256.PNG){width="60"} ![](images/mllibs_256_256.PNG){width="60"} ![](images/hf_256_256.PNG){width="60"}
-</center>
-
-Python related libraries I use:
+Python related libraries I like to use:
 
 - **Data exploration** (pandas,pyspark,scipy,statsmodels)
 - **Data visualisation** (matplotlib,seaborn,plotly)

@@ -89,9 +89,7 @@ theme:
       - scheme: slate
         primary: black
         accent: indigo
-        toggle:
-          icon: material/toggle-switch
-          name: Switch to lighst mode          
+      
     font:
         text: Ubuntu
         code: Roboto Mono

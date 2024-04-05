@@ -2251,8 +2251,20 @@
 
 
 <h1 id="named-entity-recognition-with-torch-loop"><strong>Named Entity Recognition with Torch Loop</strong><a class="headerlink" href="#named-entity-recognition-with-torch-loop" title="Permanent link">&para;</a></h1>
+<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
+    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
+        <div style="background-image: url('https://i.imgur.com/860MOA6.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <div style="position: relative; display: table; height: 75%; width: 100%;">
+            </div>
+            <div style="position: absolute; bottom: 30px; left: 30px;">
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>In this notebook, we'll take a look at how we can utilise <code>HuggingFace</code> to easily load and use <code>BERT</code> for token classification. Whilst we are loading both the base model &amp; tokeniser from <code>HuggingFace</code>, we'll be using a custom <code>Torch</code> training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising <code>Massive</code> dataset by Amazon and fine-tune the transformer encoder <code>BERT</code></p>
-<p><img alt="" src="https://i.imgur.com/860MOA6.jpg" /></p>
 <!-- more -->
 
 <p><a href="https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing"><img alt="Run in Google Colab" src="https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&amp;logoColor=FDBA18" /></a></p>

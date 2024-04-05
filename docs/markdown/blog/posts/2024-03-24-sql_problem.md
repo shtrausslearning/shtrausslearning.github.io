@@ -7,6 +7,7 @@ categories:
      - SQL
 tags:
      - SQL
+     - interview
 comments: true
 ---
 

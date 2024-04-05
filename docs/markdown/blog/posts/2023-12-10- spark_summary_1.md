@@ -12,10 +12,6 @@ comments: true
 
 # **PySpark Daily December Summary I**
 
-Something I decided would be fun to do on a daily basis; write **pyspark** code everyday and post about it, this is mainly because I don't use it as often as I would like, so this is my motivation. If you too want to join in, just fork the notebook (**[on Kaggle]((https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts))**) and practice various pyspark codings everyday! Visit my **[telegram channel](https://t.me/mldsai_info)** if you have any questions or just post them here!
-
-Here I will be posting summaries that cover roughtly 10 days worth of posts that I make **[on Kaggle](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)**, so that would equate to three posts a month
-
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
         <div style="background-image: url('images/spark_intro.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
@@ -24,17 +20,14 @@ Here I will be posting summaries that cover roughtly 10 days worth of posts that
             <div style="position: relative; display: table; height: 75%; width: 100%;">
             </div>
             <div style="position: absolute; bottom: 30px; left: 30px;">
-                <div style="font-family: Monospace; text-align: left; font-size: 14px; color: #E0E0E0; letter-spacing: .15rem;">
-                    Andrey Shtrauss
-                    <br>
-                    <span style="color: #CCCCCC">
-                        December, 2023
-                    </span>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
+Something I decided would be fun to do on a daily basis; write **pyspark** code everyday and post about it, this is mainly because I don't use it as often as I would like, so this is my motivation. If you too want to join in, just fork the notebook (**[on Kaggle]((https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts))**) and practice various pyspark codings everyday! Visit my **[telegram channel](https://t.me/mldsai_info)** if you have any questions or just post them here!
+
+Here I will be posting summaries that cover roughtly 10 days worth of posts that I make **[on Kaggle](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)**, so that would equate to three posts a month
 
 <!-- more -->
 

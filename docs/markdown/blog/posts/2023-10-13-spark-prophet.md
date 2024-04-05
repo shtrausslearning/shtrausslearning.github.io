@@ -16,9 +16,22 @@ comments: true
 
 # **Utilising Prophet with PySpark**
 
+<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
+    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
+        <div style="background-image: url('images/avocado4.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <div style="position: relative; display: table; height: 75%; width: 100%;">
+            </div>
+            <div style="position: absolute; bottom: 30px; left: 30px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+
 In this notebook, we look at how to use a popular machine learning library **prophet** with the **pyspark** architecture. **pyspark** itself unfortunatelly does not contain such an additive regression model, however we can utilise user defined functions, **UDF**, which allows us to utilise different functionality of different libraries that is not available in **pyspark**
 
-![](images/avocado4.jpg)
 
 <!-- more -->
 

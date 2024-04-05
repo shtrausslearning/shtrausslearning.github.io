@@ -13,9 +13,20 @@ comments: true
 
 # **Comparison of Subsets**
 
-An important concept in machine learning is **model generalisation** & **performance deterioration**. When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. 
+<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
+    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
+        <div style="background-image: url('images/pyramid.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <div style="position: relative; display: table; height: 75%; width: 100%;">
+            </div>
+            <div style="position: absolute; bottom: 30px; left: 30px;">
+            </div>
+        </div>
+    </div>
+</div>
 
-![](images/pyramid.png)
+An important concept in machine learning is **model generalisation** & **performance deterioration**. When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. 
 
 <!-- more -->
 

@@ -13,9 +13,6 @@ comments: true
 
 # **Coding Linear & Logistic Regression**
 
-Посмотрим на некий обзор главных моментов которые дадут нам возможность реализовать линейные модели в python и numpy. Посмотрим как отличается линейная регрессия от логистической, и как можно добавлять регуляризацию для этих моделей, чтобы можно было контролировать обобщающию способность модели
-
-
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
         <div style="background-image: url('images/lightning.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
@@ -28,6 +25,8 @@ comments: true
         </div>
     </div>
 </div>
+
+Посмотрим на некий обзор главных моментов которые дадут нам возможность реализовать линейные модели в python и numpy. Посмотрим как отличается линейная регрессия от логистической, и как можно добавлять регуляризацию для этих моделей, чтобы можно было контролировать обобщающию способность модели
 
 
 <!-- more -->

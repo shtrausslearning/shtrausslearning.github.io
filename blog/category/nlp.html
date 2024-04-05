@@ -2088,8 +2088,20 @@
   </header>
   <div class="md-post__content md-typeset">
     <h2 id="named-entity-recognition-with-huggingface-trainer"><a class="toclink" href="../2023/08/19/named-entity-recognition-with-huggingface-trainer.html"><strong>Named Entity Recognition with Huggingface Trainer</strong></a></h2>
+<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
+    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
+        <div style="background-image: url('https://i.imgur.com/kcuAYbI.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <div style="position: relative; display: table; height: 75%; width: 100%;">
+            </div>
+            <div style="position: absolute; bottom: 30px; left: 30px;">
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>In a <strong><a href="https://shtrausslearning.github.io/posts/huggingface_NER/">previous post</a></strong> we looked at how we can utilise Huggingface together with PyTorch in order to create a NER tagging classifier. We did this by loading a preset encoder model &amp; defined our own tail end model for our NER classification task. This required us to utilise Torch`, ie create more lower end code, which isn't the most beginner friendly, especially if you don't know Torch. In this post, we'll look at utilising only Huggingface, which simplifies the <strong>training</strong> &amp; <strong>inference</strong> steps quite a lot. We'll be using the <strong>trainer</strong> &amp; <strong>pipeline</strong> methods of the Huggingface library and will use a dataset used in <strong><a href="https://pypi.org/project/mllibs/">mllibs</a></strong>, which includes tags for different words that can be identified as keywords to finding data source tokens, plot parameter tokens and function input parameter tokens.</p>
-<p><img alt="" src="https://i.imgur.com/kcuAYbI.jpg" /></p>
 
     <nav class="md-post__action">
       <a href="../2023/08/19/named-entity-recognition-with-huggingface-trainer.html">
@@ -2179,8 +2191,20 @@
   </header>
   <div class="md-post__content md-typeset">
     <h2 id="named-entity-recognition-with-torch-loop"><a class="toclink" href="../2023/08/10/named-entity-recognition-with-torch.html"><strong>Named Entity Recognition with Torch Loop</strong></a></h2>
+<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
+    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
+        <div style="background-image: url('https://i.imgur.com/860MOA6.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        </div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
+            <div style="position: relative; display: table; height: 75%; width: 100%;">
+            </div>
+            <div style="position: absolute; bottom: 30px; left: 30px;">
+            </div>
+        </div>
+    </div>
+</div>
+
 <p>In this notebook, we'll take a look at how we can utilise <code>HuggingFace</code> to easily load and use <code>BERT</code> for token classification. Whilst we are loading both the base model &amp; tokeniser from <code>HuggingFace</code>, we'll be using a custom <code>Torch</code> training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising <code>Massive</code> dataset by Amazon and fine-tune the transformer encoder <code>BERT</code></p>
-<p><img alt="" src="https://i.imgur.com/860MOA6.jpg" /></p>
 
     <nav class="md-post__action">
       <a href="../2023/08/10/named-entity-recognition-with-torch.html">

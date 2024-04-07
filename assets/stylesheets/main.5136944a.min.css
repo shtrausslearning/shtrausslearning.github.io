@@ -160,7 +160,7 @@
 }
 
 .mdx-hero {
-	color: var(--md-primary-bg-color);
+/*	color: var(--md-primary-bg-color);*/
 	margin: 0 .8rem
 }
 
@@ -215,7 +215,7 @@
 	.mdx-hero__image2 {
 		margin-top: 5rem;
 		transform: translateX(5rem);
-		order: 10
+		order: 1
 	}
 }
 

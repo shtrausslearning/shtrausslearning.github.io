@@ -142,11 +142,11 @@
 }
 
 .mdx-container {
-	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d 99%, var(--md-default-bg-color) 99%);
+/*	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d 99%, var(--md-default-bg-color) 99%);*/
 }
 
 [data-md-color-scheme=slate] .mdx-container {
-	background: linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d  99%, var(--md-default-bg-color) 99%);
+/*	background: linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d  99%, var(--md-default-bg-color) 99%);*/
 }
 
 .mdx-container2 {

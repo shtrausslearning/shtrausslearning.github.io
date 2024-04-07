@@ -157,6 +157,12 @@
 	object-fit: cover
 }
 
+.mdx-container3 {
+/*	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d 99%, var(--md-default-bg-color) 99%);*/
+	background-image: url('images/id_intro3.png');
+
+}
+
 [data-md-color-scheme=slate] .mdx-container2 {
 
 }

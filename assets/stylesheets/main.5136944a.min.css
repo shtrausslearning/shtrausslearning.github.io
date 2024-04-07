@@ -182,6 +182,12 @@
 	padding-bottom: 1rem
 }
 
+.mdx-hero__content1 {
+/*		background:  linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d 99%, var(--md-default-bg-color) 99%);*/
+	background-image: url('images/articles_id.png');
+	padding-bottom: 1rem
+}
+
 
  /* Three image containers (use 25% for four, and 50% for two, etc) */
 .column {

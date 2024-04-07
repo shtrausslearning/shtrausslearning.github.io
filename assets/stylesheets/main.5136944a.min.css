@@ -144,7 +144,6 @@
 .mdx-container {
 /*	background:  linear-gradient(to bottom, var(--md-primary-fg-color), #212f3d 99%, var(--md-default-bg-color) 99%);*/
 	background-image: url('https://i.imgur.com/3l6a5To.png') transparent;
-
 }
 
 [data-md-color-scheme=slate] .mdx-container {
@@ -179,7 +178,8 @@
 }
 
 .mdx-hero__content {
-	padding-bottom: 1rem
+	padding-bottom: 1rem;
+	padding-right: 2rem;
 }
 
 .mdx-hero__content1 {

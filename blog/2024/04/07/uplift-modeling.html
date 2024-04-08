@@ -2243,10 +2243,9 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </blockquote>
 <p>and run over a few modeling approaches:</p>
 <p><strong>s-learner</strong></p>
-<p>Starting with <strong>s-learner</strong> approach. </p>
+<p>Starting with <strong>s-learner</strong> approach, we train two separate models</p>
 <ul>
-<li>We train a base model</li>
-<li>Apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group</li>
+<li>We train a base model &amp; apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group</li>
 <li>We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)</li>
 </ul>
 <p>The difference between these two vectors will be taken as our uplift, to be more specific:</p>

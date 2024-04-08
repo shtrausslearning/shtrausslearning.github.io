@@ -167,10 +167,9 @@ and run over a few modeling approaches:
 
 **s-learner**
 
-Starting with **s-learner** approach. 
+Starting with **s-learner** approach, we train two separate models
 
-- We train a base model
-- Apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
+- We train a base model & apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
 - We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)
 
 The difference between these two vectors will be taken as our uplift, to be more specific:
@@ -189,6 +188,8 @@ uplift_model = uplift_model.fit(X_train, y_train, t_train)
 
 model_predictions[name] = uplift_model.predict(X_test)
 ```
+
+
 
 ****
 

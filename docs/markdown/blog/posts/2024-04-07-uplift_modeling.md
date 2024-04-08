@@ -176,7 +176,7 @@ The difference between these two vectors will be taken as our uplift, to be more
 
 > model generates **uplift scores** that represent the **estimated impact of a treatment** on each individual's behavior
 
-The **s-learner** model can be used by importing **SoloModel** from `from sklift.models import SoloModel`
+The **s-learner** model can be used by importing **SoloModel** from `from sklift.models import SoloModel`, we just need to specify the base model we will be using in the two models
 
 
 ```python

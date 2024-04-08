@@ -2154,11 +2154,13 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>We randomly send emails to these customers (<strong>treatment array</strong>); we have an array containing a marketing campaign defined subset groupings</li>
 <li>Finally we have a target containing post marketing campaign monitored results (confirmations of whether the email campaign worked or not)</li>
 </ul>
-<p>Unlike a typical <strong>classification problem</strong>, in <strong>uplift modeling</strong> we need three components:
- - Have two arrays we will be working with; <strong>Treatment Array</strong>, <strong>Target Array</strong> and standard <strong>customer related feature matrix</strong>
- - The <strong>treatment array</strong> is a binary vector, where we have no influence (0) and incluenced (1)
- - The <strong>target vector</strong> is also a binary vector, where we have no action (0) and action is made (1)
- - The standard feature matrix</p>
+<p>Unlike a typical <strong>classification problem</strong>, in <strong>uplift modeling</strong> we need three components:</p>
+<ul>
+<li>Have two arrays we will be working with; <strong>Treatment Array</strong>, <strong>Target Array</strong> and standard <strong>customer related feature matrix</strong></li>
+<li>The <strong>treatment array</strong> is a binary vector, where we have no influence (0) and incluenced (1)</li>
+<li>The <strong>target vector</strong> is also a binary vector, where we have no action (0) and action is made (1)</li>
+<li>The standard feature matrix</li>
+</ul>
 <p><strong>Feature Matrix</strong></p>
 <p>Let's also look at the feature matrix available to us:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+-------+---------------+-------+----+------+---------+------+-------+

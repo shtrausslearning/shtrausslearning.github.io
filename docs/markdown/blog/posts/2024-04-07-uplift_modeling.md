@@ -31,10 +31,27 @@ In today's post we'll go through a predictive modeling technique known as **Upli
 
 [![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)
 
+### **<span style='color:#686dec'> Uplift Modeling</span>**
+
+So what it this modeling approach about:
+
+**Uplift modeling** is a technique that allows us to identify the subset of objects who upon being influences by an event/action will do some action, and if not influenced will not do the same acton
+
+So lets think of an example:
+
+- We are selling a product and need to decide to whom we will be advertising, given that we cannot show it to all target audiences, we would like to find clients who will buy the product, if they see our advertisement and not buy it if they don't see it
+
+
+In **uplift modeling** we need three components:
+
+ - Have two arrays we will be working with; **Treatment Array**, **Target Array** and standard **customer related feature matrix**
+ - The **treatment array** is a binary vector, where we have no influence (0) and influenced (1)
+ - The **target vector** is also a binary vector, where we have no action (0) and action is made (1)
+ - The standard feature matrix (like other machine learning problems)
 
 ### **<span style='color:#686dec'> Dataset</span>**
 
-Lets introduce ourselves to the dataset we will be using by looking at the description provided with the dataset
+Lets introduce ourselves to the dataset we will be using in our notebook, by looking at the description provided with the dataset
 
 > This dataset contains 64,000 customers who last purchased within twelve months.
 > The customers were involved in an e-mail test.
@@ -51,13 +68,6 @@ Having read the above, lets **summarise the important** bits:
 - We have 64000 customers who recently made a purchase, for these customers we have a matrix of features relevant to each of these customers
 - We randomly send emails to these customers (**treatment array**); we have an array containing a marketing campaign defined subset groupings
 - Finally we have a target containing post marketing campaign monitored results (confirmations of whether the email campaign worked or not)
-
-Unlike a typical **classification problem**, in **uplift modeling** we need three components:
-
- - Have two arrays we will be working with; **Treatment Array**, **Target Array** and standard **customer related feature matrix**
- - The **treatment array** is a binary vector, where we have no influence (0) and incluenced (1)
- - The **target vector** is also a binary vector, where we have no action (0) and action is made (1)
- - The standard feature matrix
 
 **Feature Matrix**
 
@@ -149,17 +159,28 @@ X_test = pd.concat([X_test_cat, X_test.drop(cat_columns, axis=1)], axis=1)
 
 ### **<span style='color:#686dec'> Modeling Approaches</span>**
 
-Now that we have our data ready, lets talk approaches, starting with **s-learner** approach. 
+Now that we have our data ready, lets talk libraries and approaches. There is a commonly used uplift modeling library called **scikit-uplift**, its based on scikit-learn machine learning models, but modified for uplift modeling. Lets remind ourselves of what the modeling actually wants to achieve:
+
+> Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior
+
+and run over a few modeling approaches:
 
 **s-learner**
 
-We train a base model, apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group.
+Starting with **s-learner** approach. 
 
-We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)
+- We train a base model
+- Apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
+- We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)
 
-The difference between these two vectors will be taken as our uplift. 
+The difference between these two vectors will be taken as our uplift, to be more specific:
 
-```
+> model generates **uplift scores** that represent the **estimated impact of a treatment** on each individual's behavior
+
+The **s-learner** model can be used by importing **SoloModel** from `from sklift.models import SoloModel`
+
+
+```python
 name = 'slearner'
 
 base_model = RandomForestClassifier(random_state=42)
@@ -169,6 +190,7 @@ uplift_model = uplift_model.fit(X_train, y_train, t_train)
 model_predictions[name] = uplift_model.predict(X_test)
 ```
 
+****
 
 
 

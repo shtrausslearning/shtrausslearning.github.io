@@ -1981,6 +1981,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#uplift-modeling_1" class="md-nav__link">
+     Uplift Modeling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dataset" class="md-nav__link">
      Dataset
   </a>
@@ -2081,7 +2088,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
                           <span class="md-ellipsis">
                             
-                              4 min read
+                              5 min read
                             
                           </span>
                         </div>
@@ -2135,8 +2142,22 @@
 <!-- more -->
 
 <p><a href="https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb"><img alt="GitHub" src="https://img.shields.io/badge/Github-Repository-97c446?logo=Github&amp;logoColor=DAF7A6" /></a></p>
+<h3 id="uplift-modeling_1"><strong><span style='color:#686dec'> Uplift Modeling</span></strong><a class="headerlink" href="#uplift-modeling_1" title="Permanent link">&para;</a></h3>
+<p>So what it this modeling approach about:</p>
+<p><strong>Uplift modeling</strong> is a technique that allows us to identify the subset of objects who upon being influences by an event/action will do some action, and if not influenced will not do the same acton</p>
+<p>So lets think of an example:</p>
+<ul>
+<li>We are selling a product and need to decide to whom we will be advertising, given that we cannot show it to all target audiences, we would like to find clients who will buy the product, if they see our advertisement and not buy it if they don't see it</li>
+</ul>
+<p>In <strong>uplift modeling</strong> we need three components:</p>
+<ul>
+<li>Have two arrays we will be working with; <strong>Treatment Array</strong>, <strong>Target Array</strong> and standard <strong>customer related feature matrix</strong></li>
+<li>The <strong>treatment array</strong> is a binary vector, where we have no influence (0) and influenced (1)</li>
+<li>The <strong>target vector</strong> is also a binary vector, where we have no action (0) and action is made (1)</li>
+<li>The standard feature matrix (like other machine learning problems)</li>
+</ul>
 <h3 id="dataset"><strong><span style='color:#686dec'> Dataset</span></strong><a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
-<p>Lets introduce ourselves to the dataset we will be using by looking at the description provided with the dataset</p>
+<p>Lets introduce ourselves to the dataset we will be using in our notebook, by looking at the description provided with the dataset</p>
 <blockquote>
 <p>This dataset contains 64,000 customers who last purchased within twelve months.
 The customers were involved in an e-mail test.</p>
@@ -2153,13 +2174,6 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>We have 64000 customers who recently made a purchase, for these customers we have a matrix of features relevant to each of these customers</li>
 <li>We randomly send emails to these customers (<strong>treatment array</strong>); we have an array containing a marketing campaign defined subset groupings</li>
 <li>Finally we have a target containing post marketing campaign monitored results (confirmations of whether the email campaign worked or not)</li>
-</ul>
-<p>Unlike a typical <strong>classification problem</strong>, in <strong>uplift modeling</strong> we need three components:</p>
-<ul>
-<li>Have two arrays we will be working with; <strong>Treatment Array</strong>, <strong>Target Array</strong> and standard <strong>customer related feature matrix</strong></li>
-<li>The <strong>treatment array</strong> is a binary vector, where we have no influence (0) and incluenced (1)</li>
-<li>The <strong>target vector</strong> is also a binary vector, where we have no action (0) and action is made (1)</li>
-<li>The standard feature matrix</li>
 </ul>
 <p><strong>Feature Matrix</strong></p>
 <p>Let's also look at the feature matrix available to us:</p>
@@ -2223,19 +2237,32 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="n">X_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_test_cat</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cat_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="modeling-approaches"><strong><span style='color:#686dec'> Modeling Approaches</span></strong><a class="headerlink" href="#modeling-approaches" title="Permanent link">&para;</a></h3>
-<p>Now that we have our data ready, lets talk approaches, starting with <strong>s-learner</strong> approach. </p>
+<p>Now that we have our data ready, lets talk libraries and approaches. There is a commonly used uplift modeling library called <strong>scikit-uplift</strong>, its based on scikit-learn machine learning models, but modified for uplift modeling. Lets remind ourselves of what the modeling actually wants to achieve:</p>
+<blockquote>
+<p>Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior</p>
+</blockquote>
+<p>and run over a few modeling approaches:</p>
 <p><strong>s-learner</strong></p>
-<p>We train a base model, apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group.</p>
-<p>We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)</p>
-<p>The difference between these two vectors will be taken as our uplift. </p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>name = &#39;slearner&#39;
+<p>Starting with <strong>s-learner</strong> approach. </p>
+<ul>
+<li>We train a base model</li>
+<li>Apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group</li>
+<li>We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)</li>
+</ul>
+<p>The difference between these two vectors will be taken as our uplift, to be more specific:</p>
+<blockquote>
+<p>model generates <strong>uplift scores</strong> that represent the <strong>estimated impact of a treatment</strong> on each individual's behavior</p>
+</blockquote>
+<p>The <strong>s-learner</strong> model can be used by importing <strong>SoloModel</strong> from <code>from sklift.models import SoloModel</code></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;slearner&#39;</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>base_model = RandomForestClassifier(random_state=42)
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>uplift_model = SoloModel(base_model)
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>uplift_model = uplift_model.fit(X_train, y_train, t_train)
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">base_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">uplift_model</span> <span class="o">=</span> <span class="n">SoloModel</span><span class="p">(</span><span class="n">base_model</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">uplift_model</span> <span class="o">=</span> <span class="n">uplift_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">)</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>model_predictions[name] = uplift_model.predict(X_test)
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">model_predictions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uplift_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </span></code></pre></div>
+<hr />
 <h3 id="concluding-remarks"><strong><span style='color:#686dec'> Concluding Remarks</span></strong><a class="headerlink" href="#concluding-remarks" title="Permanent link">&para;</a></h3>
 <hr />
 <p><strong>Thank you for reading!</strong></p>

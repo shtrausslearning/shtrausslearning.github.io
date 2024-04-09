@@ -2201,7 +2201,7 @@
 <h1 id="uplift-modeling"><strong>Uplift Modeling</strong><a class="headerlink" href="#uplift-modeling" title="Permanent link">&para;</a></h1>
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://i.imgur.com/3l6a5To.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('images/uplift_banner.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -2321,9 +2321,9 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <h3 id="one-model-approach"><strong><span style='color:#686dec'> One Model Approach</span></strong><a class="headerlink" href="#one-model-approach" title="Permanent link">&para;</a></h3>
 <p>Starting with <strong>s-learner</strong> approach, we train two separate models</p>
 <ul>
-<li>We train a base model with all base features and the treatment vector, taking the target vector as our independent variable</li>
-<li>Apply the model (predict) assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group</li>
-<li>Apply the model (predict) again but assuming that these has been no interaction with any customer (t=0 for all customers)</li>
+<li>We train a base model with all base features and the treatment vector (w), taking the target vector (y) as our independent variable</li>
+<li>Apply the model (predict) assuming we have <strong>interacted with all customers</strong>, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group</li>
+<li>Apply the model (predict) again but assuming that these has been <strong>no interaction</strong> with any customer (t=0 for all customers)</li>
 </ul>
 <figure>
   <img alt="Image title" src="../../../images/smodel.png" />
@@ -2348,9 +2348,9 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])</span>
 </span></code></pre></div>
 <p><strong>Interpretation of Results:</strong></p>
-<ul>
-<li>If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.</li>
-</ul>
+<mark class="critic block">
+<p>If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.</p>
+</mark>
 <h3 id="two-independent-model-approach"><strong><span style='color:#686dec'> Two Independent Model Approach</span></strong><a class="headerlink" href="#two-independent-model-approach" title="Permanent link">&para;</a></h3>
 <p>The two model approach, <strong>t-learner</strong> is similar to a one model approach, however instead of training a single model on <strong>all the data</strong>, we train two models, on two different subsets of data:</p>
 <ul>
@@ -2387,14 +2387,18 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>We take k objects with the highest uplift values</li>
 <li>Divide the subset into a contol (t=0) and test (t=1) group</li>
 <li>Evaluate the average target y for each individually</li>
-<li>Find the difference</li>
+<li>
+<p>Find the difference:</p>
+<div class="arithmatex">\[ uplift@k = \bar{y}_{k \space test} - \bar{y}_{k \space control} \]</div>
+<div class="arithmatex">\[ \bar{y}_k = \frac{1}{n} \sum_{i=1}^{k}{uplift_i,}  \]</div>
+</li>
 </ul>
-<p>.
-Суть данного подхода в следующем:
-Берем k объектов с самым высоким uplift из нашей отложенной выборки для проверки. k — это или количество объектов, или доля объектов от общей выборки
-Делим получившуюся подвыборку на контроль (t = 0) и тест (t = 1)
-Рассчитываем средний таргет y для каждой группы отдельно
-Находим разницу</p>
+<p>There are some <a href="https://www.uplift-modeling.com/en/latest/">other metrics</a> you can look into as well:</p>
+<ul>
+<li>Area Under Uplift Curve</li>
+<li>Area Under Qini Curve</li>
+<li>Weighted average uplift</li>
+</ul>
 <hr />
 <h3 id="concluding-remarks"><strong><span style='color:#686dec'> Concluding Remarks</span></strong><a class="headerlink" href="#concluding-remarks" title="Permanent link">&para;</a></h3>
 <hr />

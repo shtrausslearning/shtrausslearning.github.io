@@ -14,7 +14,7 @@ comments: true
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://i.imgur.com/3l6a5To.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('images/uplift_banner.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -174,9 +174,9 @@ scikit-uplift has a number of different approaches for uplift modeling, you can 
 
 Starting with **s-learner** approach, we train two separate models
 
-- We train a base model with all base features and the treatment vector, taking the target vector as our independent variable
-- Apply the model (predict) assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
-- Apply the model (predict) again but assuming that these has been no interaction with any customer (t=0 for all customers)
+- We train a base model with all base features and the treatment vector (w), taking the target vector (y) as our independent variable
+- Apply the model (predict) assuming we have **interacted with all customers**, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
+- Apply the model (predict) again but assuming that these has been **no interaction** with any customer (t=0 for all customers)
 
 <figure markdown="span">
   ![Image title](images/smodel.png)
@@ -211,7 +211,12 @@ uplift_model.predict(X_test)
 
 **Interpretation of Results:**
 
-- If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
+{==
+
+If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
+
+==}
+
 
 ### **<span style='color:#686dec'> Two Independent Model Approach</span>**
 
@@ -259,19 +264,18 @@ The evaluation methodology is as follows:
 - We take k objects with the highest uplift values
 - Divide the subset into a contol (t=0) and test (t=1) group
 - Evaluate the average target y for each individually
-- Find the difference
+- Find the difference:
+
+    $$ uplift@k = \bar{y}_{k \space test} - \bar{y}_{k \space control} $$
+
+    $$ \bar{y}_k = \frac{1}{n} \sum_{i=1}^{k}{uplift_i,}  $$
 
 
+There are some [other metrics](https://www.uplift-modeling.com/en/latest/) you can look into as well:
 
-
-
-
-.
-Суть данного подхода в следующем:
-Берем k объектов с самым высоким uplift из нашей отложенной выборки для проверки. k — это или количество объектов, или доля объектов от общей выборки
-Делим получившуюся подвыборку на контроль (t = 0) и тест (t = 1)
-Рассчитываем средний таргет y для каждой группы отдельно
-Находим разницу
+- Area Under Uplift Curve
+- Area Under Qini Curve
+- Weighted average uplift
 
 
 

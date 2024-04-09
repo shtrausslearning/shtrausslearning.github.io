@@ -31,6 +31,8 @@ In today's post we'll go through a predictive modeling technique known as **Upli
 
 [![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)
 
+## **Introduction**
+
 ### **<span style='color:#686dec'> Uplift Modeling</span>**
 
 So what it this modeling approach about:
@@ -69,7 +71,10 @@ Having read the above, lets **summarise the important** bits:
 - We randomly send emails to these customers (**treatment array**); we have an array containing a marketing campaign defined subset groupings
 - Finally we have a target containing post marketing campaign monitored results (confirmations of whether the email campaign worked or not)
 
-**Feature Matrix**
+
+## **Data Insight**
+
+### **<span style='color:#686dec'> Feature Matrix</span>**
 
 Let's also look at the feature matrix available to us:
 
@@ -86,7 +91,7 @@ Let's also look at the feature matrix available to us:
 +-------+---------------+-------+----+------+---------+------+-------+
 ```
 
-**Treatment Array**
+### **<span style='color:#686dec'> Treatment Array</span>**
 
 The treatment array contains text data which we will need to convert into numerical data
 
@@ -100,7 +105,7 @@ t.sample(5)
 21571    Womens E-Mail
 ```
 
-**Target Array**
+### **<span style='color:#686dec'> Target Array</span>**
 
 The target contains the result of the email marketing campaign influence and is already in numerical format
 
@@ -114,7 +119,7 @@ y.sample(5)
 45957    1
 ```
 
-### **<span style='color:#686dec'> Preprocessing</span>**
+## **Preprocessing**
 
 **Problem Simplification**
 
@@ -157,7 +162,7 @@ X_train = pd.concat([X_train_cat, X_train.drop(cat_columns, axis=1)], axis=1)
 X_test = pd.concat([X_test_cat, X_test.drop(cat_columns, axis=1)], axis=1)
 ```
 
-### **<span style='color:#686dec'> Modeling Approaches</span>**
+## **Modeling Approaches**
 
 Now that we have our data ready, lets talk libraries and approaches. There is a commonly used uplift modeling library called **scikit-uplift**, its based on scikit-learn machine learning models, but modified for uplift modeling. Lets remind ourselves of what the modeling actually wants to achieve:
 
@@ -165,9 +170,7 @@ Now that we have our data ready, lets talk libraries and approaches. There is a 
 
 and run over a few modeling approaches:
 
----
-
-#### **1. One model with treatment feature**
+### **<span style='color:#686dec'> One Model Approach</span>**
 
 Starting with **s-learner** approach, we train two separate models
 
@@ -199,19 +202,14 @@ We obtain our uplift values:
 
 ```python
 uplift_model.predict(X_test)
-```
-
-```
-array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])
+# array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])
 ```
 
 **Interpretation of Results:**
 
 - If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
 
----
-
-#### **2. Two independent mode approach**
+### **<span style='color:#686dec'> Two Independent Model Approach</span>**
 
 The two model approach, **t-learner** is similar to a one model approach, however instead of training a single model on **all the data**, we train two models, on two different subsets of data:
 
@@ -242,11 +240,8 @@ We obtain our uplift values:
 
 ```python
 uplift_model.predict(X_test)
-```
-
-```
-array([ 0.        , -0.41      , -0.01      , ...,  0.08142857,
-        0.59      ,  0.22      ])
+# array([ 0.        , -0.41      , -0.01      , ...,  0.08142857,
+#        0.59      ,  0.22      ])
 ```
 
 ### **<span style='color:#686dec'> Metric Evaluation</span>**

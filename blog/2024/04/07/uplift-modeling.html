@@ -1981,44 +1981,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#uplift-modeling_1" class="md-nav__link">
      Uplift Modeling
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#dataset" class="md-nav__link">
      Dataset
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#preprocessing" class="md-nav__link">
-     Preprocessing
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modeling-approaches" class="md-nav__link">
-     Modeling Approaches
-  </a>
-  
-    <nav class="md-nav" aria-label="Modeling Approaches">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-one-model-with-treatment-feature" class="md-nav__link">
-    1. One model with treatment feature
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-two-independent-mode-approach" class="md-nav__link">
-    2. Two independent mode approach
   </a>
   
 </li>
@@ -2029,16 +2008,84 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metric-evaluation" class="md-nav__link">
-     Metric Evaluation
+  <a href="#data-insight" class="md-nav__link">
+    Data Insight
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Insight">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-matrix" class="md-nav__link">
+     Feature Matrix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treatment-array" class="md-nav__link">
+     Treatment Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-array" class="md-nav__link">
+     Target Array
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preprocessing" class="md-nav__link">
+    Preprocessing
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#modeling-approaches" class="md-nav__link">
+    Modeling Approaches
+  </a>
+  
+    <nav class="md-nav" aria-label="Modeling Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-model-approach" class="md-nav__link">
+     One Model Approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-independent-model-approach" class="md-nav__link">
+     Two Independent Model Approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-evaluation" class="md-nav__link">
+     Metric Evaluation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#concluding-remarks" class="md-nav__link">
      Concluding Remarks
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2169,6 +2216,7 @@
 <!-- more -->
 
 <p><a href="https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb"><img alt="GitHub" src="https://img.shields.io/badge/Github-Repository-97c446?logo=Github&amp;logoColor=DAF7A6" /></a></p>
+<h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="uplift-modeling_1"><strong><span style='color:#686dec'> Uplift Modeling</span></strong><a class="headerlink" href="#uplift-modeling_1" title="Permanent link">&para;</a></h3>
 <p>So what it this modeling approach about:</p>
 <p><strong>Uplift modeling</strong> is a technique that allows us to identify the subset of objects who upon being influences by an event/action will do some action, and if not influenced will not do the same acton</p>
@@ -2202,7 +2250,8 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>We randomly send emails to these customers (<strong>treatment array</strong>); we have an array containing a marketing campaign defined subset groupings</li>
 <li>Finally we have a target containing post marketing campaign monitored results (confirmations of whether the email campaign worked or not)</li>
 </ul>
-<p><strong>Feature Matrix</strong></p>
+<h2 id="data-insight"><strong>Data Insight</strong><a class="headerlink" href="#data-insight" title="Permanent link">&para;</a></h2>
+<h3 id="feature-matrix"><strong><span style='color:#686dec'> Feature Matrix</span></strong><a class="headerlink" href="#feature-matrix" title="Permanent link">&para;</a></h3>
 <p>Let's also look at the feature matrix available to us:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>+-------+---------------+-------+----+------+---------+------+-------+
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>|recency|history_segment|history|mens|womens| zip_code|newbie|channel|
@@ -2214,7 +2263,7 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>|      2|   1) $0 - $100|  45.34|   1|     0|    Urban|     0|    Web|
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>+-------+---------------+-------+----+------+---------+------+-------+
 </span></code></pre></div>
-<p><strong>Treatment Array</strong></p>
+<h3 id="treatment-array"><strong><span style='color:#686dec'> Treatment Array</span></strong><a class="headerlink" href="#treatment-array" title="Permanent link">&para;</a></h3>
 <p>The treatment array contains text data which we will need to convert into numerical data</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>t.sample(5)
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -2224,7 +2273,7 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>58595        No E-Mail
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>21571    Womens E-Mail
 </span></code></pre></div>
-<p><strong>Target Array</strong></p>
+<h3 id="target-array"><strong><span style='color:#686dec'> Target Array</span></strong><a class="headerlink" href="#target-array" title="Permanent link">&para;</a></h3>
 <p>The target contains the result of the email marketing campaign influence and is already in numerical format</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>y.sample(5)
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -2234,7 +2283,7 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>23809    0
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>45957    1
 </span></code></pre></div>
-<h3 id="preprocessing"><strong><span style='color:#686dec'> Preprocessing</span></strong><a class="headerlink" href="#preprocessing" title="Permanent link">&para;</a></h3>
+<h2 id="preprocessing"><strong>Preprocessing</strong><a class="headerlink" href="#preprocessing" title="Permanent link">&para;</a></h2>
 <p><strong>Problem Simplification</strong></p>
 <p>Lets do a little bit of preprocessing and problem simplification. As we saw in the above data, we have three categories in our treatment vector. Lets simplify it to just a binary case and not differentiate the male and female target cases, ie. marketing email has been sent or not sent. </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Womens E-Mail&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Mens E-Mail&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;No E-Mail&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
@@ -2263,14 +2312,13 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="n">X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_train_cat</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cat_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="n">X_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_test_cat</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">cat_columns</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="modeling-approaches"><strong><span style='color:#686dec'> Modeling Approaches</span></strong><a class="headerlink" href="#modeling-approaches" title="Permanent link">&para;</a></h3>
+<h2 id="modeling-approaches"><strong>Modeling Approaches</strong><a class="headerlink" href="#modeling-approaches" title="Permanent link">&para;</a></h2>
 <p>Now that we have our data ready, lets talk libraries and approaches. There is a commonly used uplift modeling library called <strong>scikit-uplift</strong>, its based on scikit-learn machine learning models, but modified for uplift modeling. Lets remind ourselves of what the modeling actually wants to achieve:</p>
 <blockquote>
 <p>Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior</p>
 </blockquote>
 <p>and run over a few modeling approaches:</p>
-<hr />
-<h4 id="1-one-model-with-treatment-feature"><strong>1. One model with treatment feature</strong><a class="headerlink" href="#1-one-model-with-treatment-feature" title="Permanent link">&para;</a></h4>
+<h3 id="one-model-approach"><strong><span style='color:#686dec'> One Model Approach</span></strong><a class="headerlink" href="#one-model-approach" title="Permanent link">&para;</a></h3>
 <p>Starting with <strong>s-learner</strong> approach, we train two separate models</p>
 <ul>
 <li>We train a base model with all base features and the treatment vector, taking the target vector as our independent variable</li>
@@ -2294,42 +2342,39 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span></code></pre></div>
 <p>We obtain our uplift values:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">uplift_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])</span>
 </span></code></pre></div>
 <p><strong>Interpretation of Results:</strong></p>
 <ul>
 <li>If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.</li>
 </ul>
-<hr />
-<h4 id="2-two-independent-mode-approach"><strong>2. Two independent mode approach</strong><a class="headerlink" href="#2-two-independent-mode-approach" title="Permanent link">&para;</a></h4>
+<h3 id="two-independent-model-approach"><strong><span style='color:#686dec'> Two Independent Model Approach</span></strong><a class="headerlink" href="#two-independent-model-approach" title="Permanent link">&para;</a></h3>
 <p>The two model approach, <strong>t-learner</strong> is similar to a one model approach, however instead of training a single model on <strong>all the data</strong>, we train two models, on two different subsets of data:</p>
 <ul>
 <li>One for the <strong>control group</strong> (no interaction, t=0)</li>
 <li>Another for the <strong>test group</strong> (there was interaction, t=1)</li>
 </ul>
 <p>In order to obtain the uplift, we apply the model on the test set like in the <strong>s-learner</strong>, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">sklift.models</span> <span class="kn">import</span> <span class="n">TwoModels</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;tlearner&#39;</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># control group</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="n">basic_model_control</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># test group</span>
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">basic_model_test</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="n">uplift_model</span> <span class="o">=</span> <span class="n">TwoModels</span><span class="p">(</span><span class="n">basic_model_test</span><span class="p">,</span> <span class="n">basic_model_control</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;vanilla&#39;</span><span class="p">)</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="n">uplift_model</span> <span class="o">=</span> <span class="n">uplift_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">)</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
-</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># store the uplift values</span>
-</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="n">model_predictions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uplift_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">sklift.models</span> <span class="kn">import</span> <span class="n">TwoModels</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;tlearner&#39;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># control group</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">basic_model_control</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># test group</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">basic_model_test</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">uplift_model</span> <span class="o">=</span> <span class="n">TwoModels</span><span class="p">(</span><span class="n">basic_model_test</span><span class="p">,</span> <span class="n">basic_model_control</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;vanilla&#39;</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="n">uplift_model</span> <span class="o">=</span> <span class="n">uplift_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">)</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="c1"># store the uplift values</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">model_predictions</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">uplift_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </span></code></pre></div>
 <p>We obtain our uplift values:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">uplift_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>array([ 0.        , -0.41      , -0.01      , ...,  0.08142857,
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>        0.59      ,  0.22      ])
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">uplift_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># array([ 0.        , -0.41      , -0.01      , ...,  0.08142857,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">#        0.59      ,  0.22      ])</span>
 </span></code></pre></div>
 <h3 id="metric-evaluation"><strong><span style='color:#686dec'> Metric Evaluation</span></strong><a class="headerlink" href="#metric-evaluation" title="Permanent link">&para;</a></h3>
 <p>So now that we have obtained our <strong>uplift values</strong>, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called <strong>uplift@k</strong>. </p>

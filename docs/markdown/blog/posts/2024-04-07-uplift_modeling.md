@@ -165,18 +165,21 @@ Now that we have our data ready, lets talk libraries and approaches. There is a 
 
 and run over a few modeling approaches:
 
-**s-learner**
+---
+
+#### **1. One model with treatment feature**
 
 Starting with **s-learner** approach, we train two separate models
 
-- We train a base model & apply the model assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
-- We then repeat the process, but assuming that these has been no interaction with any customer (t=0 for all customers)
+- We train a base model with all base features and the treatment vector, taking the target vector as our independent variable
+- Apply the model (predict) assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
+- Apply the model (predict) again but assuming that these has been no interaction with any customer (t=0 for all customers)
 
 The difference between these two vectors will be taken as our uplift, to be more specific:
 
 > model generates **uplift scores** that represent the **estimated impact of a treatment** on each individual's behavior
 
-The **s-learner** model can be used by importing **SoloModel** from `from sklift.models import SoloModel`, we just need to specify the base model we will be using in the two models
+The **s-learner** model can be used by importing **SoloModel** from `from sklift.models import SoloModel`, we just need to specify the base model we will be using in the two models and wrap it with **SoloModel**. Like other sklearn models, we use **fit,predict** methods, but with an additional input `t_train`
 
 
 ```python
@@ -188,6 +191,100 @@ uplift_model = uplift_model.fit(X_train, y_train, t_train)
 
 model_predictions[name] = uplift_model.predict(X_test)
 ```
+
+```python
+uplift_model.predict(X_test)
+```
+
+```
+array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])
+```
+
+?"Interpretation of Results"
+
+If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
+
+---
+
+#### **2. Two independent mode approach**
+
+The two model approach, **t-learner** is similar to a one model approach, however instead of training a single model on **all the data**, we train two models, on two different subsets of data:
+
+- One for the **control group** (no interaction, t=0)
+- Another for the **test group** (there was interaction, t=1)
+
+In order to obtain the uplift, we apply the model on the test set like in the **s-learner**, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.
+
+```python
+model_name = 'tlearner'
+
+# control group
+basic_model_control = RandomForestClassifier(random_state=42)
+
+# test group
+basic_model_test = RandomForestClassifier(random_state=42)
+
+uplift_model = TwoModels(basic_model_test, basic_model_control, method='vanilla')
+uplift_model = uplift_model.fit(X_train, y_train, t_train)
+
+model_predictions[model_name] = uplift_model.predict(X_test)
+```
+
+```python
+uplift_model.predict(X_test)
+```
+
+```
+array([ 0.        , -0.41      , -0.01      , ...,  0.08142857,
+        0.59      ,  0.22      ])
+```
+
+### **<span style='color:#686dec'> Metric Evaluation</span>**
+
+So now that we have obtained our uplift values, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called **uplift@k**. 
+
+The metric ranges from -1 to 1, where 1 is the best and -1 represents a model that doesnt work. A value of 0 is equivalent to a random model. Values in the range 0.05 to 1 can be considered as working models.
+
+The evaluatoon methodology is as follows:
+
+- We take k objects with the highest uplift values
+- Divide the subset into a contol (t=0) and test (t=1) group
+- Evaluate the average target y for each individually
+- 
+
+
+
+
+
+
+.
+Суть данного подхода в следующем:
+Берем k объектов с самым высоким uplift из нашей отложенной выборки для проверки. k — это или количество объектов, или доля объектов от общей выборки
+Делим получившуюся подвыборку на контроль (t = 0) и тест (t = 1)
+Рассчитываем средний таргет y для каждой группы отдельно
+Находим разницу
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

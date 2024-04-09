@@ -227,6 +227,8 @@ The two model approach, **t-learner** is similar to a one model approach, howeve
 
 In order to obtain the uplift, we apply the model on the test set like in the **s-learner**, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.
 
+The **t-learner** model can be found in 
+
 ```python
 from sklift.models import TwoModels
 
@@ -257,12 +259,12 @@ uplift_model.predict(X_test)
 
 So now that we have obtained our **uplift values**, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called **uplift@k**. 
 
-The metric ranges from -1 to 1, where 1 is the best and -1 represents a model that doesnt work. A value of 0 is equivalent to a random model. Values in the range 0.05 to 1 can be considered as working models.
+The metric ranges from -1 to 1, where **1 is the best** and **-1 represents a model that doesnt work**. A value of **0 is equivalent to a random model**. Values in the range 0.05 to 1 can be considered as working models.
 
 The evaluation methodology is as follows:
 
 - We take k objects with the highest uplift values
-- Divide the subset into a contol (t=0) and test (t=1) group
+- Divide the subset into a **contol** (t=0) and **test** (t=1) group
 - Evaluate the average target y for each individually
 - Find the difference:
 

@@ -2358,6 +2358,7 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>Another for the <strong>test group</strong> (there was interaction, t=1)</li>
 </ul>
 <p>In order to obtain the uplift, we apply the model on the test set like in the <strong>s-learner</strong>, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.</p>
+<p>The <strong>t-learner</strong> model can be found in </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">sklift.models</span> <span class="kn">import</span> <span class="n">TwoModels</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;tlearner&#39;</span>
@@ -2381,11 +2382,11 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 </span></code></pre></div>
 <h3 id="metric-evaluation"><strong><span style='color:#686dec'> Metric Evaluation</span></strong><a class="headerlink" href="#metric-evaluation" title="Permanent link">&para;</a></h3>
 <p>So now that we have obtained our <strong>uplift values</strong>, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called <strong>uplift@k</strong>. </p>
-<p>The metric ranges from -1 to 1, where 1 is the best and -1 represents a model that doesnt work. A value of 0 is equivalent to a random model. Values in the range 0.05 to 1 can be considered as working models.</p>
+<p>The metric ranges from -1 to 1, where <strong>1 is the best</strong> and <strong>-1 represents a model that doesnt work</strong>. A value of <strong>0 is equivalent to a random model</strong>. Values in the range 0.05 to 1 can be considered as working models.</p>
 <p>The evaluation methodology is as follows:</p>
 <ul>
 <li>We take k objects with the highest uplift values</li>
-<li>Divide the subset into a contol (t=0) and test (t=1) group</li>
+<li>Divide the subset into a <strong>contol</strong> (t=0) and <strong>test</strong> (t=1) group</li>
 <li>Evaluate the average target y for each individually</li>
 <li>
 <p>Find the difference:</p>

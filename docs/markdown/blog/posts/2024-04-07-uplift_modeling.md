@@ -168,7 +168,7 @@ Now that we have our data ready, lets talk libraries and approaches. There is a 
 
 > Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior
 
-and run over a few modeling approaches:
+scikit-uplift has a number of different approaches for uplift modeling, you can find the models in the [following link](https://www.uplift-modeling.com/en/latest/), we'll look at two of the three approaches used in the library
 
 ### **<span style='color:#686dec'> One Model Approach</span>**
 
@@ -178,7 +178,11 @@ Starting with **s-learner** approach, we train two separate models
 - Apply the model (predict) assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
 - Apply the model (predict) again but assuming that these has been no interaction with any customer (t=0 for all customers)
 
-![](images/smodel.png)
+<figure markdown="span">
+  ![Image title](images/smodel.png)
+  <figcaption>s-model approach</figcaption>
+</figure>
+
 
 The difference between these two vectors will be taken as our uplift, to be more specific:
 

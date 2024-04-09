@@ -2317,7 +2317,7 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <blockquote>
 <p>Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior</p>
 </blockquote>
-<p>and run over a few modeling approaches:</p>
+<p>scikit-uplift has a number of different approaches for uplift modeling, you can find the models in the <a href="https://www.uplift-modeling.com/en/latest/">following link</a>, we'll look at two of the three approaches used in the library</p>
 <h3 id="one-model-approach"><strong><span style='color:#686dec'> One Model Approach</span></strong><a class="headerlink" href="#one-model-approach" title="Permanent link">&para;</a></h3>
 <p>Starting with <strong>s-learner</strong> approach, we train two separate models</p>
 <ul>
@@ -2325,7 +2325,10 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>Apply the model (predict) assuming we have interacted with all customers, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group</li>
 <li>Apply the model (predict) again but assuming that these has been no interaction with any customer (t=0 for all customers)</li>
 </ul>
-<p><img alt="" src="../../../images/smodel.png" /></p>
+<figure>
+  <img alt="Image title" src="../../../images/smodel.png" />
+  <figcaption>s-model approach</figcaption>
+</figure>
 <p>The difference between these two vectors will be taken as our uplift, to be more specific:</p>
 <blockquote>
 <p>model generates <strong>uplift scores</strong> that represent the <strong>estimated impact of a treatment</strong> on each individual's behavior</p>

@@ -35,23 +35,52 @@ In today's post we'll go through a predictive modeling technique known as **Upli
 
 ### **<span style='color:#686dec'> Uplift Modeling</span>**
 
+What is the main issue at hand:
+
+- We cannot do an action & not do an action at the same time to the same person
+
 So what it this modeling approach about:
 
-**Uplift modeling** is a technique that allows us to identify the subset of objects who upon being influences by an event/action will do some action, and if not influenced will not do the same acton
+**Uplift modeling** is a technique that allows us to identify the subset of objects 
+
+- who upon being influenced by an event/action will do some action
+- and if not influenced will not do the action
 
 So lets think of an example:
 
-- We are selling a product and need to decide to whom we will be advertising, given that we cannot show it to all target audiences, we would like to find clients who will buy the product, if they see our advertisement and not buy it if they don't see it
+Imagine we are selling a product and need to decide to whom we will be advertising, we have some constraints and cannot show it to all target audiences, 
 
+- **we would like to find clients who will buy the product** if they see our advertisement 
+- and **will and not buy it if they don't see it**
 
 In **uplift modeling** we need three components:
 
- - Have two arrays we will be working with; **Treatment Array**, **Target Array** and standard **customer related feature matrix**
+ Have two arrays we will be working with; **Treatment Array**, **Target Array** and standard **customer related feature matrix**
+
  - The **treatment array** is a binary vector, where we have no influence (0) and influenced (1)
  - The **target vector** is also a binary vector, where we have no action (0) and action is made (1)
  - The standard feature matrix (like other machine learning problems)
 
+
+### **<span style='color:#686dec'> What to remember</span>**
+
+So some important things to note in the context of uplift modeling:
+
+- To model which users will do an action when influenced & users which will not do an action when not influences we need to have aside from a standard feature matrix two additional vectors; **treatment** (users were identified and interacted with) & the result of our interaction with them, stored in the **target vector**
+- Having a trained model will enable us to identify on unseen data (without a treatment or target vector) the uplift value for a group for which we have a set of features used in training
+- Our aim is to target **influencible clients** (those who upon being interacted with will commit a target action) and **those who can be positively influenced** (when not interacted with will not conduct a target action).
+
+
 ### **<span style='color:#686dec'> Dataset</span>**
+
+Our dataset is available in the sklift library, called **Kevin Hillstrom Dataset**. You can also try other sample problems shown below:
+
+```python
+# Kevin Hillstrom Dataset
+from sklift.datasets import fetch_x5, fetch_lenta, clear_data_dir, fetch_megafon, fetch_hillstrom
+
+data = fetch_hillstrom()
+```
 
 Lets introduce ourselves to the dataset we will be using in our notebook, by looking at the description provided with the dataset
 
@@ -93,7 +122,7 @@ Let's also look at the feature matrix available to us:
 
 ### **<span style='color:#686dec'> Treatment Array</span>**
 
-The treatment array contains text data which we will need to convert into numerical data
+The treatment array contains text data which we will need to convert into numerical data, we have information about the marketing campaign, in which we roughtly speaking to do one of two things; send an email about the marketing campaign or don't send anything
 
 ```
 t.sample(5)
@@ -107,7 +136,7 @@ t.sample(5)
 
 ### **<span style='color:#686dec'> Target Array</span>**
 
-The target contains the result of the email marketing campaign influence and is already in numerical format
+The target contains the **result of the email marketing campaign** influence and is already in numerical format, it reflects whether the campaign was successful or not
 
 ```
 y.sample(5)
@@ -213,7 +242,8 @@ uplift_model.predict(X_test)
 
 {==
 
-If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
+- If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
+- In terms of magnitude, a larger positive (or negative) uplift score implies a more significant impact of the treatment on the individual's likelihood of a positive outcome.
 
 ==}
 
@@ -226,8 +256,6 @@ The two model approach, **t-learner** is similar to a one model approach, howeve
 - Another for the **test group** (there was interaction, t=1)
 
 In order to obtain the uplift, we apply the model on the test set like in the **s-learner**, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.
-
-The **t-learner** model can be found in 
 
 ```python
 from sklift.models import TwoModels
@@ -255,6 +283,17 @@ uplift_model.predict(X_test)
 #        0.59      ,  0.22      ])
 ```
 
+We can also plot the uplift values predicted by both modeling approaches:
+
+<figure markdown="span">
+  ![Image title](images/uplift.png)
+  <figcaption>Comparing uplift values for s-learner & t-learner</figcaption>
+</figure>
+
+We can notice a very minor binomial tendency in the figure, a large portion of users having a low uplift values around 0-0.25 & a secondary group around 0.3-0.75, in terms of model variation, we can clearly note that **t-learner** is less concentrated with values at 0 and instead has more values in the region 0-0.25, which would indicate that the model predicts on average that the user is more confident that the user is positively influenced than the **s-model**
+
+## **After Modeling**
+
 ### **<span style='color:#686dec'> Metric Evaluation</span>**
 
 So now that we have obtained our **uplift values**, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called **uplift@k**. 
@@ -280,35 +319,37 @@ There are some [other metrics](https://www.uplift-modeling.com/en/latest/) you c
 - Weighted average uplift
 
 
+```python
 
+results = dict()
+for model_name, preds in model_predictions.items():
+    
+    up_k_best = uplift_at_k(y_true=y_test, 
+                            uplift=preds, 
+                            treatment=t_test, 
+                            strategy='overall', 
+                            k=0.2)
+    
+    results[model_name] = round(up_k_best,4)
+```
 
+```
+results
+{'s_learner': 0.0526, 't_learner': 0.0584}
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-****
-
+What we can conclude is that the **t-learner** method has a slightly higher metric values compared to **s-learer**, which indicates that it is a slightly better modeling approach.
 
 
 ### **<span style='color:#686dec'> Concluding Remarks</span>**
 
+In this post we looked into a brief introduction into **uplift modeling**, which is a practical business task for which we can utilise machine learning & use modeling for the prediction/identification of the subset of objects/dataset **who upon being influenced by an event/action will do some action** and **if not influenced will not do the action**
+
+We looked at two approaches **s-learner** & **t-learner** modeling approaches and tried a sample problem **Kevin Hillstrom Dataset**
+
+The modeling approaches allow us to predict the lift value, and gives us to understanding how well the particular client is influenced based on historical data, the models can then be used on new unseen data.
+
+We can repeat the process similar to above using some other datasets such as: fetch_x5, fetch_lenta, clear_data_dir, fetch_megafon.
 
 
 ***

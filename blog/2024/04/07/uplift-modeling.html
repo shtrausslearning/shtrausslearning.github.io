@@ -2002,15 +2002,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#dataset" class="md-nav__link">
-     Dataset
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    Loading Data
+  </a>
   
 </li>
       
@@ -2221,7 +2221,7 @@
 <h1 id="uplift-modeling"><strong>Uplift Modeling</strong><a class="headerlink" href="#uplift-modeling" title="Permanent link">&para;</a></h1>
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('images/uplift_banner.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('images/uplift_banner.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -2268,7 +2268,7 @@
 <li>Having a trained model will enable us to identify on unseen data (without a treatment or target vector) the uplift value for a group for which we have a set of features used in training</li>
 <li>Our aim is to target <strong>influencible clients</strong> (those who upon being interacted with will commit a target action) and <strong>those who can be positively influenced</strong> (when not interacted with will not conduct a target action).</li>
 </ul>
-<h3 id="dataset"><strong><span style='color:#686dec'> Dataset</span></strong><a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
+<h2 id="loading-data"><strong>Loading Data</strong><a class="headerlink" href="#loading-data" title="Permanent link">&para;</a></h2>
 <p>Our dataset is available in the sklift library, called <strong>Kevin Hillstrom Dataset</strong>. You can also try other sample problems shown below:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Kevin Hillstrom Dataset</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">sklift.datasets</span> <span class="kn">import</span> <span class="n">fetch_x5</span><span class="p">,</span> <span class="n">fetch_lenta</span><span class="p">,</span> <span class="n">clear_data_dir</span><span class="p">,</span> <span class="n">fetch_megafon</span><span class="p">,</span> <span class="n">fetch_hillstrom</span>

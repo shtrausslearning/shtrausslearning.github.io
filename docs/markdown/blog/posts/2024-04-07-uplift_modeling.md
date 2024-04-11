@@ -25,9 +25,7 @@ comments: true
     </div>
 </div>
 
-Nothing related to physical lift, but still an interesting topic, in fact it doesn't seem to be a very widely spread topic in machine learning, unlike classification, regression, however it sure has some usage in business.
-
-In today's post we'll go through a predictive modeling technique known as **Uplift Modeling**. It is a technique that allows us to identify the subset of customers who are likely to be positively influenced by a marketing plot. The goal of such modeling is to allow us to target the customers who are most likely to respond favourably to a marketing campaign, rather than targeting customers indiscriminately.
+Nothing related to physical lift, but still an interesting topic, in fact it doesn't seem to be a very widely spread topic in machine learning, unlike classification and regression, however it sure has some usage in business and marketing in particular, lets go!
 
 <!-- more -->
 

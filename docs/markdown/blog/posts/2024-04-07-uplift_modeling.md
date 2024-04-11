@@ -353,7 +353,7 @@ We looked at two approaches **s-learner** & **t-learner** modeling approaches an
 
 The modeling approaches allow us to predict the lift value, and gives us to understanding how well the particular client is influenced based on historical data, the models can then be used on new unseen data.
 
-We can repeat the process similar to above using some other datasets such as: fetch_x5, fetch_lenta, clear_data_dir, fetch_megafon.
+We can repeat the process similar to above using some other datasets such as: [fetch_x5](https://www.uplift-modeling.com/en/latest/api/datasets/fetch_x5.html), [fetch_lenta](https://www.uplift-modeling.com/en/latest/api/datasets/fetch_lenta.html#lenta-uplift-modeling-dataset), [fetch_megafon](https://www.uplift-modeling.com/en/latest/api/datasets/fetch_megafon.html).
 
 
 ***

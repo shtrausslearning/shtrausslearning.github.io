@@ -29,7 +29,7 @@ Nothing related to physical lift, but still an interesting topic, in fact it doe
 
 <!-- more -->
 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
+[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/shtrausslearning/uplift-model-approaches)
 
 ## **Introduction**
 

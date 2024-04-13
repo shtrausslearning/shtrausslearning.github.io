@@ -1,4 +1,4 @@
-![](images/id_about2.jpg)
+![](images/id_about2.png)
 
 [![](https://img.shields.io/badge/Kaggle-Grandmaster-FAE01C)](https://kaggle.com/shtrausslearning) <a href='https://www.kaggle.com/shtrausslearning/'> ![](https://img.shields.io/github/followers/shtrausslearning?style=social) <a href="https://t.me/mldsai_info"><img src="https://img.shields.io/static/v1?&message=Telegram&color=3776AB&logo=Telegram&logoColor=FFFFFF&label=" /></a>
 

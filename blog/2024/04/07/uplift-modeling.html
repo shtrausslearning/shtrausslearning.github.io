@@ -2234,7 +2234,7 @@
 <h1 id="uplift-modeling"><strong>Uplift Modeling</strong><a class="headerlink" href="#uplift-modeling" title="Permanent link">&para;</a></h1>
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('images/uplift_banner.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('https://i.imgur.com/Msbm2IA.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -2248,7 +2248,7 @@
 <p>Nothing related to physical lift, but still an interesting topic, in fact it doesn't seem to be a very widely spread topic in machine learning, unlike classification and regression, however it sure has some usage in business and marketing in particular, lets go!</p>
 <!-- more -->
 
-<p><a href="https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb"><img alt="GitHub" src="https://img.shields.io/badge/Github-Repository-97c446?logo=Github&amp;logoColor=DAF7A6" /></a></p>
+<p><a href="https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics"><img alt="Open Notebook" src="https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&amp;logoColor=3094e7" /></a></p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="uplift-modeling_1"><strong><span style='color:#686dec'> Uplift Modeling</span></strong><a class="headerlink" href="#uplift-modeling_1" title="Permanent link">&para;</a></h3>
 <p>What is the main issue at hand:</p>
@@ -2383,7 +2383,7 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>Apply the model (predict) again but assuming that these has been <strong>no interaction</strong> with any customer (t=0 for all customers)</li>
 </ul>
 <figure>
-  <img alt="Image title" src="../../../images/smodel.png" />
+  <img alt="Image title" src="../../../images/slearn.png" />
   <figcaption>s-model approach</figcaption>
 </figure>
 <p>The difference between these two vectors will be taken as our uplift, to be more specific:</p>
@@ -2417,6 +2417,10 @@ Your job is to tell the world if the Mens or Womens e-mail campaign was successf
 <li>One for the <strong>control group</strong> (no interaction, t=0)</li>
 <li>Another for the <strong>test group</strong> (there was interaction, t=1)</li>
 </ul>
+<figure>
+  <img alt="Image title" src="../../../images/tlearn.png" />
+  <figcaption>t-model approach (independent models)</figcaption>
+</figure>
 <p>In order to obtain the uplift, we apply the model on the test set like in the <strong>s-learner</strong>, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">sklift.models</span> <span class="kn">import</span> <span class="n">TwoModels</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>

@@ -14,7 +14,7 @@ comments: true
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('images/uplift_banner.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('https://i.imgur.com/Msbm2IA.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -29,7 +29,7 @@ Nothing related to physical lift, but still an interesting topic, in fact it doe
 
 <!-- more -->
 
-[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)
+[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
 
 ## **Introduction**
 
@@ -210,7 +210,7 @@ Starting with **s-learner** approach, we train two separate models
 - Apply the model (predict) again but assuming that these has been **no interaction** with any customer (t=0 for all customers)
 
 <figure markdown="span">
-  ![Image title](images/smodel.png)
+  ![Image title](images/slearn.png)
   <figcaption>s-model approach</figcaption>
 </figure>
 
@@ -256,6 +256,11 @@ The two model approach, **t-learner** is similar to a one model approach, howeve
 
 - One for the **control group** (no interaction, t=0)
 - Another for the **test group** (there was interaction, t=1)
+
+<figure markdown="span">
+  ![Image title](images/tlearn.png)
+  <figcaption>t-model approach (independent models)</figcaption>
+</figure>
 
 In order to obtain the uplift, we apply the model on the test set like in the **s-learner**, with the exception that we dont add the additional treatment feature, instead we are using two independent models. The difference in predict_proba between these two models will be our uplift value.
 

@@ -1,5 +1,3 @@
-![](https://i.imgur.com/2qsffpd.png)
-
 ## Purpose
 
 Friendly place to keep up to date my personal website with materials I find useful.

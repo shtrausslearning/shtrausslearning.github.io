@@ -11,16 +11,10 @@ To utilise automisation with **mllibs**, data needs to be stored in **nlpi** ins
 
 ### **Loading Preset Datasets**
 
-Both [**Seaborn**](https://github.com/mwaskom/seaborn) and [**Plotly**](https://plotly.com/python-api-reference/generated/plotly.express.data.html) offer preset dataset which can be used for simple data analyses and testing. A mixture of different datasets from both have been selected to be loaded with the method **load_sample_data**
+Preset datasets are a quick way to load **load_sample_data()**
 
 ```python linenums="1"
 def load_sample_data(self):
-    self.store_data(px.data.stocks(),'stocks')
-    self.store_data(px.data.tips(),'tips')
-    self.store_data(px.data.iris(),'iris')
-    self.store_data(px.data.carshare(),'carshare')
-    self.store_data(px.data.experiment(),'experiment')
-    self.store_data(px.data.wind(),'wind')
     self.store_data(sns.load_dataset('flights'),'flights')
     self.store_data(sns.load_dataset('penguins'),'penguins')
     self.store_data(sns.load_dataset('taxis'),'taxis')

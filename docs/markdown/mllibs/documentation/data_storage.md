@@ -6,10 +6,11 @@ comments: true
 
 ## **Data Storage**
 
-To utilise automisation with **mllibs**, data needs to be stored in **nlpi** instances. Input data is allocated a **name tag**, allowing the user to reference the data source in a query so it can be used as an input into the selected **activation function**
+To utilise automisation with **mllibs**, data needs to be stored in **nlpi** instances. Input data is allocated a **name tag** (or key), allowing the user to reference the data source in a query so it can be used as an input into the selected **activation function**
 
 
-### **Loading Preset Datasets**
+### **<span style='color:#686dec'> Preset Datasets</span>**
+    
 
 Preset datasets are a quick way to load **load_sample_data()**
 
@@ -22,46 +23,128 @@ def load_sample_data(self):
     self.store_data(sns.load_dataset('mpg'),'mpg')
 ```
 
-once the **nlpi** instance has been created, you can store all the above data in **nlpi.data** and reference to them by their allocated name, shown above
+once the **nlpi** instance has been created, you can store all the above data in **<span style='color:#eb92d0'>i.data** and reference to them by their allocated name, shown above
 
-```python linenums="1"
-nlpi.load_sample_data()
+```python hl_lines="14" linenums="1"
+c = nlpm()
+c.load([
+         eda_splot(),     # [eda] standard seaborn plots
+         eda_scplot(),    # [eda] seaborn column plots
+         stats_tests(),   # [stats] statistical tests for list data
+         stats_plot(),    # [stats] ploty and compare statistical distributions
+         libop_general(), # [library] mllibs related functionality
+         pd_talktodata(), # [eda] pandas data exploration 
+         fourier_all()    # [signal] fast fourier transformation related
+        ])
+
+c.setup()
+i = nlpi(c)               # create an instance of nlpi
+i.load_sample_data()      # load preset datasets
+i.data.keys()
 ```
 
-### **Loading local data**
+```
+dict_keys(['flights', 'penguins', 'taxis', 'titanic', 'dmpg', 'stocks'])
+```
 
-To load your own data, you need to use **nlpi.store_data**. At present only two formats are used as storage types python **lists** and pandas **dataframes**. They can be imported directly
+Having loaded the data, you will have access to them when making some text requests!
 
-```python linenums="1"
+### **<span style='color:#686dec'> Loading Own Data</span>**
+
+To load your own data and reference your own data, you need to use **i.store_data** method. At present only two formats are used as storage types python **<span style='color:#eb92d0'>lists** and pandas **<span style='color:#eb92d0'>dataframes**. They can be imported directly
+
+```py hl_lines="2 3" linenums="1"
 nlpi.store_data(data:(list or pd.DataFrame),'name')
 ```
 
 Or as part of a dictionary input:
 
 ```python linenums="1"
-nlpi.store_data(data:{'name1':list,'name2':pd.DataFrame})
+i.store_data(data:{'name1':list,'name2':pd.DataFrame})
 ```
 
-### **Active Columns**
+For example, load **dataframe data** from the desired souce and name it something relevant:
 
-When using **natural language** for automation, specifying a subset of a **dataframe** in a single query can make them them quite long. As a result, the use of **active columns** or simply put defined **subset column lists** is utilised in **mllibs** and can be defined by setting. An important distinguish to note is that **active columns** are not **data souces**, they are stored in the existing data dictionary under the key **ac**
+```python
+
+df = pd.read_csv('https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/sources/stocks.csv',delimiter=',')
+i.store_data({'stocks':df})
+```
+
+When wanting to use the data, simply use its reference name
+
+```python
+i['show the dataframe information for stocks']
+```
+
+Or some **python list** data, and give them relevant names which will be used to reference this data:
+
+```python
+store data
+sample1 = list(np.random.normal(scale=1, size=1000))
+sample2 = list(np.random.normal(scale=1, size=1000))
+i.store_data({'distribution_A':sample1,
+              'distribution_B':sample2})
+```
+
+An example when you want to compare both datasets:
+
+```python
+ i['comapare histograms of samples distribution_B distribution_A']
+```
+
+### **<span style='color:#686dec'> Active Columns**
+
+When using **natural language** for automation, specifying a subset of a **dataframe** in a single query can make them them quite long. As a result, the use of **active columns** or simply put defined **subset column lists** is utilised in **mllibs** and can be defined by setting. 
+
+An important distinguish to note is that **<span style='color:#eb92d0'>active columns** are not **data souces**, they are stored in the existing data dictionary under the key **ac** (see Data Extraction)
 
 ```python linenums="1"
-nlpi.store_ac('data_name','active_column name',['column A','column B'])
+i.store_ac('data_name','active_column name',['column A','column B'])
 ```
 
-Utilisation of **active columns** can be done via defining the name of the active column using **{}** quotations marks inside a query
+Its usage is quite standard:
+
+- First, specify for which data you want to store some subset of column names as active column names **"data_name"**
+- Give the active column some name, which will allow you to reference the particular columns
+- Specify a python list of strings which with the names of the columns of the dataframe
 
 
-## **Extracting Data Content**
+For example:
 
-If you have the need to extract data related content, you can call **nlpi.data['data_name']**
+```python
+i.store_ac('penguins',                        # data name
+           'selected_columns',                # active column reference name
+           ['bill_length_mm','bill_depth_mm'] # column names that make up active column name
+           ) 
+```
+
+Confirm, we have stored **selected_columns** into **penguins**:
+
+```python
+i.data['penguins']['ac']
+{'selected_columns': ['bill_length_mm', 'bill_depth_mm']}
+```
+
+An example, referencing the active column name in a request:
+
+```python
+i['using data penguins create a relplot using columns selected_columns set hue as island']
+```
+
+
+## **Data Extraction**
+
+If you have the need to extract data related content, you can call **<span style='color:#eb92d0'>i.data**
+
 
 #### **DataFrame Storage**
 
 **nlpi** stores a variety of data related to **DataFrames**, the stored content changes depending on the implemented **activation functions**, here's an example:
 
 ```python linenums="1"
+i.data['stocks']
+
 {'data':            date      GOOG      AAPL      AMZN        FB      NFLX      MSFT
  0    2018-01-01  1.000000  1.000000  1.000000  1.000000  1.000000  1.000000
  1    2018-01-08  1.018172  1.011943  1.061881  0.959968  1.053526  1.015988

@@ -63,6 +63,8 @@ Or as part of a dictionary input:
 i.store_data(data:{'name1':list,'name2':pd.DataFrame})
 ```
 
+#### **<span style='color:#8a8a8a '> :material-tag-check-outline: Example</span>**
+
 For example, load **dataframe data** from the desired souce and name it something relevant:
 
 ```python
@@ -105,12 +107,15 @@ i.store_ac('data_name','active_column name',['column A','column B'])
 
 Its usage is quite standard:
 
-- First, specify for which data you want to store some subset of column names as active column names **"data_name"**
-- Give the active column some name, which will allow you to reference the particular columns
-- Specify a python list of strings which with the names of the columns of the dataframe
+> - First, specify for which data you want to store some subset of column names as active column names **"data_name"**
+> - Give the active column some name, which will allow you to reference the particular columns
+> - Specify a python list of strings which with the names of the columns of the dataframe
 
+#### **<span style='color:#8a8a8a '> :material-tag-check-outline: Example</span>**
 
-For example:
+For example, we have dataset **penguins**, for which we want to reference two columns **bill_length_mm**,**bill_depth_mm** as **"selected_columns"**
+
+We can do this by calling the **store_ac** method
 
 ```python
 i.store_ac('penguins',                        # data name
@@ -126,12 +131,13 @@ i.data['penguins']['ac']
 {'selected_columns': ['bill_length_mm', 'bill_depth_mm']}
 ```
 
+**Sample Requests**
+
 An example, referencing the active column name in a request:
 
 ```python
 i['using data penguins create a relplot using columns selected_columns set hue as island']
 ```
-
 
 ## **Data Extraction**
 

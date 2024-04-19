@@ -52,6 +52,8 @@
       
     
     
+      <link rel="stylesheet" href="../../stylesheets/customize.css">
+    
       <link rel="stylesheet" href="../../stylesheets/custom.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -1160,12 +1162,38 @@
      Loading Own Data
   </a>
   
+    <nav class="md-nav" aria-label="Loading Own Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+      Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#active-columns" class="md-nav__link">
      Active Columns
   </a>
+  
+    <nav class="md-nav" aria-label="Active Columns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+      Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2086,12 +2114,38 @@
      Loading Own Data
   </a>
   
+    <nav class="md-nav" aria-label="Loading Own Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+      Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#active-columns" class="md-nav__link">
      Active Columns
   </a>
+  
+    <nav class="md-nav" aria-label="Active Columns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+      Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2198,6 +2252,7 @@
 <p>Or as part of a dictionary input:</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">i</span><span class="o">.</span><span class="n">store_data</span><span class="p">(</span><span class="n">data</span><span class="p">:{</span><span class="s1">&#39;name1&#39;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span><span class="s1">&#39;name2&#39;</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">})</span>
 </span></code></pre></div></td></tr></table></div>
+<h4 id="example"><strong><span style='color:#8a8a8a '> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 5C5.67 5 5 5.67 5 6.5S5.67 8 6.5 8 8 7.33 8 6.5 7.33 5 6.5 5m0 0C5.67 5 5 5.67 5 6.5S5.67 8 6.5 8 8 7.33 8 6.5 7.33 5 6.5 5m14.91 6.58-9-9C12.04 2.21 11.53 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .53.21 1.04.59 1.42l.41.4c.64-.38 1.35-.63 2.08-.74L4 11V4h7l9 9-7 7-1.08-1.08c-.1.74-.36 1.44-.74 2.08l.41.41c.37.38.88.59 1.41.59.53 0 1.04-.21 1.41-.59l7-7c.38-.37.59-.88.59-1.41 0-.53-.21-1.04-.59-1.42M6.5 5C5.67 5 5 5.67 5 6.5S5.67 8 6.5 8 8 7.33 8 6.5 7.33 5 6.5 5m2.13 9.27-3.87 3.9-1.35-1.37L2 18.22 4.75 21l5.28-5.32-1.4-1.41"/></svg></span> Example</span></strong><a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
 <p>For example, load <strong>dataframe data</strong> from the desired souce and name it something relevant:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/sources/stocks.csv&#39;</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">i</span><span class="o">.</span><span class="n">store_data</span><span class="p">({</span><span class="s1">&#39;stocks&#39;</span><span class="p">:</span><span class="n">df</span><span class="p">})</span>
@@ -2221,12 +2276,16 @@
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">i</span><span class="o">.</span><span class="n">store_ac</span><span class="p">(</span><span class="s1">&#39;data_name&#39;</span><span class="p">,</span><span class="s1">&#39;active_column name&#39;</span><span class="p">,[</span><span class="s1">&#39;column A&#39;</span><span class="p">,</span><span class="s1">&#39;column B&#39;</span><span class="p">])</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Its usage is quite standard:</p>
+<blockquote>
 <ul>
 <li>First, specify for which data you want to store some subset of column names as active column names <strong>"data_name"</strong></li>
 <li>Give the active column some name, which will allow you to reference the particular columns</li>
 <li>Specify a python list of strings which with the names of the columns of the dataframe</li>
 </ul>
-<p>For example:</p>
+</blockquote>
+<h4 id="example_1"><strong><span style='color:#8a8a8a '> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.5 5C5.67 5 5 5.67 5 6.5S5.67 8 6.5 8 8 7.33 8 6.5 7.33 5 6.5 5m0 0C5.67 5 5 5.67 5 6.5S5.67 8 6.5 8 8 7.33 8 6.5 7.33 5 6.5 5m14.91 6.58-9-9C12.04 2.21 11.53 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .53.21 1.04.59 1.42l.41.4c.64-.38 1.35-.63 2.08-.74L4 11V4h7l9 9-7 7-1.08-1.08c-.1.74-.36 1.44-.74 2.08l.41.41c.37.38.88.59 1.41.59.53 0 1.04-.21 1.41-.59l7-7c.38-.37.59-.88.59-1.41 0-.53-.21-1.04-.59-1.42M6.5 5C5.67 5 5 5.67 5 6.5S5.67 8 6.5 8 8 7.33 8 6.5 7.33 5 6.5 5m2.13 9.27-3.87 3.9-1.35-1.37L2 18.22 4.75 21l5.28-5.32-1.4-1.41"/></svg></span> Example</span></strong><a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<p>For example, we have dataset <strong>penguins</strong>, for which we want to reference two columns <strong>bill_length_mm</strong>,<strong>bill_depth_mm</strong> as <strong>"selected_columns"</strong></p>
+<p>We can do this by calling the <strong>store_ac</strong> method</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">i</span><span class="o">.</span><span class="n">store_ac</span><span class="p">(</span><span class="s1">&#39;penguins&#39;</span><span class="p">,</span>                        <span class="c1"># data name</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>           <span class="s1">&#39;selected_columns&#39;</span><span class="p">,</span>                <span class="c1"># active column reference name</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>           <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span><span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">]</span> <span class="c1"># column names that make up active column name</span>
@@ -2236,6 +2295,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">i</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;penguins&#39;</span><span class="p">][</span><span class="s1">&#39;ac&#39;</span><span class="p">]</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span><span class="s1">&#39;selected_columns&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;bill_depth_mm&#39;</span><span class="p">]}</span>
 </span></code></pre></div>
+<p><strong>Sample Requests</strong></p>
 <p>An example, referencing the active column name in a request:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">i</span><span class="p">[</span><span class="s1">&#39;using data penguins create a relplot using columns selected_columns set hue as island&#39;</span><span class="p">]</span>
 </span></code></pre></div>

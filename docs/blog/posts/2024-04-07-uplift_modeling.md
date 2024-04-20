@@ -25,16 +25,11 @@ comments: true
     </div>
 </div>
 
-**<span style='color:#686dec'>Uplift modeling</span>** is a predictive modeling technique that aims to identify the individuals who are most likely to respond positively to a specific treatment or intervention. This technique is particularly useful in marketing and customer relationship management, where the goal is to target customers who are likely to be influenced by a marketing campaign or offer. By distinguishing between those who are positively influenced by the treatment and those who are not, uplift modeling helps organizations optimize their targeting strategies and maximize the return on investment of their marketing efforts.
-
-<div class="grid cards" markdown>
-
-  - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Open Kaggle Notebook](https://www.kaggle.com/shtrausslearning/uplift-model-approaches)</b>
-  - :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/Data-Science-Portfolio)</b>
-
-</div>
+Nothing related to physical lift, but still an interesting topic, in fact it doesn't seem to be a very widely spread topic in machine learning, unlike classification and regression, however it sure has some usage in business and marketing in particular, lets go!
 
 <!-- more -->
+
+[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/shtrausslearning/uplift-model-approaches)
 
 ## **Introduction**
 
@@ -202,9 +197,7 @@ X_test = pd.concat([X_test_cat, X_test.drop(cat_columns, axis=1)], axis=1)
 
 Now that we have our data ready, lets talk libraries and approaches. There is a commonly used uplift modeling library called **scikit-uplift**, its based on scikit-learn machine learning models, but modified for uplift modeling. Lets remind ourselves of what the modeling actually wants to achieve:
 
-!!! abstract
-
-    Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior
+> Uplift modeling focuses on predicting the impact of a treatment or intervention on an individual's behavior
 
 scikit-uplift has a number of different approaches for uplift modeling, you can find the models in the [following link](https://www.uplift-modeling.com/en/latest/), we'll look at two of the three approaches used in the library
 
@@ -247,10 +240,14 @@ uplift_model.predict(X_test)
 # array([-0.03, -0.31, -0.01, ...,  0.03,  0.56,  0.14])
 ```
 
-!!! abstract "<b>Interpretation of Results</b>"
+**Interpretation of Results:**
 
-    - If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
-    - In terms of magnitude, a larger positive (or negative) uplift score implies a more significant impact of the treatment on the individual's likelihood of a positive outcome.
+{==
+
+- If the results are positive for a particular entry, it indicates that the treatment (email marketing campaign) has a positive effect on this individual and visa versa.
+- In terms of magnitude, a larger positive (or negative) uplift score implies a more significant impact of the treatment on the individual's likelihood of a positive outcome.
+
+==}
 
 
 ### **<span style='color:#686dec'> Two Independent Model Approach</span>**

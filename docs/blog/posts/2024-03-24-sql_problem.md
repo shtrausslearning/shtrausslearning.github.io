@@ -28,13 +28,9 @@ comments: true
 
 An interview question related to SQL knowledge from a financial bank which I thought was interesting so decided to share. I was given a day to do the problems, which would be more than enough time to delve into into it. I really enjoyed going through the the interview process with this company, hopefully this will be helpful to someone.
 
-<div class="grid cards" markdown>
-
-  - :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)</b>
-
-</div>
-
 <!-- more -->
+
+[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)
 
 
 ### **<span style='color:#686dec'> Questions</span>**

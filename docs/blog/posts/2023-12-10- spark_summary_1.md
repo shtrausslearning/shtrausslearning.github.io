@@ -25,7 +25,7 @@ comments: true
     </div>
 </div>
 
-Something I decided would be fun to do on a daily basis; write **pyspark** code everyday and post about it, this is mainly because I don't use it as often as I would like, so this is my motivation. If you too want to join in, just fork the notebook (**[on Kaggle](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)**) and practice various pyspark codings everyday! Visit my **[telegram channel](https://t.me/mldsai_info)** if you have any questions or just post them here!
+Something I decided would be fun to do on a daily basis; write **pyspark** code everyday and post about it, this is mainly because I don't use it as often as I would like, so this is my motivation. If you too want to join in, just fork the notebook (**[on Kaggle]((https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts))**) and practice various pyspark codings everyday! Visit my **[telegram channel](https://t.me/mldsai_info)** if you have any questions or just post them here!
 
 Here I will be posting summaries that cover roughtly 10 days worth of posts that I make **[on Kaggle](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)**, so that would equate to three posts a month
 

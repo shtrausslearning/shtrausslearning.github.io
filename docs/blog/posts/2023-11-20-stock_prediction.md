@@ -15,7 +15,7 @@ comments: true
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://i.imgur.com/QsFWW8C.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('images/cognizant_id.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -28,14 +28,10 @@ comments: true
 
 In this project, we work with a client **Gala Groceries**, who has contacted **Cognizant** for logistics advice about **product storage**. Specifically, they are interested in wanting to know **how better stock the items that they sell**. Our role is to take on this project as a data scientist and understand what the client actually needs. This will result in the formulation/confirmation of a new project statement, in which we will be focusing on **predicting stock levels of products**. Such a model would enable the client to estimate their product stock levels at a given time & make subsequent business decisions in a more effective manner reducing understocking and overstocking losses.
 
-<div class="grid cards" markdown>
-
-  - :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/cognizant_artificial_intelligence)</b>
-- :simple-cognizant:{ .lg .middle }&nbsp; <b>[Cognizant Internship](https://www.theforage.com/simulations/cognizant/artificial-intelligence-rtbq)</b>
-
-</div>
-
 <!-- more -->
+
+[![Run in Google Colab](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/cognizant_artificial_intelligence)
+
 
 ## <b>Background</b>
 

@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://arv-anshul.github.io/project/others",
+  "title": "ProjectsIndex",
+  "required": ["projects"],
+  "properties": {
+    "projects": {
+      "description": "Define all your projects in a array.",
+      "type": "array",
+      "items": {
+        "required": ["description", "github", "icon", "status", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "description": "Title of the project.",
+            "default": "Project Title",
+            "type": "string"
+          },
+          "description": {
+            "description": "A brief description of project.",
+            "default": "This is an amazing project.",
+            "type": "string"
+          },
+          "icon": {
+            "description": "An icon related to project. Icon rendered as :simple-{icon}:.",
+            "type": "string",
+            "default": "streamlit"
+          },
+          "github": {
+            "description": "Link of the Github Repo where source code this project is available.",
+            "type": "string",
+            "default": "https://github.com/arv-anshul/",
+            "pattern": "https?://\\w+"
+          },
+          "status": {
+            "description": "Current project status.",
+            "type": "string",
+            "enum": ["deprecated", "old", "working"],
+            "default": "working"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://arv-anshul.github.io/friends",
+  "title": "Anshul Raj Verma - Friends",
+  "required": ["friends"],
+  "properties": {
+    "friends": {
+      "description": "List of friends to show on website.",
+      "type": "array",
+      "items": {
+        "required": [
+          "name",
+          "profession",
+          "primaryUrl",
+          "description",
+          "socials"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "Name of friend. (शुभ नाम)",
+            "type": "string"
+          },
+          "profession": {
+            "description": "Profession of individual. Specify you Job Title, College Student, or similar.",
+            "type": "string"
+          },
+          "avatar": {
+            "description": "Avatar (Picture) to display on webpage.",
+            "type": "string"
+          },
+          "primaryUrl": {
+            "description": "A url which showcase the friend's abilities very well like his/her GitHub or LinkedIn profile link.",
+            "type": "string"
+          },
+          "description": {
+            "description": "Describe your friend by providing his/her info like profession, status and more.",
+            "type": "string",
+            "minLength": 100,
+            "maxLength": 500
+          },
+          "socials": {
+            "$ref": "#/definitions/friendSocials"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "friendSocials": {
+      "description": "Links related to friend. (Multiple)",
+      "type": "array",
+      "maxItems": 8,
+      "minItems": 2,
+      "items": {
+        "required": ["title", "url", "icon"],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "description": "Title for the url.",
+            "type": "string",
+            "examples": ["Github Profile", "Portfolio Website", "Resume"]
+          },
+          "url": {
+            "type": "string"
+          },
+          "icon": {
+            "$ref": "https://github.com/squidfunk/mkdocs-material/raw/master/docs/schema/assets/icons.json",
+            "markdownDescription": "An icon which truly repersents the URL. Select icon from https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/#search",
+            "examples": [
+              "material/account-box",
+              "material/file-document",
+              "simple/github",
+              "simple/linkedin"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,162 @@
+repo_url: https://github.com/arv-anshul/shtrausslearning.github.io
+repo_name: shtrausslearning.github.io
+site_author: Andrey Shtrauss
+site_description: Personal Website
+site_name: Andrey Shtrauss
+site_url: https://shtrausslearning.github.io
+docs_dir: docs
+
+theme:
+  language: en
+  name: material
+  font:
+      text: Ubuntu
+      code: Roboto Mono
+  icon:
+    repo: material/book
+    logo: fontawesome/solid/om
+  logo: myicons/anelia-logo
+  favicon: data/assets/favicon.png
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - content.tooltips
+    - navigation.indexes
+    - navigation.path
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: slate
+      primary: black
+      accent: indigo
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.tilde
+  - tables
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - blog:
+      archive_date_format: MMMM, yyyy
+      archive_url_date_format: yyyy/MM
+      categories_url_format: "c/{slug}"
+      post_url_format: "{slug}"
+      pagination_per_page: 10
+      pagination_format: $link_first $link_previous ~2~ $link_next $link_last
+  - search: null
+  - markdownextradata:
+      data: docs/data/render_yaml/
+  - tags
+  - offline
+
+extra:
+    manifest: manifest.webmanifest
+    analytics:
+      provider: google
+      property: G-R7CLKWM3LT
+    social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/shtrausslearning
+      name: shtrausslearning
+    - icon: fontawesome/brands/kaggle
+      link: https://www.kaggle/shtraussleaning
+      name: shtrausslearning
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/mldsai_info
+      name: mldsai-info
+
+copyright: |
+  Copyright &copy; 2023- <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+extra_css:
+  - stylesheets/customize.css
+  - stylesheets/extra.css
+  - stylesheets/simpleicons.css
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+nav:
+  - Home:
+      - index.md
+
+  - Projects: 
+      - NLP: portfolio/nlp.md
+      - Business: portfolio/business.md
+      - Finance: portfolio/financial.md
+      - Physics: portfolio/physics.md
+      - Biology: portfolio/biology.md
+      - Health: portfolio/health.md
+      - Geospatial: portfolio/geospatial.md
+
+  - Articles:
+      - blog/index.md
+
+  - mllibs:
+
+      - About: mllibs/about.md
+      - Installation: mllibs/install.md
+      - Projects:
+          - ML Project Phases: mllibs/projects/mlproject.md
+          - ML Projects List: 
+              - Gene Family Classification: mllibs/projects/gene_classification.md
+
+      - Modules: 
+          - Available modules: mllibs/modules/list.md
+          - Adding new modules: mllibs/modules/adding.md
+          - Grouping modules: mllibs/modules/grouping.md
+
+      - Documentation: 
+          - <b>iterative</b>: mllibs/documentation/iterative.md
+          - <b>storage</b>: mllibs/documentation/data_storage.md
+          - <b>eda</b>:
+              - meda_splot: mllibs/documentation/eda/meda_splot.md 
+              - meda_pplot: mllibs/documentation/eda/meda_pplot.md 
+              - meda_scplot: mllibs/documentation/eda/meda_scplot.md
+          - <b>pd</b>:
+              - mpd_talktodata: mllibs/documentation/pd/mpd_talktodata.md
+          - <b>stats</b>:
+              - mstats_tests: mllibs/documentation/stats/mstats_tests.md
+              - mstats_plot: mllibs/documentation/stats/mstats_plot.md
+
+      - Group:
+          - Task Status: mllibs/group/status.md
+          - Meetings: mllibs/group/meetups.md
+          - Members: mllibs/group/members.md
+
+  - About: about/index.md
+  

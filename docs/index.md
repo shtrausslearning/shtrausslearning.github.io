@@ -23,7 +23,7 @@ title: Home
 </p>
 
 
-## **Check Also** { align="center" }
+## **Navigation** { align="center" }
 
 <div class="grid cards" markdown>
 

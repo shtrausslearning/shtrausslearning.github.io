@@ -31,9 +31,15 @@ comments: true
 
 Почему это важно? Номинально, все средства на расчетных счетах клиенты могут в любой момент забрать из Банка, а в ожидании этого Банк не может их использовать в долгосрочном / среднесрочном плане (например, для выдачи кредитов). Получается, что в такой ситуации Банк ничего не зарабатывает, но платит клиентам проценты по средствам на их счетах, пусть и не высокие, но в масштабах бизнеса Банка эти убытки могут быть значительны.
 
-<!-- more -->
+<div class="grid cards" markdown>
 
-[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Colab-yellow?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/12NsWf3ePkrF7bhfTwEfJVVismvZmKXVb?usp=sharing) [![](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/sbe_internship)
+  - :simple-google:{ .lg .middle }&nbsp; <b>[Open Colab Notebook](https://colab.research.google.com/drive/12NsWf3ePkrF7bhfTwEfJVVismvZmKXVb?usp=sharing)</b>
+  - :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/sbe_internship)</b>
+
+</div>
+
+
+<!-- more -->
 
 ## <b>Background</b>
 
@@ -278,7 +284,7 @@ tsplot(data['VALUE_box_season_diff'][30+1:])
 
 ![](images/stationarity4.png)
 
-Все отлично! Обе метрике говорят нам о том что временный ряд **является стационарным**. Воспользуемя этими фичами когда будем использовать подход **[feature engineering II](htrausslearning.github.io/blog/2024/11/17/прогнозировать-объем-стабильных-средств.html#feature-engineering-approach-ii)**
+Все отлично! Обе метрике говорят нам о том что временный ряд **является стационарным**. Воспользуемя этими фичами когда будем использовать подход **feature engineering II**
 
 ```
 REPORTDATE  VALUE   dow     y   d   m   VALUE_box   VALUE_box_season    VALUE_box_season_diff

@@ -1,8 +1,4 @@
 ---
-hide:
-  - navigation
-  - feedback
-  - toc
 title: Home
 ---
 

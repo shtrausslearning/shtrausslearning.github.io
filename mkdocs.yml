@@ -129,6 +129,7 @@ nav:
   - mllibs:
 
       - About: mllibs/about.md
+      - Updates: mllibs/updates.md
       - Installation: mllibs/install.md
       - Projects:
           - ML Project Phases: mllibs/projects/mlproject.md
@@ -159,4 +160,9 @@ nav:
           - Members: mllibs/group/members.md
 
   - About: about/index.md
+  
+  - Projects:
+      - project/index.md
+      - project/others.md
+  
   

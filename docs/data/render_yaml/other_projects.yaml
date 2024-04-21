@@ -1,42 +1,37 @@
 $schema: https://github.com/arv-anshul/arv-anshul.github.io/raw/main/schemas/other_projects-schema.json
 projects:
-  - title: Web Scrape 99acres.com
-    description: Scrape 99acres.com with python using curl and export data as CSV.
-    icon: streamlit
-    github: https://github.com/arv-anshul/99acres-scrape
-    status: working
-  - title: Custom YouTube Theme
-    description: A Distraction Free Stylus CSS theme for YouTube.com.
+  - title: Natural Language Processing
+    description: Utilisation of Natural Languange Processing in Data Science Projects
     icon: css3
-    github: https://github.com/arv-anshul/Distraction-Free-YT-Stylus
-    status: working
-  - title: Attendance System
-    description: Attendance System with MongoDB and Streamlit.
-    icon: mongodb
-    github: https://github.com/arv-anshul/attendance-system
-    status: old
-  - title: IPL APIs
-    description: IPL API using Flask framework and ipl dataset.
-    icon: flask
-    github: https://github.com/arv-anshul/ipl-api
-    status: old
-  - title: Ineuron Projects Docs Generator
-    description: A automated way to create project's document for Ineuron Portal Projects.
-    icon: files
-    github: https://github.com/arv-anshul/ineuron-project-docs-template
-    status: old
-  - title: Easy Analysis
-    description: A python package to perform Data Analysis easily.
-    icon: python
-    github: https://github.com/arv-anshul/easy-analysis
-    status: deprecated
-  - title: Family Tree
-    description: Create family tree using python only and export it in JSON/Mermaid format.
-    icon: python
-    github: https://github.com/arv-anshul/family-tree
-    status: working
-  - title: Markdown Badge
-    description: CLI tool to get simpleicon badges for markdown file.
-    icon: simpleicons
-    github: https://github.com/arv-anshul/md-badges
-    status: deprecated
+    github: nlp.html
+    status: complete
+  - title: Business
+    description: Data Science projects related to business applications
+    icon: css3
+    github: business.html
+    status: complete
+  - title: Finance
+    description: Data Science utilisation in the field of Finance
+    icon: css3
+    github: financial.html
+    status: complete
+  - title: Physics
+    description: Utilisation of Data Science related techninques in the field of physics related data
+    icon: css3
+    github: physics.html
+    status: complete
+  - title: Biology
+    description: Biological applications of Data Science techniques 
+    icon: css3
+    github: biology.html
+    status: complete
+  - title: Health
+    description: Data Science applications in the field of health
+    icon: css3
+    github: health.html
+    status: complete
+  - title: Geospatial
+    description: Geospatial applications of Data Science techniques
+    icon: css3
+    github: geospatial.html
+    status: complete

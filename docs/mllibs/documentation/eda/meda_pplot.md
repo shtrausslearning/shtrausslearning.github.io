@@ -12,7 +12,7 @@ src/eda[^1]
 
 4[^2]
 
-[^2]: Reference to the machine learning project phase identification defined [here](../../projects/mlproject.md)
+<!-- [^2]: Reference to the machine learning project phase identification defined [here](../../projects/mlproject.md) -->
 
 ## :material-frequently-asked-questions: **Purpose**
 

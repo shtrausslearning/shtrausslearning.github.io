@@ -9,7 +9,8 @@ src/stats[^1]
 
 4[^2]
 
-[^2]: Reference to the machine learning project phase identification defined [here](../../projects/mlproject.md)
+[^2]: Reference to the machine learning project phase identification defined <b>[here](../../modules/mlproject.md)</b>
+
 
 ## :material-frequently-asked-questions: **Purpose**
 

@@ -1,8 +1,8 @@
-repo_url: https://github.com/arv-anshul/shtrausslearning.github.io
+repo_url: https://github.com/shtrausslearning/shtrausslearning.github.io
 repo_name: shtrausslearning.github.io
 site_author: Andrey Shtrauss
 site_description: Personal Website
-site_name: Andrey Shtrauss
+site_name: mldsai
 site_url: https://shtrausslearning.github.io
 docs_dir: docs
 
@@ -13,10 +13,9 @@ theme:
       text: Ubuntu
       code: Roboto Mono
   icon:
-    repo: material/book
-    logo: fontawesome/solid/om
-  logo: myicons/anelia-logo
-  favicon: data/assets/favicon.png
+    repo: fontawesome/solid/laptop-code
+    logo: fontawesome/solid/terminal
+  favicon: fontawesome/solid/terminal
   features:
     - content.code.annotate
     - content.code.copy
@@ -31,7 +30,7 @@ theme:
     - search.suggest
   palette:
     - scheme: slate
-      primary: black
+      primary: indigo
       accent: indigo
 
 markdown_extensions:
@@ -97,7 +96,7 @@ extra:
       name: mldsai-info
 
 copyright: |
-  Copyright &copy; 2023- <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+  Copyright &copy; 2023-2024 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
 
 extra_css:
   - stylesheets/customize.css
@@ -111,10 +110,11 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
 
 nav:
-  - Home:
+  - <b>Home</b>:
       - index.md
 
-  - Projects: 
+  - <b>Projects</b>: 
+      - portfolio/index.md
       - NLP: portfolio/nlp.md
       - Business: portfolio/business.md
       - Finance: portfolio/financial.md
@@ -123,40 +123,36 @@ nav:
       - Health: portfolio/health.md
       - Geospatial: portfolio/geospatial.md
 
-  - Articles:
+  - <b>Articles</b>:
       - blog/index.md
 
-  - mllibs:
+  - <b>mllibs</b>:
 
       - About: mllibs/about.md
-      - Installation: mllibs/install.md
-      - Projects:
-          - ML Project Phases: mllibs/projects/mlproject.md
-          - ML Projects List: 
-              - Gene Family Classification: mllibs/projects/gene_classification.md
+      - Getting Started: mllibs/install.md
+      - Task Status: mllibs/status.md
+      - Updates: mllibs/releases.md
+
+      - Basics:
+          - Iterative: mllibs/basics/iterative.md
+          - Storage: mllibs/basics/data_storage.md
 
       - Modules: 
+          - Project: mllibs/modules/mlproject.md
           - Available modules: mllibs/modules/list.md
           - Adding new modules: mllibs/modules/adding.md
           - Grouping modules: mllibs/modules/grouping.md
 
-      - Documentation: 
-          - <b>iterative</b>: mllibs/documentation/iterative.md
-          - <b>storage</b>: mllibs/documentation/data_storage.md
-          - <b>eda</b>:
-              - meda_splot: mllibs/documentation/eda/meda_splot.md 
-              - meda_pplot: mllibs/documentation/eda/meda_pplot.md 
-              - meda_scplot: mllibs/documentation/eda/meda_scplot.md
-          - <b>pd</b>:
-              - mpd_talktodata: mllibs/documentation/pd/mpd_talktodata.md
-          - <b>stats</b>:
-              - mstats_tests: mllibs/documentation/stats/mstats_tests.md
-              - mstats_plot: mllibs/documentation/stats/mstats_plot.md
+          - Documentation: 
+              - eda:
+                  - meda_splot: mllibs/documentation/eda/meda_splot.md 
+                  - meda_pplot: mllibs/documentation/eda/meda_pplot.md 
+                  - meda_scplot: mllibs/documentation/eda/meda_scplot.md
+              - pd:
+                  - mpd_talktodata: mllibs/documentation/pd/mpd_talktodata.md
+              - stats:
+                  - mstats_tests: mllibs/documentation/stats/mstats_tests.md
+                  - mstats_plot: mllibs/documentation/stats/mstats_plot.md
 
-      - Group:
-          - Task Status: mllibs/group/status.md
-          - Meetings: mllibs/group/meetups.md
-          - Members: mllibs/group/members.md
-
-  - About: about/index.md
+  - <b>About</b>: about/index.md
   

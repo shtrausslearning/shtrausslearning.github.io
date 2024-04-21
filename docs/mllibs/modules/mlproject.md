@@ -1,4 +1,4 @@
-# :fontawesome-solid-layer-group: Machine Learning Project Phases
+# Machine Learning Project Phases
 
 ## Typical Steps in a Machine Learning Project:
 

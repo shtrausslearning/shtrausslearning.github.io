@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://arv-anshul.github.io/project/others",
+  "$id": "https://shtrausslearning.github.io/project/others",
   "title": "ProjectsIndex",
   "required": ["projects"],
   "properties": {
@@ -29,7 +29,7 @@
           "github": {
             "description": "Link of the Github Repo where source code this project is available.",
             "type": "string",
-            "default": "https://github.com/arv-anshul/",
+            "default": "https://github.com/shtrausslearning/",
             "pattern": "https?://\\w+"
           },
           "status": {

@@ -84,17 +84,6 @@ extra:
     analytics:
       provider: google
       property: G-R7CLKWM3LT
-      feedback:
-        title: 🤔 Was this page helpful? 🤔
-        ratings:
-          - icon: fontawesome/solid/face-grin-wink
-            name: This page was helpful!
-            data: 1
-            note: Thanks for your feedback!
-          - icon: fontawesome/solid/face-frown
-            name: This page could be improved!
-            data: 0
-            note: Thanks for your feedback!
     social:
     - icon: fontawesome/brands/github
       link: https://github.com/shtrausslearning

@@ -4,162 +4,201 @@ comments: true
 
 **Natural language processing (NLP)** is a branch of artificial intelligence (AI) that deals with the interaction between computers and humans using natural language. It involves the development of algorithms and computational models that can understand, analyze, and generate human language. 
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Banking Consumer Complaint Analysis</b>
+<div class="grid cards" markdown >
 
-![](https://img.shields.io/badge/category-multiclass-5D58CF) 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>Banking Consumer Complaint Analysis</b>
 
-In this study, we aim to create an **automated ticket classification model** for incoming text based complaints, which is a **multiclass classification problem**. Such a model is useful for a company in order to automate the process of sorting financial product reviews & subsequently pass the review to an experient in the relevant field. We explore traditional ML methods, which utilise hidden-state BERT embedding for features, as well as fine-tune **DistilBert** for our classification problem & compare the two approaches
+	[![Kaggle](https://img.shields.io/badge/Kaggle-Notebook-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics)
 
-![](images/banking_consumer_1.png){ width="300" } 
-![](images/banking_consumer_2.png){ width="300" }
+	In this study, we aim to create an **automated ticket classification model** for incoming text based complaints, which is a **multiclass classification problem**. Such a model is useful for a company in order to automate the process of sorting financial product reviews & subsequently pass the review to an experient in the relevant field. We explore traditional ML methods, which utilise hidden-state BERT embedding for features, as well as fine-tune **DistilBert** for our classification problem & compare the two approaches
 
+	<br>
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>News sentiment based trading strategy</b>
+	![](images/banking_consumer_1.png){ width="300" .base-border-radius } 
+	![](images/banking_consumer_2.png){ width="300" .base-border-radius }
 
-![](https://img.shields.io/badge/category-binary-5D58CF)
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/news-sentiment-based-trading-strategy)
+</div>
 
-In this project, we'll apply **NLP** to financial stock movement prediction. Using **NLP**, we can ask ourselves questions such as, how positive or negative a **news article** (related to financial markets is). It provides a way to monitor **financial market sentiments** by utilising any text based source so we can determine whether the text based source posted on specific day has a positive or negative sentiment score. By combining **historic market data** with **news sources related to financial markets**, we can create a trading strategy that utilises NLP. The whole project revolved around generating accurate **sentiment labels** that would correlate to **event returns**
+<div class="grid cards" markdown >
 
-Based on historic data, we can calculate the **return** of a specific event, however one of challenges to utilise NLP for such application are the **target labels** and the **ground truths** would be set as the even return direction. We first need to create a model that is able to accurately define the sentiment of the **news source**, to do this we try a couple of different approaches: 
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>News sentiment based trading strategy</b>
 
-- The first method, we **manually define labels** and evaluate the performance of the model. The manual approach utilised three strategies combined into one (percentage value extraction, **TextBlob** & Beat/Misses). For encoding, we utilised static **spacy word embeddings** & investigated how the dimensionality of the vectors affected the model accuracy.
-- We also utilised an expertly labeled dataset & tested the resulting model on the dataset, however there wasn't a too significant increase in accuracy.
+	[![Kaggle](https://img.shields.io/badge/Kaggle-Notebook-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/news-sentiment-based-trading-strategy)
 
-The best performance boost came from the utilisation of Deep Learning **LSTM** with a trainable **embedding laber** architecture, which showed much better generalisation performance than classical machine learning models, including **ensemble methods**
+	In this project, we'll apply **NLP** to financial stock movement prediction. Using **NLP**, we can ask ourselves questions such as, how positive or negative a **news article** (related to financial markets is). It provides a way to monitor **financial market sentiments** by utilising any text based source so we can determine whether the text based source posted on specific day has a positive or negative sentiment score. By combining **historic market data** with **news sources related to financial markets**, we can create a trading strategy that utilises NLP. The whole project revolved around generating accurate **sentiment labels** that would correlate to **event returns**
 
-The last approach we tried as **VADER**, which allows us to utilise a **custom lexicon**, which we can change to something more related: **[**financial markets**](https://www.sciencedirect.com/science/article/abs/pii/S0167923616300240)**. It was interesting to note that the VADER approach resulted in a high postive correlation to **event return**
+	Based on historic data, we can calculate the **return** of a specific event, however one of challenges to utilise NLP for such application are the **target labels** and the **ground truths** would be set as the even return direction. We first need to create a model that is able to accurately define the sentiment of the **news source**, to do this we try a couple of different approaches: 
 
-![](images/eventreturn.png)
+	- The first method, we **manually define labels** and evaluate the performance of the model. The manual approach utilised three strategies combined into one (percentage value extraction, **TextBlob** & Beat/Misses). For encoding, we utilised static **spacy word embeddings** & investigated how the dimensionality of the vectors affected the model accuracy.
+	- We also utilised an expertly labeled dataset & tested the resulting model on the dataset, however there wasn't a too significant increase in accuracy.
 
+	The best performance boost came from the utilisation of Deep Learning **LSTM** with a trainable **embedding laber** architecture, which showed much better generalisation performance than classical machine learning models, including **ensemble methods**
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Twitter Emotion Classification</b>
+	The last approach we tried as **VADER**, which allows us to utilise a **custom lexicon**, which we can change to something more related: **[**financial markets**](https://www.sciencedirect.com/science/article/abs/pii/S0167923616300240)**. It was interesting to note that the VADER approach resulted in a high postive correlation to **event return**
 
-![](https://img.shields.io/badge/category-multiclass-5D58CF)
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
+	<br>
 
-In this study, we fine-tune a transformer model so it can classify the **sentiment** of user tweets for **6 different emotions** (multiclass classification). We first create a baseline by utilising traditional ML methods, which for features use extracted **BERT** embeddings for each sentence. Once we have our baseline model, we then turn to more complex transformer models, **DistilBert** & **fine-tune** its model weights for our classification problem
+	![](images/eventreturn.png){ .base-border-radius }
 
-<center>
-![](images/sentiment_tsne.png)
-</center>
+</div>
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>edX Course Recommendations</b>
+<div class="grid cards" markdown >
 
-![](https://img.shields.io/badge/category-recommendation-5D58CF) 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>Twitter Emotion Classification</b>
 
-In this study, we create an **NLP based recommendation system** which informs a user about possible courses they make like, based on a couse they have jusy added. We will utilise **[scrapped edX](https://www.kaggle.com/datasets/khusheekapoor/edx-courses-dataset-2021)** course description data, clean the text data and then convert document into vector form using two different approaches BoW based **TF-IDF** and **word2vec**, then calculate the **consine similarity**, from which we will be able to extract a list of courses which are most similar and so can be recommended.
+	[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/twitter-emotion-classification)
 
-<center>
-![](images/embedding.png)
-</center>
+	In this study, we fine-tune a transformer model so it can classify the **sentiment** of user tweets for **6 different emotions** (multiclass classification). We first create a baseline by utilising traditional ML methods, which for features use extracted **BERT** embeddings for each sentence. Once we have our baseline model, we then turn to more complex transformer models, **DistilBert** & **fine-tune** its model weights for our classification problem
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Creating a Transformer Attention Encoder</b>
+	<br>
 
-![](https://img.shields.io/badge/category-educative-5D58CF) 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/creating-a-transformer-attention-encoder?scriptVersionId=149696179n)
+	<center>
+	![](images/sentiment_tsne.png){ .base-border-radius }
+	</center>
 
-In this study, we look at some of the basics of a **transformer** architecture model, the **encoder**, by writing and utilising custom **pytorch** classes. Encoder simply put: Converts a **series tokens** into a **series of embedding vectors** (hidden state) & consists of **multiple layers** (**blocks**) constructed together 
+</div>
 
-The **encoder structure**:
+<div class="grid cards" markdown >
 
-- Composed of **multiple encoder layers (blocks)** stacked next to each other (similar to CNN layer stacks)
-- Each encoder block contains **multi-head self attention** & **fully connected feed forward layer** (for each input embedding)
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>edX Course Recommendations</b>
 
-Purpose of the Encoder:
+  	[![Kaggle](https://img.shields.io/badge/Kaggle-Notebook-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations)
 
-- Input tokens are encoded & modified into a form that **stores some contextual information** in the sequence
+	In this study, we create an **NLP based recommendation system** which informs a user about possible courses they make like, based on a couse they have jusy added. We will utilise **[scrapped edX](https://www.kaggle.com/datasets/khusheekapoor/edx-courses-dataset-2021)** course description data, clean the text data and then convert document into vector form using two different approaches BoW based **TF-IDF** and **word2vec**, then calculate the **consine similarity**, from which we will be able to extract a list of courses which are most similar and so can be recommended.
 
-The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**.
+	<br>
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Banking User Review Analysis & Modeling</b>
+	<center>
+	![](images/embedding.png){ .base-border-radius }
+	</center>
 
-#### (1) Parsing Dataset
+</div>
 
-![](https://img.shields.io/badge/category-parsing-5D58CF) 
-[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb)
+<div class="grid cards" markdown >
 
-In this study we look at the **parsing/scraping** side of data. Its no secret that a lot text important information is stored on websites, as a result, for us to utilise this data in our of analyses and modeling, we need a way to extract this information, this process is referred to website parsing. For our study we need to extract customer user reviews from **[irecommend](https://irecommend.ru/content/sberbank?new=50)**. We'll be parsing a common **banking coorporation** that offers a variety of services so the reviews aren't too specific to a particular product. Having parsed our dataset, we'll follow up this with a rather basic **exploratory data analysis** based on **ngram** word combinations, so we can very quickly understand the content of the entire corpus.
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>Creating a Transformer Attention Encoder</b>
 
-#### (2) Banking Product Review Sentiment Modeling
+  	[![Kaggle](https://img.shields.io/badge/Kaggle-Notebook-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/creating-a-transformer-attention-encoder?scriptVersionId=149696179n)
 
-![](https://img.shields.io/badge/category-binary-5D58CF)
-[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/3_product-reviews.ipynb)
+	In this study, we look at some of the basics of a **transformer** architecture model, the **encoder**, by writing and utilising custom **pytorch** classes. Encoder simply put: Converts a **series tokens** into a **series of embedding vectors** (hidden state) & consists of **multiple layers** (**blocks**) constructed together 
 
-Once we have parsed and created our dataset, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using **TF-IDF** & **Word2Vec** methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based **GridSearchCV** hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
+	The **encoder structure**:
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>mllibs</b>
+	- Composed of **multiple encoder layers (blocks)** stacked next to each other (similar to CNN layer stacks)
+	- Each encoder block contains **multi-head self attention** & **fully connected feed forward layer** (for each input embedding)
 
-<center>
-![Image title](images/mllibs_c_nob.png#only-light){ width="400" }
-![Image title](images/mllibs_wnb.png#only-dark){ width="400" }
+	Purpose of the Encoder:
 
-[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/mllibs)
-[![name](https://img.shields.io/badge/mllibs-Documentation-orange?logo=GitHub)](https://www.mllibs-docs.github.io)
-</center>
+	- Input tokens are encoded & modified into a form that **stores some contextual information** in the sequence
 
-**mllibs** is a project aimed to automate various processes using text commands. Development of such helper modules are motivated by the fact that everyones understanding of coding & subject matter (ML in this case) may be different. Often we see people create functions and classes to simplify the process of **code automation** (which is good practice)
-Likewise, NLP based interpreters follow this trend as well, except, in this case our only inputs for activating certain code is natural language. Using python, we can interpret natural language in the form of string type data, using natural langauge interpreters
-mllibs aims to provide an automated way to do machine learning using **natural language**
+	The basis of the encoder can be utilised for a number of different applications, as is common in **HuggingFace**, we'll create a simple tail end classification class, so the model can be utilised for **classification**
 
-![](images/outlier2.png)
-![](images/outlier3.png)
-![](images/outlier4.png)
-![](images/outlier1.png)
+	<br>
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>OTUS NLP Course Work</b>
+	<center>
+	![](images/transformers.png){ .base-border-radius }
+	</center>
 
-<center>
-![Image title](images/otus_b.PNG#only-light){ width="400" }
-![Image title](images/otus_w.PNG#only-dark){ width="400" }
+</div>
 
-[![name](https://img.shields.io/badge/course-website-blue)](https://otus.ru/lessons/nlp/) 
-[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course)
-</center>
+<div class="grid cards" markdown >
 
-Natural language course related work on a variety of **Natural Language Processing** topics
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>Banking User Review Analysis & Modeling</b>
 
-#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools (re,natasha)</b>
+	#### Parsing Dataset
 
-![](https://img.shields.io/badge/category-NER-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/preset_NER.ipynb)
+	[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb)
 
-In this notebook, we look at how to utilise the **natasha** & **re** libraries to do predefined **NER**  tagging. **natasha** comes with already predefined set of classification labels, whilst **re** can be used to identify capitalised words using regular expressions. These tools, together with lemmatisers from `pymorphy2` allow us to very easily utilise ready instruments for named entity recognition in documents without any model training.
+	In this study we look at the **parsing/scraping** side of data. Its no secret that a lot text important information is stored on websites, as a result, for us to utilise this data in our of analyses and modeling, we need a way to extract this information, this process is referred to website parsing. For our study we need to extract customer user reviews from **[irecommend](https://irecommend.ru/content/sberbank?new=50)**. We'll be parsing a common **banking coorporation** that offers a variety of services so the reviews aren't too specific to a particular product. Having parsed our dataset, we'll follow up this with a rather basic **exploratory data analysis** based on **ngram** word combinations, so we can very quickly understand the content of the entire corpus.
 
-#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Training a NER model with GRU</b>
+	#### Banking Product Review Sentiment Modeling
 
-![](https://img.shields.io/badge/category-NER-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/gru_NER.ipynb)
+	[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/3_product-reviews.ipynb)
 
-**Training NER model using GRU**
+	Once we have parsed and created our dataset, we look at creating a **sentiment model** based on traditional NLP machine learning approaches. We will be using the parsed dataset about **bank service** reviews, which consists of ratings as well as recommend/don't recommend type labels. We'll be using **TF-IDF** & **Word2Vec** methods to encode text data & use typical shallow and deep tree based enseble models. Once we have found the best performing approaches, we'll be doing a brute force based **GridSearchCV** hyperparameter optimisation in order to tune our model. After selecting the best model, we'll make some conclusions about our predicts & make some future work comments.
 
-In this project, we train a neural network **NER** model based on **GRU** architecture, which can recognise named entities using **BIO tags** based on car user review data. Unlike the previous notebook, the concept of **NER** is used a little more abstractly, we are interested in any markups for word(s) that we create in the text, not just names. For markups we use tags that describe the quality of the car (eg. appearance, comfort, costs, etc.). The model learns to classify tokens in the text that belong to one of the tag classes. Recognition of such labels is convenient for quick understanding of the content of the review.
+</div>
 
-#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Sentiment Analysis of Kazakh News</b>
+<div class="grid cards" markdown >
 
-![](https://img.shields.io/badge/category-binary-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/9_%D0%9F%D1%80%D0%B5%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%81%D0%BB%D0%BE%D0%B2/khazah-news-sentiment.ipynb)
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>mllibs</b>
 
-In this project we create create a model for sentiment analysis using classical NLP + machine learning approaches that utilise standard baseline approaches such as **`TF-IDF`** and **`BoW`** together with **`RandomForestClassifier`** and standard **`train_test_split`** to train and evaluate the generalisation performance of the model using **`f1_score`** metric since we end up having slightly disbalanced sentiment classes.
+	<center>
+	![Image title](images/mllibs_c_nob.png#only-light){ width="400" }
+	![Image title](images/mllibs_wnb.png#only-dark){ width="400" }
 
-#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Multilabel Toxic Comment Classification</b>
+	[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/mllibs)
+	[![name](https://img.shields.io/badge/Documentation-orange?logo=GitHub)](../mllibs/index.md)
+	</center>
 
-![](https://img.shields.io/badge/category-multilabel-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_Нейросетевые%20языковые%20модели/16_Transfer%20learning%3B%20BERT%20model/multilabel-text-classification.ipynb) 
+	**mllibs** is a project aimed to automate various processes using text commands. Development of such helper modules are motivated by the fact that everyones understanding of coding & subject matter (ML in this case) may be different. Often we see people create functions and classes to simplify the process of **code automation** (which is good practice)
+	Likewise, NLP based interpreters follow this trend as well, except, in this case our only inputs for activating certain code is natural language. Using python, we can interpret natural language in the form of string type data, using natural langauge interpreters
+	mllibs aims to provide an automated way to do machine learning using **natural language**
 
-In this project we will be creating a **multilabel model** for toxic comment classification using transfomer architecture **BERT**. This main difference between multilabel and multiclass classification is that we are treating this as a binary classification problem, but checking for multiple labels for whether the text belongs to the class or not.
+</div>
 
-#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Linguistic Acceptability</b>
+<div class="grid cards" markdown >
 
-![](https://img.shields.io/badge/category-binary-5D58CF) [![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8/17_Pretrained%20Language%20Model%20Example/binary-text-classification-comment.ipynb) 
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>OTUS NLP Course Work</b>
 
-In this project we will be fine-tuning a transformer model for the **language acceptability problem (CoLa)** problem. The **CoLa** dataset itself is a benchmark dataset for evaluating natural language understanding models. CoLa stands for "Corpus of Linguistic Acceptability" and consists of sentences from various sources, such as news articles and fiction, that have been labeled as either grammatically correct or incorrect. The dataset is commonly used to evaluate models' ability to understand and interpret the grammatical structure of sentences. For this task we'll be utilising the **bert-base-uncased** model and utilise **huggingface's** convenient downstream task task adaptation variation for **binary classification** using **BertForSequenceClassification** 
+	<center>
+	![Image title](images/otus_b.PNG#only-light){ width="400" }
+	![Image title](images/otus_w.PNG#only-dark){ width="400" }
 
-### <b><span style='color:#7058f8;text-align:center'>:octicons-bookmark-fill-24:  </span>Customer Service Dialogue System for GrabrFi</b>
+	[![name](https://img.shields.io/badge/course-website-blue)](https://otus.ru/lessons/nlp/) 
+	[![GitHub](https://img.shields.io/badge/Github-Repository-97c446?logo=Github&logoColor=DAF7A6)](https://github.com/shtrausslearning/otus_nlp_course)
+	</center>
 
-![](https://img.shields.io/badge/category-dialogue_system-5D58CF) [![](https://img.shields.io/badge/pdf-presentation-EC1C24?logo=adobe)](pdf/chatbot_grabrfi.pdf)
+	Natural language course related work on a variety of **Natural Language Processing** topics
 
-As part of the final project of the **[nlp course](https://otus.ru/lessons/nlp/)**, the aim of the project was to create a dialogue system for a banking service business **GrabrFi**, focusing on combining various NLP methods that can be utilised in chatbots. Combining a **Telegram** structure that utilises **TF-IDF** with **cosine_similarity**, **multiclass classification** based approach, **Question Answering** (BERT), **generative** (DialoGPT). The task of answering user questions and queries was split up into different subgroups found in the **[help section](https://help.grabrfi.com)** so that each model would be in charge of its own section, as a result of experimenting with different method activation thresholds, a dialogue system that utilised all of the above methods was created, and all methods were able to work together. This allowed for an understanding of the different approaches that can be utilised in the creation of a dialogue system. 
+	#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>NER with preset tools (re,natasha)</b>
 
-[![](images/grabr.png)](pdf/chatbot_grabrfi.pdf)
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/preset_NER.ipynb)
+
+	In this notebook, we look at how to utilise the **natasha** & **re** libraries to do predefined **NER**  tagging. **natasha** comes with already predefined set of classification labels, whilst **re** can be used to identify capitalised words using regular expressions. These tools, together with lemmatisers from `pymorphy2` allow us to very easily utilise ready instruments for named entity recognition in documents without any model training.
+
+	---
+
+	#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Training a NER model with GRU</b>
+
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/11_%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%20NER/gru_NER.ipynb)
+
+	In this project, we train a neural network **NER** model based on **GRU** architecture, which can recognise named entities using **BIO tags** based on car user review data. Unlike the previous notebook, the concept of **NER** is used a little more abstractly, we are interested in any markups for word(s) that we create in the text, not just names. For markups we use tags that describe the quality of the car (eg. appearance, comfort, costs, etc.). The model learns to classify tokens in the text that belong to one of the tag classes. Recognition of such labels is convenient for quick understanding of the content of the review.
+
+	#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Sentiment Analysis of Kazakh News</b>
+
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/9_%D0%9F%D1%80%D0%B5%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%81%D0%BB%D0%BE%D0%B2/khazah-news-sentiment.ipynb)
+
+	In this project we create create a model for sentiment analysis using classical NLP + machine learning approaches that utilise standard baseline approaches such as **`TF-IDF`** and **`BoW`** together with **`RandomForestClassifier`** and standard **`train_test_split`** to train and evaluate the generalisation performance of the model using **`f1_score`** metric since we end up having slightly disbalanced sentiment classes.
+
+	---
+
+	#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Multilabel Toxic Comment Classification</b>
+
+ 	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_Нейросетевые%20языковые%20модели/16_Transfer%20learning%3B%20BERT%20model/multilabel-text-classification.ipynb) 
+
+	In this project we will be creating a **multilabel model** for toxic comment classification using transfomer architecture **BERT**. This main difference between multilabel and multiclass classification is that we are treating this as a binary classification problem, but checking for multiple labels for whether the text belongs to the class or not.
+
+	#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Fine Tuning BERT for Linguistic Acceptability</b>
+
+	[![Open Notebook](https://img.shields.io/badge/Jupyter-Open_Notebook-blue?logo=Jupyter)](https://github.com/shtrausslearning/otus_nlp_course/blob/main/4_%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8/17_Pretrained%20Language%20Model%20Example/binary-text-classification-comment.ipynb) 
+
+	In this project we will be fine-tuning a transformer model for the **language acceptability problem (CoLa)** problem. The **CoLa** dataset itself is a benchmark dataset for evaluating natural language understanding models. CoLa stands for "Corpus of Linguistic Acceptability" and consists of sentences from various sources, such as news articles and fiction, that have been labeled as either grammatically correct or incorrect. The dataset is commonly used to evaluate models' ability to understand and interpret the grammatical structure of sentences. For this task we'll be utilising the **bert-base-uncased** model and utilise **huggingface's** convenient downstream task task adaptation variation for **binary classification** using **BertForSequenceClassification** 
+
+	---
+
+	#### :octicons-bookmark-16: <b><span style='color:#FFCA58;text-align:center'></span>Customer Service Dialogue System for GrabrFi</b>
+
+	[![](https://img.shields.io/badge/pdf-presentation-EC1C24?logo=adobe)](pdf/chatbot_grabrfi.pdf)
+
+	As part of the final project of the **[nlp course](https://otus.ru/lessons/nlp/)**, the aim of the project was to create a dialogue system for a banking service business **GrabrFi**, focusing on combining various NLP methods that can be utilised in chatbots. Combining a **Telegram** structure that utilises **TF-IDF** with **cosine_similarity**, **multiclass classification** based approach, **Question Answering** (BERT), **generative** (DialoGPT). The task of answering user questions and queries was split up into different subgroups found in the **[help section](https://help.grabrfi.com)** so that each model would be in charge of its own section, as a result of experimenting with different method activation thresholds, a dialogue system that utilised all of the above methods was created, and all methods were able to work together. This allowed for an understanding of the different approaches that can be utilised in the creation of a dialogue system. 
+
+	<br>	
+
+	[![](images/grabr.png)](pdf/chatbot_grabrfi.pdf){ .base-border-radius }
+
+</div>
+
 
 ---
 

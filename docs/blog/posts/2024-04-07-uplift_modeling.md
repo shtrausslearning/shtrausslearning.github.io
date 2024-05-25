@@ -217,7 +217,7 @@ Starting with **s-learner** approach, we train two separate models
 - Apply the model (predict) again but assuming that these has been **no interaction** with any customer (t=0 for all customers)
 
 <figure markdown="span">
-  ![Image title](images/slearn.png)
+  ![Image title](images/slearn.png){ .base-border-radius }
   <figcaption>s-model approach</figcaption>
 </figure>
 
@@ -261,7 +261,7 @@ The two model approach, **t-learner** is similar to a one model approach, howeve
 - Another for the **test group** (there was interaction, t=1)
 
 <figure markdown="span">
-  ![Image title](images/tlearn.png)
+  ![Image title](images/tlearn.png){ .base-border-radius }
   <figcaption>t-model approach (independent models)</figcaption>
 </figure>
 
@@ -296,7 +296,7 @@ uplift_model.predict(X_test)
 We can also plot the uplift values predicted by both modeling approaches:
 
 <figure markdown="span">
-  ![Image title](images/uplift.png)
+  ![Image title](images/uplift.png){ .base-border-radius }
   <figcaption>Comparing uplift values for s-learner & t-learner</figcaption>
 </figure>
 

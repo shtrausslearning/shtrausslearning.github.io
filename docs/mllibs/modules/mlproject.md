@@ -56,6 +56,6 @@ The final phase of the project involves saving the model for use on new data
 
 Integrated modules tend to revolve around various machine learning projects, here are the status of **project** based content. 
 
-* :material-tag-edit-outline: **[Gene Family Classification](gene_classification.md)**
+* :material-tag-edit-outline: **[Gene Family Classification](projets/gene_classification.md)**
 
 ***

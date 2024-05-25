@@ -28,10 +28,6 @@ comments: true
 
 In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
 
-<p align="center" markdown>
-[:fontawesome-solid-paper-plane:{ .bounce }&nbsp; Download Resume](https://github.com/arv-anshul/arv-anshul/raw/main/resume_arv-anshul.pdf){ .md-button .md-button--primary }
-</p>
-
 <!-- more -->
 
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1PAjWB7tkkkvgUsobZ3XCX4SXfidYrm5v?usp=sharing)

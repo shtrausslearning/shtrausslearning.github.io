@@ -14,7 +14,7 @@ To utilise automisation with **mllibs**, data needs to be stored in **nlpi** ins
 
 Preset datasets are a quick way to load **load_sample_data()**
 
-```python linenums="1"
+```python
 def load_sample_data(self):
     self.store_data(sns.load_dataset('flights'),'flights')
     self.store_data(sns.load_dataset('penguins'),'penguins')
@@ -25,7 +25,7 @@ def load_sample_data(self):
 
 once the **nlpi** instance has been created, you can store all the above data in **<span style='color:#eb92d0'>i.data** and reference to them by their allocated name, shown above
 
-```python hl_lines="14" linenums="1"
+```python hl_lines="14"
 c = nlpm()
 c.load([
          eda_splot(),     # [eda] standard seaborn plots

@@ -1,45 +1,179 @@
 
-## :fontawesome-solid-layer-group: **Module Group**
+## <b>Module Information</b>
+
+### :fontawesome-solid-layer-group: **<span style='color:#586bc9'>Module Group</span>**
 
 src/stats[^1]
 
-## :material-identifier: **Project Stage ID**
+### :material-identifier: **<span style='color:#586bc9'>Project Stage ID</span>**
 
 [^1]: Reference to the sub folder in `src`
 
 4[^2]
 
-<!-- [^2]: Reference to the machine learning project phase identification defined [here](../../projects/mlproject.md) -->
+[^2]: Reference to the machine learning project phase identification defined [here](../../projects/mlproject.md)
 
-## :material-frequently-asked-questions: **Purpose**
+### :material-frequently-asked-questions: **<span style='color:#586bc9'>Purpose</span>**
 
 The purpose of this module is to provide the user with the ability to do **data sample comparison tests** that are available in **statsmodels** and **scipy.stats** libraries. The module requires **list or parameter value** for sample comparison to test statistical hypotheses and is not aimed at dataframe based data
 
-## :fontawesome-solid-location-arrow: **Module Files**
+### :fontawesome-solid-location-arrow: **<span style='color:#586bc9'>Module Files</span>**
 
 Here are the locations of the relevant files associated with the module
 
-<h4>module information</h4> 
+<div class="grid cards" markdown>
 
-/src/stats/mstats_tests.json
+  - **[module information](https://github.com/mllibs/mllibs/blob/main/src/mllibs/stats/mstats_tests.json)**
+  - **[module activation functions](https://github.com/mllibs/mllibs/blob/main/src/mllibs/stats/mstats_tests.py)**
 
-<h4>module activation functions</h4>
+</div>
 
-/src/stats/mstats_tests.py
+## **Activation Functions**
 
-## :octicons-code-16: **Activation Functions**
+A list of all available activation functions in the module :octicons-file-code-16: **mstats_tests** 
 
-Here you will find the relevant **activation functions** available in class **mstats_tests**
 
-### <b>:octicons-file-code-16: ==its_ttest==</b> 
+<div class="grid cards" markdown>
 
-<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__its_ttest__](mstats_tests.html#its_ttest)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    Independent two sample **Student's t-test**: This test is used to compare the **means of two independent samples**. It assumes that the data is (normally distributed) and that the (variances of the two groups are equal)
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__paired_ttest__](mstats_tests.html#paired_ttest)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    A paired **Student's t-test** is a statistical test used to determine if there is a significant difference between the **means of two related samples**. It is used when the data sets are paired or matched in some way, such as when the same group of subjects is measured before and after a treatment or intervention.
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__os_ttest__](mstats_tests.html#os_ttest)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>popmean</code></b>
+
+    A one sample **Student's t-test** is a statistical test used to determine if there is a significant **difference between the mean of a sample and a known or hypothesized population mean**. It is used when you have one sample of data and want to compare its mean to a specific value.
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__utest__](mstats_tests.html#utest)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <b><span style='color:#586bc9'>targ:</span></b><code>None</code></b>
+
+    The **Mann-Whitney test**, also known as the **Wilcoxon rank-sum test**, is a nonparametric statistical test used to determine whether there is a significant **difference between the distributions of two independent samples**. It is often used when the data does not meet the assumptions of parametric tests like the **t-test**
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__kstest_twosample__](mstats_tests.html#kstest_twosample)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Kolmogorov-Smirnov test** is a nonparametric statistical test that **determines whether a sample comes from a specific distribution**. It compares the empirical cumulative distribution function (ECDF) of the sample to the cumulative distribution function (CDF) of the specified distribution
+
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__kstest_onesample_normal__](mstats_tests.html#kstest_onesample_normal)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Kolmogorov-Smirnov** test for a **normal distribution** is a statistical test that determines whether a sample of data comes from a normal distribution
+
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__kstest_onesample_uniform__](mstats_tests.html#kstest_onesample_uniform)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Kolmogorov-Smirnov** test for a **uniform distribution** is a statistical test that determines whether a sample of data comes from a uniform distribution
+
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__kstest_onesample_exponential__](mstats_tests.html#kstest_onesample_exponential)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Kolmogorov-Smirnov** test for a **exponential distribution** is a statistical test that determines whether a sample of data comes from a exponential distribution
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__lilliefors_normal__](mstats_tests.html#lilliefors_normal)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Lilliefors test**, also known as the **Kolmogorov-Smirnov test for normality**, is a statistical test used to determine whether a sample of data comes from a **normal distribution**. It is similar to the Kolmogorov-Smirnov test, but it is specifically designed for testing against a normal distribution.
+
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__shapirowilk_normal__](mstats_tests.html#shapirowilk_normal)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Shapiro-Wilk** test is another statistical test used to determine whether a sample of data comes from a **normal distribution**
+
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__chi2_test__](mstats_tests.html#chi2_test)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **chi-square test** is a statistical test used to determine if there is a significant association between two **categorical variables**
+
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__jarquebera_normal__](mstats_tests.html#jarquebera_normal¶)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **Jarque-Bera test** is a statistical test used to determine whether a given dataset follows a normal distribution. It is based on the **skewness** and **kurtosis** of the data
+
+- :octicons-file-code-16:{ .lg .middle }&nbsp; [__two_sample_anova¶__](mstats_tests.html#two_sample_anova¶)
+
+    --- 
+
+    <b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b>
+
+    The **ANOVA (Analysis of Variance) test** is used to determine if there are any statistically significant **differences between the means** of two or more groups
+
+</div>
+
+
+
+<h3> <b>its_ttest</b> </h3>
+
+<h4><b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 Independent two sample **Student's t-test**: This test is used to compare the **means of two independent samples**. It assumes that the data is (normally distributed) and that the (variances of the two groups are equal)
 
-<h4>code:</h4>
+<h4><span style='color:#586bc9'>Sample requests</span></h4>
 
-```python
+To call the specific activation function, please make sure your base request contains:
+
+!!! quote "Sample Requests"
+
+    - two sample independent ttest
+    - create a two sample independent ttest
+    - students ttest
+    - two sample independent ttest
+    - independent two sample ttest
+    - compare means of two samples using independent ttest
+
+<h4><span style='color:#586bc9'>code</span></h4>
+
+The function **its_ttest** takes in a dictionary containing two data sources, which must be specified by their reference names
+
+
+```python 
 # [independent two sample t-test]
 
 # Student's t-test: This test is used to compare the means of (two independent samples) 
@@ -60,9 +194,9 @@ def its_ttest(self,args:dict):
         print("Fail to reject the null hypothesis")
 ```
 
-### <b>:octicons-file-code-16: ==paired_ttest==</b>
+<h3><b>paired_ttest</b></h3>
 
-<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 A paired **Student's t-test** is a statistical test used to determine if there is a significant difference between the **means of two related samples**. It is used when the data sets are paired or matched in some way, such as when the same group of subjects is measured before and after a treatment or intervention.
 
@@ -92,9 +226,9 @@ def paired_ttest(self,args:dict):
         print("Fail to reject the null hypothesis")
 ```
 
-### <b>:octicons-file-code-16: ==os_ttest==</b>
+<h3><b>os_ttest</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>popmean</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>popmean</code></b></h4>
 
 A one sample **Student's t-test** is a statistical test used to determine if there is a significant **difference between the mean of a sample and a known or hypothesized population mean**. It is used when you have one sample of data and want to compare its mean to a specific value.
 
@@ -126,9 +260,9 @@ def os_ttest(self,args:dict):
         print('[note] please specify the population mean using popmean')
 ```
 
-### <b>:octicons-file-code-16: ==utest==</b>
+<h3><b>utest</b></h3>
 
-<h4><b><b><span style='color:#586bc9'>data:</span></b> [<code>list</code>,<code>list</code>] <b><span style='color:#586bc9'>targ:</span></b><code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <b><span style='color:#586bc9'>targ:</span></b><code>None</code></b></h4>
 
 The **Mann-Whitney test**, also known as the **Wilcoxon rank-sum test**, is a nonparametric statistical test used to determine whether there is a significant **difference between the distributions of two independent samples**. It is often used when the data does not meet the assumptions of parametric tests like the **t-test**
 
@@ -160,9 +294,9 @@ def utest(self,args:dict):
         print("Fail to reject the null hypothesis")
 ```
 
-### <b>:octicons-file-code-16: ==kstest_twosample==</b>
+<h3><b>kstest_twosample</b></h3>
 
-<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span></b> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Kolmogorov-Smirnov test** is a nonparametric statistical test that **determines whether a sample comes from a specific distribution**. It compares the empirical cumulative distribution function (ECDF) of the sample to the cumulative distribution function (CDF) of the specified distribution
 
@@ -181,9 +315,9 @@ def kstest_twosample(self,args:dict):
     print("P-value:", p_value)
 ```
 
-### <b>:octicons-file-code-16: ==kstest_onesample_normal==</b>
+<h3><b>kstest_onesample_normal</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span></b> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Kolmogorov-Smirnov** test for a **normal distribution** is a statistical test that determines whether a sample of data comes from a normal distribution
 
@@ -207,9 +341,9 @@ def kstest_onesample_normal(self,args:dict):
         print("Fail to reject the null hypothesis")
 ```
 
-### <b>:octicons-file-code-16: ==kstest_onesample_uniform==</b>
+<h3><b>kstest_onesample_uniform</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Kolmogorov-Smirnov** test for a **uniform distribution** is a statistical test that determines whether a sample of data comes from a uniform distribution
 
@@ -233,9 +367,9 @@ def kstest_onesample_uniform(self,args:dict):
         print("Fail to reject the null hypothesis")
 ```
 
-### <b>:octicons-file-code-16: ==kstest_onesample_exponential==</b>
+<h3><b>kstest_onesample_exponential</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Kolmogorov-Smirnov** test for a **exponential distribution** is a statistical test that determines whether a sample of data comes from a exponential distribution
 
@@ -259,9 +393,9 @@ def kstest_onesample_exponential(self,args:dict):
         print("Fail to reject the null hypothesis")
 ```
 
-### <b>:octicons-file-code-16: ==lilliefors_normal==</b>
+<h3><b>lilliefors_normal</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Lilliefors test**, also known as the **Kolmogorov-Smirnov test for normality**, is a statistical test used to determine whether a sample of data comes from a **normal distribution**. It is similar to the Kolmogorov-Smirnov test, but it is specifically designed for testing against a normal distribution.
 
@@ -285,9 +419,9 @@ def lilliefors_normal(self,args:dict):
         print("Fail to reject the null hypothesis") 
 ```
 
-### <b>:octicons-file-code-16: ==shapirowilk_normal==</b>
+<h3><b>shapirowilk_normal</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Shapiro-Wilk** test is another statistical test used to determine whether a sample of data comes from a **normal distribution**
 
@@ -312,9 +446,9 @@ def shapirowilk_normal(self,args:dict):
         print("Fail to reject the null hypothesis") 
 ```
 
-### <b>:octicons-file-code-16: ==chi2_test==</b>
+<h3><b>chi2_test</b></h3>
 
-<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **chi-square test** is a statistical test used to determine if there is a significant association between two **categorical variables**
 
@@ -345,9 +479,9 @@ def chi2_test(self,args:dict):
         print("Fail to reject the null hypothesis") 
 ```
 
-### <b>:octicons-file-code-16: ==jarquebera_normal==</b>
+<h3><b>jarquebera_normal</b></h3>
 
-<h4><b>data: <code>list</code> targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> <code>list</code> <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **Jarque-Bera test** is a statistical test used to determine whether a given dataset follows a normal distribution. It is based on the **skewness** and **kurtosis** of the data
 
@@ -375,9 +509,9 @@ def jarquebera_normal(self,args:dict):
         print("Fail to reject the null hypothesis") 
 ```
 
-### <b>:octicons-file-code-16: ==two_sample_anova==</b>
+<h3><b>two_sample_anova</b></h3>
 
-<h4><b>data: [<code>list</code>,<code>list</code>] targ:<code>None</code></b></h4>
+<h4><b><span style='color:#586bc9'>data:</span> [<code>list</code>,<code>list</code>] <span style='color:#586bc9'>targ:</span><code>None</code></b></h4>
 
 The **ANOVA (Analysis of Variance) test** is used to determine if there are any statistically significant **differences between the means** of two or more groups
 

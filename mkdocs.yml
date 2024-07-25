@@ -154,21 +154,12 @@ nav:
           - Storage: mllibs/basics/data_storage.md
 
       - Modules: 
-          - Project: mllibs/modules/mlproject.md
           - Available modules: mllibs/modules/list.md
           - Adding new modules: mllibs/modules/adding.md
           - Grouping modules: mllibs/modules/grouping.md
 
           - Documentation: 
-              - eda:
-                  - meda_splot: mllibs/documentation/eda/meda_splot.md 
-                  - meda_pplot: mllibs/documentation/eda/meda_pplot.md 
-                  - meda_scplot: mllibs/documentation/eda/meda_scplot.md
-              - pd:
-                  - mpd_talktodata: mllibs/documentation/pd/mpd_talktodata.md
-              - stats:
-                  - mstats_tests: mllibs/documentation/stats/mstats_tests.md
-                  - mstats_plot: mllibs/documentation/stats/mstats_plot.md
+            - mstats_tests: mllibs/documentation/mstats_tests.md
 
   - <b>About</b>: about/index.md
   

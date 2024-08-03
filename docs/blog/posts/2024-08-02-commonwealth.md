@@ -2,7 +2,7 @@
 date: 2024-08-02
 title: Commonwealth Bank Internship
 authors: [andrey]
-draft: true
+draft: false
 categories:
      - internship
 tags:

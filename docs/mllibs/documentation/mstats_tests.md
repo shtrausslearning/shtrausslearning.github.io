@@ -9,21 +9,6 @@ Statistical Tests
 
 The purpose of this module is to provide the user with the ability to do **data sample comparison tests** that are available in **statsmodels** and **scipy.stats** libraries. The module requires **list or parameter value** for sample comparison to test statistical hypotheses and is not aimed at dataframe based data
 
-### :fontawesome-solid-location-arrow: **<span style='color:#586bc9'>Module Files</span>**
-
-Here are the locations of the relevant files associated with the module
-
-<div class="grid cards" markdown>
-
-  - **[module information](https://github.com/mllibs/mllibs/blob/main/src/mllibs/stats/mstats_tests.json)**
-  - **[module activation functions](https://github.com/mllibs/mllibs/blob/main/src/mllibs/stats/mstats_tests.py)**
-  - **[module activation functions](https://github.com/mllibs/mllibs/blob/main/src/mllibs/stats/mstats_tests.py)**
-  - **[module activation functions](https://github.com/mllibs/mllibs/blob/main/src/mllibs/stats/mstats_tests.py)**
-
-</div>
-
-## **Activation Functions**
-
 A list of all available activation functions in the module :octicons-file-code-16: **mstats_tests** 
 
 

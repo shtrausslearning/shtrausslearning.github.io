@@ -18,15 +18,6 @@ comments: true
 
 Its been a while since our last post, today we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. As per usual it is related to the topic of data science and analysis of data closely associated with banking aquiring. Hopefully it will be interesting to read along!
 
-The internship is split into a few segments:
-
-- Task One: Data Aggregation and Analysis
-- Task Two: Data Anonymisation 
-- Task Three: Propose Data Analysis Approaches
-- Task Four: Designing a Database
-
-In this post, we'll cover only the first two parts, the rest your can try for yourself [@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)
-
 <div class="grid cards" markdown>
 
   - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/commonwealth-bank-internship-data)</b>
@@ -35,6 +26,15 @@ In this post, we'll cover only the first two parts, the rest your can try for yo
 </div>
 
 <!-- more -->
+
+The internship is split into a few segments:
+
+- Task One: Data Aggregation and Analysis
+- Task Two: Data Anonymisation 
+- Task Three: Propose Data Analysis Approaches
+- Task Four: Designing a Database
+
+In this post, we'll cover only the first two parts, the rest your can try for yourself [@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)
 
 ## **Data Aggregation and Analysis**
 

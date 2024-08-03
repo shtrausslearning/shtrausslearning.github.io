@@ -3,10 +3,11 @@ date: 2023-11-20
 title: Prediction of Product Stock Levels
 authors: [andrey]
 categories:
-     - business
+     - internship
 tags:
      - regression
-     - machine learning
+     - business
+     - internship
      - cognizant
 comments: true
 --- 

@@ -3,9 +3,10 @@ date: 2023-11-17
 title: Prediction of customer stable funds volume
 authors: [andrey]
 categories:
-     - finance
+     - internship
 tags:
      - machine learning
+     - financial analysis
      - catboost
      - optuna
      - time series

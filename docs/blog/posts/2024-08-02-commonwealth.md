@@ -18,7 +18,7 @@ comments: true
 
 Its been a while since our last post, today we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. As per usual it is related to the topic of data science and analysis of data closely associated with banking aquiring. Hopefully it will be interesting to read along!
 
-The internship is spling into a few segments:
+The internship is split into a few segments:
 
 - Task One: Data Aggregation and Analysis
 - Task Two: Data Anonymisation 

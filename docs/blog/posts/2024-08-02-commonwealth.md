@@ -340,14 +340,14 @@ First, research the different techniques available for anonymising a data set. T
 
 Quite an interesting task; protection of customer data is very critical to any company. We don't want customer data to leak out, nevertheless there could be various applications of customer data usage; from analyses to modeling. Generally speaking, there is a standard of data privacy "criticalness", and a subsystem in a company operate with data corresponding to a specific level, so customer data doesn't tend to freeflow through all employees in a company. The process of data protection is probably done by a specific department in charge of data protection, or something along those lines. 
 
-The data transfer target are **data scientists at InsightSpark**, so we should probably put some logic into our process of transformation, since the data science team will probably want to extract useful relations from the data, without really needing to know the exact details about the customers. So this means that ==pure randomisation== data replacement will be rather pointless, yet its a way we can anonymise the data. 
+The data transfer target are **data scientists at InsightSpark**, so we should probably put some logic into our process of transformation, since the data science team will probably want to extract useful relations from the data, without really needing to know the exact details about the customers. So this means that ==**pure randomisation**== data replacement will be rather pointless, yet its a way we can anonymise the data. 
 
 Other ways can be:
 
-- ==Binning== (grouping into segments)
-- ==Masking== (hiding only parts of the data)
-- ==Replacement== (replace the unique values in data)
-- ==Perturbation== (for numerical values)
+- ==**Binning**== (grouping into segments)
+- ==**Masking**== (hiding only parts of the data)
+- ==**Replacement**== (replace the unique values in data)
+- ==**Perturbation**== (for numerical values)
 
 ### <span style='color:#686dec'>Data Column Explanations</span>
 
@@ -588,7 +588,7 @@ The answers are provided below:
     - The residence and address have been replaced with fake values.
 
 
-## **Conclusion**
+## **Concluding Remarks**
 
 In this post, we covered a coupled of things; we conducted a simple data analysis of user transactions, in principle, the questions are quite straightforward, and more insight into the dataset may be quite interest, it would have been more interesting to receive data of more realistic transactions. Nevertheless, **pivot_tables** are quite useful to extract useful information from a dataset, so its good to know the useful arguments that the method offers; an example may be the addition of total using **margins** and so on. 
 
@@ -597,3 +597,82 @@ Secondly, we looked at another interesting part; data confidentiality. This is a
 The internship doesn't end here, there is also another section about unstructured data extraction and analysis, using the Twitter API, which is a fun NLP problem!
 
 The intership problem was quite interesting and lightweight, definitely give it a go! [@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)
+
+## **Important Takeaways**
+
+Lets recap some things which are worth remembering, as it can help you with your own projects!
+
+### **:material-checkbox-multiple-marked-circle-outline: Pandas Column Binning**
+
+We utilised the pandas method `pd.cut` in order to split the column data into segments, this is an important method, and it is often used in data analysis and machine learning pipelines.
+
+```python
+bins = [0,79000,119000,169000,200000, 300000]
+labels = ['0-79K', '80-119K', '120-169K', '170-200K', '200K+']
+customers['age'] = pd.cut(customers['age'], bins=bins, labels=labels)
+```
+
+What the above code will do is simply split the data into parts:
+- values between **0-79000** will be assigned a label '0-79k' and so on
+
+```python
+pd.cut(
+        data, # pandas dataframe column
+        bins, # numerical value split location
+        labels # labels for each segment
+)
+```
+
+### **:material-checkbox-multiple-marked-circle-outline: Pandas Column Value Replacement**
+
+We often do need to replace specific values/categories in the pandas column. In the above example, it was for customer data annonymisation, do replace values we can use the `pd.Series.map` method.
+
+Next, we need to have a dictionary in the format:
+
+```python
+{'column value':'change it to this'}
+```
+
+So when we will call the following, **column value** will be replaced by **change it to this**
+
+```python
+customers['employer'].map(unique_employer_mapper)
+```
+
+### **:material-checkbox-multiple-marked-circle-outline: Pandas Pivot Table**
+
+Pivoting data and rearranging it is also very important in data analysis, we can understand our data better if we know how to use the `pd.pivot_table`  as we did in the example below:
+
+```python
+pd.pivot_table(apple_transactions,index='store',columns='payment_method',values='quantity',aggfunc='sum',fill_value=0,margins=True).sort_values(by='cash',ascending=False)
+```
+
+```python
+pd.pivot_table(
+                data, # our dataframe
+                index, # the unique categories in a column will be set as the index
+                columns, # the unique categories in a column will be set as the columns
+                values, # we will count/sum/... the data in this column
+                aggfunc, # the aggregate function (sum,count,...)
+                fill_value, # useful to fill in missing data for combinations that dont exist
+                margins, # add a "total" column, so we know the row/column sums 
+)
+```
+
+### **:material-checkbox-multiple-marked-circle-outline:Regular Expressions**
+
+Another approach we used here are **regular expressions**, they are very useful when dealing with **string** data. We'll take a look at the pattern we used in this post; 
+
+```python
+pattern = r'(^[a-zA-Z0-9]{1})(.*)([a-zA-Z0-9]{1}@.*$)'
+```
+
+We need to focus on three parts:
+
+- 1st Capturing Group (^[a-zA-Z0-9]{1}) : the first letter
+- 2nd Capturing Group (.*) : everything in between the first and last letters of the username  
+- 3rd Capturing Group ([a-zA-Z0-9]{1}@.*$) : The last letter, then @ and the rest after that 
+
+We do this by using three capture groups. **[a-zA-Z0-9]** implies that the first letter can be either numeric or alphabetical and {1} ensures that we only select the first letter/value. The second capture group captures everything after the first letter (.*), but since we have a third capture group, we once again select a letter/number which is followed by the sign @, this is the capture requirement, and since we place the capture group in third, our second capture group captures everything upto that which is found in the third capture group. After the @ sign we select everything else using the dot (.) and star notation. 
+
+A very helpful resource to play around with regular expressions; [regex101](https://regex101.com/)

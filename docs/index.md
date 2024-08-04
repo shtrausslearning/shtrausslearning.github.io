@@ -12,7 +12,7 @@ icon: octicons/home-fill-24
   <img src="images/id_about3.png"/>
   
   <p style="text-align: center; margin: 0px;">
-   Thank you for visiting! Here you will find a collection of some of my work, I do various projects related to machine learning that interest me & often make some posts about it! I'm somewhat of an artistic person, I love digital art & technology as well! If you have any queries feel free to contact me on Telegram
+   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning that interest me & often make some posts about it! I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. 
   </p>
 </p>
 
@@ -23,6 +23,10 @@ icon: octicons/home-fill-24
   - :material-account-box:{ .lg .middle }&nbsp; &nbsp;[<b>Kaggle Profile</b>](https://kaggle.com/shtrausslearning) 
 
     My profile in the Kaggle data science community 
+
+  - :material-account-box:{ .lg .middle }&nbsp; &nbsp;[<b>GitHub Profile</b>](https://github.com/shtrausslearning) 
+
+    Github profile, including this [repository](https://github.com/shtrausslearning/shtrausslearning.github.io)
 
   - :octicons-project-roadmap-16:{ .lg .middle }&nbsp; &nbsp;[<b>My Projects</b>](portfolio/index.md)
 

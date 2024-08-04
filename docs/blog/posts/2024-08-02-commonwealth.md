@@ -25,8 +25,6 @@ Its been a while since our last post, today we'll be going through one of intern
 
 </div>
 
-
-
 <!-- more -->
 
 The internship is split into a few segments:

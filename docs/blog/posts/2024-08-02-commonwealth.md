@@ -21,7 +21,7 @@ Its been a while since our last post, today we'll be going through one of intern
 <div class="grid cards" markdown>
 
   - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/commonwealth-bank-internship-data)</b>
-- :material-bank-check:{ .lg .middle }&nbsp; <b>[Commbank Internship](https://www.theforage.com/simulations/cognizant/artificial-intelligence-rtbq)</b>
+- :material-bank-check:{ .lg .middle }&nbsp; <b>[Commbank Internship](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)</b>
 
 </div>
 

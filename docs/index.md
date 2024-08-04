@@ -7,32 +7,10 @@ title: Home
 icon: octicons/home-fill-24
 ---
 
-<style>
-  article > h1 { display: none; }
-  @media (min-width: 100px) {
-    main > div > div.md-content {
-      max-width: 75%;
-      margin: auto;
-    }
-  }
-</style>
-
-
-<style>
-  article > h1 { display: none; }
-  @media (min-width: 900px) {
-    main > div > div.md-content {
-      max-width: 75%;
-      margin: auto;
-    }
-  }
-</style>
-
 <p style="text-align: center; margin: 0px;">
 
   <img src="images/id_about3.png"/>
-
-  <p style="text-align: center; font-size: 25px; margin: 0px;"><strong>Andrey Shtrauss</strong></p>
+  
   <p style="text-align: center; margin: 0px;">
    Thank you for visiting! Here you will find a collection of some of my work, I do various projects related to machine learning that interest me & often make some posts about it! I'm somewhat of an artistic person, I love digital art & technology as well! If you have any queries feel free to contact me on Telegram
   </p>
@@ -54,15 +32,9 @@ icon: octicons/home-fill-24
 
     Articles related to data science & analytics
 
-    <a href="blog/index.md"><img src="images/id_about4.png"/></a>
-
   - :simple-gitlfs:{ .lg .middle }&nbsp; &nbsp;[<b>mllibs documentation</b>](mllibs/index.md)
     
     NLP process automisation project documentation
-
-    <a href="mllibs/index.md"><img src="images/wnb.png"/></a>
-
-
 
 </div>
 

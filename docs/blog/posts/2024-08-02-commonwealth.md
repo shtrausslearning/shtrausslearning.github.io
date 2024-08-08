@@ -16,7 +16,11 @@ comments: true
 
 ![](https://cdn.theforage.com/vinternships/companyassets/2sNmYuurxgpFYawco/y2NzZJASdgERdYR4S/1656929922553/CommBank%20Logos_Beacon%20Wordmark%20White.png)
 
-Its been a while since our last post, today we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. As per usual it is related to the topic of data science and analysis of data closely associated with banking aquiring. Hopefully it will be interesting to read along!
+In today's we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. 
+
+The internship is related to **Data Science** and is aimed to be a small project and interesting project in one's portfolio.
+
+The internship covers topics such a data wrangling (rearrangement and exploration of data), data annonymisation, as well as work with unstructured text data. Hopefully it will be interesting to read along!
 
 <div class="grid cards" markdown>
 
@@ -34,9 +38,11 @@ The internship is split into a few segments:
 - Task Three: Propose Data Analysis Approaches
 - Task Four: Designing a Database
 
-In this post, we'll cover only the first two parts, the rest your can try for yourself [@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)
+In this post, we'll cover only the first two parts, the rest your can try for yourself **[@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)**
 
-## **Data Aggregation and Analysis**
+## **Data Aggregation and Analysis*
+
+Let's look at the first topic which covers some data insight analysis.
 
 ### <span style='color:#686dec'>Problem Background </span>
 
@@ -298,9 +304,9 @@ So that wasn't too difficult! The answers are provided below:
 
 ## **Data Anonymisation**
 
-### <span style='color:#686dec'>Problem Background </span>
+Now let's look at the second topic, which involves the use of data anonimisation.
 
-Anonymise personal data within a data set
+### <span style='color:#686dec'>Problem Background </span>
 
 <div class="grid cards" markdown>
 
@@ -322,23 +328,21 @@ What you'll do:
 
 ### <span style='color:#686dec'>Problem Statement</span>
 
-Hello,
+> I have provided you with a data set named “mobile_customers.csv.” This contains information about customers that have signed up for the mobile app in the last three years.
 
-I have provided you with a data set named “mobile_customers.csv.” This contains information about customers that have signed up for the mobile app in the last three years.
+> We need you to anonymise this data to hide personal details while preserving any useful information for the data scientists at InsightSpark.
 
-We need you to anonymise this data to hide personal details while preserving any useful information for the data scientists at InsightSpark.
+> Here are some examples of how you may anonymise a data set:
+> You could remove columns that don’t provide helpful information for analysis (e.g., names or credit card numbers).
+> You could mask any columns that can identify an individual (e.g., passport numbers or mobile numbers).
+> You could categorise personal figures (e.g., age and income) into a bracket rather than a specific number.
 
-Here are some examples of how you may anonymise a data set:
-You could remove columns that don’t provide helpful information for analysis (e.g., names or credit card numbers).
-You could mask any columns that can identify an individual (e.g., passport numbers or mobile numbers).
-You could categorise personal figures (e.g., age and income) into a bracket rather than a specific number.
-
-First, research the different techniques available for anonymising a data set. Then, edit the data set to create an anonymised data set as a CSV file. When finished, please submit this CSV file for me to review before we share it with InsightSpark.
+> First, research the different techniques available for anonymising a data set. Then, edit the data set to create an anonymised data set as a CSV file. When finished, please submit this CSV file for me to review before we share it with InsightSpark.
 
 
-### <span style='color:#686dec'>Data Anonymisation</span>
+### <span style='color:#686dec'>Data Anonymisation approaches</span>
 
-Quite an interesting task; protection of customer data is very critical to any company. We don't want customer data to leak out, nevertheless there could be various applications of customer data usage; from analyses to modeling. Generally speaking, there is a standard of data privacy "criticalness", and a subsystem in a company operate with data corresponding to a specific level, so customer data doesn't tend to freeflow through all employees in a company. The process of data protection is probably done by a specific department in charge of data protection, or something along those lines. 
+We don't want customer data to leak out, nevertheless there could be various applications of customer data usage; from analyses to modeling. Generally speaking, there is a standard of data privacy "criticalness", and a subsystem in a company operate with data corresponding to a specific level, so customer data doesn't tend to freeflow through all employees in a company. The process of data protection is probably done by a specific department in charge of data protection, or something along those lines. 
 
 The data transfer target are **data scientists at InsightSpark**, so we should probably put some logic into our process of transformation, since the data science team will probably want to extract useful relations from the data, without really needing to know the exact details about the customers. So this means that ==**pure randomisation**== data replacement will be rather pointless, yet its a way we can anonymise the data. 
 

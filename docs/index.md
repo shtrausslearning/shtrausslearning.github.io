@@ -12,7 +12,7 @@ icon: octicons/home-fill-24
   <img src="images/id_about3.png"/>
   
   <p style="text-align: center; margin: 0px;">
-   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning that interest me & often make some posts about it! I have worked on a number of interesting projects over the years, these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields. 
+   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it!  
   </p>
 </p>
 

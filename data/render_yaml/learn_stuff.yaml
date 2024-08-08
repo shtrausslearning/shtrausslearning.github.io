@@ -1,0 +1,63 @@
+topics:
+  - header: Pydantic
+    icon: simple-pydantic
+    tutorials:
+      - title: Pydantic Introduction - Models, Fields, Constrained Types, Validator Functions and Model Exports
+        url: https://www.youtube.com/watch?v=i4jespFbA1c
+      - title: Do We Still Need Dataclasses? // PYDANTIC Tutorial
+        url: https://www.youtube.com/watch?v=Vj-iU-8_xLs
+      - title: Why You Should Use Pydantic in 2024 | Tutorial
+        url: https://www.youtube.com/watch?v=502XOB0u8OY
+  - header: FastAPI
+    icon: simple-fastapi
+    tutorials:
+      - title: Learn FastAPI - Blog
+        url: ../blog/posts/learn-fastapi.md
+      - title: FastAPI - A python framework | Full Course
+        url: https://www.youtube.com/watch?v=7t2alSnE2-I
+      - title: FastAPI Tutorial - Building RESTful APIs with Python - YouTube
+        url: https://www.youtube.com/watch?v=GN6ICac3OXY
+      - title: FastAPI Tutorial in Hindi | Lets build a Notes app using FastAPI, MongoDB & Bootstrap 🔥 - YouTube
+        url: https://www.youtube.com/watch?v=52c7Kxp_14E
+      - title: FastAPI Tutorials - Playlist
+        url: https://www.youtube.com/playlist?list=PLK8U0kF0E_D6l19LhOGWhVZ3sQ6ujJKq_
+  - header: Git
+    icon: simple-git
+    tutorials:
+      - title: Complete Git and GitHub Tutorial
+        url: https://www.youtube.com/watch?v=apGV9Kg7ics
+      - title: Complete GIT in 1 video - YouTube
+        url: https://www.youtube.com/watch?v=tz82ola3oy0
+      - title: Git CLI Cheatsheet · GitHub Gist
+        url: https://gist.github.com/hofmannsven/6814451
+  - header: Async Programming
+    icon: simple-python
+    tutorials:
+      - title: Making multiple HTTP requests using Python (synchronous, multiprocessing, multithreading, asyncio) - YouTube
+        url: https://www.youtube.com/watch?v=R4Oz8JUuM4s
+      - title: Demystifying Python's Async and Await Keywords - YouTube
+        url: https://www.youtube.com/watch?v=F19R_M4Nay4
+      - title: Asyncio in Python - Full Tutorial - YouTube
+        url: https://www.youtube.com/watch?v=Qb9s3UiMSTA
+  - header: Docker
+    icon: simple-docker
+    tutorials:
+      - title: Learn Docker - Blog
+        url: ../blog/posts/learn-docker.md
+  - header: Regex
+    icon: material-regex
+    tutorials:
+      - title: RegEx in Python
+        url: https://www.youtube.com/playlist?list=PLyb_C2HpOQSDxe5Y9viJ0JDqGUCetboxB
+  - header: Pytest
+    icon: simple-pytest
+    tutorials:
+      - title: Unit Testing in Python with pytest
+        url: https://www.youtube.com/playlist?list=PLyb_C2HpOQSBWGekd7PfhHnb9GnqDgrxS
+  - header: Web Scrapping
+    icon: simple-selenium
+    tutorials:
+      - title: Learn Web Scraping
+        url: ../blog/posts/learn-web-scraping.md
+      - title: Discovering Hidden APIs
+        url: https://www.youtube.com/playlist?list=PLyb_C2HpOQSCAi67ZF0w-6CvCvZs_OXAB

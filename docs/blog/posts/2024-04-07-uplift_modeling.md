@@ -1,6 +1,6 @@
 ---
 date: 2024-04-07
-title: Uplift Modeling
+title: Uplift Modeling Basics
 authors: [andrey]
 draft: false
 categories:
@@ -10,7 +10,7 @@ tags:
 comments: true
 ---
 
-# **Uplift Modeling**
+# **Uplift Modeling Basics**
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">

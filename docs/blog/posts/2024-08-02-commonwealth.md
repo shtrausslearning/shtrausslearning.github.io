@@ -24,7 +24,7 @@ The internship covers topics such a data wrangling (rearrangement and exploratio
 
 <div class="grid cards" markdown>
 
-  - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/commonwealth-bank-internship-data)</b>
+  - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/forage-internship-data)</b>
 - :material-bank-check:{ .lg .middle }&nbsp; <b>[Commbank Internship](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)</b>
 
 </div>
@@ -33,14 +33,14 @@ The internship covers topics such a data wrangling (rearrangement and exploratio
 
 The internship is split into a few segments:
 
-- Task One: Data Aggregation and Analysis
-- Task Two: Data Anonymisation 
-- Task Three: Propose Data Analysis Approaches
-- Task Four: Designing a Database
+- ==Task One== : Data Aggregation and Analysis
+- ==Task Two== : Data Anonymisation 
+- ==Task Three== : Propose Data Analysis Approaches
+- ==Task Four== : Designing a Database
 
 In this post, we'll cover only the first two parts, the rest your can try for yourself **[@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)**
 
-## **Data Aggregation and Analysis*
+## **Data Aggregation and Analysis**
 
 Let's look at the first topic which covers some data insight analysis.
 

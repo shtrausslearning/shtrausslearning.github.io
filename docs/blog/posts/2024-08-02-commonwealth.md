@@ -16,11 +16,7 @@ comments: true
 
 ![](https://cdn.theforage.com/vinternships/companyassets/2sNmYuurxgpFYawco/y2NzZJASdgERdYR4S/1656929922553/CommBank%20Logos_Beacon%20Wordmark%20White.png)
 
-In today's we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. 
-
-The internship is related to **Data Science** and is aimed to be a small project and interesting project in one's portfolio.
-
-The internship covers topics such a data wrangling (rearrangement and exploration of data), data annonymisation, as well as work with unstructured text data. Hopefully it will be interesting to read along!
+In today's we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. The internship is related to **Data Science** and is aimed to be a small project and interesting project in one's portfolio. The internship covers topics such a data wrangling (rearrangement and exploration of data), data annonymisation, as well as work with unstructured text data. Hopefully it will be interesting to read along!
 
 <div class="grid cards" markdown>
 
@@ -33,10 +29,10 @@ The internship covers topics such a data wrangling (rearrangement and exploratio
 
 The internship is split into a few segments:
 
-- ==Task One== : Data Aggregation and Analysis
-- ==Task Two== : Data Anonymisation 
-- ==Task Three== : Propose Data Analysis Approaches
-- ==Task Four== : Designing a Database
+- ==**Task One**== : Data Aggregation and Analysis
+- ==**Task Two**== : Data Anonymisation 
+- ==**Task Three**== : Propose Data Analysis Approaches
+- ==**Task Four**== : Designing a Database
 
 In this post, we'll cover only the first two parts, the rest your can try for yourself **[@Introduction to Data Science](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)**
 
@@ -69,15 +65,17 @@ Submit the analyzed file for review.
 
 ### <span style='color:#686dec'>Problem Statement</span>
 
-Hello,
+Let's take a look at what is asked of us:
 
-I have provided you with a data set named “supermarket_transactions.csv.” This data set contains three years of transactional data we collected from supermarkets across Australia. 
+    Hello,
 
-InsightSpark wants to access our data to perform some analysis across Australian supermarkets. Before this can happen, I need you to perform some analysis on the provided CSV data set (a sample of the database) to answer the following questions:
+    I have provided you with a data set named “supermarket_transactions.csv.” This data set contains three years of transactional data we collected from supermarkets across Australia. 
 
-- Across locations, how many apples were purchased in cash?
-- How much total cash was spent on these apples?
-- Across all payment methods, how much money was spent at the Bakershire store location by non-member customers?
+    InsightSpark wants to access our data to perform some analysis across Australian supermarkets. Before this can happen, I need you to perform some analysis on the provided CSV data set (a sample of the database) to answer the following questions:
+
+    - Across locations, how many apples were purchased in cash?
+    - How much total cash was spent on these apples?
+    - Across all payment methods, how much money was spent at the Bakershire store location by non-member customers?
 
 ### <span style='color:#686dec'>Dataset Preview</span>
 

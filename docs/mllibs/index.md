@@ -7,9 +7,6 @@ icon: material/package-variant
 ![Image title](images/wnb.png#only-dark){ width="450" }
 </center>
 
-<center>![](https://img.shields.io/badge/python-3.7%2B-fc4c69
-) ![](https://img.shields.io/badge/pypi-v0.1.7-fc4c69) ![](https://img.shields.io/badge/License-MIT-fc4c69) [![](https://static.pepy.tech/badge/mllibs)](https://www.pepy.tech/projects/mllibs)</center>
-
 ### **About mllibs**
 
 Some key points about the library:

@@ -32,7 +32,7 @@ In this project, we work with a client **Gala Groceries**, who has contacted **C
 <div class="grid cards" markdown>
 
   - :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/cognizant_artificial_intelligence)</b>
-- :simple-cognizant:{ .lg .middle }&nbsp; <b>[Cognizant Internship](https://www.theforage.com/simulations/cognizant/artificial-intelligence-rtbq)</b>
+- :simple-cognizant:{ .lg .middle }&nbsp; <b>[Cognizant Internship (Discontinued)](https://www.theforage.com/simulations/cognizant/artificial-intelligence-rtbq)</b>
 
 </div>
 

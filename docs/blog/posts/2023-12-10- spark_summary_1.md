@@ -4,7 +4,7 @@ title: PySpark Daily December Summary I
 authors: [andrey]
 draft: false
 categories:
-     - PySpark
+     - pyspark
 tags:
      - pyspark
 comments: true

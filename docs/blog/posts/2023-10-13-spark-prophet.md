@@ -3,7 +3,7 @@ date: 2023-10-13
 title: Using Prophet with PySpark
 authors: [andrey]
 categories:
-     - PySpark
+     - pyspark
 tags:
      - machine learning
      - pyspark

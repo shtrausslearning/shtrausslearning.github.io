@@ -4,9 +4,9 @@ title: SQL Interview Problem
 authors: [andrey]
 draft: false
 categories:
-     - SQL
+     - sql
 tags:
-     - SQL
+     - sql
      - interview
 comments: true
 ---

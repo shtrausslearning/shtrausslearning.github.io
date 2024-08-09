@@ -4,9 +4,9 @@ title: Uplift Modeling Basics
 authors: [andrey]
 draft: false
 categories:
-     - Uplift Modeling
+     - uplift modeling
 tags:
-     - Machine Learning
+     - machine learning
 comments: true
 ---
 

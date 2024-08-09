@@ -1,7 +1,3 @@
 ---
-hide:
-  - navigation
-  - feedback
-  - toc
-icon: material/solid-book-edit
+icon: fontawesome/brands/blogger-b
 ---	

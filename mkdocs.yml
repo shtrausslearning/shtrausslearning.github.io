@@ -32,16 +32,9 @@ theme:
     - search.suggest
     - navigation.sections
   palette:
-    # Palette toggle for light mode
-    - scheme: default
-      toggle:
-        icon: material/brightness-7 
-        name: Switch to dark mode
-    # Palette toggle for dark mode
     - scheme: slate
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+      primary: indigo
+      accent:
         
 markdown_extensions:
   - admonition
@@ -135,6 +128,10 @@ extra_javascript:
 nav:
   - <b>Home</b>:
       - index.md
+      - portfolio/index.md
+      - blog/index.md
+      - mllibs/index.md
+      - about/index.md
 
   - <b>Projects</b>: 
       - portfolio/index.md

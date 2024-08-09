@@ -7,8 +7,8 @@ categories:
      - NLP
 tags:
      - transformer
-     - PyTorch
-     - GPT
+     - pytorch
+     - gpt
 ---
 
 # **Transformer Decoder**

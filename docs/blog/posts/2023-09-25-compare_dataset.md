@@ -3,7 +3,7 @@ date: 2023-09-25
 title: Comparison of Subsets
 authors: [andrey]
 categories:
-    - EDA
+    - eda
 tags:
     - eda
     - machine learning

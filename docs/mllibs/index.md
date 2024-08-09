@@ -8,7 +8,7 @@ icon: material/package-variant
 </center>
 
 <center>![](https://img.shields.io/badge/python-3.7%2B-fc4c69
-) ![](https://img.shields.io/badge/pypi-v0.1.7-fc4c69) ![](https://img.shields.io/badge/License-MIT-fc4c69) [![](https://static.pepy.tech/badge/mllibs)](https://www.pepy.tech/projects/mllibs) ![](https://img.shields.io/github/stars/mllibs?style=social)</center>
+) ![](https://img.shields.io/badge/pypi-v0.1.7-fc4c69) ![](https://img.shields.io/badge/License-MIT-fc4c69) [![](https://static.pepy.tech/badge/mllibs)](https://www.pepy.tech/projects/mllibs)</center>
 
 ### **About mllibs**
 

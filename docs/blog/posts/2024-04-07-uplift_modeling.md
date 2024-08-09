@@ -14,7 +14,7 @@ comments: true
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://i.imgur.com/Msbm2IA.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
+        <div style="background-image: url('images/banner_uplift.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.5; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">
@@ -25,7 +25,11 @@ comments: true
     </div>
 </div>
 
-**<span style='color:#686dec'>Uplift modeling</span>** is a predictive modeling technique that aims to identify the individuals who are most likely to respond positively to a specific treatment or intervention. This technique is particularly useful in marketing and customer relationship management, where the goal is to target customers who are likely to be influenced by a marketing campaign or offer. By distinguishing between those who are positively influenced by the treatment and those who are not, uplift modeling helps organizations optimize their targeting strategies and maximize the return on investment of their marketing efforts.
+**Uplift modeling** is a predictive modeling technique that aims to identify the individuals who are most likely to respond positively to a specific treatment or intervention. 
+
+This technique is particularly useful in marketing and customer relationship management, where the goal is to target customers who are likely to be influenced by a marketing campaign or offer. 
+
+By distinguishing between those who are positively influenced by the treatment and those who are not, uplift modeling helps organizations optimize their targeting strategies and maximize the return on investment of their marketing efforts.
 
 <div class="grid cards" markdown>
 
@@ -51,20 +55,22 @@ So what it this modeling approach about:
 - who upon being influenced by an event/action will do some action
 - and if not influenced will not do the action
 
-So lets think of an example:
+### **<span style='color:#686dec'> Uplift Modeling Example</span>**
 
 Imagine we are selling a product and need to decide to whom we will be advertising, we have some constraints and cannot show it to all target audiences, 
 
 - **we would like to find clients who will buy the product** if they see our advertisement 
 - and **will and not buy it if they don't see it**
 
+### **<span style='color:#686dec'> Uplift Modeling Components</span>**
+
 In **uplift modeling** we need three components:
 
- Have two arrays we will be working with; **Treatment Array**, **Target Array** and standard **customer related feature matrix**
+ Have two arrays we will be working with; ==Treatment Array==, ==Target Array== and standard customer related ==feature matrix==
 
- - The **treatment array** is a binary vector, where we have no influence (0) and influenced (1)
- - The **target vector** is also a binary vector, where we have no action (0) and action is made (1)
- - The standard feature matrix (like other machine learning problems)
+ - The ==Treatment Array== is a binary vector, where we have no influence (0) and influenced (1)
+ - The ==Target Array== is also a binary vector, where we have no action (0) and action is made (1)
+ - The standard ==feature matrix== (like other machine learning problems) is a matrix that contains features
 
 
 ### **<span style='color:#686dec'> What to remember</span>**

@@ -77,7 +77,7 @@ In **uplift modeling** we need three components:
 
 So some important things to note in the context of uplift modeling:
 
-- To model which users will do an action when influenced & users which will not do an action when not influences we need to have aside from a standard feature matrix two additional vectors; **treatment** (users were identified and interacted with) & the result of our interaction with them, stored in the **target vector**
+- To model which users will do an action when influenced & users which will not do an action when not influences we need to have aside from a standard feature matrix two additional vectors; ==Treatment Array== (users were identified and interacted with) & the result of our interaction with them, stored in the ==Target Array==
 - Having a trained model will enable us to identify on unseen data (without a treatment or target vector) the uplift value for a group for which we have a set of features used in training
 - Our aim is to target **influencible clients** (those who upon being interacted with will commit a target action) and **those who can be positively influenced** (when not interacted with will not conduct a target action).
 

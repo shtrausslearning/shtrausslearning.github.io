@@ -3,5 +3,5 @@ hide:
   - navigation
   - feedback
   - toc
-icon: fontawesome/solid-feather-pointed
+icon: material/solid-book-edit
 ---	

@@ -12,7 +12,7 @@ icon: octicons/home-fill-24
   <img src="images/id_about3.png"/>
   
   <p style="text-align: center; margin: 0px;">
-   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it!  
+   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it! You can also learn more about me in section [About Me](https://shtrausslearning.github.io/about/index.html)
   </p>
 </p>
 

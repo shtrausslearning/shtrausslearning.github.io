@@ -33,7 +33,7 @@ theme:
     - navigation.sections
   palette:
     - scheme: slate
-      primary: black
+      primary: indigo
       accent: indigo
         
 markdown_extensions:
@@ -127,11 +127,11 @@ extra_javascript:
 
 nav:
   - <b>Home</b>:
-      - index.md
-      - portfolio/index.md
-      - blog/index.md
-      - mllibs/index.md
-      - about/index.md
+      - Home: index.md
+      - Portfolio: portfolio/index.md
+      - Articles: blog/index.md
+      - Mllibs: mllibs/index.md
+      - About Me: about/index.md
 
   - <b>Projects</b>: 
       - portfolio/index.md

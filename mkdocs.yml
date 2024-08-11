@@ -127,11 +127,11 @@ extra_javascript:
 
 nav:
   - <b>Home</b>:
-      - Home: index.md
-      - Portfolio: portfolio/index.md
-      - Articles: blog/index.md
-      - Mllibs: mllibs/index.md
-      - About Me: about/index.md
+      - home: index.md
+      - portfolio: portfolio/index.md
+      - articles: blog/index.md
+      - mllibs: mllibs/index.md
+      - about: about/index.md
 
   - <b>Projects</b>: 
       - portfolio/index.md

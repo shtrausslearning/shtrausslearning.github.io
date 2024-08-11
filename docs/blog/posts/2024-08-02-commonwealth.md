@@ -16,7 +16,8 @@ comments: true
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://cdn.theforage.com/vinternships/companyassets/2sNmYuurxgpFYawco/y2NzZJASdgERdYR4S/1683210590021/shubham-dhage-UxDU0Gg5pqQ-unsplash%20datasci.jpeg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
+        <div style="background-image: url('
+        images/header_commbank.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
         </div>
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
             <div style="position: relative; display: table; height: 75%; width: 100%;">

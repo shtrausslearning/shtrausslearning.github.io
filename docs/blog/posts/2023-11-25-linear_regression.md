@@ -11,20 +11,9 @@ tags:
 comments: true
 --- 
 
-# **Линейные модели**
+# **Coding Logistic Regression**
 
-<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
-    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://images.unsplash.com/photo-1722694219923-19ba40a7083e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=braden-jarvis-vpLfImSSb2g-unsplash.jpg&w=1920'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
-        </div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-            <div style="position: relative; display: table; height: 75%; width: 100%;">
-            </div>
-            <div style="position: absolute; bottom: 30px; left: 30px;">
-            </div>
-        </div>
-    </div>
-</div>
+![](https://images.unsplash.com/photo-1722694219923-19ba40a7083e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=braden-jarvis-vpLfImSSb2g-unsplash.jpg&w=1920)
 
 Посмотрим на некий обзор главных моментов которые дадут нам возможность реализовать линейные модели в python и numpy. Посмотрим как отличается линейная регрессия от логистической, и как можно добавлять регуляризацию для этих моделей, чтобы можно было контролировать обобщающию способность модели. В этом разделе фокус на линейной регрессии.
 

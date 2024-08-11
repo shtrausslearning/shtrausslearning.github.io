@@ -1,8 +1,8 @@
 ---
 date: 2024-08-02
-title: Heuristic Customer Segmentation
+title: Retail Strategy and Analytics
 authors: [andrey]
-draft: true
+draft: false
 categories:
      - rfm segmentation
 tags:
@@ -12,7 +12,7 @@ tags:
 comments: true
 ---
 
-# **Heuristic Customer Segmentation**
+# **Retail Strategy and Analytics**
 
 <div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
     <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
@@ -27,13 +27,12 @@ comments: true
     </div>
 </div>
 
-In today's post we will discuss heuristic segmentation, on a dataset of transactions provided as part of the [quantium internship](https://www.theforage.com/simulations/quantium/data-analytics-rqkb)
 
 <div class="grid cards" markdown>
 
 - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/forage-internship-data)</b>
 
-- :fontawesome-regular-rectangle-list:{ .lg .middle }&nbsp; <b>[Quantium Internship](https://www.theforage.com/simulations/commonwealth-bank/intro-data-science-sd7t)</b>
+- :fontawesome-regular-rectangle-list:{ .lg .middle }&nbsp; <b>[Quantium Internship](https://www.theforage.com/simulations/quantium/data-analytics-rqkb)</b>
 
 </div>
 
@@ -41,13 +40,17 @@ In today's post we will discuss heuristic segmentation, on a dataset of transact
 
 ## **Background**
 
-**Heuristic segmentation** aims to divide users/customers into different groups based on some empirical rules or models that have been deduced based on experience working with the group.
+As part of the internship we will focus on the following things for the first task:
 
-The positives of such methods are that they are quick to realise, interpretable 
+- Analyse transaction and customer data to identify trends and inconsistencies. 
+- Develop metrics and examine sales drivers to gain insights into overall sales performance. 
+- Create visualizations and prepare findings to formulate a clear recommendation for the client's strategy.
 
-## <b>Recency Frequency & Monetary Analysis</b>
+And for the second task we will:
 
-One of the heuristic methods is the Recency, Frequency & Monetary (RFM) analysis. Its advantage over the previously mentioned approaches is that it takes into account the factor of time or **recency**. 
+- Define metrics to select control stores.
+- Analyse trial stores against controls.
+- Use R/Python for data analysis and visualization and summarise findings and provide recommendations.
 
 
 ## <b>Quantium Dataset</b>
@@ -269,13 +272,13 @@ salsas = df[df['TOKENS_STR'].isin(salasa)].copy()
 chips = df[~df['TOKENS_STR'].isin(salasa)].copy()
 ```
 
-### Grouping products into producer
+### Grouping products into parent,
 
-The next step we can take is to identify the product producer parent companies. What I found was that there are products by 9 different parent companies shown below, categorising them in this way will hopefull give us some more insights into customer purchasing behaviour
+The next step we can take is to identify the product producer parent companies. What I found was that there are products by 9 different parent companies `CATEGORY` shown below. Categorising them in this way will hopefully give us some more insights into customer purchasing behaviour and their market share of sales. We will also categorise our transactions into different brand names `BRAND`. And lastly we will extract the mass of packaging, all of which is extracted from the product name.
 
 ```python
 # Segment chip/snack parents
-store = ['WW','Woolworths']
+woolworths = ['WW','Woolworths']
 cobs = ['Cobs']
 intersnack = ['Tyrrells']
 snack_brands = ['NCC','Natural ChipCo','Natural Chip','CCs','Cheezels','Kettle','French Fries Potato Chips','Thins']
@@ -285,9 +288,11 @@ pepsico = ['Smiths','Smith','Burger Rings','Dorito','Doritos','Grain Waves','Twi
 kellanova = ['Pringles']
 sunbites = ['Sunbites','Snbts']
 
+lst_brands = pepsico + kellanova + sunbites +  store + cobs + intersnack + snack_brands + majans + red_rock_deli 
+
 # Combine all lists into a dictionary for easy lookup
 brand_categories = {
-    'Store': store,
+    'Woolworths': woolworths,
     'Cobs': cobs,
     'Intersnack': intersnack,
     'Snack Brands': snack_brands,
@@ -299,19 +304,28 @@ brand_categories = {
 }
 
 # Function to categorize brands
-def categorize_brand(brand):
+def categorize_parent(brand):
     for category, brands in brand_categories.items():
         if any(part in brand for part in brands):
             return category
-    return 'Other'  # Return 'Other' if no match is found
+    return 'Other'  
+
+# Function to find matches
+def categorize_brand(text):
+    for name in lst_brands:
+        if name in text:
+            return name
+    return None
 
 # Apply the function to the DataFrame
-chips['CATEGORY'] = chips['TOKENS_STR'].apply(categorize_brand)
+chips['PARENT'] = chips['TOKENS_STR'].apply(categorize_parent)                                      
+chips['BRAND'] = chips['TOKENS_STR'].apply(categorize_brand)
+chips['GRAMS'] = chips['PROD_NAME'].str.extract(r'(\d+)g')
 ```
 
 ```python
-# sales ammount distribution by brand
-chips['CATEGORY'].value_counts(normalize=True).round(4)*100
+# sales ammount distribution by parent company
+chips['PARENT'].value_counts(normalize=True).round(4)*100
 ```
 
 ```
@@ -328,28 +342,62 @@ Sunbites          1.21
 Name: proportion, dtype: float64
 ```
 
-What we can notice is that chip purchases/sales are quite heavility dominated by two key players **Pepsico** & **Snack Brands** (Australia). One is obviously international & the other is domestic (well if you take into account New Zealand as well perhaps not). Notable is also the portion of **Woolworths**, which was 4.77% of all total sales revenue.
-
-
-
-
-
-
-
-
-
-## **RFM Process**
-
-### Determine the number of days since last transaction
-
-First things first, we need to determine, for each customer when their last purchase occured, so we will need to determine for each transaction, when it last occured. We have also decided that the current date is "2019-07-01". 
-
-To conduct subtraction, we need to create a datetime timestamp for this date, to do this we use the method `pd.to_datetime()` & to get the number of days we utilise `dt`
+What we can notice is that chip purchases/sales are quite heavility dominated by two key players **Pepsico** & **Snack Brands** (Australia). One is obviously international & the other is domestic (well if you take into account New Zealand as well perhaps not). 
 
 ```python
-today = pd.to_datetime('2019-07-01')
-
-df['DT_LAST_TRANSACTION'] = (today - df['DATETIME']).dt.days
+# sales ammount distribution by parent company
+chips['BRAND'].value_counts(normalize=True).round(4)*100
 ```
 
-###
+```
+BRAND
+Kettle           16.73
+Smiths           12.30
+Dorito           10.22
+Pringles         10.17
+Red Rock Deli     7.20
+Infuzions         5.75
+Thins             5.70
+Woolworths        4.80
+Cobs              3.93
+Tostitos          3.84
+Twisties          3.83
+Grain Waves       3.14
+Natural Chip      3.03
+Tyrrells          2.61
+Cheezels          1.87
+CCs               1.84
+Sunbites          1.22
+Cheetos           1.19
+Burger Rings      0.63
+Name: proportion, dtype: float64
+```
+
+The more common brands include **Kettle** (Snack Brands Australia), **Smiths** (PepsiCo), **Doritos** (PepsiCo). Woolworths also sold a fair share of products at 4.8%, so as we can see despite owning the larger share of products chosen by customers. We are not taking into account the quantity purchased at the moment.
+
+```
+GRAMS
+175    26.82
+150    16.59
+134    10.37
+110     9.25
+170     8.25
+165     6.32
+330     5.18
+380     2.65
+270     2.60
+200     1.85
+135     1.35
+250     1.31
+210     1.31
+90      1.24
+190     1.24
+160     1.23
+220     0.65
+70      0.62
+180     0.61
+125     0.60
+Name: proportion, dtype: float64
+```
+
+When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.

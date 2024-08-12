@@ -53,8 +53,10 @@ And for the second task we will:
 
 Lets explore our dataset, to understand the dataset that we are going to be working with, and figure out if there are any preprocessing steps we need to take in order to get the data into a usable for us format.
 
+The data that is provided to us:
+
 - **`QVI_transaction_data`** : client transactional data
-- **`QVI_purchase_behaviour : client segmentation features
+- **`QVI_purchase_behaviour`** : client segmentation features
 
 ```
 +---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
@@ -70,23 +72,23 @@ Lets explore our dataset, to understand the dataset that we are going to be work
 
 ## **Feature Explanation**
 
-Lets take some quick notes about the data that we have, we probably don't need anything else
+Lets take some quick notes about the data that we have:
 
 !!! note
 
-     - DATE : Date since 1899-12-30
-     - STORE_NBR : The store identifier
-     - LYLTY_CARD_NBR : Customer's loyalty identifier
-     - PROD_NAME : Name of the product purchased
-     - PROD_QTY : Products of type purchased
-     - TOT_SALES : Sum of purchase
-     - LIFESTAGE: Customer attribute that identifies whether a customer has a family or not and what point in life they are at e.g. are their children in pre-school/primary/secondary school.
-     - PREMIUM_CUSTOMER: Customer segmentation used to differentiate shoppers by the price point of products they buy and the types of products they buy. It is used to identify whether customers may spend more for quality or brand or whether they will purchase the cheapest options.
+	     - **`DATE`** : Date since 1899-12-30
+     - **`STORE_NBR`** : The store identifier
+     - **`LYLTY_CARD_NBR`** : Customer's loyalty identifier
+     - **`PROD_NAME`** : Name of the product purchased
+     - **`PROD_QTY`** : Products of type purchased
+     - **`TOT_SALES`** : Sum of purchase
+     -  **`LIFESTAGE`**: Customer attribute that identifies whether a customer has a family or not and what point in life they are at e.g. are their children in pre-school/primary/secondary school.
+     - **`PREMIUM_CUSTOMER`** : Customer segmentation used to differentiate shoppers by the price point of products they buy and the types of products they buy. It is used to identify whether customers may spend more for quality or brand or whether they will purchase the cheapest options.
 
 
 ## **Loading Dataset**
 
-Time to load our dataset, having given a glimpse of the data, we can define our data types, similar to how you would do in SQL. 
+Time to load our dataset, having given a glimpse of the data, we can define our data types, similar to how you would do in SQL. Well load both of the files and merge them together on column **LYLTY_CARD_NBR**
 
 
 ```python

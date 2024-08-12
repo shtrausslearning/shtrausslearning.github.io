@@ -26,6 +26,14 @@ comments: true
 
 <!-- more -->
 
+The internship is split into a few segments:
+
+- ==**Task 1**== : Data preparation and customer analytics
+- ==**Task 2**== : Experimentation and uplift testing
+- ==**Task 3**== : Analytics and commercial application
+
+If you are interested in doing the internship, you can **[@Data Analytics](https://www.theforage.com/simulations/quantium/data-analytics-rqkb)**
+
 ## **Background**
 
 As part of the internship we will focus on the following things for the first task:
@@ -41,9 +49,12 @@ And for the second task we will:
 - Use R/Python for data analysis and visualization and summarise findings and provide recommendations.
 
 
-## <b>Quantium Dataset</b>
+## **Quantium Dataset Preview**
 
-Lets explore our dataset, to understand the dataset that we are going to be working with, and figure out which columns we'll need for our RFM analysis.
+Lets explore our dataset, to understand the dataset that we are going to be working with, and figure out if there are any preprocessing steps we need to take in order to get the data into a usable for us format.
+
+- **`QVI_transaction_data`** : client transactional data
+- **`QVI_purchase_behaviour : client segmentation features
 
 ```
 +---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
@@ -57,7 +68,9 @@ Lets explore our dataset, to understand the dataset that we are going to be work
 +---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
 ```
 
-Lets take some quick notes about the data that we have, we probably don't need anything else:
+## **Feature Explanation**
+
+Lets take some quick notes about the data that we have, we probably don't need anything else
 
 !!! note
 
@@ -79,7 +92,6 @@ Time to load our dataset, having given a glimpse of the data, we can define our 
 ```python
 import pandas as pd
 
-# define data types
 dtypes = {'DATE': int,
           'STORE_NBR':int,
           'LYLTY_CARD_NBR':int,
@@ -90,10 +102,12 @@ dtypes = {'DATE': int,
           'TOT_SALES':float
           }
 
-df = pd.read_csv('QVI_transaction_data.csv',dtype=dtypes)
+df_transaction = pd.read_csv(path,dtype=dtypes)
+df_behaviour = pd.read_csv(path2)
+df = df_transaction.merge(df_behaviour,on='LYLTY_CARD_NBR')
 ```
 
-As we can see in the data below, we have a customer identifier column ==LYLTY_CARD_NBR==, which we will need to do group by operations and determine aggregations for each unique customer that has made a purchase in our transactions dataset.
+As we can see in the data below, we have a customer identifier column LYLTY_CARD_NBR, which we will need to do group by operations and determine aggregations for each unique customer that has made a purchase in our transactions dataset.
 
 Our date column is in a rather odd format, what it represents is the number of days since "1899-12-30", so lets convert it to something we are more familiar with (datetime). However since it is a difference, we need it to be in the **time delta** format & not **datetime**, so lets use `pd.to_timedelta` setting the unit to days:
 
@@ -125,7 +139,7 @@ Looks like we have about a years worth of transactional data, the latest date be
 
 
 
-## :material-checkbox-multiple-marked-circle-outline: **Data preparation and customer analytics**
+## **Data preparation and customer analytics**
 
 ### Problem Statement
 

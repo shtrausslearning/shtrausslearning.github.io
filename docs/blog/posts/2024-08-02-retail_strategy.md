@@ -175,6 +175,8 @@ Looks like we have about a years worth of transactional data, the latest date be
 
 What well do is conduct an analysis on our client's transaction dataset and identify customer purchasing behaviours to generate insights and provide commercial recommendations.
 
+What well learn along the way:
+
 <div class="grid cards" markdown>
 
 - Understand how to examine and clean transaction and customer data.
@@ -184,6 +186,15 @@ What well do is conduct an analysis on our client's transaction dataset and iden
 
 </div>
 
+And we'll be doing the following:
+
+<div class="grid cards" markdown>
+
+- Analyse transaction and customer data to identify trends and inconsistencies. 
+- Develop metrics and examine sales drivers to gain insights into overall sales performance. 
+- Create visualizations and prepare findings to formulate a clear recommendation for the client's strategy.
+
+</div>
 
 ### Cleaning Product Name Column
 

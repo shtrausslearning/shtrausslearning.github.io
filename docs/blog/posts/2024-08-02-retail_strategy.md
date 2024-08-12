@@ -76,7 +76,7 @@ Lets take some quick notes about the data that we have:
 
 !!! note
 
-	     - **`DATE`** : Date since 1899-12-30
+	 - **`DATE`** : Date since 1899-12-30
      - **`STORE_NBR`** : The store identifier
      - **`LYLTY_CARD_NBR`** : Customer's loyalty identifier
      - **`PROD_NAME`** : Name of the product purchased
@@ -86,9 +86,10 @@ Lets take some quick notes about the data that we have:
      - **`PREMIUM_CUSTOMER`** : Customer segmentation used to differentiate shoppers by the price point of products they buy and the types of products they buy. It is used to identify whether customers may spend more for quality or brand or whether they will purchase the cheapest options.
 
 
+
 ## **Loading Dataset**
 
-Time to load our dataset, having given a glimpse of the data, we can define our data types, similar to how you would do in SQL. Well load both of the files and merge them together on column **LYLTY_CARD_NBR**
+Time to load our dataset, having given a glimpse of the data, we can define our data types, similar to how you would do in SQL. Well load both of the files and merge them together on column **LYLTY_CARD_NBR**, we'll also make some minor adjustments before we start exploring the dataset.
 
 
 ```python
@@ -109,7 +110,7 @@ df_behaviour = pd.read_csv(path2)
 df = df_transaction.merge(df_behaviour,on='LYLTY_CARD_NBR')
 ```
 
-As we can see in the data below, we have a customer identifier column LYLTY_CARD_NBR, which we will need to do group by operations and determine aggregations for each unique customer that has made a purchase in our transactions dataset.
+As we can see in the data below, we have a customer identifier column **LYLTY_CARD_NBR**, which we will need to do group by operations and determine aggregations for each unique customer that has made a purchase in our transactions dataset.
 
 Our date column is in a rather odd format, what it represents is the number of days since "1899-12-30", so lets convert it to something we are more familiar with (datetime). However since it is a difference, we need it to be in the **time delta** format & not **datetime**, so lets use `pd.to_timedelta` setting the unit to days:
 
@@ -130,16 +131,6 @@ Looks like we have about a years worth of transactional data, the latest date be
 ```
 (Timestamp('2018-07-01 00:00:00'), Timestamp('2019-06-30 00:00:00'))
 ```
-
-
-
-
-
-
-
-
-
-
 
 ## **Data preparation and customer analytics**
 
@@ -178,6 +169,21 @@ Looks like we have about a years worth of transactional data, the latest date be
     Zilinka'
 
 > We need to present a strategic recommendation to Julia that is supported by data which she can then use for the upcoming category review. However, to do so, we need to analyse the data to understand the current purchasing trends and behaviours. The client is particularly interested in customer segments and their chip purchasing behaviour. Consider what metrics would help describe the customers’ purchasing behaviour.  
+
+
+### Problem Workflow
+
+What well do is conduct an analysis on our client's transaction dataset and identify customer purchasing behaviours to generate insights and provide commercial recommendations.
+
+<div class="grid cards" markdown>
+
+- Understand how to examine and clean transaction and customer data.
+- Learn to identify customer segments based on purchasing behavior.
+- Gain experience in creating charts and graphs to present data insights.
+- Learn how to derive commercial recommendations from data analysis
+
+</div>
+
 
 ### Cleaning Product Name Column
 

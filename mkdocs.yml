@@ -127,7 +127,7 @@ extra_javascript:
 
 nav:
   - <b>Home</b>:
-      - home: index.md
+      - index.md
       - portfolio: portfolio/index.md
       - articles: blog/index.md
       - mllibs: mllibs/index.md
@@ -147,7 +147,6 @@ nav:
       - blog/index.md
 
   - <b>mllibs</b>:
-
       - mllibs/index.md
       - Getting Started: mllibs/install.md
       - Task Status: mllibs/status.md

@@ -198,7 +198,7 @@ And we'll be doing the following:
 
 ### Cleaning Product Name Column
 
-I would start by exploring the **`PROD_NAME`** column, to determine whether the data content is relevant to our problem. Data is often noisy & need to clean it if there are any abnormalities present.
+I would start by exploring the **`PROD_NAME`** column, it contains a several key information parts that we can extract and use in our customer segmentation task. We can also notice some text input abnormalities that we ought to fix along the way.
 
 
 ```python
@@ -274,7 +274,7 @@ Twisties Chicken                      Pringles Chicken Salt Crips          Smith
 Smiths Thinly Cut Roast Chicken       WW Original Stacked Chips            Doritos Salsa Mild   
 ```
 
-What we can notice upon inspecting the unique column values is that we have lots of **misspellings** as well as products related to **salsa** & since we have some overlaps witj chips that contain the word "salsa", eg. **Smiths Crinkle Cut Tomato Salsa**, my guess is that this was not intentional, so we need to segment these groups.
+What we can notice upon inspecting the unique column values is that we have lots of **misspellings** as well as products related to **salsa** (which is a sauce) & we have some overlaps with chips that contain the word "salsa", eg. **Smiths Crinkle Cut Tomato Salsa**, my guess is that this was not intentionally done, so we need to segment these groups.
 
 I have selected the salsas which are present in the column & we will filter out these products from the target products which are chips!
 
@@ -293,9 +293,10 @@ salsas = df[df['TOKENS_STR'].isin(salasa)].copy()
 chips = df[~df['TOKENS_STR'].isin(salasa)].copy()
 ```
 
-### Grouping products into parent,
+### Parsing Product Name Column
 
 The next step we can take is to identify the product producer parent companies. What I found was that there are products by 9 different parent companies `CATEGORY` shown below. Categorising them in this way will hopefully give us some more insights into customer purchasing behaviour and their market share of sales. We will also categorise our transactions into different brand names `BRAND`. And lastly we will extract the mass of packaging, all of which is extracted from the product name.
+
 
 ```python
 # Segment chip/snack parents
@@ -343,6 +344,10 @@ chips['PARENT'] = chips['TOKENS_STR'].apply(categorize_parent)
 chips['BRAND'] = chips['TOKENS_STR'].apply(categorize_brand)
 chips['GRAMS'] = chips['PROD_NAME'].str.extract(r'(\d+)g')
 ```
+
+### Customer Selection Share
+
+We have some new information about the chips parent company, its brand name and the mass of the product, let's check the customer product choice distribution for these three features:
 
 ```python
 # sales ammount distribution by parent company

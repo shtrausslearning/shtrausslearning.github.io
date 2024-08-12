@@ -1,5 +1,5 @@
 ---
-date: 2024-08-02
+date: 2024-08-10
 title: Retail Strategy and Analytics
 authors: [andrey]
 draft: false
@@ -14,20 +14,7 @@ comments: true
 
 # **Retail Strategy and Analytics**
 
-<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
-    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://cdn.theforage.com/vinternships/companyassets/32A6DqtsbF7LbKdcq/9F4wA4B5J6Kgmef3k/1693137922931/quantium_gradient_homepage_img_optimised.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
-        </div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-            <div style="position: relative; display: table; height: 75%; width: 100%;">
-            </div>
-            <div style="position: absolute; bottom: 30px; left: 30px;">
-            </div>
-        </div>
-    </div>
-</div>
-
-
+![](images/header_quantium.jpg)
 
 <div class="grid cards" markdown>
 

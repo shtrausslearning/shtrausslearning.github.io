@@ -15,8 +15,6 @@ tags:
 
 In this notebook, we look at transformer models! Instead of using **huggingface**, we can turn to **PyTorch** and implement our own variation of a **generative transformer model**. We'll create a model from scratch, which we will teach how to do basic arithmetics. To do this, we'll need to create our own dataset of mathematical operations & train the **GPT model** from scratch! We might want to do this in order to get an indea of how powerful these generative models are, they are able to learn the combinations and help us when needed. Another reason is of course the need to understand how these models are structured inside.
 
-![](images/transformer_id.jpg)
-
 <!-- more -->
 
 ![](https://img.shields.io/badge/status-wip-blue) [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Colab-yellow?logo=Google&logoColor=FDBA18)]()

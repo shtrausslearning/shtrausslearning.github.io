@@ -13,19 +13,6 @@ comments: true
 
 # **Named Entity Recognition with Torch Loop**
 
-<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
-    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://i.imgur.com/860MOA6.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
-        </div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-            <div style="position: relative; display: table; height: 75%; width: 100%;">
-            </div>
-            <div style="position: absolute; bottom: 30px; left: 30px;">
-            </div>
-        </div>
-    </div>
-</div>
-
 In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
 
 <!-- more -->

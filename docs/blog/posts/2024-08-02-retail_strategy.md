@@ -427,3 +427,34 @@ Name: proportion, dtype: float64
 ```
 
 When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.
+
+### Store Visits and Checkout Items
+
+Lets also check two other columns, the store purchase statistics, we count the number of store visits for each store and get their stats:
+
+```
+count     271.000000
+mean      915.867159
+std       549.077129
+min         1.000000
+25%       491.500000
+50%       647.000000
+75%      1427.500000
+max      1918.000000
+Name: count, dtype: float64
+```
+
+and the item selection count per store visit:
+
+```
+PROD_QTY
+2      221349
+1       25650
+5         418
+3         408
+4         373
+200         2
+Name: count, dtype: int64
+```
+
+From this information we know that there are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. We ought to check the visit distribution for each store to understand where customers tend to go. Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. We also can notice a rather strange anomaly of 200 items bought, this probably is not a routine customer purchase. 

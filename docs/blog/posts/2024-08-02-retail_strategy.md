@@ -457,4 +457,9 @@ PROD_QTY
 Name: count, dtype: int64
 ```
 
-From this information we know that there are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. We ought to check the visit distribution for each store to understand where customers tend to go. Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. We also can notice a rather strange anomaly of 200 items bought, this probably is not a routine customer purchase. 
+From this information we know that there are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. We ought to check the visit distribution for each store to understand where customers tend to go. Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. We also can notice a rather strange anomaly of 200 items bought, this probably is not a routine customer purchase, so lets not take them into account in our following analyses since they can skew about results.
+
+```python
+chips = chips[chips['PROD_QTY'] != 200]
+```
+

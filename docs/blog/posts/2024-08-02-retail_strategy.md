@@ -14,7 +14,7 @@ comments: true
 
 # **Retail Strategy and Analytics**
 
-![](images/header_quantium.png)
+![](images/header_quantium.JPG)
 
 <div class="grid cards" markdown>
 

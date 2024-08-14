@@ -463,3 +463,42 @@ From this information we know that there are **271 stores** in our data, with mo
 chips = chips[chips['PROD_QTY'] != 200]
 ```
 
+### Customer segmented purchase share
+
+Let's look at member distribution for two customer segmentation features `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
+
+```
+LIFESTAGE
+RETIREES                  20.38
+OLDER SINGLES/COUPLES     20.11
+YOUNG SINGLES/COUPLES     19.88
+OLDER FAMILIES            13.46
+YOUNG FAMILIES            12.64
+MIDAGE SINGLES/COUPLES    10.02
+NEW FAMILIES               3.51
+Name: proportion, dtype: float64
+```
+
+
+
+Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
+
+```
+LIFESTAGE
+OLDER SINGLES/COUPLES     20.58
+RETIREES                  18.81
+OLDER FAMILIES            18.32
+YOUNG FAMILIES            16.42
+YOUNG SINGLES/COUPLES     13.76
+MIDAGE SINGLES/COUPLES     9.48
+NEW FAMILIES               2.63
+Name: proportion, dtype: float64
+```
+
+```
+PREMIUM_CUSTOMER
+Mainstream    38.51
+Budget        35.16
+Premium       26.33
+Name: proportion, dtype: float64
+```

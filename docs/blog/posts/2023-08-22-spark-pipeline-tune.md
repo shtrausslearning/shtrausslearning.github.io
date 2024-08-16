@@ -14,19 +14,6 @@ comments: true
 
 # **Hyperparameter Tuning with Pipelines**
 
-<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
-    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('https://i.imgur.com/Uc03axm.png'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
-        </div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-            <div style="position: relative; display: table; height: 75%; width: 100%;">
-            </div>
-            <div style="position: absolute; bottom: 30px; left: 30px;">
-            </div>
-        </div>
-    </div>
-</div>
-
 This post is the last of the three posts on the titanic classification problem in `pyspark`. In the last post, we started with a clearned dataset, which we prepared for machine learning, by utilising `StringIndexer` & `VectorAssembler`, and then the model training stage itself. These steps are a series of stages in the construction of a model, which we can group into a single `pipline`. `pyspark` like `sklearn` has such pipeline classes that help us keep things organised
 
 <!-- more -->

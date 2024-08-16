@@ -13,20 +13,6 @@ comments: true
 
 # **Gene Classification**
 
-<div style="width: 100%; font-family: Trebuchet MS; font-weight: bold;">
-    <div style="padding-top: 40%; position: relative; background-color: #000000; border-radius:10px;">
-        <div style="background-image: url('images/medgene.jpg'); background-size: cover; background-position: center; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 1.0; border-radius:10px">
-        </div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">
-            <div style="position: relative; display: table; height: 75%; width: 100%;">
-            </div>
-            <div style="position: absolute; bottom: 30px; left: 30px;">
-            </div>
-        </div>
-    </div>
-</div>
-
-
 In this notebook, we look at how to work with biological sequence data, by venturing into a **classification problem**, in which we will be classifying between seven different **genes groups** common to three different species (human,chimpanzee & dog)
 
 <div class="grid cards" markdown>

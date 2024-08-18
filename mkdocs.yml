@@ -83,6 +83,7 @@ plugins:
       data: docs/data/render_yaml/
   - tags
   - offline
+  - mkdocs-jupyter
 
 extra:
     manifest: manifest.webmanifest

@@ -145,6 +145,10 @@ nav:
 
   - <b>Articles</b>:
       - blog/index.md
+      
+  - <b>Notebooks</b>:
+      - notebooks/index.md
+      - RecSys: notebooks/recsys/index.md
 
   - <b>mllibs</b>:
       - mllibs/index.md

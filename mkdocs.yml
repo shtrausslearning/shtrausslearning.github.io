@@ -83,6 +83,34 @@ plugins:
       data: docs/data/render_yaml/
   - tags
   - offline
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            extensions:
+              - griffe_typingdoc
+            show_root_heading: true
+            show_if_no_docstring: true
+            preload_modules:
+              - httpx
+              - starlette
+            inherited_members: true
+            members_order: source
+            separate_signature: true
+            unwrap_annotated: true
+            filters:
+              - "!^_"
+            merge_init_into_class: true
+            docstring_section_style: spacy
+            signature_crossrefs: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+  - mkdocs-jupyter:
+      execute: false
+      include_source: True
+      include_requirejs: False
+      ignore_h1_titles: True
+      highlight_extra_classes: "highlight"
 
 extra:
     manifest: manifest.webmanifest

@@ -2,7 +2,7 @@
 icon: material/package-variant
 ---
 
-![Image title](images/wnb.png){ width="450" }
+<center>![Image title](images/wnb.png){ width="450" }</center>
 
 ### **About mllibs**
 

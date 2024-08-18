@@ -33,6 +33,12 @@ icon: octicons/home-fill-24
 
     My data science & analytics posts 
 
+
+  - :simple-jupyter:{ .lg .middle }&nbsp; &nbsp;[<b>Jupyter Notebooks</b>](notebooks/index.md)
+
+    Collection of Jupyter notebooks on a varienty of data science topics
+
+
   - :material-bookshelf:{ .lg .middle }&nbsp; &nbsp;[<b>My Articles</b>](blog/index.md)
 
     Articles related to data science & analytics
@@ -45,10 +51,12 @@ icon: octicons/home-fill-24
 
 ## Recent Activity 
 
-<div class="grid cards" markdown>
+<div class="grid" markdown>
 
-  - [:material-update:{ .lg .middle }&nbsp; <b>02.08.24</b> **article post** <br> Commonwealth Bank Internship :material-link:{ .middle .bounce }](https://shtrausslearning.github.io/blog/2024/08/02/commonwealth-bank-internship.html)
+  - [:material-update:{ .lg .middle }&nbsp; <b>16.08.24</b> **website update** Added Jupyter Notebook Section :material-link:{ .middle .bounce }](notebooks/index.md)
 
-  - [:material-update:{ .lg .middle }&nbsp; <b>28.04.24</b> **mllibs documentation** <br> Updates to mllibs documentation - **mstats_tests** :material-link:{ .middle .bounce }](mllibs/documentation/stats/mstats_tests.md)
+  - [:material-update:{ .lg .middle }&nbsp; <b>02.08.24</b> **article post** Commonwealth Bank Internship :material-link:{ .middle .bounce }](https://shtrausslearning.github.io/blog/2024/08/02/commonwealth-bank-internship.html)
+
+  - [:material-update:{ .lg .middle }&nbsp; <b>28.04.24</b> **mllibs documentation** Updates to mllibs documentation - **mstats_tests** :material-link:{ .middle .bounce }](mllibs/documentation/stats/mstats_tests.md)
 
 </div>

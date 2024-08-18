@@ -9,14 +9,18 @@ docs_dir: docs
 theme:
   language: en
   name: material
+  logo: images/logo2.svg
+  favicon: images/mllibs2.svg
   custom_dir: overrides
   font:
       text: Ubuntu
       code: Roboto Mono
   icon:
-    logo: myicons/home-logo
+    logo: mllibs2.svg
     repo: fontawesome/brands/square-github
-  favicon: images/favicon.png 
+
+  logo: images/logo2.svg
+  favicon: images/mllibs2.svg
     
   features:
     - content.code.annotate

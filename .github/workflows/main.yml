@@ -22,7 +22,7 @@ jobs:
           key: ${{ github.ref }}
           path: .cache
       - name: Install mkdocs
-        run: pip install mkdocs-material==9.5.17 mkdocs-markdownextradata-plugin==0.2.5
+        run: pip install mkdocs-material==9.5.17 mkdocs-markdownextradata-plugin==0.2.5 mkdocs-jupyter==0.24.8
       - name: Finally build docs and publish
         env:
           GOOGLE_ANALYTICS_PROPERTY: ${{ secrets.GOOGLE_ANALYTICS_PROPERTY }}

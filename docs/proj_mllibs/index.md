@@ -1,7 +1,5 @@
 ---
-title: mllibs
-icon: material/package-variant
-hide_comments: false
+icon: material/account-box
 ---
 
 <center>![Image title](images/wnb.png){ width="450" }</center>
@@ -103,5 +101,3 @@ Here's how you can get started:
 **Thank you for reading!**
 
 Any questions or comments about the above post can be addressed on the :fontawesome-brands-telegram:{ .telegram } **[mldsai-info channel](https://t.me/mldsai_info)** or to me directly :fontawesome-brands-telegram:{ .telegram } **[shtrauss2](https://t.me/shtrauss2)**, on :fontawesome-brands-github:{ .github } **[shtrausslearning](https://github.com/shtrausslearning)** or :fontawesome-brands-kaggle:{ .kaggle} **[shtrausslearning](https://kaggle.com/shtrausslearning)**
-
-

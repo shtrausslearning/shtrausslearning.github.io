@@ -133,11 +133,7 @@ extra_javascript:
 nav:
   - <b>Home</b>:
       - index.md
-      - portfolio: portfolio/index.md
-      - articles: blog/index.md
-      - mllibs: mllibs/index.md
-      - about: about/index.md
-
+ 
   - <b>Mllibs</b>:
        - mllibs/about.md
 
@@ -161,4 +157,4 @@ nav:
       
   - <b>About</b>: about/index.md
   
-  - <b>About2</b>: about_mllibs/index.md
+  - <b>mllibs</b>: about_mllibs/index.md

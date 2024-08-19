@@ -57,6 +57,6 @@ icon: octicons/home-fill-24
 
   - [:material-update:{ .lg .middle }&nbsp; <b>02.08.24</b> **article post** Commonwealth Bank Internship :material-link:{ .middle .bounce }](https://shtrausslearning.github.io/blog/2024/08/02/commonwealth-bank-internship.html)
 
-  - [:material-update:{ .lg .middle }&nbsp; <b>28.04.24</b> **mllibs documentation** Updates to mllibs documentation - **mstats_tests** :material-link:{ .middle .bounce }](mllibs/documentation/stats/mstats_tests.md)
+  - [:material-update:{ .lg .middle }&nbsp; <b>28.04.24</b> **mllibs documentation** Updates to mllibs documentation - **mstats_tests** :material-link:{ .middle .bounce }](proj_mmlibs/index.md)
 
 </div>

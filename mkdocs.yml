@@ -158,19 +158,10 @@ nav:
 
   - <b>mllibs</b>:
       - mllibs/index.md
-      - Getting Started: mllibs/install.md
-      - Task Status: mllibs/status.md
-      - Updates: mllibs/releases.md
-
-      - Basics:
-          - Iterative: mllibs/basics/iterative.md
-          - Storage: mllibs/basics/data_storage.md
-
       - Modules: 
           - Available modules: mllibs/modules/list.md
           - Adding new modules: mllibs/modules/adding.md
           - Grouping modules: mllibs/modules/grouping.md
-
           - Documentation: 
             - mstats_tests: mllibs/documentation/mstats_tests.md
 

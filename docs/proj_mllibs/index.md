@@ -1,6 +1,5 @@
 ---
 title: mllibs
-icon: myicons/mllibs
 ---
 
 <center>![Image title](images/wnb.png){ width="450" }</center>

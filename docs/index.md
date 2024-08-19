@@ -43,7 +43,7 @@ icon: octicons/home-fill-24
 
     Articles related to data science & analytics
 
-  - :simple-gitlfs:{ .lg .middle }&nbsp; &nbsp;[<b>mllibs documentation</b>](mllibs/index.md)
+  - :simple-gitlfs:{ .lg .middle }&nbsp; &nbsp;[<b>mllibs documentation</b>](proj_mllibs/index.md)
     
     NLP process automisation project documentation
 
@@ -57,6 +57,6 @@ icon: octicons/home-fill-24
 
   - [:material-update:{ .lg .middle }&nbsp; <b>02.08.24</b> **article post** Commonwealth Bank Internship :material-link:{ .middle .bounce }](https://shtrausslearning.github.io/blog/2024/08/02/commonwealth-bank-internship.html)
 
-  - [:material-update:{ .lg .middle }&nbsp; <b>28.04.24</b> **mllibs documentation** Updates to mllibs documentation - **mstats_tests** :material-link:{ .middle .bounce }](proj_mmlibs/index.md)
+  - [:material-update:{ .lg .middle }&nbsp; <b>28.04.24</b> **mllibs documentation** Updates to mllibs documentation - **mstats_tests** :material-link:{ .middle .bounce }](proj_mllibs/index.md)
 
 </div>

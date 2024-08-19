@@ -138,6 +138,9 @@ nav:
       - mllibs: mllibs/index.md
       - about: about/index.md
 
+  - <b>Mllibs</b>:
+       - mllibs/about.md
+
   - <b>Projects</b>: 
       - portfolio/index.md
       - NLP: portfolio/nlp.md
@@ -155,9 +158,6 @@ nav:
       - notebooks/index.md
       - RecSys: notebooks/recsys/index.md
       - Machine Learning: notebooks/sfml/index.md
-
-  - <b>mllibs</b>:
-      - mllibs/index.md
       
   - <b>About</b>: about/index.md
   

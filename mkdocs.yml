@@ -158,12 +158,6 @@ nav:
 
   - <b>mllibs</b>:
       - mllibs/index.md
-      - Modules: 
-          - Available modules: mllibs/modules/list.md
-          - Adding new modules: mllibs/modules/adding.md
-          - Grouping modules: mllibs/modules/grouping.md
-          - Documentation: 
-            - mstats_tests: mllibs/documentation/mstats_tests.md
-
+      
   - <b>About</b>: about/index.md
   

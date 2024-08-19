@@ -133,9 +133,6 @@ extra_javascript:
 nav:
   - <b>Home</b>:
       - index.md
- 
-  - <b>Mllibs</b>:
-       - mllibs/about.md
 
   - <b>Projects</b>: 
       - portfolio/index.md
@@ -154,7 +151,6 @@ nav:
       - notebooks/index.md
       - RecSys: notebooks/recsys/index.md
       - Machine Learning: notebooks/sfml/index.md
-      
-  - <b>About</b>: about/index.md
   
   - <b>mllibs</b>: proj_mllibs/index.md
+  - <b>About</b>: about/index.md

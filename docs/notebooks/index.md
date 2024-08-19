@@ -11,7 +11,7 @@ In this section you will find jupyter notebooks on a variety of topics. Each not
 
 ## Data Science Courses
 
-Data Science related that I found interesting 
+Data Science related courses that search fundamentals about each subject
 
 <div class="grid cards" markdown>
 

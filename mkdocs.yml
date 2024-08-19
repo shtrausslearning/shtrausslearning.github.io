@@ -152,5 +152,7 @@ nav:
       - RecSys: notebooks/recsys/index.md
       - Machine Learning: notebooks/sfml/index.md
   
-  - <b>mllibs</b>: proj_mllibs/index.md
+  - <b>mllibs</b>: 
+        - proj_mllibs/index.md
+        
   - <b>About</b>: about/index.md

@@ -153,6 +153,8 @@ nav:
       - Machine Learning: notebooks/sfml/index.md
   
   - <b>mllibs</b>: 
-        - proj_mllibs/index.md
+        - mllibs: proj_mllibs/index.md
+        - documentation: 
+            - mstats_tests: proj_mllibs/documentation/mstats_tests.md
         
   - <b>About</b>: about/index.md

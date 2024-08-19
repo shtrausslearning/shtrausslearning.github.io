@@ -1,5 +1,5 @@
 ---
-icon: myicons/mllibs.svg
+icon: material/account-box
 ---
 
 <center>![Image title](images/wnb.png){ width="450" }</center>

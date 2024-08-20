@@ -15,9 +15,9 @@ Practice linear regression modeling methods
 
 - <center><b>[Линейная Регрессия Предобработка](ml3a_5_Линейная_предобработка)</b></center>
 
-- <center><b>[Линейная Регрессия Практика 1](ml3a_6_Линейная_практика)</b></center>
+- <center><b>[Линейная Регрессия Практика 1](ml3a_linear_practice1)</b></center>
 
-- <center><b>[Линейная Регрессия Практика 2](ml3a_7_Линейная_практика)</b></center>
+- <center><b>[Линейная Регрессия Практика 2](ml3a_linear_practice2)</b></center>
 
 </div>
 

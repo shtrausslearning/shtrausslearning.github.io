@@ -13,7 +13,7 @@ Practice linear regression modeling methods
 
 <div class="grid cards" markdown>
 
-- <center><b>[Линейная Регрессия Предобработка](ml3a_5_Линейная_предобработка)</b></center>
+- <center><b>[Линейная Регрессия Предобработка](ml3a_linear_prep)</b></center>
 
 - <center><b>[Линейная Регрессия Практика 1](ml3a_linear_practice1)</b></center>
 

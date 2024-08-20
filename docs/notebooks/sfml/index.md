@@ -7,7 +7,7 @@ hide_comments: false
 
 In this sections we cover Machine Learning related topics covered in the course
 
-## **:material-chart-timeline-variant: Модуль 3. Регрессия и классификация** 
+## **:material-chart-timeline-variant: Модуль 3. Линейные Модели** 
 
 Practice linear regression and classification modeling methods
 
@@ -21,7 +21,9 @@ Practice linear regression and classification modeling methods
 
 - <center><b>[Логистическая Регрессия Метрики Качества](ml3b_2_metrics)</b></center>
 
-- <center><b>[Логистическая Регрессия Практика](ml3b_3_practice)</b></center>
+- <center><b>[Логистическая Регрессия Практика 1](ml3b_3_practice)</b></center>
+
+- <center><b>[Логистическая Регрессия Практика 2](ml3b_6_practice)</b></center>
 
 
 </div>

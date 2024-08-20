@@ -19,7 +19,7 @@ Data Science related courses that search fundamentals about each subject
 
 - > <center>:material-format-letter-case: Natural Language Processing Course Work</center>
 
-- > <center><b>:simple-codeclimate: [Machine Learning Course Work](sfml/index.md)</b></center>
+- <center><b>:simple-codeclimate: [Machine Learning Course Work](sfml/index.md)</b></center>
 
 </div>
 

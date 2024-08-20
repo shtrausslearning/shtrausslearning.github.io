@@ -14,17 +14,11 @@ Practice linear regression and classification modeling methods
 <div class="grid cards" markdown>
 
 - <center><b>[Линейная Регрессия Предобработка](ml3a_linear_prep)</b></center>
-
 - <center><b>[Линейная Регрессия Практика 1](ml3a_linear_practice1)</b></center>
-
 - <center><b>[Линейная Регрессия Практика 2](ml3a_linear_practice2)</b></center>
-
 - <center><b>[Логистическая Регрессия Метрики Качества](ml3b_2_metrics)</b></center>
-
 - <center><b>[Логистическая Регрессия Практика 1](ml3b_3_practice)</b></center>
-
 - <center><b>[Логистическая Регрессия Практика 2](ml3b_6_practice)</b></center>
-
 
 </div>
 

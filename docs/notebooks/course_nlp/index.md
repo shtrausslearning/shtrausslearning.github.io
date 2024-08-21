@@ -14,7 +14,8 @@ More traditional methods using in NLP
 
 <div class="grid cards" markdown>
 
-- <center><b>[Векторное представление слов](text_embeddings)</b></center>
+- <center><b>[Векторное представление слов 1](khazah-news-sentiment)</b></center>
+- <center><b>[Векторное представление слов 2](text_embeddings)</b></center>
 
 </div>
 

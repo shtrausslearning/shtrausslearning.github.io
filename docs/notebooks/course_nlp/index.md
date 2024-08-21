@@ -8,7 +8,7 @@ hide_comments: false
 In this section we focus on Natural Language Processing
 
 
-## Notebooks
+## Classical Methods
 
 More traditional methods using in NLP 
 
@@ -18,14 +18,11 @@ More traditional methods using in NLP
 - <center><b>[Векторное представление слов (Embedding)](text_embeddings)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ Natasha/Re](preset_NER)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ GRU](gru_NER)</b></center>
-- <center><b>[Transfer Learning с BERT](transformers_multi_label)</b></center>
 
 </div>
 
 
-## Mini Projects
-
-Various tasks that were asked as homework
+## Homework
 
 <div class="grid cards" markdown>
 

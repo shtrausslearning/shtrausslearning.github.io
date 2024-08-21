@@ -14,8 +14,12 @@ More traditional methods using in NLP
 
 <div class="grid cards" markdown>
 
-- <center><b>[Векторное представление слов 1](khazah-news-sentiment)</b></center>
-- <center><b>[Векторное представление слов 2](text_embeddings)</b></center>
+- <center><b>[Векторное представление слов (BoW)](khazah-news-sentiment)</b></center>
+- <center><b>[Векторное представление слов (Embedding)](text_embeddings)</b></center>
+- <center><b>[Распознования Именованных Сущностей w/ Natasha/Re](preset_NER)</b></center>
+- <center><b>[Распознования Именованных Сущностей w/ GRU](gru_NER)</b></center>
+
+Распознования Именованных Сущностей
 
 </div>
 

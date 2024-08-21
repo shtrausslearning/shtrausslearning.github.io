@@ -16,9 +16,10 @@ More traditional methods using in NLP
 
 - <center><b>[Векторное представление слов (BoW)](khazah-news-sentiment)</b></center>
 - <center><b>[Векторное представление слов (Embedding)](text_embeddings)</b></center>
-- <center><b>[Распознования Именованных Сущностей w/ Natasha/Re](preset_NER)</b></center>
-- <center><b>[Распознования Именованных Сущностей w/ GRU](gru_NER)</b></center>
-- <center><b>[Transfer Learning Multilabel Classification](multilabel-text-classification)</b></center>
+- <center><b>[Распознования Именованных Сущностей с Natasha/Re](preset_NER)</b></center>
+- <center><b>[Распознования Именованных Сущностей с GRU](gru_NER)</b></center>
+- <center><b>[Transfer Learning с BERT](multilabel-text-classification)</b></center>
+- <center><b>[Работа с предобученными язоковыми моделями](multilabel-text-classification)</b></center>
 
 </div>
 

@@ -7,21 +7,7 @@ hide_comments: false
 
 In this section we focus on Natural Language Processing
 
-
-## Classical Methods
-
-More traditional methods using in NLP 
-
-<div class="grid cards" markdown>
-
-- <center><b>[Векторное представление слов](text_embeddings)</b></center>
-
-</div>
-
-
 ## Homework
-
-Small project work related to course
 
 <div class="grid cards" markdown>
 

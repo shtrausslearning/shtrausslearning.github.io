@@ -18,8 +18,8 @@ More traditional methods using in NLP
 - <center><b>[Векторное представление слов (Embedding)](text_embeddings)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ Natasha/Re](preset_NER)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ GRU](gru_NER)</b></center>
-- <center><b>[Пример Transfer Learning](multilabel-text-classification)</b></center>
 
+Распознования Именованных Сущностей
 
 </div>
 

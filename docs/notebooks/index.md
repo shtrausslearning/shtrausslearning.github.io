@@ -15,9 +15,9 @@ Data Science related courses that search fundamentals about each subject
 
 <div class="grid cards" markdown>
 
-- <center><b>:octicons-people-16: [Recommendation Systems Course Work](recsys/index.md)</b></center>
+- <center><b>:octicons-people-16: [Recommendation Systems Course Work](course_recsys/index.md)</b></center>
 
-- > <center>:material-format-letter-case: Natural Language Processing Course Work</center>
+- <center><b>:material-format-letter-case: [Natural Language Processing Course Work](course_nlp/index.md)</b></center>
 
 - <center><b>:simple-codeclimate: [Machine Learning Course Work](sfml/index.md)</b></center>
 

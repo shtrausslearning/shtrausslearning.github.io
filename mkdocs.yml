@@ -88,6 +88,8 @@ plugins:
   - tags
   - offline
   - mkdocs-jupyter
+	  include_source: True
+	  include_requirejs: true
 
 extra:
     manifest: manifest.webmanifest

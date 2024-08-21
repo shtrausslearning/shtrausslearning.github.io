@@ -8,7 +8,7 @@ hide_comments: false
 In this section we focus on Natural Language Processing
 
 
-## Classical Methods
+## Classical & Neural Approaches
 
 More traditional methods using in NLP 
 
@@ -18,8 +18,7 @@ More traditional methods using in NLP
 - <center><b>[Векторное представление слов (Embedding)](text_embeddings)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ Natasha/Re](preset_NER)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ GRU](gru_NER)</b></center>
-
-Распознования Именованных Сущностей
+- <center><b>[Transfer Learning Multilabel Classification](multilabel-text-classification)</b></center>
 
 </div>
 

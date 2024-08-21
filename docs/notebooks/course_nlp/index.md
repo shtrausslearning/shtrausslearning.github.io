@@ -19,8 +19,6 @@ More traditional methods using in NLP
 - <center><b>[Распознования Именованных Сущностей w/ Natasha/Re](preset_NER)</b></center>
 - <center><b>[Распознования Именованных Сущностей w/ GRU](gru_NER)</b></center>
 
-Распознования Именованных Сущностей
-
 </div>
 
 

@@ -87,7 +87,10 @@ plugins:
       data: docs/data/render_yaml/
   - tags
   - offline
-  - mkdocs-jupyter
+  - mkdocs-jupyter:
+      execute: false
+      include_source: True
+      include_requirejs: true
 
 extra:
     manifest: manifest.webmanifest

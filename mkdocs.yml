@@ -89,7 +89,7 @@ plugins:
   - offline
   - mkdocs-jupyter:
       execute: false
-      include_source: True
+      include_source: true
       include_requirejs: true
 
 extra:

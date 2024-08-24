@@ -28,6 +28,12 @@ Data Science related courses that search fundamentals about each subject
 
 Internship related projects related to data science
 
+<div class="grid cards" markdown>
+
+> - <center><b>[Customer Stable Fund Modeling](User_Segmentation)</b></center>
+
+</div>
+
 
 ---
 

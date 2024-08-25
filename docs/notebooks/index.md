@@ -6,7 +6,7 @@ hide_comments: false
 
 # Jupyter Notebooks
 
-In this section you will find jupyter notebooks on a variety of topics. Each notebook can be downloaded and run locally or on colab/kaggle.
+In this section you will find jupyter notebooks on a variety of topics. Each notebook can be downloaded and run locally or on colab/kaggle
 
 
 ## Data Science Courses

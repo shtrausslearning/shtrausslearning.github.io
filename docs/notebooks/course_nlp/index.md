@@ -8,7 +8,7 @@ hide_comments: false
 In this section we focus on Natural Language Processing
 
 
-## Classical Methods
+## Material
 
 More traditional methods using in NLP 
 
@@ -22,7 +22,7 @@ More traditional methods using in NLP
 </div>
 
 
-## Homework
+## Projects
 
 <div class="grid cards" markdown>
 

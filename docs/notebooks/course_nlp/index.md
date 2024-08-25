@@ -5,12 +5,10 @@ hide_comments: false
 
 # NLP
 
-In this section we focus on Natural Language Processing
+In this section we focus on Natural Language Processing 
 
 
 ## Course Material
-
-More traditional methods using in NLP 
 
 <div class="grid cards" markdown>
 
@@ -23,6 +21,8 @@ More traditional methods using in NLP
 
 
 ## Projects
+
+Different projects undertaken
 
 <div class="grid cards" markdown>
 

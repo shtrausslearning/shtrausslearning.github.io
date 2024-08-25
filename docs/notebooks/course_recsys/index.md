@@ -8,6 +8,8 @@ hide_comments: false
 In this section we focus on recommendation systems
 
 
+## Course Material
+
 <div class="grid cards" markdown>
 
 - <center><b>[Сегментация Пользователей (Эвристическая, Кластеризация, Лог Регрессия)](User_Segmentation)</b></center>

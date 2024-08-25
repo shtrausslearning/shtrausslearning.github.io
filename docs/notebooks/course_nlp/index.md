@@ -8,7 +8,7 @@ hide_comments: false
 In this section we focus on Natural Language Processing
 
 
-## Material
+## Course Material
 
 More traditional methods using in NLP 
 

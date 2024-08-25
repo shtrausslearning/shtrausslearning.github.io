@@ -16,3 +16,13 @@ In this section we focus on recommendation systems
 - <center><b>[Uplift Моделирования](Uplift_Modeling)
 
 </div>
+
+## Projects
+
+Different projects undertaken
+
+<div class="grid cards" markdown>
+
+- <center><b>[X-Learner Uplift Молельный подход](X_learner)</b></center>
+
+</div>

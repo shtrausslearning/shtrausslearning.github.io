@@ -23,6 +23,17 @@ Data Science related courses that search fundamentals about each subject
 
 </div>
 
+## Kaggle Notebooks
+
+Notebooks created on Kaggle
+
+<div class="grid cards" markdown>
+
+- <center><b>:octicons-people-16: [edX Course Recommedation](kaggle/nlp-edx-course-recommendations)</b></center>
+
+</div>
+
+
 
 ---
 

@@ -25,6 +25,12 @@ Data Science related courses that search fundamentals about each subject
 
 ## Kaggle Notebooks
 
+<div class="grid cards" markdown>
+
+- <center><b>:octicons-people-16: [Ovarian Phase Classification in Felids](kaggle/ovarian-phase-classification-in-felids)</b></center>
+
+</div>
+
 
 ---
 

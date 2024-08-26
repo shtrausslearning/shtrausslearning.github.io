@@ -77,3 +77,16 @@ Practice for Gradient Boosting & Model Stacking
 - <center><b>[Бустинг Практика](ml6_Бустинг)</b></center>
 
 </div>
+
+
+## **:material-projector-screen-outline: Projects**
+
+Hackathon competition projects
+
+<div class="grid cards" markdown>
+
+- <center><b>[Mid-Term Hackathon Project](mid_treemodels)</b></center>
+
+</div>
+
+

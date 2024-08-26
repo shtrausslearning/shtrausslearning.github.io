@@ -25,8 +25,6 @@ Data Science related courses that search fundamentals about each subject
 
 ## Kaggle Notebooks
 
-[](internship/test)
-
 
 ---
 

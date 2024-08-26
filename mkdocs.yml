@@ -90,6 +90,8 @@ plugins:
   - mkdocs-jupyter:
       include_source: True
       ignore_h1_titles: True
+      include_requirejs: true
+      
 
 extra:
     manifest: manifest.webmanifest

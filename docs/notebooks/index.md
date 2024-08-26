@@ -25,9 +25,13 @@ Data Science related courses that search fundamentals about each subject
 
 ## Kaggle Notebooks
 
+Notebooks created on platform Kaggle
+
 <div class="grid cards" markdown>
 
-- <center><b>:octicons-people-16: [Ovarian Phase Classification in Felids](kaggle/ovarian-phase-classification-in-felids)</b></center>
+- <center><b>[Ovarian Phase Classification in Felids](kaggle/ovarian-phase-classification-in-felids)</b></center>
+
+- <center><b>[Financial Consumer Complaint Analysis](kaggle/financial-consumer-complaint-analysis)</b></center>
 
 </div>
 

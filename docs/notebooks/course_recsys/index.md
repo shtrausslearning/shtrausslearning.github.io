@@ -8,7 +8,9 @@ hide_comments: false
 In this section we focus on recommendation systems
 
 
-## Course Material
+## From ML to Personalisation
+
+User segmentation approaches
 
 <div class="grid cards" markdown>
 
@@ -18,6 +20,18 @@ In this section we focus on recommendation systems
 - <center><b>[Uplift Моделирования](Uplift_Modeling)
 
 </div>
+
+
+## Classical Recommendation Methods
+
+More traditional methods to recommendation
+
+<div class="grid cards" markdown>
+
+- <center><b>[Эвристические, Коллаборативные](recsys_knn_rule)</b></center>
+
+</div>
+
 
 ## Projects
 

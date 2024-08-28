@@ -28,7 +28,7 @@ More traditional methods to recommendation
 
 <div class="grid cards" markdown>
 
-- <center><b>[Эвристические, Коллаборативные](recsys_knn_rule)</b></center>
+- <center><b>[Эвристические, Коллаборативные](recsys_rule_knn)</b></center>
 
 </div>
 

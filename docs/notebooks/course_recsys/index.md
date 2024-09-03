@@ -30,6 +30,7 @@ Traditional approaches to generation of recommendations
 
 - <center><b>[Эвристические Модели,Коллаборативная Фильтрация](recsys_rule_knn)</b></center>
 - <center><b>[Модели Матричной Факторизации](recsys_matrix_decomposition)</b></center>
+- <center><b>[Модели Матричной Факторизации Практика](recsys_matrix_decomposition_practice)</b></center>
 
 </div>
 

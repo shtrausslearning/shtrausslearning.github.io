@@ -33,6 +33,8 @@ Notebooks created on platform Kaggle
 
 - <center><b>[Financial Consumer Complaint Analysis](kaggle/financial-consumer-complaint-analysis)</b></center>
 
+- <center><b>[edx Course Recommendations](edx-course-recommendations)</b></center>
+
 </div>
 
 

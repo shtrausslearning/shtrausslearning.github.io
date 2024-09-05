@@ -79,6 +79,18 @@ Practice for Gradient Boosting & Model Stacking
 </div>
 
 
+## **:octicons-graph-16: Модуль 8. Временные ряды в МО**
+
+Time series based machine learning 
+
+<div class="grid cards" markdown>
+
+- <center><b>[Особенности применения машинного обучения к временным рядам](ml8_ts_specifics)</b></center>
+
+
+</div>
+
+
 ## **:material-projector-screen-outline: Projects**
 
 Hackathon competition projects

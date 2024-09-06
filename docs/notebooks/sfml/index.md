@@ -86,6 +86,7 @@ Hackathon competition projects
 <div class="grid cards" markdown>
 
 - <center><b>[Mid-Term Hackathon Project](mid_treemodels)</b></center>
+- <center><b>[Final-Term Hackathon Project](final_movie_rating)</b></center>
 
 </div>
 

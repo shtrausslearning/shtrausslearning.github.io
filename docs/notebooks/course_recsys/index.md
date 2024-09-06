@@ -24,11 +24,14 @@ User segmentation approaches
 
 ## Classical Recommendation Methods
 
-More traditional methods to recommendation
+Traditional approaches to generation of recommendations
 
 <div class="grid cards" markdown>
 
-- <center><b>[Эвристические, Коллаборативные](recsys_rule_knn)</b></center>
+- <center><b>[Эвристические Модели,Коллаборативная Фильтрация](recsys_rule_knn)</b></center>
+- <center><b>[Модели Матричной Факторизации](recsys_matrix_decomposition)</b></center>
+- <center><b>[Модели Матричной Факторизации Практика](recsys_matrix_decomposition_practice)</b></center>
+- <center><b>[A/B - тесты в рекомендательных системах](AB_seminar)</b></center>
 
 </div>
 

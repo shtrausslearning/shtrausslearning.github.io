@@ -35,6 +35,7 @@ Traditional approaches to generation of recommendations
 - <center><b>[Контентные методы рекомендаций](recsys_lightfm)</b></center>
 - <center><b>[Рекомендации по текстовому описанию](recsys_nlp)</b></center>
 - <center><b>[Практическое занятие по рекомендательным системам. Двухуровневая модель](recsys_twomodel)</b></center>
+- <center><b>[Практическое занятие по рекомендательным системам. Двухуровневая модель 2](recsys_twomodel2)</b></center>
 
 
 </div>

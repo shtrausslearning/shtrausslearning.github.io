@@ -32,7 +32,11 @@ Traditional approaches to generation of recommendations
 - <center><b>[Модели Матричной Факторизации Практика](recsys_matrix_decomposition_practice)</b></center>
 - <center><b>[A/B - тесты в рекомендательных системах](AB_seminar)</b></center>
 
+</div>
+
 ## Контентные и гибридные методы рекомендаций
+
+<div class="grid cards" markdown>
 
 - <center><b>[Контентные методы рекомендаций](recsys_lightfm)</b></center>
 - <center><b>[Рекомендации по текстовому описанию](recsys_nlp)</b></center>

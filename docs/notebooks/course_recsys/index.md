@@ -5,11 +5,7 @@ hide_comments: false
 
 # RecSys
 
-In this section we focus on recommendation systems
-
 ## От классического ML к персонализации
-
-User segmentation approaches
 
 <div class="grid cards" markdown>
 
@@ -22,8 +18,6 @@ User segmentation approaches
 
 
 ## Классические методы рекомендаций
-
-Traditional approaches to generation of recommendations
 
 <div class="grid cards" markdown>
 
@@ -46,9 +40,17 @@ Traditional approaches to generation of recommendations
 
 </div>
 
-## Projects
+## Современные методы рекомендаций
 
-Different projects undertaken
+<div class="grid cards" markdown>
+
+- <center><b>[Многорукие бандиты для оптимизации A/B - тестирования]()</b></center>
+- <center><b>[Многорукие бандиты для задачи рекомендации]()</b></center>
+
+</div>
+
+
+## Проекты
 
 <div class="grid cards" markdown>
 

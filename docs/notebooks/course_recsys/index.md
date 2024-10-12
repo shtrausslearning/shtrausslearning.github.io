@@ -7,8 +7,7 @@ hide_comments: false
 
 In this section we focus on recommendation systems
 
-
-## From ML to Personalisation
+## От классического ML к персонализации
 
 User segmentation approaches
 
@@ -22,7 +21,7 @@ User segmentation approaches
 </div>
 
 
-## Classical Recommendation Methods
+## Классические методы рекомендаций
 
 Traditional approaches to generation of recommendations
 
@@ -32,6 +31,9 @@ Traditional approaches to generation of recommendations
 - <center><b>[Модели Матричной Факторизации](recsys_matrix_decomposition)</b></center>
 - <center><b>[Модели Матричной Факторизации Практика](recsys_matrix_decomposition_practice)</b></center>
 - <center><b>[A/B - тесты в рекомендательных системах](AB_seminar)</b></center>
+
+## Контентные и гибридные методы рекомендаций
+
 - <center><b>[Контентные методы рекомендаций](recsys_lightfm)</b></center>
 - <center><b>[Рекомендации по текстовому описанию](recsys_nlp)</b></center>
 - <center><b>[Ранжирование каталога товаров I](Ranker_Regressor)</b></center>

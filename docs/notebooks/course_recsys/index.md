@@ -34,8 +34,8 @@ Traditional approaches to generation of recommendations
 - <center><b>[A/B - тесты в рекомендательных системах](AB_seminar)</b></center>
 - <center><b>[Контентные методы рекомендаций](recsys_lightfm)</b></center>
 - <center><b>[Рекомендации по текстовому описанию](recsys_nlp)</b></center>
-- <center><b>[Ранжирование каталога товаров I]()</b></center>
-- <center><b>[Ранжирование каталога товаров II](Catboost_Ranker)</b></center>
+- <center><b>[Ранжирование каталога товаров I](Ranker)</b></center>
+- <center><b>[Ранжирование каталога товаров II](CatBoost_Ranker)</b></center>
 - <center><b>[Практическое занятие по рекомендательным системам. Двухуровневая модель](recsys_twomodel)</b></center>
 
 </div>

@@ -42,7 +42,6 @@ theme:
       accent: indigo
         
 markdown_extensions:
-  - pymdownx.superfences
   - admonition
   - attr_list
   - def_list
@@ -57,6 +56,8 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tilde
   - tables
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
   - toc:

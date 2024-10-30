@@ -12,8 +12,6 @@ tags:
 comments: true
 ---
 
-# Retail Strategy and Analytics
-
 <div class="grid cards" markdown>
 
 - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/forage-internship-data)</b>
@@ -130,9 +128,11 @@ Looks like we have about a years worth of transactional data, the latest date be
 (Timestamp('2018-07-01 00:00:00'), Timestamp('2019-06-30 00:00:00'))
 ```
 
-## **Data preparation and customer analytics**
+## <b>2 | <span style='color:#678DFF'>Data preparation and customer analytics</span></b>
 
-### Problem Statement
+***
+
+### <span style='color:#5075dc'>|</span> Problem Statement
 
 > You are part of Quantium’s retail analytics team and have been approached by your client, the Category Manager for Chips, who wants to better understand the types of customers who purchase Chips and their purchasing behaviour within the region.
 
@@ -140,7 +140,7 @@ Looks like we have about a years worth of transactional data, the latest date be
 
 > You have received the following email from your manager, Zilinka.
 
-??? note "Email from Zilinka"
+!!! note "Email from Zilinka"
 
     'Hi, 
 
@@ -169,7 +169,7 @@ Looks like we have about a years worth of transactional data, the latest date be
 > We need to present a strategic recommendation to Julia that is supported by data which she can then use for the upcoming category review. However, to do so, we need to analyse the data to understand the current purchasing trends and behaviours. The client is particularly interested in customer segments and their chip purchasing behaviour. Consider what metrics would help describe the customers’ purchasing behaviour.  
 
 
-### Problem Workflow
+### <span style='color:#5075dc'>|</span> Problem Workflow
 
 What well do is conduct an analysis on our client's transaction dataset and identify customer purchasing behaviours to generate insights and provide commercial recommendations.
 
@@ -194,7 +194,7 @@ And we'll be doing the following:
 
 </div>
 
-### Cleaning Product Name Column
+### <span style='color:#5075dc'>|</span> Cleaning Product Name Column
 
 I would start by exploring the **`PROD_NAME`** column, it contains a several key information parts that we can extract and use in our customer segmentation task. We can also notice some text input abnormalities that we ought to fix along the way.
 
@@ -291,7 +291,7 @@ salsas = df[df['TOKENS_STR'].isin(salasa)].copy()
 chips = df[~df['TOKENS_STR'].isin(salasa)].copy()
 ```
 
-### Parsing Product Name Column
+### <span style='color:#5075dc'>|</span> Parsing Product Name Column
 
 The next step we can take is to identify the product producer parent companies. What I found was that there are products by 9 different parent companies `CATEGORY` shown below. Categorising them in this way will hopefully give us some more insights into customer purchasing behaviour and their market share of sales. We will also categorise our transactions into different brand names `BRAND`. And lastly we will extract the mass of packaging, all of which is extracted from the product name.
 
@@ -343,7 +343,7 @@ chips['BRAND'] = chips['TOKENS_STR'].apply(categorize_brand)
 chips['GRAMS'] = chips['PROD_NAME'].str.extract(r'(\d+)g')
 ```
 
-### Customer Selection Share
+### <span style='color:#5075dc'>|</span>Customer Selection Share
 
 We have some new information about the chips parent company, its brand name and the mass of the product, let's check the customer product choice distribution for these three features:
 
@@ -426,7 +426,7 @@ Name: proportion, dtype: float64
 
 When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.
 
-### Store Visits and Checkout Items
+### <span style='color:#5075dc'>|</span> Store Visits and Checkout Items
 
 Lets also check two other columns, the store purchase statistics, we count the number of store visits for each store and get their stats:
 
@@ -461,7 +461,7 @@ From this information we know that there are **271 stores** in our data, with mo
 chips = chips[chips['PROD_QTY'] != 200]
 ```
 
-### Customer segmented purchase share
+### <span style='color:#5075dc'>|</span> Customer segmented purchase share
 
 Let's look at member distribution for two customer segmentation features `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
 

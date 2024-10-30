@@ -12,7 +12,7 @@ tags:
 comments: true
 ---
 
-# **Commonwealth Bank Internship**
+# Commonwealth Bank Internship
 
 In today's we'll be going through one of internships provided by one of the leading banks in Australia; **Commonwealth Bank**. The internship is related to **Data Science** and is aimed to be a small project and interesting project in one's portfolio. The internship covers topics such a data wrangling (rearrangement and exploration of data), data annonymisation, as well as work with unstructured text data. Hopefully it will be interesting to read along!
 

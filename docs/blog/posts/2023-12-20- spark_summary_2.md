@@ -10,7 +10,7 @@ tags:
 comments: true
 ---
 
-# **PySpark Daily December Summary II**
+# PySpark Daily December Summary II
 
 Continuing on where we left off last post, I'll be exploring **pypspark** on a daily basis, just to get more used to it. Here I will be posting summaries that cover roughtly 10 days worth of posts that I make **[on Kaggle](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)**, so that would equate to three posts a month
 

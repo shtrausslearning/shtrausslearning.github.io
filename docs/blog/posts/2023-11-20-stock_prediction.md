@@ -12,7 +12,7 @@ tags:
 comments: true
 --- 
 
-# **Prediction of Product Stock Levels**
+# Prediction of Product Stock Levels
 
 In this project, we work with a client **Gala Groceries**, who has contacted **Cognizant** for logistics advice about **product storage**. Specifically, they are interested in wanting to know **how better stock the items that they sell**. Our role is to take on this project as a data scientist and understand what the client actually needs. This will result in the formulation/confirmation of a new project statement, in which we will be focusing on **predicting stock levels of products**. Such a model would enable the client to estimate their product stock levels at a given time & make subsequent business decisions in a more effective manner reducing understocking and overstocking losses.
 

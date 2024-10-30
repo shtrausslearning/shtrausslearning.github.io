@@ -12,7 +12,7 @@ tags:
 comments: true
 ---
 
-# **Retail Strategy and Analytics**
+# Retail Strategy and Analytics
 
 <div class="grid cards" markdown>
 

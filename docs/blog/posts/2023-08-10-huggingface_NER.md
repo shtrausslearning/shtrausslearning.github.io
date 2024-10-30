@@ -11,7 +11,7 @@ tags:
 comments: true
 ---
 
-# **Named Entity Recognition with Torch Loop**
+# Named Entity Recognition with Torch Loop
 
 In this notebook, we'll take a look at how we can utilise `HuggingFace` to easily load and use `BERT` for token classification. Whilst we are loading both the base model & tokeniser from `HuggingFace`, we'll be using a custom `Torch` training loop and tail model customisation. The approach isn't the most straightforward but it is one way we can do it. We'll be utilising `Massive` dataset by Amazon and fine-tune the transformer encoder `BERT`
 

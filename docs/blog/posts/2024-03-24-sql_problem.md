@@ -11,7 +11,7 @@ tags:
 comments: true
 ---
 
-# **SQL Interview Problem**
+# SQL Interview Problem
 
 An interview question related to SQL knowledge from a financial bank which I thought was interesting so decided to share. I was given a day to do the problems, which would be more than enough time to delve into into it. I really enjoyed going through the the interview process with this company, hopefully this will be helpful to someone.
 

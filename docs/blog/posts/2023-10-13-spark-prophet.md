@@ -14,7 +14,7 @@ tags:
 comments: true
 ---
 
-# **Utilising Prophet with PySpark**
+# Utilising Prophet with PySpark
 
 In this notebook, we look at how to use a popular machine learning library **prophet** with the **pyspark** architecture. **pyspark** itself unfortunatelly does not contain such an additive regression model, however we can utilise user defined functions, **UDF**, which allows us to utilise different functionality of different libraries that is not available in **pyspark**
 

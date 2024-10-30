@@ -11,7 +11,7 @@ tags:
 comments: true
 ---
 
-# **Comparison of Subsets**
+# Comparison of Subsets
 
 An important concept in machine learning is **model generalisation** & **performance deterioration**. When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. 
 

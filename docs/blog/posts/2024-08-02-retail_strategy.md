@@ -24,7 +24,7 @@ comments: true
 
 The internship is split into a few segments:
 
-- ==**Task 1**== : Data preparation and customer analytics
+- [==**Task 1: Data preparation and customer analytics**==](#2-data-preparation-and-customer-analytics)
 - ==**Task 2**== : Experimentation and uplift testing
 - ==**Task 3**== : Analytics and commercial application
 

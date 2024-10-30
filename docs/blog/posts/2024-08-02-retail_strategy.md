@@ -134,13 +134,11 @@ Looks like we have about a years worth of transactional data, the latest date be
 
 ### <span style='color:#5075dc'>|</span> Problem Statement
 
-> You are part of Quantium’s retail analytics team and have been approached by your client, the Category Manager for Chips, who wants to better understand the types of customers who purchase Chips and their purchasing behaviour within the region.
+- You are part of Quantium’s retail analytics team and have been approached by your client, the Category Manager for Chips, who wants to better understand the types of customers who purchase Chips and their purchasing behaviour within the region.
+- The insights from your analysis will feed into the supermarket’s strategic plan for the chip category in the next half year.
+- You have received the following email from your manager, Zilinka.
 
-> The insights from your analysis will feed into the supermarket’s strategic plan for the chip category in the next half year.
-
-> You have received the following email from your manager, Zilinka.
-
-!!! note "Email from Zilinka"
+!!! note ""
 
     'Hi, 
 
@@ -166,7 +164,10 @@ Looks like we have about a years worth of transactional data, the latest date be
 
     Zilinka'
 
-> We need to present a strategic recommendation to Julia that is supported by data which she can then use for the upcoming category review. However, to do so, we need to analyse the data to understand the current purchasing trends and behaviours. The client is particularly interested in customer segments and their chip purchasing behaviour. Consider what metrics would help describe the customers’ purchasing behaviour.  
+- We need to present a strategic recommendation to Julia that is supported by data which she can then use for the upcoming category review. 
+- However, to do so, we need to analyse the data to understand the current purchasing trends and behaviours. 
+- The client is particularly interested in customer segments and their chip purchasing behaviour. 
+- Consider what metrics would help describe the customers’ purchasing behaviour.  
 
 
 ### <span style='color:#5075dc'>|</span> Problem Workflow

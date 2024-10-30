@@ -22,6 +22,12 @@ comments: true
 
 <!-- more -->
 
+## <b>1 | <span style='color:#678DFF'>Background</span></b>
+
+***
+
+### <span style='color:#5075dc'>|</span> Internship Parts
+
 The internship is split into a few segments:
 
 - [==**Task 1: Data preparation and customer analytics**==](#2-data-preparation-and-customer-analytics)
@@ -30,7 +36,7 @@ The internship is split into a few segments:
 
 If you are interested in doing the internship, you can **[@Data Analytics](https://www.theforage.com/simulations/quantium/data-analytics-rqkb)**
 
-## **Background**
+### <span style='color:#5075dc'>|</span> About Internship
 
 As part of the internship we will focus on the following things for the first task:
 
@@ -45,7 +51,7 @@ And for the second task we will:
 - Use R/Python for data analysis and visualization and summarise findings and provide recommendations.
 
 
-## **Quantium Dataset Preview**
+### <span style='color:#5075dc'>|</span> Dataset Preview
 
 Lets explore our dataset, to understand the dataset that we are going to be working with, and figure out if there are any preprocessing steps we need to take in order to get the data into a usable for us format.
 
@@ -66,7 +72,7 @@ The data that is provided to us:
 +---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
 ```
 
-## **Feature Explanation**
+### <span style='color:#5075dc'>|</span> Dataset features
 
 Lets take some quick notes about the data that we have:
 
@@ -82,8 +88,7 @@ Lets take some quick notes about the data that we have:
      - **`PREMIUM_CUSTOMER`** : Customer segmentation used to differentiate shoppers by the price point of products they buy and the types of products they buy. It is used to identify whether customers may spend more for quality or brand or whether they will purchase the cheapest options
 
 
-
-## **Loading Dataset**
+### <span style='color:#5075dc'>|</span> Loading dataset
 
 Time to load our dataset, having given a glimpse of the data, we can define our data types, similar to how you would do in SQL. Well load both of the files and merge them together on column **LYLTY_CARD_NBR**, we'll also make some minor adjustments before we start exploring the dataset.
 

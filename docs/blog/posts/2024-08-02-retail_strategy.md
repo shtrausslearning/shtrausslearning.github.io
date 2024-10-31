@@ -365,9 +365,19 @@ chips['BRAND'] = chips['TOKENS_STR'].apply(categorize_brand)
 chips['GRAMS'] = chips['PROD_NAME'].str.extract(r'(\d+)g')
 ```
 
+Which gives us such information
+
+|    | PROD_NAME                                | PARENT       | BRAND        |   GRAMS |
+|---:|:-----------------------------------------|:-------------|:-------------|--------:|
+|  0 | Natural Chip        Compny SeaSalt175g   | Snack Brands | Natural Chip |     175 |
+|  1 | CCs Nacho Cheese    175g                 | Snack Brands | CCs          |     175 |
+|  2 | Smiths Crinkle Cut  Chips Chicken 170g   | Pepsico      | Smiths       |     170 |
+|  3 | Smiths Chip Thinly  S/Cream&Onion 175g   | Pepsico      | Smiths       |     175 |
+|  4 | Kettle Tortilla ChpsHny&Jlpno Chili 150g | Snack Brands | Kettle       |     150 |
+
 ### <span style='color:#5075dc'>|</span> Customer Selection Share
 
-We have some new information about the chips parent company, its brand name and the mass of the product, let's check the customer product choice distribution for these three features:
+We have some new information about the chips parent company, its brand name and the mass of the product, let's check the customer product choice distribution (not taking into account quantity) for these three features:
 
 ```python
 # sales ammount distribution by parent company

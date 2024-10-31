@@ -38,24 +38,19 @@ If you are interested in doing the internship, you can **[@Data Analytics](https
 
 ### <span style='color:#5075dc'>|</span> About Internship
 
-As part of the internship we will focus on the following things for the first task:
+As part of the internship we will focus on the following things for the `first task`:
 
-- Analyse transaction and customer data to identify trends and inconsistencies. 
-- Develop metrics and examine sales drivers to gain insights into overall sales performance. 
-- Create visualizations and prepare findings to formulate a clear recommendation for the client's strategy.
+- Conduct analysis on your client's transaction dataset and identify customer purchasing behaviours to generate insights and provide commercial recommendations.
 
-And for the second task we will:
+And for the `second task` we will:
 
-- Define metrics to select control stores.
-- Analyse trial stores against controls.
-- Use R/Python for data analysis and visualization and summarise findings and provide recommendations.
-
+- Extend your analysis from Task 1 to help you identify benchmark stores that allow you to test the impact of the trial store layouts on customer sales.
 
 ### <span style='color:#5075dc'>|</span> Dataset Preview
 
 Lets explore our dataset to understand the dataset that we are going to be working with and figure out if there are any preprocessing steps we need to take in order to get the data into a usable for us format. The data is provided to us in two different tables:
 
-- **`QVI_transaction_data`** : client transactional data
+- ==QVI_transaction_data== : client transactional data
 
 
 |   DATE |   STORE_NBR |   LYLTY_CARD_NBR |   TXN_ID |   PROD_NBR | PROD_NAME                                |   PROD_QTY |   TOT_SALES |
@@ -67,7 +62,7 @@ Lets explore our dataset to understand the dataset that we are going to be worki
 |  43330 |           2 |             2426 |     1038 |        108 | Kettle Tortilla ChpsHny&Jlpno Chili 150g |          3 |        13.8 |
 
 
-- **`QVI_purchase_behaviour`** : client segmentation features
+- ==QVI_purchase_behaviour== : client segmentation features
 
 
 |   LYLTY_CARD_NBR | LIFESTAGE              | PREMIUM_CUSTOMER   |

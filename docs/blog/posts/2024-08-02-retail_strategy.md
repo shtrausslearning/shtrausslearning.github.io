@@ -315,7 +315,7 @@ The next step we can take is to identify the ==product producer== (parent compan
 - So just an example, `pepsico` is the parent company of products of `Smiths`, `Burger Rings` (which are names found in `PROD_NAME` and so on
 - Categorising them in this way will hopefully give us some more insights into customer purchasing behaviour and their market share of sales for each parent company
 - We will also categorise our transactions into different brand names ==BRAND==
-- And lastly we will extract the mass of packaging, all of which is extracted from the product name
+- And lastly we will extract the mass of packaging, all of which is extracted from the product name, ==GRAMS==
 
 
 ```python
@@ -367,17 +367,17 @@ chips['GRAMS'] = chips['PROD_NAME'].str.extract(r'(\d+)g')
 
 Which gives us such information
 
-|    | PROD_NAME                                | PARENT       | BRAND        |   GRAMS |
-|---:|:-----------------------------------------|:-------------|:-------------|--------:|
-|  0 | Natural Chip        Compny SeaSalt175g   | Snack Brands | Natural Chip |     175 |
-|  1 | CCs Nacho Cheese    175g                 | Snack Brands | CCs          |     175 |
-|  2 | Smiths Crinkle Cut  Chips Chicken 170g   | Pepsico      | Smiths       |     170 |
-|  3 | Smiths Chip Thinly  S/Cream&Onion 175g   | Pepsico      | Smiths       |     175 |
-|  4 | Kettle Tortilla ChpsHny&Jlpno Chili 150g | Snack Brands | Kettle       |     150 |
+| PROD_NAME                                | PARENT       | BRAND        |   GRAMS |
+|:-----------------------------------------|:-------------|:-------------|--------:|
+| Natural Chip        Compny SeaSalt175g   | Snack Brands | Natural Chip |     175 |
+| CCs Nacho Cheese    175g                 | Snack Brands | CCs          |     175 |
+| Smiths Crinkle Cut  Chips Chicken 170g   | Pepsico      | Smiths       |     170 |
+| Smiths Chip Thinly  S/Cream&Onion 175g   | Pepsico      | Smiths       |     175 |
+| Kettle Tortilla ChpsHny&Jlpno Chili 150g | Snack Brands | Kettle       |     150 |
 
 ### <span style='color:#5075dc'>|</span> Customer Selection Share
 
-We have some new information about the chips parent company, its brand name and the mass of the product, let's check the customer product choice distribution (not taking into account quantity) for these three features:
+We have some new information about the chips `parent` company, its brand name and the mass of the product, let's check the customer product choice distribution (not taking into account quantity) for these three features:
 
 ```python
 # sales ammount distribution by parent company
@@ -399,6 +399,8 @@ Name: proportion, dtype: float64
 ```
 
 What we can notice is that chip purchases/sales are quite heavility dominated by two key players **Pepsico** & **Snack Brands** (Australia). One is obviously international & the other is domestic (well if you take into account New Zealand as well perhaps not). 
+
+Now let's check the statistics by brand name:
 
 ```python
 # sales ammount distribution by parent company
@@ -462,6 +464,10 @@ When it comes to distribution of package size, we can note that **175** and **15
 
 Lets also check two other columns, the store purchase statistics, we count the number of store visits for each store and get their stats:
 
+```python 
+chips['STORE_NBR'].value_counts().describe()
+```
+
 ```
 count     271.000000
 mean      915.867159
@@ -487,7 +493,11 @@ PROD_QTY
 Name: count, dtype: int64
 ```
 
-From this information we know that there are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. We ought to check the visit distribution for each store to understand where customers tend to go. Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. We also can notice a rather strange anomaly of 200 items bought, this probably is not a routine customer purchase, so lets not take them into account in our following analyses since they can skew about results.
+From this information we know that 
+- There are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. 
+- We ought to check the visit distribution for each store to understand where customers tend to go. 
+- Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. 
+- We also can notice a rather strange anomaly of 200 items bought, this probably is not a routine customer purchase, so lets not take them into account in our following analyses since they can skew about results.
 
 ```python
 chips = chips[chips['PROD_QTY'] != 200]
@@ -495,7 +505,7 @@ chips = chips[chips['PROD_QTY'] != 200]
 
 ### <span style='color:#5075dc'>|</span> Customer segmented purchase share
 
-Let's look at member distribution for two customer segmentation features `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
+Let's look at customer/member distribution for two customer segmentation features `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour, since the two features give us segmentation for the customers. Not much else is known about the customer.
 
 ```
 LIFESTAGE
@@ -508,7 +518,6 @@ MIDAGE SINGLES/COUPLES    10.02
 NEW FAMILIES               3.51
 Name: proportion, dtype: float64
 ```
-
 
 
 Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 

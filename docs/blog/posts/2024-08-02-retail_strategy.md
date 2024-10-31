@@ -53,9 +53,7 @@ And for the second task we will:
 
 ### <span style='color:#5075dc'>|</span> Dataset Preview
 
-Lets explore our dataset, to understand the dataset that we are going to be working with, and figure out if there are any preprocessing steps we need to take in order to get the data into a usable for us format.
-
-The data that is provided to us:
+Lets explore our dataset to understand the dataset that we are going to be working with and figure out if there are any preprocessing steps we need to take in order to get the data into a usable for us format. The data is provided to us in two different tables:
 
 - **`QVI_transaction_data`** : client transactional data
 
@@ -71,17 +69,18 @@ The data that is provided to us:
 
 - **`QVI_purchase_behaviour`** : client segmentation features
 
-```
-+---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
-|   | DATE  | STORE_NBR | LYLTY_CARD_NBR | TXN_ID | PROD_NBR |                PROD_NAME                 | PROD_QTY | TOT_SALES |
-+---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
-| 0 | 43390 |     1     |      1000      |   1    |    5     |  Natural Chip        Compny SeaSalt175g  |   2.0    |    6.0    |
-| 1 | 43599 |     1     |      1307      |  348   |    66    |         CCs Nacho Cheese    175g         |   3.0    |    6.3    |
-| 2 | 43605 |     1     |      1343      |  383   |    61    |  Smiths Crinkle Cut  Chips Chicken 170g  |   2.0    |    2.9    |
-| 3 | 43329 |     2     |      2373      |  974   |    69    |  Smiths Chip Thinly  S/Cream&Onion 175g  |   5.0    |   15.0    |
-| 4 | 43330 |     2     |      2426      |  1038  |   108    | Kettle Tortilla ChpsHny&Jlpno Chili 150g |   3.0    |   13.8    |
-+---+-------+-----------+----------------+--------+----------+------------------------------------------+----------+-----------+
-```
+
+|   LYLTY_CARD_NBR | LIFESTAGE              | PREMIUM_CUSTOMER   |
+|-----------------:|:-----------------------|:-------------------|
+|             1000 | YOUNG SINGLES/COUPLES  | Premium            |
+|             1002 | YOUNG SINGLES/COUPLES  | Mainstream         |
+|             1003 | YOUNG FAMILIES         | Budget             |
+|             1004 | OLDER SINGLES/COUPLES  | Mainstream         |
+|             1005 | MIDAGE SINGLES/COUPLES | Mainstream         |
+
+
+We can see that `QVI_purchase_behaviour` provides us with customer information and `QVI_transaction_data` contains their purchases. The unique customer identifier is `LYLTY_CARD_NBR`
+
 
 ### <span style='color:#5075dc'>|</span> Dataset features
 
@@ -97,6 +96,7 @@ Lets take some quick notes about the data that we have:
      - **`TOT_SALES`** : Sum of purchase
      -  **`LIFESTAGE`**: Customer attribute that identifies whether a customer has a family or not and what point in life they are at e.g. are their children in pre-school/primary/secondary school.
      - **`PREMIUM_CUSTOMER`** : Customer segmentation used to differentiate shoppers by the price point of products they buy and the types of products they buy. It is used to identify whether customers may spend more for quality or brand or whether they will purchase the cheapest options
+
 
 
 ### <span style='color:#5075dc'>|</span> Loading dataset

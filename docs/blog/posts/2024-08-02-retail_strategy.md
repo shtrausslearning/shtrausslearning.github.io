@@ -585,11 +585,11 @@ plt.legend(['Budget', 'Mainstream', 'Premium'], loc = 2)
 plt.show()
 ```
 
-![](quantium_lifestage_premium.png)
+![](images/quantium_lifestage_premium.png)
 
 And the segmented share statistics
 
-| LIFESTAGE              |   ('TOT_SALES', 'Budget') |   ('TOT_SALES', 'Mainstream') |   ('TOT_SALES', 'Premium') |
+| LIFESTAGE              |   Budget |   Mainstream |   Premium |
 |:-----------------------|--------------------------:|------------------------------:|---------------------------:|
 | MIDAGE SINGLES/COUPLES |                     1.849 |                         4.687 |                      3.02  |
 | NEW FAMILIES           |                     1.14  |                         0.885 |                      0.597 |

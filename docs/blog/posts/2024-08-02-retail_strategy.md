@@ -139,14 +139,30 @@ Looks like we have about a years worth of transactional data, the latest date be
 (Timestamp('2018-07-01 00:00:00'), Timestamp('2019-06-30 00:00:00'))
 ```
 
+We can also note if we have any missing dates, which we do have:
+
+```python 
+pd.date_range(start = '2018-07-01', end = '2019-06-30').difference(df['DATETIME'])
+```
+
+```
+DatetimeIndex(['2018-12-25'], dtype='datetime64[ns]', freq='D')
+```
+
+
 ## <b>2 | <span style='color:#678DFF'>Data preparation and customer analytics</span></b>
 
 ***
 
 ### <span style='color:#5075dc'>|</span> Problem Statement
 
-- You are part of Quantium’s retail analytics team and have been approached by your client, the Category Manager for Chips, who wants to better understand the types of customers who purchase Chips and their purchasing behaviour within the region.
-- The insights from your analysis will feed into the supermarket’s strategic plan for the chip category in the next half year.
+- You are part of Quantium’s retail analytics team and have been approached by your client, the Category Manager for Chips, who 
+	- (1) Wants to better understand the ==types of customers== who purchase Chips 
+	- (2) Wants to better understand their ==purchasing behaviour== within the region
+
+
+The insights from your analysis will feed into the supermarket’s strategic plan for the chip category in the next half year.
+
 - You have received the following email from your manager, Zilinka.
 
 !!! note ""

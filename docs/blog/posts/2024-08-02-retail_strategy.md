@@ -160,7 +160,6 @@ DatetimeIndex(['2018-12-25'], dtype='datetime64[ns]', freq='D')
 	- (1) Wants to better understand the ==types of customers== who purchase Chips 
 	- (2) Wants to better understand their ==purchasing behaviour== within the region
 
-
 The insights from your analysis will feed into the supermarket’s strategic plan for the chip category in the next half year.
 
 - You have received the following email from your manager, Zilinka.
@@ -492,6 +491,8 @@ Name: proportion, dtype: float64
 
 ### <span style='color:#5075dc'>|</span> Store Visits and Checkout Items
 
+==purchasing behaviour==
+
 Lets also check two other columns, the store purchase statistics, we count the number of store visits for each store and get their stats:
 
 ```python 
@@ -523,7 +524,8 @@ PROD_QTY
 Name: count, dtype: int64
 ```
 
-From this information we know that 
+From this information we know that:
+
 - There are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. 
 - We ought to check the visit distribution for each store to understand where customers tend to go. 
 - Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. 
@@ -534,6 +536,8 @@ chips = chips[chips['PROD_QTY'] != 200]
 ```
 
 ### <span style='color:#5075dc'>|</span> Customer purchase share
+
+==purchasing behaviour==
 
 Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
 
@@ -563,27 +567,9 @@ Now let's look at two features that define a pre determined customer segmentatio
 
 ### <span style='color:#5075dc'>|</span> Customer total sales share
 
-Now lets include the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total 
+==purchasing behaviour==
 
-```python
-totsales_segment = pd.DataFrame(chips.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER']).TOT_SALES.sum())
-
-fig = plt.figure(linewidth=5, 
-                 edgecolor="#04253a", 
-                 facecolor = '#e1ddbf')
-
-totsales_segment.unstack().plot(kind = 'bar', 
-                                stacked = True,
-                                figsize = (12, 7),
-                                title = 'Total Sales by LIFESTAGE' ,
-                                edgecolor="#04253a")
-
-plt.ylabel('Total Sales')
-plt.tight_layout()
-sns.despine(top=True)
-plt.legend(['Budget', 'Mainstream', 'Premium'], loc = 2)
-plt.show()
-```
+Now lets include the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total
 
 ![](images/quantium_lifestage_premium.png)
 

@@ -533,9 +533,10 @@ From this information we know that
 chips = chips[chips['PROD_QTY'] != 200]
 ```
 
-### <span style='color:#5075dc'>|</span> Customer segmented purchase share
+### <span style='color:#5075dc'>|</span> Customer purchase share
 
-Let's look at customer/member distribution for two customer segmentation features `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour, since the two features give us segmentation for the customers. Not much else is known about the customer.
+Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
+
 
 | LIFESTAGE              |   proportion |
 |:-----------------------|-------------:|
@@ -546,9 +547,6 @@ Let's look at customer/member distribution for two customer segmentation feature
 | YOUNG SINGLES/COUPLES  |        13.76 |
 | MIDAGE SINGLES/COUPLES |         9.48 |
 | NEW FAMILIES           |         2.63 |
-
-
-Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
 
 
 | PREMIUM_CUSTOMER   |   proportion |
@@ -563,9 +561,9 @@ Now let's look at two features that define a pre determined customer segmentatio
 	- New family and mid age singles/couples share is the smallest of all groups  
 	- The above statistics only demonstrates the frequency and doesn't take into account the amount 
 
-### <span style='color:#5075dc'>|</span> Customer segmented purchase share
+### <span style='color:#5075dc'>|</span> Customer total sales share
 
-Lets describing customers by `LIFESTAGE` and `PREMIUM_CUSTOMER`, and determine how much each group actually spends in total 
+Now lets include the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total 
 
 ```python
 totsales_segment = pd.DataFrame(chips.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER']).TOT_SALES.sum())
@@ -588,3 +586,15 @@ plt.show()
 ```
 
 ![](quantium_lifestage_premium.png)
+
+And the segmented share statistics
+
+| LIFESTAGE              |   ('TOT_SALES', 'Budget') |   ('TOT_SALES', 'Mainstream') |   ('TOT_SALES', 'Premium') |
+|:-----------------------|--------------------------:|------------------------------:|---------------------------:|
+| MIDAGE SINGLES/COUPLES |                     1.849 |                         4.687 |                      3.02  |
+| NEW FAMILIES           |                     1.14  |                         0.885 |                      0.597 |
+| OLDER FAMILIES         |                     8.697 |                         5.341 |                      4.173 |
+| OLDER SINGLES/COUPLES  |                     7.076 |                         6.907 |                      6.842 |
+| RETIREES               |                     5.864 |                         8.044 |                      5.056 |
+| YOUNG FAMILIES         |                     7.187 |                         4.787 |                      4.356 |
+| YOUNG SINGLES/COUPLES  |                     3.165 |                         8.167 |                      2.161 |

@@ -393,7 +393,11 @@ Which gives us such information
 
 ### <span style='color:#5075dc'>|</span> Customer Selection Share
 
-We have some new information about the chips `parent` company, its brand name and the mass of the product, let's check the customer product choice distribution (not taking into account quantity) for these three features:
+We have some new information about the chips `parent` company, its brand name and the mass of the product, let's check the customer product choice distribution (not taking into account quantity) for these three features
+
+!!! warning
+
+	We are not taking into account the quantity purchased at the moment.
 
 ```python
 # sales ammount distribution by parent company
@@ -414,7 +418,10 @@ Sunbites          1.21
 Name: proportion, dtype: float64
 ```
 
-What we can notice is that chip purchases/sales are quite heavility dominated by two key players **Pepsico** & **Snack Brands** (Australia). One is obviously international & the other is domestic (well if you take into account New Zealand as well perhaps not). 
+!!! abstract "Parent Item Selection Share"
+
+	- What we can notice is that chip purchases/sales are quite heavility dominated by two key players **Pepsico** & **Snack Brands** (Australia). 
+	- One is obviously international & the other is domestic (well if you take into account New Zealand as well perhaps not). 
 
 Now let's check the statistics by brand name:
 
@@ -447,7 +454,11 @@ Burger Rings      0.63
 Name: proportion, dtype: float64
 ```
 
-The more common brands include **Kettle** (Snack Brands Australia), **Smiths** (PepsiCo), **Doritos** (PepsiCo). Woolworths also sold a fair share of products at 4.8%, so as we can see despite owning the larger share of products chosen by customers. We are not taking into account the quantity purchased at the moment.
+!!! abstract "Brand Selection Share"
+
+	- The more common brands include **Kettle** (Snack Brands Australia), **Smiths** (PepsiCo), **Doritos** (PepsiCo). 
+	- Woolworths also sold a fair share of products at 4.8%, so as we can see despite owning the larger share of products chosen by customers. 
+
 
 ```
 GRAMS
@@ -474,7 +485,10 @@ GRAMS
 Name: proportion, dtype: float64
 ```
 
-When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.
+!!! abstract "Package Size Selection Share"
+
+	- When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. 
+	- However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.
 
 ### <span style='color:#5075dc'>|</span> Store Visits and Checkout Items
 

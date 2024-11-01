@@ -537,37 +537,54 @@ chips = chips[chips['PROD_QTY'] != 200]
 
 Let's look at customer/member distribution for two customer segmentation features `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour, since the two features give us segmentation for the customers. Not much else is known about the customer.
 
-```
-LIFESTAGE
-RETIREES                  20.38
-OLDER SINGLES/COUPLES     20.11
-YOUNG SINGLES/COUPLES     19.88
-OLDER FAMILIES            13.46
-YOUNG FAMILIES            12.64
-MIDAGE SINGLES/COUPLES    10.02
-NEW FAMILIES               3.51
-Name: proportion, dtype: float64
-```
+| LIFESTAGE              |   proportion |
+|:-----------------------|-------------:|
+| OLDER SINGLES/COUPLES  |        20.58 |
+| RETIREES               |        18.81 |
+| OLDER FAMILIES         |        18.32 |
+| YOUNG FAMILIES         |        16.42 |
+| YOUNG SINGLES/COUPLES  |        13.76 |
+| MIDAGE SINGLES/COUPLES |         9.48 |
+| NEW FAMILIES           |         2.63 |
 
 
 Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
 
-```
-LIFESTAGE
-OLDER SINGLES/COUPLES     20.58
-RETIREES                  18.81
-OLDER FAMILIES            18.32
-YOUNG FAMILIES            16.42
-YOUNG SINGLES/COUPLES     13.76
-MIDAGE SINGLES/COUPLES     9.48
-NEW FAMILIES               2.63
-Name: proportion, dtype: float64
+
+| PREMIUM_CUSTOMER   |   proportion |
+|:-------------------|-------------:|
+| Mainstream         |        38.51 |
+| Budget             |        35.16 |
+| Premium            |        26.33 |
+
+!!! abstract "Package Size Selection Share"
+
+	- Older Singles/Couples are the most common purchasing client 
+	- New family and mid age singles/couples share is the smallest of all groups  
+	- The above statistics only demonstrates the frequency and doesn't take into account the amount 
+
+### <span style='color:#5075dc'>|</span> Customer segmented purchase share
+
+Lets describing customers by `LIFESTAGE` and `PREMIUM_CUSTOMER`, and determine how much each group actually spends in total 
+
+```python
+totsales_segment = pd.DataFrame(chips.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER']).TOT_SALES.sum())
+
+fig = plt.figure(linewidth=5, 
+                 edgecolor="#04253a", 
+                 facecolor = '#e1ddbf')
+
+totsales_segment.unstack().plot(kind = 'bar', 
+                                stacked = True,
+                                figsize = (12, 7),
+                                title = 'Total Sales by LIFESTAGE' ,
+                                edgecolor="#04253a")
+
+plt.ylabel('Total Sales')
+plt.tight_layout()
+sns.despine(top=True)
+plt.legend(['Budget', 'Mainstream', 'Premium'], loc = 2)
+plt.show()
 ```
 
-```
-PREMIUM_CUSTOMER
-Mainstream    38.51
-Budget        35.16
-Premium       26.33
-Name: proportion, dtype: float64
-```
+![](quantium_lifestage_premium.png)

@@ -561,9 +561,27 @@ Now let's look at two features that define a pre determined customer segmentatio
 	- New family and mid age singles/couples share is the smallest of all groups  
 	- The above statistics only demonstrates the frequency and doesn't take into account the amount 
 
+### <span style='color:#5075dc'>|</span> Customer type total sales share ==purchasing behaviour==
+
+Lets check who returns the largest values by `TOT_SALES`. 
+
+| PREMIUM_CUSTOMER   |   TOT_SALES |   COUNTS |   RATIO |
+|:-------------------|------------:|---------:|--------:|
+| Budget             |      634004 |    87272 | 7.26469 |
+| Mainstream         |      703600 |    95581 | 7.3613  |
+| Premium            |      475011 |    65345 | 7.26929 |
+
+!!! abstract "Customer group total sales distribution"
+
+	- The number of people in each `PREMIUM_CUSTOMER` group is substantial
+	- y different
+	- We can note that all groups spend about the same `TOT_SALES`
+	
+
+
 ### <span style='color:#5075dc'>|</span> Customer total sales share ==purchasing behaviour==
 
-Now lets include the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total
+Now lets determine the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total
 
 ![](images/quantium_lifestage_premium2.png)
 

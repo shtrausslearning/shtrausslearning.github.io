@@ -565,17 +565,16 @@ Now let's look at two features that define a pre determined customer segmentatio
 
 Lets check who returns the largest values by `TOT_SALES`. 
 
-| PREMIUM_CUSTOMER   |   TOT_SALES |   COUNTS |   RATIO |
-|:-------------------|------------:|---------:|--------:|
-| Budget             |      634004 |    87272 | 7.26469 |
-| Mainstream         |      703600 |    95581 | 7.3613  |
-| Premium            |      475011 |    65345 | 7.26929 |
+| PREMIUM_CUSTOMER   |   TOT_SALES |   COUNTS |   MEMBERS |   RATIO_SALES |   RATIO_MEMBERS |
+|:-------------------|------------:|---------:|----------:|--------------:|----------------:|
+| Budget             |      634004 |    87272 |     24470 |       7.26469 |         25.9095 |
+| Mainstream         |      703600 |    95581 |     29245 |       7.3613  |         24.0588 |
+| Premium            |      475011 |    65345 |     18922 |       7.26929 |         25.1037 |
 
 !!! abstract "Customer group total sales distribution"
 
-	- The number of people in each `PREMIUM_CUSTOMER` group is substantial
-	- y different
-	- We can note that all groups spend about the same `TOT_SALES`
+	- The number of purchases in each `PREMIUM_CUSTOMER` group is substantially different
+	- We can note that all groups spend about the same `TOT_SALES` per visit, as indicated by the column `RATIO_SALES` 
 	
 
 

@@ -573,8 +573,9 @@ Lets check who returns the largest values by `TOT_SALES`.
 
 !!! abstract "Customer group total sales distribution"
 
-	- The number of purchases in each `PREMIUM_CUSTOMER` group is substantially different
-	- We can note that all groups spend about the same `TOT_SALES` per visit, as indicated by the column `RATIO_SALES` 
+	- The number of purchases in each `PREMIUM_CUSTOMER` group is substantially different as indicated by `TOT_SALES`
+	- We can note that all groups spend about the same `TOT_SALES` per visit, as indicated by the column `RATIO_SALES`. Mainstream users tend to purchase slightly mor
+	- 
 	
 
 

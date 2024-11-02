@@ -489,9 +489,7 @@ Name: proportion, dtype: float64
 	- When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. 
 	- However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.
 
-### <span style='color:#5075dc'>|</span> Store Visits and Checkout Items
-
-==purchasing behaviour==
+### <span style='color:#5075dc'>|</span> Store Visits and Checkout Items ==purchasing behaviour==
 
 Lets also check two other columns, the store purchase statistics, we count the number of store visits for each store and get their stats:
 
@@ -535,9 +533,7 @@ From this information we know that:
 chips = chips[chips['PROD_QTY'] != 200]
 ```
 
-### <span style='color:#5075dc'>|</span> Customer purchase share
-
-==purchasing behaviour==
+### <span style='color:#5075dc'>|</span> Customer purchase share ==purchasing behaviour==
 
 Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
 
@@ -565,13 +561,11 @@ Now let's look at two features that define a pre determined customer segmentatio
 	- New family and mid age singles/couples share is the smallest of all groups  
 	- The above statistics only demonstrates the frequency and doesn't take into account the amount 
 
-### <span style='color:#5075dc'>|</span> Customer total sales share
-
-==purchasing behaviour==
+### <span style='color:#5075dc'>|</span> Customer total sales share ==purchasing behaviour==
 
 Now lets include the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total
 
-![](images/quantium_lifestage_premium.png)
+![](images/quantium_lifestage_premium2.png)
 
 And the segmented share statistics
 

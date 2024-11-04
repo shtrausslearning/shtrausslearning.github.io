@@ -390,193 +390,30 @@ Which gives us such information
 | Smiths Chip Thinly  S/Cream&Onion 175g   | Pepsico      | Smiths       |     175 |
 | Kettle Tortilla ChpsHny&Jlpno Chili 150g | Snack Brands | Kettle       |     150 |
 
-### <span style='color:#5075dc'>|</span> Customer Selection Share
 
-We have some new information about the chips `parent` company, its brand name and the mass of the product, let's check the customer product choice distribution (not taking into account quantity) for these three features
+### <span style='color:#5075dc'>|</span> Premium Customer, Lifestage Total Sales
 
-!!! warning
-
-	We are not taking into account the quantity purchased at the moment.
 
 ```python
-# sales ammount distribution by parent company
-chips['PARENT'].value_counts(normalize=True).round(4)*100
+customer_segment = chips.groupby(['LIFESTAGE','PREMIUM_CUSTOMER','TOT_SALES'],as_index=False)['TOT_SALES'].sum()
+
+fig = px.treemap(customer_segment.round(0), path=['LIFESTAGE','PREMIUM_CUSTOMER'],
+                 values='TOT_SALES',
+                 template='plotly_dark',
+                 height=500,width=1200,
+                title="<span style='color:#686dec'>▎</span>Lifestage and Premium Customer Total Sales")
+fig.update_layout({
+'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+})
+fig.update_traces(marker=dict(cornerradius=5))
+fig.update_layout(margin = dict(t=50, l=25, r=25, b=25))
+fig.update_traces(textinfo="label+text+value")
+fig.show("png")
 ```
 
-```
-CATEGORY
-Pepsico          34.95
-Snack Brands     29.57
-Kellanova        10.11
-Red Rock Deli     7.16
-Majans            5.72
-Store             4.77
-Cobs              3.91
-Intersnack        2.60
-Sunbites          1.21
-Name: proportion, dtype: float64
-```
+![](images/qnt_lifestage_premium.png)
 
-!!! abstract "Parent Item Selection Share"
-
-	- What we can notice is that chip purchases/sales are quite heavility dominated by two key players **Pepsico** & **Snack Brands** (Australia). 
-	- One is obviously international & the other is domestic (well if you take into account New Zealand as well perhaps not). 
-
-Now let's check the statistics by brand name:
-
-```python
-# sales ammount distribution by parent company
-chips['BRAND'].value_counts(normalize=True).round(4)*100
-```
-
-```
-BRAND
-Kettle           16.73
-Smiths           12.30
-Dorito           10.22
-Pringles         10.17
-Red Rock Deli     7.20
-Infuzions         5.75
-Thins             5.70
-Woolworths        4.80
-Cobs              3.93
-Tostitos          3.84
-Twisties          3.83
-Grain Waves       3.14
-Natural Chip      3.03
-Tyrrells          2.61
-Cheezels          1.87
-CCs               1.84
-Sunbites          1.22
-Cheetos           1.19
-Burger Rings      0.63
-Name: proportion, dtype: float64
-```
-
-!!! abstract "Brand Selection Share"
-
-	- The more common brands include **Kettle** (Snack Brands Australia), **Smiths** (PepsiCo), **Doritos** (PepsiCo). 
-	- Woolworths also sold a fair share of products at 4.8%, so as we can see despite owning the larger share of products chosen by customers. 
-
-
-```
-GRAMS
-175    26.82
-150    16.59
-134    10.37
-110     9.25
-170     8.25
-165     6.32
-330     5.18
-380     2.65
-270     2.60
-200     1.85
-135     1.35
-250     1.31
-210     1.31
-90      1.24
-190     1.24
-160     1.23
-220     0.65
-70      0.62
-180     0.61
-125     0.60
-Name: proportion, dtype: float64
-```
-
-!!! abstract "Package Size Selection Share"
-
-	- When it comes to distribution of package size, we can note that **175** and **150** grams tend to be the most commonly selected products. 
-	- However this could be purely due to the product preference itself, and we ought to look into the relation between product & size in more detail.
-
-### <span style='color:#5075dc'>|</span> Store Visits and Checkout Items ==purchasing behaviour==
-
-Lets also check two other columns, the store purchase statistics, we count the number of store visits for each store and get their stats:
-
-```python 
-chips['STORE_NBR'].value_counts().describe()
-```
-
-```
-count     271.000000
-mean      915.867159
-std       549.077129
-min         1.000000
-25%       491.500000
-50%       647.000000
-75%      1427.500000
-max      1918.000000
-Name: count, dtype: float64
-```
-
-and the item selection count per store visit:
-
-```
-PROD_QTY
-2      221349
-1       25650
-5         418
-3         408
-4         373
-200         2
-Name: count, dtype: int64
-```
-
-From this information we know that:
-
-- There are **271 stores** in our data, with most averaging around **650-900 purchases** in our annual data on average and some stores going as high as 1400-1900. 
-- We ought to check the visit distribution for each store to understand where customers tend to go. 
-- Another thing we can notice is that most purchases are made for **1 or 2 items**, 3 and above tend to be quite rare. 
-- We also can notice a rather strange anomaly of 200 items bought, this probably is not a routine customer purchase, so lets not take them into account in our following analyses since they can skew about results.
-
-```python
-chips = chips[chips['PROD_QTY'] != 200]
-```
-
-### <span style='color:#5075dc'>|</span> Customer purchase share ==purchasing behaviour==
-
-Now let's look at two features that define a pre determined customer segmentation `LIFESTAGE` and `PREMIUM_CUSTOMER`, these two feature will be important in determining customer purchase behaviour. 
-
-
-| LIFESTAGE              |   proportion |
-|:-----------------------|-------------:|
-| OLDER SINGLES/COUPLES  |        20.58 |
-| RETIREES               |        18.81 |
-| OLDER FAMILIES         |        18.32 |
-| YOUNG FAMILIES         |        16.42 |
-| YOUNG SINGLES/COUPLES  |        13.76 |
-| MIDAGE SINGLES/COUPLES |         9.48 |
-| NEW FAMILIES           |         2.63 |
-
-
-| PREMIUM_CUSTOMER   |   proportion |
-|:-------------------|-------------:|
-| Mainstream         |        38.51 |
-| Budget             |        35.16 |
-| Premium            |        26.33 |
-
-!!! abstract "Package Size Selection Share"
-
-	- Older Singles/Couples are the most common purchasing client 
-	- New family and mid age singles/couples share is the smallest of all groups  
-	- The above statistics only demonstrates the frequency and doesn't take into account the amount 
-
-### <span style='color:#5075dc'>|</span> Customer type total sales share ==purchasing behaviour==
-
-Lets check who returns the largest values by `TOT_SALES`. 
-
-| PREMIUM_CUSTOMER   |   TOT_SALES |   COUNTS |   MEMBERS |   RATIO_SALES |   RATIO_MEMBERS |
-|:-------------------|------------:|---------:|----------:|--------------:|----------------:|
-| Budget             |      634004 |    87272 |     24470 |       7.26469 |         25.9095 |
-| Mainstream         |      703600 |    95581 |     29245 |       7.3613  |         24.0588 |
-| Premium            |      475011 |    65345 |     18922 |       7.26929 |         25.1037 |
-
-!!! abstract "Customer group total sales distribution"
-
-	- The number of purchases in each `PREMIUM_CUSTOMER` group is substantially different as indicated by `TOT_SALES`
-	- We can note that all groups spend about the same `TOT_SALES` each visit (`COUNTS`) on average, as indicated by the column `RATIO_SALES`. Mainstream users tend to spend a little more each visit
-	- When taking into account how much each group brings in, we can note that the number of members in `Budget` is not as much as `Mainstream`, yet the group brings in more revenue per person (`RATIO_MEMBERS`)
-	
 
 ### <span style='color:#5075dc'>|</span> Customer total sales share ==purchasing behaviour==
 

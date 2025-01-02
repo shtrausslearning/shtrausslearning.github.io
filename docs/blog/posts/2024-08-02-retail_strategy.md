@@ -393,6 +393,7 @@ Which gives us such information
 
 ### <span style='color:#5075dc'>|</span> Premium Customer, Lifestage Total Sales
 
+Now lets determine the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total
 
 ```python
 customer_segment = chips.groupby(['LIFESTAGE','PREMIUM_CUSTOMER','TOT_SALES'],as_index=False)['TOT_SALES'].sum()
@@ -413,22 +414,3 @@ fig.show("png")
 ```
 
 ![](images/qnt_lifestage_premium.png)
-
-
-### <span style='color:#5075dc'>|</span> Customer total sales share ==purchasing behaviour==
-
-Now lets determine the customer `TOTAL_SALES` and segment by `LIFESTAGE` and `PREMIUM_CUSTOMER`, to determine how much each group actually spends in total
-
-![](images/quantium_lifestage_premium2.png)
-
-And the segmented share statistics
-
-| LIFESTAGE              |   Budget |   Mainstream |   Premium |
-|:-----------------------|--------------------------:|------------------------------:|---------------------------:|
-| MIDAGE SINGLES/COUPLES |                     1.849 |                         4.687 |                      3.02  |
-| NEW FAMILIES           |                     1.14  |                         0.885 |                      0.597 |
-| OLDER FAMILIES         |                     8.697 |                         5.341 |                      4.173 |
-| OLDER SINGLES/COUPLES  |                     7.076 |                         6.907 |                      6.842 |
-| RETIREES               |                     5.864 |                         8.044 |                      5.056 |
-| YOUNG FAMILIES         |                     7.187 |                         4.787 |                      4.356 |
-| YOUNG SINGLES/COUPLES  |                     3.165 |                         8.167 |                      2.161 |

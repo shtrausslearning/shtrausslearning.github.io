@@ -44,7 +44,7 @@ hide_comments: false
 
 <div class="grid cards" markdown>
 
-- <center><b>[Нейросетевые методы рекомендаций](dssm_towers)</b></center>
+- <center><b>[Нейросетевые методы рекомендаций](dssm-towers)</b></center>
 - <center><b>[Многорукие бандиты для оптимизации A/B - тестирования]()</b></center>
 - <center><b>[Многорукие бандиты для задачи рекомендации]()</b></center>
 

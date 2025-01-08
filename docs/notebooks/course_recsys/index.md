@@ -56,5 +56,6 @@ hide_comments: false
 <div class="grid cards" markdown>
 
 - <center><b>[X-Learner Uplift Молельный подход](X_learner)</b></center>
+- <center><b>[NeuMF Модельных подход](neumf)</b></center>
 
 </div>

@@ -36,7 +36,7 @@ hide_comments: false
 - <center><b>[Рекомендации по текстовому описанию](recsys_nlp)</b></center>
 - <center><b>[Ранжирование каталога товаров I](Ranker_Regressor)</b></center>
 - <center><b>[Ранжирование каталога товаров II](Ranker_CatBoost)</b></center>
-- <center><b>[Практическое занятие по рекомендательным системам. Двухуровневая модель](recsys_twomodel)</b></center>
+- <center><b>[Практическое занятие по рекомендательным системам. Двухуровневая модель](2stagerecsys)</b></center>
 
 </div>
 

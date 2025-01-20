@@ -55,7 +55,12 @@ hide_comments: false
 
 <div class="grid cards" markdown>
 
-- <center><b>[X-Learner Uplift Молельный подход](X_learner)</b></center>
-- <center><b>[Нейросетевые методы рекомендаций (NeuMF)](neumf)</b></center>
+- <center><b>[X-Learner Uplift](prob_xlearner)</b></center>
+
+- <center><b>[Модели матричной факторизации](prob_mf)</b></center>
+
+- <center><b>[Контентные методы рекомендаций](prob_lightfm)</b></center>
+
+- <center><b>[Нейросетевые методы рекомендаций (NeuMF)](prob_neumf)</b></center>
 
 </div>

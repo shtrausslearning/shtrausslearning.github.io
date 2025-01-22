@@ -55,7 +55,7 @@ hide_comments: false
 
 <div class="grid cards" markdown>
 
-- <center><b>[X-Learner Uplift](prob_xlearner)</b></center>
+- <center><b>[X-Learner Uplift](prob_x5)</b></center>
 
 - <center><b>[Модели матричной факторизации](prob_mf)</b></center>
 

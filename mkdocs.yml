@@ -151,6 +151,11 @@ extra_javascript:
 
 nav:
   - <b>Home</b>:
+      - Portfolio: portfolio/index.md
+      - Articles: blog/index.md
+      - Notebooks: notebooks/index.md
+      - Mllibs: proj_mllibs/index.md
+      - About: about/index.md
       - index.md
 
   - <b>Projects</b>: 

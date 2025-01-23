@@ -69,6 +69,8 @@ hide_comments: false
 
 - <center><b>[Контентные методы рекомендаций](prob_lightfm)</b></center>
 
+- <center><b>[гибридные подход рекомендаций](prob_hybrid)</b></center>
+
 - <center><b>[Нейросетевые методы рекомендаций (NeuMF)](prob_neumf)</b></center>
 
 </div>

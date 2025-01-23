@@ -19,6 +19,8 @@ hide_comments: false
 
 ## Классические методы рекомендаций
 
+Эвристические и подходы разложения матрицы рейтингов
+
 <div class="grid cards" markdown>
 
 - <center><b>[Эвристические Модели,Коллаборативная Фильтрация](recsys_rule_knn)</b></center>
@@ -29,6 +31,8 @@ hide_comments: false
 </div>
 
 ## Контентные и гибридные методы рекомендаций
+
+Подходы на основе LightFM и много этапные подходы для решения задач рекомендации  
 
 <div class="grid cards" markdown>
 
@@ -42,6 +46,8 @@ hide_comments: false
 
 ## Современные методы рекомендаций
 
+Нейросетевые подходы и подобные
+
 <div class="grid cards" markdown>
 
 - <center><b>[Нейросетевые методы рекомендаций (DSSM)](dssm-towers)</b></center>
@@ -52,6 +58,8 @@ hide_comments: false
 
 
 ## Проекты
+
+Решение задач которые задавали 
 
 <div class="grid cards" markdown>
 

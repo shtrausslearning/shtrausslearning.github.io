@@ -10,10 +10,10 @@ icon: octicons/home-fill-24
 
 <p style="text-align: center; margin: 0px;">
 
-  <img src="images/id_into4.png"/>
+  <img src="images/id_intro6.png"/>
   
   <p style="text-align: center; margin: 0px;">
-   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various [projects](portfolio/index.md) related to machine learning and analytics that interest me & often make some [posts](blog/index.md) about it! I also post my Jupyter [notebooks](notebooks/index.md) about various topics. You can also learn more about me in section <a href="https://shtrausslearning.github.io/about/index.html">About Me</a>
+   Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it! I also post my Jupyter notebooks about various topics.
   </p>
 </p>
 

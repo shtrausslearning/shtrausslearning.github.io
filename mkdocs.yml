@@ -40,14 +40,12 @@ theme:
 
     # Palette toggle for light mode
     - scheme: default
-      accent: deep purple
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
-      accent: deep purple
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode

@@ -59,11 +59,11 @@ hide_comments: false
 
 ## Проекты
 
-Решение задач на разные темы 
+Решение задач которые задавали 
 
 <div class="grid cards" markdown>
 
-- <center><b>[X-Learner Uplift Моделирование](prob_x5)</b></center>
+- <center><b>[X-Learner Uplift](prob_x5)</b></center>
 
 - <center><b>[Модели матричной факторизации](prob_mf)</b></center>
 

@@ -12,7 +12,7 @@ theme:
   logo: images/logo2.svg
   favicon: images/mllibs2.svg
   font:
-      text: Ubuntu
+      text: Roboto
       code: Roboto Mono
   icon:
     logo: mllibs2.svg

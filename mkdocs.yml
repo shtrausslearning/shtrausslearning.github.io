@@ -7,6 +7,7 @@ site_url: https://shtrausslearning.github.io
 docs_dir: docs
 
 theme:
+  custom_dir: docs/overrides
   language: en
   name: material
   logo: images/logo2.svg

@@ -12,6 +12,10 @@ title: Home
   <img src="images/id_about4.png"/>
 
   <br>
+
+</p>
+
+<p style="text-align: center; margin: 0px;">
   
   <p style="text-align: center; margin: 0px;">
    Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it! I also post my Jupyter notebooks about various topics.

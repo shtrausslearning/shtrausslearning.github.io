@@ -22,6 +22,7 @@ theme:
   favicon: images/mllibs2.svg
     
   features:
+    - header.autohide
     - content.code.annotate
     - content.code.copy
     - content.code.select

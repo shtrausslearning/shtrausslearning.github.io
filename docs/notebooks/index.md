@@ -1,5 +1,6 @@
 ---
 title: Notebooks
+icon: simple/jupyter
 hide_comments: false
 ---
 

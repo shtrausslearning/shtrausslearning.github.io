@@ -1,4 +1,5 @@
 ---
+icon: material/notebook-multiple
 title: Projects
 comments: true
 ---

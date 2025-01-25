@@ -5,12 +5,11 @@ hide:
   - toc
   - title
 title: Home
-icon: octicons/home-fill-24
 ---
 
 <p style="text-align: center; margin: 0px;">
 
-  <img src="images/id_intro6.png"/>
+  <img src="images/id_about4.png"/>
   
   <p style="text-align: center; margin: 0px;">
    Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it! I also post my Jupyter notebooks about various topics.

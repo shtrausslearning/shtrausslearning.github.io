@@ -1,7 +1,3 @@
----
-icon: material/account-box
----
-
 ![](images/id_about3.png)
 
 <p align="center" markdown>

@@ -1,5 +1,6 @@
 ---
-icon: material/account-box
+title: About
+hide_comments: false
 ---
 
 ![](images/id_about3.png)

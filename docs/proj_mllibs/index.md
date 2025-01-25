@@ -1,15 +1,8 @@
 ---
 title: mllibs
-icon: material/package-variant
 ---
 
 <center>![Image title](images/wnb.png){ width="450" }</center>
-
-<center>
-
-![](https://img.shields.io/badge/python-3.7%2B-242424) ![](https://img.shields.io/badge/pypi-v0.2.0-242424) ![](https://img.shields.io/badge/License-MIT-242424)
-
-</center>
 
 ### **About mllibs**
 

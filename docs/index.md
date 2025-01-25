@@ -10,6 +10,8 @@ title: Home
 <p style="text-align: center; margin: 0px;">
 
   <img src="images/id_about4.png"/>
+
+  <br>
   
   <p style="text-align: center; margin: 0px;">
    Thank you for visiting! I'm a Big Data Analyst in IT/Bank. Here you will find a collection of some of my work, I do various projects related to machine learning and analytics that interest me & often make some posts about it! I also post my Jupyter notebooks about various topics.
@@ -45,6 +47,7 @@ title: Home
   - :simple-gitlfs:{ .lg .middle }&nbsp; &nbsp;[<b>mllibs documentation</b>](proj_mllibs/index.md)
     
     NLP process automisation project documentation
+
 
 </div>
 

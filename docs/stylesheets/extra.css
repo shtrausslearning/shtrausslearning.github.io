@@ -108,8 +108,5 @@
 }
 
 [data-md-color-scheme="slate"] {
-  --md-hue: 210; 
-  --md-primary-fg-color:        #003257;
-  --md-primary-fg-color--light: #004171;
-  --md-primary-fg-color--dark:  #00233d;
+  --md-primary-fg-color:        #235072;
 }

@@ -637,6 +637,7 @@ section {
 --------------------------------------------------------------*/
 .portfolio-details {
   padding-top: 40px;
+  opacity: 0.5;
 }
 
 .portfolio-details .portfolio-details-slider img {

@@ -43,7 +43,7 @@ theme:
     toggle:
       icon: material/toggle-switch
       name: Switch to light mode
-  - scheme: slate
+  - scheme: default
     primary: custom   # deep orange
     accent: light blue
     toggle:

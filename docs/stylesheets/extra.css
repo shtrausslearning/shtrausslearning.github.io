@@ -108,5 +108,6 @@
 }
 
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color:        #4e5eb8;
+  --md-primary-fg-color: #4c5fce;
+  --md-default-bg-color: #2B313B;
 }

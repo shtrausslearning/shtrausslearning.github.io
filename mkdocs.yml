@@ -159,7 +159,8 @@ nav:
       
   - <b>Notebooks</b>:
       - notebooks/index.md
-      - RecSys: notebooks/recsys/index.md
+      - RecSys: notebooks/course_recsys/index.md
+      - NLP: notebooks/course_nlp/index.md
       - Machine Learning: notebooks/sfml/index.md
   
   - <b>mllibs</b>: 

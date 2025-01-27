@@ -9,11 +9,17 @@ In this sections we cover Machine Learning related topics covered in the course
 
 ## Модуль 3. Линейные Модели
 
-Practice linear regression and classification modeling methods
+Делаем практики с работы с линейными моделями (регрессия и классификация)
 
 <div class="grid cards" markdown>
 
 - <center><b>[Линейная Регрессия Предобработка](ml3a_linear_prep)</b></center>
+
+	---
+	
+	Предсказания Стоимости Квартиры и предобработка данных 
+
+
 - <center><b>[Линейная Регрессия Практика 1](ml3a_linear_practice1)</b></center>
 - <center><b>[Линейная Регрессия Практика 2](ml3a_linear_practice2)</b></center>
 - <center><b>[Логистическая Регрессия Метрики Качества](ml3b_2_metrics)</b></center>

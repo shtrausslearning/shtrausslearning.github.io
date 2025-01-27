@@ -55,32 +55,40 @@ In this sections we cover Machine Learning related topics covered in the course
 
 ## Модуль 4. Кластеризация
 
-Practice methods of clusterisations, understand their parameters and unique points
+Изучаем методы кластеризация данных
 
 <div class="grid cards" markdown>
 
 - <center><b>[K-means Практика](ml4_5_kMeans)</b></center>
+
+	--- 
+	
+	Ознакамливаемся с `KMeans` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
+
 - <center><b>[EM-алгоритм Практика](ml4_6_EM_алгоритм)</b></center>
+
+	--- 
+	
+	Ознакамливаемся с `GaussianMixture` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
+
+
 - <center><b>[Агломеративная кластеризация Практика](ml4_7_Агломеративная_Кластеризация)</b></center>
+
+	--- 
+	
+	Ознакамливаемся с `AgglomerativeClustering` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
+
 - <centeR><b>[DBSCAN. Практика](ml4_8_DBSCAN)</b></center>
 
-</div>
+	---
+	
+	Ознакамливаемся с `DBSCAN` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
 
-Methods of metric evaluation, clusterisation requires some less straightforward metric evaluation
-
-<div class="grid cards" markdown>
 
 - <center><b>[Коэффициент силуэта Практика](ml4_11_Коэффициент_силуэта)</b></center>
 - <center><b>[Однородность Практика](ml4_12_Однородность)</b></center>
 - <center><b>[Полнота Практика](ml4_13_Полнота)</b></center>
 - <center><b>[V-мера Практика](ml4_14_V-Мера)</b></center>
-
-</div>
-
-Practical problem for news text classification
-
-<div class="grid cards" markdown>
-
 - <center><b>[Кластеризация Новостей](ml4_15_Кластеризация_Текстов)</b></center>
 
 </div>

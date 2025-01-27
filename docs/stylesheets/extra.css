@@ -110,7 +110,9 @@
 [data-md-color-scheme="slate"] {
   --md-hue: 201;
   --md-primary-fg-color: #3489c2;
+  --md-primary-bg-color: #3489c2;
   --md-default-bg-color: #252a33;
-  --md-accent-fg-color: #89c4eb;
+  --md-accent-fg-color:  #89c4eb;
+  --md-accent-bg-color:  #89c4eb;
   
 }

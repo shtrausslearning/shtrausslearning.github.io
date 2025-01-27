@@ -7,7 +7,7 @@ hide_comments: false
 
 In this sections we cover Machine Learning related topics covered in the course
 
-## **:material-chart-timeline-variant: Модуль 3. Линейные Модели** 
+## Модуль 3. Линейные Модели
 
 Practice linear regression and classification modeling methods
 
@@ -22,7 +22,7 @@ Practice linear regression and classification modeling methods
 
 </div>
 
-## **:material-google-circles: Модуль 4. Кластеризация**
+## Модуль 4. Кластеризация
 
 Practice methods of clusterisations, understand their parameters and unique points
 
@@ -54,7 +54,7 @@ Practical problem for news text classification
 
 </div>
 
-## **:material-family-tree: Модуль 5. Решающие деревья и случайный лес**
+## Модуль 5. Решающие деревья и случайный лес
 
 Practice for tree based methods, Decision Tree & Random Forest
 
@@ -67,7 +67,7 @@ Practice for tree based methods, Decision Tree & Random Forest
 </div>
 
 
-## **:fontawesome-solid-arrow-down-wide-short: Модуль 6. Бустинг. Стекинг**
+## Модуль 6. Бустинг. Стекинг
 
 Practice for Gradient Boosting & Model Stacking
 
@@ -79,7 +79,7 @@ Practice for Gradient Boosting & Model Stacking
 </div>
 
 
-## **:octicons-graph-16: Модуль 8. Временные ряды в МО**
+## Модуль 8. Временные ряды в МО
 
 Time series based machine learning 
 
@@ -91,7 +91,7 @@ Time series based machine learning
 </div>
 
 
-## **:material-projector-screen-outline: Projects**
+## Projects
 
 Hackathon competition projects
 

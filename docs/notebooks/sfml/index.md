@@ -3,11 +3,12 @@ title: Machine Learning Course Work
 hide_comments: false
 ---
 
-# Machine Learning 
+# **Machine Learning**
 
 In this sections we cover Machine Learning related topics covered in the course
 
-## Линейные Модели
+## <b><span style='color:#686dec'>Линейные Модели</span></b> 
+
 
 Делаем практики с работы с линейными моделями (регрессия и классификация)
 
@@ -53,7 +54,7 @@ In this sections we cover Machine Learning related topics covered in the course
 
 </div>
 
-## Кластеризация
+## <b><span style='color:#686dec'>Кластеризация</span></b> 
 
 Изучаем методы кластеризация данных, какие у разных моделей гиперпараметры, как они отличаются друг от друга и какие метрики используются для оценки качества кластеризации, в конце делаем практическое применение кластеризации
 
@@ -121,9 +122,12 @@ In this sections we cover Machine Learning related topics covered in the course
 
 </div>
 
-## Модуль 5. Решающие деревья и случайный лес
 
-Practice for tree based methods, Decision Tree & Random Forest
+
+## <b><span style='color:#686dec'>Решающие деревья и случайный лес</span></b> 
+
+
+Изучаем модели на основе деревьев, и вариации ансамблирования этих моделей подходом бэггинга и методом случайных подпространств 
 
 <div class="grid cards" markdown>
 
@@ -150,9 +154,9 @@ Practice for tree based methods, Decision Tree & Random Forest
 </div>
 
 
-## Модуль 6. Бустинг. Стекинг
+## <b><span style='color:#686dec'>Бустинг. Стекинг</span></b> 
 
-Practice for Gradient Boosting & Model Stacking
+Подходы градиентного бустинга и стекинг моделей
 
 <div class="grid cards" markdown>
 
@@ -162,7 +166,7 @@ Practice for Gradient Boosting & Model Stacking
 </div>
 
 
-## Модуль 8. Временные ряды в МО
+## Временные ряды в МО
 
 Time series based machine learning 
 

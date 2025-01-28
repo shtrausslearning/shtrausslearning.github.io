@@ -5,9 +5,7 @@ hide_comments: false
 
 # **Machine Learning**
 
-In this sections we cover Machine Learning related topics covered in the course
-
-## <b><span style='color:#686dec'>Линейные Модели</span></b> 
+## <b><span style='color:#3489c2'>Линейные Модели</span></b> 
 
 
 Делаем практики с работы с линейными моделями (регрессия и классификация)
@@ -54,7 +52,7 @@ In this sections we cover Machine Learning related topics covered in the course
 
 </div>
 
-## <b><span style='color:#686dec'>Кластеризация</span></b> 
+## <b><span style='color:#3489c2'>Кластеризация</span></b> 
 
 Изучаем методы кластеризация данных, какие у разных моделей гиперпараметры, как они отличаются друг от друга и какие метрики используются для оценки качества кластеризации, в конце делаем практическое применение кластеризации
 
@@ -124,7 +122,7 @@ In this sections we cover Machine Learning related topics covered in the course
 
 
 
-## <b><span style='color:#686dec'>Решающие деревья и случайный лес</span></b> 
+## <b><span style='color:#3489c2'>Решающие деревья и случайный лес</span></b> 
 
 
 Изучаем модели на основе деревьев, и вариации ансамблирования этих моделей подходом бэггинга и методом случайных подпространств 
@@ -154,7 +152,7 @@ In this sections we cover Machine Learning related topics covered in the course
 </div>
 
 
-## <b><span style='color:#686dec'>Бустинг. Стекинг</span></b> 
+## <b><span style='color:#3489c2'>Бустинг. Стекинг</span></b> 
 
 Подходы градиентного бустинга и стекинг моделей
 

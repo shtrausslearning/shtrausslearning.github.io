@@ -1,0 +1,39 @@
+$schema: https://github.com/arv-anshul/arv-anshul.github.io/raw/main/schemas/projects_index-schema.json
+projects:
+  - title: YouTube Watch History
+    description: |
+      Analyse your YouTube Watch History Data and get insights from it like which type of
+      which type of content you likes to watch on which time of the day. I have build ML
+      model which predicts the `contentType` of the videos from their titles.
+    urls:
+      - title: GitHub Repository
+        icon: simple-github
+        url: https://github.com/arv-anshul/yt-watch-history
+      - title: Jupyter Notebooks
+        icon: simple-jupyter
+        url: https://github.com/arv-anshul/notebooks/tree/main/yt-watch-history
+    tags:
+      - docker
+    completed_on: January, 2024
+
+  - title: Spotify Analysis
+    description: |
+      Hello hello Analyse your Spotify Streaming data and get some insights from it like whom & when
+      you listen your favorite Tracks, Artists, Playlists or Albums.
+    urls:
+      - title: Jupyter Notebooks
+        icon: simple-jupyter
+        url: https://github.com/arv-anshul/notebooks/tree/main/spotify-analysis
+    tags:
+      - jupyter
+      - plotly
+      - polars
+      - ruff
+      - rye
+      - scikitlearn
+      - spotify
+      - streamlit
+      - fastapi
+      - flipkart
+      - pydantic
+    completed_on:

@@ -1,5 +1,5 @@
 ---
-title: Recommendation Systems Course Work
+title: RecSyss
 hide_comments: false
 ---
 
@@ -13,7 +13,7 @@ hide_comments: false
 - <center><b>[Сегментация Пользователей (Эвристическая, Кластеризация, Лог Регрессия)](User_Segmentation)</b></center>
 - <center><b>[Look-a-like Сегментация Пользователей](Look-a-like_Segmentation)</b></center>
 - <center><b>[Next Best Action Моделирование](NBA_Modeling)</b></center>
-- <center><b>[Uplift Моделирования](Uplift_Modeling)
+- <center><b>[Uplift Моделирования](Uplift_Modeling)</b></center>
 
 	--- 
 	

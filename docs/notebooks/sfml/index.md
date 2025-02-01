@@ -1,5 +1,5 @@
 ---
-title: Machine Learning Course Work
+title: Machine Learning
 hide_comments: false
 ---
 

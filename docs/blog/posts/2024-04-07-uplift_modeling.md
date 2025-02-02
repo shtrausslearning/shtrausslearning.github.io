@@ -7,6 +7,7 @@ categories:
      - uplift modeling
 tags:
      - machine learning
+     - personalisation
 comments: true
 ---
 
@@ -23,9 +24,9 @@ comments: true
 
 <!-- more -->
 
-## **Introduction**
+## **<span style='color:#2eafec'>Introduction</span>**
 
-### **<span style='color:#686dec'> Uplift Modeling</span>**
+### **Uplift Modeling**
 
 What is the main issue at hand:
 
@@ -45,7 +46,7 @@ Imagine we are selling a product and need to decide to whom we will be advertisi
 - **we would like to find clients who will buy the product** if they see our advertisement 
 - and **will and not buy it if they don't see it**
 
-### **<span style='color:#686dec'> Uplift Modeling Components</span>**
+### **Uplift modeling components**
 
 In **uplift modeling** we need three components:
 
@@ -56,7 +57,7 @@ In **uplift modeling** we need three components:
  - The standard ==feature matrix== (like other machine learning problems) is a matrix that contains features
 
 
-### **<span style='color:#686dec'> What to remember</span>**
+### **What to remember**
 
 So some important things to note in the context of uplift modeling:
 
@@ -64,10 +65,9 @@ So some important things to note in the context of uplift modeling:
 - Having a trained model will enable us to identify on unseen data (without a treatment or target vector) the uplift value for a group for which we have a set of features used in training
 - Our aim is to target **influencible clients** (those who upon being interacted with will commit a target action) and **those who can be positively influenced** (when not interacted with will not conduct a target action).
 
+## **<span style='color:#2eafec'>Loading Dataset</span>**
 
-## **Loading Data**
-
-### **<span style='color:#686dec'> Kevin Hillstrom Dataset</span>**
+### **Kevin Hillstrom dataset**
 
 Our dataset is available in the sklift library, called **Kevin Hillstrom Dataset**. You can also try other sample problems shown below:
 
@@ -97,9 +97,9 @@ Having read the above, lets **summarise the important** bits:
 - Finally we have a target containing post marketing campaign monitored results (confirmations of whether the email campaign worked or not)
 
 
-## **Data Insight**
+## **<span style='color:#2eafec'>Data Insights</span>**
 
-### **<span style='color:#686dec'> Feature Matrix</span>**
+### **Feature matrix**
 
 Let's also look at the feature matrix available to us:
 
@@ -116,9 +116,9 @@ Let's also look at the feature matrix available to us:
 +-------+---------------+-------+----+------+---------+------+-------+
 ```
 
-### **<span style='color:#686dec'> Treatment Array</span>**
+### **Treatment Array**
 
-The treatment array contains text data which we will need to convert into numerical data, we have information about the marketing campaign, in which we roughtly speaking to do one of two things; send an email about the marketing campaign or don't send anything
+The **`treatment array`** contains text data which we will need to convert into numerical data, we have information about the marketing campaign, in which we roughtly speaking to do one of two things; send an email about the marketing campaign or don't send anything
 
 ```
 t.sample(5)
@@ -130,7 +130,7 @@ t.sample(5)
 21571    Womens E-Mail
 ```
 
-### **<span style='color:#686dec'> Target Array</span>**
+### **Target Array**
 
 The target contains the **result of the email marketing campaign** influence and is already in numerical format, it reflects whether the campaign was successful or not
 
@@ -144,7 +144,7 @@ y.sample(5)
 45957    1
 ```
 
-## **Preprocessing**
+## **<span style='color:#2eafec'>Preprocessing</span>**
 
 **Problem Simplification**
 
@@ -187,7 +187,7 @@ X_train = pd.concat([X_train_cat, X_train.drop(cat_columns, axis=1)], axis=1)
 X_test = pd.concat([X_test_cat, X_test.drop(cat_columns, axis=1)], axis=1)
 ```
 
-## **Modeling Approaches**
+## **<span style='color:#2eafec'>Modeling Approaches</span>**
 
 Now that we have our data ready, lets talk libraries and approaches. There is a commonly used uplift modeling library called **scikit-uplift**, its based on scikit-learn machine learning models, but modified for uplift modeling. Lets remind ourselves of what the modeling actually wants to achieve:
 
@@ -197,7 +197,8 @@ Now that we have our data ready, lets talk libraries and approaches. There is a 
 
 scikit-uplift has a number of different approaches for uplift modeling, you can find the models in the [following link](https://www.uplift-modeling.com/en/latest/), we'll look at two of the three approaches used in the library
 
-### **<span style='color:#686dec'> One Model Approach</span>**
+
+### **One model approach**
 
 Starting with **s-learner** approach, we train two separate models
 
@@ -242,7 +243,8 @@ uplift_model.predict(X_test)
     - In terms of magnitude, a larger positive (or negative) uplift score implies a more significant impact of the treatment on the individual's likelihood of a positive outcome.
 
 
-### **<span style='color:#686dec'> Two Independent Model Approach</span>**
+
+### **Two independent model approach**
 
 The two model approach, **t-learner** is similar to a one model approach, however instead of training a single model on **all the data**, we train two models, on two different subsets of data:
 
@@ -291,9 +293,9 @@ We can also plot the uplift values predicted by both modeling approaches:
 
 We can notice a very minor binomial tendency in the figure, a large portion of users having a low uplift values around 0-0.25 & a secondary group around 0.3-0.75, in terms of model variation, we can clearly note that **t-learner** is less concentrated with values at 0 and instead has more values in the region 0-0.25, which would indicate that the model predicts on average that the user is more confident that the user is positively influenced than the **s-model**
 
-## **After Modeling**
+## **<span style='color:#2eafec'>Result evalaluation</span>**
 
-### **<span style='color:#686dec'> Metric Evaluation</span>**
+### **Evaluation of metrics**
 
 So now that we have obtained our **uplift values**, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called **uplift@k**. 
 
@@ -340,7 +342,7 @@ results
 What we can conclude is that the **t-learner** method has a slightly higher metric values compared to **s-learer**, which indicates that it is a slightly better modeling approach.
 
 
-### **<span style='color:#686dec'> Concluding Remarks</span>**
+## **<span style='color:#2eafec'>Concluding Remarks</span>**
 
 In this post we looked into a brief introduction into **uplift modeling**, which is a practical business task for which we can utilise machine learning & use modeling for the prediction/identification of the subset of objects/dataset **who upon being influenced by an event/action will do some action** and **if not influenced will not do the action**
 

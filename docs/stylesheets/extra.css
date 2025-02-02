@@ -144,17 +144,12 @@ img {
   --md-hue: 10;
 
   --md-primary-fg-color:              #a7c7dd;  
-  --md-primary-fg-color--light:        #20587e;
-  --md-primary-fg-color--dark:         #1d577e;
   
   --md-primary-bg-color:               #F5F5F5;
-  --md-primary-bg-color--light:        #173449;
   --md-default-bg-color:               #2c3a42;
 
   --md-accent-fg-color:                #dbdbdb;
-  --md-accent-fg-color--transparent:   #24475e;
   --md-accent-bg-color:                #305b77;
-  --md-accent-bg-color--light:         #204258;
   --md-code-bg-color:                  #232f38;
   
 }

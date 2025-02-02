@@ -2,7 +2,7 @@
 date: 2024-08-10
 title: Retail Strategy and Analytics
 authors: [andrey]
-draft: false
+draft: true
 categories:
      - rfm segmentation
 tags:

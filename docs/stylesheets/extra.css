@@ -139,6 +139,13 @@ img {
   border-radius: 15px;
 }
 
+.highlight .hll {
+    background-color: var(--md-code-hl-color);
+    display: block;
+    margin: 0 -1.1764705882em;
+    padding: 0 1.1764705882em;
+}
+
 
 [data-md-color-scheme="slate"] {
 
@@ -150,5 +157,6 @@ img {
   --md-accent-fg-color:                #dbdbdb;
   --md-accent-bg-color:                #305b77;
   --md-code-bg-color:                  #232f38;
+  --md-code-hl-color:                  #232f38;
   
 }

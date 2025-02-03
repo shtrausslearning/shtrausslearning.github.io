@@ -16,8 +16,6 @@ Continuing on where we left off last post, I'll be exploring **pypspark** on a d
 
 <!-- more -->
 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)
-
 ### SQL like functions (ORDER BY)
 
 Ordering a column using **orderBy** based on ascending **f.col.asc()** or descending order **f.col.desc()**

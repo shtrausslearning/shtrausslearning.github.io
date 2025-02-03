@@ -18,8 +18,6 @@ Here I will be posting summaries that cover roughtly 10 days worth of posts that
 
 <!-- more -->
 
-[![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)
-
 ### Setting data types via custom schema
 
 Today's post is about **schemes**. PySpark tends to mimic a lot of SQL database aspects. Its standard practice to define a **table scheme** for our dataframe when either creating a dataframe or reading files

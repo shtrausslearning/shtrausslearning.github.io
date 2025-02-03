@@ -10,7 +10,7 @@ tags:
 comments: true
 ---
 
-# PySpark Daily December Summary II
+# **PySpark Daily December Summary II**
 
 Continuing on where we left off last post, I'll be exploring **pypspark** on a daily basis, just to get more used to it. Here I will be posting summaries that cover roughtly 10 days worth of posts that I make **[on Kaggle](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)**, so that would equate to three posts a month
 
@@ -18,9 +18,7 @@ Continuing on where we left off last post, I'll be exploring **pypspark** on a d
 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)
 
-### <b>10/12/2023</b>
-
-<h4><b><span style='color:#E888BB'>❯❯❯</span> SQL like functions (ORDER BY)</b></h4>
+### SQL like functions (ORDER BY)
 
 Ordering a column using **orderBy** based on ascending **f.col.asc()** or descending order **f.col.desc()**
 
@@ -84,9 +82,7 @@ df.orderBy(f.col('age').desc(),f.col('height').asc()).show()
 +-------+---+------+
 ```
 
-### <b>11/12/2023</b>
-
-<h4><b><span style='color:#E888BB'>❯❯❯</span> SQL like functions (JOIN)</b></h4>
+### SQL like functions (JOIN)
 
 Joining dataframes is of course an important part of data analysis:
 
@@ -200,9 +196,7 @@ dataset1.join(dataset2,on='date',how='outer').show()
 +----------+------+------+
 ```
 
-### <b>12/12/2023</b>
-
-<h4><b><span style='color:#E888BB'>❯❯❯</span> PySpark UDF (Standard UDF)</b></h4>
+### PySpark UDF (Standard UDF)
 
 PySpark **UDFs** are custom functions that can be created and applied to DataFrame columns in PySpark. They allow users to perform custom computations or transformations on DataFrame data by defining their own functions and applying them **to specific columns**, 
 
@@ -276,9 +270,7 @@ df.show()
 +-------+---+------+
 ```
 
-### <b>13/12/2023</b>
-
-<h4><b><span style='color:#E888BB'>❯❯❯</span> PySpark UDF to create features for modeling</b></h4>
+### PySpark UDF to create features for modeling
 
 **UDF** can be used like apply in pandas dataframes, allowing custom logic modifications to columns values. 
 
@@ -326,9 +318,7 @@ model = lr.fit(df)
 spark.stop()
 ```
 
-### <b>14/12/2023</b>
-
-<h4><b><span style='color:#E888BB'>❯❯❯</span> PySpark UDF to create features for modeling</b></h4>
+### PySpark UDF to create features for modeling
 
 PySpark offers another type of **UDF**, **PandasUDF**, which can be imported from functions as well like **udf**. Unlike **UDF**, we need to specify which type of pandasUDF we will be using (**functionType**), one of these types is **PandasUDFType.SCALAR**. 
 

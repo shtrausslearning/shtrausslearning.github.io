@@ -14,6 +14,8 @@ comments: true
 
 **Uplift modeling** is a predictive modeling technique that aims to identify the individuals who are most likely to respond positively to a specific treatment or intervention. This technique is particularly useful in marketing and customer relationship management, where the goal is to target customers who are likely to be influenced by a marketing campaign or offer. By distinguishing between those who are positively influenced by the treatment and those who are not, uplift modeling helps organizations optimize their targeting strategies and maximize the return on investment of their marketing efforts.
 
+<!-- more -->
+
 <div class="grid cards" markdown>
 
   - :simple-kaggle:{ .lg .middle }&nbsp; <b>[Open Kaggle Notebook](https://www.kaggle.com/shtrausslearning/uplift-model-approaches)</b>
@@ -21,11 +23,9 @@ comments: true
 
 </div>
 
-<!-- more -->
-
 ## **Introduction**
 
-### **<span style='color:#686dec'> Uplift Modeling</span>**
+### Uplift Modeling
 
 What is the main issue at hand:
 
@@ -38,14 +38,14 @@ So what it this modeling approach about:
 - who upon being influenced by an event/action will do some action
 - and if not influenced will not do the action
 
-### **<span style='color:#686dec'> Uplift Modeling Example</span>**
+### Uplift Modeling Example
 
 Imagine we are selling a product and need to decide to whom we will be advertising, we have some constraints and cannot show it to all target audiences, 
 
 - **we would like to find clients who will buy the product** if they see our advertisement 
 - and **will and not buy it if they don't see it**
 
-### **<span style='color:#686dec'> Uplift Modeling Components</span>**
+### Uplift Modeling Components
 
 In **uplift modeling** we need three components:
 
@@ -56,7 +56,7 @@ In **uplift modeling** we need three components:
  - The standard ==feature matrix== (like other machine learning problems) is a matrix that contains features
 
 
-### **<span style='color:#686dec'> What to remember</span>**
+### What to remember
 
 So some important things to note in the context of uplift modeling:
 
@@ -67,7 +67,7 @@ So some important things to note in the context of uplift modeling:
 
 ## **Loading Data**
 
-### **<span style='color:#686dec'> Kevin Hillstrom Dataset</span>**
+### Kevin Hillstrom Dataset
 
 Our dataset is available in the sklift library, called **Kevin Hillstrom Dataset**. You can also try other sample problems shown below:
 
@@ -99,7 +99,7 @@ Having read the above, lets **summarise the important** bits:
 
 ## **Data Insight**
 
-### **<span style='color:#686dec'> Feature Matrix</span>**
+### Feature Matrix
 
 Let's also look at the feature matrix available to us:
 
@@ -116,7 +116,7 @@ Let's also look at the feature matrix available to us:
 +-------+---------------+-------+----+------+---------+------+-------+
 ```
 
-### **<span style='color:#686dec'> Treatment Array</span>**
+### Treatment Array
 
 The treatment array contains text data which we will need to convert into numerical data, we have information about the marketing campaign, in which we roughtly speaking to do one of two things; send an email about the marketing campaign or don't send anything
 
@@ -130,7 +130,7 @@ t.sample(5)
 21571    Womens E-Mail
 ```
 
-### **<span style='color:#686dec'> Target Array</span>**
+### Target Array
 
 The target contains the **result of the email marketing campaign** influence and is already in numerical format, it reflects whether the campaign was successful or not
 
@@ -146,7 +146,7 @@ y.sample(5)
 
 ## **Preprocessing**
 
-**Problem Simplification**
+### Problem Simplification
 
 Lets do a little bit of preprocessing and problem simplification. As we saw in the above data, we have three categories in our treatment vector. Lets simplify it to just a binary case and not differentiate the male and female target cases, ie. marketing email has been sent or not sent. 
 
@@ -155,7 +155,7 @@ t = t.map({'Womens E-Mail':1, 'Mens E-Mail':1, 'No E-Mail':0})
 t.head()
 ```
 
-**Train Test Splitting**
+### Train Test Splitting
 
 Lets also split the data into training & test subsets, we will need some unseen data to validate our models.
 
@@ -163,7 +163,7 @@ Lets also split the data into training & test subsets, we will need some unseen 
 X_train, X_test, y_train, y_test, t_train, t_test = train_test_split(X, y, t, test_size=0.3, random_state=42)
 ```
 
-**Categorical Feature Treatment**
+### Categorical Feature Treatment
 
 We have to also pay attention to categorical features which are present in our feature matrix, a common and most straightforward approach is to use **One Hot Encoding**, which will be applied to three columns. 
 
@@ -197,9 +197,9 @@ Now that we have our data ready, lets talk libraries and approaches. There is a 
 
 scikit-uplift has a number of different approaches for uplift modeling, you can find the models in the [following link](https://www.uplift-modeling.com/en/latest/), we'll look at two of the three approaches used in the library
 
-### **<span style='color:#686dec'> One Model Approach</span>**
+### One Model Approach
 
-Starting with **s-learner** approach, we train two separate models
+Starting with **`s-learner`** approach, we train two separate models
 
 - We train a base model with all base features and the treatment vector (w), taking the target vector (y) as our independent variable
 - Apply the model (predict) assuming we have **interacted with all customers**, ie. (t=1 for all customers), and ask to return the probability of a successful outcome (y=1) for this group
@@ -242,7 +242,7 @@ uplift_model.predict(X_test)
     - In terms of magnitude, a larger positive (or negative) uplift score implies a more significant impact of the treatment on the individual's likelihood of a positive outcome.
 
 
-### **<span style='color:#686dec'> Two Independent Model Approach</span>**
+### Two Independent Model Approach
 
 The two model approach, **t-learner** is similar to a one model approach, however instead of training a single model on **all the data**, we train two models, on two different subsets of data:
 
@@ -291,9 +291,9 @@ We can also plot the uplift values predicted by both modeling approaches:
 
 We can notice a very minor binomial tendency in the figure, a large portion of users having a low uplift values around 0-0.25 & a secondary group around 0.3-0.75, in terms of model variation, we can clearly note that **t-learner** is less concentrated with values at 0 and instead has more values in the region 0-0.25, which would indicate that the model predicts on average that the user is more confident that the user is positively influenced than the **s-model**
 
-## **After Modeling**
+## **Conclusion**
 
-### **<span style='color:#686dec'> Metric Evaluation</span>**
+### Metric Evaluation
 
 So now that we have obtained our **uplift values**, we ought to evaluate how well our modeling is. When it comes to uplift modeling problems, we can turn to a metric called **uplift@k**. 
 
@@ -340,7 +340,7 @@ results
 What we can conclude is that the **t-learner** method has a slightly higher metric values compared to **s-learer**, which indicates that it is a slightly better modeling approach.
 
 
-### **<span style='color:#686dec'> Concluding Remarks</span>**
+### Remarks
 
 In this post we looked into a brief introduction into **uplift modeling**, which is a practical business task for which we can utilise machine learning & use modeling for the prediction/identification of the subset of objects/dataset **who upon being influenced by an event/action will do some action** and **if not influenced will not do the action**
 

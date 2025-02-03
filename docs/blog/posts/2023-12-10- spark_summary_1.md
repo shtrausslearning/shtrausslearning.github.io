@@ -10,7 +10,7 @@ tags:
 comments: true
 ---
 
-# PySpark Daily December Summary I
+# **PySpark Daily December Summary I**
 
 Something I decided would be fun to do on a daily basis; write **pyspark** code everyday and post about it, this is mainly because I don't use it as often as I would like, so this is my motivation. If you too want to join in, just fork the notebook (**[on Kaggle]((https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts))**) and practice various pyspark codings everyday! Visit my **[telegram channel](https://t.me/mldsai_info)** if you have any questions or just post them here!
 
@@ -20,7 +20,7 @@ Here I will be posting summaries that cover roughtly 10 days worth of posts that
 
 [![Open Notebook](https://img.shields.io/badge/Kaggle-View-006eca?logo=Jupyter&logoColor=3094e7)](https://www.kaggle.com/code/shtrausslearning/mldsai-pyspark-daily-posts)
 
-### <b>30/11/2023 <span style='color:#E888BB'>❯❯❯</span> Setting data types via custom schema</b>
+### Setting data types via custom schema
 
 Today's post is about **schemes**. PySpark tends to mimic a lot of SQL database aspects. Its standard practice to define a **table scheme** for our dataframe when either creating a dataframe or reading files
 
@@ -54,7 +54,7 @@ df.show()
 # +-----+---+--------+
 ```
 
-### <b>01/12/2023 <span style='color:#E888BB'>❯❯❯</span> Creating Table View for Spark DataFrame</b>
+### Creating Table View for Spark DataFrame
 
 Using **SQL** requests via **spark.sql**, you can work with the data the same way you would when working with databases, this is convenient for people who are more used to SQL based notation when working with data
 
@@ -143,7 +143,7 @@ result.show()
 # +----------+-----+------------+
 ```
 
-### <b>02/12/2023 <span style='color:#E888BB'>❯❯❯</span> Reading Simple CSV files</b>
+### Reading Simple CSV files
 
 As mentioned before, **PySpark** assigns **StringType** to each column when reading **csv** file. Having played with read.csv and pandas' **read_csv**, I definitely would say that pandas offers much more options when importing. I tend to actually prefer to read the data with default settings and make adjustments after import. 
 
@@ -238,7 +238,7 @@ df.show()
 # +---+--------------------+----------+--------------------+--------+-------------+----------+--------+-----+------------+
 ```
 
-### <b>03/12/2023 <span style='color:#E888BB'>❯❯❯</span> Knowing your PySpark Types</b>
+### Knowing your PySpark Types
 
 To set **StructFields** and define a type, we should know which types are available to us in **pyspark**
 
@@ -288,7 +288,7 @@ spark.createDataFrame(data, ["name", "fruits"])
 # DataFrame[name: string, fruits: array<string>]
 ```
 
-### <b>04/12/2023 <span style='color:#E888BB'>❯❯❯</span> Timestamp Zone Consideration</b>
+### Timestamp Zone Consideration
 
 If your column is of type **datetime** (TimestampType), here's how you can use it with different timezones, so you can make the necessary adjustments if needed
 
@@ -326,7 +326,7 @@ df_utc.show()
 # +-------------------+-------------------+---------------------+--------------------+
 ```
 
-### <b>05/12/2023 <span style='color:#E888BB'>❯❯❯</span> Making a linear model</b>
+### Training a linear model
 
 The process of creating models differs a little bit to how one would go about it in sklearn. Once we have a dataframe that contains all our features & target variable `df`, we need to assemble them into a **vectorised** format using **VectorAssembler**, to do so we need to define the **inputCols** and **outputCol** (which will assemble all our input feature data). Loading the relevant model from the library **pyspark.ml**, we then need to define **inputCols** (which is the ouput column of the **VectorAssembler**) and **outputCol** arguments
 
@@ -370,7 +370,7 @@ predictions.show()
 # +--------+--------+----------+----------+
 ```
 
-### <b>06/12/2023 <span style='color:#E888BB'>❯❯❯</span> Filter rows that contain item in array column</b>
+### Filter rows that contain item in array column
 
 **PySpark** contains a special function **array_contains** which allows you to check if a specified value exists in an **array column**. It returns a **boolean value** indicating whether the array contains the specified value
 
@@ -417,7 +417,7 @@ test = df.withColumn('contains',array_contains(df.fruits, "orange")).show()
 # +-------+--------------------+--------+
 ```
 
-### <b>07/12/2023 <span style='color:#E888BB'>❯❯❯</span> SQL like functions (SELECT)</b>
+### SQL like functions (SELECT)
 
 Select columns from PySpark DataFrame, similar to **SELECT** in SQL
 
@@ -456,7 +456,7 @@ selected_df.show()
 # +-------+-------------+
 ```
 
-### <b>08/12/2023 <span style='color:#E888BB'>❯❯❯</span> SQL like functions (WHERE)</b>
+### SQL like functions (WHERE)
 
 Filter rows in **PySpark** DataFrame, similar to **WHERE** in SQL
 
@@ -501,7 +501,7 @@ filtered_df.show()
 # +-------+---+-------------+
 ```
 
-### <b>09/12/2023 <span style='color:#E888BB'>❯❯❯</span> SQL like functions (GROUP BY)</b>
+### SQL like functions (GROUP BY)
 
 Simple single column based group by operations with **agg** functionality options
 
@@ -557,8 +557,7 @@ result.show()
 # +--------+-----------+----------+
 ```
 
-### <b><span style='color:#E888BB'>Summary | PySpark Daily December I
-</span></b> 
+### Summary | PySpark Daily December I
 
 Lets try to summarise everything important from these posts
 

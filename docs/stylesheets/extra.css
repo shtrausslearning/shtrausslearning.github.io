@@ -146,6 +146,10 @@ img {
     padding: 0 1.1764705882em;
 }
 
+.md-typeset p > code {
+  color: #232f38;
+}
+
 
 [data-md-color-scheme="slate"] {
 

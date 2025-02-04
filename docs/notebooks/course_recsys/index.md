@@ -81,7 +81,7 @@ hide_comments: false
 </div>
 
 
-## <b>Проекты</b> 
+## <b><span style='color:#3489c2'>Проекты</span></b> 
  
 
 <div class="grid cards" markdown>

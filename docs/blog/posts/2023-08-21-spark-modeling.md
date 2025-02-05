@@ -13,10 +13,10 @@ comments: true
 
 # **Training Machine Learning Models with PySpark**
 
-In this post, we will introduce ourselves to **`pyspark`**, a framework that allows us to work with big data. 
+In this post, we will introduce ourselves to **`pyspark`**, a framework that allows us to work with big data
 
-- Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post. 
-- We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the modeling stage of our project.
+- Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post
+- We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the **modeling** stage of our project
 
 <!-- more -->
 
@@ -31,14 +31,14 @@ In this post, we will introduce ourselves to **`pyspark`**, a framework that all
 We'll continue on where we left of **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**
 
 - In the last post, we focused on general preprocessing data, mostly **data cleaning**. 
-- In this post, we'll focus on finishing off data preprocessing, transformation steps that a required before passing the data to the model.
+- In this post, we'll focus on finishing off data preprocessing, transformation steps that a required before passing the data to the model
 
 ## **Preprocessing Summary**
 
 Let's summarise our preprocessing stages that we did last post:
 
 - We learned how to drop columns that we won't be needing at all in our preprocessing using **`.drop`**
-- We learned how to extract statistical data from our dataframe, using `.select` and functions **`f.avg('column')`**
+- We learned how to extract statistical data from our dataframe, using **`.select`** and functions **`f.avg('column')`**
 - We known how to fill missing data in different columns using a single value with a dictionary; **`f.fillna({'column':'value'})`**
 - We know how to add or replace a column, using **`f.withColumn`**
 
@@ -100,7 +100,7 @@ Once we are done indexing string columns, we need to remove them!
 Once we are happy with all the features that we want to utilise in our model, we need to assemble them into a single column. 
 
 - To do so we need to utilise method **`VectorAssembler`**. 
-- We need to write the names of the input feature columns we want to use `inputCols`
+- We need to write the names of the input feature columns we want to use **`inputCols`**
 and define the output feature name **`outputCol`**, the resulting feature will be placed in the input dataframe.
 
 ```python
@@ -124,8 +124,9 @@ feature_vector.show()
 
 ## **Train-Test Splitting**
 
-Once our data is ready, we should think of a strategy to confirm the accuracy of our model. 
-- Train-Test Splitting is a common strategy to verify how well a model generalises on data it wasn't trained on. In `spark`, we can reference to the dataframe itself to split it using **`df.randomSplit`**
+Once our data is ready, we should think of a strategy to confirm the accuracy of our model
+ 
+- Train-Test Splitting is a common strategy to verify how well a model generalises on data it wasn't trained on. In **`spark`**, we can reference to the dataframe itself to split it using **`df.randomSplit`**
 
 ```python
 (training_data, test_data) = feature_vector.randomSplit([0.8,0.2],42)
@@ -139,7 +140,7 @@ Training & evaluation of different models follow the same template of actions, t
 
 The first step is to load the relevant model from **`.ml.classification`**, in this case we start with a simplistic LogisticRegression model, which is named the same as in **sklearn**. Inputs into the model instance require us to specify the vectorised feature columns **`featuresCol`** and the target variable column, **`labelCol`**
 
-The model should be `fit` on training data and saved into varaible `lrModel`, which is a little different to how you would do it in `sklearn`. 
+The model should be **`fit`** on training data and saved into varaible **`lrModel`**, which is a little different to how you would do it in **`sklearn`**
 
 ```python
 from pyspark.ml.classification import LogisticRegression

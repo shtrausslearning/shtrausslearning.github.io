@@ -26,6 +26,8 @@ In this notebook, we look at how to use a popular machine learning library **pro
   - :simple-google:{ .lg .middle }&nbsp; <b>[Run on Colab](https://colab.research.google.com/drive/1nHNPoO7CMBwGg8rIxgAx4KuCZfxvuXBN?usp=sharing)</b>
 - :simple-github:{ .lg .middle }&nbsp; <b>[Download dataset](https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/avocado_sales_prediction/avocado.csv)</b>
 
+</div>
+
 ## **Background**
 
 ### Prophet

@@ -580,7 +580,7 @@ model = Prophet(
 )
 ```
 
-Having fitted the model on our data (which runs from **2015-01-04** to **2018-03-25**), we'll be making a prediction using `model.make_future_dataframe`, in which we'll be specifying that we want to make a prediction for **6 weeks in advanced**, setting the model prediction parameters. Then we simply call `model.predict` to actually make the prediction.
+Having fitted the model on our data (which runs from **2015-01-04** to **2018-03-25**), we'll be making a prediction using **`model.make_future_dataframe`**, in which we'll be specifying that we want to make a prediction for **6 weeks in advanced**, setting the model prediction parameters. Then we simply call **`model.predict`** to actually make the prediction.
 
 To create models for both **region** (which in our case will only be Houston) & **type** (organic & convensional), we'll call the **`apply`** method for the pyspark dataframe
 

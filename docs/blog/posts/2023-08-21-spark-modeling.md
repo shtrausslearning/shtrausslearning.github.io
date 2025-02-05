@@ -1,6 +1,6 @@
 ---
 date: 2023-08-21
-title: Creating Machine Learning Models with PySpark
+title: Creating ML Models with PySpark
 authors: [andrey]
 categories:
     - PySpark
@@ -11,18 +11,29 @@ tags:
 comments: true
 ---
 
-# **Training Machine Learning Models with PySpark**
+# **Training ML Models with PySpark**
 
-In this post, we will introduce ourselves to **`pyspark`**, a framework that allows us to work with big data
+***
 
-- Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post
+In this post, we will introduce ourselves to **`pyspark`**
+
 - We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the **modeling** stage of our project
+- We will be using **`spark.ml.classification`** to train binary classification models
+- There are quite a number of differences from **`pandas`**, for example the formulation of a **`VectorAssembler`** columns, which combines all column features into one
+
+***
+
+
 
 <!-- more -->
 
 <div class="grid cards" markdown>
 
   - :simple-google:{ .lg .middle }&nbsp; <b>[Run on Colab](https://colab.research.google.com/drive/12w6EXoyRByFT6q2cmprac1msn7h4aC3o?usp=sharing)</b>
+
+- :simple-github:{ .lg .middle }&nbsp; <b>[Download dataset](https://raw.githubusercontent.com/AlexKbit/stepik-ds-course/master/Week3/spark-practice/train.csv)</b>
+
+
 
 </div>
 
@@ -136,7 +147,7 @@ Once our data is ready, we should think of a strategy to confirm the accuracy of
 
 Training & evaluation of different models follow the same template of actions, the only thing that changes is we load different models from **`spark.ml.classification`**
 
-### LogisticRegression
+### :material-numeric-1-box-multiple-outline: LogisticRegression
 
 The first step is to load the relevant model from **`.ml.classification`**, in this case we start with a simplistic LogisticRegression model, which is named the same as in **sklearn**. Inputs into the model instance require us to specify the vectorised feature columns **`featuresCol`** and the target variable column, **`labelCol`**
 
@@ -188,7 +199,7 @@ evaluator.evaluate(lr_prediction)
 # 0.7586206896551724
 ```
 
-### DecisionTree
+### :material-numeric-2-box-multiple-outline: DecisionTree
 
 A powerful binary tree based algorith, which is used by both gradient boosting and random forest:
 
@@ -210,7 +221,7 @@ evaluator.evaluate(dt_prediction)
 # 0.7448275862068966
 ```
 
-### RandomForest
+### :material-numeric-3-box-multiple-outline: RandomForest
 
 One ensemble approach based on randomised generation of **`DecisionTrees`** we can try is **`RandomForest`**, which even is named the same as in **`sklearn`**
 
@@ -233,7 +244,7 @@ evaluator.evaluate(rf_prediction)
 # 0.7586206896551724
 ```
 
-### GradientBoosting
+### :material-numeric-4-box-multiple-outline: GradientBoosting
 
 Another enseble method which uses **`DecisionTrees`** is Gradient Boosting, its name varies from that of **`sklearn`**
 

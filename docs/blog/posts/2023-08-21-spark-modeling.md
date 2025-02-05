@@ -13,12 +13,12 @@ comments: true
 
 # **Training Machine Learning Models with PySpark**
 
-In this post, we will introduce ourselves to **`pyspark`**, a framework that allows us to work with big data. Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post. We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the modeling stage of our project.
+In this post, we will introduce ourselves to **`pyspark`**, a framework that allows us to work with big data. 
+
+- Similar to how we did in **[my first machine learning project](https://shtrausslearning.github.io/posts/first-ml-project/)** post. 
+- We are continuing on from the previous post **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**, where we did some basic **data preprocessing**, here we will continue on with the modeling stage of our project.
 
 <!-- more -->
-
-[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/12w6EXoyRByFT6q2cmprac1msn7h4aC3o?usp=sharing)
-
 
 <div class="grid cards" markdown>
 
@@ -28,7 +28,10 @@ In this post, we will introduce ourselves to **`pyspark`**, a framework that all
 
 ## **Introduction**
 
-We'll continue on where we left of **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**. In the last post, we focused on general preprocessing data, mostly **data cleaning**. In this post, we'll focus on finishing off data preprocessing, transformation steps that a required before passing the data to the model.
+We'll continue on where we left of **[PySpark Titanic Preprocessing](https://shtrausslearning.github.io/posts/spark-preprocess/)**
+
+- In the last post, we focused on general preprocessing data, mostly **data cleaning**. 
+- In this post, we'll focus on finishing off data preprocessing, transformation steps that a required before passing the data to the model.
 
 ## **Preprocessing Summary**
 
@@ -65,7 +68,8 @@ df.show()
 
 We have left two columns which contain **categorical (string)** data, with which we want to work with in our modeling process; **`Sex`**,**`Embarked`**. As we saw in an exploratory data analysis from **[a previous post](https://shtrausslearning.github.io/posts/first-ml-project/)**, these two features do contain data distributions, which allow us to distinguish between whether a passenger survived or not, which means it probably would help a model improve its accuracy. However these features will need to be modified in order for us to use them in our model.
 
-In **`sklearn`** there is a method called **[LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)**. In pyspark, there is a method called **StringIndexer**, which work in a similar way.
+- In **`sklearn`** there is a method called **[LabelEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html)**. 
+- In pyspark, there is a method called **StringIndexer**, which work in a similar way.
 
 ```python
 from pyspark.ml.feature import StringIndexer
@@ -94,7 +98,9 @@ Once we are done indexing string columns, we need to remove them!
 ## **Combine Features**
 
 Once we are happy with all the features that we want to utilise in our model, we need to assemble them into a single column. 
-To do so we need to utilise method **`VectorAssembler`**. We need to write the names of the input feature columns we want to use `inputCols`
+
+- To do so we need to utilise method **`VectorAssembler`**. 
+- We need to write the names of the input feature columns we want to use `inputCols`
 and define the output feature name **`outputCol`**, the resulting feature will be placed in the input dataframe.
 
 ```python
@@ -118,7 +124,8 @@ feature_vector.show()
 
 ## **Train-Test Splitting**
 
-Once our data is ready, we should think of a strategy to confirm the accuracy of our model. Train-Test Splitting is a common strategy to verify how well a model generalises on data it wasn't trained on. In `spark`, we can reference to the dataframe itself to split it using **`df.randomSplit`**
+Once our data is ready, we should think of a strategy to confirm the accuracy of our model. 
+- Train-Test Splitting is a common strategy to verify how well a model generalises on data it wasn't trained on. In `spark`, we can reference to the dataframe itself to split it using **`df.randomSplit`**
 
 ```python
 (training_data, test_data) = feature_vector.randomSplit([0.8,0.2],42)
@@ -249,13 +256,15 @@ evaluator.evaluate(gb_prediction)
 
 ## **Saving & Loading Model**
 
-We have tested different models and found the one which gives us the best metric, which in our case is **`accuracy`**. To save a model we need to save **`model.fit`**. The best performing model in our case was **RandomForest**, so let's save **`rfModel`**
+We have tested different models and found the one which gives us the best metric, which in our case is **`accuracy`**
+
+- To save a model we need to save **`model.fit`**. The best performing model in our case was **RandomForest**, so let's save **`rfModel`**
 
 ```python
 rfModel.save('rf_model')
 ```
 
-To load the model, we need to load the relevant module from `classification`; `RandomForestClassificationModel`, which is different from `RandomForestClassifier`, and call the method `.load('folder')`
+To load the model, we need to load the relevant module from **`classification`**; **`RandomForestClassificationModel`**, which is different from **`RandomForestClassifier`**, and call the method **`.load('folder')`**
 
 ```python
 from pyspark.ml.classification import RandomForestClassificationModel
@@ -267,18 +276,20 @@ RandomForestClassificationModel.load('rf_model')
 ## **Summary**
 
 Let's review what we have covered in this post:
+
 - We learned how to drop columns, using **`.drop`**
 - We learned how to extract statistical data from our dataframe, using **`.select`** and functions **`f.avg('column')`**
-- We known how to fill missing data in different columns using a single value with a dictionary; `f.fillna({'column':'value'})`
+- We known how to fill missing data in different columns using a single value with a dictionary; **`f.fillna({'column':'value'})`**
 - Add or replace a column, using **`f.withColumn`**
 - **`StringIndexer(inputCol,outputCol).fit(data)`** - convert categorical into a numerical representation
 - Once we are done with our feature matrix, we can convert all the relevant features into a single feature that will be used as input into the model using **`VectorAssembler(inputCols,outputCol).transform(data)`**
 - To split the data into a training & validation dataset, we can use the **dataframe** method **`df.randomSplit`**
 
 **Training a model** requires identical steps for whichever model we choose:
+
 - Import the model class from `pyspark.ml.classification`
-- Instantiate the model by specifying `labelCol` and `featuresCol`
-- Train the model using `trained_model = model.fit(data)`
-- Use the model to make predictions using `y_pred = trained_model.transform(data)`
-- Once we have both a model prediction and training labels, we can make an evaluation using an evaluator `MulticlassClassificationEvaluator` with evaluator.evaluate(data)
-- And to finish off our modeling state, we can save our model that we will use in production by saving `trained_model.save('name')` and load with the relevant `XModel.load()` 
+- Instantiate the model by specifying **`labelCol`** and **`featuresCol`**
+- Train the model using **`trained_model = model.fit(data)`**
+- Use the model to make predictions using **`y_pred = trained_model.transform(data)`**
+- Once we have both a model prediction and training labels, we can make an evaluation using an evaluator **`MulticlassClassificationEvaluator`** with evaluator.evaluate(data)
+- And to finish off our modeling state, we can save our model that we will use in production by saving **`trained_model.save('name')`** and load with the relevant **`XModel.load()`**

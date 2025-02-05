@@ -500,7 +500,7 @@ As we will be utilising **prophet**, we can define the different settings of **f
 
 ### Defining Scheme
 
-Like any UDF, we need to define the output type of our data, let's prepare the **data format scheme** for the outputs of our **`UDF`**. We will need to use `StructType` and the relevant type improted from **`sql.types`**
+Like any UDF, we need to define the output type of our data, let's prepare the **data format scheme** for the outputs of our **`UDF`**. We will need to use **`StructType`** and the relevant type improted from **`sql.types`**
 
 ```python
 import pyspark.sql.types  as ty
@@ -518,7 +518,7 @@ schema = ty.StructType([
 
 ### UDF
 
-Our `UDF` will be slightly involved than our typical **UDF**, we will be using `PandasUDFType.GROUPED_MAP` so it should be called with `groupby` & `apply`
+Our **`UDF`** will be slightly involved than our typical **UDF**, we will be using **`PandasUDFType.GROUPED_MAP`** so it should be called with **`groupby`** & **`apply`**
 
 > **`PandasUDFType.GROUPED_MAP`** is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.
 

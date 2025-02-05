@@ -21,7 +21,10 @@ In this notebook, we look at how to use a popular machine learning library **pro
 
 <!-- more -->
 
-[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1nHNPoO7CMBwGg8rIxgAx4KuCZfxvuXBN?usp=sharing) [![name](https://img.shields.io/badge/Dataset-e589e5 )](https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/avocado_sales_prediction/avocado.csv)
+<div class="grid cards" markdown>
+
+  - :simple-google:{ .lg .middle }&nbsp; <b>[Run on Colab](https://colab.research.google.com/drive/1nHNPoO7CMBwGg8rIxgAx4KuCZfxvuXBN?usp=sharing)</b>
+- :simple-github:{ .lg .middle }&nbsp; <b>[Download dataset](https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/avocado_sales_prediction/avocado.csv)</b>
 
 ## **Background**
 
@@ -31,7 +34,7 @@ In this notebook, we look at how to use a popular machine learning library **pro
 
 ### UDF
 
-**Pandas** **`UDFs`** (**User-Defined Functions**) are one form of **UDF** that is available in **pyspark**. They allow you to apply a Python function that operates on **pandas dataframes** to Spark dataframes. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions. 
+**Pandas** **`UDFs`** (**User-Defined Functions**) are one form of **UDF** that is available in **pyspark**. They allow you to apply a Python function that operates on **pandas dataframes** to Spark dataframes. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas **`UDFs`** can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas **`UDFs`**, you can perform complex data manipulations that are not possible using built-in Spark SQL functions. 
 
 Of course, this is not a guide on **UDF**, nor are we going for the most optimal setup, it is simply an example of how we can use the rich user defined functionality of pyspark to integrate other functionalities not available in pyspark
 

@@ -14,7 +14,7 @@ tags:
 comments: true
 ---
 
-# Utilising Prophet with PySpark
+# **Utilising Prophet with PySpark**
 
 In this notebook, we look at how to use a popular machine learning library **prophet** with the **pyspark** architecture. **pyspark** itself unfortunatelly does not contain such an additive regression model, however we can utilise user defined functions, **UDF**, which allows us to utilise different functionality of different libraries that is not available in **pyspark**
 
@@ -27,11 +27,11 @@ In this notebook, we look at how to use a popular machine learning library **pro
 
 ### Prophet
 
-`Prophet` is a time series forecasting model. It is based on an additive regression model that takes into account **trends, seasonality, and holidays**. `Prophet` also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. Such a model is not available in the **pyspark** library, so we'll need to utilise **user defined functions** to utilise it with our dataset!
+**`Prophet`** is a time series forecasting model. It is based on an additive regression model that takes into account **trends, seasonality, and holidays**. **`Prophet`** also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. Such a model is not available in the **pyspark** library, so we'll need to utilise **user defined functions** to utilise it with our dataset!
 
 ### UDF
 
-**Pandas** `UDFs` (**User-Defined Functions**) are one form of **UDF** that is available in **pyspark**. They allow you to apply a Python function that operates on **pandas dataframes** to Spark dataframes. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions. 
+**Pandas** **`UDFs`** (**User-Defined Functions**) are one form of **UDF** that is available in **pyspark**. They allow you to apply a Python function that operates on **pandas dataframes** to Spark dataframes. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas `UDFs` can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas `UDFs`, you can perform complex data manipulations that are not possible using built-in Spark SQL functions. 
 
 Of course, this is not a guide on **UDF**, nor are we going for the most optimal setup, it is simply an example of how we can use the rich user defined functionality of pyspark to integrate other functionalities not available in pyspark
 
@@ -63,7 +63,7 @@ spark = SparkSession.builder\
                     .getOrCreate()
 ```
 
-To read the data, we'll use the `session.read.csv`, together with `inferSchema` method and look at the table schematics using `printSchema()` method to automatically assign types to table columns
+To read the data, we'll use the **`session.read.csv`**, together with **`inferSchema`** method and look at the table schematics using **`printSchema()`** method to automatically assign types to table columns
 
 ```python
 # read csv
@@ -93,7 +93,7 @@ root
 
 As with any dataset, its good to get a better understanding by exploring the data you are working with. Having loaded our data, first lets take a peek at our dataset, 
 
-Let's use `select`,`orderBy` & `show` methods to show our dataset
+Let's use **`select`**,**`orderBy`** & **`show`** methods to show our dataset
 
 ```python
 sales.select('Date','type','Total Volume','region')\
@@ -112,7 +112,7 @@ sales.select('Date','type','Total Volume','region')\
 +----------+------------+------------+----------------+
 ```
 
-The `Date` unique values can be called and checked, we have weekly data for different regions
+The **`Date`** unique values can be called and checked, we have weekly data for different regions
 
 ```python
 sales.select(col('Date')).distinct().orderBy('Date').show(5)
@@ -131,7 +131,7 @@ sales.select(col('Date')).distinct().orderBy('Date').show(5)
 only showing top 5 rows
 ```
 
-It's also good to know the range of the `date` of our dataset
+It's also good to know the range of the **`date`** of our dataset
 
 ```python
 sales.select(f.max(f.col('Date')).alias('last'),f.min(f.col('Date')).alias('first')).show()
@@ -146,7 +146,7 @@ sales.select(f.max(f.col('Date')).alias('last'),f.min(f.col('Date')).alias('firs
 ```
 
 
-We will be using `Total Volume` as our target variable we'll be predicting. We also can note that we have different types `type` of avocados (organic and conventional)
+We will be using **`Total Volume`** as our target variable we'll be predicting. We also can note that we have different types **`type`** of avocados (organic and conventional)
 
 ```python
 sales.select(col('type')).distinct().show()
@@ -161,9 +161,9 @@ sales.select(col('type')).distinct().show()
 +------------+
 ```
 
-So what we'll be doing is creating a model to predict the sales for both of these types, which is something we'll need to incorporate into our `UDF`
+So what we'll be doing is creating a model to predict the sales for both of these types, which is something we'll need to incorporate into our **`UDF`**
 
-We can also check the `region` limits for `Total Volume`, we can do this by using `agg` method with the `groupby` dataframe type (`pyspark.sql.group.GroupedData`):
+We can also check the **`region`** limits for **`Total Volume`**, we can do this by using **`agg`** method with the **`groupby`** dataframe type (**`pyspark.sql.group.GroupedData`**):
 
 ```python
 # min and maximum of sale volume
@@ -225,9 +225,9 @@ only showing top 20 rows
 only showing top 20 rows
 ```
 
-We can note that we have data for not only the different `regions`, but also for the entire country `TotalUS`. Also interesting to note is that the difference in `max` and `min` values is quite high.
+We can note that we have data for not only the different **`regions`**, but also for the entire country **`TotalUS`**. Also interesting to note is that the difference in **`max`** and **`min`** values is quite high.
 
-Let's find the locations (`region`) with the highest `total volumes` 
+Let's find the locations (**`region`**) with the highest `total volumes` 
 
 ```python
 from pyspark.sql.functions import desc,col
@@ -250,9 +250,9 @@ by_volume.show(5)
 only showing top 5 rows
 ```
 
-We can note that `California` & `West` regions have had the highest values for `Total Volume` on 2017-02-05
+We can note that **`California`** & **`West`** regions have had the highest values for **`Total Volume`** on 2017-02-05
 
-Its also interest to note the difference in `Total Volume` for both types of avocado, so lets check that, lets just check the difference in `max` values
+Its also interest to note the difference in **`Total Volume`** for both types of avocado, so lets check that, lets just check the difference in **`max`** values
 
 ```python
 by_volume.groupby('type').agg(f.max('Total Volume')).show()
@@ -267,7 +267,7 @@ by_volume.groupby('type').agg(f.max('Total Volume')).show()
 +------------+-----------------+
 ```
 
-So we can note that tehre is a significant diffence in `Total Volume`, let's also check when this actually occured:
+So we can note that tehre is a significant diffence in **`Total Volume`**, let's also check when this actually occured:
 
 ```python
 by_volume.filter(f.col('Total Volume') == 1.127474911E7).show()
@@ -301,7 +301,7 @@ sales.select('region').distinct().count()
 54
 ```
 
-Which is interesting as there are only 50 states in the US, so perhaps `west` is a summation for all states on the west coast, lets check if there is also an east coast
+Which is interesting as there are only 50 states in the US, so perhaps **`west`** is a summation for all states on the west coast, lets check if there is also an east coast
 
 ```python
 sales.groupBy('region').count().show(100)
@@ -443,7 +443,7 @@ sales.filter(f.col('region') == 'Houston').show()
 
 ## **Preparing data for modeling**
 
-Since we don't have any missing data points for the **Houston** region, let's use it for our model example, let's define a subset `houston_df`, which will contain only avocado sales data for the **Houston** region
+Since we don't have any missing data points for the **Houston** region, let's use it for our model example, let's define a subset **`houston_df`**, which will contain only avocado sales data for the **Houston** region
 
 ```python
 # select houson 
@@ -489,13 +489,13 @@ houston_df_final.show(4)
 only showing top 4 rows
 ```
 
-As we will be utilising **prophet**, we can define the different settings of **features** we will be utilising in the modeling process, like `weekly_seasonality` and `yearly_seasonality`, we don't really need to explicitly create features by ourselves. For this study, we'll limit ourselves with these features provided in module.
+As we will be utilising **prophet**, we can define the different settings of **features** we will be utilising in the modeling process, like **`weekly_seasonality`** and **`yearly_seasonality`**, we don't really need to explicitly create features by ourselves. For this study, we'll limit ourselves with these features provided in module.
 
 ## **Creating a model**
 
 ### Defining Scheme
 
-Like any UDF, we need to define the output type of our data, let's prepare the **data format scheme** for the outputs of our `UDF`. We will need to use `StructType` and the relevant type improted from `sql.types`
+Like any UDF, we need to define the output type of our data, let's prepare the **data format scheme** for the outputs of our **`UDF`**. We will need to use `StructType` and the relevant type improted from **`sql.types`**
 
 ```python
 import pyspark.sql.types  as ty
@@ -515,7 +515,7 @@ schema = ty.StructType([
 
 Our `UDF` will be slightly involved than our typical **UDF**, we will be using `PandasUDFType.GROUPED_MAP` so it should be called with `groupby` & `apply`
 
-> `PandasUDFType.GROUPED_MAP` is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.
+> **`PandasUDFType.GROUPED_MAP`** is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.
 
 ```python
 from prophet import Prophet
@@ -562,7 +562,7 @@ def apply_model(store_pd):
 
 ### Training process
 
-Our model setup will be the following:
+Our model setup will be the following hyperparameters:
 
 ```python
 model = Prophet(
@@ -577,7 +577,7 @@ model = Prophet(
 
 Having fitted the model on our data (which runs from **2015-01-04** to **2018-03-25**), we'll be making a prediction using `model.make_future_dataframe`, in which we'll be specifying that we want to make a prediction for **6 weeks in advanced**, setting the model prediction parameters. Then we simply call `model.predict` to actually make the prediction.
 
-To create models for both **region** (which in our case will only be Houston) & **type** (organic & convensional), we'll call the `apply` method for the pyspark dataframe
+To create models for both **region** (which in our case will only be Houston) & **type** (organic & convensional), we'll call the **`apply`** method for the pyspark dataframe
 
 ```python
 results = houston_df_final.groupby(['Region','type']).apply(apply_model)
@@ -624,7 +624,7 @@ conventional_data = results.filter(f.col('type')=='conventional').pandas_api()
 conventional_data = conventional_data.set_index(['ds'])
 ```
 
-Let's visualise the `organic` subset model predictions
+Let's visualise the **`organic`** subset model predictions
 
 ```python
 organic_data[['y','yhat']].plot.line(backend='plotly')
@@ -632,7 +632,7 @@ organic_data[['y','yhat']].plot.line(backend='plotly')
 
 ![](images/organic2.png)
 
-And now the `convensional` subset model
+And now the **`convensional`** subset model
 
 ```python
 conventional_data[['y','yhat']].plot.line(backend='plotly')

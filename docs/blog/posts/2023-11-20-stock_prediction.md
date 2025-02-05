@@ -15,6 +15,7 @@ comments: true
 # **Prediction of Product Stock Levels**
 
 In this project, we work with a client **Gala Groceries**, who has contacted **Cognizant** for logistics advice about **product storage** 
+
 - Specifically, they are interested in wanting to know **how better stock the items that they sell**. 
 - Our role is to take on this project as a data scientist and understand what the client actually needs. This will result in the formulation/confirmation of a new project statement, in which we will be focusing on **predicting stock levels of products**. 
 - Such a model would enable the client to estimate their product stock levels at a given time & make subsequent business decisions in a more effective manner reducing understocking and overstocking losses.
@@ -847,9 +848,9 @@ spark.createDataFrame(merged_df.tail()).show()
 
 One of the important things to notice is whether the distribution itself is having an influence on the model evaluation metrics, so let's look into two forms for preprocessing; **column transformation** & **normalisation** & **label encoding**
 
-In the following section, we'll be creating different dataframe variations of `merged_df`:
-- `merged_df_tr` : Which will contain only **column transformations** & **label encoding**
-- `merged_df_tr_minmax` : The same transformations as `merged_df_tr` but with the **addition of normalisation**
+In the following section, we'll be creating different dataframe variations of **`merged_df`**:
+- **`merged_df_tr`** : Which will contain only **column transformations** & **label encoding**
+- **`merged_df_tr_minmax`** : The same transformations as **`merged_df_tr`** but with the **addition of normalisation**
 
 #### :material-numeric-1-box-multiple-outline: Column Transformations
 
@@ -1113,6 +1114,7 @@ In response to the presentation:
 ## **Concluding Remarks**
 
 This was a rather interesting project focusing on how a client tries to improve their business by utilising artificial intelligence
+
 - The client had a general idea of what they wanted, and in the process of completing the project a specific project goal was created
 - Based on the sales and sensor data that the client has integrated into their business, we were able to create a production ready model which the **DevOps** team has implemented. 
 - The early feedback implied that the model was rather underperforming because it was most likely underfitting the data, we simply haven't gathered enough data for the model to start performing optimally.

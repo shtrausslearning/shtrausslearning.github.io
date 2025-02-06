@@ -11,31 +11,34 @@ tags:
 comments: true
 ---
 
-# Comparison of Subsets
+# **Comparison of Subsets**
 
-An important concept in machine learning is **model generalisation** & **performance deterioration**. When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it. Going through this process, we can tune a model so that it performs well on the data that we use to train it. 
+An important concept in machine learning is **model generalisation** & **performance deterioration**
+
+- When we train a model, we perform an **optimisation step**, using **metrics** and/or **loss** values we can understand how well our model is understanding the relation between all data points and features in the input data we feed it
+- Going through this process, we can tune a model so that it performs well on the data that we use to train it
 
 <!-- more -->
 
-## Background
+## **Background**
 
 However, what if we receive some new data (for example after some time), which is also **a subset** of the entire dataset but it contains a slightly different data relation structure, our models may not perform as well as they did on the data it was trained on, by comparing the metrics of both dataset, we can get an idea of how similar our datasets are.
 
 The above approach to comparing the two datasets isn't the most ideal, but it should raise a question; are there any other approaches that we can use to compare different subsets of data? This is what we'll look at in this post!
 
-### Subset Comparison Approaches
+## **Subset Comparison Approaches**
 
 We'll look at these approaches:
 
-- **Violin plots** comparing the univariate distribution between two subsets
-- **Andrews Curves**, which helps us distinguish outliers that exist in the two datasets
-- **ANOVA**, to establish whether the difference between the two subsets is significant or not
-- **KS Statistic** to check whether the each variable in train/test comes from the same distribution
-- **Machine Learning**, to classify the two subsets and compare their metrics
+- **`Violin plots`** comparing the univariate distribution between two subsets
+- **`Andrews Curves`**, which helps us distinguish outliers that exist in the two datasets
+- **`ANOVA`**, to establish whether the difference between the two subsets is significant or not
+- **`KS Statistic*`* to check whether the each variable in train/test comes from the same distribution
+- **`Machine Learning`**, to classify the two subsets and compare their metrics
 
-## The Dataset
+## **The Dataset**
 
-We'll use a favourite dataset of mine, which we can load very easily load via `seaborn`, it contains three categorical variables, so we'll use `LabelEncoder` to encode them. Then we'll create two subsets from this dataset
+We'll use a favourite dataset of mine, which we can load very easily load via **`seaborn`**, it contains three categorical variables, so we'll use **`LabelEncoder`** to encode them. Then we'll create two subsets from this dataset
 
 ```python
 import pandas as pd
@@ -53,7 +56,7 @@ data['species'] = LabelEncoder().fit_transform(data['species'])
 data['sex'] = LabelEncoder().fit_transform(data['sex'])
 ```
 
-Then we create two subsets from the same dataset, creating `X_train` and `X_test`, we'll use these subsets as well as the main `data`, having created a new column `dataset` that indicates which subset the data belongs to
+Then we create two subsets from the same dataset, creating **`X_train`** and **`X_test`**, we'll use these subsets as well as the main **`data`**, having created a new column **`dataset`** that indicates which subset the data belongs to
 
 ```python
 # function 
@@ -75,11 +78,11 @@ X_train['dataset'] = 'train'; X_test['dataset'] = 'test'
 data = X_train.append(X_test)
 ```
 
-## Visualisation Approaches
+## **Visualisation Approaches**
 
 ### Violin Plot
 
-A **violin plot** is a type of data visualization that combines the features of a boxplot and a kernel density plot. It is used to display the distribution of a dataset and shows the `median`, `quartiles`, and `interquartile range` (IQR) like a boxplot, but also displays the shape of the distribution through a density curve. The width of the violin at any point represents the density or frequency of data at that point. Violin plots are useful for comparing the distributions of multiple datasets and identifying any differences or similarities between them
+A **violin plot** is a type of data visualization that combines the features of a boxplot and a kernel density plot. It is used to display the distribution of a dataset and shows the **`median`**, **`quartiles`**, and **`interquartile range`** (IQR) like a boxplot, but also displays the shape of the distribution through a density curve. The width of the violin at any point represents the density or frequency of data at that point. Violin plots are useful for comparing the distributions of multiple datasets and identifying any differences or similarities between them
 
 ```python
 def violin_plots(data):
@@ -156,11 +159,11 @@ plot_andrews(data3)
 
 ![](images/andrews.jpg)
 
-## Statistical Approaches
+## **Statistical Approaches**
 
 ### ANOVA Test
 
-**ANOVA** (Analysis of Variance) is a statistical test used to determine whether there are significant differences between the means of two or more groups. It **compares the variance** within each group to the variance between the groups to determine if the differences in means are statistically significant. To use this approach, we'll use the `statsmodel` library, specifically the `ols` and `anova_lm` methods. The **null hypothesis** is that there is no significant difference between the groups being compared. More at **[statsmodels](https://www.statsmodels.org/dev/generated/statsmodels.stats.anova.anova_lm.html)**
+**ANOVA** (Analysis of Variance) is a statistical test used to determine whether there are significant differences between the means of two or more groups. It **compares the variance** within each group to the variance between the groups to determine if the differences in means are statistically significant. To use this approach, we'll use the **`statsmodel`** library, specifically the `ols` and **`anova_lm`** methods. The **null hypothesis** is that there is no significant difference between the groups being compared. More at **[statsmodels](https://www.statsmodels.org/dev/generated/statsmodels.stats.anova.anova_lm.html)**
 
 ```python
 import statsmodels.api as sm
@@ -214,7 +217,7 @@ The **anova** results show that for all features p>0.05, thus the **null hypothe
 
 ### Kolmogorov-Smirnov Test
 
-The **Kolmogorov-Smirnov** test is a statistical test used to determine whether a sample distribution differs significantly from a known or expected distribution. It compares the empirical **cumulative distribution function** (CDF) of the sample to the theoretical CDF of the expected distribution and calculates a test statistic that measures the maximum distance between the two functions. We'll be using the `scipy.stats.ks_2samp` module, which gives us the option to use three types of **null** & **alternative** hypotheses, by default the `two-sided` option is used, so that will be our pair, so that's what we'll use. The null hypothesis is that the **two distributions are identical**, F(x)=G(x) for all x; the alternative is that they are not identical.
+The **Kolmogorov-Smirnov** test is a statistical test used to determine whether a sample distribution differs significantly from a known or expected distribution. It compares the empirical **cumulative distribution function** (CDF) of the sample to the theoretical CDF of the expected distribution and calculates a test statistic that measures the maximum distance between the two functions. We'll be using the **`scipy.stats.ks_2samp`** module, which gives us the option to use three types of **null** & **alternative** hypotheses, by default the `two-sided` option is used, so that will be our pair, so that's what we'll use. The null hypothesis is that the **two distributions are identical**, F(x)=G(x) for all x; the alternative is that they are not identical
 
 ```python
 from scipy.stats import ks_2samp
@@ -259,11 +262,11 @@ ks_test(X_train,X_test)
 
 ![](images/ks_stat.jpg)
 
-The **Kolmogorov-Smirnov** test results show that for all the features in the data p>0.05, so the null hypothesis is accepted; for all the features the two subsets the **two distributions are identical**
+The **Kolmogorov-Smirnov** test results show that for all the features in the data **p>0.05**, so the null hypothesis is accepted; for all the features the two subsets the **two distributions are identical**
 
-## Machine Learning Approach
+## **Machine Learning Approach**
 
-As we mentioned [in the beginning](https://shtrausslearning.github.io/posts/compare_dataset/#comparing-subsets) we can utilise machine learning to compare different subsets, in fact this probably is the most common approach as it is a necessity everytime you train a new model, you need to validate your model. As a result, comparing metrics on different subsets of data is quite standard. However, what we will do here a little different. We will set our taget variable as `dataset` & treat the problem as a **binary classification problem**, we'll use the `CatBoostClassifier` as our model with preset optimised hyperparameters
+As we mentioned [in the beginning](https://shtrausslearning.github.io/posts/compare_dataset/#comparing-subsets) we can utilise machine learning to compare different subsets, in fact this probably is the most common approach as it is a necessity everytime you train a new model, you need to validate your model. As a result, comparing metrics on different subsets of data is quite standard. However, what we will do here a little different. We will set our taget variable as **`dataset`** & treat the problem as a **binary classification problem**, we'll use the **`CatBoostClassifier`** as our model with preset optimised hyperparameters
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -299,7 +302,7 @@ model_approach(X_train,X_test)
 ```
 We aren’t too concerned about the metric value because the features aren’t not optimised for this problem, we’re interested in the **difference between the two models**. The model performs the same on both subsets, which is a good indicator to assume both subsets have a very simular data structure, thus are more or less similar.
 
-## Conclusion
+## **Conclusion**
 
 In this post, we tried different approaches to compare datasets. We can do this in a number of ways, using [visualisations](https://shtrausslearning.github.io/posts/compare_dataset/#visualisation-approaches), [statistics](https://shtrausslearning.github.io/posts/compare_dataset/#statistical-approaches) & [machine learning approach](https://shtrausslearning.github.io/posts/compare_dataset/#machine-learning-approach). In our problem, we could conclude that the two subsets that we created at the [start of the post](https://shtrausslearning.github.io/posts/compare_dataset/#the-dataset) There doesn't seem to be an ideal method which fits the problem at hand, so its good practice to do a number of checks when comparing datasets datasets
 

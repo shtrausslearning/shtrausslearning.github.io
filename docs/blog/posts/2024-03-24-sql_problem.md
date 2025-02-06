@@ -1,6 +1,6 @@
 ---
 date: 2024-03-24
-title: SQL Interview Problem
+title: SQL Analytics Problem
 authors: [andrey]
 draft: false
 categories:
@@ -11,9 +11,12 @@ tags:
 comments: true
 ---
 
-# SQL Interview Problem
+# **SQL Analytics Problem**
 
-An interview question related to SQL knowledge from a financial bank which I thought was interesting so decided to share. I was given a day to do the problems, which would be more than enough time to delve into into it. I really enjoyed going through the the interview process with this company, hopefully this will be helpful to someone.
+An interview question related to SQL knowledge from a financial bank which I thought was interesting so decided to share
+
+- The first part consists of standard SQL knowledge questions 
+- The second part consists of a problem in which we will need to create some code for monitoring the number of hours an employee has worked, which we will be doing with **`python`** and **`posgres`**
 
 <!-- more -->
 
@@ -23,9 +26,9 @@ An interview question related to SQL knowledge from a financial bank which I tho
 
 </div>
 
-### **<span style='color:#686dec'> Questions</span>**
+## **Questions**
 
-**Elementary Questions**
+### **Elementary Questions**
 
 These are quite standard simple questions about general understanding of SQL
 
@@ -36,7 +39,7 @@ These are quite standard simple questions about general understanding of SQL
 - 5) Найти список ID отделов с максимальной суммарной зарплатой сотрудников
 
 
-**Main Problem**
+### **Main Problem**
 
 Необходимо дополнить структуру новыми данными в связи с задачей фиксации отработанного
 времени. Условия:
@@ -60,7 +63,7 @@ So we know that a company has employees working in different time zones, and doe
 
 Each employee must fill in the hours spent working for each day. This data will be used to determine how many people are working at the same period in time, taking into consideration this shift in timezones.
 
-### **<span style='color:#686dec'> Available Data</span>**
+## **Available Data**
 
 We are given two tables, which contain information about the department for employees, containing their name and identifier, and another table containing employee information, as shown below: 
 
@@ -77,9 +80,9 @@ EMPLOYEE
 - **NAME** VARCHAR2(100) <FK2>
 - **SALARY** NUMBER 
 
-### **<span style='color:#686dec'> Tools & Data</span>**
+## **Tools & Data**
 
-We'll need some sample data, I'll be using **postgres**, pyspark is mainly for presentation purposes. I've created only two Departments (Business and Analytics) and 7 employees work across both of these departments as shown below:
+We'll need some sample data, I'll be using **posgres**, pyspark is mainly for presentation purposes. I've created only two Departments (Business and Analytics) and 7 employees work across both of these departments as shown below:
 
 ```python
 
@@ -148,8 +151,7 @@ employee = spark.createDataFrame(data, schema)
 employee.createOrReplaceTempView("EMPLOYEE")
 ```     
 
-### **<span style='color:#686dec'> Elementary Questions</span>**
-
+## **Elementary Questions**
 Some basic concepts in SQL, joining, subqueries and CTE. Some of the more interesting things that one might not come across in SQL problems often is a WHERE condition format such as:
 
 ```sql
@@ -312,9 +314,9 @@ spark.sql(tquery).show()
 +--------------+
 ```
 
-### **<span style='color:#686dec'> Main Problem</span>**
+## **Main Problem**
 
-Now lets move onto the main problem of the interview questions. We need to have a **postgres** session started. I'll be using **psycopg2** to connect to the database.gs The two main tables EMPLOYEE and DEPARTMENT which we'll need have been described above. We need to add new data to our database which describes the number of hours a an employee has worked.
+Now lets move onto the main problem of the interview questions. We need to have a **posgres** session started. I'll be using **psycopg2** to connect to the database.gs The two main tables EMPLOYEE and DEPARTMENT which we'll need have been described above. We need to add new data to our database which describes the number of hours a an employee has worked.
 
 Our goal is to write a code that will allow employees to **update the database** with employee working hours data & **create a simple analysis** based on the data that each employee provides us. 
 
@@ -457,7 +459,7 @@ cur.close()
 conn.commit()
 ```
 
-Having added information about the timezones for each employee. Now lets create a table in which each employee from EMPLOYEE will be able to fill out their daily working hours information. One condition that needs to be mentioned is that our table will need to contain a constraint condition in order to prevent users from inputting working hours information multiple times for a particular date, hence the condition `CONSTRAINT pk_employee_date PRIMARY KEY (employee_id, date)`
+Having added information about the timezones for each employee. Now lets create a table in which each employee from EMPLOYEE will be able to fill out their daily working hours information. One condition that needs to be mentioned is that our table will need to contain a constraint condition in order to prevent users from inputting working hours information multiple times for a particular date, hence the condition **`CONSTRAINT pk_employee_date PRIMARY KEY (employee_id, date)`**
 
 ```python
 '''
@@ -501,8 +503,8 @@ Now lets go into the main functionality class which each employee is ought be be
 - **extract_weekly_data** is a simple method that will allow us to extract the number of working hours for all employees in all departments for a specified time period (start_date,end_date)
 
     - To do this on a code level, we first need to create a **datetime** range, lets call it calendar which will define 120 hours of data
-    - Convert the local time for each user to a specific time zone (I decided to use **UTC**), an example of this `(wh.START_TIME AT TIME ZONE 'UTC') AT TIME ZONE e.TIMEZONE AS START_TIME`
-    - Add the data available from WORKED_HOURS into our calendar and do a head count for the number of employees working at one time for each calendar hour using `count(distinct) with group by date`
+    - Convert the local time for each user to a specific time zone (I decided to use **UTC**), an example of this **`(wh.START_TIME AT TIME ZONE 'UTC') AT TIME ZONE e.TIMEZONE AS START_TIME`**
+    - Add the data available from WORKED_HOURS into our calendar and do a head count for the number of employees working at one time for each calendar hour using **`count(distinct) with group by date`**
 
 
 ```python
@@ -839,7 +841,7 @@ fig.show("png")
 
 ![](images/sql_q2.png)
 
-### **<span style='color:#686dec'> Concluding Remarks</span>**
+## **Concluding Remarks**
 
 So there we go, we have made a simple script that will allow us to count the number of employees present at work at any given period in a company which operates in different timezone based on the data that the users working hour data reported by each employee. This would allow the company to monitor working load, and note periods at which there are too few employees working to keep the business operating effectively. There are probably ways to improve the code, but this is what I managed in a 24 hour timeframe.
 

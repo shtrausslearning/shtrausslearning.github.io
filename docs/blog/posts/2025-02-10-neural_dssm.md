@@ -8,6 +8,7 @@ categories:
 tags:
      - recsys
      - neural
+     - replay
 comments: true
 ---
 
@@ -15,15 +16,15 @@ comments: true
 
 ***
 
-In this notebook we will look at how to use a neural network approach to recommendations
+In this notebook we will look at how to use a neural network approach to making recommendations
 
-- Implicit feedback will be used
+- The user/item pairings are the main source of data used to create recommendations
 - Scalar product of both the **`user_id`** and **`item_id`** embeddings will be our relevancy scores
 - User film interactions will be **`positive`** feedback & negative samples which will be created randomly are our **`negative`** samples
 - The dataset is split into two, **`train`** will be used to train a model on historical user data, **`test`** will be used to provide user recommendations
 - What we will be telling the model is to learn and differentiate between the films they actually watched apart from those they haven’t (ideally)
-- We have already looked at DSSM in a **[previous notebook ](https://shtrausslearning.github.io/notebooks/course_recsys/dssm-towers)** , well be simplifying things a little here!
-- 
+- We have already looked at **`DSSM`** in a **[previous notebook ](https://shtrausslearning.github.io/notebooks/course_recsys/dssm-towers)** , well be simplifying things a little here, not including user and item features and will keep things more simple.
+
 ***
 
 <!-- more -->
@@ -37,8 +38,9 @@ In this notebook we will look at how to use a neural network approach to recomme
 
 ## **Setup**
 
-We have summarised all preprocessing steps before the definition of **`datasets`** and **`dataloaders`**, so the section will take up a little less space.
+We have summarised all preprocessing steps before the definition of **`datasets`** and **`dataloaders`**, so the sections associated with preprocessing take up less space 
 
+- **`replay`** will help us keep things more compact, by utilising existing methods for preprocessing
 - **`MovieLensPrepare`** : Initialising this class will read the dataset
 - **`preprocess`** : Calling this method will define filtration of low item count envents for each user, reset the user and item identifiers and convert the time based feature into something we can work with
 - **`split_data`** : Calling this method will create two subsets based on the last 20% of datetime split
@@ -190,11 +192,15 @@ We want to recommend only items that have been rated highly, so for the **`test`
 study.filter_test()
 ```
 
-
 So what we have going into the next part
 
 - **`study.train`** (training subsett
 - **`study.test`** (test subset)
+
+Let's take a look at a sample from the training set
+
+|       |   user_id |   item_id |   rating | timestamp           |\n|------:|----------:|----------:|---------:|:--------------------|\n|   214 |       207 |       254 |        4 | 1997-09-20 03:05:10 |\n| 83965 |       207 |       285 |        4 | 1997-09-20 03:05:27 |\n| 43027 |       207 |       297 |        4 | 1997-09-20 03:05:54 |\n| 21396 |       207 |       184 |        4 | 1997-09-20 03:06:21 |\n| 82655 |       207 |       172 |        4 | 1997-09-20 03:07:23 |
+
 
 ## **5 | Create Torch Dataset**
 

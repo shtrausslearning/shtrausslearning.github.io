@@ -70,18 +70,19 @@ hide_comments: false
 
 ## <b>Современные методы рекомендаций</b> 
 
-Нейросетевые подходы и подобные
+Нейросетевые подходы (**`NeuMF`**,**`DSSM`**), много рукие бандиты
 
 <div class="grid cards" markdown>
 
-- <center><b>[Нейросетевые методы рекомендаций (DSSM)](dssm-towers)</b></center>
+- <center><b>[Нейросетевые методы рекомендаций (DSSM) Простой](dssm-simple)</b></center>
+- <center><b>[Нейросетевые методы рекомендаций (DSSM) Продвинутый](dssm-towers)</b></center>
 - <center><b>[Многорукие бандиты для оптимизации A/B - тестирования]()</b></center>
 - <center><b>[Многорукие бандиты для задачи рекомендации]()</b></center>
 
 </div>
 
 
-## <b><span style='color:#3489c2'>Проекты</span></b> 
+## <b>Проекты</b> 
  
 
 <div class="grid cards" markdown>

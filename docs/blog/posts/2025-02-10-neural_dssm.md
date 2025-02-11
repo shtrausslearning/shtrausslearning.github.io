@@ -124,8 +124,6 @@ class MovieLensPrepare:
     def filter_test(self):
         filter_rating = LowRatingFilter(value=4)        
         self.test = filter_rating.transform(self.test)
-        
-study = MovieLensPrepare()
 ```
 
 The parameters which we will be using are as follows, mainly noting that we are using **`rating`** as our feedback column
@@ -353,6 +351,36 @@ model = BaseTwoHead(**embed_config,
                     item_config=item_config)
 model
 ```
+
+```
+BaseTwoHead(
+  (user_tower): SimpleTower(
+    (emb): Embedding(751, 16)
+  )
+  (item_tower): SimpleTower(
+    (emb): Embedding(1616, 16)
+  )
+)
+```
+
+The output of the model will give us the logits for each of the 11 items, for each user row. Here we output for the two users in the batch
+
+```python
+# output for a single batch
+output = model(batch)
+output
+```
+
+```
+tensor([[-6.8363,  0.1997,  0.4096,  1.0402,  2.4190,  6.8927, -1.2080, -3.4307,
+          1.2526, -1.2871, -2.1857],
+        [-4.9177, -3.7208, -0.3057,  3.6102,  0.7713,  1.8600,  5.9874, -3.3620,
+         -8.9462, -3.6663, 11.0579]], grad_fn=<SumBackward1>)
+```
+
+Extracting embeddings 
+
+
 
 ## **7 | Preparing Loaders**
 

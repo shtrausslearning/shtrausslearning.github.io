@@ -287,7 +287,7 @@ As we can see we get a batch of user identifiers, their array of items and corre
 
 We will be creating a subclass **`SimpleTower`**, which only includes the embeddings of both **`user_id`** and **`item_id`** when we’ll define them in the main class
 
-- We can recall that for matrix factorisation approaches, we get the score matrix by using the scalar product of user and item embedding, similarly we will take the same approach to calculate the score for each user/item combination in the row.
+- We can recall that for matrix factorisation approaches, we get the score matrix by using the scalar product of user and item embedding, similarly we will take the same approach to calculate the score for each user/item combination in the row
 - The **`forward`** method, when called simply returns the user/item row of the corresponding embedding matrix
 - And calculates the dot product between the **`user_id`** & **`item_id`** matrices returning the array for all user/item combinations (batch,11)
 
@@ -363,7 +363,9 @@ BaseTwoHead(
 )
 ```
 
-The output of the model will give us the logits for each of the 11 items, for each user row. Here we output for the two users in the batch
+**Model `forward` pass**
+
+- The output of the model will give us the logits for each of the 11 items, for each user row
 
 ```python
 # output for a single batch
@@ -372,13 +374,11 @@ output
 ```
 
 ```
-tensor([[-6.8363,  0.1997,  0.4096,  1.0402,  2.4190,  6.8927, -1.2080, -3.4307,
-          1.2526, -1.2871, -2.1857],
-        [-4.9177, -3.7208, -0.3057,  3.6102,  0.7713,  1.8600,  5.9874, -3.3620,
-         -8.9462, -3.6663, 11.0579]], grad_fn=<SumBackward1>)
+tensor([[  1.6632,   5.8888,   0.0997,   7.6885,   8.2156,   4.0495,   3.0272,
+           1.9775,  -1.8750,   4.3952,   0.2714],
+        [  5.3873, -10.4797,  -4.2230,  -0.4488,   0.9215,  -5.0823,  -0.5018,
+           4.9579,   0.8251,  -6.3608,  -4.5723]], grad_fn=<SumBackward1>)
 ```
-
-Extracting embeddings 
 
 
 
@@ -408,7 +408,7 @@ dl_test = DataLoader(ds_test,
 
 ## **8 | Modeling Iteration**
 
-Let’s define the optimiser and loss function which are pretty much standard across other **binary classification** problems
+Let’s define the **optimiser** and **loss function** which are pretty much standard across other **binary classification** problems
 
 ```python
 optimizer = torch.optim.Adam(model.parameters(),
@@ -451,7 +451,7 @@ for epoch in tqdm(range(config.NUM_EPOCHS)):
     train_loss_per_epoch.append(train_loss)
 ```
 
-- So in turn, our model is learning to classify between positive and negative samples for each row of data.
+- So in turn, our model is learning to classify between **`positive`** and **`negative`** samples for each row of data
 - Once the model is finished learning, we can utilise the model methods and extract the embeddings from the two towers.
 - And save the model as well for future use!
 
@@ -460,15 +460,32 @@ for epoch in tqdm(range(config.NUM_EPOCHS)):
 torch.save(model.state_dict(), f"/content/model_{config.NUM_EPOCHS}"
 ```
 
-## **9 | Make recommendations**
+## **9 | Generating user recommendations**
 
-Time to make some predictions using the model we have trained! We need to define the model class & load it’s state.
+Time has come to use our trained model!
+
+- We will be making recommendations by using the model that we trained on the **train** dataset and using the **test** users to make predictions
+- To make predictions, we will extract the **embedding** matrix weights for user and items, calculate the scores, get the top k results for each user based on the largest score values
+
+
+### **8.1. Load Weights**
+
+First things first, we need to load the model weights
 
 ```python
 model = BaseTwoHead(**config, user_config=user_config, item_config=item_config)
 model.load_state_dict(torch.load(f"/content/model_{config.NUM_EPOCHS}"))
 model.eval()
 ```
+
+### **8.2. Get test users**
+
+Get the user identifiers that are in the test test, the test set was saved in **`study.test`**
+
+
+### **8.4. Scalar product**
+
+Calculate the scores for each user & item combination by calculating the scalar product of them
 
 
 

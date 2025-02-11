@@ -465,7 +465,7 @@ torch.save(model.state_dict(), f"/content/model_{config.NUM_EPOCHS}"
 
 ## **9 | Generating user recommendations**
 
-Time has come to use our trained model!
+Time has come to use our trained model
 
 - We will be making recommendations by using the model that we trained on the **train** dataset and using the **test** users to make predictions
 - To make predictions, we will extract the **embedding** matrix weights for user and items, calculate the scores, get the top k results for each user based on the largest score values

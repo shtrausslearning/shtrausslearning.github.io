@@ -14,8 +14,6 @@ comments: true
 
 # **Neural Networks for Recommendation Systems**
 
-***
-
 In this notebook we will look at how to use a neural network approach to making recommendations
 
 - The user/item pairings are the main source of data used to create recommendations
@@ -25,15 +23,14 @@ In this notebook we will look at how to use a neural network approach to making 
 - What we will be telling the model is to learn and differentiate between the films they actually watched apart from those they haven’t (ideally)
 - We have already looked at **`DSSM`** in a **[previous notebook ](https://shtrausslearning.github.io/notebooks/course_recsys/dssm-towers)** , well be simplifying things a little here, not including user and item features and will keep things more simple.
 
-***
-
 <!-- more -->
 
-<!-- <div class="grid cards" markdown>
+<div class="grid cards" markdown>
 
-  - :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)</b>
+- :simple-jupyter:{ .lg .middle }&nbsp; <b>[Jupyter Notebook](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)</b>
+- :simple-github:{ .lg .middle }&nbsp; <b>[Replay Library](https://developers.sber.ru/portal/products/replay)</b>
 
-</div> -->
+</div>
 
 
 ## **Setup**
@@ -197,7 +194,13 @@ So what we have going into the next part
 
 Let's take a look at a sample from the training set
 
-|       |   user_id |   item_id |   rating | timestamp           |\n|------:|----------:|----------:|---------:|:--------------------|\n|   214 |       207 |       254 |        4 | 1997-09-20 03:05:10 |\n| 83965 |       207 |       285 |        4 | 1997-09-20 03:05:27 |\n| 43027 |       207 |       297 |        4 | 1997-09-20 03:05:54 |\n| 21396 |       207 |       184 |        4 | 1997-09-20 03:06:21 |\n| 82655 |       207 |       172 |        4 | 1997-09-20 03:07:23 |
+|         |   user_id |   item_id |   rating | timestamp           |
+|--------:|----------:|----------:|---------:|:--------------------|
+| 1000138 |      5399 |       789 |        4 | 2000-04-25 23:05:32 |
+| 1000153 |      5399 |      2162 |        4 | 2000-04-25 23:05:54 |
+|  999873 |      5399 |       573 |        5 | 2000-04-25 23:05:54 |
+| 1000007 |      5399 |      1756 |        4 | 2000-04-25 23:06:17 |
+| 1000192 |      5399 |      1814 |        5 | 2000-04-25 23:06:17 | 
 
 
 ## **5 | Create Torch Dataset**
@@ -468,9 +471,9 @@ Time has come to use our trained model!
 - To make predictions, we will extract the **embedding** matrix weights for user and items, calculate the scores, get the top k results for each user based on the largest score values
 
 
-### **8.1. Load Weights**
+### **9.1. Load Weights**
 
-First things first, we need to load the model weights
+First things first, we need to load the model weights, and put it in inference mode
 
 ```python
 model = BaseTwoHead(**config, user_config=user_config, item_config=item_config)
@@ -478,14 +481,137 @@ model.load_state_dict(torch.load(f"/content/model_{config.NUM_EPOCHS}"))
 model.eval()
 ```
 
-### **8.2. Get test users**
+### **9.2. Get test users**
 
 Get the user identifiers that are in the test test, the test set was saved in **`study.test`**
 
+```python
+test_users = study.test[[config.USER_COL]].drop_duplicates().reset_index(drop=True)
+```
 
-### **8.4. Scalar product**
+|    |   user_id |
+|---:|----------:|
+|  0 |         2 |
+|  1 |       233 |
+|  2 |       736 |
+|  3 |        49 |
+|  4 |       600 |
+
+### **9.3. Extract Weights**
+
+Extract the embedding weights for all users and items which is located in the model
+
+```
+# extract the user / item embedding weights
+user_embed = model.user_tower.emb.weight.detach().cpu().numpy()
+item_embed = model.item_tower.emb.weight.detach().cpu().numpy()
+user_embed.shape, item_embed.shape
+```
+
+
+### **9.4. Scalar product**
 
 Calculate the scores for each user & item combination by calculating the scalar product of them
+
+```python
+# calcualate the scores (751,1616)
+scores = user_embed[test_users[config.USER_COL].values] @ item_embed.T
+```
+
+```
+[[-2.219962   -2.8183699  -1.2701275  ... -1.7878596  -2.3029149
+  -5.1351438 ]
+ [-0.2002018  -3.269224   -3.5974343  ... -5.4825845  -4.0557184
+  -4.9202886 ]
+ [-0.24603942 -1.9250925  -1.2330636  ... -4.066546   -3.6852539
+  -6.3292623 ]
+ ...
+ [ 1.3434778  -2.2150192  -1.8992031  ... -4.7611713  -4.1526904
+  -5.917045  ]
+ [ 0.067677   -2.6156569  -2.6362207  ... -3.8871505  -3.1315584
+  -3.5736673 ]
+ [-1.3127992  -1.5567051  -1.1855109  ... -2.6913378  -3.2935755
+  -5.5215263 ]]
+  ```
+
+### **9.5. Get highest scores**
+
+Get the highest value indicies (idx) & their corresponding values (scores). The scores correspond to the index of the item in the **encoder** **`encoder_item`**, which we stored in class instance **`study`**
+
+```python
+# get top 10 idx by value & get its value
+ids = np.argpartition(scores, -config.K)[:, -config.K:]
+scores = np.take_along_axis(scores, ids, axis=1)
+scores[:5]
+```
+
+```
+array([[ 1.3017656 ,  1.4262905 ,  1.4305891 ,  1.5401053 ,  1.5945268 ,
+         1.9945638 ,  1.9178314 ,  2.8111196 ,  1.5959901 ,  2.221249  ],
+       [-0.02534078,  1.0504715 ,  0.6823742 ,  0.6663627 , -0.00748574,
+         0.5298525 ,  0.49601346,  0.32487705,  0.04160966,  0.02862556],
+       [ 1.7142106 ,  1.8349895 ,  2.43454   ,  2.896079  ,  3.0631516 ,
+         2.1554096 ,  1.8832399 ,  2.087269  ,  3.876807  ,  2.2215443 ],
+       [ 0.2731401 ,  0.30537376,  0.3488819 ,  0.53589934,  1.0000901 ,
+         0.77159363,  0.6785181 ,  0.7471067 ,  0.55528575,  1.0426229 ],
+       [ 0.89288795,  0.92402935,  0.97583646,  0.98947227,  1.0060023 ,
+         1.1556187 ,  1.4170016 ,  1.4296795 ,  1.7379148 ,  1.2944818 ]],
+      dtype=float32)
+```
+
+
+### **9.6. Recommendations Matrix**
+
+Prepare the usual format, **`user_id`**, **`item_id`** and rating **`rating`**, which will enable us to quickly evaluate the metrics using **`experiment`** function from **replay**. We need to add both lists to each user & expand them together
+
+
+
+```python
+# prepare recommendations matrix
+def prepare_recs(test_users, 
+                 rec_item_ids, 
+                 rec_relevances):
+    
+    predict = test_users.copy()
+    predict[config.ITEM_COL] = rec_item_ids.tolist()  # add list of indicies for each user
+    predict['rating'] = rec_relevances.tolist() # add rating list of scores for each user
+    predict = predict.explode(column=[config.ITEM_COL, 'rating']).reset_index(drop=True) # expand both lists
+    predict[config.ITEM_COL] = predict[config.ITEM_COL].astype(int)
+    predict['rating'] = predict['rating'].astype("double")
+    return predict
+
+
+model_recommendations = prepare_recs(test_users,      # user columns 
+                                     rec_item_ids=ids,  # indicies of top 10 in scores
+                                     rec_relevances=scores) # scores of top 10
+```
+
+|    |   user_id |   item_id |   rating |
+|---:|----------:|----------:|---------:|
+|  0 |         2 |       302 |  1.30177 |
+|  1 |         2 |       218 |  1.42629 |
+|  2 |         2 |       233 |  1.43059 |
+|  3 |         2 |       139 |  1.54011 |
+|  4 |         2 |         6 |  1.59453 |
+
+
+We'll evaluate the prediction & test overlapping items using **hitrate**, to measure how well the model predicts at least one relevant recommendation for users. **NDCG**, for the evaluation of how well the model can correcly order the relevant items & **coverage** to measure how well the model predicts a range of items from all available items
+
+```python
+metrics = Experiment(
+    [NDCG(config.K), HitRate(config.K), Coverage(config.K)],
+    study.test,
+    study.train,
+    query_column=config.USER_COL, 
+    item_column=config.ITEM_COL,
+)
+metrics.add_result("dssm_model", model_recommendations)
+metrics.results
+```
+
+|            |   NDCG@10 |   HitRate@10 |   Coverage@10 |
+|:-----------|----------:|-------------:|--------------:|
+| dssm_model | 0.0345152 |     0.221053 |      0.191213 |
 
 
 

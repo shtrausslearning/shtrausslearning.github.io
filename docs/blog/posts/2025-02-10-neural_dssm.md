@@ -27,7 +27,7 @@ In this notebook we will look at how to use a neural network approach to making 
 
 <div class="grid cards" markdown>
 
-- :simple-jupyter:{ .lg .middle }&nbsp; <b>[Jupyter Notebook](https://github.com/shtrausslearning/postgreSQL/blob/main/testing_problem.ipynb)</b>
+- :simple-jupyter:{ .lg .middle }&nbsp; <b>[Jupyter Notebook](https://shtrausslearning.github.io/notebooks/course_recsys/dssm-simple.ipynb)</b>
 - :simple-github:{ .lg .middle }&nbsp; <b>[Replay Library](https://developers.sber.ru/portal/products/replay)</b>
 
 </div>

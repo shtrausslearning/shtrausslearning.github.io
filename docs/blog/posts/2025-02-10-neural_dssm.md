@@ -532,7 +532,7 @@ scores = user_embed[test_users[config.USER_COL].values] @ item_embed.T
   -3.5736673 ]
  [-1.3127992  -1.5567051  -1.1855109  ... -2.6913378  -3.2935755
   -5.5215263 ]]
-  ```
+```
 
 ### **9.5. Get highest scores**
 

@@ -23,7 +23,7 @@ In this project, we work with another client who is a major **gas and electricit
 
 <div class="grid cards" markdown >
 
-  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Business Understanding & Hypothesis Framing](docs/notebooks/projects/bcgx_powerco/task1.ipynb)</b>
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Business Understanding & Hypothesis Framing](../../notebooks/projects/bcgx_powerco/task1.ipynb)</b>
 
     ---
 
@@ -39,7 +39,7 @@ In this project, we work with another client who is a major **gas and electricit
     - Outline the techniques you'll use to investigate your client's problem
     - Write an email to your Associate Director summarizing your approach
 
-  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Exploratory Data Analysis](docs/notebooks/projects/bcgx_powerco/task2.ipynb)</b>
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Exploratory Data Analysis](../../notebooks/projects/bcgx_powerco/task2.ipynb)</b>
 
     ---
 

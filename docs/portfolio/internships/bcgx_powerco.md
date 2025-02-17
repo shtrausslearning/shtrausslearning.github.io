@@ -68,6 +68,21 @@ In this project, we work with another client who is a major **gas and electricit
     - Use Python to build a new feature for your analysis
 
 
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Findings & Recommendations](../../notebooks/projects/bcgx_powerco/task4.ipynb)</b>
+
+    ---
+
+    **What you'll learn**
+
+    - How predictive modelling can be used to indicate churn risk
+    - How to communicate your insights with clients
+
+    **What you'll do**
+
+    - Build a predictive model for churn using a random forest technique
+    - Write an executive summary with your findings
+
+
 </div>
 
 

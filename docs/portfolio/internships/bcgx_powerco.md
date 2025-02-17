@@ -23,17 +23,35 @@ In this project, we work with another client who is a major **gas and electricit
 
 <div class="grid cards" markdown >
 
-  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[](docs/notebooks/projects/bcgx_powerco/task1.ipynb)</b>
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Business Understanding & Hypothesis Framing](docs/notebooks/projects/bcgx_powerco/task1.ipynb)</b>
 
     ---
 
-    In the first part of the project, we focus on **`Business understanding`** & **`problem framing`**: what is the context of this problem and why are they trying to solve it?
+    What you'll learn
 
-  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[](docs/notebooks/projects/bcgx_powerco/task2.ipynb)</b>
+    - Meet your client PowerCo - a major gas and electricity utility who is concerned about losing customers
+    - How to interpret the business context
+    - How to break down the problem before you start your data analysis
+
+    What you'll do
+
+    - Determine the client data needed for analysis
+    - Outline the techniques you'll use to investigate your client's problem
+    - Write an email to your Associate Director summarizing your approach
+
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Exploratory Data Analysis](docs/notebooks/projects/bcgx_powerco/task2.ipynb)</b>
 
     ---
 
-    In the first part of the project, we focus on **`Business understanding`** & **`problem framing`**: what is the context of this problem and why are they trying to solve it?
+    What you'll learn
+
+    - How to investigate whether price sensitivity is the most influential factor for a customer churning
+    - How to use frameworks to conduct exploratory data analysis
+
+    What you'll do
+
+    - Use python to analyze client data
+    - Create data visualizations to help you interpret key trends
 
 
 </div>

@@ -3,7 +3,7 @@ title: BCGX PowerCo
 comments: true
 ---
 
-## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>Retaining customer clients vulnerable to churn]</b>
+## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>Retaining customer clients vulnerable to churn</b>
 
 :simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/BCGX_Data_Science)</b>
 
@@ -18,3 +18,23 @@ In this project, we work with another client who is a major **gas and electricit
 - We investigate whether price sensitivity is the most influential factor for a customer churning
 - Conduct feature engineering that is used to test hypotheses related to customer churn
 - And finally we utilise predictive modelling so that it can be used to highlight customers at risk of churn
+
+***
+
+<div class="grid cards" markdown >
+
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[](docs/notebooks/projects/bcgx_powerco/task1.ipynb)</b>
+
+    ---
+
+    In the first part of the project, we focus on **`Business understanding`** & **`problem framing`**: what is the context of this problem and why are they trying to solve it?
+
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[](docs/notebooks/projects/bcgx_powerco/task2.ipynb)</b>
+
+    ---
+
+    In the first part of the project, we focus on **`Business understanding`** & **`problem framing`**: what is the context of this problem and why are they trying to solve it?
+
+
+</div>
+

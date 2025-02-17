@@ -29,7 +29,7 @@ comments: true
 
 <div class="grid cards" markdown >
 
-  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>Retaining customer clients vulnerable to churn]</b>
+  - ## :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>[Retaining customer clients vulnerable to churn](portfolio/internships/bcgx_powerco.md)</b>
 
   	:simple-github:{ .lg .middle }&nbsp; <b>[GitHub Repository](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/BCGX_Data_Science)</b>
 

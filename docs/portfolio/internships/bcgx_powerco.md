@@ -85,6 +85,3 @@ In this project, we work with another client who is a major **gas and electricit
 
 </div>
 
-
-</div>
-

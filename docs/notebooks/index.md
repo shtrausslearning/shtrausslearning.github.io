@@ -32,6 +32,16 @@ Notebooks created on platform Kaggle
 
 </div>
 
+## Internship Projects
+
+
+<div class="grid cards" markdown>
+
+- <center><b>:octicons-people-16: [Lloyds Banking Group Data Science](projects/lloyds_ds/index.md)</b></center>
+
+</div>
+
+
 
 ---
 

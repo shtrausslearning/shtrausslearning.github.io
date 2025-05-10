@@ -6,7 +6,7 @@ hide_comments: false
 
 <div class="grid cards" markdown>
 
-- <center><b>:octicons-people-16: [Lloyds Banking Group Data Science](projects/lloyds_ds/task1)</b></center>
+- <center><b>:octicons-people-16: [Lloyds Banking Group Data Science](task1)</b></center>
 
 </div>
 

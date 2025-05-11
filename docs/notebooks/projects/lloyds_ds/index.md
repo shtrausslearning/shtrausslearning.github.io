@@ -80,7 +80,7 @@ The task descriptions and jupyter notebooks for this project
 
 - <center><b>[Task 1: Description](task1.md)</b></center>
 
-- <center><b>[Task 1: Notebook](task1)</b></center>
+- <center><b>[Task 1: Notebook](task1_nb)</b></center>
 
 - <center><b>[Task 2: Description](task2.md)</b></center>
 

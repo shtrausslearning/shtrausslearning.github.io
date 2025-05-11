@@ -1,7 +1,8 @@
 ---
-title: Task 2: Building a machine learning model
+title: Task 2 - Building a machine learning model
 hide_comments: false
 ---
+
 
 # Let's get started
 
@@ -14,6 +15,8 @@ Li, your mentor, has emphasised the importance of accuracy and precision in this
 Your task involves choosing an appropriate algorithm, training the model, and evaluating its performance. Remember, the goal is to create a model that can be easily understood and acted on by business stakeholders. As you work through this task, consider the factors that could influence churn, such as spending habits, service usage, and demographic characteristics.
 
 This is a chance to showcase your data science expertise in a real-world scenario. Your efforts will not only enhance your skills but also contribute significantly to the team's understanding of customer behaviour. As you begin, keep in mind the practical impact of your model on SmartBank's strategic decisions. Let's get started and bring your analysis to life!
+
+<br>
 
 # Approaches to selecting appropriate machine learning algorithms
 
@@ -45,6 +48,7 @@ In churn prediction, you're dealing with a **binary classification problem**. K
 
 By delving into these advanced considerations, you'll be better equipped to select and fine-tune machine learning algorithms that are both accurate and aligned with the practical needs of the business context in which they will be deployed.
 
+<br>
 
 # Approaches to selecting and building machine learning models for classification tasks
 
@@ -80,6 +84,8 @@ Once a model is selected and tuned, consider its deployment and scalability:
 
 By integrating these advanced techniques, you'll build a classification model that is not only accurate and robust but also scalable and maintainable, ensuring long-term value for the business.
 
+<br>
+
 # Techniques for suggesting ways to evaluate and measure the model’s performance
 
 Evaluating and measuring the performance of a machine learning model, especially in classification tasks like predicting customer churn, is crucial for understanding its effectiveness and reliability. Here are some advanced techniques and metrics to ensure comprehensive evaluation.
@@ -112,6 +118,74 @@ Selecting appropriate metrics depends on the specific characteristics of the dat
 
 By employing these advanced techniques for model evaluation and measurement, you ensure that the predictive model not only performs well statistically but also aligns with business goals, providing actionable insights and reliable predictions.
 
+<br>
+
+# Crafting the predictive blueprint
+
+As you delve deeper into the intricacies of data science, Task 2 offers a critical opportunity to influence the strategic direction of Lloyds Banking Group. Your work in this phase will pivot from EDA to the construction of a predictive model that could significantly shape the bank's customer retention strategies.
+
+The urgency and importance of this task cannot be overstated. Lloyds has seen a subtle but concerning trend in customer attrition, which, if not addressed, could have substantial implications for its market standing and profitability. This project is a real-world application where your findings could directly influence business decisions and outcomes.
+
+**Team collaboration and strategic impact**
+
+Working closely with Li and the Data Science & Analytics team, you are stepping into a role where your technical expertise merges with strategic business needs. The team has identified key areas where predictive insights could allow for proactive interventions, thus reducing churn and enhancing customer loyalty. Li underscores the strategic importance of your task, noting, "Our ability to predict churn allows us to personalise our engagement strategies, tailoring our approach to meet the needs and preferences of our customers. This is critical for maintaining a competitive edge."
+
+**Integrating analytical insights into business strategies**
+
+Your task involves selecting the most appropriate machine learning algorithm, which balances predictive accuracy with interpretability. This balance is crucial; while complex models may offer high accuracy, they can be challenging to explain to non-technical stakeholders who need to trust and act on these insights. Therefore, the choice of algorithm must consider not only the statistical performance but also the business context and usability.
+
+Building the model is where your analytical skills will shine. Using the preprocessed data from Task 1, you'll train the model to identify patterns indicative of potential churn. This involves iterating on various models, tuning hyperparameters, and validating the model to ensure it generalises well to new data.
+
+**Evaluating and communicating model performance**
+
+Beyond building the model, it's essential to suggest robust evaluation metrics. The goal is to provide a comprehensive view of the model's performance, highlighting its strengths and identifying any limitations. Metrics like precision, recall, and F1 score will be key, especially in the context of imbalanced data sets where simple accuracy might be misleading. Furthermore, explaining the model's predictions through feature importance or other interpretability tools will be vital for aligning the model's outputs with business decisions.
+
+**Delivering actionable insights**
+
+The culmination of your work will be a detailed report. This report should present the technical aspects of the model and translate these findings into actionable business insights. Your ability to communicate complex data science concepts in a clear and actionable manner will be crucial in ensuring that the strategic implications of your work are understood and implemented by the business.
+
+This task is a critical component of Lloyds' broader strategy to harness data-driven insights for business growth. Your contributions will play a pivotal role in shaping how the bank understands and responds to customer needs, ultimately driving customer satisfaction and loyalty. As you embark on this task, remember that your work has the potential to make a significant impact, both analytically and strategically.
+
+<br>
+
+# Task instructions
+
+**Introduction**
+
+In this task, you will focus on developing a robust machine learning model to predict customer churn. Your objective is to select an appropriate algorithm, train and validate the model, and propose evaluation metrics that will help assess its performance. This task is pivotal for providing actionable insights that can inform business strategies at Lloyds Banking Group.
+
+**Instructions**
+
+**Select an appropriate machine learning algorithm:**
+
+- Review the characteristics of the data set and the nature of the churn prediction problem.
+- Consider algorithms such as logistic regression, decision trees, random forests, gradient boosting machines, or neural networks.
+- Choose an algorithm that balances accuracy and interpretability, suitable for the business context.
+
+**Build and train the model:**
+
+- Use the preprocessed data set from Task 1 to train your chosen model.
+- Implement techniques like cross-validation to ensure the model generalises well to unseen data.
+- Perform hyperparameter tuning to optimise the model’s performance.
+
+**Evaluate model performance:**
+
+- Select appropriate metrics to evaluate the model's performance, such as precision, recall, F1 score, ROC-AUC, and confusion matrix analysis.
+- Consider the implications of each metric in the context of imbalanced data sets, ensuring that the evaluation provides a comprehensive view of the model's effectiveness.
+
+**Suggest ways to improve and utilise the model:**
+
+- Provide recommendations on how the model can be used by the business to identify at-risk customers and develop retention strategies.
+- Discuss any potential improvements or adjustments to the model that could enhance its accuracy or applicability in different business scenarios.
+
+**Deliverable:**
+
+- **Report submission:** Compile a comprehensive report that includes:
+    - A detailed description of the selected algorithm and the rationale behind its choice.
+    - The trained model, along with performance metrics and evaluation results.
+    - Suggested ways to utilise the model's predictions for business decision-making and potential areas for improvement.
+
+Ensure that your report is clear, concise, and well-organised, effectively communicating both the technical aspects of the model and its practical applications for the business. This report will be a critical tool for stakeholders to understand and leverage the predictive insights generated by your model.
 
 ---
 

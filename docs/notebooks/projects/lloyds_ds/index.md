@@ -3,6 +3,11 @@ title: Lloyd's Banking Group Data Science
 hide_comments: false
 ---
 
+<figure markdown="span">
+  ![Image title](images/lloyds.png){ .base-border-radius }
+  <figcaption>t-model approach (independent models)</figcaption>
+</figure>
+
 # Welcome to the Data Science Job Simulation
 
 We’re so excited to have you here with us!

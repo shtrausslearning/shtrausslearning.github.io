@@ -7,7 +7,7 @@ hide_comments: false
 
 We’re so excited to have you here with us!
 
-## Your Role
+### Your Role
 
 - You are a data science graduate at Lloyds Banking Group.
 - You are part of the Data Science & Analytics team, where each member contributes uniquely to projects. 
@@ -15,7 +15,7 @@ We’re so excited to have you here with us!
 - As a recent graduate eager to apply your data science skills, you see this project as an excellent opportunity to make a meaningful impact.
     
 
-## Your Goal
+### Your Goal
 
 - Your primary task is to collaborate with the team to gather and analyse data relevant to customer churn.
 - You need to perform exploratory data analysis to uncover patterns and insights, clean and preprocess the data, and build a predictive model for customer churn.
@@ -72,6 +72,11 @@ Addressing customer churn is critical for maintaining SmartBank's competitive ed
 
 Embrace this chance to showcase your skills and make a meaningful impact. It’s time to dive in and get to work!
 
+<br>
+
+# Tasks & Notebooks
+
+The task descriptions and jupyter notebooks for this project
 
 <div class="grid cards" markdown>
 

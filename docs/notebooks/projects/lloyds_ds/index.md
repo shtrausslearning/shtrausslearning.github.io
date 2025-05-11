@@ -5,12 +5,9 @@ hide_comments: false
 
 <figure markdown="span">
   ![Image title](images/lloyds.png){ .base-border-radius }
-  <figcaption>t-model approach (independent models)</figcaption>
 </figure>
 
-# Welcome to the Data Science Job Simulation
-
-We’re so excited to have you here with us!
+## :material-account-group-outline: Welcome to the Data Science Job Simulation
 
 ### Your Role
 
@@ -26,9 +23,7 @@ We’re so excited to have you here with us!
 - You need to perform exploratory data analysis to uncover patterns and insights, clean and preprocess the data, and build a predictive model for customer churn.
 - Additionally, you are expected to suggest ways to evaluate and measure the model's performance.
 
-<br>
-
-# Project briefing
+## :material-briefcase-clock-outline: Project briefing
 
 ### Project brief
 
@@ -77,13 +72,13 @@ Addressing customer churn is critical for maintaining SmartBank's competitive ed
 
 Embrace this chance to showcase your skills and make a meaningful impact. It’s time to dive in and get to work!
 
-<br>
-
-# Tasks & Notebooks
+## :material-tag-outline: Tasks & Notebooks
 
 The task descriptions and jupyter notebooks for this project
 
 <div class="grid cards" markdown>
+
+- <center><b>[Task 1: Description](task1.md)</b></center>
 
 - <center><b>[Task 1: Notebook](task1)</b></center>
 

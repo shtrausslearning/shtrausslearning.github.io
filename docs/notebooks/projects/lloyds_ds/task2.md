@@ -3,7 +3,6 @@ title: Task 2 - Building a machine learning model
 hide_comments: false
 ---
 
-
 # Let's get started
 
 You've already laid a solid foundation by exploring and preparing the data. Now, it's time to apply machine learning techniques to build a predictive model for customer churn, a crucial step in enhancing SmartBank's customer retention strategies.

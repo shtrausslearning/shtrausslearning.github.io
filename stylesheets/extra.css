@@ -1,0 +1,166 @@
+@keyframes heart {
+  0%,
+  40%,
+  80%,
+  100% {
+    transform: scale(1);
+  }
+  20%,
+  60% {
+    transform: scale(1.15);
+  }
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.hover-icon:hover {
+  transform: scale(1.25);
+}
+.hover-icon-bounce:hover {
+  animation: bounce 1s infinite;
+}
+.bounce {
+  animation: bounce 1s infinite;
+}
+.heart {
+  animation: heart 1s infinite;
+}
+
+/* Distinct colors */
+.danger {
+  color: #dc3545;
+}
+
+.danger-hover:hover {
+  color: #dc3545;
+}
+
+.dark {
+  color: #343a40;
+}
+
+.dark-hover:hover {
+  color: #343a40;
+}
+
+.info {
+  color: #17a2b8;
+}
+
+.info-hover:hover {
+  color: #17a2b8;
+}
+
+.light {
+  color: #f8f9fa;
+}
+
+.light-hover:hover {
+  color: #f8f9fa;
+}
+
+.primary {
+  color: #007bff;
+}
+
+.primary-hover:hover {
+  color: #007bff;
+}
+
+.secondary {
+  color: #6c757d;
+}
+
+.secondary-hover:hover {
+  color: #6c757d;
+}
+
+.success {
+  color: #28a745;
+}
+
+.success-hover:hover {
+  color: #28a745;
+}
+
+.warning {
+  color: #ffc107;
+}
+
+.warning-hover:hover {
+  color: #ffc107;
+}
+
+/* Extra css classes to change layouts */
+.base-border-radius {
+  border-radius: var(--base-border-radius);
+}
+
+.md-header {
+  background: #25323b;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: #cad4db;
+}
+
+.md-typeset .slim-button {
+  padding: .3em 1.3em;
+}
+
+.md-tabs {
+  background-color: #25323b;
+}
+
+.md-tabs__link {
+  color: #fff;
+}
+
+.md-tabs__link:hover {
+  color: #a7c7dd;
+}
+
+.md-tabs__link:focus {
+  color: #a7c7dd;
+}
+
+img {
+  height: auto;
+  width: auto;
+  border-radius: 15px;
+}
+
+.highlight .hll {
+    background-color: var(--md-code-hl-color);
+    display: block;
+    margin: 0 -1.1764705882em;
+    padding: 0 1.1764705882em;
+}
+
+.md-typeset p > code {
+  color: #232f38;
+}
+
+
+[data-md-color-scheme="slate"] {
+
+  --md-primary-fg-color:              #a7c7dd;  
+  
+  --md-primary-bg-color:               #F5F5F5;
+  --md-default-bg-color:               #2c3a42;
+
+  --md-accent-fg-color:                #dbdbdb;
+  --md-accent-bg-color:                #305b77;
+  --md-code-bg-color:                  #232f38;
+  --md-code-hl-color:                  #232f38;
+  
+}

@@ -104,7 +104,7 @@
 }
 
 .md-header {
-  background: #25323b;
+  background: rgba(22, 29, 44, 0.95);
 }
 
 .md-typeset h1,
@@ -118,7 +118,7 @@
 }
 
 .md-tabs {
-  background-color: #25323b;
+  background-color: rgba(18, 24, 36, 0.95);;
 }
 
 .md-tabs__link {
@@ -147,20 +147,20 @@ img {
 }
 
 .md-typeset p > code {
-  color: #232f38;
+  color: rgba(22, 29, 44, 0.95);
 }
 
 
 [data-md-color-scheme="slate"] {
 
-  --md-primary-fg-color:              #a7c7dd;  
+  --md-primary-fg-color:              #10a3d7;  
   
   --md-primary-bg-color:               #F5F5F5;
-  --md-default-bg-color:               #2c3a42;
+  --md-default-bg-color:               rgba(22, 29, 44, 0.95);
 
   --md-accent-fg-color:                #dbdbdb;
-  --md-accent-bg-color:                #305b77;
-  --md-code-bg-color:                  #232f38;
-  --md-code-hl-color:                  #232f38;
+  --md-accent-bg-color:                rgba(22, 29, 44, 0.95);
+  --md-code-bg-color:                  rgba(17, 20, 29, 0.95);;
+  --md-code-hl-color:                  rgba(22, 29, 44, 0.95);;
   
 }

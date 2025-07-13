@@ -92,11 +92,6 @@ plugins:
       data: docs/data/render_yaml/
   - tags
   - offline
-  - mkdocs-jupyter:
-      include_source: True
-      ignore_h1_titles: True
-      include_requirejs: true
-      custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
 
 extra:
     manifest: manifest.webmanifest
@@ -161,10 +156,5 @@ nav:
       - RecSys: notebooks/course_recsys/index.md
       - NLP: notebooks/course_nlp/index.md
       - Machine Learning: notebooks/sfml/index.md
-  
-  - <b>mllibs</b>: 
-        - mllibs: proj_mllibs/index.md
-        - documentation: 
-            - mstats_tests: proj_mllibs/documentation/mstats_tests.md
         
   - <b>About</b>: about/index.md

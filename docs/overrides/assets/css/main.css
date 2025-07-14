@@ -19,7 +19,7 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #070d1a; /* Background color for the entire website, including individual sections */
+  --background-color: #191e2bf2; /* Background color for the entire website, including individual sections */
   --default-color: #e4edf5; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #f2f8fe; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #10a3d7; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */

@@ -134,7 +134,7 @@
 }
 
 img {
-  height: auto;
+  height: auto; 
   width: auto;
   border-radius: 15px;
 }
@@ -153,14 +153,14 @@ img {
 
 [data-md-color-scheme="slate"] {
 
-  --md-primary-fg-color:              #10a3d7;  
+  --md-primary-fg-color:              #1f8eb6;  
   
   --md-primary-bg-color:               #F5F5F5;
-  --md-default-bg-color:               rgba(22, 29, 44, 0.95);
+  --md-default-bg-color:               rgba(29, 37, 56, 0.95);
 
   --md-accent-fg-color:                #dbdbdb;
-  --md-accent-bg-color:                rgba(22, 29, 44, 0.95);
-  --md-code-bg-color:                  rgba(17, 20, 29, 0.95);;
+  --md-accent-bg-color:                rgba(46, 58, 85, 0.95);
+  --md-code-bg-color:                  rgba(25, 29, 44, 0.95);;
   --md-code-hl-color:                  rgba(22, 29, 44, 0.95);;
   
 }

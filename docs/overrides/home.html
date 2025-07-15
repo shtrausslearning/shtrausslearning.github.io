@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Andrey Shtrauss - Portfolio</title>
+  <title>Andrey Shtrauss</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -45,8 +45,8 @@
 
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Andrey Shtrauss</h1>
+        <img src="assets/img/mllibs.svg" alt="">
+        <h1 class="sitename">Portfolio</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -117,42 +117,20 @@
         <div class="row gy-4">
 
           <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="img-fluid" alt="">
+            <img src="assets/img/clients/pandas.svg" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="https://static.bokeh.org/branding/logos/bokeh-logo-inv@2x.png" class="img-fluid" alt="">
+            <img src="assets/img/clients/bokeh.png" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="assets/img/clients/plotly2.svg" class="img-fluid" alt="">
+            <img src="assets/img/clients/spark.svg" class="img-fluid" alt="">
           </div><!-- End Client Item -->
 
           <div class="col-xl-3 col-md-4 col-6 client-logo">
             <img src="assets/img/clients/sklearn.png" class="img-fluid" alt="">
           </div><!-- End Client Item -->
-
-        </div>
-
-        <div class="row gy-4">
-
-          <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/PyTorch_logo_white.svg" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/CatBoostLogo.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-          
-          <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="https://docs.dask.org/en/stable/_static/images/dask-horizontal-white.svg" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-3 col-md-4 col-6 client-logo">
-            <img src="https://archive.apache.org/dist/spark/docs/3.3.0/api/python/_static/spark-logo-reverse.png" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <br>
 
         </div>
 
@@ -265,8 +243,24 @@
                   <div class="row g-4">
                     <div class="col-lg-6">
                       <h3>Kaggle</h3>
-                      <p>Kaggle is an excellent place for not only competing in competitions, but also posting jupyter notebook content with access to GPU, which makes it an excellent resource for learning data science. I really like posting notebooks on a variety of unique topics. </p>
+                      <p>Kaggle is an excellent place for not only competing in competitions, but also posting jupyter notebook content with access to GPU, which makes it an excellent resource for learning data science. I really like posting notebooks on a variety of unique topics. Here are some sample noteboks:</p>
+                    
+                        <ul class="features-list">
+                          <li>
+                            <a href="https://www.kaggle.com/code/shtrausslearning/pytorch-cnn-binary-image-classification" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-check2-circle"></i>
+                            <span>CNN Binary Image Classification</span>
+                            </a>
+                          <li>
+                            <a href="https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-check2-circle"></i>
+                            <span>Gaussian Processes Airfoil Noise Modeling</span>
+                            </a>
+                          </li>
+                        </ul>
+
                     </div>
+
                     <div class="col-lg-6">
                       <div class="image-box">
                         <img src="assets/img/activity_type/kaggle.png" alt="" class="img-fluid" loading="lazy">
@@ -327,6 +321,192 @@
 
       </div>
     </section><!-- /Features Alt Section -->
+
+
+
+
+
+    <!-- Team Section -->
+    <section id="featured_work" class="team section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="team-header" data-aos="fade-up" data-aos-delay="200">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h2>Featured Works</h2>
+              <p>Featured projects on various topics which I found interesting</p>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-lg-end">
+              <div class="team-controls">
+                <button class="team-control-btn team-prev"><i class="bi bi-chevron-left"></i></button>
+                <button class="team-control-btn team-next"><i class="bi bi-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-slider swiper init-swiper" data-aos="fade-up" data-aos-delay="300">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 700,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": 1,
+              "spaceBetween": 30,
+              "navigation": {
+                "nextEl": ".team-next",
+                "prevEl": ".team-prev"
+              },
+              "breakpoints": {
+                "576": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 20
+                },
+                "992": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 30
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1470294402047-fc1b5f39bd99?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Customer Transaction Predictive Analytics</h3>
+                  <span>Financial</span>
+                  <p>Predictive regression modeling & analysis of customer transactions</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/banking-consumer-complaint-analysis" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1738566496113-9fa2b12b4a7e?q=80&w=1700&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Banking Consumer Complaint Analysis</h3>
+                  <span>Financial</span>
+                  <p>Natural language processing based approach to creating customer feedback classifier</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                <img src="https://images.unsplash.com/photo-1523263983652-bb7473e297ad?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Banking User Review Analysis & Sentiment Modeling</h3>
+                  <span>Financial</span>
+                  <p>Parsing & evaluation of user reviews for a company's banking product</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://shtrausslearning.github.io/portfolio/pdf/chatbot_grabrfi.pdf" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1607944024060-0450380ddd33?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>GrabrFi Customer Service Chatbot</h3>
+                  <span>Financial</span>
+                  <p>Creating a chatbot for a financial business that addresses customer concerns</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1576086085526-0de1930a57c7?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Biological Sequence Operations</h3>
+                  <span>Biology</span>
+                  <p>An introduction to working with biological DNA/Amino acid sequences</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1627700567969-3a860aa9810c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHF1ZWVuc2xhbmR8ZW58MHx8MHx8fDA%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Geospatial Data Vis | Australia</h3>
+                  <span>Geospatial analysis</span>
+                  <p>A brief overview on what type of geospatial library tools we can use to visualise & analyse map geospatial data</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>edX Course Recommendations</h3>
+                  <span>RecSys</span>
+                  <p>Course recommendation on the basis of textual description</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Banking Customer Stable Fund Volume Modeling</h3>
+                  <span>Financial</span>
+                  <p>Creation of a time-series model capable of predicting future customer stable fund values</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- /Team Section -->
 
 
 
@@ -401,6 +581,132 @@
       </div>
 
     </section><!-- /Features Section -->
+
+
+
+    <!-- Portfolio Section -->
+    <section id="latest" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span class="description-title">Latest Activity</span>
+        <h2>Latest Activity</h2>
+        <p>Latest activity across various online platforms</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="20">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <div class="row">
+            <div class="col-lg-3 filter-sidebar">
+              <div class="filters-wrapper" data-aos="fade-right" data-aos-delay="20">
+                <ul class="portfolio-filters isotope-filters">
+                  <li data-filter="*" class="filter-active">All Projects</li>
+                  <li data-filter=".filter-recsys">RecSys</li>
+                  <li data-filter=".filter-business">Business</li>
+                  <li data-filter=".filter-bigdata">Big Data</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-9">
+              <div class="row gy-4 portfolio-container isotope-container" data-aos="fade-up" data-aos-delay="20">
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-bigdata">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/spark2.jpeg" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">bigdata</span>
+                        <h4>Practice Pyspark pipelines</h4>
+
+                        <div class="tag-badge">
+                          <a href="https://shtrausslearning.github.io/blog/2025/07/14/pyspark-daily-summary.html">PREVIEW</div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-bigdata">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/spark1.webp" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">bigdata</span>
+                        <h4>Practice Pyspark pipelines</h4>
+
+                        <div class="tag-badge">
+                          <a href="https://shtrausslearning.github.io/blog/2025/07/14/pyspark-daily-summary-3.html">PREVIEW</div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-business">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/churn.jpg" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">business</span>
+                        <h4>Customer churn modeling for lloyds banking group client</h4>
+
+                        <div class="tag-badge">
+                          <a href="https://shtrausslearning.github.io/notebooks/projects/lloyds_ds/index.html">PREVIEW</div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-recsys">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/tg1.jpg" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">RecSys</span>
+                        <h4>Collaborative filtering is a recommendation generation method that relies on user-item interactions to make predictions about what a user might like based on the historical data of user interaction with the item.</h4>
+                        <div class="tag-badge">
+                          <a href="https://shtrausslearning.github.io/blog/2024/10/14/neural-collaborative-filtering.html">PREVIEW</div>
+                      </div>
+                    </div>  
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+
+                <div class="col-lg-6 col-md-6 portfolio-item isotope-item filter-recsys">
+                  <div class="portfolio-wrap">
+                    <img src="assets/img/portfolio/tg2.jpg" class="img-fluid" alt="Portfolio Image" loading="lazy">
+                    <div class="portfolio-info">
+                      <div class="content">
+                        <span class="category">RecSys</span>
+                        <h4>DSSM neural network approach to creating user recommendations</h4>
+                        
+                        <div class="tag-badge">
+                          <a href="https://shtrausslearning.github.io/blog/2025/02/01/neural-recsys.html">PREVIEW</div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- End Portfolio Item -->
+
+
+
+
+              </div><!-- End Portfolio Container -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
 
 
 

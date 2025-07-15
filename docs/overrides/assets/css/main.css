@@ -628,7 +628,7 @@ section,
   bottom: 0;
   background-image: radial-gradient(circle, color-mix(in srgb, var(--accent-color), transparent 90%) 1px, transparent 1px);
   background-size: 30px 30px;
-  background: url("../img/background.jpg") top center;
+  background: url("../img/background2.jpeg") top center;
   opacity: 0.2;
   z-index: 1;
 }

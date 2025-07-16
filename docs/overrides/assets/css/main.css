@@ -4825,6 +4825,992 @@ section,
 .gallery .glightbox-clean .gslide-title {
   color: rgba(255, 255, 255, 0.8);
   margin: 0;
+}
 
 
 
+
+
+/*--------------------------------------------------------------
+# Service Details Section
+--------------------------------------------------------------*/
+.service-details .swiper-wrapper {
+  height: auto !important;
+}
+
+.service-details .service-header {
+  margin-bottom: 40px;
+}
+
+.service-details .service-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.service-details .service-header h1:after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+}
+
+.service-details .service-header .service-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+
+.service-details .service-header .service-meta span {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.service-details .service-header .service-meta span i {
+  color: var(--accent-color);
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.service-details .service-header .lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+}
+
+.service-details .service-tabs {
+  margin-bottom: 50px;
+}
+
+.service-details .service-tabs .nav-tabs {
+  border-bottom: 2px solid color-mix(in srgb, var(--heading-color), transparent 90%);
+  margin-bottom: 30px;
+}
+
+.service-details .service-tabs .nav-tabs .nav-item {
+  margin-right: 5px;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link {
+  border: none;
+  border-radius: 0;
+  padding: 12px 20px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--heading-color), transparent 30%);
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link i {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link:hover {
+  color: var(--heading-color);
+  background-color: transparent;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link:hover:after {
+  width: 30%;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link.active {
+  color: var(--accent-color);
+  background-color: transparent;
+}
+
+.service-details .service-tabs .nav-tabs .nav-link.active:after {
+  width: 100%;
+}
+
+.service-details .service-tabs .tab-content .content-block h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.service-details .service-tabs .tab-content .content-block p {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  margin-bottom: 15px;
+  line-height: 1.7;
+}
+
+.service-details .service-tabs .tab-content img {
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.service-details .service-tabs .tab-content .process-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.service-details .service-tabs .tab-content .process-timeline:before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 15px;
+  width: 2px;
+  background: color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+.service-details .service-tabs .tab-content .process-timeline .timeline-item {
+  position: relative;
+  padding-bottom: 35px;
+}
+
+.service-details .service-tabs .tab-content .process-timeline .timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.service-details .service-tabs .tab-content .process-timeline .timeline-item .timeline-marker {
+  position: absolute;
+  left: -30px;
+  top: -5px;
+  width: 32px;
+  height: 32px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 2;
+}
+
+.service-details .service-tabs .tab-content .process-timeline .timeline-item .timeline-content {
+  padding-left: 10px;
+}
+
+.service-details .service-tabs .tab-content .process-timeline .timeline-item .timeline-content h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.service-details .service-tabs .tab-content .process-timeline .timeline-item .timeline-content p {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  line-height: 1.6;
+}
+
+.service-details .service-tabs .tab-content .benefit-card {
+  background-color: var(--surface-color);
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  height: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-details .service-tabs .tab-content .benefit-card:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+}
+
+.service-details .service-tabs .tab-content .benefit-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.service-details .service-tabs .tab-content .benefit-card:hover:before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.service-details .service-tabs .tab-content .benefit-card:hover .benefit-icon {
+  transform: rotateY(180deg);
+  background-color: var(--accent-color);
+}
+
+.service-details .service-tabs .tab-content .benefit-card:hover .benefit-icon i {
+  color: var(--contrast-color);
+}
+
+.service-details .service-tabs .tab-content .benefit-card .benefit-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.5s ease;
+}
+
+.service-details .service-tabs .tab-content .benefit-card .benefit-icon i {
+  font-size: 28px;
+  color: var(--accent-color);
+  transition: all 0.5s ease;
+}
+
+.service-details .service-tabs .tab-content .benefit-card h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.service-details .service-tabs .tab-content .benefit-card p {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  margin-bottom: 0;
+}
+
+.service-details .service-gallery h3 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.service-details .service-gallery .service-details-slider {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+}
+
+.service-details .service-gallery .service-details-slider .portfolio-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.service-details .service-gallery .service-details-slider .portfolio-item:hover .portfolio-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-details .service-gallery .service-details-slider .portfolio-item img {
+  border-radius: 12px;
+  transition: all 0.4s ease;
+}
+
+.service-details .service-gallery .service-details-slider .portfolio-item .portfolio-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  padding: 30px 20px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.service-details .service-gallery .service-details-slider .portfolio-item .portfolio-info h5 {
+  color: var(--contrast-color);
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.service-details .service-gallery .service-details-slider .portfolio-item .portfolio-info p {
+  color: color-mix(in srgb, var(--contrast-color), transparent 20%);
+  margin: 0;
+  font-size: 14px;
+}
+
+.service-details .service-gallery .service-details-slider .swiper-pagination {
+  padding-top: 5px;
+  bottom: 0;
+}
+
+.service-details .service-gallery .service-details-slider .swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 70%);
+  opacity: 1;
+}
+
+.service-details .service-gallery .service-details-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  width: 25px;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+}
+
+.service-details .service-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.service-details .service-sidebar .action-card {
+  background: linear-gradient(135deg, var(--accent-color) 0%, color-mix(in srgb, var(--accent-color), black 20%) 100%);
+  border-radius: 15px;
+  padding: 35px 30px;
+  color: var(--contrast-color);
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.service-details .service-sidebar .action-card:before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.service-details .service-sidebar .action-card:after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 1;
+}
+
+.service-details .service-sidebar .action-card h3 {
+  color: var(--contrast-color);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.service-details .service-sidebar .action-card p {
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.service-details .service-sidebar .action-card .btn-primary {
+  background-color: var(--contrast-color);
+  color: var(--accent-color);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-weight: 600;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.service-details .service-sidebar .action-card .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-details .service-sidebar .action-card .guarantee {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.service-details .service-sidebar .action-card .guarantee i {
+  margin-right: 5px;
+}
+
+.service-details .service-sidebar .service-features-list {
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.service-details .service-sidebar .service-features-list h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid color-mix(in srgb, var(--heading-color), transparent 90%);
+}
+
+.service-details .service-sidebar .service-features-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-details .service-sidebar .service-features-list ul li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.service-details .service-sidebar .service-features-list ul li:last-child {
+  margin-bottom: 0;
+}
+
+.service-details .service-sidebar .service-features-list ul li i {
+  flex-shrink: 0;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.service-details .service-sidebar .service-features-list ul li div {
+  flex: 1;
+}
+
+.service-details .service-sidebar .service-features-list ul li div h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.service-details .service-sidebar .service-features-list ul li div p {
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  margin: 0;
+  font-size: 14px;
+}
+
+.service-details .service-sidebar .testimonial-card {
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.service-details .service-sidebar .testimonial-card .testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.service-details .service-sidebar .testimonial-card .testimonial-header i {
+  font-size: 36px;
+  color: var(--accent-color);
+  opacity: 0.3;
+}
+
+.service-details .service-sidebar .testimonial-card .testimonial-header .rating {
+  display: flex;
+}
+
+.service-details .service-sidebar .testimonial-card .testimonial-header .rating i {
+  color: #FFD700;
+  font-size: 16px;
+  opacity: 1;
+  margin-left: 2px;
+}
+
+.service-details .service-sidebar .testimonial-card .testimonial-text {
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+}
+
+.service-details .service-sidebar .testimonial-card .client-info {
+  display: flex;
+  align-items: center;
+}
+
+.service-details .service-sidebar .testimonial-card .client-info .client-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.service-details .service-sidebar .testimonial-card .client-info .client-details h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 5px;
+}
+
+.service-details .service-sidebar .testimonial-card .client-info .client-details span {
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.service-details .service-sidebar .contact-info {
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.service-details .service-sidebar .contact-info h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.service-details .service-sidebar .contact-info .contact-method {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.service-details .service-sidebar .contact-info .contact-method:last-child {
+  margin-bottom: 0;
+}
+
+.service-details .service-sidebar .contact-info .contact-method i {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 15px;
+}
+
+.service-details .service-sidebar .contact-info .contact-method div {
+  flex: 1;
+}
+
+.service-details .service-sidebar .contact-info .contact-method div span {
+  display: block;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  margin-bottom: 5px;
+}
+
+.service-details .service-sidebar .contact-info .contact-method div p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+@media (max-width: 991px) {
+  .service-details .service-sidebar {
+    position: relative;
+    top: 0;
+    margin-bottom: 40px;
+  }
+
+  .service-details .service-header h1 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .service-details .service-tabs .nav-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .service-details .service-tabs .nav-tabs .nav-link {
+    white-space: nowrap;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .service-details .service-tabs .nav-tabs .nav-link i {
+    font-size: 16px;
+  }
+
+  .service-details .service-header h1 {
+    font-size: 26px;
+  }
+
+  .service-details .service-header .service-meta {
+    gap: 15px;
+  }
+
+  .service-details .service-header .service-meta span {
+    font-size: 14px;
+  }
+
+  .service-details .service-header .lead {
+    font-size: 16px;
+  }
+}
+
+
+
+/*--------------------------------------------------------------
+# Portfolio Details Section
+--------------------------------------------------------------*/
+.portfolio-details {
+  --section-spacing: 2.5rem;
+}
+
+.portfolio-details .portfolio-details-media {
+  position: relative;
+}
+
+.portfolio-details .portfolio-details-media .main-image {
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider {
+  position: relative;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-wrapper {
+  height: auto !important;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-slide img {
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  width: 100%;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev {
+  background-color: var(--contrast-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:after,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:after {
+  font-size: 16px;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover {
+  background-color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover:after,
+.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover:after {
+  color: var(--contrast-color);
+}
+
+.portfolio-details .portfolio-details-media .thumbnail-grid img {
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.portfolio-details .portfolio-details-media .thumbnail-grid img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-details .portfolio-details-media .tech-stack-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-media .tech-stack-badges span {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: color-mix(in srgb, var(--heading-color), transparent 85%);
+  color: var(--heading-color);
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-media .tech-stack-badges span:hover {
+  background-color: color-mix(in srgb, var(--heading-color), transparent 70%);
+  transform: translateY(-2px);
+}
+
+.portfolio-details .portfolio-details-content {
+  padding: 0 0 0 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-details .portfolio-details-content .project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-meta .badge-wrapper .project-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  color: var(--accent-color);
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.portfolio-details .portfolio-details-content .project-meta .date-client {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-meta .date-client .meta-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+.portfolio-details .portfolio-details-content .project-meta .date-client .meta-item i {
+  margin-right: 6px;
+  color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-details-content .project-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--heading-color);
+}
+
+.portfolio-details .portfolio-details-content .project-website {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-website i {
+  font-size: 22px;
+  color: var(--accent-color);
+  margin-right: 8px;
+}
+
+.portfolio-details .portfolio-details-content .project-website a {
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.portfolio-details .portfolio-details-content .project-website a:hover {
+  letter-spacing: 0.5px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview {
+  margin-bottom: var(--section-spacing);
+}
+
+.portfolio-details .portfolio-details-content .project-overview .lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  margin-bottom: 1.5rem;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item {
+  border: none;
+  background: none;
+  margin-bottom: 10px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button {
+  padding: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--heading-color);
+  background-color: color-mix(in srgb, var(--surface-color), transparent 70%);
+  border-radius: 8px !important;
+  box-shadow: none;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  background-color: var(--surface-color);
+  color: var(--accent-color);
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) i {
+  color: var(--accent-color);
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button::after {
+  background-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button i {
+  font-size: 1.1rem;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-body {
+  padding: 1rem;
+  background-color: var(--surface-color);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-body p {
+  margin-bottom: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  line-height: 1.6;
+}
+
+.portfolio-details .portfolio-details-content .project-features {
+  margin-bottom: var(--section-spacing);
+}
+
+.portfolio-details .portfolio-details-content .project-features h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  margin-bottom: 1.2rem;
+}
+
+.portfolio-details .portfolio-details-content .project-features h3 i {
+  margin-right: 10px;
+  color: var(--accent-color);
+  font-size: 1.1em;
+}
+
+.portfolio-details .portfolio-details-content .project-features .feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.portfolio-details .portfolio-details-content .project-features .feature-list li {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 15px;
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+}
+
+.portfolio-details .portfolio-details-content .project-features .feature-list li i {
+  color: var(--accent-color);
+  margin-right: 10px;
+  font-size: 1.1em;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-view-project {
+  padding: 12px 28px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-view-project:hover {
+  background-color: color-mix(in srgb, var(--accent-color), black 15%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project {
+  padding: 12px 28px;
+  background-color: color-mix(in srgb, var(--heading-color), transparent 90%);
+  color: var(--heading-color);
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project i {
+  transition: transform 0.3s ease;
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project:hover {
+  background-color: color-mix(in srgb, var(--heading-color), transparent 80%);
+}
+
+.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project:hover i {
+  transform: translateX(3px);
+}
+
+@media (max-width: 1199.98px) {
+  .portfolio-details .portfolio-details-content {
+    padding-left: 1rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .portfolio-details .portfolio-details-content {
+    padding: 2rem 0 0 0;
+  }
+
+  .portfolio-details .portfolio-details-content .cta-buttons {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .portfolio-details .project-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .portfolio-details .project-meta .date-client {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .portfolio-details .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .portfolio-details .cta-buttons a {
+    width: 100%;
+    text-align: center;
+  }
+}

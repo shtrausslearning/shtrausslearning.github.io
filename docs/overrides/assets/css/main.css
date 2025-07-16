@@ -4654,7 +4654,177 @@ section,
 }
 
 
+.gallery .tag-badge {
+  display: inline-block;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 85%);
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
 
+
+
+
+
+/*--------------------------------------------------------------
+# Gallery Section
+--------------------------------------------------------------*/
+.gallery .isotope-filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 40px;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery .isotope-filters li {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--surface-color);
+  color: var(--default-color);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.gallery .isotope-filters li:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 80%);
+}
+
+.gallery .isotope-filters li.filter-active {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 576px) {
+  .gallery .isotope-filters {
+    gap: 8px;
+  }
+
+  .gallery .isotope-filters li {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+.gallery .gallery-item {
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .gallery .gallery-item {
+    margin-bottom: 20px;
+  }
+}
+
+.gallery .gallery-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 100%;
+}
+
+.gallery .gallery-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.gallery .gallery-card:hover .gallery-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery .gallery-card:hover .gallery-image img {
+  transform: scale(1.1);
+}
+
+.gallery .gallery-image {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 75%;
+  overflow: hidden;
+}
+
+.gallery .gallery-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.gallery .gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+  color: var(--contrast-color);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.gallery .gallery-overlay h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--contrast-color);
+}
+
+.gallery .gallery-overlay p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+}
+
+.gallery .gallery-overlay .gallery-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.gallery .gallery-overlay .gallery-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.gallery .gallery-overlay .gallery-actions a:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  transform: scale(1.1);
+}
+
+.gallery .glightbox-clean .gslide-description {
+  background: #272727;
+}
+
+.gallery .glightbox-clean .gslide-title {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
 
 
 

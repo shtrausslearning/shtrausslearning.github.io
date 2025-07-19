@@ -27,20 +27,10 @@ Notebooks created on platform Kaggle
 <div class="grid cards" markdown>
 
 - <center><b>[Ovarian Phase Classification in Felids](kaggle/ovarian-phase-classification-in-felids)</b></center>
-
 - <center><b>[Financial Consumer Complaint Analysis](kaggle/financial-consumer-complaint-analysis)</b></center>
 
 </div>
 
-
-## Internship Projects
-
-
-<div class="grid cards" markdown>
-
-- <center><b>:octicons-people-16: [Lloyds Banking Group Data Science](projects/lloyds_ds/index.md)</b></center>
-
-</div>
 
 
 ---

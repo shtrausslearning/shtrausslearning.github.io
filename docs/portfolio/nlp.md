@@ -9,7 +9,7 @@ comments: true
 
 <div class="grid cards" markdown >
 
-  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>[Banking Consumer Complaint Analysis](https://www.kaggle.com/code/shtrausslearning/banking-consumer-complaint-analysis))</b>
+  - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } <b>[Banking Consumer Complaint Analysis](https://www.kaggle.com/code/shtrausslearning/banking-consumer-complaint-analysis)</b>
 
 	---
 

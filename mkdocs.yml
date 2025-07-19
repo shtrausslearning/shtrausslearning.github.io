@@ -144,7 +144,7 @@ nav:
   - <b>Home</b>:
       - index.md
 
-  - <b>Projects</b>: 
+  - <b>Portfolio</b>: 
       - portfolio/index.md
       - NLP: portfolio/nlp.md
       - Business: portfolio/business.md

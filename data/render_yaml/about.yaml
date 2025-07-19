@@ -1,0 +1,125 @@
+socials:
+  - title: GitHub Profile
+    icon: simple-github
+    url: https://github.com/shtrausslearning/
+  - title: E-Mail
+    icon: material-email
+    url: mailto:shtraussart@gmail.com
+  - title: Kaggle
+    icon: fontawesome-brands-kaggle
+    url: https://www.kaggle.com/shtrausslearning
+  - title: Telegram
+    icon: simple-telegram
+    url: t.me/sthtrauss2
+  - title: Python Projects on PyPi
+    icon: simple-pypi
+    url: https://pypi.org/user/shtraussart/
+
+projects:
+  - title: mllibs
+    description: 
+      <center><img src="images/wnb.png" alt="arv-anshul" width="300"/></center> 
+
+      I have found **NLP** in particular to be one of the more fascinating parts of data science, so I have created a project **[mllibs](https://github.com/mllibs)** which utilises **NLP for code automation**, I enjoy working with people who take part in this project, so if you would like to contribute please let me know! 
+    links:
+      - title: Repository on GitHub
+        icon: simple-github
+        url: https://github.com/arv-anshul/yt-watch-history
+      - title: Jupyter Notebooks
+        icon: simple-jupyter
+        url: https://github.com/arv-anshul/notebooks/tree/main/yt-watch-history
+      - title: Project Documents
+        icon: material-file-document
+        url: ../project/yt-watch-history/index.md
+
+  - title: mldsai
+    description: 
+        I started a **[telegram channel](https://t.me/mldsai_info)** in which I post various things about data science that interest me. I often post about **pyspark**, trying to improve my knowledge in this field, as it is an important tool in big data. I also post **[article](https://shtrausslearning.github.io/blog/index.html)** content on my blog as well, please join if that interests you!
+    links:
+      - title: Repository on GitHub
+        icon: simple-github
+        url: https://github.com/arv-anshul/yt-watch-history
+      - title: Jupyter Notebooks
+        icon: simple-jupyter
+        url: https://github.com/arv-anshul/notebooks/tree/main/yt-watch-history
+      - title: Project Documents
+        icon: material-file-document
+        url: ../project/yt-watch-history/index.md
+
+tech_stack:
+  Languages:
+    - title: Python
+      icon: simple-python
+    - title: HTML
+      icon: simple-html5
+    - title: CSS
+      icon: simple-css3
+    - title: Jinja
+      icon: simple-jinja
+    - title: Bash
+      icon: simple-gnubash
+    - title: JSON Schema
+      icon: simple-json
+    - title: Rust
+      icon: simple-rust
+  Frameworks:
+    - title: FastAPI
+      icon: simple-fastapi
+    - title: Streamlit
+      icon: simple-streamlit
+    - title: MongoDB
+      icon: simple-mongodb
+    - title: MySQL
+      icon: simple-mysql
+    - title: SQLite
+      icon: simple-sqlite
+  Dev Tools:
+    - title: VS-Code
+      icon: simple-visualstudiocode
+    - title: Obsdian
+      icon: simple-obsidian
+    - title: Arc Browser
+      icon: simple-arc
+    - title: pre-commit
+      icon: simple-precommit
+    - title: Material for Mkdocs
+      icon: simple-materialformkdocs
+    - icon: simple-starship
+      title: Starship Prompt
+    - title: Ruff
+      icon: simple-ruff
+    - title: Rye
+      icon: simple-rye
+    - title: Raycast
+      icon: simple-raycast
+    - title: Zed Code Editor
+      icon: simple-zedindustries
+  Dev/ML Ops:
+    - title: Docker
+      icon: simple-docker
+    - title: GitHub Actions
+      icon: simple-githubactions
+    - title: MLFlow
+      icon: simple-mlflow
+    - title: PyPI
+      icon: simple-pypi
+  Data Science:
+    - title: Scikit-Learn
+      icon: simple-scikitlearn
+    - title: Polars
+      icon: simple-polars
+    - title: Pandas
+      icon: simple-pandas
+    - title: Numpy
+      icon: simple-numpy
+    - title: Matplotlib
+      icon: material-chart-scatter-plot
+    - title: Seaborn
+      icon: material-chart-scatter-plot-hexbin
+    - title: Plotly
+      icon: simple-plotly
+  Python Libraries:
+    - title: Pytest
+      icon: simple-pytest
+    - title: Pydantic
+      icon: simple-pydantic

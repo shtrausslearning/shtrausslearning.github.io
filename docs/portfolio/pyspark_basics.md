@@ -29,7 +29,7 @@ Some simple and brief collection of pyspark operations
     - PCA dimensionality reduction classification pipeline
 
 
--   :material-notebook-multiple: __[Pipelines](../blog/posts/2025-07-18-spark5.md)__
+-   :material-notebook-multiple: __[Data Filtration](../blog/posts/2025-07-18-spark5.md)__
 
     ---
 
@@ -38,6 +38,15 @@ Some simple and brief collection of pyspark operations
     - Missing data filtration
     - List based filtration using isin
     - General data clearning operations
+
+
+-   :material-notebook-multiple: __[Aggregations](../blog/posts/2025-07-19-spark6.md)__
+
+    ---
+
+    - Aggregations without grouping
+    - Aggregations with grouping 
+    - Filtering after grouping
 
 
 </div>
@@ -68,7 +77,7 @@ A classification project for beginners, shows how one can utilise pyspark in a m
     - Saving & loading models
 
 
--   :material-notebook-multiple: __[Hyperparameter Tuning with Pipelines](../blog/posts/2023-08-21-spark-modeling.md)__
+-   :material-notebook-multiple: __[Hyperparameter Tuning with Pipelines](../blog/posts/2025-07-18-spark5.md)__
 
     ---
 

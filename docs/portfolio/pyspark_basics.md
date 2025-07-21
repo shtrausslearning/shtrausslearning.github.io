@@ -77,7 +77,7 @@ A classification project for beginners, shows how one can utilise pyspark in a m
     - Saving & loading models
 
 
--   :material-notebook-multiple: __[Hyperparameter Tuning with Pipelines](../blog/posts/2025-07-18-spark5.md)__
+-   :material-notebook-multiple: __[Hyperparameter Tuning with Pipelines](../blog/posts/2025-08-22-hyperparameter-tuning-with-pipelines.md)__
 
     ---
 

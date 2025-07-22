@@ -49,6 +49,15 @@ Some simple and brief collection of pyspark operations
     - Filtering after grouping
 
 
+-   :material-notebook-multiple: __[Pivoting](../blog/posts/2025-07-21-spark7.md)__
+
+    ---
+
+	- Basic pivot operation
+	- Pivot with multiple aggregations
+	- Conditional pivoting
+	- Pivoting with specified column values
+
 </div>
 
 

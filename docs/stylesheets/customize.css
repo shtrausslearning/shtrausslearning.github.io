@@ -1,6 +1,6 @@
 :root {
   --admonition-border-left-width: 0.2rem;
-  --base-border-radius: 0.5rem;
+  --base-border-radius: 0.75rem;
 }
 
 /* Change font family of filename present on top of code block. */
@@ -38,7 +38,7 @@
   border-radius: var(--base-border-radius);
 }
 .md-typeset .grid.cards > ul > li:hover {
-  box-shadow: 0 0 0.2rem #ffffff40;
+  box-shadow: 0 0 0.5rem #ffffff40;
 }
 
 /* Markdown Button */

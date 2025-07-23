@@ -58,6 +58,16 @@ Some simple and brief collection of pyspark operations
 	- Conditional pivoting
 	- Pivoting with specified column values
 
+
+-   :material-notebook-multiple: __[Time Series Pipelines](../blog/posts/2025-07-23-spark8.md)__
+
+    ---
+
+    - Basic pipeline conversion of timestamp to unix time
+    - Lag feature combination pipelines 
+    - Aggregation based statistics pipelines
+
+
 </div>
 
 

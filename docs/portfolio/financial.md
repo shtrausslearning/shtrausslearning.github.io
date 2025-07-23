@@ -42,7 +42,9 @@ comments: true
 
   - ## :material-book-check:{ .hover-icon-bounce .success-hover title="Jan,2024" } **[Prediction of Stable Customer Funds](https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html)** 
 
-  	:simple-github:{ .lg .middle }&nbsp; <b>[Github Repository](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/cognizant_artificial_intelligence)</b>
+  	
+ 	:simple-google:{ .lg .middle }&nbsp; <b>[Run on Colab](https://colab.research.google.com/drive/12NsWf3ePkrF7bhfTwEfJVVismvZmKXVb?usp=sharing)</b>  | :simple-github:{ .lg .middle }&nbsp; <b>[Download dataset](https://github.com/shtrausslearning/Data-Science-Portfolio/tree/main/sbe_internship)</b>
+ 	
 
 	---
 

@@ -62,20 +62,20 @@ hide_comments: false
 
 	--- 
 	
-	Ознакамливаемся с `KMeans` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
+	Ознакамливаемся с **`KMeans`** из **`sklearn`**, какие у нее гиперпараметры и методы класса на простых синтетических данных
 
 - <center><b>[EM-алгоритм Практика](ml4_6_EM_алгоритм)</b></center>
 
 	--- 
 	
-	Ознакамливаемся с `GaussianMixture` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
+	Ознакамливаемся с **`GaussianMixture`** из **`sklearn`**, какие у нее гиперпараметры и методы класса на простых синтетических данных
 
 
 - <center><b>[Агломеративная кластеризация Практика](ml4_7_Агломеративная_Кластеризация)</b></center>
 
 	--- 
 	
-	Ознакамливаемся с `AgglomerativeClustering` из `sklearn`, какие у нее гиперпараметры и методы класса на простых синтетических данных
+	Ознакамливаемся с **`AgglomerativeClustering`** из **`sklearn`**, какие у нее гиперпараметры и методы класса на простых синтетических данных
 
 - <centeR><b>[DBSCAN. Практика](ml4_8_DBSCAN)</b></center>
 
@@ -193,6 +193,7 @@ Hackathon competition projects
 
 - <center><b>[Mid-Term Hackathon Project](mid_treemodels)</b></center>
 - <center><b>[Final-Term Hackathon Project](final_movie_rating)</b></center>
+- <center><b>[Feature Importances](feature_importance)</b></center>
 
 </div>
 

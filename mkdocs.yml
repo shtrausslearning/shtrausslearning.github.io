@@ -16,11 +16,10 @@ theme:
       text: Ubuntu
       code: Roboto Mono
   icon:
-    logo: mllibs2.svg
     repo: fontawesome/brands/square-github
 
-  logo: images/logo2.svg
-  favicon: images/mllibs2.svg
+  logo: images/home-logo.svg
+  favicon: images/home-logo.svg
     
   features:
     - header.autohide
@@ -39,9 +38,10 @@ theme:
 
   custom_dir: "docs/overrides"
   palette:
-  - scheme: slate
+  - scheme: default
     primary: custom
     accent: custom
+    
         
 markdown_extensions:
   - admonition
@@ -92,11 +92,6 @@ plugins:
       data: docs/data/render_yaml/
   - tags
   - offline
-  - mkdocs-jupyter:
-      include_source: True
-      ignore_h1_titles: True
-      include_requirejs: true
-      custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
   
 extra:
     manifest: manifest.webmanifest
@@ -141,19 +136,8 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
 
 nav:
-  - <b>Home</b>:
-      - index.md
-
-  - <b>Portfolio</b>: 
-      - portfolio/index.md
-      - NLP: portfolio/nlp.md
-      - Business: portfolio/business.md
-      - Finance: portfolio/financial.md
-      - Physics: portfolio/physics.md
-      - Health: portfolio/health.md
-      - Geospatial: portfolio/geospatial.md
-
-  - <b>Articles</b>:
-      - blog/index.md
-        
-  - <b>About</b>: about/index.md
+  - <b>Home</b>: index.md
+  - <b>Featured</b>: index.html#featured_work
+  - <b>Latest</b>: index.html#portfolio
+  - <b>Blog</b>: 
+    - Blog: blog/index.md

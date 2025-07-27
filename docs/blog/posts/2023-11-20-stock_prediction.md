@@ -12,6 +12,8 @@ tags:
 comments: true
 --- 
 
+# **Prediction of Product Stock Levels**
+
 ![](images/cognizant.jpg)
 
 In this project, we work with a client **Gala Groceries**, who has contacted **Cognizant** for logistics advice about **product storage** 

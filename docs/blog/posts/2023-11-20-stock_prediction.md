@@ -31,7 +31,7 @@ In this project, we work with a client **Gala Groceries**, who has contacted **C
 
 </div>
 
-## <b>Background</b>
+## :material-book-multiple: <b>Background</b>
 
 ### Project Statement
 
@@ -50,7 +50,7 @@ More information about the client:
 
 This is a high-level business problem and will require you to dive into the data in order to formulate some questions and recommendations to the client about what else we need in order to answer that question
 
-## <b>Clients dataset</b>
+## :material-book-multiple: <b>Clients dataset</b>
 
 The client has agreed to share data in the form of **`sensor data`**.
 - They use **sensors to measure temperature storage facilities where products are stored** in the warehouse,
@@ -86,7 +86,7 @@ We have the following **features**
 - **payment_type** : the type of payment which the client used to purchase the product
 
 
-## <b>Exploratory Data Analysis</b>
+## :material-book-multiple: <b>Exploratory Data Analysis</b>
 
 ### Statistical Tests
 
@@ -329,7 +329,7 @@ Let's look at the breakdown of the contibution to the total procurement of each 
 Of course there are many more things we can explore, let's focus on the business task at hand and write an email to the **DS lead** about the client's request.
 
 
-## **Framing the Problem Statement**
+## :material-book-multiple: **Framing the Problem Statement**
 
 ### Letter to DS lead
 
@@ -385,7 +385,7 @@ Lets define a plan as to how we'll use the data to solve the problem statement t
 
 ---
 
-## :octicons-git-compare-16: **Baseline Model**
+## :material-book-multiple: :octicons-git-compare-16: **Baseline Model**
 
 Modeling is an **iterative process**, let's begin with a **general baseline**, upon which we will try to improve, by considering a much larger range of preprocessing & model options. As defined in the **strategic plan**, we will go through most of the steps, however we'll keep things a little more simple at first, and do more testing in subsequent iterations. 
 
@@ -1093,7 +1093,7 @@ np.mean(results_tr_minmax['mae'])  # 0.2268
 ```
 
 
-## **Contact with Client**
+## :material-book-multiple: **Contact with Client**
 
 > Most importantly, once the modeling process is complete, we need you to communicate your work and analysis in the form of a single PowerPoint slide, so that we can present the results back to the business. The key here is to use business-friendly language and to explain your results in a way that the business will understand. For example, ensure that when you’re summarizing the performance of the results you don’t use technical metrics, but rather convert it into numbers that they’ll understand. 
 
@@ -1113,7 +1113,7 @@ In response to the presentation:
 
 > **Gala Groceries** saw the results of the machine learning model as promising and believe that with more data and time, it can add real value to the business.
 
-## **Concluding Remarks**
+## :material-book-multiple: **Concluding Remarks**
 
 This was a rather interesting project focusing on how a client tries to improve their business by utilising artificial intelligence
 

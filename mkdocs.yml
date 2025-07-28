@@ -15,8 +15,6 @@ theme:
   font:
       text: Ubuntu
       code: Roboto Mono
-  icon:
-    repo: fontawesome/brands/square-github
 
   logo: images/home-logo.svg
   favicon: images/home-logo.svg

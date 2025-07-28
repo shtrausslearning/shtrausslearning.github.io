@@ -38,7 +38,7 @@
   border-radius: var(--base-border-radius);
 }
 .md-typeset .grid.cards > ul > li:hover {
-  box-shadow: 0 0 0.5rem #ffffff40;
+  box-shadow: 0 0 0 0.5rem var(--md-typeset-mark-color);
 }
 
 /* Markdown Button */

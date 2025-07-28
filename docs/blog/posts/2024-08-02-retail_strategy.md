@@ -14,7 +14,7 @@ comments: true
 
 <div class="grid cards" markdown>
 
-- :simple-kaggle:{ .lg .middle }&nbsp; <b>[Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/forage-internship-data)</b>
+- [:simple-kaggle:{ .lg .middle }&nbsp; Kaggle Dataset](https://www.kaggle.com/datasets/shtrausslearning/forage-internship-data)
 
 - :fontawesome-regular-rectangle-list:{ .lg .middle }&nbsp; <b>[Quantium Internship](https://www.theforage.com/simulations/quantium/data-analytics-rqkb)</b>
 

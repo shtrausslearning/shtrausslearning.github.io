@@ -48,7 +48,7 @@ img {
 
     /* Primary color shades */
     --md-primary-fg-color: #446594;
-    --md-primary-fg-color--light: #446594;
+    --md-primary-fg-color--light: #344761;
     --md-primary-fg-color--dark: #1f4886;
     --md-primary-bg-color: hsla(0, 0%, 100%, 1);
     --md-primary-bg-color--light: hsla(0, 0%, 100%, 0.7);
@@ -61,8 +61,9 @@ img {
     --md-accent-bg-color--light: hsla(0, 0%, 100%, 0.7);
 
     /* Code block color shades */
-    --md-code-bg-color: rgb(255, 255, 255);
+    --md-code-bg-color: #f3f3f3;
     --md-code-fg-color: hsla(200, 18%, 26%, 1);
+    --md-code-hl-color: hsla(0, 0%, 69%, 0.7);
 
     /* Footer */
     --md-footer-bg-color: #1f4886;
@@ -71,5 +72,7 @@ img {
     --md-footer-fg-color--light: hsla(0, 0%, 100%, 0.7);
     --md-footer-fg-color--lighter: hsla(0, 0%, 100%, 0.3);
     --md-typeset-mark-color:  hsla(0, 0%, 89%, 0.7);
+
+
 
 }

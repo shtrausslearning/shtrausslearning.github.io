@@ -14,9 +14,9 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Questrial",  sans-serif;
-  --nav-font: "Open Sans",  sans-serif;
+  --default-font: "Ubuntu",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Ubuntu",  sans-serif;
+  --nav-font: "",  sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -24,7 +24,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #535d6b; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #344761; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #446594; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #367ada; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -1894,7 +1894,7 @@ section,
 # Team Section
 --------------------------------------------------------------*/
 .team .team-header {
-  margin-bottom: 50px;
+  margin-bottom: 5px;
 }
 
 .team .team-header h2 {
@@ -1968,7 +1968,7 @@ section,
 }
 
 .team .team-slider {
-  padding: 30px 5px 40px;
+  padding: 30px 5px 0px;
 }
 
 .team .team-slider .swiper-wrapper {
@@ -2583,10 +2583,12 @@ section,
   .portfolio .team-header {
     margin-bottom: 60px;
     text-align: center;
+    border-radius: 8px;
   }
 
   .portfolio .team-header h2:before {
     left: 50%;
+    font-weight: 700;
     transform: translateX(-50%);
   }
 
@@ -2606,6 +2608,8 @@ section,
 .portfolio .portfolio-filters-wrapper {
   text-align: center;
   margin-bottom: 80px;
+  border-radius: 8px;
+  
 }
 
 .portfolio .portfolio-filters {
@@ -2616,6 +2620,8 @@ section,
   margin: 0;
   list-style: none;
   position: relative;
+  border-radius: 8px;
+  
 }
 
 .portfolio .portfolio-filters::after {
@@ -2625,6 +2631,7 @@ section,
   left: 0;
   width: 100%;
   height: 1px;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--default-color), transparent 90%);
 }
 
@@ -2637,6 +2644,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   transition: all 0.4s ease-out;
   letter-spacing: 0.5px;
+  border-radius: 8px;
 }
 
 .portfolio .portfolio-filters li::after {
@@ -2649,10 +2657,12 @@ section,
   background: var(--accent-color);
   transition: all 0.4s ease-out;
   transform: translateX(-50%);
+  border-radius: 8px;
 }
 
 .portfolio .portfolio-filters li:hover {
   color: var(--default-color);
+  border-radius: 8px;
 }
 
 .portfolio .portfolio-filters li.filter-active {
@@ -2668,6 +2678,7 @@ section,
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    
   }
 }
 
@@ -2675,19 +2686,27 @@ section,
   background: var(--surface-color);
   transition: all 0.4s ease-out;
   overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
 .portfolio .portfolio-card:hover {
   transform: translateY(-8px);
+  border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
 .portfolio .portfolio-card:hover .image-container img {
   transform: scale(1.05);
+  border-radius: 8px;
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
 .portfolio .portfolio-card:hover .overlay {
   opacity: 1;
   visibility: visible;
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
 .portfolio .portfolio-card:hover .content h3 {
@@ -2705,7 +2724,9 @@ section,
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 8px;
   transition: transform 0.6s ease-out;
+  
 }
 
 .portfolio .image-container .overlay {
@@ -2722,6 +2743,8 @@ section,
   visibility: hidden;
   transition: all 0.4s ease-out;
   backdrop-filter: blur(2px);
+  border-radius: 8px;
+  
 }
 
 .portfolio .image-container .overlay-content {
@@ -2729,10 +2752,12 @@ section,
   gap: 20px;
   transform: translateY(20px);
   transition: transform 0.4s ease-out 0.1s;
+  border-radius: 8px;
 }
 
 .portfolio-card:hover .portfolio .image-container .overlay-content {
   transform: translateY(0);
+  border-radius: 8px;
 }
 
 .portfolio .image-container .overlay-content a {
@@ -2752,6 +2777,7 @@ section,
   background: var(--accent-color);
   color: var(--contrast-color);
   transform: scale(1.1);
+  border-radius: 8px;
 }
 
 .portfolio .content {
@@ -2765,6 +2791,7 @@ section,
   margin-bottom: 8px;
   transition: color 0.3s ease;
   letter-spacing: 0.5px;
+  border-radius: 8px;
 }
 
 .portfolio .content p {
@@ -2773,11 +2800,13 @@ section,
   line-height: 1.6;
   margin: 0;
   letter-spacing: 0.3px;
+  border-radius: 8px;
 }
 
 @media (min-width: 992px) {
   .portfolio .portfolio-grid {
     grid-template-columns: repeat(3, 1fr);
+    border-radius: 8px;
   }
 }
 
@@ -2785,6 +2814,7 @@ section,
   .portfolio .portfolio-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 50px;
+    border-radius: 8px;
   }
 }
 

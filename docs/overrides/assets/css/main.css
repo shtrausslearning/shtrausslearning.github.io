@@ -2687,20 +2687,19 @@ section,
   transition: all 0.4s ease-out;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
 .portfolio .portfolio-card:hover {
   transform: translateY(-8px);
   border-radius: 8px;
   border-radius: 8px;
-  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
 .portfolio .portfolio-card:hover .image-container img {
   transform: scale(1.05);
   border-radius: 8px;
   box-shadow: 0 10px 20px color-mix(in srgb, var(--accent-color), transparent 80%);
+	background: color-mix(in srgb, var(--accent-color), transparent 92%);
 }
 
 .portfolio .portfolio-card:hover .overlay {

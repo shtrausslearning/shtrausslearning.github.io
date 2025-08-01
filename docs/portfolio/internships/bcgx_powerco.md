@@ -71,7 +71,7 @@ In this project, we work with another client who is a major **gas and electricit
     - Use Python to build a new feature for your analysis
 
 
-  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Findings & Recommendations](../../portfolio/projects/bcgx_powerco/task4)</b>
+  - :material-book-check:{ .hover-icon-bounce .failure-hover title="In Progress" } <b>Findings & Recommendations</b>
 
     ---
 

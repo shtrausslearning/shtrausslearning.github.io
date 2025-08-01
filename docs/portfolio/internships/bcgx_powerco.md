@@ -26,7 +26,7 @@ In this project, we work with another client who is a major **gas and electricit
 
 <div class="grid cards" markdown >
 
-  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Business Understanding & Hypothesis Framing](../../notebooks/projects/bcgx_powerco/task1.ipynb)</b>
+  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Business Understanding & Hypothesis Framing](../../projects/bcgx_powerco/task1)</b>
 
     ---
 
@@ -42,7 +42,7 @@ In this project, we work with another client who is a major **gas and electricit
     - Outline the techniques you'll use to investigate your client's problem
     - Write an email to your Associate Director summarizing your approach
 
-  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Exploratory Data Analysis](../../notebooks/projects/bcgx_powerco/task2.ipynb)</b>
+  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Exploratory Data Analysis](../../projects/bcgx_powerco/task2)</b>
 
     ---
 
@@ -57,7 +57,7 @@ In this project, we work with another client who is a major **gas and electricit
     - Create data visualizations to help you interpret key trends
 
 
-  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Feature Engineering & Modelling](../../notebooks/projects/bcgx_powerco/task3.ipynb)</b>
+  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Feature Engineering & Modelling](../../projects/bcgx_powerco/task3)</b>
 
     ---
 
@@ -71,7 +71,7 @@ In this project, we work with another client who is a major **gas and electricit
     - Use Python to build a new feature for your analysis
 
 
-  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Findings & Recommendations](../../notebooks/projects/bcgx_powerco/task4.ipynb)</b>
+  - :material-book-check:{ .hover-icon-bounce .failure-hover title="Complete" } <b>[Findings & Recommendations](../../projects/bcgx_powerco/task4)</b>
 
     ---
 

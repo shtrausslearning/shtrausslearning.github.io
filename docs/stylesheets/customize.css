@@ -39,7 +39,7 @@
   box-shadow: 0 0 0 0.05rem var(---md-code-fg-color);
 }
 .md-typeset .grid.cards > ul > li:hover {
-  background: #ffffff;
+  background: #232c42f2;
   box-shadow: 0.05 0.05 0.05 0.05rem #b9b9b9;
 }
 

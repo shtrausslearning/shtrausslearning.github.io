@@ -154,8 +154,8 @@ img {
 [data-md-color-scheme="slate"] {
 
   --md-primary-fg-color:              #1f8eb6;  
-  --md-primary-bg-color:               #F5F5F5;
-  --md-default-bg-color:               rgba(29, 37, 56, 0.95);
+  --md-primary-bg-color:               #29344df2;
+  --md-default-bg-color:               #1d2538f2;
 
   --md-accent-fg-color:                #dbdbdb;
   --md-accent-bg-color:                rgba(46, 58, 85, 0.95);

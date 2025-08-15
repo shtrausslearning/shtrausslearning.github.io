@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Andrey Shtrauss - Portfolio</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/mllibs.svg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="assets/img/home-logo.svg" alt="">
+        <h1 class="sitename"></h1>
+      </a>
+
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#featured_work">Featured</a></li> 
+          <li><a href="#portfolio">Latest</a></li>
+          <li><a href="blog/">Blog</a></li>
+          <li><a href="https://t.me/shtrauss2">Telegram</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+  
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 hero-content" data-aos="fade-up" data-aos-delay="100">
+            <div class="subtitle">
+              <span>DATA ANALYST</span>
+            </div>
+
+            <h1 class="title">
+              Andrey <span class="highlight">Shtrauss</span>
+            </h1>
+
+            <div class="description">
+              <p>I'm a Big Data Analyst in IT/Bank. I have worked on a number of interesting projects over the years, 
+                these days my interest is shifting to the integration of machine & deep learning solution in a variety of fields.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+
+
+    <!-- Team Section -->
+    <section id="featured_work" class="team section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="team-header" data-aos="fade-up" data-aos-delay="200">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h2>Featured Works</h2>
+              <p>Featured projects on various topics which I found interesting</p>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-lg-end">
+              <div class="team-controls">
+                <button class="team-control-btn team-prev"><i class="bi bi-chevron-left"></i></button>
+                <button class="team-control-btn team-next"><i class="bi bi-chevron-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-slider swiper init-swiper" data-aos="fade-up" data-aos-delay="300">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 700,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": 1,
+              "spaceBetween": 30,
+              "navigation": {
+                "nextEl": ".team-next",
+                "prevEl": ".team-prev"
+              },
+              "breakpoints": {
+                "576": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 20
+                },
+                "992": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 30
+                },
+                "1200": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 30
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1470294402047-fc1b5f39bd99?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Customer Transaction Predictive Analytics</h3>
+                  <span>Financial</span>
+                  <p>Predictive regression modeling & analysis of customer transactions</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/banking-consumer-complaint-analysis" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1738566496113-9fa2b12b4a7e?q=80&w=1700&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Banking Consumer Complaint Analysis</h3>
+                  <span>Financial</span>
+                  <p>Natural language processing based approach to creating customer feedback classifier</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://github.com/shtrausslearning/otus_nlp_course/blob/main/hw/1_parsing.ipynb" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                <img src="https://images.unsplash.com/photo-1523263983652-bb7473e297ad?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Banking User Review Analysis & Sentiment Modeling</h3>
+                  <span>Financial</span>
+                  <p>Parsing & evaluation of user reviews for a company's banking product</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://shtrausslearning.github.io/portfolio/pdf/chatbot_grabrfi.pdf" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1607944024060-0450380ddd33?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>GrabrFi Customer Service Chatbot</h3>
+                  <span>Financial</span>
+                  <p>Creating a chatbot for a financial business that addresses customer concerns</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/biological-sequence-operations" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1576086085526-0de1930a57c7?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Biological Sequence Operations</h3>
+                  <span>Biology</span>
+                  <p>An introduction to working with biological DNA/Amino acid sequences</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/geospatial-data-visualisation-australia" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1627700567969-3a860aa9810c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzV8fHF1ZWVuc2xhbmR8ZW58MHx8MHx8fDA%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Geospatial Data Vis | Australia</h3>
+                  <span>Geospatial analysis</span>
+                  <p>A brief overview on what type of geospatial library tools we can use to visualise & analyse map geospatial data</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://www.kaggle.com/code/shtrausslearning/nlp-edx-course-recommendations" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>edX Course Recommendations</h3>
+                  <span>RecSys</span>
+                  <p>Course recommendation on the basis of textual description</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+            <div class="swiper-slide">
+              <div class="team-member">
+                <a href="https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html" target="_blank" rel="noopener noreferrer">
+                <div class="member-image">
+                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="" loading="lazy">
+                </div>
+                </a>
+                <div class="member-content">
+                  <h3>Banking Customer Stable Fund Volume Modeling</h3>
+                  <span>Financial</span>
+                  <p>Creation of a time-series model capable of predicting future customer stable fund values</p>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- /Team Section -->
+
+
+
+
+
+
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <div class="container">
+
+        <div class="team-header" data-aos="fade-up" data-aos-delay="200">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h2>Latest activity</h2>
+              <p>Latest activities on different platforms</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="fitRows" data-sort="original-order">
+
+          <div class="portfolio-filters-wrapper">
+            <ul class="portfolio-filters isotope-filters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-nlp">NLP</li>
+              <li data-filter=".filter-internship">Internship</li>
+              <li data-filter=".filter-EDA">EDA</li>
+              <li data-filter=".filter-spark">Spark</li>
+              <li data-filter=".filter-bioinformatics">Bioinformatics</li>
+            </ul>
+          </div>
+
+          <div class="row gy-4 portfolio-grid isotope-container">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-EDA">
+              <a href="https://shtrausslearning.github.io/portfolio/projects/ab_testing/hypothesis_testing.html" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/hypothesis2.jpg" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Hypothesis Testing</h3>
+                  <p>Hypothesis testing for new client recommendation model</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+          <div class="row gy-4 portfolio-grid isotope-container">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-internship">
+              <a href="https://shtrausslearning.github.io/portfolio/internships/bcgx_powerco.html" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/web-assets.bcg.webp" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>BCGX Churn Modeling</h3>
+                  <p>Internship report on the topic of churn modeling for a client</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-internship">
+              <a href="https://shtrausslearning.github.io/portfolio/projects/lloyds_ds/index.html" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/lloyds.jpg" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Lloyds Churn Modeling</h3>
+                  <p>Internship report on the topic of churn modeling</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-nlp">
+              <a href="https://www.kaggle.com/code/shtrausslearning/creating-a-transformer-attention-encoder" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/transformer1.jpg" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Coding transformer encoder</h3>
+                  <p>Creating a transformer encoder architecture in PyTorch</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-spark">
+              <a href="https://shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark.html" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/sparkpy.png" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>PySpark prophet integration</h3>
+                  <p>Prophet integrations with PySpark using UDF for time series modeling</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-nlp">
+              <a href="https://github.com/shtrausslearning/otus_nlp_course/blob/main/3_%D0%9A%D0%BB%D0%B0%D1%81%D1%81%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20NLP/9_%D0%9F%D1%80%D0%B5%D0%B4%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%B8%20%D0%BF%D0%BE%D0%BD%D1%8F%D1%82%D0%B8%D0%B5%20%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D1%81%D0%BB%D0%BE%D0%B2/khazah-news-sentiment.ipynb" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/portfolio23.jpg" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Kazah news sentiment classification</h3>
+                  <p>News article text based classification modeling</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-internship">
+              <a href="https://www.kaggle.com/code/shtrausslearning/customer-transaction-predictive-analytics" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/2150347020.jpg" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>ANZ Data Science</h3>
+                  <p>Data Science internship report on transaction exporation & income predictive modeling</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-internship">
+              <a href="https://shtrausslearning.github.io/blog/2023/11/17/prediction-of-customer-stable-funds-volume.html" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/plot1.png" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Sber Data Science</h3>
+                  <p>Data science report on modeling of customer stable fund forcasting</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-internship">
+              <a href="https://shtrausslearning.github.io/blog/2023/11/20/prediction-of-product-stock-levels.html" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/cognizant.webp" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Cognizant Data Science</h3>
+                  <p>Data science internship report on the topic of retail stock monitoring</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-EDA">
+              <a href="https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/wing2.avif" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>CFD trade study analysis</h3>
+                  <p>Parametric based CFD study analysis and modeling</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-EDA">
+              <a href="https://www.kaggle.com/code/shtrausslearning/ovarian-phase-classification-in-felids" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/feline.png" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Feline phase classification</h3>
+                  <p>Feline estrous cycle data analysis & modeling</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-EDA">
+              <a href="https://www.kaggle.com/code/shtrausslearning/gaussian-processes-airfoil-noise-modeling" class="details-link" title="View Project Details">
+              <div class="portfolio-card">
+                <div class="image-container">
+                  <img src="assets/img/portfolio/wing2.jpeg" class="img-fluid" alt="Packaging Design" loading="lazy">
+                  <div class="overlay">
+                    <div class="overlay-content">
+                    </div>
+                  </div>
+                </div>
+                <div class="content">
+                  <h3>Airfoil broadband noise prediction</h3>
+                  <p>Analysis & creation of model which predicts airfoil noise based on experimental data</p>
+                </div>
+              </div>
+              </a>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Grid -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+
+
+  </main>
+
+  <footer id="footer" class="footer">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Personal Portfolio</span>
+          </a>
+          <p>A website for my collection of projects in data science and analytics</p>
+          <div class="social-links d-flex mt-4">
+            <a href="https://t.me/shtrauss2s"><i class="bi bi-telegram"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="https://shtrausslearning.github.io/about/index.html">About Me</a></li>
+            <li><a href="https://github.com/shtrausslearning/shtrausslearning.github.io">GitHub</a></li>
+            <li><a href="https://www.kaggle.com/shtrausslearning">Kaggle</a></li>
+            <li><a href="https://t.me/mldsai_info">Telegram Channel</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact</h4>
+          <p><strong>Email:</strong> <span>shtraussart@gmail.com</span></p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Visible</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

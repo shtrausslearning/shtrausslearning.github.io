@@ -1,0 +1,2019 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Personal Website">
+      
+      
+        <meta name="author" content="Andrey Shtrauss">
+      
+      
+        <link rel="canonical" href="https://shtrausslearning.github.io/blog/2023/10/13/using-prophet-with-pyspark.html">
+      
+      
+        <link rel="prev" href="../../09/25/comparison-of-subsets.html">
+      
+      
+        <link rel="next" href="../21/gene-classification.html">
+      
+      
+      <link rel="icon" href="../../../../images/home-logo.svg">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Using Prophet with PySpark - mldsai</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/customize.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/simpleicons.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-R7CLKWM3LT"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-R7CLKWM3LT",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-R7CLKWM3LT",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#utilising-prophet-with-pyspark" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../index.html" title="mldsai" class="md-header__button md-logo" aria-label="mldsai" data-md-component="logo">
+      
+  <img src="../../../../images/home-logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mldsai
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using Prophet with PySpark
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/shtrausslearning/shtrausslearning.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shtrausslearning.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  <b>Home</b>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../index.html#featured_work" class="md-tabs__link">
+        
+  
+    
+  
+  <b>Featured</b>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../index.html#portfolio" class="md-tabs__link">
+        
+  
+    
+  
+  <b>Latest</b>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../index.html" class="md-tabs__link">
+          
+  
+    
+  
+  <b>Blog</b>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../index.html" title="mldsai" class="md-nav__button md-logo" aria-label="mldsai" data-md-component="logo">
+      
+  <img src="../../../../images/home-logo.svg" alt="logo">
+
+    </a>
+    mldsai
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/shtrausslearning/shtrausslearning.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    shtrausslearning.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <b>Home</b>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html#featured_work" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <b>Featured</b>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html#portfolio" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <b>Latest</b>
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    <b>Blog</b>
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <b>Blog</b>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2025/07.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    July, 2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2025/02.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    February, 2025
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024/10.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    October, 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024/04.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    April, 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024/03.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    March, 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023/12.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    December, 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023/11.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    November, 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023/10.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    October, 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023/09.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    September, 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023/08.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    August, 2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/recsys.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Recsys
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/code-model.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    code model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/eda.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/internship.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    internship
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/nlp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    nlp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/pyspark.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pyspark
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/science.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    science
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/sql.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sql
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/uplift-modeling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    uplift modeling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      Background
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Background">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prophet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prophet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udf" class="md-nav__link">
+    <span class="md-ellipsis">
+      UDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avocado-price-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avocado Price Prediction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Dataset
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploring Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparing-data-for-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing data for modeling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-scheme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Scheme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#udf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      UDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-prediction-visualisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Prediction Visualisation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concluding-remarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Concluding remarks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/79809117?v=4" alt="Andrey Shtrauss">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Andrey Shtrauss
+                        
+                      </strong>
+                      <br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-10-13 00:00:00" class="md-ellipsis">October 13, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/pyspark.html">pyspark</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              14 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
+
+<nav class="md-tags" >
+  
+    
+    
+    
+      <span class="md-tag">machine learning</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">pyspark</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">prophet</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">regression</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">time series</span>
+    
+  
+    
+    
+    
+      <span class="md-tag">eda</span>
+    
+  
+</nav>
+
+
+  
+  
+
+
+<h1 id="utilising-prophet-with-pyspark"><strong>Utilising Prophet with PySpark</strong><a class="headerlink" href="#utilising-prophet-with-pyspark" title="Permanent link">&para;</a></h1>
+<p>In this notebook, we look at how to use a popular machine learning library <strong>prophet</strong> with the <strong>pyspark</strong> architecture. <strong>pyspark</strong> itself unfortunatelly does not contain such an additive regression model, however we can utilise user defined functions, <strong>UDF</strong>, which allows us to utilise different functionality of different libraries that is not available in <strong>pyspark</strong></p>
+<!-- more -->
+<p>asa</p>
+<div class="grid cards">
+<ul>
+<li><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg></span>&nbsp; <b><a href="https://colab.research.google.com/drive/1nHNPoO7CMBwGg8rIxgAx4KuCZfxvuXBN?usp=sharing">Run on Colab</a></b></li>
+<li><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>&nbsp; <b><a href="https://raw.githubusercontent.com/shtrausslearning/Data-Science-Portfolio/main/avocado_sales_prediction/avocado.csv">Download dataset</a></b></li>
+</ul>
+</div>
+<h2 id="background"><strong>Background</strong><a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<h3 id="prophet">Prophet<a class="headerlink" href="#prophet" title="Permanent link">&para;</a></h3>
+<p><strong><code>Prophet</code></strong> is a time series forecasting model. It is based on an additive regression model that takes into account <strong>trends, seasonality, and holidays</strong>. <strong><code>Prophet</code></strong> also allows for the inclusion of external regressors and can handle missing data and outliers. It uses Bayesian inference to estimate the parameters of the model and provides uncertainty intervals for the forecasts. Such a model is not available in the <strong>pyspark</strong> library, so we'll need to utilise <strong>user defined functions</strong> to utilise it with our dataset!</p>
+<h3 id="udf">UDF<a class="headerlink" href="#udf" title="Permanent link">&para;</a></h3>
+<p><strong>Pandas</strong> <strong><code>UDFs</code></strong> (<strong>User-Defined Functions</strong>) are one form of <strong>UDF</strong> that is available in <strong>pyspark</strong>. They allow you to apply a Python function that operates on <strong>pandas dataframes</strong> to Spark dataframes. This allows you to leverage the power of pandas, which is a popular data manipulation library in Python, in your PySpark applications. Pandas <strong><code>UDFs</code></strong> can take one or more input columns and return one or more output columns, which can be of any data type supported by Spark. With Pandas <strong><code>UDFs</code></strong>, you can perform complex data manipulations that are not possible using built-in Spark SQL functions. </p>
+<p>Of course, this is not a guide on <strong>UDF</strong>, nor are we going for the most optimal setup, it is simply an example of how we can use the rich user defined functionality of pyspark to integrate other functionalities not available in pyspark</p>
+<h3 id="avocado-price-prediction">Avocado Price Prediction<a class="headerlink" href="#avocado-price-prediction" title="Permanent link">&para;</a></h3>
+<p><strong>Avocado price prediction</strong> is the process of using machine learning algorithms to forecast the future prices of avocados based on historical data and other relevant factors such as weather patterns, consumer demand, and supply chain disruptions. This can help stakeholders in the avocado industry make informed decisions about when and where to sell their avocados, as well as how much to charge for them. Avocado price prediction can also provide insights into the factors that affect avocado sales and help optimize the industry's efficiency and profitability.</p>
+<h2 id="the-dataset"><strong>The Dataset</strong><a class="headerlink" href="#the-dataset" title="Permanent link">&para;</a></h2>
+<p>It is a well known fact that Millenials LOVE Avocado Toast. It's also a well known fact that all Millenials live in their parents basements.Clearly, they aren't buying home because they are buying too much Avocado Toast! But maybe there's hope… if a Millenial could find a city with cheap avocados, they could live out the Millenial American Dream.</p>
+<p>The dataset can be found on <strong><a href="https://www.kaggle.com/datasets/neuromusic/avocado-prices">Kaggle</a></strong> &amp; its original source found <strong><a href="https://hassavocadoboard.com/">here</a></strong>, it contains historical sales data for different avocado types in various states the United States</p>
+<h3 id="loading-data">Loading data<a class="headerlink" href="#loading-data" title="Permanent link">&para;</a></h3>
+<p>To load the data, we start a spark session on our local machine</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pyspark</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">f</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Start spark session</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span>\
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                    <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local&quot;</span><span class="p">)</span>\
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                    <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;prophet&quot;</span><span class="p">)</span>\
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                    <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</code></pre></div>
+<p>To read the data, we'll use the <strong><code>session.read.csv</code></strong>, together with <strong><code>inferSchema</code></strong> method and look at the table schematics using <strong><code>printSchema()</code></strong> method to automatically assign types to table columns</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># read csv</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">sales</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;/kaggle/input/avocado-prices/avocado.csv&#39;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">sales</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>root
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a> |-- _c0: integer (nullable = true)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a> |-- Date: date (nullable = true)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a> |-- AveragePrice: double (nullable = true)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a> |-- Total Volume: double (nullable = true)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a> |-- 4046: double (nullable = true)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a> |-- 4225: double (nullable = true)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a> |-- 4770: double (nullable = true)
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a> |-- Total Bags: double (nullable = true)
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a> |-- Small Bags: double (nullable = true)
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a> |-- Large Bags: double (nullable = true)
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a> |-- XLarge Bags: double (nullable = true)
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a> |-- type: string (nullable = true)
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a> |-- year: integer (nullable = true)
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a> |-- region: string (nullable = true)
+</code></pre></div>
+<h2 id="exploring-data"><strong>Exploring Data</strong><a class="headerlink" href="#exploring-data" title="Permanent link">&para;</a></h2>
+<p>As with any dataset, its good to get a better understanding by exploring the data you are working with. Having loaded our data, first lets take a peek at our dataset, </p>
+<p>Let's use <strong><code>select</code></strong>,<strong><code>orderBy</code></strong> &amp; <strong><code>show</code></strong> methods to show our dataset</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">,</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>\
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>     <span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span>\
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>     <span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>+----------+------------+------------+----------------+
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>|      Date|        type|Total Volume|          region|
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>+----------+------------+------------+----------------+
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>|2015-01-04|conventional|   116253.44|BuffaloRochester|
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>|2015-01-04|conventional|   158638.04|        Columbus|
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>|2015-01-04|conventional|   5777334.9|      California|
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>|2015-01-04|conventional|   435021.49|         Atlanta|
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>|2015-01-04|conventional|   166006.29|       Charlotte|
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>+----------+------------+------------+----------------+
+</code></pre></div></p>
+<p>The <strong><code>Date</code></strong> unique values can be called and checked, we have weekly data for different regions</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>+----------+
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>|      Date|
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>+----------+
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>|2015-01-04|
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>|2015-01-11|
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>|2015-01-18|
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>|2015-01-25|
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>|2015-02-01|
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>+----------+
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>only showing top 5 rows
+</code></pre></div>
+<p>It's also good to know the range of the <strong><code>date</code></strong> of our dataset</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;last&#39;</span><span class="p">),</span><span class="n">f</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Date&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;first&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>+----------+----------+
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>|      last|     first|
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>+----------+----------+
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>|2018-03-25|2015-01-04|
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>+----------+----------+
+</code></pre></div>
+<p>We will be using <strong><code>Total Volume</code></strong> as our target variable we'll be predicting. We also can note that we have different types <strong><code>type</code></strong> of avocados (organic and conventional)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>+------------+
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>|        type|
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>+------------+
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>|     organic|
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>|conventional|
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>+------------+
+</code></pre></div>
+<p>So what we'll be doing is creating a model to predict the sales for both of these types, which is something we'll need to incorporate into our <strong><code>UDF</code></strong></p>
+<p>We can also check the <strong><code>region</code></strong> limits for <strong><code>Total Volume</code></strong>, we can do this by using <strong><code>agg</code></strong> method with the <strong><code>groupby</code></strong> dataframe type (<strong><code>pyspark.sql.group.GroupedData</code></strong>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># min and maximum of sale volume</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># get max of column</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">sales</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># get min of column</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>+------------------+-----------------+
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>|            region|max(Total Volume)|
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>+------------------+-----------------+
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>|     PhoenixTucson|       2200550.27|
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>|       GrandRapids|        408921.57|
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>|     SouthCarolina|        706098.15|
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>|           TotalUS|    6.250564652E7|
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>|  WestTexNewMexico|       1637554.42|
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>|        Louisville|        169828.77|
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>|      Philadelphia|         819224.3|
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>|        Sacramento|         862337.1|
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>|     DallasFtWorth|       1885401.44|
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>|      Indianapolis|        335442.41|
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>|          LasVegas|        680234.93|
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>|         Nashville|        391780.25|
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>|        GreatLakes|       7094764.73|
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>|           Detroit|        880540.45|
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>|            Albany|        216738.47|
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>|          Portland|       1189151.17|
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>|  CincinnatiDayton|        538518.77|
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>|          SanDiego|        917660.79|
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>|             Boise|        136377.55|
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>|HarrisburgScranton|        395673.05|
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>+------------------+-----------------+
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>only showing top 20 rows
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>+------------------+-----------------+
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>|            region|min(Total Volume)|
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>+------------------+-----------------+
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>|     PhoenixTucson|          4881.79|
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>|       GrandRapids|           683.76|
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>|     SouthCarolina|           2304.3|
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>|           TotalUS|        501814.87|
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>|  WestTexNewMexico|          4582.72|
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>|        Louisville|           862.59|
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>|      Philadelphia|           1699.0|
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>|        Sacramento|          3562.52|
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>|     DallasFtWorth|          6568.67|
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>|      Indianapolis|           964.25|
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>|          LasVegas|           2988.4|
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>|         Nashville|          2892.29|
+<a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a>|        GreatLakes|         56569.37|
+<a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>|           Detroit|          4973.92|
+<a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>|            Albany|            774.2|
+<a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a>|          Portland|          7136.88|
+<a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>|  CincinnatiDayton|          6349.77|
+<a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a>|          SanDiego|          5564.87|
+<a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>|             Boise|           562.64|
+<a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>|HarrisburgScranton|           971.81|
+<a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>+------------------+-----------------+
+<a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a>only showing top 20 rows
+</code></pre></div>
+<p>We can note that we have data for not only the different <strong><code>regions</code></strong>, but also for the entire country <strong><code>TotalUS</code></strong>. Also interesting to note is that the difference in <strong><code>max</code></strong> and <strong><code>min</code></strong> values is quite high.</p>
+<p>Let's find the locations (<strong><code>region</code></strong>) with the highest <code>total volumes</code> </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">desc</span><span class="p">,</span><span class="n">col</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">by_volume</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="s2">&quot;Total Volume&quot;</span><span class="p">))</span>\
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>                 <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;TotalUS&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">by_volume</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>|_c0|      Date|AveragePrice| Total Volume|      4046|      4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year|    region|
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>| 47|2017-02-05|        0.66|1.127474911E7|4377537.67|2558039.85|193764.89| 4145406.7|2508731.79|1627453.06|    9221.85|conventional|2017|      West|
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>| 47|2017-02-05|        0.67|1.121359629E7|3986429.59|3550403.07|214137.93| 3462625.7|3403581.49|   7838.83|   51205.38|conventional|2017|California|
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>|  7|2018-02-04|         0.8|1.089467777E7|4473811.63|4097591.67|146357.78|2176916.69|2072477.62|  34196.27|    70242.8|conventional|2018|California|
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>|  7|2018-02-04|        0.83|1.056505641E7|3121272.58|3294335.87|142553.21|4006894.75|1151399.33|2838239.39|   17256.03|conventional|2018|      West|
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>| 46|2016-02-07|         0.7|1.036169817E7|2930343.28|3950852.38| 424389.6|3056112.91|2693843.02| 344774.59|    17495.3|conventional|2016|California|
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+----------+
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>only showing top 5 rows
+</code></pre></div>
+<p>We can note that <strong><code>California</code></strong> &amp; <strong><code>West</code></strong> regions have had the highest values for <strong><code>Total Volume</code></strong> on 2017-02-05</p>
+<p>Its also interest to note the difference in <strong><code>Total Volume</code></strong> for both types of avocado, so lets check that, lets just check the difference in <strong><code>max</code></strong> values</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">by_volume</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>+------------+-----------------+
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>|        type|max(Total Volume)|
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>+------------+-----------------+
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>|     organic|        793464.77|
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>|conventional|    1.127474911E7|
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>+------------+-----------------+
+</code></pre></div>
+<p>So we can note that tehre is a significant diffence in <strong><code>Total Volume</code></strong>, let's also check when this actually occured:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">by_volume</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.127474911E7</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">by_volume</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mf">793464.77</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>|_c0|      Date|AveragePrice| Total Volume|      4046|      4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year|region|
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>| 47|2017-02-05|        0.66|1.127474911E7|4377537.67|2558039.85|193764.89| 4145406.7|2508731.79|1627453.06|    9221.85|conventional|2017|  West|
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>+---+----------+------------+-------------+----------+----------+---------+----------+----------+----------+-----------+------------+----+------+
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>+---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>|_c0|      Date|AveragePrice|Total Volume|    4046|     4225| 4770|Total Bags|Small Bags|Large Bags|XLarge Bags|   type|year|   region|
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>+---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>|  5|2018-02-18|        1.39|   793464.77|150620.0|425616.86|874.9| 216353.01| 197949.51|   18403.5|        0.0|organic|2018|Northeast|
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>+---+----------+------------+------------+--------+---------+-----+----------+----------+----------+-----------+-------+----+---------+
+</code></pre></div>
+<p>Let's also check how many regions there actually are:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">sales</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>54
+</code></pre></div>
+<p>Which is interesting as there are only 50 states in the US, so perhaps <strong><code>west</code></strong> is a summation for all states on the west coast, lets check if there is also an east coast</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">sales</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>+-------------------+-----+
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>|             region|count|
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>+-------------------+-----+
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>|      PhoenixTucson|  338|
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>|        GrandRapids|  338|
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>|      SouthCarolina|  338|
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>|            TotalUS|  338|
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>|   WestTexNewMexico|  335|
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>|         Louisville|  338|
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>|       Philadelphia|  338|
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>|         Sacramento|  338|
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>|      DallasFtWorth|  338|
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>|       Indianapolis|  338|
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>|           LasVegas|  338|
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>|          Nashville|  338|
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>|         GreatLakes|  338|
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>|            Detroit|  338|
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>|             Albany|  338|
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>|           Portland|  338|
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>|   CincinnatiDayton|  338|
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>|           SanDiego|  338|
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>|              Boise|  338|
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>| HarrisburgScranton|  338|
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>|            StLouis|  338|
+<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>|   NewOrleansMobile|  338|
+<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>|           Columbus|  338|
+<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>|         Pittsburgh|  338|
+<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>|  MiamiFtLauderdale|  338|
+<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a>|       SouthCentral|  338|
+<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a>|            Chicago|  338|
+<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>|   BuffaloRochester|  338|
+<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>|              Tampa|  338|
+<a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>|          Southeast|  338|
+<a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>|             Plains|  338|
+<a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>|            Atlanta|  338|
+<a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a>|BaltimoreWashington|  338|
+<a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a>|            Seattle|  338|
+<a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a>|       SanFrancisco|  338|
+<a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a>|HartfordSpringfield|  338|
+<a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a>|            Spokane|  338|
+<a id="__codelineno-23-41" name="__codelineno-23-41" href="#__codelineno-23-41"></a>| NorthernNewEngland|  338|
+<a id="__codelineno-23-42" name="__codelineno-23-42" href="#__codelineno-23-42"></a>|            Roanoke|  338|
+<a id="__codelineno-23-43" name="__codelineno-23-43" href="#__codelineno-23-43"></a>|         LosAngeles|  338|
+<a id="__codelineno-23-44" name="__codelineno-23-44" href="#__codelineno-23-44"></a>|            Houston|  338|
+<a id="__codelineno-23-45" name="__codelineno-23-45" href="#__codelineno-23-45"></a>|       Jacksonville|  338|
+<a id="__codelineno-23-46" name="__codelineno-23-46" href="#__codelineno-23-46"></a>|  RaleighGreensboro|  338|
+<a id="__codelineno-23-47" name="__codelineno-23-47" href="#__codelineno-23-47"></a>|               West|  338|
+<a id="__codelineno-23-48" name="__codelineno-23-48" href="#__codelineno-23-48"></a>|            NewYork|  338|
+<a id="__codelineno-23-49" name="__codelineno-23-49" href="#__codelineno-23-49"></a>|           Syracuse|  338|
+<a id="__codelineno-23-50" name="__codelineno-23-50" href="#__codelineno-23-50"></a>|         California|  338|
+<a id="__codelineno-23-51" name="__codelineno-23-51" href="#__codelineno-23-51"></a>|            Orlando|  338|
+<a id="__codelineno-23-52" name="__codelineno-23-52" href="#__codelineno-23-52"></a>|          Charlotte|  338|
+<a id="__codelineno-23-53" name="__codelineno-23-53" href="#__codelineno-23-53"></a>|           Midsouth|  338|
+<a id="__codelineno-23-54" name="__codelineno-23-54" href="#__codelineno-23-54"></a>|             Denver|  338|
+<a id="__codelineno-23-55" name="__codelineno-23-55" href="#__codelineno-23-55"></a>|             Boston|  338|
+<a id="__codelineno-23-56" name="__codelineno-23-56" href="#__codelineno-23-56"></a>|          Northeast|  338|
+<a id="__codelineno-23-57" name="__codelineno-23-57" href="#__codelineno-23-57"></a>|    RichmondNorfolk|  338|
+<a id="__codelineno-23-58" name="__codelineno-23-58" href="#__codelineno-23-58"></a>+-------------------+-----+
+</code></pre></div>
+<p>So as the name suggests, its a grouping that doesn't actually correspond to states, but rather are some general zones, mostly city specific regions, however we also have <strong>Northeast</strong>, <strong>West</strong>,<strong>Midsouth</strong> &amp; <strong>SouthCentral</strong> regions.</p>
+<p>Let's check how many values we have for each <code>region</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># value counts</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">sales</span><span class="o">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>+------------------+-----+
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>|            region|count|
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>+------------------+-----+
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>|  WestTexNewMexico|  335|
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>|     PhoenixTucson|  338|
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>|       GrandRapids|  338|
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>|     SouthCarolina|  338|
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>|           TotalUS|  338|
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>|        Louisville|  338|
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>|      Philadelphia|  338|
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>|        Sacramento|  338|
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>|     DallasFtWorth|  338|
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>|      Indianapolis|  338|
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>|          LasVegas|  338|
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>|         Nashville|  338|
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>|        GreatLakes|  338|
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>|           Detroit|  338|
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>|            Albany|  338|
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>|          Portland|  338|
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>|  CincinnatiDayton|  338|
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>|          SanDiego|  338|
+<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>|             Boise|  338|
+<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>|HarrisburgScranton|  338|
+<a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a>+------------------+-----+
+<a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a>only showing top 20 rows
+</code></pre></div>
+<p>Looks like we mostly have <strong>338 historical data</strong> points for each region, except for <strong>WestTexNewMexico</strong>.</p>
+<p>Turning our attention to only one region, let's check how the <strong>Houston</strong> region has been performing.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># select only a subset of data</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="n">sales</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Houston&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>+---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>|_c0|      Date|AveragePrice|Total Volume|     4046|     4225|     4770|Total Bags|Small Bags|Large Bags|XLarge Bags|        type|year| region|
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>+---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>|  0|2015-12-27|        0.78|   944506.54|389773.22|288003.62|126150.81| 140578.89|  73711.94|  36493.62|   30373.33|conventional|2015|Houston|
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>|  1|2015-12-20|        0.75|   922355.67|382444.22|278067.11|127372.19| 134472.15|  72198.16|  31520.66|   30753.33|conventional|2015|Houston|
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>|  2|2015-12-13|        0.73|   998752.95| 412187.8|386865.21| 81450.04|  118249.9|  69011.01|  48622.22|     616.67|conventional|2015|Houston|
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>|  3|2015-12-06|        0.74|   989676.85|368528.91| 490805.0|  7041.19| 123301.75|  61020.31|  62281.44|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>|  4|2015-11-29|        0.79|   783225.98|391616.95|289533.68|  4334.89|  97740.46|  67880.28|  29860.18|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>|  5|2015-11-22|        0.73|   913002.96|402191.51|391110.76|  6924.43| 112776.26|  70785.25|  41991.01|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>|  6|2015-11-15|        0.72|   998801.78|530464.33|332541.11|   4611.0| 131185.34|  62414.66|  68770.68|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>|  7|2015-11-08|        0.75|   983909.85|427828.16|411365.91| 20404.29| 124311.49|  56573.89|   67737.6|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>|  8|2015-11-01|        0.77|  1007805.74| 395945.0|365506.02|111263.81| 135090.91|  56198.27|  78892.64|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>|  9|2015-10-25|        0.88|   933623.58|437329.85|313129.29| 81274.85| 101889.59|  57577.21|   44260.6|      51.78|conventional|2015|Houston|
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>| 10|2015-10-18|         0.9|   847813.12| 436132.2|242842.91| 80895.03|  87942.98|  59835.83|  28107.15|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>| 11|2015-10-11|        0.79|  1036269.51|410949.18|385629.69|126765.96| 112924.68|  62638.13|  50286.55|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>| 12|2015-10-04|        0.82|  1019283.99|411727.49|435388.05| 43558.15|  128610.3|   59751.0|   68859.3|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>| 13|2015-09-27|        0.86|   968988.09|383218.43| 458982.9|  16780.9| 110005.86|  61098.51|  48907.35|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>| 14|2015-09-20|        0.83|   967228.05|417701.88|445473.03|   6959.5|  97093.64|  55198.32|  41895.32|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-19" name="__codelineno-27-19" href="#__codelineno-27-19"></a>| 15|2015-09-13|        0.89|  1095790.27|421533.83|540499.39|  5559.36| 128197.69|  55636.91|  72560.78|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-20" name="__codelineno-27-20" href="#__codelineno-27-20"></a>| 16|2015-09-06|        0.89|  1090493.39|460377.08|495487.54|   6230.7| 128398.07|  63724.96|  64673.11|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-21" name="__codelineno-27-21" href="#__codelineno-27-21"></a>| 17|2015-08-30|        0.88|   926124.93| 559048.7|260761.33|  4514.17| 101800.73|   72264.6|  29536.13|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-22" name="__codelineno-27-22" href="#__codelineno-27-22"></a>| 18|2015-08-23|        0.89|   933166.17|509472.17| 321616.5|  4323.68|  97753.82|  62733.47|  35020.35|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-23" name="__codelineno-27-23" href="#__codelineno-27-23"></a>| 19|2015-08-16|        0.92|   968899.09|565965.79|297434.65|  3479.25|  102019.4|  65764.02|  36255.38|        0.0|conventional|2015|Houston|
+<a id="__codelineno-27-24" name="__codelineno-27-24" href="#__codelineno-27-24"></a>+---+----------+------------+------------+---------+---------+---------+----------+----------+----------+-----------+------------+----+-------+
+</code></pre></div>
+<h2 id="preparing-data-for-modeling"><strong>Preparing data for modeling</strong><a class="headerlink" href="#preparing-data-for-modeling" title="Permanent link">&para;</a></h2>
+<p>Since we don't have any missing data points for the <strong>Houston</strong> region, let's use it for our model example, let's define a subset <strong><code>houston_df</code></strong>, which will contain only avocado sales data for the <strong>Houston</strong> region</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># select houson </span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">houston_df</span> <span class="o">=</span> <span class="n">sales</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;Houston&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Let's select only the relevant features which will be used to train our model</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">houston_df</span> <span class="o">=</span> <span class="n">houston_df</span><span class="o">.</span><span class="n">groupBy</span><span class="p">([</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;Date&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="s1">&#39;Total Volume&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">))</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">houston_df</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>+-------+------------+----------+----------+
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>| Region|        type|      Date|         y|
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>+-------+------------+----------+----------+
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>|Houston|conventional|2016-03-06|1091432.18|
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>|Houston|conventional|2017-02-05|1977923.65|
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>|Houston|conventional|2018-02-04|2381742.59|
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>|Houston|     organic|2015-05-24|  12358.51|
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>|Houston|     organic|2017-07-23|  40100.89|
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>+-------+------------+----------+----------+
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>only showing top 5 rows
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a># change column datatype
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>houston_df = houston_df.withColumn(&#39;y&#39;,f.round(&#39;y&#39;,2))
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>houston_df = houston_df.withColumn(&#39;ds&#39;,f.to_date(&#39;Date&#39;))
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>houston_df_final = houston_df.select([&#39;Region&#39;,&#39;type&#39;,&#39;ds&#39;,&#39;y&#39;])
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>houston_df_final.show(4)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>+-------+------------+----------+----------+
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>| Region|        type|        ds|         y|
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>+-------+------------+----------+----------+
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>|Houston|conventional|2016-03-06|1091432.18|
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>|Houston|conventional|2017-02-05|1977923.65|
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>|Houston|conventional|2018-02-04|2381742.59|
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>|Houston|     organic|2015-05-24|  12358.51|
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>+-------+------------+----------+----------+
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>only showing top 4 rows
+</code></pre></div></p>
+<p>As we will be utilising <strong>prophet</strong>, we can define the different settings of <strong>features</strong> we will be utilising in the modeling process, like <strong><code>weekly_seasonality</code></strong> and <strong><code>yearly_seasonality</code></strong>, we don't really need to explicitly create features by ourselves. For this study, we'll limit ourselves with these features provided in module.</p>
+<h2 id="creating-a-model"><strong>Creating a model</strong><a class="headerlink" href="#creating-a-model" title="Permanent link">&para;</a></h2>
+<h3 id="defining-scheme">Defining Scheme<a class="headerlink" href="#defining-scheme" title="Permanent link">&para;</a></h3>
+<p>Like any UDF, we need to define the output type of our data, let's prepare the <strong>data format scheme</strong> for the outputs of our <strong><code>UDF</code></strong>. We will need to use <strong><code>StructType</code></strong> and the relevant type improted from <strong><code>sql.types</code></strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyspark.sql.types</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="nn">ty</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="n">schema</span> <span class="o">=</span> <span class="n">ty</span><span class="o">.</span><span class="n">StructType</span><span class="p">([</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">StringType</span><span class="p">()),</span>     <span class="c1"># our main features</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span> <span class="n">StringType</span><span class="p">()),</span>      <span class="c1"># </span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">TimestampType</span><span class="p">()),</span>      <span class="c1"># </span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">FloatType</span><span class="p">()),</span>           <span class="c1">#</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;yhat&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">()),</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;yhat_upper&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">()),</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>                     <span class="n">ty</span><span class="o">.</span><span class="n">StructField</span><span class="p">(</span><span class="s1">&#39;yhat_lower&#39;</span><span class="p">,</span> <span class="n">ty</span><span class="o">.</span><span class="n">DoubleType</span><span class="p">()),</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>                     <span class="p">])</span> 
+</code></pre></div>
+<h3 id="udf_1">UDF<a class="headerlink" href="#udf_1" title="Permanent link">&para;</a></h3>
+<p>Our <strong><code>UDF</code></strong> will be slightly involved than our typical <strong>UDF</strong>, we will be using <strong><code>PandasUDFType.GROUPED_MAP</code></strong> so it should be called with <strong><code>groupby</code></strong> &amp; <strong><code>apply</code></strong></p>
+<blockquote>
+<p><strong><code>PandasUDFType.GROUPED_MAP</code></strong> is a type of user-defined function (UDF) in PySpark that allows for the application of a Pandas function to each group of data within a Spark DataFrame. This UDF type is useful when working with grouped data, such as when aggregating data by a certain column or grouping data by time intervals.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">prophet</span><span class="w"> </span><span class="kn">import</span> <span class="n">Prophet</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">pandas_udf</span><span class="p">,</span> <span class="n">PandasUDFType</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="nd">@pandas_udf</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">PandasUDFType</span><span class="o">.</span><span class="n">GROUPED_MAP</span><span class="p">)</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">apply_model</span><span class="p">(</span><span class="n">store_pd</span><span class="p">):</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>  <span class="c1"># instantiate the model and set parameters</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>    <span class="n">model</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>      <span class="n">interval_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>      <span class="n">growth</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>      <span class="n">daily_seasonality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a>      <span class="n">weekly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a>      <span class="n">yearly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a>      <span class="n">seasonality_mode</span><span class="o">=</span><span class="s1">&#39;multiplicative&#39;</span>
+<a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a>    <span class="p">)</span>
+<a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a>
+<a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a>    <span class="c1"># fit the model to historical data</span>
+<a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a>    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">store_pd</span><span class="p">)</span>
+<a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a>
+<a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a>    <span class="c1"># Create a data frame that lists 90 dates starting from Jan 1 2018</span>
+<a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a>    <span class="n">future</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">make_future_dataframe</span><span class="p">(</span>
+<a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a>      <span class="n">periods</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a>      <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a>      <span class="n">include_history</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a>
+<a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a>    <span class="c1"># Out of sample prediction</span>
+<a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a>    <span class="n">future</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+<a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a>
+<a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a>    <span class="c1"># Create a data frame that contains store, item, y, and yhat</span>
+<a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a>    <span class="n">f_pd</span> <span class="o">=</span> <span class="n">future</span><span class="p">[[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_upper&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_lower&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-34-31" name="__codelineno-34-31" href="#__codelineno-34-31"></a>    <span class="n">st_pd</span> <span class="o">=</span> <span class="n">store_pd</span><span class="p">[[</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<a id="__codelineno-34-32" name="__codelineno-34-32" href="#__codelineno-34-32"></a>    <span class="n">f_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;ds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">f_pd</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
+<a id="__codelineno-34-33" name="__codelineno-34-33" href="#__codelineno-34-33"></a>    <span class="n">st_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;ds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">st_pd</span><span class="p">[</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
+<a id="__codelineno-34-34" name="__codelineno-34-34" href="#__codelineno-34-34"></a>    <span class="n">result_pd</span> <span class="o">=</span> <span class="n">f_pd</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">st_pd</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;ds&#39;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+<a id="__codelineno-34-35" name="__codelineno-34-35" href="#__codelineno-34-35"></a>
+<a id="__codelineno-34-36" name="__codelineno-34-36" href="#__codelineno-34-36"></a>    <span class="n">result_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">store_pd</span><span class="p">[</span><span class="s1">&#39;Region&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-34-37" name="__codelineno-34-37" href="#__codelineno-34-37"></a>    <span class="n">result_pd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">store_pd</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-34-38" name="__codelineno-34-38" href="#__codelineno-34-38"></a>
+<a id="__codelineno-34-39" name="__codelineno-34-39" href="#__codelineno-34-39"></a>    <span class="k">return</span> <span class="n">result_pd</span><span class="p">[[</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;ds&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat&#39;</span><span class="p">,</span>
+<a id="__codelineno-34-40" name="__codelineno-34-40" href="#__codelineno-34-40"></a>                    <span class="s1">&#39;yhat_upper&#39;</span><span class="p">,</span> <span class="s1">&#39;yhat_lower&#39;</span><span class="p">]]</span>
+</code></pre></div>
+<h3 id="training-process">Training process<a class="headerlink" href="#training-process" title="Permanent link">&para;</a></h3>
+<p>Our model setup will be the following hyperparameters:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">Prophet</span><span class="p">(</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a> <span class="n">interval_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a> <span class="n">growth</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a> <span class="n">daily_seasonality</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a> <span class="n">weekly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a> <span class="n">yearly_seasonality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a> <span class="n">seasonality_mode</span><span class="o">=</span><span class="s1">&#39;multiplicative&#39;</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="p">)</span>
+</code></pre></div>
+<p>Having fitted the model on our data (which runs from <strong>2015-01-04</strong> to <strong>2018-03-25</strong>), we'll be making a prediction using <strong><code>model.make_future_dataframe</code></strong>, in which we'll be specifying that we want to make a prediction for <strong>6 weeks in advanced</strong>, setting the model prediction parameters. Then we simply call <strong><code>model.predict</code></strong> to actually make the prediction.</p>
+<p>To create models for both <strong>region</strong> (which in our case will only be Houston) &amp; <strong>type</strong> (organic &amp; convensional), we'll call the <strong><code>apply</code></strong> method for the pyspark dataframe</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">houston_df_final</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Region&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">apply_model</span><span class="p">)</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="n">results</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>+-------+------------+-------------------+----------+------------------+------------------+------------------+
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>| Region|        type|                 ds|         y|              yhat|        yhat_upper|        yhat_lower|
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>+-------+------------+-------------------+----------+------------------+------------------+------------------+
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>|Houston|conventional|2015-01-04 00:00:00| 1062990.6| 967605.2625150415| 987966.9732773455| 952305.7433327858|
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>|Houston|conventional|2015-01-11 00:00:00| 1062071.6| 993363.6182296885| 995012.7884165086| 964197.9475039787|
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>|Houston|conventional|2015-01-18 00:00:00| 1017854.2| 1015966.900950469|1025256.0703683371| 986191.4013155274|
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>|Houston|conventional|2015-01-25 00:00:00| 983910.94| 1074995.886186154|1101222.7673731335| 1062121.771442082|
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>|Houston|conventional|2015-02-01 00:00:00| 1280364.0|1167900.5325763628| 1188681.132535528|  1145180.90581613|
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>|Houston|conventional|2015-02-08 00:00:00| 1180723.0|1232065.4408061658|1239550.0307806057|1198043.2132719166|
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>|Houston|conventional|2015-02-15 00:00:00| 1062387.8|1199450.2180199602|1223060.5212891083|1176312.1838248386|
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>|Houston|conventional|2015-02-22 00:00:00| 978807.75|1073369.2242733259|1080957.9300315154|1040938.8331911729|
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>|Houston|conventional|2015-03-01 00:00:00| 991328.44| 941094.8884144317| 959840.4691880762| 919962.6290055071|
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>|Houston|conventional|2015-03-08 00:00:00| 1166055.9| 898815.9800298921| 918134.9334112646| 880629.0129257607|
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>|Houston|conventional|2015-03-15 00:00:00|1043172.75| 962628.9504384592| 984672.2940272797|  941114.615399528|
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a>|Houston|conventional|2015-03-22 00:00:00|1036663.75|1059573.4445409325|1079371.1160897035|1042058.3879815078|
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a>|Houston|conventional|2015-03-29 00:00:00| 1116225.2|1108114.6730682629| 1128250.035336084| 1084141.715137374|
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a>|Houston|conventional|2015-04-05 00:00:00| 1249645.2|1100408.8290516583| 1116313.220982885| 1080221.717887945|
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a>|Houston|conventional|2015-04-12 00:00:00| 1096075.0|1098549.7905255936|1117497.0118921385|1076220.1122365214|
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a>|Houston|conventional|2015-04-19 00:00:00|  933033.2| 1153840.801604051|1185673.7940084708|1142908.6811052496|
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a>|Houston|conventional|2015-04-26 00:00:00| 1082231.9|1242221.1196405245| 1269836.200588267|1229695.3593816601|
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a>|Houston|conventional|2015-05-03 00:00:00| 1296308.0|1287101.4463574803|1309988.6590584682| 1264268.574431952|
+<a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a>|Houston|conventional|2015-05-10 00:00:00| 1201673.1|1241601.8571321142|1263813.3510391738|1222570.1340492044|
+<a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a>|Houston|conventional|2015-05-17 00:00:00|1025659.56| 1139019.362908239|1164737.2354728119|1124616.7852877746|
+<a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a>+-------+------------+-------------------+----------+------------------+------------------+------------------+
+<a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a>only showing top 20 rows
+</code></pre></div>
+<h3 id="model-prediction-visualisation">Model Prediction Visualisation<a class="headerlink" href="#model-prediction-visualisation" title="Permanent link">&para;</a></h3>
+<p>Now to visualise the results, lets do some preparation</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pyspark.pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ps</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">organic_data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;organic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pandas_api</span><span class="p">()</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">organic_data</span> <span class="o">=</span> <span class="n">organic_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="n">conventional_data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span><span class="o">==</span><span class="s1">&#39;conventional&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">pandas_api</span><span class="p">()</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="n">conventional_data</span> <span class="o">=</span> <span class="n">conventional_data</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;ds&#39;</span><span class="p">])</span>
+</code></pre></div>
+<p>Let's visualise the <strong><code>organic</code></strong> subset model predictions</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">organic_data</span><span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;yhat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;plotly&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../../../images/organic2.png" /></p>
+<p>And now the <strong><code>convensional</code></strong> subset model</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">conventional_data</span><span class="p">[[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;yhat&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">backend</span><span class="o">=</span><span class="s1">&#39;plotly&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="" src="../../../images/conventional2.png" /></p>
+<h2 id="concluding-remarks"><strong>Concluding remarks</strong><a class="headerlink" href="#concluding-remarks" title="Permanent link">&para;</a></h2>
+<p>In this post we looked how to utilise <strong>pyspark</strong> together with a common <strong>time series</strong> prediction library <strong>prophet</strong>. We achieved this with the use of <strong>pyspark</strong> user defined functionality which it offers to allow us to continue working with <strong>pyspark</strong> dataframe inputs. Of course such functionality would result in performance drops when using large datasets, so it must be used with caution, especially <strong>pandas UDF</strong>. Our goal was to do some data exploration with <strong>pyspark</strong> &amp; predict the total required volume of avocadoes for 6 weeks in advanced, for two different types of avocados and for the Houston region. We used the entire available dataset without any validation techniques to confirm the accuracy of our prediction, so that is something you can definitely try out next, validation of models is of course very important!</p>
+<p><strong>Thank you for reading!</strong></p>
+<p>Any questions or comments about the above post can be addressed on the <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/mldsai_info">mldsai-info channel</a></strong> or to me directly <span class="twemoji telegram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg></span> <strong><a href="https://t.me/shtrauss2">shtrauss2</a></strong>, on <span class="twemoji github"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span> <strong><a href="https://github.com/shtrausslearning">shtrausslearning</a></strong> or <span class="twemoji kaggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg></span> <strong><a href="https://kaggle.com/shtrausslearning">shtrausslearning</a></strong></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+  
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful!" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20h-4v-9l-3.5 3.5-2.42-2.42L12 4.16l7.92 7.92-2.42 2.42L14 11v9Z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved!" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 4h4v9l3.5-3.5 2.42 2.42L12 19.84l-7.92-7.92L6.5 9.5 10 13V4Z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2025 <a href="https://github.com/shtrausslearning"  target="_blank" rel="noopener">Andrey Shtrauss</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/shtrausslearning" target="_blank" rel="noopener" title="shtrausslearning" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://www.kaggle/shtraussleaning" target="_blank" rel="noopener" title="shtrausslearning" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M304.2 501.5 158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://t.me/mldsai_info" target="_blank" rel="noopener" title="mldsai-info" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8Zm114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.452 10.452 0 0 1 3.53 6.716 43.765 43.765 0 0 1 .417 9.769Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "content.code.annotate", "content.code.copy", "content.code.select", "content.tabs.link", "content.tooltips", "navigation.indexes", "navigation.path", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "navigation.sections"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+        <script src="../../../../javascripts/katex.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
